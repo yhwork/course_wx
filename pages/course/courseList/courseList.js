@@ -44,8 +44,8 @@ class CourseListPage extends EPage {
       lessonLists: [],
       one: false,
       two: false,
-      imgType:false,
-      isAuthorization:false
+      imgType: false,
+      isAuthorization: false
     };
   }
   // 页面  默认首页  
@@ -54,8 +54,8 @@ class CourseListPage extends EPage {
     dispatch
   }) {
     return {
-      [PAGE_LIFE.on_tap](){
-        let isAuto= this.data.isAuthorization
+      [PAGE_LIFE.on_tap]() {
+        let isAuto = this.data.isAuthorization
         console.log('点击tab事件', isAuto);
         if (isAuto) {
           return false
@@ -103,11 +103,11 @@ class CourseListPage extends EPage {
         console.log('值', option)
 
         wx.getSetting({
-          success:(res)=> {
+          success: (res) => {
             if (!res.authSetting['scope.userInfo']) {
-            
+
               this.setData({
-                isAuthorization:false
+                isAuthorization: false
               })
               console.log('没有授权用户信息', this.data.isAuthorization)
               // return wx.redirectTo({
@@ -120,7 +120,7 @@ class CourseListPage extends EPage {
               console.log('已经授权用户信息', this.data.isAuthorization)
             }
           },
-          fail(err){
+          fail(err) {
             console.log('授权失败')
           }
         })
@@ -129,7 +129,7 @@ class CourseListPage extends EPage {
             console.log('授权了嘛', res)
             if (res.authSetting['scope.userInfo']) {
               console.log('对不', option)
-              if (option){
+              if (option) {
                 put(effects.GET_SHARE, option)
               }
               dispatch(actions.HANDLE_ACTION, option);
@@ -185,43 +185,43 @@ class CourseListPage extends EPage {
   }) {
     return {
       // 点击授权事件
-      [events.ui.scopeUserInfo](e){
-        
-        let isAuto = e.currentTarget.dataset.isauto
-        console.log('点击', isAuto,e)
-         if(isAuto){
-           console.log('点击sssss')
-           return false
-         }else{
+      [events.ui.scopeUserInfo](e) {
 
-           wx.showToast({
-             title: '暂无该用户信息',
-             icon: 'none',
-             duration: 1500,
-             mask: true,
-             success: (res)=> {
-               let time = null;
-               if (time) {
-                 clearTimeout(time)
-               } else {
-                 time = setTimeout(() => {
-                   return wx.switchTab({
-                     //  url: '/pages/register/register'
-                     url: '/pages/mypage/mypage/mypage'
-                   })
-                 }, 1500)
-               }
-             },
-             fail: (res)=>{
-               return wx.switchTab({
-                 //  url: '/pages/register/register'
-                 url: '/pages/mypage/mypage/mypage'
-               })
-             },
-             complete: function(res) {},
-           })
-          
-         }
+        let isAuto = e.currentTarget.dataset.isauto
+        console.log('点击', isAuto, e)
+        if (isAuto) {
+          console.log('点击sssss')
+          return false
+        } else {
+
+          wx.showToast({
+            title: '暂无该用户信息',
+            icon: 'none',
+            duration: 1500,
+            mask: true,
+            success: (res) => {
+              let time = null;
+              if (time) {
+                clearTimeout(time)
+              } else {
+                time = setTimeout(() => {
+                  return wx.switchTab({
+                    //  url: '/pages/register/register'
+                    url: '/pages/mypage/mypage/mypage'
+                  })
+                }, 1500)
+              }
+            },
+            fail: (res) => {
+              return wx.switchTab({
+                //  url: '/pages/register/register'
+                url: '/pages/mypage/mypage/mypage'
+              })
+            },
+            complete: function(res) {},
+          })
+
+        }
       },
       // 查看更多
       [events.ui.goIndex](e) {
@@ -234,23 +234,23 @@ class CourseListPage extends EPage {
         var childId = this.data.childId
         console.log(childId, state, imgType)
         if (this.data.role == 0) {
-          if (state==1) {
+          if (state == 1) {
             wx.navigateTo({
               url: '/pages/course/course?current=' + state + "&childId=" + childId,
             })
-          } else if (state == 0){
+          } else if (state == 0) {
             // 课程管理
-            if (imgType == true){
+            if (imgType == true) {
               wx.navigateTo({
-                url: '/pages/course/p_manage/schoolout_manage?activeIndex=0'+"&childId=" + childId,   // 打开校内
+                url: '/pages/course/p_manage/schoolout_manage?activeIndex=0' + "&childId=" + childId, // 打开校内
               })
-            }else{
+            } else {
               wx.navigateTo({
                 url: '/pages/course/course?current=' + state + "&childId=" + childId,
               })
             }
-             
-          } else if(state == 3) {
+
+          } else if (state == 3) {
             // 传一个
             wx.navigateTo({
               url: '/pages/course/course?current=' + 3 + "&childId=" + childId,
@@ -262,18 +262,18 @@ class CourseListPage extends EPage {
             wx.navigateTo({
               url: '/pages/course/course?current=' + state + "&childId=" + childId,
             })
-          } else if (state == 0 ) {
+          } else if (state == 0) {
             // 课程管理
             if (imgType == true) {
               wx.navigateTo({
-                url: '/pages/course/p_manage/schoolout_manage?activeIndex=0',   // 打开校内
+                url: '/pages/course/p_manage/schoolout_manage?activeIndex=0', // 打开校内
               })
             } else {
               wx.navigateTo({
                 url: '/pages/course/course?current=' + state + "&childId=" + childId,
               })
             }
-          } else if(state ==3) {
+          } else if (state == 3) {
             // 传一个
             wx.navigateTo({
               url: '/pages/course/course?current=' + 3 + "",
@@ -313,7 +313,7 @@ class CourseListPage extends EPage {
         console.log('逝者嘛')
         let childId = this.data.childId;
         wx.navigateTo({
-          url: '/pages/course/p_manage/schoolout_manage?activeIndex=1' + "&childId=" + childId,   // 打开校内
+          url: '/pages/course/p_manage/schoolout_manage?activeIndex=1' + "&childId=" + childId, // 打开校内
         })
       },
       // 日程表
@@ -400,9 +400,9 @@ class CourseListPage extends EPage {
         // })
 
       },
-      [events.ui.changeMask](e){
+      [events.ui.changeMask](e) {
         this.setData({
-          mask_state:false
+          mask_state: false
         })
       },
       // 切换小孩子
@@ -464,70 +464,70 @@ class CourseListPage extends EPage {
           action
         } = option;
         console.log(action)
-          // if (!action) {
-          //   // 判断是否是由分享进来且第一次注册
-          //   this.$api.user.getUserShareInfo().then(res => {
-          //     if (res.data.result != null) {
-          //       this.setData({
-          //         code: res.data.result.code,
-          //         isShare: 1,
-          //         loadChildAll: false
-          //       })
-          //       console.log(this.data.code, this.data.isShare)
-          //     }
-          //     if (this.data.code != '') {
-          //       console.log('-----------------')
-          //       let inputMap = {
-          //         code: this.data.code
-          //       }
-          //       this.$api.user.getShareInfo(inputMap).then( //分享接口
-          //         (res) => {
-          //           console.log(res)
-          //           let result = res.data.result
-          //           if (res.data.errorCode == '0') {
-          //             let rs = JSON.parse(res.data.result.jsonData);
-          //             if (rs.target == 'course') {
-          //               wx.navigateTo({
-          //                 url: `/pages/course/p_manage/schoolout_manage_share?courseId=${rs.courseId}&code=${rs.shortCode}`
-          //               });
-          //             } else if (rs.target == 'lesson') {
-          //               wx.navigateTo({
-          //                 url: `/pages/course/p_lesson/schoolout_lesson_share?code=${rs.shortCode}`
-          //               });
-          //             } else if (rs.target == 'sign') {
-          //               wx.navigateTo({
-          //                 url: `/pages/learningcircle/page/diaryDetail/diaryDetail?id=${rs.signinId}code=${rs.shortCode}`
-          //               });
-          //             } else if (rs.target == 'community') {
-          //               wx.navigateTo({
-          //                 url: `/pages/learningcircle/page/myCircle/myCircle ?id=${rs.communityId}`
-          //               });
-          //             } else if (rs.target == 'child') {
-          //               wx.navigateTo({
-          //                 url: `/pages/mypage/editMyChild/editMyChild?childId=${rs.childId}&code=${rs.shortCode}`
-          //               });
-          //             } else if (rs.target == 'internalCourse') {
-          //               wx.navigateTo({
-          //                 url: `/pages/course/p_manage/schoolin_manage_share?code=${rs.internalClassId}`
-          //               });
-          //             } else if (rs.target == 'classCommunity') {
-          //               if (result.userRole == 0) {
-          //                 wx.navigateTo({
-          //                   url: `/pages/classcircle/classMsg/classMsg?classId=${rs.classId}&role=${result.userRole}&childId=${result.childId}`
-          //                 });
-          //               } else {
-          //                 wx.navigateTo({
-          //                   url: `/pages/classcircle/classMsg/classMsg?classId=${rs.classId}&role=${result.userRole}`
-          //                 });
-          //               }
-          //             }
-          //           }
-          //         }
-          //       )
-          //     }
-          //   })
-          //   return;
-          // }
+        // if (!action) {
+        //   // 判断是否是由分享进来且第一次注册
+        //   this.$api.user.getUserShareInfo().then(res => {
+        //     if (res.data.result != null) {
+        //       this.setData({
+        //         code: res.data.result.code,
+        //         isShare: 1,
+        //         loadChildAll: false
+        //       })
+        //       console.log(this.data.code, this.data.isShare)
+        //     }
+        //     if (this.data.code != '') {
+        //       console.log('-----------------')
+        //       let inputMap = {
+        //         code: this.data.code
+        //       }
+        //       this.$api.user.getShareInfo(inputMap).then( //分享接口
+        //         (res) => {
+        //           console.log(res)
+        //           let result = res.data.result
+        //           if (res.data.errorCode == '0') {
+        //             let rs = JSON.parse(res.data.result.jsonData);
+        //             if (rs.target == 'course') {
+        //               wx.navigateTo({
+        //                 url: `/pages/course/p_manage/schoolout_manage_share?courseId=${rs.courseId}&code=${rs.shortCode}`
+        //               });
+        //             } else if (rs.target == 'lesson') {
+        //               wx.navigateTo({
+        //                 url: `/pages/course/p_lesson/schoolout_lesson_share?code=${rs.shortCode}`
+        //               });
+        //             } else if (rs.target == 'sign') {
+        //               wx.navigateTo({
+        //                 url: `/pages/learningcircle/page/diaryDetail/diaryDetail?id=${rs.signinId}code=${rs.shortCode}`
+        //               });
+        //             } else if (rs.target == 'community') {
+        //               wx.navigateTo({
+        //                 url: `/pages/learningcircle/page/myCircle/myCircle ?id=${rs.communityId}`
+        //               });
+        //             } else if (rs.target == 'child') {
+        //               wx.navigateTo({
+        //                 url: `/pages/mypage/editMyChild/editMyChild?childId=${rs.childId}&code=${rs.shortCode}`
+        //               });
+        //             } else if (rs.target == 'internalCourse') {
+        //               wx.navigateTo({
+        //                 url: `/pages/course/p_manage/schoolin_manage_share?code=${rs.internalClassId}`
+        //               });
+        //             } else if (rs.target == 'classCommunity') {
+        //               if (result.userRole == 0) {
+        //                 wx.navigateTo({
+        //                   url: `/pages/classcircle/classMsg/classMsg?classId=${rs.classId}&role=${result.userRole}&childId=${result.childId}`
+        //                 });
+        //               } else {
+        //                 wx.navigateTo({
+        //                   url: `/pages/classcircle/classMsg/classMsg?classId=${rs.classId}&role=${result.userRole}`
+        //                 });
+        //               }
+        //             }
+        //           }
+        //         }
+        //       )
+        //     }
+        //   })
+        //   return;
+        // }
         if (action === 'share') {
           console.log('登录成功')
           this.$api.user.getShareInfo(option).then(
@@ -754,7 +754,7 @@ class CourseListPage extends EPage {
           this.$api.course.loadCourseTime(params).then((res) => {
             console.log('1', res.data.result)
             // 两天都没有数据
-            if (res.data.result==null){
+            if (res.data.result == null) {
               let a1 = {
                 date: currentDate,
                 week: weel_str,
@@ -767,23 +767,23 @@ class CourseListPage extends EPage {
               }
               lessonList[0] = a1;
               lessonList[1] = a2;
-            
-                console.log(lessonList);
-                this.setData({
-                  lessonLists: lessonList
-                })
-                return
+
+              console.log(lessonList);
+              this.setData({
+                lessonLists: lessonList
+              })
+              return
             }
             var lessonLists = res.data.result.list; // 
-            let imgType = res.data.result.imgType;    // 校内日程日否含有图片   true
+            let imgType = res.data.result.imgType; // 校内日程日否含有图片   true
             this.setData({
-              imgType:imgType,
+              imgType: imgType,
             })
             var lessonList = []
             dispatch(actions.flutterDate)
             if (lessonLists != null) {
-              if (lessonLists.length ==1) {                               // 有数据
-                if (currentDate != lessonLists[0].date) {         // 第二天有数据
+              if (lessonLists.length == 1) { // 有数据
+                if (currentDate != lessonLists[0].date) { // 第二天有数据
                   console.log('第二天有数据', currentDate, lessonLists[0].date)
                   let a = {
                     date: currentDate,
@@ -792,82 +792,82 @@ class CourseListPage extends EPage {
                   }
                   lessonList[0] = a
                   lessonList[1] = lessonLists[0]
-                } else {                                         // 第一天有数据
+                } else { // 第一天有数据
                   let a = {
                     date: tommrow,
                     week: weel_strs,
                     courseList: []
                   }
                   lessonList[1] = a;
-
-                  let listdate=[]
-                  let startList = lessonLists[0].courseList.map(item=>{
+                  let startList = lessonLists[0].courseList.filter(item => {
                     // let nowdate = moment().set({'hours': 11,'minutes':40}).format('YYYY-MM-DD:HH:mm');
                     let nowdate = moment().format('YYYY-MM-DD:HH:mm');
-                    let endTime = moment().set({ 'hours': item.endTime.split(':')[0], 'minutes': item.endTime.split(':')[1] }).add(30,'minutes').format('YYYY-MM-DD:HH:mm')
+                    let endTime = moment().set({
+                      'hours': item.endTime.split(':')[0],
+                      'minutes': item.endTime.split(':')[1]
+                    }).add(30, 'minutes').format('YYYY-MM-DD:HH:mm')
                     console.log('现在时间', nowdate, '结束时间', endTime)
-                    if (moment(nowdate, 'YYYY-MM-DD:HH:mm').valueOf() > moment(endTime, 'YYYY-MM-DD:HH:mm').valueOf()){
+                    if (moment(nowdate, 'YYYY-MM-DD:HH:mm').valueOf() > moment(endTime, 'YYYY-MM-DD:HH:mm').valueOf()) {
                       console.log('已经过期', endTime)
-                    }else{
+                    } else {
                       console.log('没过期', item)
-                      listdate.push(item)
+                      return item
                     }
                   })
                   // 判断今天的数据是否过期
-                  if (listdate.length==0){
+                  if (startList.length == 0) {
                     let a = {
                       date: currentDate,
                       week: weel_str,
                       courseList: []
                     }
                     lessonList[0] = a;
-                  }else{
+                  } else {
                     let a = {
                       date: currentDate,
                       week: weel_str,
                       courseList: []
                     }
-                    a.courseList = listdate;
+                    a.courseList = startList;
                     lessonList[0] = a
                   }
-
                 }
-              } else if (lessonLists.length ==2){
-
-                let listdate = []
-                let startList = lessonLists[0].courseList.map(item => {
+              } else if (lessonLists.length == 2) {
+                let startList = lessonLists[0].courseList.filter(item => {
                   // let nowdate = moment().set({'hours': 11,'minutes':40}).format('YYYY-MM-DD:HH:mm');
                   let nowdate = moment().format('YYYY-MM-DD:HH:mm');
-                  let endTime = moment().set({ 'hours': item.endTime.split(':')[0], 'minutes': item.endTime.split(':')[1] }).add(30, 'minutes').format('YYYY-MM-DD:HH:mm')
+                  let endTime = moment().set({
+                    'hours': item.endTime.split(':')[0],
+                    'minutes': item.endTime.split(':')[1]
+                  }).add(30, 'minutes').format('YYYY-MM-DD:HH:mm')
                   console.log('现在时间', nowdate, '结束时间', endTime)
                   if (moment(nowdate, 'YYYY-MM-DD:HH:mm').valueOf() > moment(endTime, 'YYYY-MM-DD:HH:mm').valueOf()) {
                     console.log('已经过期', endTime)
                   } else {
                     console.log('没过期', item)
-                    listdate.push(item)
+                    return item
                   }
                 })
                 // 判断今天的数据是否过期
-                if (listdate.length == 0) {
+                if (startList.length == 0) {
                   let a = {
                     date: currentDate,
                     week: weel_str,
                     courseList: []
                   }
-                  lessonList[0] = a;
+                  lessonLists[0] = a;
                 } else {
                   let a = {
                     date: currentDate,
                     week: weel_str,
                     courseList: []
                   }
-                  a.courseList = listdate;
-                  lessonList[0] = a
+                  a.courseList = startList;
+                  lessonLists[0] = a
                 }
                 lessonList = lessonLists
-
               }
-            } else {                            // 最近两天都没有数据
+            } else { // 最近两天都没有数据
               console.log('列表无数据');
               let a1 = {
                 date: currentDate,
@@ -918,12 +918,12 @@ class CourseListPage extends EPage {
             }
             let lessonLists = res.data.result.list
             console.log('最近日程', lessonLists)
-            let imgType = res.data.result.imgType;    // 校内日程日否含有图片   true
+            let imgType = res.data.result.imgType; // 校内日程日否含有图片   true
             this.setData({
               imgType: imgType,
             })
             if (lessonLists != null) { // 今天有数据
-              if (lessonLists.length ==1) { // 第一天（今天）
+              if (lessonLists.length == 1) { // 第一天（今天）
                 if (currentDate != lessonLists[0].date) { // 第一天数据
                   console.log('第一天没有数据')
                   let a = {
@@ -940,21 +940,23 @@ class CourseListPage extends EPage {
                     courseList: []
                   }
                   lessonList[1] = a;
-                  let listdate = []
-                  let startList = lessonLists[0].courseList.map(item => {
+                  let startList = lessonLists[0].courseList.filter(item => {
                     // let nowdate = moment().set({'hours': 11,'minutes':40}).format('YYYY-MM-DD:HH:mm');
                     let nowdate = moment().format('YYYY-MM-DD:HH:mm');
-                    let endTime = moment().set({ 'hours': item.endTime.split(':')[0], 'minutes': item.endTime.split(':')[1] }).add(30, 'minutes').format('YYYY-MM-DD:HH:mm')
+                    let endTime = moment().set({
+                      'hours': item.endTime.split(':')[0],
+                      'minutes': item.endTime.split(':')[1]
+                    }).add(30, 'minutes').format('YYYY-MM-DD:HH:mm')
                     console.log('现在时间', nowdate, '结束时间', endTime)
                     if (moment(nowdate, 'YYYY-MM-DD:HH:mm').valueOf() > moment(endTime, 'YYYY-MM-DD:HH:mm').valueOf()) {
                       console.log('已经过期', endTime)
                     } else {
                       console.log('没过期', item)
-                      listdate.push(item)
+                      return item
                     }
                   })
                   // 判断今天的数据是否过期
-                  if (listdate.length == 0) {
+                  if (startList.length == 0) {
                     let a = {
                       date: currentDate,
                       week: weel_str,
@@ -967,42 +969,45 @@ class CourseListPage extends EPage {
                       week: weel_str,
                       courseList: []
                     }
-                    a.courseList = listdate;
+                    a.courseList = startList;
                     lessonList[0] = a
                   }
                   lessonList[0] = lessonLists[0]
                 }
-    
-              }else if(lessonLists.length==2){
+
+              } else if (lessonLists.length == 2) {
                 let listdate = []
-                let startList = lessonLists[0].courseList.map(item => {
+                let startList = lessonLists[0].courseList.filter(item => {
                   // let nowdate = moment().set({'hours': 11,'minutes':40}).format('YYYY-MM-DD:HH:mm');
                   let nowdate = moment().format('YYYY-MM-DD:HH:mm');
-                  let endTime = moment().set({ 'hours': item.endTime.split(':')[0], 'minutes': item.endTime.split(':')[1] }).add(30, 'minutes').format('YYYY-MM-DD:HH:mm')
+                  let endTime = moment().set({
+                    'hours': item.endTime.split(':')[0],
+                    'minutes': item.endTime.split(':')[1]
+                  }).add(30, 'minutes').format('YYYY-MM-DD:HH:mm')
                   console.log('现在时间', nowdate, '结束时间', endTime)
                   if (moment(nowdate, 'YYYY-MM-DD:HH:mm').valueOf() > moment(endTime, 'YYYY-MM-DD:HH:mm').valueOf()) {
                     console.log('已经过期', endTime)
                   } else {
                     console.log('没过期', item)
-                    listdate.push(item)
+                    return item
                   }
                 })
                 // 判断今天的数据是否过期
-                if (listdate.length == 0) {
+                if (startList.length == 0) {
                   let a = {
                     date: currentDate,
                     week: weel_str,
                     courseList: []
                   }
-                  lessonList[0] = a;
+                  lessonLists[0] = a;
                 } else {
                   let a = {
                     date: currentDate,
                     week: weel_str,
                     courseList: []
                   }
-                  a.courseList = listdate;
-                  lessonList[0] = a
+                  a.courseList = startList;
+                  lessonLists[0] = a
                 }
                 lessonList = lessonLists
               }
@@ -1192,7 +1197,7 @@ class CourseListPage extends EPage {
           })
         }
       },
-      [actions.flutterDate](e){
+      [actions.flutterDate](e) {
         console.log('啊，我被执行拉')
       }
     }
