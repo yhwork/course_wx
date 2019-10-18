@@ -1,0 +1,162 @@
+<import src="../../../../components/templates/circle/circleContent.wxml" />
+<import src="../../../../components/img_video/img_video" />
+<import src='../../../../components/templates/circle/diaryContent' />
+<view class='page_top'>
+  <!-- <view class='circle_img' style="background-image: url('{{model.communityHeadImg}}');background-size: 100% 100%" bindtap="CHANGE_AVATAR" data-type='0'> -->
+  <!-- <view class='circle_img' style="background-image: url('{{model.communityHeadImg}}');background-size: 100% 100%" data-type='0'> -->
+   <view class='circle_img'  bindtap="bindPhotoChange" data-type='0'>
+  <image class='page_top_logo' src='{{model.communityHeadImg}}'></image>
+  </view>
+  <view class='circle_name'>
+    <view class='title'>圈子名称: </view>
+    <view class='name'>
+      <text space='nbsp'>{{model.communityName}}</text>
+    </view>
+  </view>
+  <view class='circle_logo_box'>
+    <view class='circle_logo'>
+      <image class='logo' src='{{model.masterLogo}}'></image>
+    </view>
+    <view class='circle_attend'>
+      <text>{{model.communityUserCount}}人参加 </text> </view>
+    <view class='circle_clock'>
+      <text>{{model.communitySignInCount}}次打卡</text> </view>
+  </view>
+</view>
+<view class=' circle_detail'>
+  <!--圈主ID-->
+  <view class='title'>圈主介绍</view>
+  <view class='introduce_box'>
+    <!-- <view class='introduce'> -->
+    <!-- <image class='photo' mode="aspectFill" src='{{model.masterLogo}}'></image> -->
+    <!-- <view class='intro_right'> -->
+    <!--<view class='circle_detail_title'>圈组ID:{{model.masterUserId}}</view>-->
+    <!-- <view class='name'>{{model.masterNickName}}(ID:{{model.masterUserId}})</view> -->
+    <view class='intro_detail' wx:if='{{model.communitySlogan!=null}}'>
+      {{model.communitySlogan}}
+      <!-- </view> -->
+      <!-- </view> -->
+    </view>
+    <!-- attentioned attention-->
+    <view hidden='{{hasShowCircleOwnerAttention}}' class='{{circleOwnerAttentionNum==0?"attentioned":"attention"}}' bindtap='bindCircleOwnerAttention'>
+      {{circleOwnerAttentionNum==0?"关注":"已关注"}}
+    </view>
+  </view>
+</view>
+
+<!-- 圈主详情 -->
+<view class='person_detail'>
+  <template is="content" data='{{contentList:communityIntroduceForPage,slidlst:introduceSlidlst,audioIdPrefix:"introduceAudio",audioType:1}}' />
+</view>
+
+<!--圈子详情-->
+<view class='person_detail circle_detail'>
+  <view class='title'>圈子详情</view>
+  <template is="content" data='{{contentList:communityContentForPage,slidlst:contentSlidlst, audioIdPrefix:"contentAudio",audioType:4 }}' />
+</view>
+<!-- 底部 -->
+<view wx:if='{{role.master||role.member}}'>
+  <view class='page_footer'>
+    <view class='footer_box'>
+      <navigator url='../punch/punch?communityId={{model.communityId}}'>
+        <view class='rule'>
+          <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/rule.png'></image>
+          打卡规则
+        </view>
+      </navigator>
+      <navigator url='../clockCalendar/clockCalendar?id={{model.communityId}}&subid={{subjectId}}'>
+        <view class='calendar'>
+          <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/rili.png'></image>
+          打卡日历
+        </view>
+      </navigator>
+      <!--本期暂时不做-->
+      <navigator url='cardRanking/cardRanking?id={{model.communityId}}' wx:if='{{false}}'>
+        <view class='rank'>
+          <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/rank.png'></image>
+          打卡排行
+        </view>
+      </navigator>
+      <button class='share' open-type='share'>
+        <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/share.png'></image>
+        邀请好友</button>
+    </view>
+  </view>
+</view>
+
+<!--游客-->
+<view wx:if='{{role.tourist}}'>
+  <view class='choose' wx:if='{{model.isRequestJoin==0}}'>
+    <view class='join' bindtap='showClocker'>
+      立即加入
+    </view>
+    <view bindtap='complainCircle' class='complain'>投诉</view>
+  </view>
+  <view class='choose' wx:else>
+    <view class='joined'>等待圈主审核</view>
+  </view>
+</view>
+
+<view class='clocker_mask' hidden='{{clockerHihe}}' catchtap='RESTART'>
+  <view class='clocker_box'>
+    <view class='clocker_item' wx:for="{{childrenDatas}}" data-index="{{index}}" wx:for-item='item' wx:key='{{index}}' data-childId="{{item.childId}}" bindtap='closeClocker'>
+      <image class='clocker_pho' src='{{item.logo==null?img:item.logo}}'></image>
+      <view class='clocker_name'>{{item.childName}}</view>
+    </view>
+  </view>
+</view>
+
+<!-- error弹框 -->
+<modal hidden='{{modalHidden}}' no-cancel bindconfirm="modalChange" bindcancel="modalChange">
+  <view>{{errorMsg}}</view>
+</modal>
+
+<!--打卡按钮-->
+<!--<view wx:if='{{canSingin}}'>
+  <navigator url='addDiary/addDiary?id={{subjectId}}&communityId={{model.communityId}}'>
+    <view class='clock_btn'>
+      打卡
+    </view>
+  </navigator>
+</view>-->
+<!-- 评论框 -->
+
+
+
+<!-- data-type='1' -->
+<view class='shear_bd' hidden='{{shareHide}}' catchtouchmove='ESTOP'>
+  <view class='shear_box'>
+    <view class='share_title'>{{userInfo.nickName}}@您，发现了一个特别好的圈子，快和我一起加入吧</view>
+    <view class='date'>圈子名称：{{model.communityName}}</view>
+    <view class='date'>圈子成员：{{model.communityUserCount}}人</view>
+    <image class='xuexi' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/sharecircle.jpg'></image>
+    <image bindtap="modalCandel" class='shear_close' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/delete_in.png'></image>
+    <view class='shear_btn_box'>
+      <button class='shear_btn' open-type='share'>
+        <image class='shear_btn_imge' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/weixin (1).png'></image>
+        立即分享
+      </button>
+    </view>
+  </view>
+</view>
+
+
+
+<!-- <block wx:if='{{canSingin}}'>
+  <block wx:if="{{needBindPhone=='1'}}">
+    <button class='add_circle1' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
+      <view class='clock_btn'>
+        打卡
+      </view>
+    </button>
+  </block>
+  <block wx:else>
+    <view bindtap="GOTO_ADDDIARY">
+      <view class='clock_btn'>
+        打卡
+      </view>
+    </view>
+  </block>
+</block> -->
+<view style='height:100rpx'> </view>
+<canvas data-id="{{shareInfo.signInId}}" class="share-canvas" style="width:{{shareCavansOptions.width}}px;height:{{shareCavansOptions.height}}px;visibility:hidden;position:absolute;top:-1000rpx;" canvas-id="share_canvas"></canvas>

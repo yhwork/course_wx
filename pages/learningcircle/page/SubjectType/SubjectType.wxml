@@ -1,0 +1,35 @@
+<view class='SubjectType_tit'>
+  <text>选择主题模式
+</text>
+</view>
+<view class='SubjectType_tit_explain'>
+  <text> 主题可以用来发布每日任务、教学内容等，如何选择适合自己的主题模式？
+</text> </view>
+<!-- 头部结束 -->
+<view class='SubjectType_box'>
+<view class='SubjectType'>
+
+   <radio-group class="radio-group" bindchange="radioChange">
+        <label class="radio" wx:for="{{types}}" wx:for-item='item' wx:key='idx'>
+        <image src='{{item.value==1?"https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/icone.png":"https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/customs.png"}}'></image>
+          <radio  value="{{item.value}}" checked="{{item.checked}}"/>{{item.name}}
+        </label>
+      </radio-group>
+</view>
+
+</view>
+<!-- 类型结束 -->
+<view class='SubjectType_explain'>
+  <text>1.常规主题：成员当天打卡主题相同，所有人进度一致
+</text>
+  <text>2.闯关主题：每个主题都是一关，成员按每关要求循序渐进行打卡
+</text>
+</view>
+<view style='height:100rpx'></view>
+<view class='SubjectType_remark'>
+  <view>备注
+  </view>
+  <text>使用PC端编辑圈子信息更方便！，小豆包官网：www.iforbao.com
+</text>
+</view>
+<view class='creat' bindtap='SAVE_INFO'>下一步</view>

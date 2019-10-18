@@ -1,0 +1,405 @@
+page {
+  background-color: #e8e8e8;
+}
+
+.watchTv{
+    width: 100%;
+    height: auto;
+    flex-direction:column;
+    display:flex;
+    overflow-x: hidden;
+}
+
+.info-label{
+  border: 1rpx solid #aaa;
+  padding: 4rpx 8rpx;
+  margin-left: 10rpx;
+}
+
+.type-title {
+  background: #fff;
+  font-weight: bold;
+  color: orange;
+  margin-bottom: 8rpx;
+  padding: 5rpx 10rpx;
+}
+
+.cover-img-container{
+  height: 400rpx;
+  position: relative;
+  padding-bottom: 28rpx;
+}
+
+.cover-img{
+  width: 100%;
+  height: 400rpx;
+}
+
+.icon-play{
+  position: absolute;
+  height: 80rpx;
+  width: 100%;
+  left: 0;
+  top: 160rpx;
+}
+
+.video-title {
+  width: 100%;
+  height: 50rpx;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 30rpx;
+  padding: 5rpx 10rpx;
+  position: absolute;
+  bottom: 28rpx;
+  left: 0;
+  line-height: 50rpx;
+}
+
+.video-time {
+  width: 100%;
+  height: 50rpx;
+  color: #fff;
+  font-size: 30rpx;
+  padding: 5rpx 20rpx;
+  position: absolute;
+  bottom: 28rpx;
+  right: 0;
+  line-height: 50rpx;
+  text-align: right;
+}
+
+.pay_content {
+  display: flex;
+  margin-bottom: 10rpx;
+  padding-top: 20rpx;
+  background-color: white;
+  width: 730rpx;
+  padding: 20rpx 10rpx;
+}
+
+.content_left {
+  width: 750rpx;
+}
+
+.img_content {
+  display: flex;
+  align-items: center;
+  width: 750rpx;
+  overflow-x: scroll;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.img_item {
+  display: inline-block;
+  margin-right: 10rpx;
+}
+
+.img_item image {
+  width: 200rpx !important;
+  height: 220rpx !important;
+}
+
+.content_right {
+  width: 540rpx;
+}
+
+.left_img {
+  width: 160rpx;
+  height: 124rpx;
+}
+
+.content_right {
+  font-size: 24rpx;
+}
+
+.right_text text {
+  width: 120rpx;
+  padding: 0 15rpx;
+  border: 1rpx solid #aaa;
+  text-align: left;
+  margin-right: 15rpx;
+  margin-top: 5rpx;
+}
+
+.right_text {
+  display: flex;
+}
+
+.imgimgs {
+  width: 750rpx;
+  height: 400rpx;
+}
+
+.prompt {
+  font-size: 26rpx;
+}
+
+.prompt {
+  height: 70rpx;
+  line-height: 70rpx;
+}
+
+.prompt_wrap {
+  padding: 0 10rpx;
+  width: 730rpx;
+  background-color: white;
+}
+
+.lable_style {
+  width: 600rpx;
+  height: 60rpx;
+  white-space: nowrap;
+  display: flex;
+}
+
+.lable_style text {
+  display: inline-block;
+  width: 120rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-left: 10rpx;
+  border: 1rpx solid #aaa;
+}
+
+.video_img {
+  width: 750rpx;
+}
+
+.imageBox {
+  position: absolute;
+  width: 500rpx;
+  height: 200px;
+}
+
+.imageBox:before {
+  content: '';
+  position: absolute;
+  font-size: 18px;
+  color: #f40;
+  display: block;
+  z-index: 99999;
+  width: 500rpx;
+  height: 90rpx;
+  border: none;
+  left: 86%;
+  top: 40%;
+}
+
+.image {
+  z-index: 999;
+  position: absolute;
+  width: 100rpx;
+  height: 100rpx;
+  display: block;
+}
+
+/* 视频 */
+
+.video-img--wrap {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  margin-bottom: 30rpx;
+}
+
+.video--wrap {
+  /* height: 750rpx; */
+  width: 100%;
+  margin: 0;
+  position: relative;
+}
+
+.video--wrap image {
+  width: 100%;
+  height: 100%;
+}
+
+/* .video--wrap video {
+  width: 750rpx;
+  height: 750rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+} */
+
+.video--wrap .cover-image {
+  width: 750rpx;
+  position: absolute;
+  top: 0;
+  z-index: 990;
+}
+
+.video--wrap .control--btn {
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  top: 15%;
+  left: 95%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+
+.video--wrap .control--btns {
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  bottom: 8%;
+  right: 3%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+
+.video_view--container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.btns--wrap {
+  position: absolute;
+  bottom: 20rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 250rpx;
+  display: flex;
+  justify-content: center;
+  z-index: 999;
+}
+
+.btns--wrap .btns_common {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 22rpx;
+  width: 92rpx;
+  height: 44rpx;
+  font-family: PingFang-SC-Medium;
+  font-size: 20rpx;
+  color: #333;
+  letter-spacing: 0;
+  text-align: center;
+  line-height: 44rpx;
+  margin: 0 10rpx;
+}
+
+.btns--wrap .btns--active {
+  background: rgba(255, 57, 56, 0.8);
+  color: #fff;
+}
+
+.btns_wrap--active {
+  background: black;
+}
+
+.video-img--wrap {
+  width: 100%;
+  position: relative;
+  /* 要是不显示把高去掉 *//* height: 750rpx; * 
+  /* overflow: hidden; */
+}
+
+.video-img--wrap .video-img--ele {
+  width: 100%;
+  /* height: 300rpx; *//* position: absolute; */
+}
+
+.video-img--wrap .img--wrap {
+  transform: translateX(100%);
+}
+
+.video-img--wrap .img--wrap image {
+  width: 100%;
+  height: 100%;
+}
+
+.video-img--wrap .video--wrap-hidden {
+  transform: translateX(-100%);
+}
+
+.video-img--wrap .img--wrap-show {
+  transform: translateX(0);
+}
+
+.video-img--wrap .video--wrap-show {
+  transform: translateX(0);
+}
+
+.video-img--wrap .img--wrap-hidden {
+  transform: translateX(100%);
+}
+
+.video-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+/* 视频 */
+
+
+/* 图片 */
+.video-imglist {
+  display: flex;
+  flex-direction: column;
+  /* border: 1px solid red; */
+}
+.video-filebox{
+  /* width: 100%; */
+  padding-left: 15rpx;
+  margin-bottom: 15rpx;
+  height: auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content:start;
+  /* background-color: white; */
+}
+.video-imgtitles{
+  /* position: absolute; */
+  /* background-color: rgba(0, 0, 0, 0.1); */
+  height: 48rpx;
+  font-size: 0.8rem;
+  line-height: 48rpx;
+  /* border-bottom: 1rpx solid rgba(0, 0, 0, 0.1); */
+  color:#696969;
+  width:6rem;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  /* border: 1px solid rgba(0, 0, 0, 0.5); */
+  /* top: 5px;
+  z-index: 22; */
+}
+
+.video-imgbox{
+  padding: 12rpx 15rpx;
+  max-width: 30%;
+  flex: 1;
+  overflow: hidden;
+  border-radius:5rpx;
+  height: 240rpx;
+  box-shadow: 2px 2px 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.video-imgbox image{
+  width: 100%;
+}
+/* 标题 */
+.video-imgtitle{
+  
+  display: flex;
+  flex-direction: column;
+  font-size: 0.8rem;
+  color: orange;
+  background-color: white;
+  box-sizing: border-box;
+  padding: 5rpx 16rpx;
+  box-shadow: 1px 2px 0 rgba(250, 249, 249, 0.2);
+}
+.video-imgtitle text{
+  color: #9e9e9e;
+   font-size: 0.6rem;
+   margin-left: 5rpx;
+}

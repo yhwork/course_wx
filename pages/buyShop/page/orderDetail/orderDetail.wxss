@@ -1,0 +1,270 @@
+
+page{
+  background-color:#f5f4f4; 
+}
+.copy{
+  display: inline-block;
+}
+.order_item{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.orderDetail_wrap{
+  width: 750rpx;
+ 
+}
+.order_top{
+ width: 730rpx;
+ height: 110rpx;
+ background-color: #efb662;
+ display: flex;
+ font-size: 28rpx;
+ padding: 0 10rpx;
+  color: white;
+
+}
+.img_style{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.top-head{
+  display: flex;
+}
+.time_last{
+  margin-left: 300rpx;
+}
+.buttom{
+  text-align: right;
+}
+.icone{
+  width: 35rpx;
+  height: 35rpx;
+  margin-right: 10rpx;
+ 
+}
+.customer_msg{
+  width: 600rpx;
+  height: 80rpx;
+  background-color: white;
+  margin: 0 auto;
+  border-radius: 20rpx;
+  margin-top: -30rpx;
+}
+.customer_photo{
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+
+}
+/* .customer_photo{
+   font-size: 28rpx;
+} */
+/* .msg_info{
+  
+} */
+.msg_info{
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  margin-left: 20rpx;
+  color: #5a88a9;
+  font-weight: bolder;
+}
+.buyer_msg{
+  margin-left: 10rpx;
+}
+.img_top{
+  margin-top: 10rpx;
+}
+.pay_content {
+  width: 720rpx;
+  /* 后期调试高度可能显示 */
+  /* height: 140rpx; */
+  margin: 0 auto;
+  background-color: white;
+  border-bottom: 1rpx solid #F7F4F4;
+}
+
+.all_pay {
+  width: 750rpx;
+  padding-top: 30rpx;
+}
+
+.pay_content {
+  display: flex;
+  margin-top: 30rpx;
+  padding: 29rpx 0;
+}
+.content_left {
+  width: 180rpx;
+}
+
+.content_right {
+  width: 540rpx;
+}
+
+.left_img {
+  width: 160rpx;
+  height: 124rpx;
+}
+
+.content_right {
+  font-size: 24rpx;
+}
+
+.right_text text {
+  width: 170rpx;
+  padding: 0 15rpx;
+  border: 1rpx solid #aaa;
+  text-align: left;
+  margin-right: 15rpx;
+  margin-top: 5rpx;
+}
+
+.fontzx {
+  width: 170rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.right_text {
+  display: flex;
+}
+
+.right_money {
+  margin-left: 450rpx;
+}
+/* .rt_top{
+  margin-top: 60rpx;
+} */
+
+.pay_canc {
+  width: 710rpx;
+  text-align: right;
+  font-size: 24rpx;
+  background-color: white;
+  margin: 0 auto;
+  padding: 15rpx 20rpx;
+}
+
+.can_btn, .support_btn {
+  font-size: 24rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  padding: 10rpx 20rpx;
+  border: 1rpx solid #aaa;
+  border-radius: 10rpx;
+  margin-left: 20rpx;
+}
+
+.support_btn {
+  padding: 10rpx 30rpx;
+  background-color: #ff9800;
+  color: white;
+  margin-right: 10rpx;
+}
+.right_text{
+  position: relative;
+}
+
+.lable_style{
+  width: 600rpx;
+  height: 60rpx;
+  white-space: nowrap; display: flex
+}
+
+.lable_style text {
+  display: inline-block;
+  width: 120rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border: 1rpx solid #aaa;
+}
+
+.payOrders{
+  font-size: 28rpx;
+  width: 730rpx;
+  padding: 10rpx 10rpx;
+  position: relative;
+   background-color: white; 
+}
+.payOrders text{
+  height: 50rpx;
+  line-height:50rpx;
+}
+
+.copy{
+  width:100rpx;
+  height: 40rpx;
+  border: 1rpx solid #aaa;
+  border-radius: 10rpx;
+  text-align: center;
+  line-height: 40rpx;
+  font-size: 28rpx;
+  background-color: white;
+  /* position: absolute;
+  top:480rpx;
+  left: 600rpx; */
+
+}
+.account{
+  font-size: 28rpx;
+  margin-left: 10rpx;
+  margin-top: 10rpx;
+}
+.calOrder_btn{
+  padding:0 20rpx;
+  height: 50rpx;
+  border: 1rpx solid #efb662;
+  text-align: center;
+  line-height:50rpx;
+  border-radius: 20rpx;
+  font-size: 28rpx;
+  margin-right: 10rpx;
+}
+.btngroup{
+  display: flex;
+  font-size: 26rpx;
+  align-items: center;
+  position: absolute;
+  bottom:0rpx;
+  margin-left: 10rpx;
+  top:1130rpx;
+  color:  #efb662;
+
+  }
+  .right{
+    display: flex;
+    margin-left: 220rpx;
+  }
+  .delfont{
+    color: red;
+  }
+  .customer{
+    font-size: 28rpx;
+    color: black;
+    font-weight: bolder;
+    height: 60rpx;
+    background-color: white;
+    text-align: center;
+    line-height: 60rpx;
+    margin-top: 10rpx;
+    margin-bottom: 10rpx;
+
+  }
+  .desrc{
+    width: 350rpx;
+  }
+  .fontstyle{
+    font-size: 24rpx;
+  }
+  .unuseful{
+    color: red;
+    font-size: 28rpx;
+    font-weight: bloder;
+  }

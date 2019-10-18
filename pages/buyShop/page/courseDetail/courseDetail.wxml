@@ -1,0 +1,71 @@
+<view class="courseDtail">
+  <view class='teacher_list'>
+    <view class='list_item'>
+      <view class='list_top'>
+        <view class='top_teacherDetail'>
+          <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/cap3.jpg" class='top_image' mode='scaleToFill'></image>
+          <text class='techer_names'>张三</text>
+        </view>
+
+        <view class='top_fontDetail'>
+          <view class='detail_font'>
+            <text>2017年秋季一年级奥数</text>
+          </view>
+
+          <view class='datail_day'>
+            <text>2017-09-10~2017-12-31</text>
+          </view>
+          <view class='teach_idea'>
+            <text>每周日18:30-20:30</text>
+            <text class='teacheclass_num'>
+                <text>50</text>
+            <text>次课</text>
+            </text>
+          </view>
+          <view class='detail_sale'>
+            <text class='sale_class'><text>已售</text>
+            <text class='teaching_year'>6</text></text>
+            <text class='datail_num'>
+              <text>剩余名额:</text>
+            <text class='num_font'>18</text>
+            </text>
+          </view>
+          <view class='teach_address'>
+            宜山路705好科技大厦11楼(桂林路口)
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 课程介绍开始 -->
+<view class='course_introduction'>
+  <view class='introduction_item'>
+   <view class='item_inner'>
+     <view>课程介绍</view>
+     <view class='inner_wrap'>好的课程好的课程，好的课程好的好的课程好的课程，好的课程好的好的课程好的课程，好的课程好的好的课程好的课程，好的课程好的</view>
+   </view>
+  </view>
+  <view class='introduction_item'>
+    <view class='item_inner'>
+     <view>累计已售<text>6</text><text>份</text></view>
+     <view class='innnerImage_wrap'> 
+     <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/cap3.jpg" class='item_img' mode='scaleToFill'></image>
+       <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/cap3.jpg" class='item_img' mode='scaleToFill'></image>
+         <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/cap3.jpg" class='item_img' mode='scaleToFill'></image>
+           <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/cap3.jpg" class='item_img' mode='scaleToFill'></image>
+             <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/cap3.jpg" class='item_img' mode='scaleToFill'></image>
+               <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/cap3.jpg" class='item_img' mode='scaleToFill'></image>
+                 <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/cap3.jpg" class='item_img' mode='scaleToFill'></image>
+     </view>
+   </view>
+  </view>
+  <view class='introduction_item'>
+   <view class='item_inner'>
+     <view>课程详情</view>
+     <view class='inner_wrap'>周日上课，好嗨呀！！！！！！！！感觉人生已经到了巅峰，感觉人生已经达到看了，
+     周日上课，好嗨呀！！！！！！！！感觉人生已经到了巅峰，感觉人生已经达到看了</view>
+  </view>
+  </view>
+</view>
+<!-- 课程介绍结束 -->

@@ -1,0 +1,77 @@
+<view class='choose_child' wx:if='{{userinfo.role==0}}' bindtap='choose'>
+  <view class='childmsg left'>
+    <image class='imgchild' wx:if='{{childMsg==""}}' src='{{childList[0].logo!=null?childList[0].logo:img}}'></image>
+    <image class='imgchild' wx:else src='{{childMsg.logo!=null?childMsg.logo:img}}'></image>
+    <text class='headname font'>{{childMsg==""?childList[0].childName:childMsg.childName}}</text>
+  </view>
+  <view class='childmsg right'>
+    <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/attention.png'></image>
+    <text>点击头像切换对象</text>
+  </view>
+</view>
+<view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{message}}</view>
+<view class='chooseclass_container' wx:if='{{haveClass}}'>
+  <view class='{{userinfo.role==1?"section_lists_wrap1":"section_lists_wrap"}}'>
+    <view class='section_lists_ul'>
+      <form bindsubmit="GO_MYCLASS" report-submit="true" wx:key='idx' wx:for='{{classList}}' wx:for-item='item' wx:for-index='idx' data-classtype="{{item.classType}}" data-classid="{{item.classId}}">
+        <button formType="submit" class='btn'>
+          <view class='section_lists_li'>
+            <image src='{{item.classLogo?item.classLogo:"https://qa.oss.iforbao.com/public/default/circle_default.png!test"}}'></image>
+            <view class='fl'>
+              <text style='color:#000'>{{item.className}}</text>
+              <text>班级群号{{item.classId}}</text>
+              <text wx:if="{{item.schoolName}}">{{item.schoolName}}</text>
+            </view>
+            <view></view>
+          </view>
+        </button>
+      </form>
+      <view wx:if='{{!classList}}'>还没有班级呢~</view>
+    </view>
+  </view>
+  <view class='message' bindtap='GO_CLASSMSG_LIST' wx:if='{{ msgcount !== 0}}'>
+    <image class='photo' mode='aspectFill' src='{{msgimg?msgimg:img}}'></image>
+    <view class='message_num'>{{msgcount}}条消息</view>
+    <!-- <view class='fa fa-angle-right'></view> -->
+  </view>
+</view>
+<view class='wrap' wx:else>
+  <image class='topimg' src='{{img1}}'></image>
+  <view class='box'>
+    <view class='title'>什么是班群？</view>
+    <view class='centent'>班群是由老师创建，给家长发通知，给学生留作业和发送课后资料，且家长对于老师发的通知或课后资料等反馈的群</view>
+  </view>
+  <view class='box'>
+    <view class='title'>什么是班群号？</view>
+    <view class='centent'>班级号是该班群的唯一编码，老师创建班群后系统会自动生成6位或7位数字作为班群号</view>
+  </view>
+  <view class='box'>
+    <view class='title'>怎么加入班群？</view>
+    <view class='centent'>
+      <view>1.老师在”小豆包课程表“创建班群，并将群号告知学生家长</view>
+      <view>2.家长在“小豆包课程表”我的班级圈搜索班群号，即可加入班群</view>
+    </view>
+  </view>
+
+</view>
+
+<view class='addbox'>
+  <view class='addclass' bindtap='GoSetClass' wx:if='{{userinfo.role==1}}'>
+    <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/jia.png'></image>
+    <text>创建班级</text>
+  </view>
+  <view class='addclass' bindtap='searchClass'>
+    <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/jia.png'></image>
+    <text>加入班级</text>
+  </view>
+</view>
+
+
+<!-- 课表蒙层 -->
+<view class='mb' wx:if='{{userinfo.role == 0}}' hidden='{{hipeChild}}'>
+  <view wx:for='{{childList}}' wx:key='index' data-index='{{index}}' data-childid='{{item.childId}}' bindtap='changeChild' class='mblist'>
+    <image src='{{item.logo!=null?item.logo:img}}'></image>
+    <text class='txtname font'>{{item.childName}}</text>
+  </view>
+</view>
+<!-- git -->

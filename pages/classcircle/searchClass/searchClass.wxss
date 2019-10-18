@@ -1,0 +1,68 @@
+.search {
+  margin-top: 10rpx;
+  width: 100%;
+  padding: 0 2%;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.weui-icon-search_in-box {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 5%;
+}
+
+.search input {
+  width: 84%;
+  height: 80rpx;
+  border: 2rpx solid #ccc;
+  border-radius: 10rpx 0 0 10rpx;
+  padding-left: 10%;
+  box-sizing: border-box;
+  color: #888;
+}
+
+.search button {
+  width: 16%;
+  height: 80rpx;
+  border-radius: 0 10rpx 10rpx 0;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 0;
+  right: 2%;
+  line-height: 80rpx;
+  font-size: 30rpx;
+}
+
+.searchclass {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+  margin: 0 30rpx;
+  border-bottom: 2rpx solid #ccc;
+}
+
+.searchclass image {
+  width: 110rpx;
+  height: 110rpx;
+  margin-right: 20rpx;
+}
+
+.right .name {
+  color: black;
+}
+
+.right {
+  color: #888;
+  font-size: 26rpx;
+}
+
+.tishi {
+  padding: 10rpx 30rpx;
+}
+
+button::after {
+  border: 0;
+}

@@ -1,0 +1,117 @@
+<!-- 积分规则 -->
+<view class='points_rule_list'>
+  <view class='points_rule_tit'>
+    <text>如何获取积分</text>
+  </view>
+  <view class='points_rule_introduce'>
+    <text>每日点评，点赞，打卡，分享，都可获得积分哦。积分越高，圈子就越能吸引他人加入。</text>
+  </view>
+  <!-- <view class='rule_list'>
+    <image class='icon_rule' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/explain.png"></image>
+    <view class='rule_lis'>
+      <view class='rule_name'>点评日记</view>
+      <text class='rule'>每点评<text class='text'>1</text> 条日记，圈主和点评者各<text class='text'>+1</text>分</text>
+    </view>
+  </view>
+<view class='rule_list'>
+    <image class='icon_rule' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/explain.png"></image>
+    <view class='rule_lis'>
+      <view class='rule_name'>圈主点评</view>
+      <text class='rule'>获得圈主点评，被点评者<text class='text'>+5</text>分</text>
+    </view>
+  </view> -->
+
+
+
+  <view class='rule_list'>
+    <image class='icon_rule' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/cue.png"></image>
+    <view class='rule_lis'>
+      <view class='rule_name'>练习得分</view>
+      <!-- <text class='rule'>将课程、日记分享到微信群，分享者<text class='text'>+2</text>分</text> -->
+      <view class='rule_box'>
+        <view class='rule'>打卡日打卡</view>
+        <view class='text'>+10</view>
+      </view>
+      <view class='rule_box'>
+        <view class='rule'>打卡获得点赞
+          <text>（单日上线50分）</text>
+        </view>
+        <view class='text'>+1</view>
+      </view>
+      <view class='rule_box'>
+        <view class='rule'>打卡获得点评
+          <text>（单日上线50分）</text>
+        </view>
+        <view class='text'>+1</view>
+      </view>
+    </view>
+  </view>
+
+  <view class='rule_list'>
+    <image class='icon_rule' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/cue.png"></image>
+    <view class='rule_lis'>
+      <view class='rule_name'>互动奖励</view>
+      <!-- <text class='rule'>将课程、日记分享到微信群，分享者<text class='text'>+2</text>分</text> -->
+      <!-- <view class='rule_box'>
+       <view class='rule'>打卡日打卡</view><view class='text'>+10</view>
+       </view> -->
+      <view class='rule_box'>
+        <view class='rule'>点赞成员
+          <text>（单日上线10分）</text>
+        </view>
+        <view class='text'>+1</view>
+      </view>
+      <view class='rule_box'>
+        <view class='rule'>点评成员
+          <text>（单日上线10分）</text>
+        </view>
+        <view class='text'>+1</view>
+      </view>
+      <view class='rule_box'>
+        <view class='rule'>分享打卡到微信群
+          <text>（单日上线10分）</text>
+        </view>
+        <view class='text'>+2</view>
+      </view>
+    </view>
+  </view>
+
+  <view class='rule_list'>
+    <image class='icon_rule' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/cue.png"></image>
+    <view class='rule_lis'>
+      <view class='rule_name'>圈主评价</view>
+      <view class='rule_box'>
+        <view class='rule'>获得圈主点评分
+          <text>（只计算一次）</text>
+        </view>
+        <view class='text'>+5</view>
+      </view>
+    </view>
+  </view>
+
+
+  <view class='rule_list'>
+    <image class='icon_rule' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/cue.png"></image>
+    <view class='rule_lis'>
+      <view class='rule_name'>课程分享</view>
+      <view class='rule_box'>
+        <view class='rule'>分享到微信群
+          <text>（单日上线10分）</text>
+        </view>
+        <view class='text'>+2</view>
+      </view>
+    </view>
+  </view>
+
+
+  <!-- <view class='rule'>
+    <text>提示：对同一人的多条评论只计算一次</text>
+  </view> -->
+
+
+
+
+
+
+
+</view>

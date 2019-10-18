@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "时间设置",
+  "usingComponents": {
+        "calendar": "/components/calendar/calendar"
+   }
+}

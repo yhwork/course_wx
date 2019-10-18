@@ -1,0 +1,12 @@
+
+<view class="weui-navbar">
+    <block wx:for="{{children}}" wx:key="index">
+        <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bind:tap="changeActive">
+            <view class="weui-navbar__title">{{item.title}}</view>
+        </view>
+    </block>
+    <view class="weui-navbar__slider" style="-webkit-transform: translateX({{sliderOffset}}px);"></view>
+</view>
+<view class="weui-tab__panel">
+    <slot></slot>
+</view>

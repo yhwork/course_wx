@@ -1,0 +1,9 @@
+<!--pages/mypage/upinput/upinput.wxml-->
+<view  class='upinput'>
+    <view class='upinpt_box'>
+       <view class='upinput_txt'>
+          <input  placeholder='{{value}}' value='{{value}}' bindinput='btninputOK' bindblur='btninputOK' bindconfirm='btninputOKs' type='text' adjust-position='{{true}}' confirm-type='{{done}}' focus></input>
+       </view>
+      <view class='btnok' bindtap='btninputOK'><text>保存</text></view>
+    </view>
+</view>

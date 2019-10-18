@@ -1,0 +1,145 @@
+<view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{message}}</view>
+
+
+<block wx:if="{{userInfo.role=='0'}}">  
+  <view class='schoolin_class_info'>
+    <view class='info_list' bindtap="CHANGE_BEGINDATE">
+      <image class='info_list_icon' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/data.png"></image>
+      <text class='import'>*</text> 开学日期：
+      <view class='school' wx:if='{{tishi}}'>
+        {{tishi}}
+      </view>
+      <view class='school' wx:else>
+        {{model.startDate}} {{model.beginWeekDay}}
+      </view>
+    </view>
+  </view>
+  <view class='schoolin_class_info'>
+    <view class='info_list'>
+      <image class='info_list_icon' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/riqi.png"></image>
+      <view class='tishi'>
+        默认第一周为单周，务必选择真实开学时间，否则单双周课程混乱
+      </view>
+    </view>
+  </view>
+  <view class='schoolin_class_info'>
+    <view class='info_list'>
+      <image class='info_list_icon' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/time.png"></image>
+      <text class='import'>*</text> 第一节课时间：
+      <view class='school class_length'>
+        <picker bindchange="CHANGE_TIMEFIRST" class='class_picker' mode="time" start="07:00" end="12:00">{{one}} </picker>
+        <text>可以根据实际情况进行修改</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 第五节课时间 -->
+
+  <view class='schoolin_class_info'>
+    <view class='info_list'>
+      <image class='info_list_icon' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/time.png"></image>
+      <text class='import'>*</text> 第五节课时间：
+      <view class='school class_length'>
+        <picker bindchange="CHANGE_TIMEFIVE" class='class_picker' mode="time" start="12:00" end="17:00" >
+          {{five}} 
+        </picker>
+        <text>请根据实际情况进行修改</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 放学提醒 -->
+  <view class='class_over_remind'>
+    <view class='info_list'>
+      <image class='info_list_icon' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/hint.png"></image>
+      <view class='title'>放学提醒:</view>
+    </view>
+    <view class='over_remind_tight'>
+      <picker bindchange="CHANGE_REMIND" value="{{model.remindIndex}}" class='over_remind_t' range="{{remindItems}}" range-key="name">
+        <text class='text_len'>{{remindItems[model.remindIndex].name}} </text>
+      </picker>
+      <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
+    </view>
+  </view>
+
+  <!-- 放学时间设置 -->
+  <view class='set_box'  hidden='{{childTime}}'>
+    <view class='title'>
+      <text>*</text>
+    </view>
+    <view class='line'></view>
+    <view class='set_list'>
+      <view class='set_item '>
+        <view class='weekday'>星期</view>
+        <view class='endtimer'>放学时间</view>
+      </view>
+      <block wx:for="{{weekDays}}" wx:for-item="item" wx:for-index="index" wx:key="">
+        <view class='set_item'>
+          <!-- <view class='set_item {{item.value=="输入时间"?"":"complate"}}'> -->
+          <view class='weekday'>{{item.name}}</view>
+          <picker class='endtime' bindchange="SET_SCHOOLOUT" mode="time" start="14:00" end="21:00" data-index="{{index}}">
+            <view >{{item.value}}</view>
+          </picker>
+        </view>
+      </block>
+    </view>
+  </view>
+  <view class='set_box_tishi' hidden='{{childTime}}'>放学时间可根据实际情况进行修改</view>
+</block>
+
+<!-- 老师端 -->
+<block wx:else>
+  <view class='schoolin_class_info'>
+    <view class='info_list' bindtap="CHANGE_BEGINDATE">
+      <image class='info_list_icon' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/data.png"></image>
+      <text class='import'>*</text> 开学日期：
+      <view class='school' wx:if='{{tishi}}'>
+        {{tishi}}
+      </view>
+      <view class='school' wx:else>
+        {{model.startDate}} {{model.beginWeekDay}}
+      </view>
+    </view>
+  </view>
+  <view class='schoolin_class_info'>
+    <view class='info_list'>
+      <image class='info_list_icon' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/riqi.png"></image>
+      <view class='tishi'>
+        默认第一周为单周，务必选择真实开学时间，否则单双周课程混乱
+      </view>
+    </view>
+  </view>
+  <!-- 上课提醒 -->
+  <view class='class_over_remind'>
+    <view class='info_list'>
+      <image class='info_list_icon' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/hint.png"></image>
+      <view class='title'>上课提醒:</view>
+    </view>
+    <view class='over_remind_tight'>
+      <picker bindchange="CHANGE_REMIND" value="{{model.remindIndex}}" class='over_remind_t' range="{{remindItems}}" range-key="name">
+        <text class='text_len'>{{remindItems[model.remindIndex].name}} </text>
+      </picker>
+      <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
+    </view>
+  </view> 
+
+  <view class='schoolin_class_info' hidden='{{tachertime}}' wx:for='{{courseList}}' wx:for-item="item" wx:for-index="index" wx:key=''>
+    <view class='info_list'>
+      <image class='info_list_icon' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/time.png"></image>
+      <text class='import'>*</text>第{{item.dailyRule}}节课时间：
+      <view class='school class_length'>
+        <picker bindchange="CHANGE_CLASSTIME" wx:if='{{item.dailyRule<5}}' class='class_picker' data-index="{{index}}" mode="time" start="07:00" end="12:00" value=""> {{item.classTime}}</picker>
+        <picker bindchange="CHANGE_CLASSTIME" wx:if='{{item.dailyRule>=5}}' class='class_picker' data-index="{{index}}" mode="time" start="13:00" end="17:00" value=""> {{item.classTime}}</picker>
+      </view>
+    </view>
+  </view>
+</block>
+
+
+<button class='submit' bindtap="SAVE_NEXT">下一步</button>
+
+<!-- 日历 -->
+<block wx:if="{{showCalendar}}">
+  <calendar catch:day-click="CALENDAR_DAY_CHANGED" />
+</block>
+

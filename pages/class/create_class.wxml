@@ -1,0 +1,109 @@
+<!--pages/course/t_add/creatClass/creatClass.wxml-->
+<view class='creatclass_container'>
+<view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{message}}</view>
+  <!-- banner s -->
+  <view class='header_banner_container'>
+    <view class='haeder_banner'>
+      <image src='{{creatbanner}}'></image>
+    </view>
+    <view class='header_banner_title'>创建班级</view>
+  </view>
+  <!-- banner e -->
+
+  <!-- input lists s -->
+  <view class='section_lists_wrap'>
+    <view class='section_lists_ul'>
+
+      <block wx:if="{{model.teacherProp=='1'}}">
+        <view class='section_lists_li'>
+          <view class='fl section_lists_li_left'>
+            班级类型
+            <text>*</text>
+          </view>
+          <view class='fr section_lists_li_right'>
+            <radio-group class="radio-group" bindchange="CHANGE_COURSETYPE">
+              <label class="radio" wx:for="{{courseTypes}}" wx:key='index'>
+                <radio value="{{item.value}}" checked="{{item.checked}}"/>{{item.name}}
+              </label>
+            </radio-group>
+          </view>
+        </view>
+      </block>
+
+      <block wx:if="{{model.courseType==2}}">
+        <view class='section_lists_li'>
+          <view class='fl section_lists_li_left'>
+            机构名称
+          </view>
+          <view class='fr section_lists_li_right'>
+            <input type='text' placeholder='' value="{{model.workOrganizationName}}" bindinput="CHANGE_SCHOOLNAME"></input>
+          </view>
+        </view>
+      </block>
+
+      <block wx:else>
+      <view class='section_lists_li'>
+          <view class='fl section_lists_li_left'>
+            学校名称
+          </view>
+          <view class='fr section_lists_li_right'>
+            <input type='text' placeholder='' value="{{model.workOrganizationName}}" disabled></input>
+          </view>
+        </view>
+      </block>
+
+
+      <view class='section_lists_li'>
+        <view class='fl section_lists_li_left'>
+          班级名称
+          <text>*</text>
+        </view>
+        <view class='fr section_lists_li_right'>
+          <input type='text' placeholder='请输入班级名称' bindinput="CHANGE_CLASSNAME" value="{{model.className}}"></input>
+        </view>
+      </view>
+
+      
+      <view class='section_lists_li'>
+        <view class='fl section_lists_li_left'>
+          姓名
+          <text>*</text>
+        </view>
+        <view class='fr section_lists_li_right'>
+          <input type='text' placeholder='' value="{{model.name}}" bindinput="CHANGE_NAME"></input>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='weui-uploader_box'>
+    <view class="weui-uploader__input-box">
+         <view class="weui-uploader__input" bindtap="CHANGE_AVATAR">fdsfdsff</view>
+          <view class='upload'>上传头像</view>
+         
+     </view>
+      <view class='photo'><image src='{{model.logourl}}'></image></view>
+  </view>
+   
+          
+  <!-- input lists e -->
+
+  <!-- tips s -->
+  <view class='section_tips_wrap'>
+   <view class='section_tips_left fl'>
+   <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/care.png'></image>
+   </view>
+    <view class='section_tips_right fl'>
+   为方便您顺利的开展教学工作，同时保证平台的真实严肃性,方便您的学生和同事找到您，请务必填写真实姓名及学校信息
+   </view>
+  </view>
+  <!-- tips e -->
+
+  <!-- button s -->
+  <view class='section_button' bindtap="SAVE">确认创建</view>
+  <!-- button e -->
+
+
+
+
+
+</view>

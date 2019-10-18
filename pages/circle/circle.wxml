@@ -1,0 +1,96 @@
+<view class='cirlce'>
+  <view class='mall-wrap'>
+    <view class="mall" bindtap='maskShow' hidden='{{userinfo}}'>
+      <view class='mall_top'>
+        <!-- 头像 -->
+        <view class='top_userinfo'>
+          <!-- <image src='{{childlist[index].logo}}' class='img-useinfo avator'></image> -->
+          <!-- <image src="{{childInfo.logo?childInfo.logo:'https://qa.oss.iforbao.com/public/assets/img/girlb.png!org'}}" mode='aspectFill' class='head_img' style="width:80rpx;height:80rpx;border-radius:40rpx;"></image> -->
+          <image src="{{childlist[index].logo?childlist[index].logo:'https://qa.oss.iforbao.com/public/assets/img/girlb.png!org'}}" class='img-useinfo avator'></image>
+        </view>
+        <!-- 用户名 -->
+        <view class='userinfo-wrap'>
+          <view class='userinfo_text font'>
+            <text>{{childlist[index].childName}}</text>
+          </view>
+          <view class='userinfo_text special_text'>
+          </view>
+        </view>
+        <!-- 切换角色 -->
+        <view class='changeRole_wrap' catchtap='changeRole'>
+          <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/attention.png' class='icon_img' mode='aspectFit'></image>
+          <view class='role_text'>点击切换头像</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 选择小孩列表开始 -->
+  <view class='show_childList' hidden='{{modalshow}}'>
+    <view class='wrap-useinfoer'>
+      <view wx:for="{{childlist}}" wx:key="index" class='info_wraps' bindtap='choseItem' data-index="{{index}}">
+        <image src='{{item.logo}}' class='childstyle' />
+        <text class='fontstyle'>{{item.childName}}</text>
+      </view>
+    </view>
+    <!-- 遮罩层 -->
+    <view class='mall_mask' catchtap="userinfo_show" catchtouchmove='stopPageScroll'>
+    </view>
+  </view>
+  <!-- 选择小孩列表结束 -->
+  <!-- 活动内容 -->
+  <view class='activityContent_wrap' wx:for="{{arr}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
+    <view class='item_wrap'>
+      <view class='content_item'>
+        <image src='{{arr[idx].img_video[0]}}' class='item_img' bindtap='gotodetailitem' id="{{item.course_id}}" data-productId="{{item.productId}}" data-isgroup='{{item.i_group}}' data-kinds='{{item.type}}'></image>
+        <!-- <text class='item_font'>{{item.end_time}}</text> -->
+        <text class="item_catch">抢购中</text>
+      </view>
+      <!-- 课程标签 -->
+      <view class='Course_introduction'>
+        <view class='introduction_detail'>{{item.title}}</view>
+        <view class='intro_text font'>{{item.subtitle}}</view>
+        <view class='course_brand'>
+          <scroll-view scroll-x="true">
+            <text class='itemTexrt_brand font' wx:for="{{item.lable}}" wx:key="index">{{item}}</text>
+          </scroll-view>
+        </view>
+        <!-- 商家 -->
+        <view class='merchants_wrap special_flex'>
+        <view class="leftprice">
+          <view>
+            <!-- <text class='active_price'> -->
+             <text class="redFont">¥</text>
+            <!-- <text>{{item.group_price}}</text>| -->
+             <text class="redFont">{{item.i_group==1?item.group_price:item.dis_price}}</text>|
+            <!-- </text> -->
+          </view>
+          <view>
+            <text class='shop_price'>
+             <text>门市价</text>
+             <text>¥</text>
+            <text>{{item.orig_price}}</text>
+            </text>
+          </view>
+        </view>
+          <view class='sale_num'>
+            <text class="alreadyNum">已售:</text>
+            <text class='sale_numbers font'>{{item.count-item.surplus_count}}</text>
+            <!-- <text class='sale_numbers font'>1000</text> -->
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  </view>
+  <view wx:if="{{showBottomtext}}">已经到底了~~</view>
+  <!-- 广告弹窗 -->
+  <!-- <view  class='wrap_modal' bindtap='gotoExam'> -->
+
+  <!-- <view class='wrap_modal' bindtap='gotoExam'>
+    <text class='modal_wrap'>2019年上海音协电子琴考级在线乐理考试调研问卷</text>
+  </view> -->
+<!-- </view> -->
+<!-- <view class="modal"></view> -->
+<view class="adContainer">
+   <ad unit-id="adunit-bd5c2d93436027d2" bindload="adLoad"  binderror="adError" bindclose="adClose" ad-intervals="30"></ad>
+</view>

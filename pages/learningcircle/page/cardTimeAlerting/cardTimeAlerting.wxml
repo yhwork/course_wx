@@ -1,0 +1,29 @@
+<!--pages/circle/cardTimeAlerting/cardTimeAlerting.wxml-->
+<view class="card_container">
+  <view class="card_time_wrap">
+  <!-- 标题 -->
+      <view class='card_time_title'>
+        <view class='card_time_left'>提醒时间</view>
+        <view class='card_time_right'> 
+            <picker class="picker_label" mode="time" value="{{startTime}}" start="00:00" end="24:00" bindchange="bindTimeChange">
+                <view class="picker">
+                    <view class='star_date'>
+                         <view class='date time_number start_date'>{{time.communityStartTime}}</view>
+                     </view>
+                </view>
+            </picker>
+            <view class="arrow_img">
+                <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
+            </view>
+        </view>
+      </view>
+     <!-- 提示说明 -->
+      <view class="switch_title_tips">
+                <view class="image"> <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/care.png"></image> </view>
+                <view class="text">
+                 更改后所有成员将按照此提醒时间发送打卡提醒
+                </view>
+      </view>
+      
+  </view>
+</view>

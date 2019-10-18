@@ -1,0 +1,28 @@
+<!--pages/circle/circleList/circleList.wxml-->
+<view class="circlelist_container">
+  <view class="circle_list_wrap">
+    <scroll-view scroll-y bindscrolltolower='NEXT' style='height:1200rpx'>
+      <view class="circle_lists" bindtap='CIRCLE_INFO' data-id='{{item.communityId}}' wx:for='{{circleList}}' wx:for-item='item' wx:for-index='index' wx:key='id'>
+        <view class="circle_lists_left">
+          <view class='master' hidden='{{item.isOwner == "0"}}'>圈主</view>
+          <image mode='aspectFill' src="{{item.img}}"></image>
+        </view>
+        <view class="circle_lists_right">
+          <view class="circle_lists_title textover"  wx:if='{{item.slogan}}'>{{item.slogan}}</view>
+          <view class="circle_lists_title textover" wx:else>{{item.name}}</view>
+          <view class="circle_lists_text textover">{{item.name}}</view>
+          <view class="circle_lists_tabs">
+            <view class='lists_tabs'>
+              成员
+              <text>{{item.memberNum}}</text>
+            </view>
+            <view class='lists_tabs'>
+              打卡次数
+              <text>{{item.signinNum}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

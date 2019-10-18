@@ -1,0 +1,17 @@
+.desc-list {
+    font-size: 14px;
+    padding: 20rpx;
+    color: #666;
+}
+
+.desc-list>.desc {
+    display: flex;
+}
+
+.desc-list>.desc>.desc-hd {
+    min-width: 170rpx;
+}
+
+.desc-list>.desc>.desc-bd {
+    flex: 1;
+}

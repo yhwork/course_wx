@@ -1,0 +1,165 @@
+@import "../mypage/myDiary.wxss";
+
+page {
+  font-size: 32rpx;
+}
+
+.topInfo{
+  background-color: #fff;
+  margin-bottom: 10rpx;
+  padding: 0 0 20rpx;
+}
+.topInfo .top {
+  height: 150rpx;
+  padding: 0 30rpx;
+  background: #cbcbcb;
+  box-sizing: border-box;
+  text-align: center;
+  position: relative;
+}
+
+.topInfo .userimg {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  position: absolute;
+  top: 65rpx;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.seed{
+  position: absolute;
+  top: 50%;
+  right: 40rpx;
+  transform: translateY(-50%);
+  color: #f29219;
+  font-size: 26rpx;
+  line-height: 60rpx
+}
+
+.username {
+  width: 100%;
+  font-size: 34rpx;
+  color: #202020;
+  font-weight: 500;
+  text-align: center;
+  position: absolute;
+  top: 190rpx;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.nav{
+  width: 100%;
+  height: 100%;
+}
+
+.center {
+  margin-top: 95rpx;
+  font-size: 30rpx;
+}
+
+.focus_follow {
+  width: 100%;
+  text-align: center;
+  color: #f29219;
+}
+
+.seenMsg {
+  padding: 0 30rpx;
+  margin-top: 10rpx;
+  position: relative;
+}
+
+.seentext {
+  display: inline-block;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  
+}
+
+.seentext text {
+  color: #f29219;
+  font-size: 32rpx;
+  padding-left: 20rpx;
+  font-weight: 70rpx;
+}
+
+.seenimg {
+  width:70rpx;
+  height: 70rpx;
+  border-radius: 40rpx;
+}
+
+.rigthimgs {
+  position: absolute;
+  top: 0;
+  left: 43%;
+  width: 50%;
+  text-align: right;
+}
+
+.more{
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 10rpx;
+}
+
+.circleInfo {
+  padding-left: 30rpx;
+  width: 100%;
+  overflow: hidden;
+  background: #fff;
+  white-space: nowrap;
+  margin-bottom: 10rpx;
+  box-sizing: border-box;
+}
+
+.circleBox {
+  width: 350rpx;
+  height: 270rpx;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  margin-right: 20rpx;
+  color: #cbcbcb;
+  font-size: 30rpx;
+}
+.mb{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top:0;
+  left: 0;
+  background-color: rgba(0,0,0,0.2)  
+}
+.circleBox image {
+  width: 100%;
+  height: 100%;
+   
+}
+.circleName{
+  position: absolute;
+  top: 20rpx;
+  left: 20rpx;
+}
+.num{
+  position: absolute;
+  bottom: 20rpx;
+  left: 20rpx;
+  font-size: 28rpx;
+}
+.diarylast{
+  font-size: 28rpx;
+  color: #888;
+  text-align: center;
+  margin-bottom: 20rpx;
+}
+
+
+
+

@@ -1,0 +1,123 @@
+/* pages/circle/circleAdmin/circleAdmin.wxss */
+
+page {
+  background: #f4f4f4;
+}
+
+.page_top {
+  background: #fff;
+  padding: 0 30rpx 30rpx;
+}
+
+.title {
+  position: relative;
+  font-size: 34rpx;
+  padding-top: 20rpx;
+  color: #000;
+}
+
+.circle_num {
+  font-size: 26rpx;
+  color: #555;
+}
+
+.ago_profile {
+  padding: 0 30rpx 30rpx;
+  background: #fff;
+  margin-top: 20rpx;
+}
+
+.list {
+  display: flex;
+  justify-content: space-around;
+  color: #888;
+  font-size: 24rpx;
+}
+
+.visitor, .new_user, .total_user, .comment, .clocked, .zan {
+  width: 30%;
+  text-align: center;
+}
+
+.list .num {
+  font-size: 50rpx;
+  color: #555;
+}
+
+.nav_list {
+  padding: 0 30rpx;
+  background: #fff;
+  margin-top: 20rpx;
+}
+
+.nav_item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* border-bottom: 2rpx solid #e5e5e5; */
+  padding-bottom: 20rpx;
+}
+
+.fa-angle-right {
+  font-size: 50rpx;
+  color: #c7c7cc;
+}
+
+.item_right {
+  display: flex;
+  align-items: center;
+  margin-top: 20rpx;
+}
+
+.item_right text {
+  font-size: 28rpx;
+  color: #c7c7cc;
+  margin-right: 20rpx;
+}
+
+.com_power {
+  display: flex;
+  align-items: center;
+}
+
+.power {
+  width: 76rpx;
+  height: 36rpx;
+  background: #f12c20;
+  border-radius: 18rpx;
+  font-size: 26rpx;
+  color: #fff;
+  text-align: center;
+  margin-left: 20rpx;
+  margin-top: 20rpx;
+}
+
+.submit {
+  width: 670rpx;
+  height: 94rpx;
+  line-height: 94rpx;
+  text-align: center;
+  background: #f29219;
+  border-radius: 10rpx;
+  color: #fff;
+  font-size: 36rpx;
+  position: absolute;
+  left: 50%;
+  bottom: 60rpx;
+  transform: translate(-50%);
+}
+
+.dismiss{
+  width: 100%;
+  height: 90rpx;
+  border: 2rpx solid red;
+  position: fixed;
+  bottom: 10rpx;
+  left: 0;
+  color: red;
+  font-size: 34rpx;
+  font-weight: 500;
+  text-align: center;
+  line-height: 90rpx;
+  box-sizing: border-box;
+}

@@ -1,0 +1,41 @@
+<view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{message}}</view>
+<!-- wx:if="{{userinfo.teacherProp=='1'}}" -->
+<view  class='wrap'>
+  <view class='top'>
+    <view class='title'>请创建您教授课程的班级</view>
+    <view class='content'>请核实您填写和选择信息，如果有误请到“我的”设置里进行修改，便于您的学生及同事找到您创建的班级</view>
+  </view>
+  <view class='info'>
+    <view class='name'>
+      <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/iconc.png'></image>
+      <text space='nbsp'>姓<text style='color:white'>姓名</text>名：</text>
+      <input bindinput='setName' placeholder='{{name}}'></input>
+    </view>
+    <view wx:if='{{schoolType==1}}' class='name'>
+      <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/icona.png'></image>
+      <text>机构名称：</text>
+      <input bindinput='setSchool' placeholder='{{outschool ?outschool:"请输入机构名称" }}'></input>
+      <!-- <input bindinput='setSchool' placeholder='{{userinfo.workOrganizationName}}'></input> -->
+    </view>
+    
+    <view wx:else class='name'>
+      <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/icona.png'></image>
+      <text>工作单位：</text>
+      <!--  bindtap='chooseSchool'  -->
+      <input value='{{school}}' disabled></input>
+    </view>
+    <view class='name' bindtap='setSubject'>
+      <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/public.png'></image>
+      <text>教学科目：</text>
+      <!-- bindinput='setSubject' -->
+      <input placeholder='{{subject}}' value='{{subjectid?subject:""}}'></input>
+    </view>
+    <view class='name'>
+      <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/teacher.png'></image>
+      <text>班级名称：</text>
+      <input bindinput='setClassName' placeholder='请输入班级名称' maxlength='10' value=''></input>
+    </view>
+  
+  </view>
+  <view bindtap='SAVE' class='save'>完成</view>
+</view>

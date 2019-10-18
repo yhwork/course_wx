@@ -1,0 +1,76 @@
+<!--pages/circle/circleAdmin/circleAdmin.wxml-->
+<view class='page_top'>
+  <view class='title'>{{model.communityName}}</view>
+  <view class='circle_num'>圈子编号：
+    <text class='number'>{{model.id}}</text>
+  </view>
+</view>
+
+<!-- 昨日概况 -->
+<view class='ago_profile '>
+  <view class='title'>昨日概况</view>
+  <view class='list'>
+    <view class='visitor'>
+      <view class='num'>{{resultModel.visitCount}}</view>
+      <text>访客</text>
+    </view>
+    <view class='new_user'>
+      <view class='num'>{{resultModel.newUserCount}}</view>
+      <text>新用户</text>
+    </view>
+    <view class='total_user'>
+      <view class='num'>{{resultModel.allUserCount}}</view>
+      <text>累计用户</text>
+    </view>
+  </view>
+  <view class='list'>
+    <view class='clocked'>
+      <view class='num'>{{resultModel.signCount}}</view>
+      <text>已打卡</text>
+    </view>
+    <view class='comment'>
+      <view class='num'>{{resultModel.commentCount}}</view>
+      <text>评论</text>
+    </view>
+    <view class='zan'>
+      <view class='num'>{{resultModel.likeCount}}</view>
+      <text>点赞</text>
+    </view>
+  </view>
+</view>
+
+<view class='nav_list'>
+  <navigator url='../memAdmin/memAdmin?id={{model.id}}' hover-class='none'>
+    <view class='nav_item '>
+      <view class='title'>成员管理</view>
+      <view class='item_right'>
+        <view class='fa fa-angle-right'></view>
+      </view>
+    </view>
+  </navigator>
+  <navigator hidden='true' hover-class='none'>
+    <view class='nav_item '>
+      <view class='com_power'>
+        <view class='title'>竞争力</view>
+        <view class='power'>弱</view>
+      </view>
+      <view class='item_right'>
+        <text>请完善您的圈子信息，提高竞争力</text>
+        <view class='fa fa-angle-right'></view>
+      </view>
+    </view>
+  </navigator>
+  <navigator hidden='true' hover-class='none'>
+    <view class='nav_item '>
+      <view class='title'>奖金设置</view>
+      <view class='item_right'>
+        <view class='fa fa-angle-right'></view>
+      </view>
+    </view>
+  </navigator>
+</view>
+
+<view bindtap='deleteCommunity' class='dismiss'>解散圈子</view>
+
+<!-- 提交 -->
+<view class='submit' hidden='true'>提交</view>

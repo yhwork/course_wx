@@ -1,0 +1,63 @@
+page{
+  background-color: #fff;
+}
+.page_top {
+  padding: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.points {
+  background: #ff9800;
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.points_list_box {
+  padding: 10rpx 40rpx;
+  border-bottom: 2rpx solid #bbb;
+}
+
+.points_list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.points_list_name {
+  font-size: 28rpx;
+}
+
+.points_list_time {
+  font-size: 26rpx;
+  color: #acadad;
+}
+
+.points_list_num {
+  font-size: 28rpx;
+  color: #3f51b5;
+}
+
+.points_rule {
+  color: #ff9800;
+  position: absolute;
+  right: 40rpx;
+  top: 20rpx;
+  font-size: 26rpx;
+}
+.points_rule_shop {
+  color: #ff9800;
+  position: absolute;
+  right: 40rpx;
+  bottom: 20rpx;
+  font-size: 26rpx;
+}
+

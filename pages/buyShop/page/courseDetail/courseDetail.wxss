@@ -1,0 +1,127 @@
+.list_item {
+  background-color: white;
+}
+.techer_names{
+  width: 102rpx;
+  font-size: 30rpx;
+  /* text-align: center; */
+  height: 40rpx;
+  display: block;
+ 
+}
+
+.list_top {
+  display: flex;
+  padding: 15rpx;
+}
+
+.list_bottom {
+  height: 50rpx;
+  background-color: darkmagenta;
+}
+
+.top_image {
+  width: 102rpx;
+  height: 136rpx;
+  border-radius: 10rpx;
+}
+
+.top_teacherDetail {
+  display: block;
+  font-size: 30rpx;
+  width: 102rpx;
+  margin-right: 20rpx;
+}
+
+.teacherDetail_name {
+  width: 102rpx;
+  text-align: center;
+  font-size: 24rpx;
+  height: 40rpx;
+}
+
+.teacher_font {
+  font-size: 36rpx;
+  color: #101010;
+}
+
+.detail_font {
+  font-size: 30rpx;
+  line-height: 40rpx;
+  height: 40rpx;
+}
+
+.datail_day {
+  font-size: 24rpx;
+  line-height: 30rpx;
+  height: 30rpx;
+  color: #101010;
+}
+
+.detail_sale {
+  font-size: 24rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+}
+
+.sale_class {
+  color: #101010;
+}
+
+.datail_class {
+  margin-left: 160rpx;
+  color: #575252;
+}
+
+.datail_num {
+  margin-left: 250rpx;
+  color: red;
+}
+
+.num_font {
+  margin-left: 15rpx;
+}
+.teach_idea{
+  font-size: 24rpx;
+}
+.teacheclass_num{
+  margin-left: 160rpx;
+}
+.teach_address{
+  font-size: 30rpx;
+  color: #0A4E7F;
+}
+/* 课程介绍开始 */
+.course_introduction{
+  background-color: #E8E3E3;
+  width: 750rpx;
+  overflow: hidden;
+}
+.introduction_item{
+  height: 200rpx;
+  background-color: white;
+  margin-top: 10rpx;
+  overflow: hidden;
+  
+}
+.item_inner{
+  width: 720rpx;
+  margin: 25rpx auto;
+
+  height: 150rpx;
+}
+.inner_wrap{
+  height: 100rpx;
+  overflow: auto;
+}
+.item_img{
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+  margin-right: 10rpx;
+}
+.innnerImage_wrap{
+  display: flex;
+  margin-top: 20rpx;
+}
+/* 课程介绍结束 */

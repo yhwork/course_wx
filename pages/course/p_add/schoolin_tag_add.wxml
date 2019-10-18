@@ -1,0 +1,10 @@
+<view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{message}}</view>
+<!-- <view class='hint'>
+<image src='../../../assets/img/hint.png'></image>
+  <view>填写课程标签名称</view>
+</view> -->
+<view class='course_name'>
+  <view class='title'>课程名称</view>
+  <input placeholder='请填写(4字以内)' maxlength="4" id="tagName" name="tagName" bindinput="CHANGE_TAGNAME"></input>
+</view>
+<button class='submit' bindtap="SAVE_TAG">提交</button>

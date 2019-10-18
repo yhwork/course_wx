@@ -1,0 +1,65 @@
+<view class="booking">
+  <!-- siwper开始 -->
+  <view class='content_item'>
+    <swiper indicator-dots="{{indicatorDots}}" indicator-color="{{color}}" indicator-active-color="{{activecolor}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}"   circular="true"  wx:key="index" class='hot_swiper'>
+      <block wx:for="{{imgUrls}}" wx:key="index">
+        <swiper-item>
+          <image src="{{item}}" class="slide-image" width="100%" height="100%" class='hot_img' />
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <!-- swiper 结束 -->
+  <view class='booking_proname'>产品名字</view>
+  <!-- 选择门店 -->
+  <view class='wrap_one'>
+    <view class='choose_shop'>
+      <view class='shop_top'>
+        <view>选择门店</view>
+        <view class='shop_img'>
+          <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/riqi.png" class='choose' />
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='wrap_two'>
+    <view class='shop_adress'>
+      <view class='warn_item'>
+        <view>商家名称</view>
+        <view class='shop-shop'>商家地址</view>
+      </view>
+      <view class='warn_item'>
+        <view>商家名称</view>
+        <view class='shop-shop'>商家地址</view>
+      </view>
+    </view>
+  </view>
+  <view class='shop_detailcontext'>
+    <view class='shopname'>商家名称</view>
+    <view class='shop_booking'>请点击下面的日历预约时间</view>
+  </view>
+
+  <!-- 时间选择器 -->
+  <view class='picker_time'>
+    <view class='time_img'>
+      <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/publichttps://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/cap3.jpg" class='userinfo'></image>
+      <view class='usrname'>
+        <text>测试小豆包</text>
+      </view>
+    </view>
+    <!-- 当前日期 -->
+    <view class='bookingfont'>{{currentTime}}</view>
+  </view>
+  <!-- 时间Tab切换 -->
+  <view class='tab'>
+    <view class='tab_top'>
+      <view class='tab_fontstyle' wx:for="{{weekarray}}" wx:key="idnex">{{item}}</view>
+
+    </view>
+    <view class='tab_top'>
+      <view class='tab_fontstyle' wx:for="{{dararray}}" wx:key="idnex">{{item}}</view>
+    </view>
+
+  </view>
+
+</view>

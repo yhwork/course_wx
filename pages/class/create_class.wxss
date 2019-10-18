@@ -1,0 +1,192 @@
+/* pages/course/t_add/creatClass/creatClass.wxss */
+.fr{
+  float: right;
+}
+.fl{
+  float: left;
+}
+.textover {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+/* header s */
+.header_banner_container{
+width:660rpx;
+height:280rpx;
+background:rgba(255,255,255,1);
+margin-bottom: 20rpx;
+padding: 45rpx;
+}
+.haeder_banner{
+  width: 100%;
+  height:208rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20rpx;
+
+}
+.haeder_banner image{
+  width: 502rpx;
+  height:208rpx;
+}
+.header_banner_title{
+width: 100%;
+text-align: center;
+font-size:34rpx;
+font-family:PingFangSC-Medium;
+color:#4A4A4A;
+}
+/* input lists s */
+.section_lists_wrap{
+  width: 100%;
+  background: #fff;
+  margin-bottom: 20rpx;
+}
+.section_lists_ul{
+padding: 0 30rpx;
+}
+.section_lists_li{
+  height: 88rpx;
+  line-height: 88rpx;
+  border-bottom:1px solid #e5e5e5;
+}
+.section_lists_li:last-child{
+  border-bottom:none;
+}
+.section_lists_li_left{
+font-size:34rpx;
+font-family:PingFangSC-Regular;
+color:rgba(0,0,0,1);
+}
+.section_lists_li_left text{
+  color: #F95B58;
+}
+.section_lists_li_right{
+width: 450rpx;
+display: flex;
+align-items: center;
+justify-content: flex-end;
+}
+.section_lists_li_right input{
+border:none;
+width: 100%;
+height:88rpx;
+line-height: normal;
+color: #000;
+font-size: 34rpx;
+text-align: right;
+}
+input:-moz-placeholder, textarea:-moz-placeholder { 
+/* Mozilla Firefox 4 to 18 */ 
+color: #B2B2B2; 
+}
+.section_kemu{
+
+  width:130rpx;
+height:60rpx;
+line-height: 60rpx;
+text-align: center;
+background:rgba(178,178,178,0.2);
+border-radius:33rpx;
+font-size:32rpx;
+font-family:PingFangSC-Regular;
+color:rgba(136,136,136,1);
+margin-top: 12rpx;
+}
+/* tips s */
+.section_tips_wrap{
+background: #fff;
+overflow: hidden;
+padding: 20rpx 30rpx;
+}
+.section_tips_left{
+margin-right: 20rpx;
+}
+.section_tips_left image{
+  width: 32rpx;
+  height:32rpx;
+}
+.section_tips_right{
+width:634rpx;
+height:108rpx;
+font-size:26rpx;
+font-family:PingFangSC-Regular;
+color:rgba(178,178,178,1);
+line-height:36rpx;
+}
+
+/* button s */
+.weui-uploader_box{
+  width:100%;
+  height:220rpx;
+  background: #fff;
+  padding-top:20rpx;
+}
+.section_button{
+  margin: 0 auto;
+  width:670rpx;
+height:94rpx;
+line-height: 94rpx;
+background:#f29219;
+border-radius:10rpx;
+font-size:36rpx;
+font-family:PingFangSC-Regular;
+color:rgba(255,255,255,1);
+text-align: center;
+margin-top: 100rpx;
+ }
+
+ /* upload pictures */
+.weui-uploader__input-box{
+  position:relative;margin-left:30rpx;margin-bottom:9px;width:77px;height:77px;border:1px solid #d9d9d9;
+  float:left;
+  }
+.weui-uploader__input-box:after,.weui-uploader__input-box:before{
+  content:" ";position:absolute;top:50%;left:50%;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%);background-color:#d9d9d9;
+  }
+.weui-uploader__input-box:before{
+    width:2px;height:39.5px;
+  }
+.weui-uploader__input-box:after{
+  width:39.5px;height:2px;
+  }
+.weui-uploader__input-box:active{
+  border-color:#999;
+  }
+.weui-uploader__input-box:active:after,.weui-uploader__input-box:active:before{
+  background-color:#999;
+  }
+  .weui-uploader__input{
+    position:absolute;z-index:1;top:0;left:0;width:100%;height:100%;opacity:0
+  }
+  .upload{
+    margin-top:180rpx;
+    font-size:26rpx;
+    text-align: center;
+    color:#999;
+  }
+  .section_tips_wrap{
+    margin-top:50rpx;
+  }
+  .section_button{
+    margin:100rpx auto 20rpx;
+  }
+  .section_tips_wrap{
+    margin-top:20rpx;
+  }
+  .photo{
+    width:155rpx;
+    height:155rpx;
+    float:left;
+    border:1px solid #d9d9d9;
+    margin-right:10rpx;
+
+  }
+.photo image{
+    width:155rpx;
+    height:155rpx;
+  }

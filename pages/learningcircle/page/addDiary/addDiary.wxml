@@ -1,0 +1,125 @@
+<import src="../../../../components/img_video/img_video" />
+<form bindsubmit='SAVE_DIARY_INFO'>
+  <view class='editor'>
+    <view class='content'>
+      <textarea placeholder='从这里开始写正文' bindblur="SAVE_CIRCLEOWNER_DETAIL" value='{{item.content}}'></textarea>
+    </view>
+    <view class='tem_box'>
+      <template is="msgItem" data="{{subjectImg,show,communitySubjectForPage,videooSrc,videooSrcIdx,subjectImgList,FIREST,type:'diary'}}" />
+    </view>
+    <!-- 语音 -->
+    <view wx:for="{{communitySubjectForPage}}" wx:key='idx' wx:for-item='item' wx:for-index='idx'>
+      <view class='intro_item' wx:if='{{item.contentType == 3}}'>
+        <view class='btn_group'>
+          <image class='delete' data-idx='{{idx}}' bindtap='DEL' data-contentType='{{item.contentType}}' data-arrayJ='{{communitySubject}}' data-array='{{communitySubjectForPage}}' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/delete_in.png'></image>
+        </view>
+        <view class='contents'>
+          <view class='audio'>
+            <audio src="{{item.content}}" id="subjectAudio{{idx}}" bindtimeupdate="AUDIO_UPDATA_PROGRESS" bindended="AUDIO_PLAY_END"></audio>
+            <view class='voice_animate'>
+              <view class='playimg' data-play='{{item.play}}' style='display:{{item.play?"none":"flex"}}' catchtap='AUDIO_PLAY' data-idx='{{idx}}'>
+                <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/voice_img.png'></image>
+              </view>
+              <view class='stopimg' data-play='{{item.play}}' style='display:{{item.play?"flex":"none"}}' catchtap='AUDIO_STOP' data-idx='{{idx}}'>
+                <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/voice.gif'></image>
+              </view>
+              <view class='proleft' wx:if='{{!item.audio_duration||item.audio_duration=="00:00"}}'>{{item.contentSize}}</view>
+              <view wx:else class="proleft">{{item.audio_duration}}</view>
+            </view>
+
+            <!-- <view class='playOrstop'>
+              <view class='play' data-play='{{item.play}}' style='display:{{item.play?"none":"flex"}}' catchtap='AUDIO_PLAY' data-idx='{{idx}}'></view>
+              <view class='stop' data-play='{{item.play}}' style='display:{{item.play?"flex":"none"}}' catchtap='AUDIO_STOP' data-idx='{{idx}}'>
+                <view class='shu'></view>
+                <view class='shu'></view>
+              </view>
+            </view>
+            <view class='slid' >
+              <slider bindchange="AUDIO_SLIDER_CHANGE" block-size="12px" step="2" value="{{subjectSlidlst.offset}}" max="{{subjectSlidlst.max}}" class="slider" selected-color="#ff5e5e" />
+              <text class='time'>{{subjectSlidlst.audio_duration}}</text>
+            </view> -->
+          </view>
+        </view>
+      </view>
+    </view>
+
+
+    <!-- 添加按钮组 -->
+    <view class='add_btn_group'>
+      <view class='add_img' bindtap='CHANGE_AVATAR' wx:if='{{introducecontentImgNm<9}}'>
+        <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/add_img.png'></image>
+        <text>图片</text>
+      </view>
+      <view class='add_audio' bindtap='SET_AUDIO' wx:if='{{introducecontentAudioNm<1}}'>
+        <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/audio_a.png'></image>
+        <text>语音</text>
+      </view>
+      <view class='add_video' bindtap='SET_VIDEO' wx:if='{{introducecontentVideoNm<1}}'>
+        <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/add_video.png'></image>
+        <text>视频</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 位置、谁可以看 -->
+  <view class='form_box'>
+    <view class='form_item position' bindtap='showMap'>
+      <view class='form_left'>
+        <image class='pos_icon' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/map0.png'></image>
+        <text>所在位置</text>
+      </view>
+      <view class='form_right'>
+        <text class='addr'>{{detail_info}}</text>
+        <view class='fa fa-angle-right'></view>
+      </view>
+    </view>
+    <view class='form_item can_see'>
+      <view class='form_left'>
+        <image class='see_icon' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/who_see.png'></image>
+        <text>谁可以看</text>
+      </view>
+      <view class='form_right' bindtap='showMask'>
+        {{selectContent}}
+        <text class='fa fa-angle-right'></text>
+      </view>
+    </view>
+  </view>
+  <!-- 发表 -->
+  <!-- bindtap='SAVE_DIARY_INFO' -->
+  <button class='submit' form-type="submit">发表</button>
+</form>
+
+
+
+
+<toast hidden="{{toast3Hidden}}" duration='3000' icon="warn" bindchange="toast2Change">{{errorMessage}}</toast>
+
+<view class='limit_mask' catchtouchmove='eStop' hidden='{{maskHide}}'>
+  <view class='limit_box'>
+    <view class='limit_item {{currentS==idx?"select":""}}' data-content='{{item}}' wx:for="{{limis}}" wx:for-index='idx' data-idx='{{idx}}' wx:key='idx' wx:for-item='item' bindtap='changeLi'>
+      {{item}}
+    </view>
+  </view>
+</view>
+
+<view class='map_box' hidden='{{mapHide}}'>
+  <map id="map" longitude="104.07" latitude="30.59" scale="14" controls="{{controls}}" bindcontroltap="controltap" markers="{{markers}}" bindmarkertap="markertap" polyline="{{polyline}}" show-location style="width: 100%;"></map>
+</view>
+
+<view class='voice_mask' catchtouchmove='eStop' hidden='{{isSpeaking}}'>
+  <view class='voice_box'>
+    <image class="cancel" bindtap='cancel' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/delete_in.png">
+    </image>
+    <view class='countDown' hidden='{{!startSpeak}}'>录音中，还剩{{startSpeak?countDownTime:""}}秒</view>
+
+    <image class='voice_btn' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/vioce.png' hidden='{{startSpeak}}' bindtap='START_AUDIO'></image>
+    <image class='voice_btn' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/vioce_play2.png' hidden='{{!startSpeak}}' bindtap='STOP_AUDIO'></image>
+    <view class='voice_title'>{{startSpeak?"点击结束":"点击开始"}}</view>
+
+  </view>
+</view>
+
+<!-- error弹框 -->
+<modal hidden='{{modalHidden}}' no-cancel bindconfirm="modalChange" bindcancel="modalChange">
+  <view>{{errorMsg}}</view>
+</modal>

@@ -1,0 +1,50 @@
+<view class='share_wrap'>
+  <view class='wrap_top'>
+    <view>
+      <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/cap3.jpg' class='product_img' mode='scaleToFill'></image>
+    </view>
+    <view class='wrap_text'>
+      <view>这个课程好的，好的，好的好的好的，好的好的好健康数据法萨芬计算机发理发卡加快了</view>
+      <view class='buttom_wrap'>
+        <view class='wrap_font'>
+          <view>
+            ¥
+          </view>
+          <view>
+            348
+          </view>
+        </view>
+        <view class='font_right'>
+          <view>已拼</view>
+          <view>10</view>
+          <view>件</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 底部 -->
+<view class='wrap_bottom'>
+
+  <view class='addgroupimg_wrap'>
+    <view class='sign'>
+      <text class='sign_master'>拼主</text>
+      <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/cap3.jpg" class='add_groupimage' mode='scaleToFill'></image>
+    </view>
+    <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/cap3.jpg" class='add_groupimage' mode='scaleToFill'></image>
+  </view>
+  <view class='prodect_des'>
+    <view>拼主所选的规格:</view>
+    <view>双折叠支架-蓝色</view>
+  </view>
+
+  <view class='wrap_inv'>
+    <view>仅剩</view>
+    <text class='inv_peo'>1</text>
+    <view>个名额,</view>
+    <view class='wrap_time'>23:23:23.7</view>
+    <view>后结束</view>
+    </view>
+   <button open-type="share" class='btn'>参与潘婷的拼单</button>
+
+</view>

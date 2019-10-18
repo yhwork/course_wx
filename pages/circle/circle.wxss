@@ -1,0 +1,393 @@
+
+.cirlce{
+  width: 750rpx;
+}
+.mall {
+  height: 100rpx;
+  background-color:#ffd596;
+  padding: 0 5rpx;
+  width: 740rpx;
+}
+.mall-wrap{
+  width: 750rpx;
+   background-color:#ffd596;
+
+}
+.img-useinfo {
+  margin-top: 10rpx;
+  
+}
+mall_top{
+  display: flex;
+  justify-content: space-between;
+}
+.avator{
+   width: 80rpx;
+   height: 80rpx;
+   border-radius: 10rpx;
+}
+
+.userinfo_text {
+  font-size: 24rpx;
+  color: orange;
+  width: 160rpx;
+
+}
+
+.mall_top {
+  display: flex;
+  width: 680rpx;
+  margin: 0 auto;
+  align-items: center;
+  }
+
+.special_text {
+  color: black;
+  font-size: 20rpx;
+  
+}
+
+.userinfo-wrap {
+  margin-left: 10rpx;
+  
+}
+
+.changeRole_wrap {
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200rpx;
+  margin-left: 245rpx;
+}
+
+.role_circle {
+  width: 30rpx;
+  height: 30rpx;
+  background-color: #ff9800;
+  border-radius: 50%;
+}
+
+.role_text {
+
+  color: #f29219;
+  font-size: 24rpx;
+  width: 300rpx;
+  margin-left: 20rpx;
+}
+
+.mall_mask {
+  background-color: rgba(0, 0, 0, 0.8 );
+  width: 750rpx;
+  /* 要改 */
+  height:100%;
+  position: absolute;
+  left: 0;
+  top:0;
+  z-index: 100;
+
+}
+
+.mask_role {
+  width: 750rpx;
+  background-color: white;
+}
+
+.role_img {
+  width: 100rpx;
+  height: 100rpx;
+  display: block;
+  margin-bottom: 10rpx;
+}
+
+.activityContent_wrap {
+  /* width: 750rpx; */
+  width: 720rpx;
+  padding: 0 15rpx;
+
+}
+
+.content_item {
+  /* width: 750rpx; */
+  width:720rpx;
+  position: relative;
+}
+
+.item_img {
+  /* width: 750rpx; */
+  width:720rpx;
+ height: 380rpx;
+}
+
+.item_font {
+  font-size: 25rpx;
+  color: white;
+  background-color: red;
+  padding: 15rpx 30rpx;
+  height: 30rpx;
+  position: absolute;
+  z-index: 3;
+  right: 0rpx;
+  top: 10rpx;
+  width: 260rpx;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+}
+
+.item_money {
+  font-size: 30rpx;
+  color: white;
+  position: absolute;
+  z-index: 3;
+  left: 0rpx;
+  top: 180rpx;
+  line-height: 40rpx;
+  height: 40rpx;
+  padding: 15rpx 30rpx;
+  background-color: #6e8089;
+}
+.item_catch{
+  width: 100rpx;
+  font-size: 30rpx;
+  position: absolute;
+  z-index: 3;
+  left: 0rpx;
+  top: 200rpx;
+  line-height: 40rpx;
+  height: 40rpx;
+  color: white;
+  padding: 15rpx 30rpx;
+  background-color:orange;
+    overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.item_activity {
+  color: white;
+  font-size: 40rpx;
+  position: absolute;
+  top: 100rpx;
+  z-index: 3;
+}
+
+.item_activity {
+  font-size: 40rpx;
+  position: absolute;
+  top: 330rpx;
+  z-index: 3;
+  left: 10rpx;
+  color: orange;
+  bottom: 20rpx;
+  font-weight: bolder;
+}
+
+.itemTexrt_brand {
+  font-size: 23rpx;
+  height: 30rpx;
+  border: 1rpx solid #E1DEDE;
+  padding: 5rpx 10rpx;
+  color: gray;
+  letter-spacing: 2rpx;
+  margin-right: 10rpx;
+  width: 80rpx;
+}
+
+.introduction_detail {
+  font-size: 32rpx;
+  font-weight: bolder;
+  color: black;
+  margin-top:-15rpx; 
+  width: 700rpx;
+   overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  
+}
+.course_sale_{
+  font-size: 24rpx;
+  color: gray;
+  display: inline-block;
+  margin-left: 135rpx;
+}
+.merchants_wrap{
+
+  height: 50rpx; 
+  font-size:30rpx;
+  line-height: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #969292;
+
+}
+.merchants_detail{
+  display: flex;
+  width: 400rpx;
+  justify-content: space-between;
+}
+
+.merchants_item{
+  width:100rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.course_sale {
+font-size:24rpx;
+color:gray;
+display:inline-block;
+margin-left: 80rpx;
+}
+.mall_wrap{
+  width: 750rpx;
+
+
+}
+.icon_img{
+  width: 70rpx;
+  height: 70rpx;
+} 
+.intro_text{
+  font-size: 25rpx;
+  line-height: 30rpx;
+  color: #AAAAAA;
+  width: 600rpx;
+}
+.special_flex{
+  display: flex;
+  justify-content: flex-start;
+}
+.Course_introduction{
+  padding: 0 10rpx;
+  width: 700rpx;
+}
+.shop_price{
+  font-size: 25rpx;
+  margin-left: 8rpx;
+  text-decoration: line-through;
+  width: 180rpx;
+  /* line-height: 74rpx; */
+  display: block;
+}
+.active_price{
+  color: red;
+  width: 100rpx;
+}
+.sale_num{
+  font-size: 24rpx;
+  margin-left:350rpx;
+}
+.childstyle{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 10rpx;
+}
+.wrap-useinfoer{
+  width: 750rpx;
+  background-color: white;
+  position: absolute;
+  top:0;
+  left:0;
+  z-index: 150;
+  
+}
+.info_wraps{
+  width:680rpx;
+  margin: 0 auto;
+  margin-top: 10rpx;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10rpx;
+  padding: 10rpx 0;
+ 
+}
+.fontstyle{
+  font-size: 30rpx;
+  margin-left: 20rpx;
+  height: 80rpx;
+ display: flex;
+ align-items: center;
+}
+/* .modal{
+  width: 200rpx;
+  height: 140rpx;
+  background-color: royalblue;
+} */
+
+.wrap_modal{
+  width: 720rpx;
+  height: 80rpx;
+
+  }
+.modal_wrap{
+    display: none;
+    width: 260rpx;
+    height: 80rpx;
+    /* background-color:#01c100; */
+
+}
+/* .modal_wrap{
+
+>>>>>>> 2bb318dd6ba4f5d2040bcadf9190ebb360b15614
+    background-color: orange;
+    margin-left: 15prx;
+    position: fixed;
+    top:500rpx;
+    z-index:100;
+    color: white;
+    line-height: 40rpx;
+    font-size:22rpx;
+    left:480rpx;
+    opacity: .9;
+    border-top-left-radius: 20rpx;
+    border-bottom-left-radius: 20rpx;
+    padding: 10rpx 10rpx;
+<<<<<<< HEAD
+  } */
+
+/* }
+
+
+>>>>>>> 2bb318dd6ba4f5d2040bcadf9190ebb360b15614 */
+  .showline{
+    display: flex;
+  }
+  .sale_numbers{
+    width: 150rpx;
+
+  }
+  .priceDis{
+    /* width: 100rpx; */
+    display: block;
+
+  }
+  .innerPrice{
+    display: flex;
+    /* width: 100rpx; */
+       overflow: hidden;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+
+    
+  }
+  .money{
+    display: block;
+  }
+  .leftprice{
+    width: 220rpx;
+  overflow: hidden;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+   display: flex;
+   font-size: 24rpx;
+  }
+.redFont{
+  color: red;
+}
+.alreadyNum{
+  width: 50rpx;
+  height: 40rpx;
+}
+  

@@ -1,0 +1,67 @@
+/* pages/circle/powerUp/powerUp.wxss */
+page{
+  background: #f4f4f4;
+}
+.page_top{
+  width: 710rpx;
+  background: #fff;
+  margin: 20rpx;
+  border-radius: 8rpx;
+  padding: 40rpx;
+  box-sizing: border-box;
+}
+.hint{
+  font-size:24rpx;
+  color: #333;
+  text-align: center;
+}
+.rank{
+  display: flex;
+  justify-content: space-around;
+  margin-top:30rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #888;
+}
+.yesToday_rank,.today_rank{
+  font-size: 72rpx;
+  color: #333;
+}
+.grade{
+  width: 680rpx;
+  margin: 50rpx auto;
+}
+.grade_list{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10rpx;
+}
+.com_hint{
+  font-size:26rpx;
+  color: #666;
+  margin-left: 30rpx;
+}
+.handle_list{
+  padding: 0 30rpx;
+  background: #fff;
+  margin-top: 20rpx;
+}
+.fa-angle-right {
+  font-size: 50rpx;
+  color: #c7c7cc;
+  margin-left: 30rpx;
+}
+.handle_item{
+  height: 88rpx;
+  border-bottom: 2rpx solid #e5e5e5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.item_right{
+  display: flex;
+  align-items: center;
+}
+.complete{
+  color: #888;
+}

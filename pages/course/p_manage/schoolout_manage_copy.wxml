@@ -1,0 +1,177 @@
+<view class='page'>
+  <view class="page_hd">
+    <view class='main_bg'>
+      <view class='main_acc'>
+        <view>
+          <view style="color:#fff;">{{courseInfo.name}}</view>
+          <!-- <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/publichttps://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/sign.png" class='signimg'></image> -->
+        </view>
+        <block wx:if="{{userInfo.role=='0'}}">
+          <image src="{{childInfo.logo}}" class='head-img'></image>
+        </block>
+        <block wx:else>
+          <image src="{{userInfo.logo}}" class='head-img'></image>
+        </block>
+
+      </view>
+    </view>
+
+  </view>
+  <!-- 开课日期之后 -->
+  <view class="page_bd">
+    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{message}}</view>
+    <!-- 中间说明部分start -->
+    <view class="weui-cells weui-cells_after-title">
+      <!-- 第一个说明 -->
+      <view class="weui-cell">
+        <view class="weui-cell__bd b">
+          <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/icona.png" class='icona' mode="widthFix"></image>
+          <text style="margin-left: 20rpx;font-size:28rpx;white-space:nowrap;">教学机构</text>
+        </view>
+        <input type="text" value="{{courseInfo.orgName}}" class="weui-cell__ft" style="color:#000;" maxlength="12" bindinput="CHANGE_ORGNAME" />
+      </view>
+
+      <view class="weui-cell addr">
+        <view class="weui-cell__bd">
+          <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/iconb.png" class='iconb'></image>
+          <text style="margin-left: 18rpx;font-size:28rpx;white-space:nowrap;">上课地点</text>
+        </view>
+        <view class="weui-select weui-select_in-select-after weui-cell__ft" style="color:#000;font-size:28rpx;" bindtap="SELECT_ADDRESS">
+          {{courseInfo.classAddress ? courseInfo.classAddress : '请选择'}}
+        </view>
+      </view>
+
+      <view class="weui-cell">
+        <view class="weui-cell__bd" style="font-size:28rpx;">
+        <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/xiangxidizhi.png" class='iconb'></image>
+        <text style="margin-left: 20rpx;font-size:28rpx;white-space:nowrap;">详细地址</text>
+        </view>
+        <input type="text" value="{{courseInfo.classRoom}}" class="weui-cell__ft" style="color:#000;" maxlength="20" bindinput="CHANGE_CLASSROOM" />
+      </view>
+    </view>
+    <view style='background:#f4f4f4; height:20rpx;'></view>
+    <!-- 中间说明部分center -->
+    <view class="weui-cells weui-cells_after-title">
+      <!-- 第二个说明 -->
+      <view class="weui-cell">
+        <view class="weui-cell__bd b">
+          <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/teacher.png" class='iconc' mode="widthFix"></image>
+          <text style="margin-left: 20rpx;font-size:28rpx;white-space:nowrap;">任教老师</text>
+        </view>
+        <input type="text" value="{{courseInfo.teacher}}" class="weui-cell__ft" style="color:#000;" maxlength="5" bindinput="CHANGE_TEACHER" />
+      </view>
+
+      <view class="weui-cell">
+        <view class="weui-cell__bd" style="font-size:28rpx;">
+        <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/lianxi.png" class='iconb'></image>
+        <text style="margin-left: 20rpx;font-size:28rpx;white-space:nowrap;">联系方式</text>
+        </view>
+        <input type="text" value="{{courseInfo.contactTel}}" class="weui-cell__ft" style="color:#000;" maxlength="11" bindinput="CHANGE_TEL" />
+      </view>
+    </view>
+    <view class='weui-cell-ins_a'>
+      <view class="weui-cell-wenzi">
+        <text>开课日期</text>
+        <text style='margin-left:120rpx;'>结课日期</text>
+      </view>
+      <view class="weui-cell-riqi">
+        <view bindtap="CHANGE_BEGINDATE">{{courseInfo.beginDate}}</view>
+        <view>{{courseInfo.beginWeekDay}}</view>
+      </view>
+      <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/dao.png" class='dao' mode="widthFix"></image>
+      <view class="weui-cell-riqi_b">
+        <view>{{courseInfo.endDate}}</view>
+        <view>{{courseInfo.endWeekDay}}</view>
+      </view>
+      <button class='btn'>
+        <text class='all'>共</text>
+        <input class='input' bindinput="CHANGE_NUM" value="{{courseInfo.num}}"></input>
+        <text class='jie'>节课</text>
+      </button>
+    </view>
+
+    <view class='weui-cell-ins_b'>
+      <view class="weui-cell-wenzi">
+        <text>开始时间</text>
+        <text style='margin-left:120rpx;'>结束时间</text>
+      </view>
+      <view class="weui-cell-riqi">
+        <picker style="margin-left:40rpx;" bindchange="CHANGE_TIMEFIRST" mode="time" start="07:00" end="21:00" value="{{courseInfo.startClassTime}}">{{courseInfo.startClassTime}}</picker>
+      </view>
+      <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/dao.png" class='dao_b' mode="widthFix"></image>
+      <view class="weui-cell-riqi_b">
+        <view style="margin-left:20rpx;">{{courseInfo.endClassTime}}</view>
+      </view>
+      <view class='weui-cell-clock timelong'>
+        <text style='float:left; margin-top:6rpx; margin-left:30rpx'>时长</text>
+        <input type="text" value="{{courseInfo.duration}}" style="color:#000;margin-left:16rpx;float:left; width:50rpx;" bindinput="CHANGE_DURATION" />
+        <text style="margin-left:10rpx;float:left; margin-top:6rpx;">分钟</text>
+      </view>
+    </view>
+
+    <view class='weui-cell-bottom'></view>
+    <view class="weui-cells weui-cells_after-title">
+      <!-- 第一个说明 -->
+      <view class="weui-cell">
+        <view class="weui-cell__bd b">
+          <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/iconf.png" class='iconf'></image>
+          <text style="margin-left: 25rpx;font-size:28rpx;">重复</text>
+        </view>
+        <view class="weui-cell__ft" style="font-size:28rpx;">
+          <picker bindchange="CHANGE_REPETITION" value="{{courseInfo.repetitionIndex}}" range="{{repetitionItems}}" disabled="{{repDis}}">
+            <view class="weui-select weui-select_in-select-after">
+              <block wx:if="{{courseInfo.repetitionIndex==4}}">
+                {{courseInfo.weekDaysTxt}}
+              </block>
+              <block wx:else>
+                  {{repetitionItems[courseInfo.repetitionIndex]}}
+              </block>
+            </view>
+          </picker>
+        </view>
+      </view>
+
+      <view class="weui-cell">
+        <view class="weui-cell__bd b">
+          <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/icong.png" class='icong'></image>
+          <text style="margin-left: 20rpx;font-size:28rpx;">上课提醒</text>
+        </view>
+        <view class="weui-cell__ft" style="font-size:28rpx;">
+          <picker bindchange="CHANGE_REMIND" value="{{courseInfo.remindIndex}}" range="{{remindItems}}" range-key="name">
+            <view class="weui-select weui-select_in-select-after">{{remindItems[courseInfo.remindIndex].name}}</view>
+          </picker>
+        </view>
+      </view>
+    </view>
+  </view>
+  <button class='btn_a' bindtap="SAVE">保存</button>
+</view>
+
+
+<view class="modal" wx:if="{{userDefined}}">
+  <view class="modal-box">
+    <view class="weui-cell weui-cell_select">
+      <view class="weui-cell__bd">
+        <checkbox-group bindchange="CHANGE_CUSTOM_REPETITION">
+          <label class="weui-cell weui-check__label" wx:for="{{weekDayItems}}" wx:key="value">
+            <checkbox class="weui-check" value="{{item.value}}" checked="{{item.checked}}" />
+            <view class="weui-cell__bd">{{item.name}}</view>
+            <view class="weui-cell__ft weui-check__ft_in-checkbox">
+              <icon class="weui-icon-checkbox_circle" type="circle" size="23" wx:if="{{!item.checked}}"></icon>
+              <icon class="weui-icon-checkbox_success" type="success" size="23" wx:if="{{item.checked}}"></icon>
+            </view>
+          </label>
+        </checkbox-group>
+
+        <view class="modal-box-buttons">
+          <button type="" class="modal-box-button primary" bindtap="CHANGE_DEFINED">确定</button>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 日历 -->
+<block wx:if="{{showCalendar}}">
+  <calendar catch:day-click="CALENDAR_DAY_CHANGED" />
+</block>

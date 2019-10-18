@@ -1,0 +1,199 @@
+<!--pages/learningcircle/page/circleEditor/circleEditor-->
+
+<view class='page_top'>
+  <view class='circle_img' bindtap="bindPhotoChange" data-type='0'>
+    <image class='page_top_logo' src='{{communityHeadImg}}'></image>
+    <view class='title_box title_text_box'>
+      <image mode='aspectFit' class='title_camera' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/xiangji.png'> </image>
+      <view class='hint'>修改头图</view>
+    </view>
+  </view>
+  <view class='circle_name'>
+    <view class='title'>圈子名称:
+    </view>
+    <view class='name'>
+      <input bindinput="CHANGE_CIRCLE_NAME" value='{{communityName}}'></input>
+    </view>
+  </view>
+  <view class='circle_logo_box'>
+    <view class='circle_logo'>
+      <image class='logo' src='{{  userInfo.logo}}'></image>
+    </view>
+    <view class='circle_attend'>
+      <text>{{communityUserCount}}人参加 </text> </view>
+    <view class='circle_clock'>
+      <text>{{communitySignInCount}}次打卡</text> </view>
+  </view>
+</view>
+<!-- 头部结束 -->
+<view>
+  <!-- 圈主介绍 -->
+  <view class='person_intro '>
+    <view class='title ' bindtap='personCompile'>圈子介绍
+      <image class='xiugai' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/xiugai.png'></image>
+    </view>
+    <view class='{{communityIntroduceForPage==0?"person_intro_edit":"person_intro_edit1"}}'>
+      <view class='person_intro_edit_text' wx:if='{{communityIntroduceForPage.length==0}}' hidden='{{compile}}' bindtap='personCompile'>
+        <view class='text'>
+          <image class='add_imge' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/jia.png'></image>
+          <text> 编写圈子介绍，让更多人了解你的圈子</text>
+        </view>
+      </view>
+      <view class='per_intro_list' wx:for="{{communityIntroduceForPage}}" wx:key='idx' wx:for-item='item' wx:for-index='idx'>
+        <view class='intro_item' hidden='{{item.contentType==1?false:true}}'>
+          <view class='content'>
+            <view class='conBOx' data-type='1' bindtap='showText' data-idx='{{idx}}'>{{item.content}}</view>
+          </view>
+        </view>
+        <view class='intro_item' hidden='{{item.contentType==2?false:true}}'>
+          <view class='content'>
+            <image class='intro_img' mode='widthFix' src='{{item.contentType==2?item.content:""}}'></image>
+          </view>
+        </view>
+        <view class='intro_item' hidden='{{item.contentType==3?false:true}}'>
+          <view class='content'>
+            <view class='audio'>
+              <audio src="{{item.content}}" id="introduceAudio{{idx}}" bindtimeupdate="AUDIO_UPDATA_PROGRESS" bindended="AUDIO_PLAY_END"></audio>
+              <view class='playOrstop' bindtap='AUDIO_PLAY'>
+                <view class='play {{currentStopBtn==idx?"hide":"show"}}' data-type='1' data-array='{{introduceSlidlst}}' data-play='{{item.play}}' style='display:{{item.play?"none":"flex"}}' catchtap='AUDIO_PLAY' data-idx='{{idx}}'></view>
+                <view class='stop {{currentStopBtn==idx?"show":"hide"}}' data-type='1' data-array='{{introduceSlidlst}}' data-play='{{item.play}}' style='display:{{item.play?"flex":"none"}}' catchtap='AUDIO_STOP' data-idx='{{idx}}'>
+                  <view class='shu'></view>
+                  <view class='shu'></view>
+                </view>
+              </view>
+              <view class='slid' wx:for="{{introduceSlidlst}}" wx:key='slididx' wx:for-item='sitem' wx:for-index='slididx'>
+                <view wx:if='{{sitem.id==idx}}'>
+                  <slider block-size="12px" step="2" value="{{sitem.offset}}" max="{{sitem.max}}" class="slider" selected-color="#ff5e5e" />
+                  <text class='time'>{{typeof(sitem.audio_duration)=="undefind"?'':sitem.audio_duration}}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class='intro_item' hidden='{{item.contentType==4?false:true}}'>
+          <view class='content'>
+            <video show-fullscreen-btn enable-progress-gesture poster='{{item.content}}?x-oss-process=video/snapshot,t_10000,m_fast' objectFit='cover' src='{{item.contentType==4?item.content:""}}'></video>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 圈主介绍 -->
+  <view class='circle_detail'>
+    <view class='title' bindtap='detailHiddenL'>圈主介绍
+      <image class='xiugai' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/xiugai.png'></image>
+    </view>
+    <view class='{{communityContentForPage==0?"person_intro_edit":"person_intro_edit1"}}'>
+      <view class='person_intro_edit_text' wx:if='{{communityContentForPage.length==0}}' hidden='{{detailHidden}}' bindtap='detailHiddenL'>
+        <view class='text'>
+          <image class='add_imge' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/jia.png'></image>
+          <text> 完善圈主介绍，让成员认识你</text>
+        </view>
+      </view>
+      <view class='detail_list' wx:for="{{communityContentForPage}}" wx:key='idx' wx:for-item='item' wx:for-index='idx'>
+        <view class='intro_item' hidden='{{item.contentType==1?false:true}}'>
+          <view class='content'>
+            <view class='detailBox' data-type='2' bindtap='showText' data-idx='{{idx}}'>{{item.content}}</view>
+          </view>
+        </view>
+        <view class='intro_item' hidden='{{item.contentType==2?false:true}}'>
+
+          <view class='content'>
+            <image class='intro_img' mode='widthFix' src='{{item.contentType==2?item.content:""}}'></image>
+          </view>
+        </view>
+        <view class='intro_item' hidden='{{item.contentType==3?false:true}}'>
+          <view class='content'>
+            <view class='audio'>
+              <audio src="{{item.content}}" id="contentAudio{{idx}}" bindtimeupdate="AUDIO_UPDATA_PROGRESS" bindended="AUDIO_PLAY_END"></audio>
+              <view class='playOrstop' bindtap='AUDIO_PLAY'>
+                <view class='play {{currentStopBtn2==idx?"hide":"show"}}' data-type='2' data-array='{{contentSlidlst}}' data-play='{{item.play}}' style='display:{{item.play?"none":"flex"}}' catchtap='AUDIO_PLAY' data-idx='{{idx}}'></view>
+                <view class='stop {{currentStopBtn2==idx?"show":"hide"}}' data-type='2' data-array='{{contentSlidlst}}' data-play='{{item.play}}' style='display:{{item.play?"flex":"none"}}' catchtap='AUDIO_STOP' data-idx='{{idx}}'>
+                  <view class='shu'></view>
+                  <view class='shu'></view>
+                </view>
+              </view>
+              <view class='slid' wx:for="{{contentSlidlst}}" wx:key='slididx' wx:for-item='sitem' wx:for-index='slididx'>
+                <view wx:if='{{sitem.id==idx}}'>
+                  <slider data-id='slider{{slididx}}' block-size="12px" step="2" value="{{sitem.offset}}" max="{{sitem.max}}" class="slider" selected-color="#ff5e5e" />
+                </view>
+                <text class='time'>{{sitem.audio_duration}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class='intro_item' hidden='{{item.contentType==4?false:true}}'>
+          <view class='content'>
+            <video src='{{item.contentType==4?item.content:""}}' show-fullscreen-btn enable-progress-gesture objectFit='cover'></video>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <toast hidden="{{toast2Hidden}}" duration='3000' icon="warn" bindchange="toast2Change">文本不能为空!</toast>
+  <toast hidden="{{toast3Hidden}}" duration='3000' icon="warn" bindchange="toast2Change">文本、图片各不超过5条，语音数量、视频数量不超过3条！</toast>
+  <view class='circle_label' bindtap='showLabel'>
+    <!-- <view class='circle_label'> -->
+    <view class='title_box'>
+      <view class='title'>圈子类型</view>
+    </view>
+    <view class='label_right'>
+      <text>{{markNamelist}}</text>
+      <text class='fa fa-angle-right'></text>
+    </view>
+  </view>
+
+  <view class='circleEditor_foot_box'>
+    <view class='circleEditor_foot_share'>
+      <button class="foot_share" open-type="share">
+        <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/share.png"></image> 分享给朋友</button>
+    </view>
+    <view class='circleEditor_foot_share' bindtap='SAVE_INFO'>
+      <button class="foot_share_see">
+        <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/see.png"></image> 查看打卡详情</button>
+    </view>
+  </view>
+</view>
+<!-- 关注的圈子详情 -->
+<view style='height:200rpx'></view>
+<view class='voice_mask' hidden='{{isSpeaking}}'>
+  <view class='voice_box'>
+    <view class='countDown' hidden='{{!startSpeak}}'>录音中，还剩{{startSpeak?countDownTime:""}}秒</view>
+    <image class='voice_btn' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/vioce.png' hidden='{{startSpeak}}' bindtap='START_AUDIO'></image>
+    <image class='voice_btn' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/vioce_play2.png' hidden='{{!startSpeak}}' bindtap='STOP_AUDIO'></image>
+    <view class='voice_title'>{{startSpeak?"点击结束":"点击开始"}}</view>
+    <view class="voice_box_close" data-type='4' catchtap='hedeReply'>
+      <image class="voice_box_close_imge" src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/close.png'></image>
+    </view>
+  </view>
+</view>
+
+<!-- 标签遮罩层 -->
+<view class='label_mask' catchtouchmove='stopOther ' hidden='{{labelHide}}'>
+  <view class='label_box'>
+    <view class='label_top '>
+      <image class='close_img ' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/close.png' bindtap='closeLabel'></image>
+      <text>点击选择标签</text>
+      <image class='check_img ' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/check.png' bindtap='saveMarksAndCloseLabel'></image>
+    </view>
+    <view class='label_foot '>
+      <view class="label_item {{item.firstMark}} {{item.secondMark}}" wx:key="" wx:for='{{markDatas}}' wx:key="" data-markIndex="{{index}}" wx:for-item='item' bindtap='firstLevelMark'>{{item.markName}}
+        <view class='sec_level' hidden='{{item.dispalySecondMark}}'>
+          <view class='sec_level_lab {{items.hasClick}}' wx:key="" wx:for='{{secondMarkDatas}}' data-secondMarkIndex='{{index}}' wx:for-item='items' catchtap='secondLevelMarkBind'>{{items.markName}}</view>
+        </view>
+      </view>
+    </view>
+    <view class='clear_label' bindtap='clearLabelTap'>清除标签</view>
+  </view>
+</view>
+
+
+<view class='sharefrends' hidden='{{isnew}}'>
+  <view class='mb'>
+    <image class='del' bindtap='delShare' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/delete_in.png'></image>
+    <image class='img' src='{{img}}'></image>
+    <button open-type='share'> </button>
+  </view>
+</view>
+
+<canvas data-id="{{shareInfo.signInId}}" class="share-canvas" style="width:{{shareCavansOptions.width}}px;height:{{shareCavansOptions.height}}px;visibility:hidden;position:absolute;top:-1000rpx;" canvas-id="share_canvas"></canvas>

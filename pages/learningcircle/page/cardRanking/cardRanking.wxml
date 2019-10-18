@@ -1,0 +1,329 @@
+<!--pages/circle/cardRanking/cardRanking.wxml-->
+<view class='card_runking_container'>
+  <!-- header s -->
+  <view class='runk_header_wrap'>
+    <!-- 列表开始 -->
+    <view class="circle_lists">
+      <view class="circle_lists_left">
+        <image src="https://timgsa.baidu.com/timg?image&quality=80 &size=b10000_10000&sec=1532504011533&di=99975468eec496258495ac9e33b3a980&imgtype=jpg&src=http%3A%2F%2Fd.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Fcb8065380cd79123bc5992ada1345982b3b780a9.jpg"></image>
+      </view>
+      <view class="circle_lists_right">
+        <view class="circle_lists_title textover">跟我学英语跟我学英语跟我学英语跟我学英语跟我学英语</view>
+        <view class="circle_lists_tabs">
+          <view class='lists_tabs'>
+            成员
+            <text>30</text>
+          </view>
+          <view class='lists_tabs'>
+            打卡次数
+            <text>130</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- 列表结束 -->
+  </view>
+  <!-- header e -->
+  <!-- con s -->
+  <view class='runk_conainer_wrap'>
+    <view class="runk_title_wrap">
+      <view class='runk_tit_header'>
+        <view class="r_info_info_pic">
+          <view class="pic_wrap">
+            <image src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1533041023356&di=2695ac109873e79d9bda914bb84dbb68&imgtype=0&src=http%3A%2F%2Fimg4.duitang.com%2Fuploads%2Fitem%2F201312%2F04%2F20131204133424_RVFdA.thumb.600_0.jpeg'></image>
+          </view>
+        </view>
+      </view>
+      <view class='runk_tit_name'>在路上</view>
+      <view class='runk_tit_icon'>
+        第三名
+      </view>
+
+      <!-- 规则入口开始 -->
+      <view class='runk_rules_enter'>
+        <image class='runk_rules_care' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/care.png'></image>
+        <text>积分规则</text>
+      </view>
+      <!-- 规则入口结束 -->
+
+    </view>
+  </view>
+  <!-- con s -->
+  <!-- tab s -->
+  <view class='tab_wrap'>
+    <view class="nav bc_white">
+      <view class="{{selected?'red':'default'}}" bindtap="selected">今天</view>
+      <view class="{{selected1?'red':'default'}}" bindtap="selected1">本周</view>
+      <view class="{{selected2?'red':'default'}}" bindtap="selected2">总榜</view>
+    </view>
+    <view class='tabcontent_wrap'>
+      <!-- 今天con -->
+      <view class="{{selected?'show':'hidden'}}">
+
+        <view class='tabcontent_lists_ul'>
+    
+          <view class='tabcontent_lists'>
+            <view class='lists_icon fl'>
+              <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/gold.png'></image>
+            </view>
+            <view class='fl list_borderline'>
+              <view class='lists_header fl'>
+                <view class="r_info_info_pic">
+                  <view class="pic_wrap">
+                    <image src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1533041023356&di=2695ac109873e79d9bda914bb84dbb68&imgtype=0&src=http%3A%2F%2Fimg4.duitang.com%2Fuploads%2Fitem%2F201312%2F04%2F20131204133424_RVFdA.thumb.600_0.jpeg'></image>
+                  </view>
+                </view>
+              </view>
+
+              <view class='fl lists_name textover'>大豆包</view>
+              <view class='fr lists_number'>2000分</view>
+            </view>
+          </view>
+    
+          <view class='tabcontent_lists'>
+            <view class='lists_icon fl'>
+              <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/silver.png'></image>
+            </view>
+            <view class='fl list_borderline'>
+              <view class='lists_header fl'>
+                <view class="r_info_info_pic">
+                  <view class="pic_wrap">
+                    <image src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1533041023356&di=2695ac109873e79d9bda914bb84dbb68&imgtype=0&src=http%3A%2F%2Fimg4.duitang.com%2Fuploads%2Fitem%2F201312%2F04%2F20131204133424_RVFdA.thumb.600_0.jpeg'></image>
+                  </view>
+                </view>
+              </view>
+
+              <view class='fl lists_name textover'>大穆尼</view>
+              <view class='fr lists_number'>1000分</view>
+            </view>
+          </view>
+
+          <!-- #myself  这个是我的情况  没有这个id的是别人的列表样式 -->
+          <view class='tabcontent_lists' id='myself'>
+            <view class='lists_icon fl'>
+              <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/copper.png'></image>
+            </view>
+            <view class='fl list_borderline'>
+              <view class='lists_header fl'>
+                <view class="r_info_info_pic">
+                  <view class="pic_wrap">
+                    <image src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1533041023356&di=2695ac109873e79d9bda914bb84dbb68&imgtype=0&src=http%3A%2F%2Fimg4.duitang.com%2Fuploads%2Fitem%2F201312%2F04%2F20131204133424_RVFdA.thumb.600_0.jpeg'></image>
+                  </view>
+                </view>
+              </view>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    FGFGDGGG 
+              <view class='fl lists_name textover'>在路上</view>
+              <view class='fr lists_number'>800分</view>
+            </view>
+          </view>
+
+
+          <view class='tabcontent_lists'>
+            <view class='lists_icon fl'>
+              4
+            </view>
+            <view class='fl list_borderline'>
+              <view class='lists_header fl'>
+                <view class="r_info_info_pic">
+                  <view class="pic_wrap">
+                    <image src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1533041023356&di=2695ac109873e79d9bda914bb84dbb68&imgtype=0&src=http%3A%2F%2Fimg4.duitang.com%2Fuploads%2Fitem%2F201312%2F04%2F20131204133424_RVFdA.thumb.600_0.jpeg'></image>
+                  </view>
+                </view>
+              </view>
+
+              <view class='fl lists_name textover'>大穆尼</view>
+              <view class='fr lists_number'>600分</view>
+            </view>
+          </view>
+
+
+        </view>
+      </view>
+      <!-- 本周con  -->
+      <view class="{{selected1?'show':'hidden'}}">
+        <view class='tabcontent_lists_ul'>
+
+          <view class='tabcontent_lists'>
+            <view class='lists_icon fl'>
+              <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/gold.png'></image>
+            </view>
+            <view class='fl list_borderline'>
+              <view class='lists_header fl'>
+                <view class="r_info_info_pic">
+                  <view class="pic_wrap">
+                    <image src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1533041023356&di=2695ac109873e79d9bda914bb84dbb68&imgtype=0&src=http%3A%2F%2Fimg4.duitang.com%2Fuploads%2Fitem%2F201312%2F04%2F20131204133424_RVFdA.thumb.600_0.jpeg'></image>
+                  </view>
+                </view>
+              </view>
+
+              <view class='fl lists_name textover'>小豆包</view>
+              <view class='fr lists_number'>2000分</view>
+            </view>
+          </view>
+
+          <view class='tabcontent_lists'>
+            <view class='lists_icon fl'>
+              <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/silver.png'></image>
+            </view>
+            <view class='fl list_borderline'>
+              <view class='lists_header fl'>
+                <view class="r_info_info_pic">
+                  <view class="pic_wrap">
+                    <image src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1533041023356&di=2695ac109873e79d9bda914bb84dbb68&imgtype=0&src=http%3A%2F%2Fimg4.duitang.com%2Fuploads%2Fitem%2F201312%2F04%2F20131204133424_RVFdA.thumb.600_0.jpeg'></image>
+                  </view>
+                </view>
+              </view>
+
+              <view class='fl lists_name textover'>小穆尼</view>
+              <view class='fr lists_number'>1000分</view>
+            </view>
+          </view>
+
+          <!-- #myself  这个是我的情况  没有这个id的是别人的列表样式 -->
+          <view class='tabcontent_lists' id='myself'>
+            <view class='lists_icon fl'>
+              <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/copper.png'></image>
+            </view>
+            <view class='fl list_borderline'>
+              <view class='lists_header fl'>
+                <view class="r_info_info_pic">
+                  <view class="pic_wrap">
+                    <image src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1533041023356&di=2695ac109873e79d9bda914bb84dbb68&imgtype=0&src=http%3A%2F%2Fimg4.duitang.com%2Fuploads%2Fitem%2F201312%2F04%2F20131204133424_RVFdA.thumb.600_0.jpeg'></image>
+                  </view>
+                </view>
+              </view>
+
+              <view class='fl lists_name textover'>在路上</view>
+              <view class='fr lists_number'>800分</view>
+            </view>
+          </view>
+
+
+          <view class='tabcontent_lists'>
+            <view class='lists_icon fl'>
+              4
+            </view>
+            <view class='fl list_borderline'>
+              <view class='lists_header fl'>
+                <view class="r_info_info_pic">
+                  <view class="pic_wrap">
+                    <image src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1533041023356&di=2695ac109873e79d9bda914bb84dbb68&imgtype=0&src=http%3A%2F%2Fimg4.duitang.com%2Fuploads%2Fitem%2F201312%2F04%2F20131204133424_RVFdA.thumb.600_0.jpeg'></image>
+                  </view>
+                </view>
+              </view>
+
+              <view class='fl lists_name textover'>大穆尼</view>
+              <view class='fr lists_number'>600分</view>
+            </view>
+          </view>
+
+
+        </view>
+
+      </view>
+      <!-- 总榜con  -->
+      <view class="{{selected2?'show':'hidden'}}">
+        <view class='tabcontent_lists_ul'>
+
+          <view class='tabcontent_lists'>
+            <view class='lists_icon fl'>
+              <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/gold.png'></image>
+            </view>
+            <view class='fl list_borderline'>
+              <view class='lists_header fl'>
+                <view class="r_info_info_pic">
+                  <view class="pic_wrap">
+                    <image src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1533041023356&di=2695ac109873e79d9bda914bb84dbb68&imgtype=0&src=http%3A%2F%2Fimg4.duitang.com%2Fuploads%2Fitem%2F201312%2F04%2F20131204133424_RVFdA.thumb.600_0.jpeg'></image>
+                  </view>
+                </view>
+              </view>
+
+              <view class='fl lists_name textover'>豆包</view>
+              <view class='fr lists_number'>2000分</view>
+            </view>
+          </view>
+
+          <view class='tabcontent_lists'>
+            <view class='lists_icon fl'>
+              <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/silver.png'></image>
+            </view>
+            <view class='fl list_borderline'>
+              <view class='lists_header fl'>
+                <view class="r_info_info_pic">
+                  <view class="pic_wrap">
+                    <image src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1533041023356&di=2695ac109873e79d9bda914bb84dbb68&imgtype=0&src=http%3A%2F%2Fimg4.duitang.com%2Fuploads%2Fitem%2F201312%2F04%2F20131204133424_RVFdA.thumb.600_0.jpeg'></image>
+                  </view>
+                </view>
+              </view>
+
+              <view class='fl lists_name textover'>穆尼</view>
+              <view class='fr lists_number'>1000分</view>
+            </view>
+          </view>
+
+          <!-- #myself  这个是我的情况  没有这个id的是别人的列表样式 -->
+          <view class='tabcontent_lists' id='myself'>
+            <view class='lists_icon fl'>
+              <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/copper.png'></image>
+            </view>
+            <view class='fl list_borderline'>
+              <view class='lists_header fl'>
+                <view class="r_info_info_pic">
+                  <view class="pic_wrap">
+                    <image src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1533041023356&di=2695ac109873e79d9bda914bb84dbb68&imgtype=0&src=http%3A%2F%2Fimg4.duitang.com%2Fuploads%2Fitem%2F201312%2F04%2F20131204133424_RVFdA.thumb.600_0.jpeg'></image>
+                  </view>
+                </view>
+              </view>
+
+              <view class='fl lists_name textover'>在路上</view>
+              <view class='fr lists_number'>800分</view>
+            </view>
+          </view>
+
+
+          <view class='tabcontent_lists'>
+            <view class='lists_icon fl'>
+              4
+            </view>
+            <view class='fl list_borderline'>
+              <view class='lists_header fl'>
+                <view class="r_info_info_pic">
+                  <view class="pic_wrap">
+                    <image src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1533041023356&di=2695ac109873e79d9bda914bb84dbb68&imgtype=0&src=http%3A%2F%2Fimg4.duitang.com%2Fuploads%2Fitem%2F201312%2F04%2F20131204133424_RVFdA.thumb.600_0.jpeg'></image>
+                  </view>
+                </view>
+              </view>
+
+              <view class='fl lists_name textover'>大穆尼</view>
+              <view class='fr lists_number'>600分</view>
+            </view>
+          </view>
+
+
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- tab e -->
+
+</view>

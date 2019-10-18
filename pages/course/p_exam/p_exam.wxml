@@ -1,0 +1,37 @@
+<view class="exam">
+{{cot}}
+  <view class='exam_wrap'>
+    <view class='exam_title'>
+      <text class='exam-style'>2019年上海音协电子琴考级乐理在线考试调研问卷</text>
+      <text class='title_prompt exam-style'>请认真填写以下内容,专委会会根据问卷情况进行乐理考试安排</text>
+    </view>
+    <view class='exam_questions'>
+      <view class="page" wx:for="{{itemsA}}" wx:key="index">
+        <view class="page__hd">
+          <text class="page__title">{{item.title}}</text>
+        </view>
+        <view class="page__bd">
+          <view class="section section_gap">
+            <radio-group class="radio-group">
+              <radio class="radio" wx:for="{{item.valuesArray}}" wx:key="name" value="{{item.type}}" checked="{{item.checked}}" wx:key="index" checked='{{item.checked}}' catchtap="radioChange" data-id='{{item.id}}' data-time='{{item.clicktime}}' data-type='{{item.type}}' data-index='{{index}}'>
+                <view class='{{item.show?"":"showtext"}}'>
+                  <view>
+                    <text class='type_style'>{{item.type}}:</text>
+                    <text>{{item.text}}</text>
+                  </view>
+                  <view wx:for="{{item.value}}" wx:key="index" class="lineValue">
+                    <text>{{item}}</text>
+                  </view>
+                </view>
+              </radio>
+            </radio-group>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='btn' bindtap='sumit'>完成并提交</view>
+     <button open-type="share" type="primary" size="default" class='btnShare'>分享</button>
+     <view class='btn_default' bindtap="back">返回</view>
+  </view>
+
+</view>

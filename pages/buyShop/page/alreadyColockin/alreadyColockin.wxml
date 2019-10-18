@@ -1,0 +1,43 @@
+<view class="wrap">
+<view class='wrapbox_headers' wx:for="{{resInfo}}">
+  <view class='name'>打卡信息</view>
+  <view>
+    <text>验证码:</text>
+    <text>12344444</text>
+  </view>
+  <view>
+    <text>预约名称:</text>
+    <text>111134444</text>
+  </view>
+  <view>
+    <text>预约时间:</text>
+    <text class='addresscolor'>{{item.apptsStartTime}}</text>
+  </view>
+  <view>
+    <text>预约地点:</text>
+    <text class='addresscolor'>{{item.orgAddress}}</text>
+  </view>
+  <view class='btndispaly'>
+    <text>预约门店:</text>
+    <text>{{item.orgName}}</text>
+  </view>
+  <view>
+    <text>学员:</text>
+    <text>{{item.childName}}</text>
+  </view>
+    <view>
+    <text>预约人:</text>
+    <text>{{item.userName}}</text>
+  </view>
+    <view>
+    <text>剩余次数:</text>
+    <text>2次</text>
+  </view>
+    <view>
+    <text>状态:</text>
+    <text>{{item.ifinish}}</text>
+  </view>
+
+</view>
+
+</view>

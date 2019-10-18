@@ -1,0 +1,240 @@
+<view class='payList_box'>
+  <view class="courseDtail" bindtap="goodsDetails">
+    <view class='teacher_list'>
+      <view class='list_item'>
+        <view class='list_top'>
+          <view class='top_teacherDetail'>
+            <image src="{{shopCover}}" class='top_image' mode='scaleToFill'></image>
+          </view>
+          <view class='top_fontDetail'>
+            <view class='detail_font font'>
+              <text>{{title}}</text>
+            </view>
+            <view class='datail_day'>
+              <text>
+               <text class='time_style'>{{newstarttime}}</text> ~<text class='time_style'>{{newendtime}}</text>
+              
+              </text>
+               <!-- <view>{{start2}}~{{end2}}</view> -->
+            </view>
+            <view class='teach_idea' hidden="{{resultType==29}}">
+              <text class='teacheclass_num'>
+               <text>{{num}}</text>
+               <text>次课</text>
+              </text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 数量 -->
+  <view class='pay_num'>
+    <view>数量</view>
+    <view class='pay_price'>
+      <view>¥</view>
+      <view>{{groupPrice}}</view>
+      <view>元</view>
+    </view>
+    <view></view>
+    <view class='num_wrap'>
+      <!-- <view bindtap='cans'>
+        -
+      </view> -->
+      <view class='shownum'>
+        {{shownum}}
+      </view>
+      <!-- <view bindtap='plus'>
+        +
+      </view> -->
+    </view>
+  </view>
+  <!-- 订单合计 -->
+  <view class='pay_num'>
+    <view>订单合计</view>
+    <view class='pay_total'>
+      <view>¥</view>
+      <view>{{groupPrice}}</view>
+      <view>元</view>
+    </view>
+  </view>
+  <!-- 拼单 -->
+  <view class='pay_num' hidden='{{totalPerson==0||changeText=="true"}}'>
+    <view class='pay_group'>
+      <view>{{totalPerson}}</view>
+      <view>人正在拼单,可直接参与</view>
+    </view>
+    <view class='pay_see' bindtap='showM'>
+      查看更多
+    </view>
+  </view>
+  <!--拼单列表  调试版 -->
+  <!-- autoplay="true"  -->
+<!-- <swiper 
+autoplay="true" 
+ circular="true"
+ display-multiple-items="{{showNum<=1?showNum:2}}"
+ vertical="true"
+ interval="3000"
+ easing-function="easeOutCubic"
+ class='swiperWrap'
+>
+  <block wx:for="{{newpoolist}}" wx:key="index" data-number='{{index}}'>
+     <swiper-item class="swiper-items" hidden="{{newpoolist[index].isShow}}">
+         <view class='payMsgList' >
+      <view class='list_left'>
+        <image src="{{newpoolist[index].userLogo}}" class='left_img' mode='scaleToFill'></image>
+        <text class='img_marign font'>{{newpoolist[index].userName}}</text>
+      </view>
+      <view class='list_middle'>
+        <view class='middle_bottom'>
+          <text>开营日期:</text>
+          <text class="openDate">8-1~8-5</text>
+        </view>
+        <view class='middle_top'>
+          <text> 还差</text>
+          <text>1</text>
+          <text>人拼成</text>
+        </view>
+        <view class='middle_bottom'>
+          <text> 剩余</text>
+          <text >{{item.times}}</text>
+        </view>
+      </view>
+      <view class='list_right'>
+        <text bindtap='attendlist'  data-index="{{index}}" data-name='{{newpoolist[index].userName}}' data-time='{{item.groupEndTime}}' data-groupId="{{item.groupId}}">去拼单</text>
+      </view>
+    </view>
+     </swiper-item>
+  </block>
+  </swiper> -->
+
+  <!-- 拼单列表  造数据版本 -->
+  <swiper 
+autoplay="true" 
+ circular="true"
+ display-multiple-items="{{showNum<=1?showNum:2}}"
+ vertical="true"
+ interval="3000"
+ easing-function="easeOutCubic"
+ class='swiperWrap'
+ wx:if="{{!changeText}}"
+>
+  <block wx:for="{{newpoolist}}" wx:key="index" data-number='{{index}}'>
+     <swiper-item class="swiper-items" hidden="{{item.isShow}}">
+         <view class='payMsgList' >
+      <view class='list_left'>
+        <image src="{{item.userLogo}}" class='left_img' mode='scaleToFill'></image>
+        <text class='img_marign font'>{{item.userName}}</text>
+      </view>
+      <view class='list_middle'>
+        <view class='middle_bottom'>
+          <text>开营日期:</text>
+          <text class="openDate">{{item.startTime}}~{{item.endTime}}</text>
+        </view>
+        <view class='middle_top'>
+          <text> 还差</text>
+          <text>1</text>
+          <text>人拼成</text>
+        </view>
+        <view class='middle_bottom'>
+          <text> 剩余</text>
+          <text >{{item.times}}</text>
+        </view>
+      </view>
+      <view class='list_right'>
+        <text bindtap='attendlist'  data-index="{{index}}" data-name='{{newpoolist[index].userName}}' data-time='{{item.groupEndTime}}' data-groupId="{{item.groupId}}" data-iexist="{{item.iexist}}">去拼单</text>
+      </view>
+    </view>
+     </swiper-item>
+  </block>
+  </swiper>
+
+<!--拼主列表 -->
+  <view class='wrap_bottom'   wx:if="{{changeText=='true'}}">
+  <view class='wrap_inv'>还差
+    <text class='inv_peo'>{{groupSurplusNumber}}</text>人,赶快邀请好友来拼单吧!</view>
+  <view class='addgroupimg_wrap'>
+    <view class='sign' wx:for="{{iownerArr}}" wx:key="index">
+      <text class='sign_master'>拼主</text>
+      <image src="{{item.logo}}" class='add_groupimage' mode='scaleToFill'></image>
+    </view>
+    <view class='sign' wx:for="{{commonArr}}" wx:key="index">
+      <image src="{{item.logo}}" class='add_groupimage' mode='scaleToFill'></image>
+    </view>
+  </view>
+</view>
+    <!-- 拼单列表  造数据版本 -->
+  <!-- 联系人信息 -->
+  <view class='btn' bindtap='payMoneny'>
+    <view>微信支付</view>
+    <view>¥</view>
+    <view>{{groupPrice}}</view>
+    <view>,并{{texttext}}</view>
+  </view>
+
+  <!-- 查看更多 -->
+  <view class='modal_mask modal-mask2' hidden='{{showModal}}' catchtouchmove='stopPageScroll'>
+    <view class='modal_wrap'>
+      <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/close1.png' class='close' bindtap='closeM'></image>
+      <view class='wrap_top'>正在拼单</view>
+      <view class='list_wrapbpx'>
+        <view class='payMsgList newmargin' wx:for="{{newpoolist}}" wx:key="index" data-number='{{index}}' >
+         <!-- <view class='payMsgList newmargin'> -->
+          <view class='list_left'>
+            <image src="{{newpoolist[index].userLogo}}" class='modal_img'></image>
+          </view>
+          <view class='list_middle list_left_add'>
+              <view class='middle_top font'>
+              <text>开营日期:</text>
+              <text class="openDatesa">{{item.startTime}}~{{item.endTime}}</text>
+            </view>
+            <view class='middle_top font'>
+              <text class='usernameStyle font'>{{item.userName}}</text>
+              <text> 还差</text>
+              <text>1</text>
+              <text>人拼成</text>
+            </view>
+            <view class='middle_bottom'>
+              <text> 剩余</text>
+              <text>{{item.times}}</text>
+            </view>
+          </view>
+          <view class='list_right right_special'>
+            <text bindtap='attendlist'  data-index="{{index}}" data-name='{{newpoolist[index].userName}}' data-time='{{item.groupEndTime}}' data-groupId="{{item.groupId}}">去拼单</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+   <!-- 发起拼单 弹框 开始-->
+      <view class='modal_mask' catchtouchmove='stopPageScroll' hidden='{{modalisShow}}'>
+        <view class='attendgroups'>
+          <view>
+            <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/close1.png' class='close' bindtap='closeLi'></image>
+          </view>
+          <view class='add_listgroup'>
+            <text>参与</text>
+            <text class='namelimit font'>{{userName}}</text>
+        <text>的拼单</text> 
+        </view>
+          <view class='add_listgroupfont'>
+            <text>仅剩</text>
+            <text class='number'>1</text>
+            <text>个名额,</text>
+            <text>{{cutTime}}</text>
+            <text>后结束</text>
+          </view>
+          <view class='addgroupimg_wrap'>
+            <view class='sign'>
+              <text class='sign_master'>拼主</text>
+              <image src="{{pindanMaster}}" class='add_groupimage' mode='scaleToFill'></image>
+            </view>
+            <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/asked.png" class='add_groupimages' mode='scaleToFill'></image>
+          </view>
+          <view class='lastbtn' bindtap='joingroup'>{{text}}</view>
+        </view>
+     </view> 
+      <!-- 发起拼单 弹框 结束-->

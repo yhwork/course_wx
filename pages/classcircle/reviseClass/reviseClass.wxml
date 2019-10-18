@@ -1,0 +1,75 @@
+<view class='wrap'>
+  <view wx:if='{{type=="logo"}}' class='logo'>
+    <image src='{{classinfo.classLogo}}'></image>
+    <view class='btn' bindtap='SAVE_LOGO'>保存</view>
+  </view>
+
+  <view wx:if='{{type=="name"}}'>
+    <view class='page__bd_list_class'>
+      <view class='weui-cell__hd'>
+        班级名称
+      </view>
+      <view class="weui-cell__bd">
+        <input bindinput='saveinputname' placeholder='{{classinfo.className}}' class='classname'></input>
+      </view>
+    </view>
+    <view class='btn' bindtap='SAVE_NAME'>保存</view>
+  </view>
+
+  <view wx:if='{{type=="remove"}}'>
+    <view class='alistnumber' wx:for='{{teacherNumber}}' wx:key='indexs' wx:for-index='indexs' wx:if='{{indexs>0&&item.status == 2}}'>
+      <view class='a_left'>
+        <image mode="aspectFill" src='{{item.teacherLogo?item.teacherLogo:img}}'></image>
+        <view class='al_left'>
+          <view>{{item.teacherName}}</view>
+          <view wx:if='{{classinfo.classInfo.classType==1}}'>科目：{{item.teachSubjects}}</view>
+        </view>
+      </view>
+      <view class='outclass' bindtap='delclass' data-id='{{item.teacherUserId}}' data-type='tearcher'>移除班级</view>
+    </view>
+    <view class='alistnumber' wx:for='{{childNumber}}' wx:key='indexs' wx:for-index='indexs' wx:if='{{item.status==2}}'>
+      <view class='a_left'>
+        <image mode="aspectFill" src='{{item.childLogo?item.childLogo:img}}'></image>
+        <view class='al_left'>
+          <text style='color:#000;font-size:28rpx' space='nbsp'>{{item.childName}}  </text>
+          <view wx:if='{{classinfo.classType==1}}' style='margin-top:10rpx'>学号：{{item.childNo}}</view>
+        </view>
+      </view>
+      <view class='outclass' bindtap='delclass' data-id='{{item.childId}}' data-type='child'>移除班级</view>
+
+    </view>
+  </view>
+
+  <view wx:if='{{type=="merge"}}'>
+    <view class='toptitle'>
+      尊敬的{{teacherNumber[0].teacherName}}老师，针对您建立的{{classinfo.className}}班群与以下班群可能是针对同一班级，为了更好的对家长进行服务，您可以邀请以下班级的老师进行班级合并</view>
+    <view class='canlist'>
+      <view class='tishi'>可以合并的班级</view>
+      <view class='classbox'>
+        <!-- wx:for='{{calssList}}' wx:key='' -->
+        <view class='aclass'>
+          <view class='left'>
+            <image src='{{classinfo.classLogo}}'></image>
+            <view class='l_left'>
+              <text>{{}}老师</text>
+              <text>班级：</text>
+              <text>学校：</text>
+            </view>
+          </view>
+          <view class='right'>
+            <form bindsubmit='MERGE_CLASS' report-submit="true">
+              <button form-type='submit' open-type='share'>发起合并邀请</button>
+            </form>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='toptitle'>备注：班级合并是合并班级相同的内容，不同的内容都会保留</view>
+  </view>
+</view>
+
+
+<view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{message}}</view>
+
+
+<canvas data-id="{{shareInfo.signInId}}" class="share-canvas" width="{{width}}" height="{{height}}" style="width:{{shareCavansOptions.width}}px;height:{{shareCavansOptions.height}}px;visibility:hidden;position:absolute;top:-1000rpx;" canvas-id="share_canvas"></canvas>

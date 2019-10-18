@@ -1,0 +1,51 @@
+<view class='bookingsSuccess'>
+  <view class='booking_top'>
+    <view class='booking'>预约成功</view>
+    <view>恭喜您已经预约成功本次课程</view>
+    <view class='booking_btn'>
+      <view class='booking_detail'>预约详情</view>
+      <view class='goon_detail' bindtap='gotoBooking'>继续预约</view>
+    </view>
+
+  </view>
+  <view class='booking_middle'>
+    <view class='have_margins weight'>预约详情</view>
+    <view class='have_margins'>
+      <text>验证码:</text>
+      <text>234444</text>
+    </view>
+    <view class='have_margins'>
+      <text>预约名称:</text>
+      <text>234444</text>
+    </view>
+    <view class='have_margins'>
+      <text>预约时间:</text>
+      <text>234444</text>
+    </view>
+    <view class='have_margins'>
+      <text>预约地点:</text>
+      <text>234444</text>
+    </view>
+    <view class='have_margins'>
+      <text>预约门店:</text>
+      <text>234444</text>
+    </view>
+    <view class='have_margins'>
+      <text>学员:</text>
+      <text>234444</text>
+    </view>
+    <view class='have_margins'>
+      <text>预约人:</text>
+      <text>234444</text>
+    </view>
+    <view class='have_margins'>
+      <text>剩余次数:</text>
+      <text>234444</text>
+    </view>
+
+
+  </view>
+  <view class='booking_bottom'>
+   亲,您预约的时间已经加入到课程表。如想查看，请点击<view class='mycourse'>我的课表</view>
+  </view>
+</view>

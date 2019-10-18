@@ -1,0 +1,144 @@
+<import src="./zhuye" />
+<import src='./signInfo' />
+<template name='diary'>
+  <view class='diary_list'>
+    <!--圈子日记外圈循环-->
+    <view class='diary_item' wx:for="{{listForPage}}" wx:if="{{outindex<num||outindex>num2||(outindex>-1&&num==-1)}}" wx:key='outindex' wx:for-item='outitem' wx:for-index="outindex">
+      <!-- 头部模板 -->
+      <view class='person_info'>
+        <view class='per_left'>
+          <!-- bindtap='HOMEPAGE' -->
+          <image class='d_photo' bindtap='HOMEPAGE' data-id='{{outitem.signInUserId}}' mode="aspectFill" src='{{outitem.signInUserLogo}}'></image>
+          <image wx:if='{{outitem.role==1&&num!=-1}}' class='role' src='../../assets/img/role.png'></image>
+          <image wx:elif='{{outitem.role==1&&num==-1}}' class='role' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/role.png'></image>
+          <view wx:if='{{num==-1}}'>
+            <image class='sex' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/{{outitem.signInUserGender==0?"boy1":"girl1"}}.png'></image>
+          </view>
+          <view wx:else>
+            <image class='sex' src='../../assets/img/{{outitem.signInUserGender==0?"boy1":"girl1"}}.png'></image>
+          </view>
+          <view class='na_ti'>
+            <text class='name'>{{outitem.signInNickName}}</text>
+            <!-- <view class='time'>{{outitem.signTime}}</view> -->
+          </view>
+        </view>
+        <view class='p_in_right'>
+          <view wx:if='{{outitem.isFollow!=3}}' data-isFollow='{{outitem.isFollow}}'>
+            <view class='{{outitem.isFollow==1?"attention":"attentioned"}}' bindtap='SIGNLIKE' data-targetUserId='{{outitem.signInUserId}}' data-like='{{outitem.isFollow}}' data-idx='{{outindex}}'>{{outitem.isFollow==1?"已关注":"关注"}}</view>
+          </view>
+          <view class='more' data-flag='{{outitem.flag}}' data-idx='{{outindex}}' bindtap='MORE'>
+            <image wx:if='{{num==-1}}' class='more_img' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/more_img.png'></image>
+            <image wx:else class='more_img' src='../../assets/img/more_img.png'></image>
+            <view class='toast' hidden='{{outitem.flag}}' wx:if='{{num==-1}}'>
+              <view wx:if='{{outitem.isFollow!=3}}'>
+                <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/toast.png'></image>
+                <view class='complaint' data-id='{{outitem.signInUserId}}' data-communityId='{{outitem.communityId}}' data-signId='{{outitem.signInId}}' bindtap='REPORT_SIGN'>投诉</view>
+              </view>
+              <view wx:else class='deldiary'>
+                <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/toast.png'></image>
+                <view class='complaint' data-id='{{outitem.signInUserId}}' data-indexs='{{outindex}}' data-signId='{{outitem.signInId}}' bindtap='DEL_DIARY'>删除</view>
+              </view>
+            </view>
+            <view class='toast' hidden='{{outitem.flag}}' wx:else>
+              <view wx:if='{{outitem.isFollow!=3}}'>
+                <image src='../../assets/img/toast.png'></image>
+                <view class='complaint' data-id='{{outitem.signInUserId}}' data-communityId='{{outitem.communityId}}' data-signId='{{outitem.signInId}}' bindtap='REPORT_SIGN'>投诉</view>
+              </view>
+              <view wx:else class='deldiary'>
+                <image src='../../assets/img/toast.png'></image>
+                <view class='complaint' data-id='{{outitem.signInUserId}}' data-indexs='{{outindex}}' data-signId='{{outitem.signInId}}' bindtap='DEL_DIARY'>删除</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class='conters'>
+        <!-- 内容模块 -->
+        <template class="texts" is='signInfo' data='{{infoList:outitem,outindex,playid,num}}' />
+        <!--所属圈子信息-->
+        <view wx:if='{{num!=-1}}'>
+          <navigator url='../learningcircle/page/myCircle/myCircle?id={{outitem.communityId}}'>
+            <view class='diary_link'>
+              <view class='link_left'>
+                <image class='link_img' mode="aspectFill" src='{{outitem.circleLogo}}'>
+                </image>
+                <view class='link_info'>
+                  <view class='link_title'>{{outitem.communityName}}</view>
+                  <view class='member_num'>
+                    <text>成员{{outitem.partIn}}</text>
+                    <text>已打卡{{outitem.signNum}}次</text>
+                  </view>
+                </view>
+              </view>
+              <view class='fa fa-angle-right'></view>
+            </view>
+          </navigator>
+        </view>
+
+        <!-- 点赞模块 -->
+        <view class='revise-zan' data-signInId='{{outitem.signInId}}'>
+          <view class='revise-zan-msg'>
+            <view class='time-num'>
+              <view class='time'>{{outitem.signTime}}</view>
+              <view class='num'>已坚持{{outitem.userSignNum}}天</view>
+            </view>
+            <view class='comment_zan_sh' wx:if='{{num==-1}}'>
+              <view class='zan' bindtap='ALLZAN' data-like='{{outitem.isLike}}' data-idx='{{outindex}}' data-id='{{outitem.signInId}}'>
+                <image wx:if="{{!outitem.isLike}}" src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/icons/zan.png'></image>
+                <image wx:else src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/liked.png'></image>
+              </view>
+              <view class='comment' data-type='2' bindtap='showComment' data-signInId='{{outitem.signInId}}' data-index='{{outindex}}'>
+                <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/comment.png'></image>
+              </view>
+              <view class='share_box' wx:if="{{isShare}}">
+                <button class='share' bindtap='showShareWin' data-shareIndex='{{outindex}}'>
+                  <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/share.png'></image>
+                </button>
+              </view>
+              <view class='share_box' wx:else>
+                <button class='share' open-type='share' data-shareIndex='{{outindex}}'>
+                  <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/share.png'></image>
+                  <!-- {{outitem.shareNum}} -->
+                </button>
+              </view>
+            </view>
+            <view class='comment_zan_sh' wx:else>
+              <view class='zan' bindtap='ALLZAN' data-like='{{outitem.isLike}}' data-idx='{{outindex}}' data-id='{{outitem.signInId}}'>
+                <image wx:if="{{!outitem.isLike}}" src='../../assets/icons/zan.png'></image>
+                <image wx:else src='../../assets/img/liked.png'></image>
+              </view>
+
+              <view class='comment' data-type='2' bindtap='showComment' data-signInId='{{outitem.signInId}}' data-index='{{outindex}}'>
+                <image src='../../assets/img/comment.png'></image>
+              </view>
+              <view class='share_box' wx:if="{{isShare}}">
+                <button class='share' bindtap='showShareWin' data-shareIndex='{{outindex}}'>
+                  <image src='../../assets/img/share.png'></image>
+                </button>
+              </view>
+              <view class='share_box' wx:else>
+                <button class='share' open-type='share' data-shareIndex='{{outindex}}'>
+                  <image src='../../assets/img/share.png'></image>
+                  <!-- {{outitem.shareNum}} -->
+                </button>
+              </view>
+            </view>
+          </view>
+          <template is='zan' data='{{zanList:outitem,outindex,commentList:outitem.commentList,avatarList:outitem.avatarList,totalRecords:outitem.commentList.length,replayName:replayName,num}}' />
+        </view>
+      </view>
+    </view>
+    <view wx:if='{{num!=1}}'>
+      <!-- <view class='more_diray' bindtap='SIGNINPAGEPLUS' wx:if='{{hasMore}}'>
+        <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/more_diray.png'></image>
+      </view> -->
+      <view class='more_diray' wx:if='{{!hasMore}}'>
+        到底啦~
+      </view>
+      <view wx:if='{{listForPage.length == 0}}'>
+        <view class='no_have'>暂无日记记录</view>
+      </view>
+    </view>
+  </view>
+</template>

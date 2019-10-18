@@ -1,0 +1,117 @@
+<import src="../../../components/templates/class/workInfo" />
+
+<template is='workInfo' data='{{workInfor,childWorkList,width,role:userinfo.role,img,type,submitList,bindindex,ischildsubmitwork,dynamicLike,first,second,third}}' />
+
+
+<view wx:if='{{type==0&&userinfo.role==0&&workInfor.isReply=="true"&&workInfor.receiptType!=0&&workInfor.receiptType!=4}}'>
+  <view class='receiptbox'>
+    <view class='workbox' wx:for='{{notifyReply}}' wx:key='' wx:for-item='items'>
+      <view class='name radios'>
+        <image class='c_logo' src='{{items.childLogo?items.childLogo:img}}'></image>
+        <view style='width:{{width}}px'>
+          <text>{{items.childName}}</text>
+          <view class='a_center'>
+            <radio-group class='radiobox'>
+              <view class='radioview' wx:for='{{workInfor.receipt}}' wx:key='' wx:if='{{index<2}}'>
+                <label style='margin-right:20rpx;'>{{item.type}}</label>
+                <radio color='#f29219' checked='{{items.replyType==index}}' disabled='true'></radio>
+              </view>
+            </radio-group>
+          </view>
+        </view>
+
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 通知 -->
+<view class='receiptbox' wx:if='{{type==0&&userinfo.role==0&&workInfor.receiptType!=4&&workInfor.receiptType!=0&&workInfor.isReply=="false"}}'>
+  <text>请回执</text>
+  <!-- workInfor.receiptType==1||workInfor.receiptType==3 -->
+  <view wx:if='{{workInfor.receiptType!=4}}'>
+    <radio-group class='radiobox' bindchange='CHOOSE_RECEIPT'>
+      <view class='radioview' wx:for='{{workInfor.receipt}}' wx:key='' wx:if='{{index<2}}'>
+        <label style='margin-right:20rpx;'>{{item.type}}</label>
+        <radio color='#f29219' value='{{item.id}}'></radio>
+      </view>
+    </radio-group>
+  </view>
+  <form bindsubmit="SUBMIT_RECEIPT" report-submit="true">
+    <button formType="submit" class='btn set'>提交</button>
+  </form>
+
+  <!-- <button class='set' style='width:100%' bindtap='SUBMIT_RECEIPT'>提交</button> -->
+</view>
+
+<!-- <button wx:if='{{type == 0&&userinfo.role==0&&workInfor.receiptType==4&&workInfor.isReply=="false"}}' class='set' style='width:100%' bindtap='GO_MSG_RECEIPT'>请回执</button> -->
+
+<form bindsubmit="GO_MSG_RECEIPT" report-submit="true" wx:if='{{type == 0&&userinfo.role==0&&workInfor.receiptType==4&&workInfor.isReply=="false"}}'>
+  <button formType="submit" class='btn set'>请回执</button>
+</form>
+<!-- <view>1233551</view> -->
+<view class='videobox' hidden='{{playvideo}}' bindtap='overVIDEO'>
+  <cover-image class='close' bindtap='close_video' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/close.png'></cover-image>
+  <video style='width:{{widths}}px;height:{{heights}}px' src='{{videoSrc}}' controls="false" autoplay='true' show-fullscreen-btn='false' bindended='overVIDEO'>
+  </video>
+</view>
+
+
+
+
+<view class='comment_mask' catchtouchmove='ESTOP' wx:if='{{!iptHide}}' data-type='1' catchtap='hedeReply'>
+  <view class='comment_mask_box'>
+    <view class='comment_ipt'>
+      <view class='add' data-type='1' bindtap='SET_AUDIO'>
+        <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/audio1.png'></image>
+      </view>
+      <view catchtap='GETFOCUS' data-type='1'>
+        <textarea autoHeight="true" bindinput="START_TEXT" class="text" cursor-spacing="20" focus="{{commentFocus}}" placeholder="评论……" placeholderClass="input_null" showConfirmBar="" value='{{text}}'></textarea>
+
+        <!-- <textarea class="textinput" placeholder-class="input_null" value='{{text}}' fixed="true" maxlength="-1" cursor-spacing="30" auto-height="true" focus="{{commentFocus}}" placeholder="评论……" bindinput='START_TEXT'></textarea> -->
+      </view>
+      <view class='pub' data-type='1' bindtap='SEND_MESSAGE'>发表</view>
+    </view>
+    <view class='comment_voice' hidden='{{DELvoice}}'>
+      <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/vioce.png' bindtap='TURNBACK'></image>
+      <view class='comment_voice_title' bindtap='TURNBACK'>删除录音</view>
+    </view>
+  </view>
+</view>
+<!-- 回复录音 -->
+<view class='voice_mask' hidden='{{isSpeaking}}' catchtouchmove='ESTOP'>
+  <view class='voice_box'>
+    <view class='countDown' hidden='{{!startSpeak}}'>录音中，还剩{{startSpeak?countDownTime:""}}秒</view>
+    <!-- <view class='voice_btn'> -->
+    <image class='voice_btn' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/voice_btn.png' bindtap='START_AUDIO' hidden='{{startSpeak}}'></image>
+    <image class='voice_btn' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/vioce_play2.png' bindtap='STOP_AUDIO' hidden='{{!startSpeak}}'></image>
+    <!-- </view> -->
+    <view class='voice_title'>{{startSpeak?"点击结束":"点击开始"}}</view>
+    <view class="voice_box_close" catchtap='hedeReply'>
+      <image class="voice_box_close_imge" src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/close.png'></image>
+    </view>
+  </view>
+</view>
+
+<view catchtap='ESTOP' catchtouchmove='true' class='joinnum' style='width:{{mbwidth}}px;height:{{mbheight}}px' hidden='{{showchild}}'>
+  <view class='j_box'>
+    <view class='input'>
+      <text>头像</text>
+      <image src='{{showchildmag.childLogo?showchildmag.childLogo:img}}'></image>
+    </view>
+    <view class='input'>
+      <text>真实姓名</text>
+      <input disabled placeholder='{{showchildmag.childName}}'></input>
+    </view>
+    <view class='input' wx:if='{{showchildmag.childNo}}'>
+      <text>学号</text>
+      <input disabled placeholder='{{showchildmag.childNo}}'></input>
+    </view>
+    <view class='input'>
+      <text>所在学校</text>
+      <input placeholder-class="placeholderStyle" disabled placeholder='{{showchildmag.schoolName}}'></input>
+    </view>
+  </view>
+</view>
+
+<view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{message}}</view>

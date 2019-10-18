@@ -1,0 +1,81 @@
+<view class="page">
+  <view class="page_hd">
+    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{message}}</view>
+    <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell">
+            <block wx:if="{{userInfo.role=='0'}}">
+              <view class="weui-cell__bd b">
+                <image src='{{childInfo.logo}}' class='head-img'></image>
+                <text style="margin:10rpx 0 0 20rpx;font-size:28rpx;float:left;color:#959595;">{{childInfo.childName}}</text>
+              </view>
+            </block>
+            <block wx:else>
+              <view class="weui-cell__bd b">
+                <image src='{{userInfo.logo}}' class='head-img'></image>
+                <text style="margin:10rpx 0 0 20rpx;font-size:28rpx;float:left;color:#959595;">{{userInfo.name}}</text>
+              </view>
+            </block>
+        </view>
+    </view>
+
+    <view class='main_bg'>
+              <view class='main_left'>
+                <view style="margin:30rpx 0 0 50rpx;color:#000;">{{lessonInfo.name}}</view>
+                <view  style="margin:10rpx 0 0 50rpx;font-size:24rpx;color:#959595;">{{lessonInfo.orgName}}</view>
+              </view>
+
+              <view class='main_right'>
+                 <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/sign.png" class='signimg' mode="widthFix"></image> 
+              </view>
+
+     </view>
+
+  </view>
+
+
+  <view class="page_bd">
+     <view class='weui-cell-ins_a'>
+      <view >
+         <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/hint.png" class='dao' mode="widthFix"></image>
+         <text style='margin:40rpx 0 0 10rpx;font-size:24rpx;color:#888888;float:left;'>点击选择更改相应的信息</text>
+      </view>
+      <view class="weui-cell-wenzi">
+        <text>开课日期</text>
+        <text style='margin-left:120rpx;'>结课日期</text>
+      </view>
+      <view class="weui-cell-riqi">
+          <view class='time' bindtap="CHANGE_BEGINDATE"  data-times='0' >{{lessonInfo.beginDate}}</view>
+          <view>{{lessonInfo.beginWeekDay}}</view>
+      </view>
+      <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/dao.png" class='dao' mode="widthFix"></image>
+      <view  bindtap="CHANGE_BEGINDATE" data-times='1' class="weui-cell-riqi_b">
+        <view>{{lessonInfo.endDate}}</view>
+          <view>{{lessonInfo.endWeekDay}}</view>
+      </view>
+             
+            </view>
+       <view class='weui-cell-ins_b'>
+        <view class="weui-cell-wenzi">
+          <text>开始时间</text>
+          <text style='margin-left:120rpx;'>结束时间</text>
+        </view>
+        <view class="weui-cell-riqi">
+            <view>
+            <picker style="margin-left:40rpx;" bindchange="CHANGE_BEGINTIME" mode="time" value="{{lessonInfo.beginTime}}">{{lessonInfo.beginTime}}</picker>
+            </view>
+        </view>
+        <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/dao.png" class='dao_b' mode="widthFix"></image>
+        <view class="weui-cell-riqi_b">
+          <view><picker style="margin-left:40rpx;" bindchange="CHANGE_ENDTIME" mode="time" value="{{lessonInfo.beginTime}}">{{lessonInfo.endTime}}</picker></view>
+        </view>     
+     </view>
+   <button class='btn_a' bindtap="SAVE">确认提交</button>
+
+  </view>
+</view>
+
+
+<!-- 日历 -->
+<block wx:if="{{showCalendar}}" >
+  <calendar catch:day-click="CALENDAR_DAY_CHANGED"/>
+</block>

@@ -1,0 +1,53 @@
+<template name="content">
+  <view wx:for="{{contentList}}" wx:key='infoidx' wx:for-item='item' wx:for-index='infoidx'>
+    <view class='intro_item' wx:if='{{item.contentType == 1}}'>
+      <view class='content' style='padding:10rpx 0;'>
+        <text class='text'>{{item.content}}</text>
+      </view>
+    </view>
+    <view class='intro_item' wx:if='{{item.contentType == 2}}'>
+      <view class='content'>
+        <!-- <image class='intro_img' mode='aspectFill' src='{{item.content}}'></image> -->
+        <image class='intro_img' mode='widthFix' src='{{item.content}}'></image>
+        <!-- <image class='intro_img' mode="aspectFit" src='{{item.content}}'></image> -->
+      </view>
+    </view>
+    <view class='audio' wx:if='{{item.contentType == 3}}'>
+      <audio src="{{item.content}}" id="{{audioIdPrefix+infoidx}}" bindtimeupdate="DIARY_AUDIO_UPDATA_PROGRESS" bindended="DIARY_PLAY_AUDIO_END"></audio>
+      <view class='playOrstop'>
+        <view class='play' data-type='{{audioType}}' data-play='{{item.play}}' style='display:{{item.play?"none":"flex"}}' catchtap='DIARY_PLAY_AUDIO' data-idx='{{infoidx}}'></view>
+        <view class='stop' data-type='{{audioType}}' data-play='{{item.play}}' style='display:{{item.play?"flex":"none"}}' catchtap='DIARY_STOP_AUDIO' data-idx='{{infoidx}}'>
+          <view class='shu'></view>
+          <view class='shu'></view>
+        </view>
+      </view>
+      <view class='slid' wx:for="{{slidlst}}" wx:key='slididx' wx:for-item='sitem' wx:for-index='slididx'>
+        <view wx:if='{{sitem.id==infoidx}}'>
+          <slider bindchange="AUDIO_SLIDER_CHANGE" block-size="12px" step="2" value="{{sitem.offset}}" max="{{sitem.max}}" class="slider" selected-color="#ff5e5e" />
+          <text class='time'>{{sitem.audio_duration}}</text>
+        </view>
+      </view>
+    </view>
+    <view class='intro_item' wx:if='{{item.contentType == 4}}'>
+      <view class='content'>
+        <!-- <navigator url='../../../learningcircle/page/videoPlay/videoPlay?audioSrc={{item.content}}'>
+          <view class='video_btn_box'>
+            <image src='{{item.content}}?x-oss-process=video/snapshot,t_10000,m_fast' mode='aspectFit'></image>
+            <view class='video_btn'></view>
+          </view>
+        </navigator> -->
+        <video class='videos' id="myVideo" src='{{item.content}}' show-fullscreen-btn enable-progress-gesture poster='{{item.content}}?x-oss-process=video/snapshot,t_10000,m_fast' objectFit='cover'>
+        </video>
+
+
+
+
+
+      </view>
+    </view>
+  </view>
+
+  <view wx:if='{{contentList.length == 0}}'>
+    <view>这个圈主比较懒，什么都没写呢！</view>
+  </view>
+</template>

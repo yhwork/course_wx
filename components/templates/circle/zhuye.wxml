@@ -1,0 +1,110 @@
+<template name='zan'>
+
+
+  <!-- 赞 头像-->
+  <!-- <view wx:if='{{avatarList.length>0}}'> -->
+  <view class='zan_total'>
+    <!--点赞人员头像填充-->
+    <!-- <image class='zanLogo' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/zan.png'></image> -->
+    <view class='img_box'>
+      <image wx:for='{{avatarList}}' wx:key='idx' wx:for-index='idx' wx:for-item='item' class='photo-zan' src='{{item.likedUserLogo}}' mode="aspectFill"></image>
+    </view>
+  </view>
+  <!-- </view> -->
+
+  <!-- 评论 -->
+  <view class='comment_box'>
+    <view wx:if='{{totalRecords>0?true:""}}'>
+      <view class='comment'>
+        <!-- <view class='total'>共{{totalRecords}}条评论</view> -->
+        <view class='comment_list'>
+          <!--循环展示所有评论-->
+          <view wx:for='{{commentList}}' wx:key='idx' wx:for-index='idx' wx:for-item='item'>
+            <view class='comment_item'>
+              <view class='comment_top'>
+                <!--评论首条头像-->
+                <view class='top_left' bindtap='showReply' data-replyType='0' data-index='{{outindex}}' data-signInId='{{zanList.signInId}}' data-commentId='{{item.commentId}}' data-replayId='{{item.addBy}}' data-replayName='{{item.userNickName}}' data-type='1'>
+                  <!-- <image class='comment_photo' src='{{item.userLogo}}'></image> -->
+
+                  <!--评论人做出的评论-->
+                  <view wx:if='{{item.content!=""&&item.content!=null}}'>
+                    <view class='comment_content'>
+                      <text> <text class='name' style='font-size:28rpx;color:#f29219'>{{item.userNickName}}：</text>{{item.content}}</text>
+                    </view>
+                  </view>
+                  <view wx:else>
+                    <view class='comment_content'>
+                      <view class='name' style='font-size:28rpx;color:#f29219'>{{item.userNickName}}：</view>
+                      <view class='comment_audio'>
+                        <view class='duration'>{{item.audio_duration}}</view>
+                        <audio src='{{item.audioUrl}}' id="{{outindex}}commentAudio{{idx}}" bindtimeupdate="AUDIO_UPDATA_PROGRESS" bindended="AUDIO_PLAY_END"></audio>
+                        <view class='voice_animate'>
+                          <view class='audio_play' data-comment='comment' data-type='2' data-idx='{{idx}}' data-index='{{outindex}}' hidden='{{item.play}}' catchtap='AUDIO_PLAY'>
+                            <view wx:if='{{num==-1}}'>
+                              <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/voice_img.png'></image>
+                            </view>
+                            <view wx:else>
+                              <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/voice_img.png'></image>
+                            </view>
+                          </view>
+
+                          <view class='audio_stop' data-comment='comment' data-type='2' data-idx='{{idx}}' data-index='{{outindex}}' hidden='{{!item.play}}' catchtap='AUDIO_STOP'>
+                            <view wx:if='{{num==-1}}'>
+                              <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/voice.gif'></image>
+                            </view>
+                            <view wx:else>
+                              <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/voice.gif'></image>
+                            </view>
+                          </view>
+                        </view>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+
+
+                <!--其他人对该回复做出的评论-->
+                <view wx:for='{{item.replyList.list}}' wx:key='inneridx' wx:for-index='inneridx' wx:for-item='inneritem'>
+                  <view class='reply' bindtap='showReply' data-replyType='{{inneritem.replyType}}' data-index='{{outindex}}' data-type='1' data-isdel='1' data-replayId='{{inneritem.addBy}}' data-signInId='{{zanList.signInId}}' data-replayName='{{inneritem.userNickName}}'
+                    data-delId='{{inneritem.replyId}}' data-commentId='{{item.commentId}}'>
+                    <!-- 回复的回复 -->
+                    <view>
+                      <text class='master_name'>{{inneritem.userNickName}}</text>
+                      <text>回复</text>
+                      <text wx:if='{{inneritem.replyType!=2}}' class='comm_name'>{{item.userNickName}}:</text>
+                      <text wx:else class='comm_name'>{{inneritem.to_userNickName}}：</text>
+                      <!--文本回复-->
+                      <text wx:if='{{inneritem.content!=""&&inneritem.content!=null}}'>{{inneritem.content}}</text>
+                      <!--语音回复-->
+                      <view wx:else class='audio_aply'>
+                        <view class='comment_audio'>
+                          <view class='duration'>{{inneritem.audio_duration}}</view>
+                          <audio src='{{inneritem.audioUrl}}' id="{{outindex}}replay{{idx}}Audio{{inneridx}}" bindtimeupdate="AUDIO_UPDATA_PROGRESS" bindended="AUDIO_PLAY_END"></audio>
+                          <view class='voice_animate'>
+                            <view class='audio_play' data-comment='comment' data-type='1' data-idx='{{idx}}' data-index='{{outindex}}' data-inneridx='{{inneridx}}' hidden='{{inneritem.play}}' catchtap='AUDIO_PLAY'>
+                              <image wx:if='{{num==-1}}' src='../../https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/voice_img.png'></image>
+                              <image wx:else src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/voice_img.png'></image>
+                            </view>
+                            <view class='audio_stop' data-comment='comment' data-type='1' data-idx='{{idx}}' data-index='{{outindex}}' data-inneridx='{{inneridx}}' hidden='{{!inneritem.play}}' catchtap='AUDIO_STOP'>
+                              <image wx:if='{{num==-1}}' src='../../https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/voice.gif'></image>
+                              <image wx:else src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/voice.gif'></image>
+                            </view>
+                          </view>
+                        </view>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- <view wx:else>
+      <view class='comment'>
+        <view class='total'> 暂无评论</view>
+      </view>
+    </view> -->
+  </view>
+</template>

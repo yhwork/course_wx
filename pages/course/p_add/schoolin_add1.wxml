@@ -1,0 +1,112 @@
+<view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{message}}</view>
+<view class='page_top'>
+  <view class='photo_box'>
+    <image class='photo' src='{{childInfo.logo}}'></image>
+    <image class='sex' src='{{childInfo.gender=="0"?"https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/boy.png":"https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/girl.png"}}'></image>
+  </view>
+  <view class='page_topRight'>
+    <view class='name'>{{childInfo.childName}}</view>
+    <view class='course_num'>已有{{childInfo.internalCourseNum}}门校内课程</view>
+  </view>
+</view>
+<view class='info_list'>
+  <view class='info_item'>
+    <view class='title'>学校名称</view>
+    <view class='info_right'>{{schoolInfo[0].school}}</view>
+  </view>
+  <!--<view class='info_item'>
+    <view class='title'>班级</view>
+    <view class='info_right'>五年级2班</view>
+  </view>-->
+</view>
+
+
+<!-- 设置课程表 -->
+<view class='course_set'>
+  <view class='title'>课程设置</view>
+  <view class='odd_even'>
+    <view class='odd_even_left'>
+      <view class='odd'>
+        <view class='dian'></view>
+        <text>单周</text>
+      </view>
+      <view class='even'>
+        <view class='dian'></view>
+        <text>双周</text>
+      </view>
+    </view>
+    <view class='odd_even_set'>
+      <text>开启双周</text>
+      <switch bindchange="BIND_SWITCH"></switch>
+    </view>
+  </view>
+  <view class='course_table'>
+    <view class='thead'>
+      <view class='tr'>
+        <view class='td firstTd'>
+          <view>星期节次</view>
+        </view>
+        <view class='td'>周一</view>
+        <view class='td'>周二</view>
+        <view class='td'>周三</view>
+        <view class='td'>周四</view>
+        <view class='td'>周五</view>
+      </view>
+    </view>
+    <view class='tbody'>
+      <view class='tr' wx:for="{{courseTable}}" wx:for-item="item" wx:key=""  wx:for-index="index">
+        <block wx:for="{{item}}" wx:for-item="item1" wx:key=""  wx:for-index="index1">
+          <block wx:if="{{index1==0}}">
+            <view class='td firstTd'>{{item1+1}}</view>
+          </block>
+          <block wx:else>
+            <view class='td' catchtap="ADD_COURSE_CIRCLE" data-row="{{index}}" data-col="{{index1}}">
+              <view class='subject {{item1.courseClass}}' catchtap="{{switched?'':'BIND_COURSE'}}"  data-row="{{index}}" data-col="{{index1}}">{{item1.courseNameSub}}</view>
+              <block wx:if="{{item1.courseSwitch}}">
+                <view class='subject {{item1.courseClass1}}' catchtap="{{switched?'':'BIND_COURSE_DOUBLE'}}"  data-row="{{index}}" data-col="{{index1}}">{{item1.courseNameSub1}}</view>
+              </block>
+              
+            </view>
+          </block>
+        </block>
+      </view>
+    </view>
+    <view class='hint'>
+      <view class='edit_btn' bindtap="EDIT_TAG">编辑</view>
+      <image class='hint_img' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/hint.png'></image>
+      <view class='hitn_detail'>选中以下课程标签，点击添加到课程表 长按可删除课程标签</view>
+    </view>
+    <view class='slect_tab'>
+      <block wx:for="{{InterNameList}}"  wx:for-item="item" wx:key=""  wx:for-index="index" >
+        <view class="{{item.checked=='1'?'tab_item tab_select':'tab_item'}}" bindtap="CHOOSE_TAG" bindlongpress="BIND_LONG_PRESS" data-name="{{item.courseName}}">
+          <block wx:if="{{item.courseDel}}">
+            <image class='delete_btn' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/delete1.png' catchtap="DEL_TAG" data-index="{{index}}"  data-coursename="{{item.courseName}}"></image>
+          </block>
+          <view class='circle'>{{item.courseNameSub}}</view>
+          <text>{{item.courseName}}</text>
+        </view>
+      </block>
+      
+      <view class='add_btn' bindtap="ADD_TAG">
+        <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/add1.png'></image>
+      </view>
+    </view>
+  </view>
+</view>
+<view class='explain'>
+  <view>说明</view>
+  <view class='explain_item'>
+    <view class='serial'>1、</view>
+    <view class='explain_detail'>选中要添加的标签，然后点击课程表中相应位置的圆圈 即可添加该课程，再次点击该位置圆圈则取消；</view>
+  </view>
+  <view class='explain_item'>
+    <view class='serial'>2、</view>
+    <view class='explain_detail'>如课程分单双周，请开启设置；</view>
+  </view>
+  <view class='explain_item'>
+    <view class='serial'>3、</view>
+    <view class='explain_detail'>课程标签可新增、长按删除、修改；</view>
+  </view>
+</view>
+
+<button class='submit' bindtap="SAVE_NEXT">下一步</button>

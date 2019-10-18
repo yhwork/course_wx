@@ -1,0 +1,49 @@
+<view class='payList_box'>
+  <view class="courseDtail">
+    <view class='teacher_list'>
+      <view class='list_item'>
+        <view class='list_top'>
+          <view class='top_teacherDetail'>
+            <image src="{{shopCover}}" class='top_image' mode='scaleToFill'></image>
+          </view>
+          <view class='top_fontDetail'>
+            <view class='detail_font font'>
+              <text>{{title}}</text>
+            </view>
+             
+            <view class='datail_day'>
+              <text>{{starttime}}~{{endtime}}</text>
+              <!-- <view>{{start2}}~{{end2}}</view> -->
+            </view>
+            <!-- <view class='teach_idea'>
+              <text>每周日18:30-20:30</text>
+              <text class='teacheclass_num'>
+                <text>50</text>
+                 <text>次课</text>
+              </text>
+            </view> -->
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- d底部 -->
+<view class='wrap_bottom'>
+  <!-- <view class='wrap_time'>23:23:23.7</view> -->
+  <view class='wrap_inv'>还差
+    <text class='inv_peo'>{{groupSurplusNumber}}</text>人,赶快邀请好友来拼单吧!</view>
+  <view class='addgroupimg_wrap'>
+    <view class='sign' wx:for="{{iownerArr}}" wx:key="index">
+      <text class='sign_master'>拼主</text>
+      <image src="{{item.logo}}" class='add_groupimage' mode='scaleToFill'></image>
+    </view>
+    <view class='sign' wx:for="{{commonArr}}" wx:key="index">
+      <image src="{{item.logo}}" class='add_groupimage' mode='scaleToFill'></image>
+    </view>
+  </view>
+  <button open-type="share" class='btn'>邀请好友拼单</button>
+  <view class='btn special_btn' bindtap='gotoIndex'>
+    去首页逛逛
+  </view>
+</view>

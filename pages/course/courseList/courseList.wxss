@@ -1,0 +1,190 @@
+/* pages/course/courseList/courseList.wxss */
+@import '/pages/circle/circle.wxss';
+.page_index{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right:0;
+  bottom: 0;
+  /* background-color: rosybrown; */
+  z-index: 99
+}   
+page {
+  background: #ebebeb;
+}
+.el-icon-lxy-iconfontzhizuobiaozhun19{
+  font-weight: bold;
+}
+.add{
+  color: #ccc;
+}
+.banner_box {
+  /* background: #f9e2c1; */
+  background: #ffd596;
+  padding: 20rpx 30rpx;
+  font-size: 30rpx;
+}
+.courdetailsstyle{
+  width: 80%;
+  /* border: 1px solid red; */
+}
+
+.head_box{
+  color: #FF9800;
+  position: relative;
+  /* border: 1px solid red; */
+}
+.head_box, .title_box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.itemlisttxt{
+  overflow: hidden;
+  height: 84rpx;
+  background-color: white;
+}
+.itemlisttxt text{
+  font-size: 28rpx !important;
+  color: #948d8d;
+  width: 78%;
+  /* border:1px solid rgba(0, 0, 0, 0.1); */
+  text-align: left;
+  padding-right: 50rpx;
+}
+
+.head_box image {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 8rpx;
+  margin-right: 10rpx;
+}
+.head_box .sex {
+  width: 35rpx;
+  height: 35rpx;
+  position: absolute;
+  bottom: -5rpx;
+  left: 50rpx;
+}
+.icon_img{
+  width: 40rpx!important;
+  height: 40rpx!important;
+}
+.label_box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  margin-top: 20rpx;
+ color: #000;
+}
+.label_item{
+  font-size: 25rpx;
+  position: relative;
+}
+.namecolor{
+  max-width: 150rpx;
+  color: #ff9800;
+}
+.label_item.active{
+ color: #ff9800;
+}
+.label_item image {
+  width: 60rpx;
+  height: 60rpx;
+}
+.label_item view{
+ color: #ff9800;
+}
+.label_info{
+  position: absolute;
+  left: -40rpx;
+  top: 110rpx;
+  width: 130rpx;
+  border-radius: 8rpx;
+  background: rgba(0, 0, 0, 0.5);
+  font-size: 26rpx;
+  color: #fff;
+  padding:10rpx;
+  line-height: 50rpx;
+}
+
+.title_box {
+  padding: 7rpx 20rpx;
+  font-size: 30rpx;
+}
+
+.item_list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 28rpx;
+  border-bottom: 1rpx dashed #ddd;
+  padding: 10rpx 20rpx;
+  background: #fff;
+}
+
+.item_list:last-child {
+  border-bottom: 0;
+}
+
+.list_operation {
+  text-align: center;
+}
+
+.item_list image {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.list_time {
+  margin-right: 30rpx;
+}
+
+ .list_address {
+  width:700rpx;
+  color: #0a4e7f;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap
+}
+.list_view{
+  color: #FF9800;
+}
+.add_btn{
+  background: #fff;
+  margin-top: 20rpx;
+  padding: 20rpx 15rpx;
+  box-sizing: border-box;
+
+}
+.fontsize{
+  font-size: 26rpx;
+}
+.mask_box{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+.popup_item{
+  display: flex;
+  align-items: center;
+  background: #fff;
+  padding: 5rpx 10rpx;
+  box-sizing: border-box;
+  border-bottom: 1rpx solid #ebebeb;
+}
+.popup_item image{
+  width: 80rpx;
+  height: 80rpx;
+  margin-right: 20rpx;
+  border-radius: 8rpx;
+}
+.el-icon-lxy-ditu{
+  font-size: 48rpx;
+  color: #ff9800;
+}

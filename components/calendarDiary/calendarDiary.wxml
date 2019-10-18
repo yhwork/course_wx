@@ -1,0 +1,56 @@
+<view class='calendar_mask'>
+  <view class='calendar'>
+	<view class='calendar_head'>
+	  <view class='prev_tab' bindtap="PREV_MONTH">
+		<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/prev.png'></image>
+	  </view>
+	  <view class='calendar_title'>{{year}}-{{month}}</view>
+	  <view class='next_tab' bindtap="NEXT_MONTH">
+		<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/next.png'></image>
+	  </view>
+	</view>
+	<view class='calendar_body'>
+
+	  <view class='week tr'>
+		  <block wx:for="{{weekTitle}}" wx:for-item="item" wx:key="">
+			<view class='td'>{{item}}</view>
+		  </block>
+		</view>
+
+		<view class='tr' wx:for="{{days_array}}" wx:for-item="week_days" wx:key="">
+		  <block wx:for="{{week_days}}" wx:for-item="item" wx:key="">
+			<block wx:if="{{item.day>0}}">
+			  <block wx:if="{{currentYear==year && currentMonth==month && item.day==day}}">
+				
+				<block wx:if="{{item.diaryStatus=='1'}}">
+				  <view class='td select date_active' bindtap="TAP_DAY" data-day="{{item}}">今天</view>
+				</block>
+				
+				<block wx:else>
+					<view class='td date_active' bindtap="TAP_DAY" data-day="{{item}}">今天</view>
+				</block>
+			  </block>
+			  <block wx:else>
+				  
+				  <block wx:if="{{item.diaryStatus=='1'}}">
+					<view class='td select' bindtap="TAP_DAY" data-day="{{item}}">{{item.day}}</view>
+				  </block>
+				  
+				  <block wx:else>
+				  	<block wx:if="{{item.durationDate=='1'}}">
+						<view class='td unselect' bindtap="TAP_DAY" data-day="{{item}}">{{item.day}}</view>
+					</block>
+					<block wx:else>
+						<view class='td' bindtap="TAP_DAY" data-day="{{item}}">{{item.day}}</view>
+					</block>
+				  </block>
+			  </block>
+			</block>
+			<block wx:else>
+			  <view class='td'></view>
+			</block>
+		  </block>
+		</view>
+	</view>
+  </view>
+</view>

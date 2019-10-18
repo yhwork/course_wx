@@ -1,0 +1,18 @@
+/* pages/register/protocol/protocol.wxss */
+page{
+  color: #333;
+  font-size: 28rpx;
+  padding: 30rpx;
+  box-sizing: border-box;
+}
+
+.title{
+  font-size: 30rpx;
+  margin: 10rpx;
+  color: #111;
+}
+
+.caption{
+  font-size: 32rpx;
+  text-align: center;
+}

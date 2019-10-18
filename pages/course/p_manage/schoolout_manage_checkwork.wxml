@@ -1,0 +1,124 @@
+<view class='page_top'>
+  <view class='percenal_info'>
+    <view class='info_left'>
+      <block wx:if="{{userInfo.role=='0'}}">
+        <image class='photo' wx:if='{{childInfo.logo}}' src='{{childInfo.logo}}'></image>
+        <image wx:else src='https://oss.iforbao.com/public/assets/img/girlb.png'></image>
+        <view class='name'>{{childInfo.name}}</view>
+      </block>
+      <block wx:else>
+        <image class='photo' src='{{userInfo.logo}}'></image>
+        <view class='name'>{{userInfo.name}}</view>
+      </block>
+    </view>
+    <view class='info_right'>
+      <view class='school'>{{courseInfo.orgName}}</view>
+      <view class='course_name'>{{courseInfo.name}}</view>
+    </view>
+  </view>
+  <view class='checkwork_tab'>
+    <view class='tab_item' bindtap="CHANGE_SELECT" data-status=''>
+      <view class='num'>{{lessonSummary.courseNum}}</view>
+      <view class="{{model.courseStatus==''?'active':''}}">全部</view>
+    </view>
+    <view class='tab_item' bindtap="CHANGE_SELECT" data-status='1'>
+      <view class="num">{{lessonSummary.courseAttend}}</view>
+      <view class='tab_foot'>
+        <view class="course-attend"></view>
+        <view class="{{model.courseStatus=='1'?'active':''}}">出勤</view>
+      </view>
+    </view>
+    <view class='tab_item' bindtap="CHANGE_SELECT" data-status='0'>
+      <view class="num">{{lessonSummary.courseNotAttend}}</view>
+      <view class='tab_foot'>
+        <view class="course-absent"></view>
+        <view class="{{model.courseStatus=='0'?'active':''}}">缺勤</view>
+      </view>
+    </view>
+    <view class='tab_item' bindtap="CHANGE_SELECT" data-status='2'>
+      <view class="num">{{lessonSummary.courseRemain}}</view>
+      <view class='tab_foot'>
+        <view class="course-noton"></view>
+        <view class="{{model.courseStatus=='2'?'active':''}}">剩余</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 日历 -->
+<calendar calendarClass="{{calendarClass}}" lessonInfo="{{lessonInfo}}" catch:next-month="CALENDAR_MONTH_CHANGED" catch:prev-month="CALENDAR_MONTH_CHANGED" />
+
+
+
+<!--<view class='calendar_mask'>
+    <view class='calendar'>
+      <view class='calendar_head'>
+        <view class='prev_tab' bindtap="PREV_MONTH">
+          <image src='../../../assets/img/prev.png'></image>
+        </view>
+        <view class='calendar_title'>2017-08-25</view>
+        <view class='next_tab' bindtap="NEXT_MONTH">
+          <image src='../../../assets/img/next.png'></image>
+        </view>
+      </view>
+      <view class='calendar_body'>
+
+        <view class='week tr'>
+          <block>
+            <view class='td'>周一</view>
+            <view class='td'>周二</view>
+            <view class='td'>周三</view>
+            <view class='td'>周四</view>
+            <view class='td'>周五</view>
+            <view class='td'>周六</view>
+            <view class='td'>周日</view>
+          </block>
+        </view>
+         <view class='tr'>
+          <view class='td'>1</view>
+          <view class='td'>2</view>
+          <view class='td'>3</view>
+          <view class='td'>4</view>
+          <view class='td'>5</view>
+          <view class='td'>6</view>
+          <view class='td absent'>7</view>
+        </view>
+         <view class='tr'>
+          <view class='td'>8</view>
+          <view class='td'>9</view>
+          <view class='td'>10</view>
+          <view class='td'>11</view>
+          <view class='td'>12</view>
+          <view class='td'>13</view>
+          <view class='td'>14</view>
+        </view>
+         <view class='tr'>
+          <view class='td'>15</view>
+          <view class='td'>16</view>
+          <view class='td'>17</view>
+          <view class='td'>18</view>
+          <view class='td'>19</view>
+          <view class='td'>20</view>
+          <view class='td'>21</view>
+        </view>
+         <view class='tr'>
+          <view class='td'>22</view>
+          <view class='td attend'>23</view>
+          <view class='td'>24</view>
+          <view class='td date_active'>今天</view>
+          <view class='td'>26</view>
+          <view class='td'>27</view>
+          <view class='td'>28</view>
+        </view>
+         <view class='tr'>
+          <view class='td noton'>29</view>
+          <view class='td'>30</view>
+          <view class='td'>31</view>
+          <view class='td o_month'>1</view>
+          <view class='td o_month'>2</view>
+          <view class='td o_month'>3</view>
+          <view class='td o_month'>4</view>
+        </view>
+      </view>
+    </view>
+  </view>-->

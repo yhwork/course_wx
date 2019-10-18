@@ -1,0 +1,220 @@
+<!-- 头部开始 -->
+<view class='teacher_list'>
+
+  <view class='list_item'>
+    <view class='list_top have_padding'>
+      <view class='top_teacherDetail'>
+        <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/cap3.jpg" class='top_image' mode='scaleToFill'></image>
+      </view>
+
+      <view class='top_fontDetail'>
+        <view class='detail_font'>
+          <text>张三</text>
+          <text class='detail_name'>数学老师</text>
+        </view>
+
+        <view class='datail_day'>
+          <text class='teachers_confirm'>上海认证：</text>
+          <text>上海教育机构</text>
+        </view>
+        <view class='teach_idea'>
+          教学理念
+        </view>
+        <view class='detail_sale'>
+          <text class='sale_class'>5<text>年</text>
+          <text class='teaching_year'>教龄</text></text>
+          <text class='datail_num'>
+              <text>学生</text>
+          <text class='num_font'>200</text>
+          </text>
+        </view>
+
+      </view>
+
+    </view>
+  </view>
+</view>
+<!-- 头部结束 -->
+<!-- tab切换开始 -->
+<view class='teacher_tab'>
+  <view class='tab_header'>
+    <view wx:for="{{textarray}}" wx:for-index="index" wx:for-item="item" bindtap='tab' data-index='{{index}}' class='{{activeIndex==index?"add_style":""}}'>{{item}}
+    </view>
+  </view>
+</view>
+<!-- tab切换 item  开始 -->
+<!-- 老师列表  item 开始 -->
+<view class="math_course" wx:if="{{activeIndex==0}}">
+  <!-- 数学课程  item开始 -->
+  <view class='list_item' bindtap='courseDetail'>
+    <view class='list_top'>
+      <view class='top_fontDetail'>
+        <view class='detail_font'>
+          <text>2017年秋季一年级奥数</text>
+        </view>
+        <view>
+          <text class='detail_times'>2017-09-10~2017-12-31</text>
+        </view>
+        <view class='datail_day'>
+          <text>每周日18:30-20:30</text>
+          <text class='datail_class'>
+         <text>课程数</text>
+          <text>20</text>
+          </text>
+          <text class='datail_money'>
+              <text>¥</text>
+          <text>9000</text>
+          </text>
+        </view>
+        <view class='detail_sale'>
+          <text class='sale_class'>已售<text>6</text></text>
+          <text class='datail_num'>
+              <text>剩余名额:</text>
+          <text class='num_font'>18</text>
+
+          </text>
+        </view>
+        <view class='detail_address'>
+          <text>宜山路705号科技大厦一楼</text>
+        </view>
+      </view>
+
+    </view>
+  </view>
+  <!-- 数学课程  item结束 -->
+  <view class='list_item'>
+    <view class='list_top'>
+      <view class='top_fontDetail'>
+        <view class='detail_font'>
+          <text>2017年秋季一年级奥数</text>
+        </view>
+        <view>
+          <text class='detail_times'>2017-09-10~2017-12-31</text>
+        </view>
+        <view class='datail_day'>
+          <text>每周日18:30-20:30</text>
+          <text class='datail_class'>
+         <text>课程数</text>
+          <text>20</text>
+          </text>
+          <text class='datail_money'>
+              <text>¥</text>
+          <text>9000</text>
+          </text>
+        </view>
+        <view class='detail_sale'>
+          <text class='sale_class'>已售<text>6</text></text>
+          <text class='datail_num'>
+              <text>剩余名额:</text>
+          <text class='num_font'>18</text>
+
+          </text>
+        </view>
+        <view class='detail_address'>
+          <text>宜山路705号科技大厦一楼</text>
+        </view>
+      </view>
+
+    </view>
+  </view>
+
+  <!-- 数学课程  item结束 -->
+  <view class='list_item'>
+    <view class='list_top'>
+      <view class='top_fontDetail'>
+        <view class='detail_font'>
+          <text>2017年秋季一年级奥数</text>
+        </view>
+        <view>
+          <text class='detail_times'>2017-09-10~2017-12-31</text>
+        </view>
+        <view class='datail_day'>
+          <text>每周日18:30-20:30</text>
+          <text class='datail_class'>
+         <text>课程数</text>
+          <text>20</text>
+          </text>
+          <text class='datail_money'>
+              <text>¥</text>
+          <text>9000</text>
+          </text>
+        </view>
+        <view class='detail_sale'>
+          <text class='sale_class'>已售<text>6</text></text>
+          <text class='datail_num'>
+              <text>剩余名额:</text>
+          <text class='num_font'>18</text>
+          </text>
+        </view>
+        <view class='detail_address'>
+          <text>宜山路705号科技大厦一楼</text>
+        </view>
+      </view>
+
+    </view>
+  </view>
+
+</view>
+<!-- tab切换  item 结束 -->
+<!-- tab切换结束 -->
+
+<!-- 教师简介item 开始 -->
+
+<view wx:if="{{activeIndex==1}}">
+  <view class='course_introduction'>
+    <view class='introduction_item'>
+      <view class='item_inner intruduction_inner'>
+        <view>详细介绍</view>
+        <view class='inner_wrap'>好的课程好的课程，好的课程好的好的课程好的课程，好的课程好的好的课程好的课程，好的课程好的好的课程好的课程，好的课程好的</view>
+      </view>
+    </view>
+    <view class='introduction_item'>
+      <view class='item_inner'>
+        <view class='praise_bottom'>教师荣誉</view>
+        <view>
+             <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" current="{{current}}" display-multiple-items="3">
+      <block wx:for="{{imgUrls}}">
+        <swiper-item>
+          <image src="{{item}}" class="slide-image" style='width:90%;height:90%'/>
+        </swiper-item>
+      </block>
+    </swiper>
+
+        </view>
+      </view>
+    </view>
+    <view class='introduction_item'>
+      <view class='item_inner'>
+        <view>课程详情</view>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 教师简介item 结束 -->
+
+
+<!-- 动态 item 开始 -->
+<view wx:if="{{activeIndex==2}}">
+  <view class='course_introduction'>
+    <view class='introduction_item'>
+      <view class='item_inner'>
+        <view>活动名称</view>
+        <view class='inner_wrap'>活动介绍活动介绍活动姐</view>
+      </view>
+    </view>
+    <view class='introduction_item'>
+      <view class='item_inner'>
+        <view>活动详情</view>
+        <view>
+        </view>
+      </view>
+    </view>
+    <view class='introduction_item'>
+      <view class='item_inner'>
+
+
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 动态 item 结束 -->

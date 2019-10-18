@@ -1,0 +1,77 @@
+<!--pages/circle/DiariesRules/DiariesRules.wxml-->
+<view class="cardsetting_container">
+
+  <view class="rules_wrap">
+   <!-- 多次打卡设置 -->
+    <!-- <view class="switch_title_wrap">
+      <view class='switch_title_left'>允许一天多次打卡</view>
+      <view class='switch_title_right'>
+        <view class="page__bd">
+          <view class="section section_gap">
+            <view class="body-view">
+              <switch checked="{{pageModel.isChecked1}}" bindchange="dozensOfCards" />
+            </view>
+          </view>
+        </view>
+      </view>
+    </view> -->
+
+    <view class="switch_title_wrap">
+      <view class='switch_title_left'>日记必须上传录音</view>
+      <view class='switch_title_right'>
+        <view class="page__bd">
+          <view class="section section_gap">
+            <view class="body-view">
+              <switch checked="{{pageModel.isChecked2}}" bindchange="diaryUploadAutio" />
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="switch_title_wrap">
+      <view class='switch_title_left'>日记必须上传视频</view>
+      <view class='switch_title_right'>
+        <view class="page__bd">
+          <view class="section section_gap">
+            <view class="body-view">
+              <switch checked="{{pageModel.isChecked3}}" bindchange="diaryUploadVideo" />
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="switch_title_wrap">
+      <view class='switch_title_left'>日记必须上传图片</view>
+      <view class='switch_title_right'>
+        <view class="page__bd">
+          <view class="section section_gap">
+            <view class="body-view">
+              <switch checked="{{pageModel.isChecked4}}" bindchange="diaryUploadPhoto" />
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="switch_title_wrap">
+      <view class='switch_title_left'>日记最少字数设置</view>
+      <view class='switch_list_right'>
+        <view class="number" bindtap='showActionSheet'>
+          {{currentAction=='不少于0'?'无':currentAction}}
+        </view>
+        <view class="arrow_img">
+          <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
+        </view>
+      </view>
+    </view>
+
+  </view>
+</view>
+
+<!-- 最少字数弹层 -->
+<action-sheet hidden="{{actionSheetHidden}}" bindchange="closeActionSheet">
+  <block wx:for="{{actionSheets}}" wx:key='' wx:for-item='item'>
+    <action-sheet-item class="item" data-min='{{item}}' bindtap="shooseAction">{{item}}</action-sheet-item>
+  </block>
+  <action-sheet-cancel class="cancel">取消</action-sheet-cancel>
+</action-sheet>

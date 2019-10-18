@@ -1,0 +1,23 @@
+<form bindsubmit='ADDRECEIPT'>
+  <view class='page'>
+    <view class='top'>
+      请选择该通知家长的回执方式
+    </view>
+    <radio-group bindchange="CHOOSETYPE" class='classbox'>
+      <view class='classlist' wx:for='{{receiptType}}' wx:key=''>
+        <view class='left'><image wx:if='{{item.img}}' src='{{item.img}}'></image>{{item.type}}</view>
+        <radio value='{{item.id}}' color='#f29219' checked='{{item.checked}}'></radio>
+      </view>
+    </radio-group>
+    <!-- <view class='bot'>
+      备注：如果不需要家长回执，可不选
+    </view> -->
+  </view>
+  <view class='bottomtab'>
+    <button class='look' data-type='1' form-type="submit">通知预览</button>
+    <!-- <button wx:if='{{true}}' class='set' data-type='2' >发布班级</button> -->
+    <button class='set' data-type='2' form-type="submit">完成</button>
+  </view>
+</form>
+
+<view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{message}}</view>

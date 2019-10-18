@@ -1,0 +1,69 @@
+.bookingsSuccess{
+  width: 750rpx;
+  background-color: #e6e5e6;
+  font-size: 26rpx;
+  overflow: hidden;
+}
+.booking{
+  font-size: 30rpx;
+  font-weight: bolder;
+  margin-bottom: 15rpx;
+ 
+}
+.booking_top{
+  text-align: center;
+  padding-top: 50rpx;
+  background-color: white;
+}
+
+
+.booking_detail,.goon_detail{
+  width: 120rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  border: 1rpx solid  #FF9800;
+  padding: 0 20rpx;
+  color:  #FF9800;
+  border-radius: 10rpx;
+
+}
+.goon_detail{
+  color:#8F8A8A;
+     border: 1rpx solid  #8F8A8A;
+}
+
+.booking_btn{
+  margin-top: 30rpx;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-bottom: 30rpx;
+
+}
+.booking_middle{
+  width: 720rpx;
+  padding: 0 15rpx;
+  background-color: white;
+  margin-top: 10rpx;
+ 
+
+}
+ .have_margins{
+  margin-bottom: 10rpx;
+}
+.weight{
+  font-size: 30rpx;
+   font-weight: bolder;
+
+}
+.booking_bottom{
+  background-color: white;
+  margin-top: 10rpx;
+  width: 720rpx;
+  padding: 0 15rpx;
+}
+.mycourse{
+  color: #306993;
+  
+}

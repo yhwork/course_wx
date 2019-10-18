@@ -1,0 +1,44 @@
+<view class='mynewBooking'>
+  <!-- payContent -->
+  <view class='pay_content'>
+    <view class='content_left'>
+      <image src="{{productInfo.imgVideo[0]}}" class='left_img'></image>
+    </view>
+    <view class='content_right'>
+      <view>
+        <text>{{productInfo.title}}</text>
+      </view>
+      <view>
+        <text>{{productInfo.subtitle}}</text>
+      </view>
+      <view class='right_text'>
+          <scroll-view scroll-x="true">
+           <text class='itemTexrt_brand' wx:for="{{lable=='[]'?'':lable}}" wx:key="index">{{item}}</text>
+        </scroll-view>
+      </view>
+    </view>
+  </view>
+  <!-- payContent -->
+  <view class='booking_top'></view>
+  <view class="booking_content">
+    <view class='content_title'>
+      <view>预约日期</view>
+      <view class='text-center'>预约时间</view>
+      <view class='text_lgin'>课程验证码</view>
+    </view>
+    <view class='booking_items'>
+      <view class='content_title' wx:for="{{apptsTimeList}}" wx:key="index">
+        <view>{{item.attr1}}</view>
+        <view  class='text-center'>{{item.attr2}}</view>
+        <view class='repair text_lgin'>{{item.code}}</view>
+      </view>
+    </view>
+        
+  </view>
+  <view class='orgnaztion'>
+    <view class='organaztion'>
+     <view>{{productInfo.orgAddress}}</view>
+     <view class='address'>{{productInfo.orgName}}</view>
+     </view>
+  </view>
+</view>

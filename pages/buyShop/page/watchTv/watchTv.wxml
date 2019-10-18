@@ -1,0 +1,28 @@
+<view>
+  <view >{{model.name}}</view>
+  <view class="video-container" wx:if="{{model.isvideo == 'true'}}">
+    <video id="myVideo" class="video" src="{{model.url}}" 
+    controls="{{controls}}"
+    bindended="endMovie"
+    play-btn-position="center"
+    enable-play-gesture="{{true}}"
+    enable-progress-gesture="{{false}}"
+    show-fullscreen-btn="{{true}}"
+    title="{{model.title}}"
+    bindfullscreenchange="handleFullScreen"
+    bindtimeupdate='onTimeUpdate'
+    initial-time='{{number_time}}'
+    bindpause='pause_video'
+    />
+    <!-- <cover-view  class='myplayvideo'>
+      <cover-image src=''></cover-image>
+    </cover-view> -->
+    <cover-view class="video-drag-disable">
+    </cover-view>
+  </view>
+
+  <view wx:if="{{model.isvideo == 'false'}}">
+    <image class="cover-img" src="{{model.img}}" />
+    <text >视频播放次数已经达到上限3次, 如果需要继续观看,请联系客服</text>
+  </view>
+</view>

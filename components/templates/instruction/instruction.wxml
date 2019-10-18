@@ -1,0 +1,20 @@
+<view class="desc-list">
+    <view class="desc">
+        <view class="desc-hd">1.课程总数：</view>
+        <view class="desc-bd">
+            根据课程周期以及每周上课的次数系统自动生成。例如：课程周期1个月，每周1次，则课程总次数为4。如果删除课程，则课程总数将减少相应的删除课程数量
+        </view>
+    </view>
+    <view class="desc">
+        <view class="desc-hd">2.已上次数：</view>
+        <view class="desc-bd">已到上课时间的课程次数</view>
+    </view>
+    <view class="desc">
+        <view class="desc-hd">3.未上次数：</view>
+        <view class="desc-bd">课程总数-已上次数</view>
+    </view>
+    <view class="desc">
+        <view class="desc-hd">4.关于课数：</view>
+        <view class="desc-bd">课程次数的准确性依赖于正确的操作，结果仅供参考</view>
+    </view>
+</view>

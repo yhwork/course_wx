@@ -1,0 +1,197 @@
+
+.section__title{
+  text-align: center;
+  font-weight: bold;
+  font-size: 36rpx;
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+}
+page{
+     height: 1219rpx;
+ }
+.page{
+    font-family: 'PingFang SC', 'Helvetica Neue', Helvetica, 'Droid Sans Fallback', 'Microsoft Yahei', sans-serif;
+    height: 100%;
+    background: #fff;
+    overflow: hidden;
+}
+.nav{
+    position: relative;
+    z-index: 99;
+    display: flex;
+    border-top: 1px solid #d1d3d4;
+    border-bottom: 1px solid #d1d3d4;
+    background: #fff;
+    width: 32%;
+    float: left;
+    border: 5rpx solid #efefef;
+}
+.nav-son{
+    display: flex;
+    flex: 1;
+    text-align: center;
+    height: 40px;
+    align-items:center;
+    justify-content:center;
+    font-size: 14px;
+
+}
+.borders{
+    border-left: 1px solid #e6e6e6;
+    border-right: 1px solid #e6e6e6;
+}
+.content{
+    display: inline-block;
+}
+.temp{
+    position: relative;
+    z-index: 4;
+}
+.temp1{
+    display: none;
+    width: 100%;
+    max-height: 550rpx;
+    overflow-y: scroll;
+    padding: 0 0 0 20rpx;
+    line-height:100rpx;
+    background: #fff;
+}
+.temp2{
+    display: none;
+    width: 100%;
+    max-height: 750rpx;
+    overflow-y: scroll;
+    padding: 0 0 0 20rpx;
+    line-height:100rpx;
+    background: #fff;
+}
+.slidedown{
+    transform:  translateY(0%);
+}
+.temp view{
+    border-bottom: 1px solid #d1d3d4;
+    font-size: 14px;
+    color: #666;
+}
+.quyu{
+    position: relative;
+    display: none;
+    height: 1230rpx;
+    z-index: 5;
+}
+.s{
+    overflow-y: scroll;
+    width: 100%;
+    height: 1020rpx;
+    /* 北京市昌平区实验小学 */
+}
+.quyu .qy{
+    overflow-y: scroll;
+    float: left;
+    width: 33.33%;
+    height: 1130rpx;
+    line-height: 80rpx;
+    box-sizing: border-box; 
+    font-size: 14px;
+    color: #717273;
+}
+.qy view{
+    text-overflow: ellipsis;
+    overflow: hidden; 
+    white-space:nowrap;  
+    padding-left: 15rpx; 
+}
+.quyu-left{
+    background: #f6f6f6;
+    text-align: center;
+}
+.quyu-center{
+    background: #f6f6f6;
+    text-align: center;
+}
+.quyu-right{
+    background: #f6f6f6;
+    text-align: center;
+}
+.quyu-right view{
+    border-bottom: 1px solid #f6f6f6;
+}
+.current{
+    background: #e0e0e0;
+}
+.current2{
+    background: #fff;
+}
+.fullbg{
+    position: fixed;
+    top:0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background: rgb(1, 1, 1);
+    transition: all 2s;
+    opacity: 0;
+}
+.fullopacity{
+    opacity: .5;
+}
+.nav-son.active .content{
+    color: black;
+}
+
+.icon{
+  color:#999999;
+  margin-left: 20rpx;
+  font-weight: normal
+}
+@keyframes slidown{
+    from{
+        transform:  translateY(-100%);
+    }
+    to{
+        transform:  translateY(0%);
+    }
+}
+.slidown{
+    display: block;
+    animation: slidown .7s ease-in both;
+}
+@keyframes slidup{
+    from{
+        transform:  translateY(0%);
+    }
+    to{
+        transform:  translateY(-100%);
+    }
+}
+.slidup{
+    display: block;
+    animation: slidup .7s ease-in both;
+}
+.disappear{
+    display: none;
+}
+
+
+
+.searchbar-result{
+    margin-top: 0;
+    font-size: 14px;
+}
+.searchbar-result:before{
+    display: none;
+}
+.weui-cell{
+    padding: 12px 15px 12px 35px;
+}
+.list{
+  padding: 10rpx;
+  padding-left: 20rpx;
+  background: #fff;
+  border-bottom: 3rpx solid #efefef;
+}
+
+.no_school{
+  text-align: center;
+  margin-top: 100rpx;
+}

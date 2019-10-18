@@ -1,0 +1,368 @@
+@import "../p_manage/schoolin_manage_edit.wxss";
+
+page {
+  background: #f4f4f4;
+}
+
+.date_time_change {
+  padding: 30rpx;
+  margin-top: 20rpx;
+  background: #fff;
+}
+
+.date_time_change .end {
+  color: #b2b2b2;
+}
+
+.hint {
+  margin-top: 0;
+}
+
+.name_ph {
+  display: flex;
+}
+
+.name_ph image {
+  width: 52rpx;
+  height: 52rpx;
+  margin-right: 20rpx;
+  border-radius: 50%;
+}
+
+.set_top {
+  padding: 0 30rpx;
+  background: #fff;
+}
+
+.info_top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24rpx 0;
+  border-bottom: 2rpx solid #e5e5e5;
+}
+
+.course_num {
+  font-size: 26rpx;
+  color: #555;
+}
+
+.info_foot {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 24rpx 0;
+}
+
+.course {
+  font-size: 34rpx;
+  color: #000;
+  line-height: 1em;
+}
+
+.class {
+  font-size: 26rpx;
+  color: #888;
+  margin-top: 20rpx;
+}
+
+.course_type {
+  width: 82rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  text-align: center;
+  font-size: 22rpx;
+  color: #ffbe00;
+  background: #fdf4e8;
+}
+
+.class_over_remind {
+  background: #fff;
+  margin-top: 20rpx;
+  /* padding: 0 30rpx; */
+}
+
+.submit {
+  width: 100%;
+  height: 94rpx;
+  border-radius: 10rpx;
+  margin: 0;
+  color: #fff;
+}
+
+.set_box {
+  background: #fff;
+  padding: 30rpx;
+  border-top: 2rpx solid #e5e5e5;
+  position: relative;
+}
+.line{
+  height: 2rpx;
+  width: 93%;
+  /* border-top: 2rpx solid #bbbbbb; */
+  position: absolute;
+  top: 50%
+}
+.set_box .title {
+  position: absolute;
+  left: 16rpx;
+  font-size: 34rpx;
+  color: #000;
+  line-height: 1em;
+}
+
+.set_box .title text {
+  color: #f95b58;
+  margin-left: 6rpx;
+}
+
+.set_list {
+  display: flex;
+  justify-content: space-between;
+  color: #888;
+  font-size: 0;
+}
+
+.set_item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 4rpx;
+  font-size: 26rpx;
+  line-height: 1em;
+  padding: 10rpx 0;
+}
+
+.set_item:not(:nth-last-child(1)) {
+  margin-right: 30rpx;
+}
+
+.set_item .set_all {
+  font-size: 28rpx;
+}
+
+.set_item .weekday {
+  font-size: 28rpx;
+  color: #353535;
+}
+/* .set_item picker{
+  margin-top: 30rpx;
+} */
+.complate {
+  background: #f29219;
+  color: #fff;
+}
+
+.complate .weekday {
+  color: #fff;
+}
+
+/* 一下修改 */
+
+.schoolin_class_info {
+  position: relative;
+}
+
+.ma-top {
+  margin-top: 40rpx;
+}
+
+.info_list {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10rpx 20rpx;
+  background: white;
+  margin-top: 2px;
+  white-space: nowrap;
+  /* border-bottom: 2rpx solid #cdcecd; */
+  height: 60rpx;
+}
+
+.info_list_icon {
+  width: 38rpx;
+  height: 36rpx;
+  margin-right: 28rpx;
+}
+
+.info_list_icon {
+  width: 38rpx;
+  height: 36rpx;
+  margin-right: 28rpx;
+}
+
+.import {
+  color: red;
+  margin-left: 10rpx;
+  position: absolute;
+  top: 25rpx;
+  left: 50rpx;
+}
+
+.class_length {
+  /* width: 60%; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+}
+.class_length text{
+  white-space:nowrap;
+  font-size: 24rpx;
+}
+.text{
+  float: right;
+}
+.class_picker {
+  white-space: nowrap;
+  width: 100%;
+  text-align: left;
+}
+
+.school {
+  margin-left: 10rpx;
+  font-size: 28rpx;
+  color: #808080;
+}
+
+.selected {
+  background: #fff;
+  color: #808080;
+}
+
+.al_center {
+  width: 64%;
+}
+
+.text_len {
+  display: block;
+  width: 460rpx;
+  font-size: 28rpx;
+}
+
+/* 表格 */
+
+.table {
+  border: 0px solid darkgray;
+  font-size: 12px;
+  padding: 18rpx;
+  background: white;
+}
+
+.tr {
+  display: flex;
+  /* width: 2700rpx; */
+  align-items: center;
+  /* border: 2rpx solid #bbbbbb; */
+}
+
+.tr .td {
+  border: 2rpx solid #bbb;
+  width: 17%;
+  height: 48rpx;
+  justify-content: center;
+  text-align: center;
+  word-wrap: break-word;
+  flex-shrink: 0;
+  line-height: 48rpx;
+}
+
+.td:nth-child(1) {
+  width: 50rpx;
+}
+
+.schoolin_class_tips {
+  padding: 0 20rpx;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 28rpx;
+  color: #cdcecd;
+}
+
+.name {
+  font-size: 28rpx;
+}
+
+.class_tips {
+  height: 32rpx;
+  width: 32rpx;
+  margin-right: 10rpx;
+}
+
+.school image {
+  width: 30rpx;
+  height: 40rpx;
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+}
+.endtime{
+  font-size: 28rpx;
+  color:#353535;
+  margin-top: 50rpx;
+  padding-top: 20rpx;
+}
+.endtimer{
+  font-size: 24rpx;
+  color:#353535;
+  margin-top: 50rpx;
+  padding-top: 20rpx;
+}
+/* 完成分享 */
+.sharefrends {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.mb {
+  width: 540rpx;
+  height: 626rpx;
+  background: #fff;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  margin-top: -300rpx;
+  margin-left: -270rpx;
+}
+
+.sharefrends .del{
+  position: absolute;
+  top: -10rpx;
+  right: -10rpx;
+  width: 50rpx;
+  height: 50rpx;
+}
+.sharefrends .img{
+  width: 100%;
+  height: 100%;
+}
+
+
+.sharefrends button{
+  position: absolute;
+  bottom: 20rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 406rpx;
+  height:84rpx;
+  border-radius: 0;
+  background-color: rgba(1, 1, 1, 0);
+  border: none;
+  background: #2eb02d;
+  line-height: 84rpx;
+}
+.help-i{
+  font-size: 24rpx;
+}
+
+.tishi{
+  color: red;
+  font-size: 22rpx;
+  margin-left: -20rpx;
+}

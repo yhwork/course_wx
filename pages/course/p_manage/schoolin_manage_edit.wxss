@@ -1,0 +1,531 @@
+/* pages/course/p_manage/schoolin_manage_edit.wxss */
+@import '../p_add/schoolout_add1.wxss';
+@import "../p_add/schoolin_add3.wxss";
+
+.rili {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+}
+
+.main_start_time {
+  top: 2rpx;
+  font-size: 14rpx;
+  width: 50%;
+  float: right;
+}
+
+.main_start_time view {
+  text-align: right;
+}
+.inputclass{
+  text-align: right;
+}
+.inputclass::-webkit-input-placeholder {
+  text-align: right;
+}
+.set_box_tishi{
+  padding: 10rpx 30rpx;
+  color: red;
+  font-size: 28rpx;
+  background-color: #fff;
+  margin-top: 5rpx;
+}
+.classname {
+  width: 100%;
+  text-align: right;
+}
+
+.top {
+  height: 90rpx;
+  line-height: 90rpx;
+  width: 100%;
+  padding-left: 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1rpx solid #ccc;
+  box-sizing: border-box;
+}
+
+.class_warn {
+  top: 0rpx;
+  float: right;
+  width: 50%;
+}
+
+
+.top image {
+  width: 38rpx;
+  height: 36rpx;
+  vertical-align: middle;
+  line-height: 25rpx;
+  margin-right: 0;
+}
+
+.top .xingxing {
+  color: red;
+  margin-left: 10rpx;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.top .name {
+  color: #000;
+  font-size: 30rpx;
+  margin-left: 8rpx;
+  white-space: nowrap;
+}
+
+.setclassname{
+  font-size: 28rpx;
+  
+}
+.top .school {
+  color: #888;
+}
+
+.top .img {
+  margin-right: 30rpx;
+}
+
+.text_col {
+  color: #888;
+  font-size: 30rpx;
+}
+
+.photo_box {
+  position: relative;
+  width: 84rpx;
+  height: 84rpx;
+}
+
+.edit_btn1 {
+  width: 32rpx;
+  height: 32rpx;
+  position: absolute;
+  right: -6rpx;
+  top: 35rpx;
+}
+
+.photo {
+  width: 84rpx;
+  height: 84rpx;
+  border-radius: 84rpx;
+}
+
+.th, .tr {
+  border-bottom: none;
+}
+
+.photo_box .sex {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.page_topRight {
+  margin-left: 30rpx;
+}
+
+.page_topRight .course_num {
+  font-size: 26rpx;
+  color: #555;
+  line-height: 1em;
+  margin-top: 14rpx;
+}
+
+.basic_info {
+  height: 174rpx;
+  overflow: hidden;
+  padding: 0 30rpx;
+  background: #fff;
+  transition: all 0.5s;
+}
+
+.basic_top_item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 86rpx;
+  border-bottom: 2rpx solid #e6e6e6;
+}
+
+.info_list {
+  padding: 10rpx 30rpx;
+}
+
+.class_picker {
+  width: 100%;
+  text-align: right;
+}
+
+.import {
+  left: 63rpx;
+  top: 17rpx;
+}
+
+.basic_top_left {
+  display: flex;
+  align-items: center;
+}
+
+.coursebox {
+  border-bottom: 1rpx solid #ccc;
+  padding: 10rpx 0;
+}
+
+.basic_top_left image {
+  margin-right: 12rpx;
+}
+
+.school_name image {
+  width: 34rpx;
+  height: 32rpx;
+}
+
+.basic_top_item .class image {
+  width: 32rpx;
+  height: 32rpx;
+}
+
+.basic_top_item .school_begin image {
+  width: 30rpx;
+  height: 34rpx;
+}
+
+.basic_top_item .school_end image {
+  width: 30rpx;
+  height: 34rpx;
+}
+
+.hint {
+  display: flex;
+  margin-top: 40rpx;
+  font-size: 26rpx;
+  color: #888;
+}
+
+.hint_img {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 20rpx;
+}
+
+.date_change, .time_change_top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.date_change, .time_change {
+  border: 2rpx solid #e6e6e6;
+  border-radius: 8rpx;
+  padding: 40rpx 0;
+  margin-top: 30rpx;
+}
+
+.dao image {
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.weui .se
+.date_time_change {
+  font-size: 46rpx;
+  color: #000;
+}
+
+.date_time_change .title {
+  font-size: 26rpx;
+  color: #f29219;
+  margin-bottom: 30rpx;
+}
+
+.change_left {
+  text-align: right;
+  margin-right: 50rpx;
+}
+
+.change_right {
+  margin-left: 50rpx;
+}
+
+.weekday {
+  font-size: 30rpx;
+  /* border-bottom: 2rpx solid #bbbbbb; */
+}
+
+.time_change_bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 330rpx;
+  height: 70rpx;
+  border-radius: 38rpx;
+  border: 2rpx solid #f29219;
+}
+
+.time_change_bottom {
+  font-size: 30rpx;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  margin: 30rpx auto 0 auto;
+}
+
+.time_change_bottom input {
+  width: 60rpx;
+  text-align: center;
+}
+
+.time_change_bottom text {
+  color: #f29219;
+}
+
+.class_over_remind {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 88rpx;
+  margin-top: 40rpx;
+  font-size: 34rpx;
+}
+
+.over_remind_tight {
+  display: flex;
+  align-items: center;
+  margin-right: 20rpx;
+  width: 63%;
+}
+
+.over_remind_t {
+  display: flex;
+  align-items: center;
+  margin-right: 20rpx;
+  width: 100%;
+}
+
+.over_remind_tight image {
+  width: 30rpx;
+  height: 40rpx;
+  position: absolute;
+  right: 20rpx;
+  margin-left: 18rpx;
+}
+
+.shrink_btn {
+  height: 66rpx;
+  line-height: 66rpx;
+  color: #f29219;
+  text-align: center;
+  background: #fff;
+}
+
+.slect_tab {
+  border-bottom: none;
+}
+
+.course_set {
+  margin-top: 100rpx;
+  background: #fff;
+  margin-bottom: 100rpx;
+}
+
+.course_set .title {
+  font-size: 34rpx;
+  color: #000;
+  padding: 20rpx 30rpx;
+}
+
+.odd_even {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 30rpx;
+}
+
+.odd_even_left {
+  display: flex;
+  font-size: 28rpx;
+}
+
+.odd_even_left text {
+  white-space: nowrap;
+}
+
+.odd_even_left>view {
+  display: flex;
+  align-items: center;
+}
+
+.odd_even_left .dian {
+  width: 24rpx;
+  height: 24rpx;
+  border-radius: 24rpx;
+  margin-right: 6rpx;
+}
+
+.odd .dian {
+  background: #f29219;
+}
+
+.even .dian {
+  background: #f95b58;
+}
+
+.odd, .even {
+  display: flex;
+  align-items: center;
+}
+
+.even {
+  margin-left: 40rpx;
+}
+
+.wx-switch-input {
+  width: 102rpx !important;
+  height: 62rpx !important;
+  background: #f29219 !important;
+  border: #f29219 !important;
+}
+
+.wx-switch-input::before {
+  width: 100rpx !important;
+  height: 58rpx !important;
+  position: absolute;
+  top: 2rpx !important;
+}
+
+.thead .td {
+  background: #fdf4e8;
+}
+
+.course_table .firstTd {
+  width: 70rpx;
+  font-size: 22rpx;
+  color: #888;
+  background: #eee;
+  padding: 10rpx;
+  box-sizing: border-box;
+}
+
+.tr .td {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 136rpx;
+  height: 68rpx;
+  border-bottom: 2rpx solid #e5e5e5;
+  border-left: 2rpx solid #e5e5e5;
+  font-size: 28rpx;
+}
+
+
+.c_select {
+  background: #f29219;
+  color: #fff;
+}
+
+
+
+
+
+.course_table .hint {
+  padding-left: 30rpx;
+  position: relative;
+}
+
+.hitn_detail {
+  max-width: 440rpx;
+}
+
+.edit_btn {
+  position: absolute;
+  top: 0;
+  right: 30rpx;
+  color: #f29219;
+  font-size: 26rpx;
+}
+
+.submit {
+  width: 100%;
+  height: 94rpx;
+  border-radius: 10rpx;
+  margin: 0;
+}
+
+.button-hover {
+  background: #f29219;
+}
+
+.set_box {
+  background: #fff;
+  padding: 30rpx;
+  /* border-top: 2rpx solid #e5e5e5; */
+  position: relative;
+}
+
+.line {
+  height: 2rpx;
+  width: 93%;
+  /* border-top: 2rpx solid #bbbbbb; */
+  position: absolute;
+  top: 50%;
+}
+
+.set_box .title {
+  position: absolute;
+  left: 16rpx;
+  font-size: 34rpx;
+  color: #000;
+  line-height: 1em;
+}
+
+.set_box .title text {
+  color: #f95b58;
+  margin-left: -18rpx;
+}
+
+.set_list {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  color: #888;
+  font-size: 0;
+  align-items: center;
+}
+
+.set_item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 4rpx;
+  font-size: 26rpx;
+  line-height: 1em;
+  padding: 10rpx 0;
+}
+
+.set_item .set_all {
+  font-size: 28rpx;
+}
+
+.set_item .weekday {
+  font-size: 28rpx;
+  color: #353535;
+  white-space: nowrap;
+}
+
+.endtimer {
+  font-size: 28rpx;
+  color: #353535;
+  margin-top: 35rpx;
+  padding-top: 30rpx;
+  white-space: nowrap;
+}

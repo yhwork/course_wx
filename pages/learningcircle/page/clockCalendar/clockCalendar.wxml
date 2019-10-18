@@ -1,0 +1,213 @@
+<!--pages/circle/clockCalendar/clockCalendar.wxml-->
+<view class='basic_info'>
+  <view class='tit'>
+    <view class='title'>{{communityInfo.communityName}}</view>
+    <view class='photo'>
+      <image src='{{communityInfo.masterLogo}}'></image>
+      <view class='sex'></view>
+    </view>
+    <view class='basic_news'>
+      <view class='clock_card_box'>
+        <view class='clock_card'>
+          <text class='clock_num clock_card_text'>{{staticNumInfo.succeSigninNum}}</text>
+          <view class='clock_type'>
+            <!-- <image src='../../../../assets/img/editor.png'></image> -->
+            <text class='clock_card_text'>正常打卡</text>
+          </view>
+        </view>
+        <view class='clock_card'>
+          <text class='clock_num clock_punch_text'>{{staticNumInfo.reSigninNum}}</text>
+          <view class='clock_type'>
+            <!-- <image src='../../../../assets/img/editor.png'></image> -->
+            <text class='clock_punch_text'>补打卡</text>
+          </view>
+        </view>
+        <view class='clock_card'>
+          <text class='clock_num clock_num_text'>{{staticNumInfo.signinNum}}</text>
+          <view class='clock_type'>
+            <!-- <image src='../../../../assets/img/editor.png'></image> -->
+            <text class='clock_num_text'>总天数</text>
+          </view>
+        </view>
+        <!-- <button class='clock_share'>分享成就</button> -->
+      </view>
+    </view>
+  </view>
+  <!-- <view class='basic_right'> -->
+  <!-- <view class='name'>{{communityInfo.communitySlogan}}</view> -->
+  <!-- <view class='title_time'> -->
+
+  <!-- <view class='time'>{{communityInfo.communityAddTime}}</view> -->
+  <!-- </view> -->
+  <!-- </view> -->
+</view>
+<view style='height:100rpx;'></view>
+<view class='subject_list_box'>
+  <view class='subject_list'>
+    主题列表
+  </view>
+  <navigator url='../allTheme/allTheme?communityId={{communityId}}&level={{communityInfo.level}}&type={{communityInfo.communityType}}&communityType={{communityInfo.communityType}}'>
+    <view class='subject_all'>
+      <text class='subject'>查看发布的全部主题</text>
+      <text class='fa fa-angle-right'></text>
+    </view>
+  </navigator>
+</view>
+
+<view class='clock_time'>
+  <view class='clock_time_item'>2018-08-12~2018-09-07</view>
+  <view class='clcok_item_type'>
+    <view class='item_type'>
+      <view class='spot spot_bg1'></view>
+      <text class='clock_card_text'>正常打卡</text>
+    </view>
+    <view class='item_type'>
+      <view class='spot spot_bg2'></view>
+      <text class='clock_punch_text'>补打卡</text>
+    </view>
+    <view class='item_type'>
+      <view class='spot spot_bg3'></view>
+      <text class='clock_num_text'>未打卡</text>
+    </view>
+    <text class='clock_num_text'>点击日期进入当日主题</text>
+
+
+
+
+
+
+
+  </view>
+</view>
+
+
+
+
+
+
+
+
+
+
+<!-- <view class='clock_days'> -->
+<!-- <view class='total_days'>
+    <text>打卡天数</text>
+    <view class='total_days_num'>{{staticNumInfo.yearSignInTimes}}</view>
+  </view> -->
+<!-- <view class='curr_month_days'>
+    <view class='current_total'>
+      <view class='num'>{{staticNumInfo.signInDaysTimes}}</view>
+      当月打卡天数(天)
+    </view>
+    <view class='current_continuous'>
+      <view class='num'>{{staticNumInfo.monthKeepTimes}}</view>
+      当月持续打卡天数(天)
+    </view>
+    <view class='repair_clock'>
+      <view class='num'>{{staticNumInfo.reSignInDays}}</view>
+      已补打卡天数
+    </view>
+  </view> -->
+<!-- </view> -->
+
+<!-- 日历 -->
+<calendarDiary catch:next-month="CALENDAR_MONTH_CHANGED" catch:prev-month="CALENDAR_MONTH_CHANGED" diaryInfo="{{diaryInfo}}" />
+
+
+<!-- <view class='calendar_mask'>
+  <view class='calendar'>
+    <view class='calendar_head'>
+      <view class='prev_tab' bindtap="PREV_MONTH">
+        <image src='../../../assets/img/prev.png'></image>
+      </view>
+      <view class='calendar_title'>{{formatDate}}</view>
+      <view class='next_tab' bindtap="NEXT_MONTH">
+        <image src='../../../assets/img/next.png'></image>
+      </view>
+    </view>
+    <view class='calendar_body'>
+
+      <view class='week tr'>
+        <block>
+          <view class='td'>周一</view>
+          <view class='td'>周二</view>
+          <view class='td'>周三</view>
+          <view class='td'>周四</view>
+          <view class='td'>周五</view>
+          <view class='td'>周六</view>
+          <view class='td'>周日</view>
+        </block>
+      </view>
+      <view class='tr'>
+        <view class='td'>1</view>
+        <view class='td'>2</view>
+        <view class='td'>3</view>
+        <view class='td'>4</view>
+        <view class='td'>5</view>
+        <view class='td'>6</view>
+        <view class='td absent'>7</view>
+      </view>
+      <view class='tr'>
+        <view class='td'>8</view>
+        <view class='td'>9</view>
+        <view class='td'>10</view>
+        <view class='td'>11</view>
+        <view class='td'>12</view>
+        <view class='td'>13</view>
+        <view class='td'>14</view>
+      </view>
+      <view class='tr'>
+        <view class='td'>15</view>
+        <view class='td'>16</view>
+        <view class='td'>17</view>
+        <view class='td'>18</view>
+        <view class='td'>19</view>
+        <view class='td select'>20</view>
+        <view class='td select'>21</view>
+      </view>
+      <view class='tr'>
+        <view class='td'>22</view>
+        <view class='td attend'>23</view>
+        <view class='td'>24</view>
+        <view class='td date_active'>今天</view>
+        <view class='td'>26</view>
+        <view class='td'>27</view>
+        <view class='td'>28</view>
+      </view>
+      <view class='tr'>
+        <view class='td noton'>29</view>
+        <view class='td'>30</view>
+        <view class='td'>31</view>
+        <view class='td o_month'>1</view>
+        <view class='td o_month'>2</view>
+        <view class='td o_month'>3</view>
+        <view class='td o_month'>4</view>
+      </view>
+    </view>
+  </view>
+</view> -->
+<view class='clock_today'>
+  <image src='../../../../assets/img/editor.png'></image>
+  <text>2018-12-21打卡日记</text>
+</view>
+<view class='clock_content'>
+
+
+
+
+
+
+
+</view>
+
+
+
+
+
+
+
+
+
+
+<!-- 打卡 -->
+<view class='clock' bindtap='daka' data-id='{{communityInfo.id}}' data-comid='{{communityInfo.communityId}}' wx:if='{{subid!=""&&subid!=null}}'>打卡</view>

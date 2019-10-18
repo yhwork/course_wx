@@ -1,0 +1,63 @@
+<view class='manege'>
+  <view class='page__bd_list_class'>
+    <view class='weui-cell__hd'>
+      班级头像
+    </view>
+    <view class="weui-cell__bd">
+      <view class='weui-select weui-select_in-select-after weui-cell__ft text_ft classlogobox' bindtap="REVISE_LOGO">
+        <image class='classlogo' src='{{classinfo.classLogo}}'></image>
+      </view>
+    </view>
+  </view>
+  <view class='page__bd_list_class'>
+    <view class='weui-cell__hd'>
+      班级名称
+    </view>
+    <view class="weui-cell__bd">
+      <view class='weui-select weui-select_in-select-after weui-cell__ft text_ft' bindtap="REVISE_NAME">
+        {{classinfo.className}}
+      </view>
+    </view>
+  </view>
+  <view class='page__bd_list_class'>
+    <view class='weui-cell__hd'>
+      班级群号
+    </view>
+    <view class="weui-cell__bd">
+      <view class='classid' bindtap="SELECT_XN_CLASS">
+        {{classId}}
+      </view>
+    </view>
+  </view>
+  <view class='page__bd_list_class'>
+    <view class='weui-cell__hd'>
+      邀请进群
+    </view>
+    <view class="weui-cell__bd">
+      <button class='weui-select weui-select_in-select-after weui-cell__ft text_ft' open-type='share'></button>
+      <!-- <view class='weui-select weui-select_in-select-after weui-cell__ft text_ft' bindtap="SHARE_CLASS"></view> -->
+    </view>
+  </view>
+  <view class='page__bd_list_class'>
+    <view class='weui-cell__hd'>
+      移出班级
+    </view>
+    <view class="weui-cell__bd">
+      <view class='weui-select weui-select_in-select-after weui-cell__ft text_ft' bindtap="REMOVE_CLASS"></view>
+    </view>
+  </view>
+  <!-- <view class='page__bd_list_class'>
+    <view class='weui-cell__hd'>
+      班级合并
+    </view>
+    <view class="weui-cell__bd">
+      <view class='weui-select weui-select_in-select-after weui-cell__ft text_ft' bindtap="MERGE_CLASS"></view>
+    </view>
+  </view> -->
+</view>
+
+<view class='delclass' bindtap='del_class'>解散班群</view>
+
+
+
+<canvas data-id="{{shareInfo.signInId}}" class="share-canvas" width="{{width}}" height="{{height}}" style="width:{{shareCavansOptions.width}}px;height:{{shareCavansOptions.height}}px;visibility:hidden;position:absolute;top:-1000rpx;" canvas-id="share_canvas"></canvas>

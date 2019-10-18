@@ -1,0 +1,13 @@
+/* pages/course/addCalendar/addCalendar.wxss */
+@import "/pages/course/courseList/courseList";
+page{
+  background: #fff;
+}
+.label_box{
+  padding: 0 80rpx;
+}
+.title_box{
+   padding: 0 40rpx;
+   color: #ff9800;
+   margin-top: 30rpx;
+}

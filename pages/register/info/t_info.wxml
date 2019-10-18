@@ -1,0 +1,88 @@
+<view class='page'>
+  <view class="page_hd">
+    <view class='main_head'>
+      <image src="{{xinxi}}" class='head_img' mode="widthFix"></image>
+      <view class="infor">完善信息</view>
+    </view>
+  </view>
+
+
+  <view class="page_bd">
+    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{message}}</view>
+    <view class='main_body'>
+      <text class="wenzi">学校类型</text>
+      <view class="main_body_right">
+        <radio-group class="radio-group" bindchange="CHANGE_TYPE">
+          <label class="radio" wx:for="{{types}}" wx:key='idx'>
+            <radio value="{{item.value}}" checked="{{item.checked}}" />{{item.name}}
+          </label>
+        </radio-group>
+      </view>
+
+    </view>
+    <view class='line'></view>
+    <view>
+      <view class="weui-cell">
+        <view class="weui-cell__bd b">
+          <text class='name' style="font-size:28rpx;">姓 <text decode="{{true}}" space="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>名</text>
+          <text style="margin-left: 10rpx;font-size:30rpx;color:#ef5955;">*</text>
+        </view>
+        <input type="text" class="weui-cell__ft" placeholder="请填写" bindblur="CHANGE_NAME" value="{{model.name}}" />
+      </view>
+
+      <block wx:if="{{model.type==2}}">
+        <view class="weui-cell">
+          <view class="weui-cell__bd b">
+            <text style="font-size:28rpx;">教学机构</text>
+            <text style="margin-left: 10rpx;font-size:30rpx;color:#ef5955;">*</text>
+          </view>
+          <input type="text" class="weui-cell__ft" placeholder="请输入机构名称" bindblur="CHANGE_SCHOOLNAME" value="{{model.schoolname}}" />
+        </view>
+      </block>
+      <block wx:else>
+        <view class="weui-cell">
+          <view class="weui-cell_bd">
+            <text style="font-size:28rpx;">任教学校</text>
+            <text style="margin-left: 10rpx;font-size:30rpx;color:#ef5955;">*</text>
+
+          </view>
+          <navigator url="../../mypage/school/school?comefrom=teacher">
+            <view class="weui-cell__bd">
+              <view class="weui-select weui-select_in-select-after .weui-cell__ft shoose {{school_selected?'selected':''}}">
+                {{model.schoolname ? model.schoolname : '请选择学校'}}</view>
+            </view>
+          </navigator>
+
+        </view>
+      </block>
+
+      <view class="weui-cell">
+        <view class="weui-cell__bd b">
+          <text style="font-size:28rpx;">教学科目</text>
+          <text style="margin-left: 10rpx;font-size:30rpx;color:#ef5955;">*</text>
+        </view>
+
+        <navigator url="../../category/category">
+          <view class="weui-cell__bd">
+            <view class="weui-select weui-select_in-select-after .weui-cell__ft shoose">
+              {{model.subject ? model.subject : '请选择科目'}}</view>
+          </view>
+        </navigator>
+
+      </view>
+
+      <!-- <view class="weui-cell">
+        <view class="weui-cell__bd b">
+          <text style="font-size:28rpx;">班级名称</text>
+        </view>
+        <input type="text" class="weui-cell__ft" maxlength="10" placeholder="请输入班级名称" bindinput="CHANGE_CLASSNAME" value="{{model.className}}" />
+      </view> -->
+
+    </view>
+    <view class="main_bottom">
+      <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/care.png" class='care_img' mode="widthFix"></image>
+      <view class='bottom_wenzi'>为方便您顺利的开展教学工作，同时保证平台的真实严肃性，方便您的学生和同事找到您，请务必填写真实姓名及学校信息</view>
+    </view>
+  </view>
+  <button bindtap="SAVE_NEXT">完成</button>
+</view>

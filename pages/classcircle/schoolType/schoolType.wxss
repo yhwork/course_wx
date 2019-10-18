@@ -1,0 +1,36 @@
+page{
+  background-color: #fff;
+}
+.top{
+  text-align: center;
+}
+.top image{
+  width: 90%;
+  height: 390rpx;
+}
+.tearch{
+  font-size: 34rpx;
+  font-weight: bold;
+  margin-bottom: 60rpx;
+}
+radio-group{
+  display: flex;
+  justify-content: space-around;
+}
+.type{
+  font-size: 28rpx;
+  color: #888;
+  margin-bottom: 50rpx;
+}
+.btn{
+  height: 80rpx;
+  width: 96%;
+  position: fixed;
+  bottom: 30rpx;
+  left: 2%;
+  color: white;
+  background-color: #f29219;
+  text-align: center;
+  line-height: 80rpx;
+  border-radius: 10rpx;
+}

@@ -1,0 +1,76 @@
+<template name="alld">
+<view class='allcourse_wrap'>
+  <!-- 头部开始 -->
+  <view class='flex_wrap'>
+    <view wx:for="{{coursearray}}" wx:key="index" data-index='{{index}}' wx:for-index="index" bindtap='opencourse'>
+      <text class='{{activeIndex==index?"bg":"textF"}}'>
+      {{item}}
+      </text>
+    </view>
+  </view>
+  <!-- 头部结束 -->
+  <!-- tab -->
+  <view class="varies">
+    <!-- 一年级开始 -->
+    <view class='one' wx:if="{{activeIndex==0}}">
+      <view wx:for="{{chooseCourse}}" wx:key="idx" data-idx='{{idx}}' wx:for-index="idx" catchtap='passindex'>
+        <text>{{item}}</text>
+        <text>{{idx}}</text>
+      </view>
+
+    </view>
+    <!-- 一年级结束 -->
+    <!-- 二年级开始 -->
+    <view class='one' wx:if="{{activeIndex==1}}">
+      <view wx:for="{{['舞蹈',2,3,4,5,6]}}" wx:key="index">
+        {{item}}
+      </view>
+    </view>
+    <!-- 二年级结束 -->
+    <!-- 三年级 -->
+    <view class='one' wx:if="{{activeIndex==2}}">
+      <view wx:for="{{[1,2,3,4,5,6]}}" wx:key="index">
+        {{item}}
+      </view>
+    </view>
+    <!-- 四年级-->
+    <view class='one' wx:if="{{activeIndex==3}}" wx:key="index">
+      <view wx:for='{{["a","b","c",4,5,6]}}'>
+        {{item}}
+      </view>
+    </view>
+    <!-- 四年级 -->
+    <!-- 五年级 -->
+    <view class='one' wx:if="{{activeIndex==4}}" wx:key="index">
+      <view wx:for='{{["five","sxiex","c",4,5,6]}}'>
+        {{item}}
+      </view>
+    </view>
+    <!-- 五年级 -->
+    <!-- 六年级 -->
+    <view class='one' wx:if="{{activeIndex==5}}" wx:key="index">
+      <view wx:for='{{["sioxddddd","sxiex","c",4,5,6]}}'>
+        {{item}}
+      </view>
+    </view>
+    <!-- 六年级 -->
+  </view>
+  <!-- 三级选择   开始 -->
+  <view class="choose" hidden='{{allcourseshow}}'>
+    <view wx:if="{{chooseIndex==0}}">
+      <view wx:for='{{variesmusic}}'>
+        {{item}}
+      </view>
+    </view>
+  </view>
+
+  <view class="choose" hidden='{{danceshow}}'>
+    <view wx:if="{{chooseIndex==1}}">
+      <view wx:for='{{dance}}'>{{item}}</view>  
+    </view>
+  </view>
+  <!-- 三级选择   结束 -->
+</view>
+</template>
+
+

@@ -1,0 +1,65 @@
+/* pages/circle/circleReport/circleReport.wxss */
+
+page{
+  padding: 30rpx;
+  color: #888;
+  background: #fff;
+}
+.rea_title{
+  font-size: 30rpx;
+}
+.reason_list{
+  margin-top: 10rpx;
+}
+.reason_item{
+  display: inline-block;
+  width: 50%;
+  margin-top: 50rpx;
+  position: relative;
+  color: #666;
+}
+.reason_item .circle{
+  display: inline-block;
+  width: 42rpx;
+  height: 42rpx;
+  border-radius: 46rpx;
+  border: 1rpx solid #C9C9C9;
+  vertical-align: top;
+}
+.reason{
+  display: inline-block;
+  margin-left: 20rpx;
+}
+.select_img{
+  width: 46rpx;
+  height: 46rpx;
+  position: absolute;
+}
+.remark{
+  margin-top: 50rpx;
+}
+.remark textarea{
+  width: 690rpx;
+  height: 300rpx;
+  border: 1rpx solid #E0E0E0;
+  border-radius:8rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+  font-size:26rpx;
+  color: #666;
+}
+.submit{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 60rpx;
+  font-family:PingFangSC-Regular;
+  height: 94rpx;
+  width: 670rpx;
+  line-height: 94rpx;
+  border-radius: 10rpx;
+  text-align: center;
+  background: #F29219;
+  color: #fff;
+  font-size: 36rpx;
+}

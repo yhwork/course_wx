@@ -1,0 +1,34 @@
+<!--pages/circle/circleSet/circleSet.wxml-->
+<view class='basic_info'>
+  <view class='photo_box'>
+    <image class='photo' src='{{model.masterLogo}}'>
+    </image>
+    <image class='sex' src='{{model.gender}}'></image>
+  </view>
+  <view class='info_right'>
+    <view class='name'>{{model.masterRealName}}</view>
+    <view class='title'>{{model.communityName}}</view>
+  </view>
+</view>
+<view class='set_list'>
+  <view class='set_item' bindtap='signDateTimeSetBind'>
+    <view class='set_title'>打卡日期时间设置</view>
+    <view class='fa fa-angle-right'></view>
+  </view>
+  <view class='set_item' bindtap='repairClockSetBind'>
+    <view class='set_title'>补打卡设置</view>
+    <view class='fa fa-angle-right'></view>
+  </view>
+  <view class='set_item' bindtap='signWarnTimeRuleBind'>
+    <view class='set_title'>打卡提醒时间设置</view>
+    <view class='fa fa-angle-right'></view>
+  </view>
+  <view class='set_item' bindtap='privacySetBind'>
+    <view class='set_title'>隐私设置</view>
+    <view class='fa fa-angle-right'></view>
+  </view>
+  <view class='set_item' bindtap='diaryRuleSetBind'>
+    <view class='set_title'>日记规则设置</view>
+    <view class='fa fa-angle-right'></view>
+  </view>
+</view>

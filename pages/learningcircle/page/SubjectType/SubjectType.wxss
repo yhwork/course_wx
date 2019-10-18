@@ -1,0 +1,71 @@
+.SubjectType_tit {
+  padding: 20rpx 30rpx;
+  font-size: 32rpx;
+}
+
+.SubjectType_tit_explain {
+  padding: 0 30rpx;
+  font-size: 28rpx;
+  color: #bbb;
+}
+
+.SubjectType_box {
+  padding: 50rpx 0;
+}
+
+.SubjectType image {
+  padding: 20rpx 0;
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  top:0rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  display: block
+}
+
+.SubjectType text {
+  font-size: 32rpx;
+}
+
+.SubjectType_explain, .SubjectType_remark {
+  padding: 0 30rpx;
+  font-size: 28rpx;
+  color: #bbb;
+}
+
+.creat {
+  font-family: PingFangSC-Regular;
+  height: 94rpx;
+  width: 100%;
+  line-height: 94rpx;
+  border-radius: 10rpx;
+  text-align: center;
+  background: #f29219;
+  color: #fff;
+  font-size: 36rpx;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.SubjectType{
+margin-top: 50rpx;
+} 
+.radio-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  /* height: 130rpx; */
+  
+}
+.radio {
+  padding: 20rpx;
+  padding-top: 80rpx;
+  background: white;
+  box-shadow: #bbb 0px 0px 10px;
+  border-radius: 5px;
+  margin: 0 20rpx;
+  position: relative;
+}
+

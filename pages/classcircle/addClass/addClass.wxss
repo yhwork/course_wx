@@ -1,0 +1,62 @@
+page {
+  background-color: #fff;
+}
+
+.wrap {
+  padding: 0 30rpx;
+}
+
+.title {
+  text-align: center;
+  padding: 30rpx 0;
+}
+
+.content {
+  font-size: 28rpx;
+  color: #852948;
+  margin-bottom: 50rpx;
+}
+
+.info image {
+  width: 50rpx;
+  height: 30rpx;
+  margin-right: 15rpx;
+}
+
+.info>view {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 40rpx;
+  white-space: nowrap;
+}
+
+.info>view input {
+  border-bottom: 2rpx solid #bbb;
+  width: 100%;
+}
+
+.addsubject .addimg {
+  width: 30rpx;
+  height: 30rpx;
+  border: 2rpx solid #f29219;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.save {
+  background-color: #f29219;
+  color: white;
+  width: 96%;
+  line-height: 80rpx;
+  font-size: 32rpx;
+  text-align: center;
+  height: 80rpx;
+  border-radius: 10rpx;
+  position: fixed;
+  bottom: 30rpx;
+  left: 2%
+}
+picker{
+  width: 100%;
+}

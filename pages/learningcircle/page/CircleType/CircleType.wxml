@@ -1,0 +1,29 @@
+<view class="CircleType_tit  {{selected?'selected':''}}">
+  <text>请选择圈子标签(最多三个)</text>
+</view>
+<!-- 类型列表 -->
+<view class='CircleType_list_box '>
+  <view class='CircleType_list_name' wx:for='{{markDatas}}' wx:key='idx' wx:for-index='idx' data-markIndex="{{index}}" wx:for-item='item'>
+    <text>{{item.markName}}</text>
+    <view class='CircleType_list'>
+    <view class='CircleType_list_item  {{item.hasClick}}' wx:for='{{item.secondMarkDatas}}' wx:key='{{index}}' data-id='{{item.markId}}' data-value='{{item.markName}}' data-idx='{{idx}}' data-MarkIndex='{{index}}' data-isSelect='{{item.isSelect}}' wx:for-item='item'  catchtap='secondLevelMarkBind'>{{item.markName}}</view>
+  </view>
+  </view>
+
+</view>
+
+<!-- <view class='CircleType_list_explain'>
+  <text>如果上述类型没有符合您的，请自定义添加，我们会根据您的反馈丰富圈子类型</text>
+</view> -->
+<!-- <view class='CircleType_list_custom'>
+  <view class='list_custom' bindtap="bindCircleType">
+    <image src='../../../../assets/img/add1.png'></image>
+    <text>自定义圈子类型</text>
+
+  </view>
+  <view class='custom' hidden='{{hiddencustom}}'>
+    <input class="weui-input" placeholder="请输入自定义的圈子名称" maxlength='20' bindinput="CHANGE_CUSTOM" />
+  </view>
+</view> -->
+<view style='height:150rpx'></view>
+<view class='CircleType_btn' bindtap='saveMarksAndCloseLabel'>保存</view>

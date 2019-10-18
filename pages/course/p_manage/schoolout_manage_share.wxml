@@ -1,0 +1,85 @@
+<view class='page_top'>
+  <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{message}}</view>
+  <view class='course_name_type'>
+    <view class='course_name'>{{courseInfo.name}}</view>
+    <view class='course_type'>
+      <!-- <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/sign.png'></image> -->
+    </view>
+  </view>
+  <view class='date'>
+    <view class='type'>教学机构：{{courseInfo.orgName}}</view>
+    <!-- <view class='type'>课程节数：{{courseInfo.allClass}}节</view> -->
+    <view class='start_date'>课程周期：{{courseInfo.beginDate}}-{{courseInfo.endDate}}</view>
+    <!-- <view class='end_date'>结束：{{courseInfo.endDate}}</view> -->
+    <view class='time'>课程时间：{{courseInfo.frequencyDesc}} {{courseInfo.startClassTime}} - {{courseInfo.endClassTime}}</view>
+  </view>
+  <!-- <view class='time_type'>
+    <view class='time'>{{courseInfo.frequencyDesc}} {{courseInfo.startClassTime}} - {{courseInfo.endClassTime}}</view>
+    
+  </view> -->
+  <view class='addr' bindtap="OPEN_LOCATION">
+    <!-- <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/map.png'></image> -->
+    {{courseInfo.classAddress}}
+  </view>
+</view>
+
+<view class='hint'>选择您的课表或新建课表加入该课程表</view>
+<view class='course_list'>
+  <block wx:if="{{userInfo.role=='0'}}">
+    <block wx:for="{{childList}}" wx:for-item="item" wx:key="">
+      <view class='course_item' bindtap="CHOOSE_CHILD" data-childid="{{item.childId}}">
+        <view class='photo_box'>
+          <image src='{{item.logo}}'></image>
+          <image class='sex' src="{{item.gender=='0'?'https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/boy.png':'https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/girl.png'}}"></image>
+        </view>
+        <view class='percen_name'>{{item.childName}}</view>
+      </view>
+    </block>
+  </block>
+  <block wx:else>
+    <view class='course_item' bindtap="CHOOSE_CHILD" data-childid="{{childList[0].childId}}">
+      <view class='photo_box'>
+        <image src='{{userInfo.logo}}'></image>
+        <image class='sex' src="{{userInfo.gender=='0'?'https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/boy.png':'https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/girl.png'}}"></image>
+      </view>
+      <view class='percen_name'>{{userInfo.name}}</view>
+    </view>
+  </block>
+
+
+  <view class='course_item' bindtap="ADD_COURSE" wx:if='{{userInfo.role == 0}}'>
+    <view class='add_btn'>
+      <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/add1.png'></image>
+    </view>
+    <view class='add_title'>点击添加课程表</view>
+  </view>
+</view>
+
+
+<!-- 遮罩层 -->
+<block wx:if="{{showConflict}}">
+  <view class='share_mask'>
+    <view class='share_box'>
+      <view class='hint_box'>
+        <view class='hint_top'>
+          <view class='hint_title'>提示</view>
+          <view class='cancel' bindtap="CLOSE_LAYER">取消</view>
+        </view>
+        <view class='hint_cont'>该课程与如下课程冲突，请调整冲突课程时间。 修改后，点击按钮加入课表</view>
+      </view>
+      <view class='share_course_list'>
+       <scroll-view scroll-y style="height: 200px;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+         <block wx:for="{{conflictList}}" wx:for-item="item" wx:key="index">
+          <view class='share_course_item'>
+            <view class='share_course_name'>{{item.NAME}}</view>
+            <view class='share_course_type'>{{item.org_name}}</view>
+            <view class='share_course_time'>{{item.weekDay}} {{item.date}} {{item.beginTime}}~{{item.endTime}}</view>
+            <view class='change' bindtap="VIEW_LESSON_DETAIL" data-lessonid="{{item.id}}">修改</view>
+          </view>
+        </block>
+       </scroll-view >
+      </view>
+      <button class='save' bindtap="SURE_LAYER">确定</button>
+    </view>
+  </view>
+</block>

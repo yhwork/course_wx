@@ -1,0 +1,85 @@
+.main{
+  background: #f4f4f4;
+  width: 100%;
+  height: 1220rpx;
+  padding: 0 40rpx;
+  box-sizing: border-box;
+}
+
+.change{
+  display: flex;
+  justify-content: center;
+  transition: all 10s;
+}
+
+.phone{
+  box-shadow:5rpx 5rpx 3rpx 4rpx #f29219
+}
+
+.head-img{
+  width: 100%;
+  padding: 30rpx 0;
+}
+.teacher-img{
+  width: 64%;
+  padding-top: 50rpx;
+}
+.btn1{
+  width: 45%;
+  height: 390rpx;
+  background: #fff;
+  float: left;
+  /* left: 30rpx; */
+  border-radius: 15rpx;
+}
+button::after{border:0}
+.teacher{
+  text-align: center;
+  color: black;
+  font-weight: bold;
+  margin-top: -16rpx;
+  font-size: 34rpx;
+}
+.teacher-duan{
+  color: #cacaca;
+  font-size: 24rpx;
+  text-align: center;
+  margin-top: -18rpx;
+}
+
+.home-img{
+  width: 64%;
+  padding-top: 50rpx;
+}
+.btn2{
+  width: 45%;
+  height: 390rpx;
+  background: #fff;
+  float: right;
+  /* right: 30rpx; */
+  border-radius: 15rpx;
+}
+button::after{border:0}
+.home{
+  text-align: center;
+  color: black;
+  font-weight: bold;
+  margin-top: -16rpx;
+  font-size: 34rpx;
+}
+.home-duan{
+  color: #cacaca;
+  font-size: 24rpx;
+  text-align: center;
+  margin-top: -18rpx;
+}
+.choose{
+  text-align: center;
+  color: #c4c4c4;
+  font-size: 28rpx;
+  margin-top: 420rpx;
+}
+.student{
+  font-size: 24rpx;
+  margin-top: -30rpx;
+}

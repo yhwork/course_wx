@@ -1,0 +1,162 @@
+.list_item {
+  background-color: white;
+  border-bottom: 1rpx solid #AAAAAA;
+}
+.techer_names{
+  width: 102rpx;
+  font-size: 30rpx;
+  /* text-align: center; */
+  height: 40rpx;
+  display: block;
+ 
+}
+
+.list_top {
+  display: flex;
+  padding: 15rpx;
+}
+
+.list_bottom {
+  height: 50rpx;
+  background-color: darkmagenta;
+}
+
+.top_image {
+  width: 102rpx;
+ height: 116rpx;
+  border-radius: 10rpx;
+}
+
+.top_teacherDetail {
+  display: block;
+  font-size: 30rpx;
+  width: 102rpx;
+  margin-right: 20rpx;
+}
+
+.teacherDetail_name {
+  width: 102rpx;
+  text-align: center;
+  font-size: 24rpx;
+  height: 40rpx;
+}
+
+.teacher_font {
+  font-size: 36rpx;
+  color: #101010;
+}
+
+.detail_font {
+  font-size: 30rpx;
+  line-height: 40rpx;
+  height: 40rpx;
+  width: 607rpx;
+  /* background-color: red; */
+}
+
+.datail_day {
+  font-size: 24rpx;
+ 
+  color: #101010;
+}
+
+.detail_sale {
+  font-size: 24rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+}
+
+.sale_class {
+  color: #101010;
+}
+
+.datail_class {
+  margin-left: 160rpx;
+  color: #575252;
+}
+
+.datail_num {
+  margin-left: 250rpx;
+  color: red;
+}
+
+.num_font {
+  margin-left: 15rpx;
+}
+.teach_idea{
+  font-size: 24rpx;
+}
+.teacheclass_num{
+  margin-left: 160rpx;
+}
+.teach_address{
+  font-size: 30rpx;
+  color: #0A4E7F;
+}
+/* 底部 */
+.wrap_bottom{
+  width: 750rpx;
+}
+.wrap_time{
+  font-size: 18rpx;
+  text-align: center;
+  color: #AAAAAA;
+  margin-top: 30rpx;
+}
+.wrap_inv{
+  font-size: 30rpx;
+  color: black;
+  font-weight: bolder;
+  text-align: center;
+  margin-top: 20rpx;
+}
+.inv_peo{
+   color: red;
+}
+.addgroupimg_wrap{
+  display: flex;
+  justify-content: center;
+  margin-top: 20rpx;
+}
+.sign_master{
+ 
+  height: 30rpx;
+  border-radius: 25%;
+  background-color: #ff9800;
+  font-size: 16rpx;
+  color: white;
+  position: absolute;
+  top:-10rpx;
+  left:-10rpx;
+}
+.sign{
+  position: relative;
+}
+.number{
+  color:#ff9800;
+}
+.add_groupimage {
+width:50rpx;
+height:50rpx;
+border-radius:50%;
+margin-right:10rpx;
+}
+.btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24rpx;
+  width: 500rpx;
+  background-color:#ff9800;
+  color:white;
+   line-height: 40rpx;
+   padding: 10rpx;
+   margin: 30rpx auto;
+   border-radius: 10rpx;   
+}
+.special_btn{
+  margin: 30rpx auto;
+  background-color: white;
+  border: 1rpx solid #ff9800;
+  color: #ff9800;
+}

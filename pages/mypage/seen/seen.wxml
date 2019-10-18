@@ -1,0 +1,31 @@
+<view class="personal_container">
+  <view class="personal_lists">
+    <scroll-view scroll-y bindscrolltolower='nextPage' style='height:1200rpx'>
+      <view class="personal_lists_ul">
+        <view class="personal_lists_li" wx:for='{{possiblePersonList}}' wx:for-item='item' wx:for-index='index' wx:key='idx'>
+          <view class='fl personal_lists_header'>
+            <view class="r_info_info_pic">
+              <view class="pic_wrap">
+                <image src='{{item.logo}}'></image>
+              </view>
+              <view class="sex" hidden='{{!(item.gender == 0)}}'>
+                <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/boy.png"></image>
+              </view>
+              <view class="sex" hidden='{{!(item.gender == 1)}}'>
+                <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/girl.png"></image>
+              </view>
+            </view>
+            <view class="personal_lists_info">
+              <view class='personal_lists_name textover'>{{item.nickName}}</view>
+              <!-- <view class='personal_lists_taps'>个性签名</view> -->
+            </view>
+          </view>
+          <view class='fr follow_wrap_btn'>
+            <view class='time'>{{item.visitTime}}</view>
+            <!-- <view class="follow_btn" data-id='{{item.visitId}}' data-index='{{index}}' data-flag='{{item.flag}}' bindtap='focus' style='color:{{item.color}}'>{{item.text}}</view> -->
+          </view>
+        </view>
+      </view>  
+    </scroll-view>
+  </view>
+</view>

@@ -1,0 +1,106 @@
+<view class='my_booking'>
+  <calendar  bindnextMonth="next" bindprevMonth="prev" binddateChange="dateChange" binddayClick="dayClick" days-color="{{dayStyle}}"  weeks-type="cn" calendar-style="calendar"/>
+  <view class="content_info">
+    <view class='info_wrapbox'>
+
+      <!-- 预约数据开始 === -->
+      <view class='wrapbox_header' wx:for="{{currentList}}" wx:key="index">
+        <view class='name'>{{item.orgName}}</view>
+        <view>
+          <text>上课日期:</text>
+          <text>{{item.startdata}}</text>
+        </view>
+        <view>
+          <text>上课时间:</text>
+          <text>{{item.startHour}}</text>
+        </view>
+        <view> 
+          <text>上课地点:</text>
+          <text class='addresscolor'>{{item.orgAddress}}</text>
+        </view>
+          <view class='manyinfo_box btndispaly' catchtap='openM' data-index='{{index}}'>
+          <view class='manyinfo'>更多信息</view>
+          <view class='booking' catchtap='booking' data-shcoId="{{item.shcoId}}" data-orgId='{{item.orgId}}' data-bgTime='{{item.apptsStartTime}}' data-endTime='{{item.apptsEndTime}}'>预约</view>
+        <view>
+          <image src='../../../../assets/icons/arrowup.png' class='upimg'></image>
+        </view>
+      </view>
+        <block wx:if="{{item.isFlag}}">
+         <view>
+          <text>上课门店:</text>
+          <text class='addresscolor'>{{item.orgId}}</text>
+        </view>
+         <view>
+          <text>教师:</text>
+          <text class='addresscolor'>{{item.teacher}}</text>
+          
+        </view>
+          <view>
+          <text>可预约人数:</text>
+          <text class='addresscolor'>{{item.surplusNumber}}</text>
+        </view>
+        </block>
+      </view>
+<!--预约数据结束 ====  -->
+    </view>
+  </view>
+</view>
+
+<!-- 
+<view class="container-fluid">
+    <text class="title">Demo1</text>
+    <view class="calendar-box">
+        <view class="left">
+            <view class="today">
+                <text>{{day}}</text>
+                <text class="monthStr">{{str}}</text>
+            </view>            
+        </view>
+        <view class="right">
+            <calendar header="{{false}}" cell-size="40" days-color="{{demo1_days_style}}" active-type="square" />
+        </view>
+    </view>
+    <text class="title">Demo2</text>
+    <view class="demo2">
+        <calendar cell-size="30" days-color="{{demo2_days_style}}" header-style="demo2-header" board-style="demo2-board" weeks-type="full-en" />
+    </view>
+    <text class="title">Demo3</text>
+    <view class="demo3">
+        <calendar cell-size="30" header-style="demo3-header" board-style="demo3-board" weeks-type="cn" />
+    </view>
+    <text class="title">Demo4</text>
+    <view class="demo4">
+        <calendar 
+        weeks-type="cn" 
+        cell-size="30" 
+        next="{{false}}" prev="{{false}}" show-more-days="{{true}}"
+        calendar-style="demo4-calendar" 
+        header-style="demo4-header" 
+        board-style="demo4-board" 
+        days-color="{{demo4_days_style}}" 
+        />
+    </view>
+    <text class="title">Demo5</text>
+    <view class="demo5">
+        <calendar        
+        cell-size="30" 
+        next="{{false}}" prev="{{false}}" show-more-days="{{true}}"
+        calendar-style="demo5-calendar" 
+        header-style="demo5-header" 
+        board-style="demo5-board" 
+        days-color="{{demo5_days_style}}" 
+        />
+    </view>
+    <text class="title">Demo6</text>
+    <view class="demo6">
+        <calendar       
+        weeks-type="full-en"  
+        cell-size="30" 
+        next="{{false}}" prev="{{false}}" show-more-days="{{true}}"
+        calendar-style="demo6-calendar" 
+        header-style="demo6-header" 
+        board-style="demo6-board" 
+        days-color="{{demo6_days_style}}" 
+        />
+    </view>
+</view> -->

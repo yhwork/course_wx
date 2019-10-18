@@ -1,0 +1,144 @@
+<!--pages/mine/mine.wxml-->
+
+
+<view class='topInfo'>
+
+  <!--  -->
+  <view class='top'>
+    <view wx:if='{{visitId==myId}}' class='seed' bindtap='bindPhotoJump'>设置主页
+      <image style='width:16rpx;height:27rpx;margin-left:20rpx' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/next.png"></image>
+    </view>
+    <image class='userimg' src='{{userInfo.logo}}'></image>
+    <view class='username'>{{userInfo.nickName}}</view>
+  </view>
+  <view class='center'>
+    <view style='text-align:center;padding: 0 60rpx;font-size:30rpx' wx:if='{{userInfo.personalSign}}'>个人签名：{{userInfo.personalSign}}</view>
+    <view class='focus_follow'>
+      <text>关注：{{followNum}}</text>
+      <text style='margin-left:100rpx'>粉丝：{{fansNum}}</text>
+    </view>
+  </view>
+
+  <view wx='{{}}'></view>
+
+  <view class='seenMsg' wx:if='{{userInfo.id==visitId}}'>
+    <text class='seentext'><text wx:if='{{seenList}}'>{{seenList.length}}</text>
+    <text wx:else>0</text> 位访客</text>
+    <view class='rigthimgs'>
+      <image class='seenimg' wx:for="{{seenList}}" wx:key='index' wx:if="{{index<5}}" data-='{{item.visitId}}' src='{{item.logo}}'></image>
+    </view>
+    <image wx:if='{{visitId==myId}}' class='more' bindtap='moreVISIT' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
+  </view>
+</view>
+
+<view class='circleInfo' wx:if='{{circleList}}'>
+  <text>我的圈子</text>
+  <scroll-view scroll-x style="width: 100%">
+    <view class='circleBox' wx:for="{{circleList}}" wx:key="index">
+      <navigator class='nav' url='../learningcircle/page/myCircle/myCircle?id={{item.communityId}}'>
+        <image mode='aspectFill' src="{{item.headPic?item.headPic:'https://qa.oss.iforbao.com/public/default/circle_default.png!test'}}"></image>
+        <view class='mb'>
+          <view class='circleName'>{{item.name}}</view>
+          <view class='num'>
+            <text>打卡{{item.signinNum}}天</text>
+            <text style='margin-left:10rpx'>成员{{item.memberNum}}人</text>
+          </view>
+        </view>
+      </navigator>
+    </view>
+  </scroll-view>
+</view>
+
+<view class='contents'>
+  <text>我的日记</text>
+  <view class="list" wx:for='{{diaryList}}' wx:key='outindex' wx:for-item='diary' wx:for-index="outindex">
+    <view class='page_top'>
+      <view class='basic_info' bindtap='diaryMsg' data-id='{{diary.signInId}}'>
+        <view class='basic_left'>
+          <image class='photo' src='{{diary.signInUserLogo}}'></image>
+          <text class='name'>{{diary.signInNickName}}</text>
+        </view>
+        <view class='basic_right'>
+        </view>
+      </view>
+
+      <view class='diary'>
+        <view class='theme_cont'>
+          <view bindtap='diaryMsg' data-id='{{diary.signInId}}' wx:for="{{diary.contentList}}" wx:key='' class='intro_item' wx:if='{{item.contentType == 1}}'>
+            <view class='content'>{{item.content}}</view>
+          </view>
+
+          <view class='img-box'>
+            <image class='imgs' wx:for="{{diary.contentList}}" wx:key='' mode="aspectFill" wx:if='{{item.contentType == 2}}' src='{{item.content}}'></image>
+          </view>
+
+          <view class='videobox' wx:for="{{diary.contentList}}" wx:key='index' wx:for-index='index' wx:if='{{item.contentType == 4}}'>
+            <image class='img_content' src='{{item.content}}?x-oss-process=video/snapshot,t_10000,m_fast' mode='aspectFill'></image>
+            <navigator url='../learningcircle/page/videoPlay/videoPlay?audioSrc={{item.content}}' wx:if='{{!FIREST}}'>
+              <view class='video_btn'></view>
+            </navigator>
+            <navigator url='../learningcircle/page/videoPlay/videoPlay?audioSrc={{item.content}}' wx:if='{{FIREST}}'>
+              <view class='video_btn'></view>
+            </navigator>
+          </view>
+
+          <view wx:for="{{diary.contentList}}" wx:key='' class='audio' wx:if='{{item.contentType == 3}}'>
+            <audio src="{{item.content}}" id="diaryAudio{{outindex}}" data-len='{{item.contentSize}}' bindtimeupdate="AUDIO_UPDATA_PROGRESS" bindended="AUDIO_PLAY_END"></audio>
+            <view class='voice_animate'>
+              <view class='playimg' data-type='1' data-play='{{item.play}}' style='display:{{item.play?"none":"flex"}}' catchtap='AUDIO_PLAY' data-idx='{{outindex}}' data-index='{{index}}'>
+                <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/voice_img.png'></image>
+              </view>
+              <view class='stopimg' data-type='1' data-play='{{item.play}}' style='display:{{item.play?"flex":"none"}}' catchtap='AUDIO_STOP' data-idx='{{outindex}}' data-index='{{index}}'>
+                <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/voice.gif'></image>
+              </view>
+              <view class='proleft' wx:if='{{!item.audio_duration||item.audio_duration=="00:00"}}'>{{item.contentSize}}</view>
+              <view wx:else class="proleft">{{item.audio_duration}}</view>
+            </view>
+            <!-- <view class='playOrstop'>
+              <view class='play' data-type='1' data-play='{{item.play}}' style='display:{{item.play?"none":"flex"}}' catchtap='AUDIO_PLAY' data-idx='{{outindex}}' data-index='{{index}}'></view>
+              <view class='stop' data-type='1' data-play='{{item.play}}' style='display:{{item.play?"flex":"none"}}' catchtap='AUDIO_STOP' data-idx='{{outindex}}' data-index='{{index}}'>
+                <view class='shu'></view>
+                <view class='shu'></view>
+              </view>
+            </view>
+            <view class="pro">
+              <view class="procenter body-view">
+                <slider selected-color="#ff5e5e" block-size="12px" step="2" bindchange="AUDIO_SLIDER_CHANGE" value="{{item.offset}}" min="0" max="{{max}}" />
+              </view>
+              <view class='proleft' wx:if='{{!item.audio_duration||item.audio_duration=="00:00"}}'>{{item.contentSize}}</view>
+              <view wx:else class="proleft">{{item.audio_duration}}</view>
+            </view> -->
+            <!-- <view class='slid'>
+              <view style="width:{{progress}}%;background-color: #f29219;"></view>
+            </view> -->
+          </view>
+
+          <view class='circleMsg'>
+            <navigator url='../learningcircle/page/myCircle/myCircle?id={{diary.communityId}}'>
+              <view class='diary_link'>
+                <view class='link_left'>
+                  <image class='link_img' mode='aspectFill' src='{{diary.headPic}}'>
+                  </image>
+                  <view class='link_info'>
+                    <view class='link_title'>{{diary.communityName}}</view>
+                    <view class='member_num'>
+                      <text>成员{{diary.partIn}}</text>
+                      <text>已打卡{{diary.signNum}}次</text>
+                    </view>
+                  </view>
+                </view>
+                <view class='fa fa-angle-right'></view>
+              </view>
+            </navigator>
+          </view>
+
+
+        </view>
+      </view>
+    </view>
+  </view>
+  <view wx:if='{{!diaryList}}'>
+    <text>还没有发表日记哦~</text>
+  </view>
+  <view class='diarylast'>到底啦~</view>
+</view>

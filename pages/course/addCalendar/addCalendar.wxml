@@ -1,0 +1,24 @@
+<view class='banner_box'>
+  <view class='head_box'>
+    <view class='head_box'>
+      <image src='/assets/icons/my_selected.png'></image>
+      <text>小豆包</text>
+    </view>
+    <view>点击切换身份</view>
+  </view>
+  <view class='label_box'>
+    <view class='label_item'>
+      <image src='/assets/icons/my_selected.png'></image>
+      <view>校内日程</view>
+    </view>
+    <view class='label_item'>
+      <image src='/assets/icons/my_selected.png'></image>
+      <view>校外日程</view>
+    </view>
+  </view>
+</view>
+
+<view class='title_box' >
+  <view bindtap='goClass1'>拍照上传校内日程</view>
+  <view bindtap='goClass2'>手动添加校内日程</view>
+</view>

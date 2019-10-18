@@ -1,0 +1,81 @@
+@import "../../img_video/img_video.wxss";
+
+
+/* 关注颜色 */
+
+.attention {
+  width: 120rpx;
+  height: 52rpx;
+  text-align: center;
+  border-radius: 26rpx;
+  /* border: 2rpx solid #888; */
+  color: #888;
+}
+.name{
+  white-space: nowrap;
+}
+.audio_aply{
+  display: inline-block;
+}
+.attentioned {
+  width: 100rpx;
+  height: 52rpx;
+  text-align: center;
+  border-radius: 26rpx;
+  /* border: 2rpx solid #f29219; */
+  color: #f29219;
+  
+}
+.d_photo{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 100%;
+  margin-right: 12rpx;
+}
+.more_diray{
+  text-align:center;
+   padding: 10px 0;
+  background: #fff;
+}
+
+.more_diray image {
+  width: 50rpx;
+  height: 48rpx;
+}
+/* .revise-zan{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+} */
+.per_left{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+
+}
+.revise-zan .comment_zan_sh{
+  /* width:40%; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.zan_total{
+  /* padding-left: 92rpx; */
+  /* padding: 0 10rpx; */
+  display: flex;
+  justify-content: flex-start;
+  align-content: center;
+  background-color: #f8f8f8;
+}
+
+.zan_total .title{
+  font-size: 30rpx;
+}
+.zanLogo{
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 50rpx;
+  margin-top: 5rpx;
+}

@@ -1,0 +1,147 @@
+.booking {
+  width: 750rpx;
+  background-color: #f0f0f0;
+}
+
+.hot_img {
+  width: 100%;
+  height: 100%;
+}
+
+.hot_swiper {
+  height: 400rpx;
+}
+
+.content_item {
+  width: 750rpx;
+  position: relative;
+}
+
+.booking_proname{
+  height: 60rpx;
+   line-height: 60rpx;
+   padding: 0 10rpx;
+   width: 730rpx;
+   font-size: 24rpx;
+   background-color: white;
+}
+.choose{
+  width: 30rpx;
+  height:30rpx;
+}
+.choose_shop{
+  font-size: 24rpx;
+  display: flex;
+  width: 730rpx;
+  padding: 0 10rpx;
+}
+.shop_top{
+  display: flex;
+  align-items: center;
+  background-color: white;
+}
+.shop_img{
+  display: flex;
+   align-items: center;
+   margin-left: 10rpx;
+}
+.shop_adress{
+  width: 730rpx;
+  margin: 0 auto;
+  font-size: 26rpx;
+  font-weight: bolder;
+  background-color: white;
+}
+.shop_adress .warn_item{
+  display: block;
+  border-bottom: 1rpx dashed grey;
+}
+.shop-shop{
+  color: #789eb9; 
+}
+.wrap_one{
+  background-color: white;
+  margin-top: 15rpx;
+  
+}
+.wrap_two{
+  background-color: white;
+}
+.shop_detailcontext{
+  height: 80rpx;
+  justify-content: center;
+  font-size: 24rpx;
+  width: 730rpx;
+   padding: 10rpx 10rpx;
+   padding-bottom: 20rpx;
+}
+.shopname{
+  font-size: 30rpx;
+  font-weight: bolder;
+  text-align: center;
+}
+.shop_booking{
+  text-align: center;
+}
+.time_img{
+  width: 200rpx;
+  height:60rpx;
+
+  display: flex;
+}
+.picker_time{
+  display: flex;
+  padding: 10rpx 10rpx;
+  width: 730rpx;
+  background-color: white;
+
+}
+.time_picker{
+  width: 550rpx;
+  height: 60rpx;
+
+  text-align: center;
+}
+.userinfo{
+  width:60rpx;
+  height:60rpx;
+  border-radius: 50%;
+}
+.usrname{
+  font-size: 24rpx;
+  display: flex;
+  align-items: center;
+  color: #789eb9;
+
+}
+
+.calendar{
+  width: 750rpx;
+}
+.header{
+font-size: 30rpx;
+  font-weight: bolder;
+  color:#ff9800;
+}
+.bookingfont{
+  font-size: 24rpx;
+  color:#ff9800;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 300rpx;
+  font-weight: bolder;
+}
+.tab_top{
+   display: flex;
+  
+  width: 700rpx;
+  margin: 0 auto;
+}
+.tab_fontstyle{
+  font-size: 24rpx;
+  width: 100rpx;
+  text-align: center;
+  background-color: darkkhaki;
+ 
+}

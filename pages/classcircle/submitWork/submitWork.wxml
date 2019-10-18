@@ -1,0 +1,79 @@
+<form bindsubmit='SETHOMEWORK'>
+  <view class='contents'>
+    <view class='text'>
+      <textarea placeholder='说说今天的感想和收获吧……' bindblur='SETTEXT'></textarea>
+    </view>
+
+    <view class='img_video_box'>
+      <view class='imgs'>
+        <view class='aimg' wx:for='{{imgList}}' wx:key='index'>
+          <image class='del' bindtap='DELs' data-index='{{index}}' data-type='{{item.contentType}}' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/delete_in.png"></image>
+          <image class='pot' mode='aspectFill' src='{{item.content}}'></image>
+        </view>
+      </view>
+      <view class='audios' wx:for='{{audioList}}' wx:key=''>
+        <view class='audio'>
+          <image class='dels' bindtap='DELs' data-index='{{index}}' data-type='{{item.contentType}}' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/delete_in.png"></image>
+          <audio src="{{item.content}}" id="subjectAudio" bindtimeupdate="AUDIO_UPDATA_PROGRESS" bindended="AUDIO_PLAY_END"></audio>
+          <view class='voice_animate'>
+            <view class='playimg' data-play='{{item.play}}' style='display:{{item.play?"none":"flex"}}' catchtap='AUDIO_PLAY'>
+              <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/voice_img.png'></image>
+            </view>
+            <view class='stopimg' data-play='{{item.play}}' style='display:{{item.play?"flex":"none"}}' catchtap='AUDIO_STOP'>
+              <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/voice.gif'></image>
+            </view>
+            <view class='proleft' wx:if='{{!item.audio_duration||item.audio_duration=="00:00"}}'>{{item.contentSize}}</view>
+            <view wx:else class="proleft">{{item.audio_duration}}</view>
+          </view>
+        </view>
+      </view>
+      <view class='videos' wx:for='{{videoList}}' wx:key=''>
+        <view class='video_box' wx:if='{{item.content!=""&&item.content!=null&&typeof(item.content)!="undefined"}}'>
+          <image class='delS' bindtap='DELs' data-index='{{index}}' data-type='{{item.contentType}}' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/delete_in.png"></image>
+          <video class='videos' poster='{{item.content}}?x-oss-process=video/snapshot,t_10000,m_fast' id="myVideo" src='{{item.content}}' show-fullscreen-btn enable-progress-gesture objectFit='cover'></video>
+          <!-- <view class='video_box' style='width: 100%;' wx:else>
+          <image class='playimg' src='{{item.content}}?x-oss-process=video/snapshot,t_10000,m_fast' mode='aspectFill'></image>
+          <view class="model-btn" bindtap='PLAY_START'>
+            <view class="play-icon"></view>
+          </view>
+        </view> -->
+        </view>
+      </view>
+    </view>
+
+
+    <!-- 添加按钮组 -->
+    <view class='add_btn_group'>
+      <view class='add_img' bindtap='CHANGE_AVATAR' wx:if='{{imgNum>0}}'>
+        <image mode='aspectFill' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/add_img.png'></image>
+        <text>图片</text>
+      </view>
+      <view class='add_audio' bindtap='SET_AUDIO' wx:if='{{audioNum>0}}'>
+        <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/audio_a.png'></image>
+        <text>语音</text>
+      </view>
+      <view class='add_video' bindtap='SET_VIDEO' wx:if='{{videoNum>0}}'>
+        <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/add_video.png'></image>
+        <text>视频</text>
+      </view>
+    </view>
+  </view>
+
+
+  <view class='bottomtab'>
+    <button class='set' form-type="submit">发布</button>
+  </view>
+
+</form>
+<view class='voice_mask' catchtouchmove='eStop' hidden='{{isSpeaking}}'>
+  <view class='voice_box'>
+    <image class="cancel" bindtap='cancel' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/delete_in.png">
+    </image>
+    <view class='countDown' hidden='{{!startSpeak}}'>录音中，还剩{{startSpeak?countDownTime:"600"}}秒</view>
+    <image class='voice_btn' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/vioce.png' hidden='{{startSpeak}}' bindtap='START_AUDIO'></image>
+    <image class='voice_btn' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/vioce_play2.png' hidden='{{!startSpeak}}' bindtap='STOP_AUDIO'></image>
+    <view class='voice_title'>{{startSpeak?"点击结束":"点击开始"}}</view>
+  </view>
+</view>
+
+<view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{message}}</view>

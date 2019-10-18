@@ -1,0 +1,102 @@
+/* pages/circle/notLogin/notLogin.wxss */
+page{
+  background: #f4f4f4;
+}
+.page_top{
+  width: 100%;
+  height: 440rpx;
+  background: #FFA600;
+  padding-top: 40rpx;
+  box-sizing: border-box;
+  color: #fff;
+}
+.photo{
+  display: block;
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 140rpx;
+  margin: 0 auto;
+}
+.name{
+  text-align: center;
+  margin: 16rpx 0;
+  font-size:36rpx;
+}
+.atten{
+  width: 120rpx;
+  height: 52rpx;
+  border: 2rpx solid #fff;
+  box-sizing: border-box;
+  border-radius:26rpx;
+  margin: 0 auto;
+  text-align: center;
+}
+.top_foot{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 26rpx;
+}
+.line{
+  width: 2rpx;
+  height: 28rpx;
+  background: #fff;
+  margin: 0 40rpx;
+}
+.page_body{
+  margin-top: 20rpx;
+  background: #fff;
+}
+.tab_list{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 90rpx;
+  border-bottom:2rpx solid #e5e5e5 ;
+  font-size:28rpx;
+  color: #353535;
+}
+.tab_item{
+  height: 80rpx;
+  line-height: 80rpx;
+}
+.active{
+  border-bottom: 4rpx solid #F29219;
+  color: #F29219;
+}
+.content{
+  display: flex;
+  align-items: center;
+  padding: 40rpx 30rpx;
+  position: relative;
+}
+.content::after{
+  position: absolute;
+  bottom: 0;
+  content: "";
+  height: 2rpx;
+  width: 690rpx;
+  background: #E5E5E5;
+}
+.content image{
+  width: 200rpx;
+  height: 160rpx;
+}
+.content .title{
+  font-size:34rpx;
+  color: #222;
+}
+.item_right{
+  margin-left: 30rpx;
+  color: #666;
+  font-size: 28rpx;
+}
+.right_foot{
+  display: flex;
+}
+.clock{
+  margin-left: 40rpx;
+}
+.right_foot,.item_content{
+  margin-top: 10rpx;
+}

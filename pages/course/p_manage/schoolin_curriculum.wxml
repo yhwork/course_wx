@@ -1,0 +1,44 @@
+<!-- <view class='schoolin_class_preview_photo'>
+  <image class='class_photo' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/share_course.jpg'></image>
+</view> -->
+
+<!-- 识别图片 -->
+<!-- <scroll-view class="schoolin_class_preview_photo" scroll-y="true">
+  <image class='class_photo' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/share_course.jpg'></image>
+</scroll-view> -->
+<!-- 课程表列表 -->
+<view class='schoolin_class_list'>
+<view class='name'>校内课程表</view>
+<view class='schoolin_class_tips'> 
+<image class='class_tips' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/care.png'></image>
+<text>识别错误请对应修改</text>
+</view>
+
+</view>
+<scroll-view scroll-x style="width: 100%" class="table">
+  <block wx:for="{{tables}}" wx:key='' wx:for-item="table" wx:for-index="table_index">
+    <view class="tr gray" wx:if="{{table_index % 2 == 0}}">
+      <view class="td" wx:key='' wx:for="{{table}}" wx:item="item" bindtap="openModal" data-id="{{table_index}}">{{item}}</view>
+    </view>
+    <view class="tr" wx:else>
+      <view class="td" wx:key='' wx:for="{{table}}" wx:item="item" bindtap="openModal" data-id="{{table_index}}">{{item}}</view>
+    </view>
+  </block>
+</scroll-view>
+<view class='cue'>
+<image class='class_tips' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/care.png'></image>
+<text>单双周请根据"语文/数学"示例输入，前面代表单周，后面代表双周</text>
+</view>
+<view wx:if="{{show}}" class="mask-form">
+  <view class='mask-content'>
+    <view class="mask-content-container" wx:key='' wx:for="{{cols}}" wx:for-item="col" wx:for-index="col_index">
+      <input class="list-mask-input" type="text" value="{{col}}" data-id="{{col_index}}" bindblur="dataChange" />
+    </view>
+  </view>
+  <view class='btn-Change'>
+    <button class="btn btn-cancle" type="default" bindtap="closeModel">取消</button>
+    <button class="btn btn-confirm" type="success" bindtap="editModel">确认</button>
+  </view>
+</view>
+<view style='height:100rpx;'></view>
+<view class='class_photo_next' bindtap='ADDCLASS'>下一步</view>

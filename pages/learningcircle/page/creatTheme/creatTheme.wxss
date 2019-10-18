@@ -1,0 +1,215 @@
+/* pages/circle/creatTheme/creatTheme.wxss */
+
+page {
+  background: #f4f4f4;
+}
+
+.page_top {
+  padding: 0 30rpx;
+  background: #fff;
+}
+
+.circle_name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2rpx solid #e5e5e5;
+}
+
+.circle_name .name input {
+  text-align: right;
+  font-size: 34rpx;
+  color: #000;
+}
+
+.title {
+  /* width: 140rpx; */
+  position: relative;
+  font-size: 34rpx;
+  padding: 20rpx 0;
+  color: #000;
+}
+
+.title_box {
+  display: flex;
+  align-items: center;
+}
+
+.circle_img {
+  padding-bottom: 20rpx;
+  border-bottom: 2rpx solid #e5e5e5;
+  border-top: 2rpx solid #e5e5e5;
+}
+
+.hint {
+  font-size: 26rpx;
+  color: #888;
+  margin-left: 40rpx;
+}
+
+.circle_img .img_detail {
+  width: 100%;
+  height: 196rpx;
+  border: 2rpx solid #f4f4f4;
+}
+
+.tab_cell {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10rpx 0;
+  padding-left: 12rpx;
+  font-size: 28rpx;
+  color: #9b9797;
+  border-top: 1px solid #bbb;
+}
+
+.editor .title {
+  font-size: 28rpx;
+  margin-left: 30rpx;
+}
+
+.editor textarea {
+  height: 220rpx;
+  width: 100%;
+  box-sizing: border-box;
+  background: #fff;
+}
+
+.add_btn_group {
+  display: flex;
+  align-items: center;
+  color: #888;
+  font-size: 24rpx;
+}
+
+.add_btn_group image {
+  margin: 22rpx 12rpx 22rpx 32rpx;
+}
+
+add_intro {
+  display: flex;
+  align-items: center;
+  color: #888;
+  font-size: 24rpx;
+}
+
+.add_detail {
+  display: flex;
+  align-items: center;
+  color: #888;
+  font-size: 24rpx;
+}
+
+.add_detail image {
+  width: 24rpx;
+  height: 36rpx;
+  vertical-align: middle;
+  margin-right: 10rpx;
+  margin-left: 30rpx;
+}
+
+.add_intro image {
+  width: 24rpx;
+  height: 36rpx;
+  vertical-align: middle;
+  margin: 24rpx 10rpx 24rpx 40rpx;
+}
+
+.intro_item {
+  position: relative;
+  /* margin-top: 20rpx; */
+  background: #fff;
+}
+
+.content {
+  padding: 68rpx 30rpx 40rpx;
+  border-bottom: 2rpx solid #e5e5e5;
+}
+
+.btn_group image {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 40rpx;
+  margin-left: 20rpx;
+}
+
+.btn_group {
+  /* position: absolute;
+  top: -2rpx;
+  right: 40rpx;
+  z-index: 10; */
+  padding-top: 20rpx;
+  /* width: 100%; */
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: -30rpx;
+  right: 20rpx;
+  z-index: 100;
+  color: #888;
+
+  
+}
+
+.intro_img {
+  width: 690rpx;
+  height: 388rpx;
+}
+
+video {
+  width: 690rpx;
+  height: 388rpx;
+}
+
+.add_text image {
+  width: 32rpx;
+  height: 32rpx;
+}
+
+.add_img image {
+  width: 36rpx;
+  height: 30rpx;
+}
+
+.add_audio image {
+  width: 24rpx;
+  height: 36rpx;
+  vertical-align: middle;
+  /* margin-right:10rpx;
+margin-left:30rpx; */
+}
+
+.add_video image {
+  width: 36rpx;
+  height: 24rpx;
+}
+
+.add_public image {
+  width: 36rpx;
+  height: 24rpx;
+}
+
+.add_text, .add_video, .add_audio, add_text, .add_img, .add_public {
+  display: flex;
+  align-items: center;
+}
+
+.submit {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 94rpx;
+  background: #f29219;
+  border-radius: 10rpx;
+  color: #fff;
+  text-align: center;
+  line-height: 94rpx;
+  /* margin: 60rpx auto; */
+}
+
+.ti_ipt {
+  text-align: right;
+  font-size: 34rpx;
+  color: #000;
+}

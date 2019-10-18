@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "修改校内课程",
+  
+  "usingComponents": {
+    "calendar": "/components/calendar/calendar"
+  }
+}

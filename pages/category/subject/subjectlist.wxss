@@ -1,0 +1,26 @@
+page {
+  background: #fff;
+}
+
+.top {
+  font-size: 28rpx;
+  padding: 20rpx 30rpx;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-bottom: 2rpx solid #ccc;
+  box-sizing: border-box;
+}
+input{
+  font-size: 28rpx;
+}
+button {
+  width: 250rpx;
+  border-radius: 10rpx;
+  color: #f29219;
+  border: 2rpx solid #f29219;
+  height: 90rpx;
+  line-height: 90rpx;
+  margin-top: 100rpx;
+  background: #fff;
+}

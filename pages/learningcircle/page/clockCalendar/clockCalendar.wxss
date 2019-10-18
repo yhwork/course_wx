@@ -1,0 +1,323 @@
+/* pages/circle/clockCalendar/clockCalendar.wxss */
+
+page {
+  background: #f4f4f4;
+}
+
+.basic_info {
+  background: #ffc36b;
+  padding: 20rpx 30rpx 30rpx;
+  box-sizing: border-box;
+  height: 150rpx;
+  position: relative;
+}
+
+.tit {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.photo {
+  width: 66rpx;
+  height: 66rpx;
+  position: relative;
+  /* margin-right: 30rpx; */
+}
+
+.sex {
+  width: 32rpx;
+  height: 32rpx;
+  border-radius: 32rpx;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.photo image {
+  width: 66rpx;
+  height: 66rpx;
+  border-radius: 52rpx;
+}
+
+/* .basic_right .name {
+  font-size: 36rpx;
+  color: #000;
+} */
+
+.basic_info .title {
+  display: inline-block;
+  font-size: 32rpx;
+  color: #e88e0b;
+  margin-left: 30rpx;
+}
+
+.basic_news {
+  background: white;
+  height: 120rpx;
+  width: 672rpx;
+  border-radius: 10rpx;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -74rpx;
+  display: flex;
+  align-items: center;
+}
+
+.clock_type {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.clock_type image {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.clock_card_box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.clock_card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 25%;
+}
+
+.clock_share {
+  background: #ff9800;
+  color: white;
+  height: 54rpx;
+  width: 150rpx;
+  font-size: 24rpx;
+  line-height: 55rpx;
+}
+
+.clock_card_text {
+  font-size: 26rpx;
+  color: #ff9800;
+}
+
+.clock_punch_text {
+  font-size: 26rpx;
+  color: #009688;
+}
+
+.clock_num_text {
+  font-size: 26rpx;
+  color: #c7c7cc;
+}
+
+.subject_list_box {
+  background: white;
+  height: 120rpx;
+  width: 652rpx;
+  border-radius: 10rpx;
+  margin-left: 40rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10rpx;
+}
+
+.fa-angle-right {
+  font-size: 50rpx;
+  color: #c7c7cc;
+}
+
+.subject {
+  font-size: 28rpx;
+  color: #c7c7cc;
+  margin-right: 20rpx;
+}
+
+.subject_all {
+  display: flex;
+  align-items: center;
+}
+
+.clock_time {
+  display: flex;
+  flex-direction: column;
+  padding: 20rpx 40rpx;
+}
+
+.clcok_item_type {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.spot {
+  margin-right: 10rpx;
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: 50%;
+}
+
+.spot_bg1 {
+  background: #ff9800;
+}
+
+.spot_bg2 {
+  background: #009688;
+}
+
+.spot_bg3 {
+  background: #c7c7cc;
+}
+
+.item_type {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.clock_time_item {
+  font-size: 28rpx;
+  color: #101010;
+  padding: 20rpx 0;
+}
+
+.clock_days {
+  background: #fff;
+}
+
+.total_days {
+  height: 345rpx;
+  font-size: 32rpx;
+  background: linear-gradient(to right, #f7bd44, #f29219);
+  color: #fff;
+  text-align: center;
+  padding-top: 40rpx;
+  box-sizing: border-box;
+}
+
+.total_days_num {
+  height: 180rpx;
+  line-height: 180rpx;
+  font-size: 180rpx;
+  margin-top: 20rpx;
+}
+
+.curr_month_days {
+  display: flex;
+  justify-content: space-between;
+  padding: 40rpx 30rpx;
+  font-size: 24rpx;
+  color: #888;
+  text-align: center;
+}
+
+.curr_month_days .num {
+  height: 72rpx;
+  line-height: 72rpx;
+  font-size: 72rpx;
+  color: #333;
+  margin-bottom: 24rpx;
+}
+
+.clock {
+  width: 670rpx;
+  height: 94rpx;
+  line-height: 94rpx;
+  text-align: center;
+  background: #f29219;
+  border-radius: 10rpx;
+  color: #fff;
+  margin: 60rpx auto;
+}
+
+.calendar {
+  width: 100%;
+  background: #fff;
+}
+
+.calendar_head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 90rpx;
+  padding: 0 40rpx;
+  font-size: 34rpx;
+  color: #f29219;
+}
+
+.calendar_head image {
+  width: 16rpx;
+  height: 26rpx;
+}
+
+.calendar_body {
+  padding: 0 20rpx 20rpx;
+}
+
+.calendar .week {
+  margin: 0;
+  background: none;
+  text-align: center;
+  font-size: 28rpx;
+  border-radius: 20rpx;
+}
+
+.calendar .tr {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 94rpx;
+}
+
+.calendar .td {
+  width: 82rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  color: #888;
+  border-radius: 6rpx;
+}
+
+.calendar .week .td {
+  color: #000;
+  font-size: 28rpx;
+}
+
+.date_active {
+  color: #f29219 !important;
+}
+
+.calendar .o_month {
+  color: #b2b2b2;
+}
+
+.calendar .td.select {
+  border-radius: 60rpx;
+  background: #71c009;
+  color: #fff;
+}
+
+.clock_today image {
+  width: 40rpx;
+  height: 40rpx;
+}
+.clock_today text {
+ font-size: 28rpx;
+ color: #b2b2b2;
+ margin-left: 10rpx;
+}
+.clock_today{
+  padding: 30rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}

@@ -1,0 +1,434 @@
+.page{
+  background: #f4f4f4;
+}
+
+.head-img{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 15em;
+  float: left;
+  position: relative;
+}
+
+.clear{
+  clear:both;
+  display:block;
+}
+
+.list{
+  background: #fff;
+  width: 100%;
+  height: 80rpx;
+  margin-top: 20rpx;
+}
+.head-img1{
+  margin-right: 30px;
+  display: block;
+  background: transparent;
+  max-width: 5%;
+  margin-top: 50rpx;
+  float: left;
+  margin-left: 52rpx;
+  position: absolute;
+}
+.left-name{
+  padding: 20rpx 0 0 30rpx;
+  font-size: 36rpx;
+  font-weight: 600;
+  float: left;
+  color: #333;
+
+}
+.weui-cell{
+  border:2rpx solid #fff;
+  border-bottom-color:#fff;
+}
+.text{
+  float: right;
+  margin-right: 30rpx;
+  text-align: right;
+  width: 60%;
+  margin-top: 26rpx;
+
+}
+.import{
+  color: red;
+  margin-left: 10rpx;
+  position: absolute;
+  top: 0rpx;
+  left: 40rpx;
+}
+.con{
+  border-bottom: 4rpx solid red;
+}
+.pla{
+  color: #999;
+  font-size: 30rpx;
+  font-weight: normal;
+  margin-right: 30rpx;
+  width: 100%;
+}
+.list1{
+  background: #fff;
+  width: 100%;
+  height: 280rpx;
+  margin-top: 40rpx;
+}
+.list2{
+  background: #fff;
+  width: 100%;
+  height: 180rpx;
+  margin-top: 25rpx;
+}
+.btn{
+  margin-top: 220rpx;
+  width: 90%;
+  border-radius: 10rpx;
+}
+input{
+  color: black;
+}
+.main{
+  width: 100%;
+  /* height: 720rpx;不要固定高度 */
+  background: #fff;
+  padding-bottom: 30rpx;
+}
+.zhu-img{
+  width: 5.5%;
+  padding: 40rpx 0 0 40rpx;
+  float: left;
+}
+.add-class{
+  margin-left: 20rpx;
+  float: left;
+  margin-top: 36rpx;
+  color: #999;
+  font-size: 31rpx;
+}
+
+.img1{
+  width: 12%;
+  margin-left: 20rpx;
+  float: left;
+  position: absolute;
+  margin-top: 44rpx;
+}
+.img2{
+  width: 13%;
+  height: 40rpx;
+  margin-left: 605rpx;
+  margin-top: 40rpx;
+  float: right;
+  text-align: center;
+  background: #fef9ec;
+  color: #f7af09;
+  position: absolute;
+  border-radius: 15rpx;
+  font-size: 26rpx;
+}
+.dai-add{
+  margin-left: -20rpx;
+  margin-top: -12rpx;
+  margin-right: -18rpx;
+  float: left;
+  font-weight: bold;
+}
+
+.btn{
+  width: 100%;
+  height: 160rpx;
+  border-radius: 2rpx;
+  background: #fee3a2;
+  margin-top: 30rpx;
+  /* float: left; */
+}
+.main-con1{
+  float: left;
+  height: 150rpx;
+}
+.main-con{
+  display: flex;
+  align-items: center;
+  height: 92rpx;
+}
+.main-con2{
+  background: #fdf4e8;
+  width: 100%;
+  /* height: 400rpx; */
+ /* float: left */
+}
+
+.time1{
+  padding: 0 0 0 40rpx;
+  font-size: 34rpx;
+}
+
+.time3{
+  padding: 0 0 0 40rpx;
+  font-size: 32rpx;
+  color: #999;
+}
+.time4{
+  display: flex;
+  align-items: flex-start;
+  padding: 40rpx 30rpx 0 40rpx;
+  font-size: 32rpx;
+  color: #5b6f97;
+}
+
+.time4 text{
+  flex: 1;
+}
+
+.time5{
+  padding: 10rpx 0 0 40rpx;
+  font-size: 32rpx;
+  color: #999;
+}
+.img3{
+  width: 4%;
+  margin-top: 10rpx;
+}
+.img4{
+  width: 4%;
+  margin-top: 12rpx;
+}
+.text1{
+  margin-left: 10rpx;
+  /* position: absolute; */
+ 
+}
+
+/* 以下修改 */
+.page__hd_top{
+  /* margin: 30rpx; */
+  border: 4rpx solid #f4f4f4;
+  display: flex;
+  justify-content: space-between;
+  background: white;
+  padding: 10rpx 30rpx;
+}
+.head-name{
+  width: 180rpx;
+  font-weight: 590;
+  font-size: 32rpx;
+  margin-left: 90rpx;
+  margin-top: 12rpx;
+}
+.class{
+  font-size: 30rpx;
+  /* margin-left:200rpx; */
+  margin-top: 10rpx;
+  color: gray;
+  width: 100%;
+  text-align: right;
+}
+.class text{
+  /* border: 1px solid red; */
+}
+.head-img{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius:80rpx;
+  float: left;
+  position: relative;
+}
+.head-img1{
+  margin-right: 30px;
+  display: block;
+  background: transparent;
+  max-width: 5%;
+  margin-top: 50rpx;
+  float: left;
+  margin-left: 52rpx;
+  position: absolute;
+}
+.head-name{
+  font-weight: 590;
+  font-size: 32rpx;
+ margin-top: 15rpx;
+  margin-left: 90rpx;
+  color: #f29219;
+}
+.class{
+  font-size: 26rpx;
+  /* margin-left: 290rpx; */
+  margin-top: 20rpx;
+  color: #000000;
+}
+.page__bd_list1_class{
+  display: flex;
+  justify-content: center;
+  padding: 10rpx 40rpx;
+  background: white;
+  margin-top: 2px ;
+}
+.weui-cell__hd{
+  display: flex;
+  align-items: center;
+  /* width: 170rpx; */
+  font-size: 32rpx;
+  position: relative;
+}
+.weui-cell__hd image{
+  width: 38rpx;
+  height: 36rpx;
+  margin-right: 28rpx;
+}
+.ma-b{
+  margin-bottom: 4px;
+}
+.list2{
+  background: #f4f4f4;
+  width: 100%;
+  height: 180rpx;
+  margin-top: 25rpx;
+}
+.time{
+  padding: 0 0 0 40rpx;
+  font-size: 32rpx;
+}
+.name1{
+  color: black;
+  float: left;
+  position: absolute;
+  font-size: 30rpx;
+  margin-left: 38rpx;
+  margin-top: 3rpx;
+}
+.class-name{
+  font-size: 32rpx;
+  color: black;
+  float: left;
+}
+.time2{
+  font-size: 30rpx;
+  color: #999;
+  position: relative;
+}
+.btn2{
+  margin-top: 100rpx;
+  width: 90%;
+  border-radius: 10rpx;
+  background: #f29219;
+  margin-bottom: 30rpx;
+  text-align: center;
+  /* margin-left: 5%; */
+  font-size: 32rpx;
+}
+.btn_box{
+  display: flex;
+  /* justify-content:space-between; */
+  align-content: space-between;
+}
+.text_m_r{
+  margin-right: 34rpx;
+}
+.text_m_r2{
+  margin-right: 10rpx;
+}
+.pan{
+  position: absolute;
+  right: 180rpx;
+  top: 0rpx;
+}
+.shear_close{
+  margin: 10rpx;
+  width: 55rpx;
+  height:55rpx;
+  position: absolute;
+  right: 0;
+  top: 10rpx;
+}
+/* 自定义 */
+.shear_box{
+  width: 540rpx;
+  height: 626rpx;
+ background: pink;
+ position: absolute;
+ top: 0;
+ left: 0;
+ bottom: 0;
+ right: 0;
+ margin: auto;
+}
+.shear_btn_box{
+  width: 100%;
+  height: 84rpx;
+
+}
+
+.shear_btn_box{
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: 0rpx;
+}
+.shear_btn{
+  width: 400rpx;
+  height: 84rpx;
+  background: #2eb02d;
+  border-radius: 16rpx;
+  font-size: 32rpx;
+  display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center
+}
+.shear_btn_imge{
+  width: 40rpx; 
+  height: 40rpx;
+  margin-right: 20rpx;
+}
+.shear_bd{
+  width: 100%;
+  height: 100%;
+  
+}
+
+.sharefrends {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.mb {
+  width: 540rpx;
+  height: 626rpx;
+  background: #fff;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  margin-top: -300rpx;
+  margin-left: -270rpx;
+}
+
+.sharefrends .del{
+  position: absolute;
+  top: -10rpx;
+  right: -10rpx;
+  width: 50rpx;
+  height: 50rpx;
+}
+.sharefrends .img{
+  width: 100%;
+  height: 100%;
+}
+
+
+.sharefrends button{
+  position: absolute;
+  bottom: 20rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 406rpx;
+  height: 63rpx;
+  border-radius: 0;
+  background-color: rgba(1, 1, 1, 0);
+  border: none;
+}

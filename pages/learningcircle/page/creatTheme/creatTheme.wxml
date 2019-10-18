@@ -1,0 +1,103 @@
+<!--pages/circle/creatTheme/creatTheme.wxml-->
+<view class='page_top'>
+  <view class='circle_img' data-type='0'>
+    <view class='title_box'>
+      <view class='title'>圈子头图
+      </view>
+      <view class='hint'>点击图片修改头图</view>
+    </view>
+    <image class='img_detail' src='https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1084696484,2942868383&fm=27&gp=0.jpg'></image>
+  </view>
+  <view class='tab_cell'>
+    <view class='c_title'>主题标题</view>
+    <view class='cell_right'>
+        <input class='ti_ipt' value='奶牛与小鸡'></input>
+      </view>
+  </view>
+  <view class='tab_cell'>
+    <view class='c_title'>打卡关卡</view>
+    <view class='cell_right'>第一关</view>
+  </view>
+</view>
+
+<!-- 编辑主题 -->
+<view class='editor'>
+  <view class='title'>编辑主题</view>
+  <textarea></textarea>
+  <view class='per_intro_list'>
+    <view class='intro_item'>
+      <view class='btn_group'>
+        <image class='move_up' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/move_up.png'></image>
+        <image class='move_down' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/move_down.png'></image>
+        <image class='delete' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/delete_in.png'></image>
+      </view>
+      <view class='content'>如果你无法简洁的表达你的想法，那只说明你还 不够了解它。</view>
+    </view>
+    <view class='intro_item'>
+      <view class='btn_group'>
+        <image class='move_up' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/move_up.png'></image>
+        <image class='move_down' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/move_down.png'></image>
+        <image class='delete' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/delete_in.png'></image>
+      </view>
+      <view class='content'>
+        <image class='intro_img' src='https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2647220868,3361348433&fm=27&gp=0.jpg'></image>
+      </view>
+    </view>
+    <view class='intro_item'>
+      <view class='btn_group'>
+        <image class='move_up' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/move_up.png'></image>
+        <image class='move_down' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/move_down.png'></image>
+        <image class='delete' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/delete_in.png'></image>
+      </view>
+      <view class='content'>
+        <view class='audio'>
+          <audio src="" id="myAudio" loop></audio>
+          <view class='playOrstop'>
+            <view class='play' hidden='true'></view>
+            <view class='stop'>
+              <view class='shu'></view>
+              <view class='shu'></view>
+            </view>
+          </view>
+          <view class='bar'>
+            <view class='pro_pos' style='left:300rpx;'></view>
+            <view class='progress' style='width:300rpx;'></view>
+          </view>
+          <view class='audio_time'>-00:56</view>
+        </view>
+      </view>
+    </view>
+    <view class='intro_item'>
+      <view class='btn_group'>
+        <image class='move_up' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/move_up.png'></image>
+        <image class='move_down' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/move_down.png'></image>
+        <image class='delete' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/delete_in.png'></image>
+      </view>
+      <view class='content'>
+        <video src=''>00:00</video>
+      </view>
+    </view>
+  </view>
+  <!-- 添加按钮组 -->
+  <view class='add_btn_group'>
+    <view class='add_text'>
+      <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/editor.png'></image>
+      <text>文本</text>
+    </view>
+    <view class='add_img'>
+      <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/add_img.png'></image>
+      <text>图片</text>
+    </view>
+    <view class='add_audio'>
+      <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/audio_a.png'></image>
+      <text>语音</text>
+    </view>
+    <view class='add_video' bindtap='SET_VIDEO'>
+      <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/add_video.png'></image>
+      <text>视频</text>
+    </view>
+  </view>
+</view>
+
+<!-- 发布 -->
+<view class='submit'>发布主题</view>

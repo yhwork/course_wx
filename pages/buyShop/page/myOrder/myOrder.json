@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "预约上课",
+  "usingComponents": {
+    "calendar": "plugin://calendar/calendar"
+  }
+}

@@ -1,0 +1,59 @@
+<!--pages/mypage/myFans/myFans.wxml-->
+<view class="body">
+  <view class="nav bc_white" style='background-color: #fff;'>
+    <view class="{{selected?'red':'default'}}" bindtap="SELECDS">
+      我的关注
+    </view>
+    <view class="{{selected1?'red':'default'}}" bindtap="SELECD">我的粉丝</view>
+  </view>
+  <!-- 我的关注 -->
+  <view class="{{selected?'show':'hidden'}}">
+    <view class='myAttention_container'>
+      <scroll-view scroll-y="true" style="height:{{winH}}px;" bindscrolltolower='PAGEPLUS'>
+        <view class='attention_lists_wrap' wx:for="{{resultModelAttention}}" wx:key='{{index}}' wx:for-item='item'>
+          <view class='attention_lists_li'>
+            <view class='attention_lists_li_left'>
+              <image src='{{item.logo}}'></image>
+              <image class='gender_sex' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/{{item.gender==0?"boy":"girl"}}.png'></image>
+            </view>
+            <view class='attention_lists_li_right'>
+              <view class='fans_info'>
+                <view class='lists_li_right_name'>{{item.nickName}}</view>
+                <!-- <view class='lists_li_right_class'>学生党</view> -->
+              </view>
+            </view>
+            <view class='.care_btn_wrap_attention'>
+
+              <view data-fansId='{{item.id}}' data-index='{{index}}' class='care_btn {{item.status==0?"":"care_btn_end"}}' bindtap='attentionOrNot'>{{item.status==0?'关注':'已关注'}}</view>
+            </view>
+          </view>
+        </view>  
+      </scroll-view>
+    </view>
+  </view>
+  <!-- 我的粉丝 -->
+  <view class="{{selected1?'show':'hidden'}}">
+    <view class='myAttention_container'>
+      <scroll-view scroll-y="true" style="height:{{winH}}px;" bindscrolltolower='PAGEPLUS'>
+        <view class='attention_lists_wrap' wx:for="{{resultModel}}" wx:key='' wx:for-item='item'>
+          <view class='attention_lists_li'>
+            <view class='attention_lists_li_left'>
+              <image src='{{item.logo}}'></image>
+              <image class='gender_sex' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/{{item.gender==0?"boy":"girl"}}.png'></image>
+            </view>
+            <view class='attention_lists_li_right'>
+              <view class='fans_info'>
+                <view class='lists_li_right_name'>{{item.nick_name}}</view>
+                <!-- <view class='lists_li_right_class'>学生党</view> -->
+              </view>
+              <view class='care_btn_wrap'>
+                <view data-fansId='{{item.id}}' data-index='{{index}}' class='care_btn {{item.status==0?"":"care_btn_end"}}' bindtap='fansOrNot'>{{item.status==0?'关注':'已关注'}}</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+
+    </view>
+  </view>
+</view>

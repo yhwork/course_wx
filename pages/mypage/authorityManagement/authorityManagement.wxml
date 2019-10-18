@@ -1,0 +1,75 @@
+<!--pages/mypage/authorityManagement/authorityManagement.wxml-->
+<view class='manage_container'>
+  <block wx:if="{{pageModel.length>0}}">
+    <view class='manage_group'>
+      <view class="switch_title_wrap">
+        <view class='switch_title_left' style="color:#f29219">共享人</view>
+        <view class='switch_title_right'>
+          <view class="page__bd">
+            <view class="section section_gap">
+              <view class="body-view" style="color:#f29219">
+                修改权限
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+
+    <view class='manage_group2' wx:for='{{pageModel}}' wx:key='{{index}}' wx:for-item='item'>
+
+      <view class="switch_content_wrap">
+        <view class='switch_content_left'>
+          <image class='header_img' src="{{item.userLogo}}"></image> {{item.nickName}}
+        </view>
+        <view class='switch_content_right'>
+          <view class="page__bd">
+            <view class="section section_gap">
+              <view class="body-view">
+                <switch checked="{{item.edit=='1'?true:false}}" data-childId='{{item.childId}}' data-id='{{item.id}}' bindchange="dozensOfCards" />
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class='manage_del_wrap'>
+        <view class='fr manage_del' bindtap='showClocker' data-childId='{{item.childId}}' data-id='{{item.id}}'>
+          <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/out.png'></image>
+          <text>删除</text>
+        </view>
+      </view>
+    </view>
+
+    <view class='share_hint'>
+      <view class='title'>
+        <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/hint.png'></image>
+        备注：</view>
+      <view class='hint_list'>
+        <view class='hint_item'>
+          开启权限管理，被分享人将获取分享孩子信息修改权限，默认被分享人无修改权限
+        </view>
+      </view>
+    </view>
+  </block>
+  <block wx:else>
+    <view class='undeveloped'>
+      <image class='undeve_img' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/no_have.png'></image>
+      <view class='undeve_title'>暂无权限~</view>
+    </view>
+  </block>
+
+
+  <!-- 删除提示窗口 -->
+  <view class='share_panel_mask {{clockerHide?"hide":"show"}}' catchtouchmove='stopOther '>
+    <view class='panel_container'>
+      <view class='panel_container_tit'>提示</view>
+      <view class='panel_container_text'>确定要删除吗？</view>
+      <view class='panel_container_btn'>
+        <view class='fl panel_cancel' bindtap='closeClocker'>取消</view>
+        <view class='fl panel_sure' bindtap='closeClockers'>确定</view>
+      </view>
+    </view>
+  </view>
+
+</view>

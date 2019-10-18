@@ -1,0 +1,72 @@
+/* pages/circle/setprivacy/setprivacy.wxss */
+
+.setprivacy_container{
+  background: #fff;
+  min-height: 1220rpx;
+}
+.circle_type {
+  padding: 30rpx;
+  background: #fff;
+}
+
+.circle_type label {
+  display: flex;
+  align-items: center;
+  margin-top: 30rpx;
+}
+
+.circle_type label text {
+  font-size: 26rpx;
+  color: #888;
+  margin-left: 20rpx;
+}
+
+.circle_label {
+  background: #fff;
+  padding: 30rpx;
+  position: relative;
+}
+
+.circle_label::before {
+  content: "";
+  width: 690rpx;
+  height: 1rpx;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #e5e5e5;
+}
+
+.limit {
+  font-size: 26rpx;
+  color: #888;
+  margin-left: 12rpx;
+}
+
+.label_cont {
+  display: inline-block;
+  width: 124rpx;
+  height: 60rpx;
+  line-height: 58rpx;
+  text-align: center;
+  border-radius: 26rpx;
+  background: #f29219;
+  color: #fff;
+  margin-top: 26rpx;
+}
+
+.label_cont {
+  margin-right: 60rpx;
+  position: relative;
+}
+.privacy_text{
+width: 100%;
+height:34rpx;
+font-size:26rpx;
+font-family:PingFangSC-Regular;
+color:rgba(136,136,136,1);
+line-height:34rpx;
+padding-left: 64rpx;
+margin-top: 10rpx;
+}

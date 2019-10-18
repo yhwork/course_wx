@@ -1,0 +1,315 @@
+@import './title-bar.wxss';
+@import './icon-size.wxss';
+@import './modal.wxss';
+
+page {
+  background-color: #f8f8f8;
+  font-size: 32rpx;
+  /* font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif; *//* font-family: PingFang; */
+}
+
+page .weui-cells:first-of-type {
+  margin-top: 0;
+}
+
+.page__hd {
+  padding: 10px;
+  background-color: #fff;
+}
+
+.page__bd {
+  /* padding-bottom: 40px; */
+}
+
+.page__bd_spacing {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.page__ft {
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.page__title {
+  text-align: left;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.page__desc {
+  margin-top: 5px;
+  color: #888;
+  text-align: left;
+  font-size: 14px;
+}
+
+.border {
+  border-style: dashed;
+  border-width: 1px;
+}
+
+.border.border-red {
+  border-color: red;
+}
+
+.border.border-blue {
+  border-color: blue;
+}
+
+.border.border-green {
+  border-color: green;
+}
+
+.border.border-orange {
+  border-color: green;
+}
+
+.group {
+  display: flex;
+  border-top: 1rpx solid #d9d9d9;
+}
+
+.group .group_hd {
+  width: 80rpx;
+  text-align: center;
+  padding-top: 24rpx;
+}
+
+.group .group_bd {
+  width: 100%;
+}
+
+.group .group_bd .weui-cell {
+  padding-left: 0;
+}
+
+.group .group_bd .weui-cell::before {
+  left: 0;
+}
+
+.fixed-width {
+  word-wrap: break-word;
+  flex: none;
+  width: 540rpx;
+}
+
+.group .fixed-width {
+  width: 500rpx;
+}
+
+.link {
+  color: #f29219;
+}
+
+.weui-cell__hd.required {
+  position: relative;
+}
+
+.weui-cell__hd.required:after {
+  content: '*';
+  color: #f00;
+  position: absolute;
+  right: 50rpx;
+  top: 0;
+}
+
+.weui-cell__hd.required.space-2:after {
+  letter-spacing: initial;
+}
+
+.fa {
+  color: #f29219;
+}
+
+/* input,
+.input,
+picker,
+.picker {
+    font-size: 28rpx;
+} */
+
+button {
+  border-radius: 60rpx;
+  background-color: #f29219;
+  color: #fff;
+}
+
+button.disabled {
+  background-color: #facf9a;
+}
+
+.weui-cell_input, .weui-cell_select {
+  min-height: 88rpx;
+}
+
+.weui-select {
+  border-right: none;
+}
+
+.weui-select__placeholder {
+  font-size: 28rpx;
+  color: #888;
+}
+
+.weui-cell.align-left>.weui-cell__bd {
+  flex: none;
+  width: 200rpx;
+}
+
+.weui-cell.align-left>.weui-cell__ft {
+  flex: 1;
+  text-align: left;
+  color: #999;
+  font-size: 28rpx;
+  display: flex;
+  align-items: baseline;
+}
+
+.weui-cell.align-left>.weui-cell__ft .fill {
+  flex: auto;
+}
+
+.link {
+  color: #f29219;
+}
+
+.navigation {
+  color: #619fff;
+}
+
+.weui-cell.align-left>.weui-cell__ft.navigation {
+  color: #619fff;
+}
+
+.weui-cell.align-left>.weui-cell__ft.phone-call {
+  color: #619fff;
+}
+
+.weui-cell.align-left>.weui-cell__ft.emphases {
+  color: #444;
+  font-weight: bold;
+}
+
+.space-2 {
+  letter-spacing: 62rpx;
+}
+
+.label {
+  border-radius: 10rpx;
+  padding: 0 10rpx;
+  font-size: 26rpx;
+  display: flex;
+  align-items: center;
+}
+
+.label.adjust {
+  background-color: #cff9ff;
+  color: #00869d;
+}
+
+.label.absent {
+  background-color: #ffcfda;
+  color: #9d2f00;
+}
+
+.label.makeup {
+  background-color: #cfe3ff;
+  color: #005f9d;
+}
+
+.label.normal {
+  background-color: #fbdfbd;
+  color: #cd760c;
+}
+
+.label.accomplished {
+  background-color: #e2e7ed;
+  color: #788085;
+}
+
+.help-cells .weui-cell.help-cell>.help-icon {
+  padding-right: 20rpx;
+}
+
+.help-cells .weui-cell {
+  padding-right: 50rpx;
+}
+
+.help-cells .weui-cell.help-cell {
+  padding-right: 0;
+}
+
+/*出勤*/
+
+.course-attend {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 16rpx;
+  background: #e4e4f0;
+  margin-right: 10rpx;
+}
+
+.course-attend-color {
+  color: #b3b3be;
+}
+
+/*未上*/
+
+.course-noton {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 16rpx;
+  background: #feddbe;
+  margin-right: 10rpx;
+}
+
+.course-noton-color {
+  color: #cc995c;
+}
+
+/*缺课*/
+
+.course-absent {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 16rpx;
+  background: #fac8c7;
+  margin-right: 10rpx;
+}
+
+.course-absent-color {
+  color: #ef5955;
+}
+
+/*调课*/
+
+.course-change {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 16rpx;
+  background: #cdf8ff;
+  margin-right: 10rpx;
+}
+
+.course-change-color {
+  color: #6badad;
+}
+
+/*补课*/
+
+.course-remedial {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 16rpx;
+  background: #d1e2fc;
+  margin-right: 10rpx;
+}
+
+.course-remedial-color {
+  color: #6d97b4;
+}
+.page__title{
+  font-size: 28rpx;
+  
+}

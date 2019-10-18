@@ -1,0 +1,5 @@
+<view class="weui-tab__content" hidden="{{!actived}}">
+    <view class="page__hd">
+        <slot></slot>
+    </view>
+</view>

@@ -1,0 +1,106 @@
+<view class='orderDetail_wrap'>
+  <!-- <view class='order_top'>
+    <view class='top'>
+      <view class='top-head'>
+        <view class='img_style'>
+          <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/icone.png' class='icone'></image>
+          <text wx:if='{{orderPayStatus==1}}'>等待付款</text>
+          <text wx:elif='{{orderPayStatus==2}}'>支付成功</text>
+          <text wx:else>支付失败</text>
+        </view>
+        <view class='time_last' wx:if='{{orderPayStatus==1}}'>
+          <text>剩余:</text>
+          <text>{{cutTime}}</text>
+        </view>
+      </view>
+      <view class='buttom' wx:if='{{orderPayStatus==1}}'>
+        <text>需付款:</text>
+        <text>¥</text>
+        <text>{{orderMoney}}</text>
+      </view>
+    </view>
+  </view> -->
+  <!-- 购买者头像 -->
+  <!-- <view class='customer_msg'>
+    <view class='msg_info'>
+      <view class='img_top'>
+        <image src='{{orderChildLogo}}' class='customer_photo'></image>
+      </view>
+      <view class='buyer_msg'>
+        <text class='customer_photo'>{{orderChildName}}</text>
+      </view>
+    </view>
+  </view> -->
+  <!-- 订单列表 -->
+  <view class='pay_content'>
+    <view class='content_left'>
+      <image src="{{imgVideo[0]}}" class='left_img'></image>
+    </view>
+    <view class='content_right'>
+      <view>
+        <text>{{productTitle}}</text>
+      </view>
+      <view>
+        <text>{{productDescr?productDescr:''}}</text>
+      </view>
+      <view class='right_text'>
+        <scroll-view scroll-x="true" class='lable_style'>
+          <text class='font' style=' display: inline-block' wx:for="{{productLable=='[]'?'':productLable}}" wx:key="index">{{item}}</text>
+          <!-- <text class='font' style=' display: inline-block'>开开心心的猪</text> -->
+        </scroll-view>
+      </view>
+    </view>
+  </view>
+  <!-- 联系客服 -->
+  <view class='customer'>
+    <text>联系客服</text>
+  </view>
+  <!-- 订单详情 -->
+  <view class='payOrders'>
+    <view class='order_item'>
+      <view>
+        <text>订单编号:</text>
+        <text class='fontstyle'>{{orderNumber}}</text>
+      </view>
+      <text class='copy' bindtap='copy'>复制</text>
+    </view>
+    <view>
+      <text>下单时间 :</text>
+      <text>{{orderAddTime?orderAddTime:''}}</text>
+    </view>
+    <view>
+      <text>支付方式 :</text>
+      <text>{{orderPayCanal?orderPayCanal:''}}</text>
+    </view>
+    <view>
+      <text>支付时间 :</text>
+      <text>{{orderPayTime?orderPayTime:''}}</text>
+    </view>
+  </view>
+
+  <view class='account'>
+    <text>备注 : 如需发票,打卡后去培训机构处获取</text>
+  </view>
+  <view class='btngroup'>
+    <view>
+      <text class='delfont' bindtap='delOrder'>删除订单</text>
+    </view>
+    <!-- <view class='right' wx:if='{{orderPayStatus==1}}'>
+      <view class='calOrder_btn' bindtap='buyagain'>
+        <text>去支付</text>
+      </view>
+    </view> -->
+    <!-- wx:elif='{{orderPayStatus==2}}' -->
+    <view class='right' >
+      <view class='calOrder_btn' bindtap='buyagain'>
+        <text>再次购买</text>
+      </view>
+      <view class='calOrder_btn'>
+        <text>去预约</text>
+      </view>
+      <view class='calOrder_btn'>
+        <text>分享</text>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,133 @@
+<view class="page">
+  <view class="page__hd_top">
+    <view class='page__hd_logo'>
+
+      <block wx:if="{{userInfo.role=='0'}}">
+        <image src='{{childInfo.logo}}' class='head-img'></image>
+        <image src="{{childInfo.gender==0 ? '/assets/img/boy.png' : '/assets/img/girl.png'}}" mode="widthFix" class='head-img1'></image>
+        <view class='head-name font'>{{childInfo.childName}}</view>
+      </block>
+      <block wx:else>
+        <image src='{{userInfo.logo}}' class='head-img'></image>
+        <image src="{{userInfo.gender==0 ? '/assets/img/boy.png' : '/assets/img/girl.png'}}" mode="widthFix" class='head-img1'></image>
+        <view class='head-name font'>{{userInfo.name}}</view>
+      </block>
+    </view>
+    <view class='class'><text>已有{{childInfo.courseNum}}门校外课程</text></view>
+    <view class='clear'></view>
+  </view>
+  <!-- 头部结束 -->
+  <view class='page_bd_list'>
+    <view class='page_bd_list1'>
+      <view class='page__bd_list1'>
+        <view class='page__bd_list1_class'>
+          <view class="weui-cell__hd text_m_r2">
+            <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/icond.png'></image>
+            课程名称：
+            <!-- <text class='import'>*</text> -->
+          </view>
+          <view class="weui-cell__bd">
+            <view class="time2">{{courseInfo.name}}</view>
+          </view>
+        </view>
+        <!-- 教育机构 -->
+        <view class='page__bd_list1_class ma-b'>
+          <!-- <view class="weui-cell"> -->
+          <view class="weui-cell__hd text_m_r2">
+            <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/icona.png'></image>
+            教学机构：
+            <!-- <text class='import'>*</text> -->
+          </view>
+          <view class="weui-cell__bd">
+            <view class='time2'>{{courseInfo.orgName}}</view>
+            <!-- </view> -->
+          </view>
+          <!-- 上课日期 -->
+        </view>
+        <view class='page__bd_list1_class'>
+          <view class="weui-cell__hd text_m_r2">
+            <image class='image_l' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/data.png'></image>
+            上课日期：
+          </view>
+          <view class="weui-cell__bd">
+            <view class='time2'>{{courseInfo.beginDate}}至{{courseInfo.endDate}}</view>
+          </view>
+        </view>
+
+        <view class="page__bd_list1_class ma-b">
+          <view class="weui-cell__hd text_m_r">
+            <image class='image_l' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/course_num.png'></image>
+            课程节数:
+          </view>
+          <view class="weui-cell__bd">
+            <view class='time2'>共{{courseInfo.num}}节</view>
+          </view>
+        </view>
+        <!-- 重复 -->
+        <view class='page__bd_list1_class ma-b'>
+          <view class="weui-cell__hd text_m_r">
+            <image class='image_l' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/repeat.png'></image>
+            重
+            <text decode="{{true}}" space="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;</text> 复：
+          </view>
+          <view class="weui-cell__bd">
+            <view class='time2'>{{courseInfo.repetitionIndex=='4'?courseInfo.weekDaysTxt:courseInfo.repetitionTxt}}</view>
+          </view>
+        </view>
+
+        <!-- 上课时间 -->
+        <view class='page__bd_list1_class ma-b'>
+          <view class="weui-cell__hd text_m_r">
+            <image class='image_l' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/time.png'></image>
+            上课时间:
+          </view>
+          <view class="weui-cell__bd">
+            <view class='time2'> {{courseInfo.startClassTime}}-{{courseInfo.endClassTime}}
+              <view class='pan' wx:if="{{courseInfo.repetitionIndex!=='1'&&courseInfo.repetitionIndex!=='4'}}">{{courseInfo.weedDayName}}</view>
+            </view>
+
+          </view>
+        </view>
+        <!-- 课程时长： -->
+        <view class='page__bd_list1_class ma-b'>
+          <view class="weui-cell__hd text_m_r2">
+            <image class='image_l' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/duration.png'></image>
+            课程时长：
+          </view>
+          <view class="weui-cell__bd">
+            <view class='time2'>{{courseInfo.duration}}分钟</view>
+          </view>
+        </view>
+
+        <!-- 课程提醒 -->
+        <view class='page__bd_list1_class ma-b'>
+          <view class="weui-cell__hd">
+            <image src='/assets/img/remind.png' class='img4' mode="widthFix"></image>
+            课程提醒：
+          </view>
+          <view class="weui-cell__bd">
+            <view class='time2'>
+              <text class='text1'>{{courseInfo.remindTxt}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+  <view class="page__bd">
+    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{message}}</view>
+
+    <view class='btn_box'>
+      <button class='btn2' bindtap="SAVE_NEXT">确认添加</button>
+    </view>
+  </view>
+</view>
+
+<view class='sharefrends' hidden='{{iptHide}}' catchtouchmove="ture">
+  <view class='mb'>
+    <image class='del' bindtap='delShare' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/delete_in.png'></image>
+    <image class='img' src='{{img}}'></image>
+    <button open-type='share'> </button>
+  </view>
+</view> 

@@ -1,0 +1,75 @@
+<view class="section__title">选择学校</view>
+<view class="page">
+
+  <view class="nav">
+    <view class="nav-son active" bindtap="SHOW_SELECT">
+      <view class="content">{{provincename}}</view>
+      <view class="fa fa-chevron-down icon"></view>
+    </view>
+  </view>
+  <view class="nav">
+    <view class="nav-son active" bindtap="SHOW_SELECT">
+      <view class="content">{{cityname}}</view>
+      <view class="fa fa-chevron-down icon"></view>
+    </view>
+  </view>
+  <view class="nav">
+    <view class="nav-son active" bindtap="SHOW_SELECT">
+      <view class="content">{{regionname}}</view>
+      <view class="fa fa-chevron-down icon"></view>
+    </view>
+  </view>
+  <view class="quyu slidown" hidden="{{slideHidden}}">
+    <view class="qy quyu-left">
+      <view class="current2" bindtap="SELECT_PROVINCE" wx:for="{{province}}" wx:for-item="item" wx:key="" data-id="{{item.id}}" data-name="{{item.name}}">
+        {{item.name}}
+      </view>
+    </view>
+    <view class="qy quyu-center">
+      <view class="current2" bindtap="SELECT_CITY" wx:for="{{city}}" wx:for-item="item" wx:key="" data-id="{{item.id}}" data-name="{{item.name}}">
+        {{item.name}}
+      </view>
+    </view>
+    <view class="qy quyu-right">
+      <view class="current2" bindtap="SELECT_REGION" wx:for="{{region}}" wx:for-item="item" wx:key="" data-id="{{item.id}}" data-name="{{item.name}}">
+        {{item.name}}
+      </view>
+    </view>
+  </view>
+
+  <!-- 搜索页 -->
+  <view class="page__bd" hidden="{{searchHidden}}">
+    <view class="weui-search-bar">
+      <view class="weui-search-bar__form">
+        <view class="weui-search-bar__box">
+          <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+          <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="INPUT_TYPING" />
+          <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="CLEAR_INPUT">
+            <icon type="clear" size="14"></icon>
+          </view>
+        </view>
+        <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="SHOW_INPUT">
+          <icon class="weui-icon-search" type="search" size="14"></icon>
+          <view class="weui-search-bar__text">搜索</view>
+        </label>
+      </view>
+      <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="HIDE_INPUT">取消</view>
+    </view>
+    <view class="weui-cells searchbar-result" class='s'>
+      <view wx:if='{{shcool.length !=0||shcool}}' class="weui-cell" hover-class="weui-cell_active" wx:for="{{shcool}}" wx:for-item="item" wx:key="" data-id="{{item.id}}" data-name="{{item.NAME}}" data-typecode="{{item.typeCode}}" data-city="{{item.city}}" bindtap="SET_SCHOOL">
+        <view class="weui-cell__bd">
+          <view>{{item.NAME}}</view>
+        </view>
+      </view>
+      <view wx:if='{{shcool.length==0||!shcool}}'>
+        <view class='no_school'>
+          找不到学校？请联系客服
+        </view>
+      </view>
+    </view>
+
+
+  </view>
+
+
+</view>

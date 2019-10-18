@@ -1,0 +1,96 @@
+<view class='hint'>
+  <image class='hint_img' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/icona.png'></image>
+  <text>学校名称：{{courseMsg.schoolName}}</text>
+</view>
+<view class='hint'>
+  <image class='hint_img' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/classroom.png'></image>
+  <text>班级名称：{{courseMsg.className}}</text>
+</view>
+
+<view class='course_table'>
+
+
+
+
+
+  <view class='thead'>
+    <view class='tr'>
+      <view class='td firstTd' style="font-size:10px;">星期节次</view>
+      <view class='td'>周一</view>
+      <view class='td'>周二</view>
+      <view class='td'>周三</view>
+      <view class='td'>周四</view>
+      <view class='td'>周五</view>
+    </view>
+  </view>
+  <view class='tbody'>
+
+  <view class='tr' wx:for="{{courseTable}}" wx:for-item="item" wx:key="" wx:for-index="index">
+    <block wx:for="{{item}}" wx:for-item="item1" wx:key="" wx:for-index="index1">
+      <block wx:if="{{index1==0}}">
+        <view class='td firstTd'>
+          {{index+1}}
+        </view>
+      </block>
+      <block wx:else>
+        <view class='td'>{{item1.courseName}}{{item1.courseName1}}</view>
+      </block>
+    </block>
+  </view>
+  </view>
+</view>
+
+<!-- <view class='table'>
+  <view class='th'>
+    <view class='td thisW rank' style="font-size:10px;">星期节次</view>
+    <view class='td'>周一</view>
+    <view class='td'>周二</view>
+    <view class='td'>周三</view>
+    <view class='td'>周四</view>
+    <view class='td'>周五</view>
+  </view>
+
+  <view class='tr' wx:for="{{courseTable}}" wx:for-item="item" wx:key="" wx:for-index="index">
+    <block wx:for="{{item}}" wx:for-item="item1" wx:key="" wx:for-index="index1">
+      <block wx:if="{{index1==0}}">
+        <view class='td rank'>
+          {{item1+1}}
+        </view>
+      </block>
+      <block wx:else>
+        <view class='td'>{{item1.courseName}}{{item1.courseName1}}</view>
+      </block>
+    </block>
+  </view>
+</view> -->
+
+<view class='hint' wx:if='{{userInfo.role == 0}}'>选择您的课表或新建课表加入该课程</view>
+<view class='hint' wx:if='{{userInfo.role == 1}}'>加入该课程表</view>
+<view class='course_list'>
+  <block wx:if="{{userInfo.role=='0'}}">
+    <block wx:for="{{childList}}" wx:for-item="item" wx:key="">
+      <view class='course_item' bindtap="CHOOSE_CHILD" data-childid="{{item.childId}}">
+        <view class='photo_box'>
+          <image src='{{item.logo}}'></image>
+          <image class='sex' src="{{item.gender=='0'?'https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/boy.png':'https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/girl.png'}}"></image>
+        </view>
+        <view class='percen_name'>{{item.childName}}</view>
+      </view>
+    </block>
+  </block>
+  <block wx:else>
+    <view class='course_item' bindtap="CHOOSE_CHILD" data-childid="{{childList[0].childId}}">
+      <view class='photo_box'>
+        <image src='{{userInfo.logo}}'></image>
+        <image class='sex' src="{{userInfo.gender=='0'?'https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/boy.png':'https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/girl.png'}}"></image>
+      </view>
+      <view class='percen_name'>{{userInfo.name}}</view>
+    </view>
+  </block>
+  <view class='course_item' bindtap="ADD_COURSE" wx:if='{{userInfo.role == 0}}'>
+    <view class='add_btn'>
+      <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/add1.png'></image>
+    </view>
+    <view class='add_title'>点击添加课程表</view>
+  </view>
+</view>

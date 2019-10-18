@@ -1,0 +1,286 @@
+@import '/style/weui.wxss';
+@import '/style/app/app.wxss';
+
+.cell-group {
+  width: 100%;
+  display: flex;
+}
+
+.cell-group.row {
+  flex-direction: row;
+}
+
+.limet_text {
+  /* display: flex; */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cell-group.column {
+  flex-direction: column;
+}
+
+.cell-group .cell {
+  flex: 1;
+  width: 100%;
+  border-right: 1px solid #efefef;
+  border-bottom: 1px solid #efefef;
+  height: 50px;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 22rpx;
+  color: #7f8389;
+}
+
+.cell-group .cell.week {
+  font-size: 28rpx;
+  color: #000;
+}
+
+.cell-group.row>.cell:first-of-type {
+  border-left: 1px solid #efefef;
+}
+
+.cell-group.column>.cell:first-of-type {
+  border-top: 1px solid #efefef;
+}
+
+.desc {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.cell.selected {
+  background-color: #f29219;
+  color: #fff !important;
+  border-bottom: 1px solid #f29219;
+}
+
+.cell.selected .desc {
+  color: #fff;
+}
+
+.timetable {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+}
+
+.timetable-head {
+  background-color: #fff;
+}
+
+.timetable-body {
+  overflow-y: auto;
+  height: 100%;
+}
+
+.timetable-body .cell-group.row {
+  margin-top: -1px;
+}
+
+.timetable-body .cell-group.row:first-of-type {
+  margin-top: 0;
+}
+
+.timetable-body .cell {
+  border-right: 1px solid transparent;
+}
+
+.timetable-body-item {
+  overflow-y: auto;
+  border: 1px solid red;
+}
+
+.timetable-item {
+  position: absolute;
+  left: 0;
+  right: 0;
+  border-radius: 10rpx;
+  font-size: 22rpx;
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  flex-direction: column;
+  z-index: 10;
+  line-height: 28rpx;
+  text-align: center;
+  /* overflow: hidden; */
+}
+
+.timetable-item view {
+  height: 24rpx;
+  white-space: nowrap;
+}
+
+.lesson_box {
+  padding: 0 30rpx;
+  margin-top: 10rpx;
+}
+
+.no_have_lesson {
+  margin-top: 270rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #030303;
+}
+
+.no_lessonImg {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 200rpx;
+}
+
+.no_lessonTitle {
+  margin-top: 30rpx;
+}
+
+.no_hint {
+  color: #888;
+  margin-top: 20rpx;
+}
+
+.course_item {
+  background: #fff;
+  border-radius: 8rpx;
+  padding: 40rpx;
+  font-size: 26rpx;
+  color: #888;
+  position: relative;
+  margin-top: 20rpx;
+}
+
+.lesson_status {
+  width: 82rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  border-radius: 4rpx;
+  font-size: 22rpx;
+  position: absolute;
+  top: 40rpx;
+  right: 40rpx;
+  text-align: center;
+}
+
+.name_time, .orgName_addr {
+  display: flex;
+}
+
+.name_time {
+  align-items: center;
+}
+
+.orgName_addr {
+  margin-top: 20rpx;
+}
+
+.name_time .name {
+  margin-right: 20rpx;
+  font-size: 36rpx;
+  color: #353535;
+}
+
+.name_time .time {
+  font-size: 34rpx;
+  color: #f29219;
+}
+
+.orgName {
+  margin-right: 50rpx;
+}
+
+.addr {
+  flex: 1;
+}
+
+.addr_img {
+  width: 24rpx;
+  height: 30rpx;
+  margin-right: 10rpx;
+  vertical-align: text-bottom;
+}
+
+.today_color {
+  color: #f29219 !important;
+}
+
+/*出勤*/
+
+.lesson-attend {
+  background: #e4e4f0;
+}
+
+.lesson-attend-color {
+  color: #b3b3be;
+}
+
+/*未上*/
+
+.lesson-noton {
+  background: #feddbe;
+}
+
+.lesson-noton-color {
+  color: #cc995c;
+}
+
+/*缺课*/
+
+.lesson-absent {
+  background: #fac8c7;
+}
+
+.lesson-absent-color {
+  color: #ef5955;
+}
+
+/*调课*/
+
+.lesson-change {
+  background: #cdf8ff;
+}
+
+.lesson-change-color {
+  color: #6badad;
+}
+
+/*补课*/
+
+.lesson-remedial {
+  background: #d1e2fc;
+}
+
+.lesson-remedial-color {
+  color: #6d97b4;
+}
+
+.cell-group .today-background {
+  background-color: #f3f3fd;
+  border-left: 1px dashed #ccc;
+  border-right: 1px dashed #ccc;
+}
+
+.lesson_ing {
+  background: #fdf4e8;
+  color: #ffbe00;
+}
+
+.lesson_ed {
+  color: #7ed321;
+  background: #f2fae8;
+}
+
+.lesson_notStart {
+  color: #f95b58;
+  background: #ffece5;
+}
+
+.school_after{
+  color: #fff;
+  background-color: skyblue;
+}

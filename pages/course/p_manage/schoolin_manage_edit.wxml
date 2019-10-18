@@ -1,0 +1,221 @@
+<view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">
+  {{message}}</view>
+<view class='page_top'>
+  <view class='photo_box'>
+    <image class='photo' wx:if='{{courseMsg.childLogo||courseMsg.teacherLogo}}' src='{{courseMsg.childLogo?courseMsg.childLogo:courseMsg.teacherLogo}}'></image>
+    <image class='photo' wx:else src='{{img}}'></image>
+  </view>
+  <view class='page_topRight'>
+    <view class='name'>{{courseMsg.childName?courseMsg.childName:courseMsg.teacherName}}</view>
+  </view>
+</view>
+<view class="weui-tab">
+  <view class="course_type">
+    <block wx:for="{{tabs}}" wx:key="">
+      <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="TAB_CLICK">
+        <view class="weui-navbar__title">{{item}}</view>
+      </view>
+    </block>
+    <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+  </view>
+</view>
+<!-- 课程信息修改 -->
+<view class='course_set' hidden='{{activeIndex!=0}}'>
+  <view class='top'>
+
+    <view class='left'>
+      <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/icona.png'></image>
+      <text class="xingxing">*</text>
+      <text class="name">学校名称：</text>
+    </view>
+    <view class='school weui-select weui-select_in-select-after weui-cell__ft text_ft' bindtap='{{userInfo.role==0?"chooseSchool":""}}'>{{schoolname?schoolname:courseMsg.schoolName }}</view>
+  </view>
+  <view class='top'>
+
+    <view class='weui-cell__hd'>
+      <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/classroom.png'></image>
+      <text class="xingxing">*</text>
+      <text class="name">班级名称：</text>
+    </view>
+    <input wx:if='{{userInfo.role==0}}' bindinput='CHANGE_CLASSNAME' class='setclassname weui-select weui-select_in-select-after weui-cell__ft text_ft inputclass' type='text' placeholder="{{courseMsg.className}}"></input>
+
+
+    <picker class='school weui-select weui-select_in-select-after weui-cell__ft text_ft' wx:if='{{userInfo.role==1}}' bindchange="chooseClass" value='{{index}}' range="{{classList}}" range-key='className'>
+      <view class='classname' wx:if='{{setClassMsg.className}}'>{{setClassMsg.className}}</view>
+      <view class="" wx:else>{{courseMsg.className}}</view>
+    </picker>
+  </view>
+
+  <view class='top' bindtap="CHANGE_BEGINDATE">
+    <view class='left'>
+      <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/rili.png'></image>
+      <text class="xingxing">*</text>
+      <text class="name">开学日期：</text>
+    </view>
+    <text class='school weui-select weui-select_in-select-after weui-cell__ft text_ft'>{{model.startDate}} {{beginWeekDay}}</text>
+  </view>
+  <view class='top' wx:if='{{userInfo.role == "0"}}'>
+    <view class='left'>
+      <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/time.png'></image>
+      <text class="xingxing">*</text>
+      <text class="name">第一节课时间：</text>
+    </view>
+    <picker class='main_start_time' bindchange="CHANGE_TIMEFIRST" mode="time" start="07:00" end="21:00" value="{{model.oneStartTime}}">
+      <view class='school weui-select weui-select_in-select-after weui-cell__ft text_ft'>{{one}}</view>
+    </picker>
+  </view>
+  <view class='top' wx:if='{{userInfo.role == "0"}}'>
+    <view class='left'>
+      <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/time.png'></image>
+      <text class="xingxing">*</text>
+      <text class="name">第五节课时间：</text>
+    </view>
+
+    <picker class='main_start_time' bindchange="CHANGE_TIMEFIVE" mode="time" start="12:00" end="17:00" value="{{model.fiveStartTime}}">
+      <view class='school weui-select weui-select_in-select-after weui-cell__ft text_ft'>{{five}}</view>
+    </picker>
+  </view>
+
+  <view class='top' wx:if="{{userInfo.role==0}}">
+    <view class='left'>
+      <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/hint.png'></image>
+      <text class="xingxing" style='color:#fff'>*</text>
+      <text class="name">放学提醒:</text>
+    </view>
+
+    <picker class='class_warn' bindchange="CHANGE_REMIND" value="{{model.remindIndex}}" range="{{remindItems}}" range-key="name">
+      <view class=" weui-select_in-select-afte weui-select-next">
+        <text class='text_col weui-select weui-select_in-select-after weui-cell__ft text_ft'>{{remindItems[model.remindIndex].name}}</text>
+      </view>
+    </picker>
+  </view>
+
+  <!-- 放学时间设置 -->
+  <view class='set_box' hidden='{{childTime}}' wx:if="{{userInfo.role==0}}">
+    <view class='line'></view>
+    <view class='set_list'>
+      <view class='set_item '>
+        <view class='weekday'>星期</view>
+        <view class='endtimer'>放学时间</view>
+      </view>
+      <block wx:for="{{weekDays}}" wx:for-item="item" wx:for-index="index" wx:key="">
+        <view class='set_item'>
+          <!-- <view class='set_item {{item.value=="输入时间"?"":"complate"}}'> -->
+          <view class='weekday'>{{item.name}}</view>
+          <picker bindchange="SET_SCHOOLOUT" mode="time" start="12:00" end="21:00" data-index="{{index}}">
+            <view class='endtimer'>{{item.value}}</view>
+          </picker>
+        </view>
+      </block>
+    </view>
+  </view>
+  <view class='set_box_tishi' hidden='{{childTime}}' wx:if="{{userInfo.role==0}}">放学时间可根据实际情况进行修改</view>
+
+  <view class='top' wx:if="{{userInfo.role==1}}">
+    <view class='left'>
+      <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/hint.png'></image>
+      <text class="xingxing" style='color:#fff'>*</text>
+      <text class="name">上课提醒：</text>
+    </view>
+
+    <picker class='class_warn' bindchange="CHANGE_REMIND" value="{{model.remindIndex}}" range="{{remindItems}}" range-key="name">
+      <view class=" weui-select_in-select-afte weui-select-next">
+        <text class='text_col weui-select weui-select_in-select-after weui-cell__ft text_ft'>{{remindItems[model.remindIndex].name}}</text>
+      </view>
+    </picker>
+  </view>
+
+
+  <view class='schoolin_class_info coursebox' wx:if='{{userInfo.role==1}}' hidden='{{tachertime}}' wx:for='{{courseList}}' wx:for-item="item" wx:for-index="index" wx:key=''>
+    <view class='info_list timebox'>
+      <view class='left'>
+        <image class='info_list_icon' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/time.png"></image>
+        <text class="xingxing" style='color:#fff'>*</text>
+        <text class='import'>*</text>第{{item.dailyRule}}节课时间：</view>
+
+      <view class='school class_length'>
+        <picker bindchange="CHANGE_CLASSTIME" wx:if='{{item.dailyRule<5}}' class='class_picker' data-index="{{index}}" mode="time" start="07:00" end="12:00" value=""> {{item.classTime}}</picker>
+        <picker bindchange="CHANGE_CLASSTIME" wx:if='{{item.dailyRule>=5}}' class='class_picker' data-index="{{index}}" mode="time" start="13:00" end="17:00" value=""> {{item.classTime}}</picker>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 课节信息修改 -->
+<view class='course_set' hidden='{{activeIndex!=1}}'>
+  <view class='odd_even'>
+    <view class='odd_even_left'>
+      <text>课程设置：</text>
+      <view class='odd_even_set'>
+        <text>开启双周</text>
+        <switch class='change' bindchange="BIND_SWITCH"></switch>
+      </view>
+      <view class='odd'>
+        <text>单周</text>
+        <view class='dian'></view>
+      </view>
+      <view class='even'>
+        <text>双周</text>
+        <view class='dian'></view>
+      </view>
+    </view>
+  </view>
+  <!-- tab2 -->
+  <view class='course_table'>
+    <view class='thead'>
+      <view class='tr'>
+        <view class='td firstTd'>
+          <view>星期节次</view>
+        </view>
+        <view class='td'>周一</view>
+        <view class='td'>周二</view>
+        <view class='td'>周三</view>
+        <view class='td'>周四</view>
+        <view class='td'>周五</view>
+      </view>
+    </view>
+
+    <view class='tbody'>
+      <view class='tr' wx:for="{{courseTable}}" wx:for-item="item" wx:key="" wx:for-index="index">
+        <block wx:for="{{item}}" wx:for-item="item1" wx:key="" wx:for-index="index1">
+          <block wx:if="{{index1==0}}">
+            <!-- 星期节次 -->
+            <view class='td firstTd'>{{item1.num+1}}</view>
+          </block>
+          <block wx:else>
+            <view class='td' catchtap="ADD_COURSE_CIRCLE" data-row="{{index}}" data-col="{{index1}}">
+              <view class='subject {{item1.courseClass}}' catchtap="{{switched?'':'BIND_COURSE'}}" data-row="{{index}}" data-col="{{index1}}">{{item1.courseNameSub}}</view>
+              <block wx:if="{{item1.courseSwitch}}">
+                <view class='subject {{item1.courseClass1}}' catchtap="{{switched?'':'BIND_COURSE_DOUBLE'}}" data-row="{{index}}" data-col="{{index1}}">{{item1.courseNameSub1}}</view>
+              </block>
+
+            </view>
+          </block>
+        </block>
+      </view>
+    </view>
+    <view class='slect_tab'>
+      <block wx:for="{{InterNameList}}" wx:for-item="item" wx:key="" wx:for-index="index">
+        <view class="{{item.checked=='1'?'tab_item tab_select':'tab_item'}}" bindtap="CHOOSE_TAG" bindlongpress="BIND_LONG_PRESS" data-name="{{item.courseName}}">
+          <block wx:if="{{item.courseDel}}">
+            <image class='delete_btn' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/delete1.png' catchtap="DEL_TAG" data-index="{{index}}" data-coursename="{{item.courseName}}"></image>
+            <image class='edit_btn1' bindtap="EDIT_TAG" src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/editor1.png'></image>
+          </block>
+          <view class='circle'>{{item.courseNameSub}}</view>
+          <text>{{item.courseName}}</text>
+        </view>
+      </block>
+
+      <view class='add_btn' bindtap="ADD_TAG">
+        <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/add1.png'></image>
+      </view>
+    </view>
+  </view>
+</view>
+
+<button class='submit' bindtap="SAVE_NEXT">保存</button>
+
+
+<!-- 日历 -->
+<view class='rili' wx:if="{{showCalendar}}">
+  <calendar catch:day-click="CALENDAR_DAY_CHANGED" />
+</view>

@@ -1,0 +1,62 @@
+.msglist {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  padding: 0 30rpx;
+  background-color: #fff;
+  margin-bottom: 10rpx;
+  height: 110rpx;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.logo {
+  width: 100rpx;
+  height: 100rpx;
+  margin-right: 20rpx;
+}
+.msgtop{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.msg {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 100%;
+  width: 470rpx;
+}
+.msgbot{
+  width: 100%;
+}
+.content {
+  font-size: 28rpx;
+  display: inline-block;
+  
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.like {
+  width: 40rpx;
+  height: 40rpx;
+  /* border: 1px solid red; */
+}
+
+.rightimg {
+  width: 70rpx;
+  height: 100rpx;
+  margin-left: 20rpx;
+}

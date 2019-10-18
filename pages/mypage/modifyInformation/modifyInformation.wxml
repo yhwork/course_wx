@@ -1,0 +1,71 @@
+
+<view class='personalInfo_container'>
+  <!-- header s -->
+  <view class='info_header_wrapper'>
+  <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{message}}</view>
+    <!-- header s -->
+    <view class='info_header_wrap'>
+      <view class='info_header_name'>头像
+      </view>
+      <view class='info_header_pic' bindtap='CHANGEPHOTO'>
+        <image mode='aspectFill' class='header' src='{{pageModel.logo==null?img:pageModel.logo}}'>
+        </image>
+        <image class='arrow' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
+      </view>
+    </view>
+
+    <!-- list s -->
+    <view class='info_lists_wrap'>
+      <view class='info_lists_li'>
+        <view class='info_lists_li_title'>昵称</view>
+        <view class='info_lists_li_right'>
+          <input type='text' placeholder="{{pageModel.name}}" bindinput='bindNickInput' />
+          <image class='arrow' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
+        </view>
+      </view>
+      <view class='info_lists_li'>
+        <view class='info_lists_li_title'>性别</view>
+        <view class='info_lists_li_right' bindtap='showGender'>
+          <!-- <input type='text' placeholder="{{pageModel.gender==0?'男':'女'}}" bindinput='bindSexInput' /> -->
+          <view class='right_c'>{{pageModel.gender==0?'男':'女'}}</view>
+          <image class='arrow' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
+        </view>
+      </view>
+      <view class='info_lists_li'>
+        <view class='info_lists_li_title'>学校</view>
+        <view class='info_lists_li_right' bindtap='chooseSchool'>
+          <!-- <input type='text' placeholder="{{pageModel.school}}" bindinput='bindSchoolInput' /> -->
+          <view class='right_c'>{{pageModel.school}}</view>
+          <image class='arrow' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
+        </view>
+      </view>
+
+      <view class='info_lists_li' hidden='true'>
+        <view class='info_lists_li_title'>年级</view>
+        <view class='info_lists_li_right'>
+          <input type='text' placeholder="五年级2班" />
+          <image class='arrow' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
+        </view>
+      </view>
+
+    </view>
+    <!-- list e -->
+
+  </view>
+  <!-- header e -->
+
+  <view class='button_submit' bindtap='saveChildInfo'>保存</view>
+
+
+</view>
+
+<!-- 性别 -->
+<view class='gender' hidden='{{genderHide}}'>
+  <view class='gender_mask' bindtap='hideGender'></view>
+  <view class='gender_box'>
+    <view class='title'></view>
+    <view wx:for='{{genders}}' data-index='{{item.value}}' wx:key='idx' wx:for-item='item' class="radio" bindtap='hideGender'>
+      {{item.name}}
+    </view>
+  </view>
+</view>

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "校内课时间设置",
+  "usingComponents": {
+        "calendar": "/components/calendar/calendar"
+   }
+}

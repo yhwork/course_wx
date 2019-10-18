@@ -1,0 +1,62 @@
+<view calss='myChildren_container'>
+  <view class='myChildren_wrap'>
+    <view class='myChildren_card' wx:for="{{resultModel}}" wx:key="" wx:for-item='item' data-childid='{{item.childId}}' bindtap='bindClildEdit' data-whochild='{{item.myShareUser?1:0}}'>
+      <view class='myChildren_card_header'>
+        <view class='left'>
+          <view class='header_img_wrap'>
+            <image mode='aspectFill' class='header_img' src='{{item.logo}}'></image>
+            <image class='child_sex' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/{{item.gender==0?"boy1":"girl1"}}.png'></image>
+          </view>
+          <!-- aaa -->
+          <view class='child_name textover'>{{item.childName}}</view>
+        </view>
+        <view class='rigth'>
+          <view class='rigth'>
+            <view class='rigth1' wx:if='{{item.myShareUser!=null}}'>
+              <image class='share' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/share.png'></image>
+              <image class='header_img'  mode='aspectFill' wx:for='{{item.myShareUser}}' wx:key='' src='{{item}}'></image>
+            </view>
+            <view class='rigth1' wx:if='{{item.shareMeUser!=null}}'>
+              <image class='share1' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/share.png'></image>
+              <image class='header_img' mode='aspectFill' wx:for='{{item.shareMeUser}}' wx:key='' src='{{item}}'></image>
+            </view>
+          </view>
+          <view class='rigth'>
+            <image class='arrow' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
+          </view>
+        </view>
+
+      </view>
+    </view>
+    <view class='add_child' bindtap='bindAddChild'>
+      <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/add1.png'></image>
+      <text class='add_btn_text'>点击增加课表</text>
+    </view>
+  </view>
+
+
+  <view class='explain'>
+    <view class='title'>
+      <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/explain.png'></image>
+      <text>如何增加日程表</text>
+    </view>
+    <view class='content1'>
+      <text>日程表与人是一一对应。通过增加人的数量来增加课程给你表的数量。</text>
+    </view>
+    
+    <!-- <view class='title'>
+      <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/explain.png'></image>
+      <text>共享孩子</text>
+    </view>
+    <view class='content'>
+      <text>1.共享孩子功能适用于家庭，共享孩子在小豆包课程表内所有信息，如课表信息、学习圈信息等</text>
+    </view>
+    <view class='content'>
+      <text>2.共享孩子倡导家庭所有成员对孩子成长的影响，只需要一人编辑、修改与孩子相关信息，全家成员同步实时更新</text>
+    </view>
+    <view class='content'>
+      <text>3.权限管理是指共享人分配给被共享人对孩子及其与之相关信息是否修改权限，默认没有修改权限</text>
+    </view> -->
+  </view>
+
+</view>

@@ -1,0 +1,96 @@
+page {
+  background-color: #f2f1f1;
+  font-size: 26rpx;
+}
+
+.pay_content {
+  display: flex;
+  margin-bottom: 10rpx;
+  padding-top: 20rpx;
+}
+
+.mynewBooking {
+  width: 750rpx;
+  background-color: white;
+}
+
+.content_left {
+  width: 180rpx;
+}
+
+.content_right {
+  width: 540rpx;
+}
+
+.left_img {
+  width: 160rpx;
+  height: 124rpx;
+}
+
+#f2f1f1
+.content_right {
+  font-size: 24rpx;
+}
+
+.right_text text {
+  width: 120rpx;
+  padding: 0 15rpx;
+  border: 1rpx solid #aaa;
+  text-align: left;
+  margin-right: 15rpx;
+  margin-top: 5rpx;
+}
+
+.right_text {
+  display: flex;
+}
+
+.booking_content {
+  width: 750rpx;
+  font-size: 26rpx;
+ 
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+}
+
+.content_title {
+  width: 730rpx;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  height: 70rpx;
+  line-height: 70rpx;
+ 
+}
+.booking_items{
+ border-bottom: 1rpx dashed gray;
+}
+.booking_top {
+  height: 10rpx;
+  width: 750rpx;
+  background-color: #f2f1f1;
+}
+.orgnaztion{
+  width: 730rpx;
+  padding: 0rpx 10rpx;
+}
+.address{
+  color: #386f97;
+  font-size: 26rpx;
+  font-weight:bolder;
+}
+.repair{
+  color: #386f97;
+  font-size: 26rpx;
+  font-weight:bolder;
+}
+.content_title view{
+  width: 33.33%;
+  text-align: left;
+}
+.content_title .text_lgin{
+  text-align: right;
+}
+.content_title .text-center{
+  text-align: center;
+}

@@ -1,0 +1,209 @@
+/* pages/circle/allTheme/allTheme.wxss */
+
+page {
+  background: #f4f4f4;
+}
+
+.theme_item {
+  position: relative;
+  background: #fff;
+  padding: 20rpx 30rpx;
+  margin-top: 10rpx;
+  height: 120rpx;
+}
+
+.theme_item>text {
+  color: #666;
+  font-size: 30rpx;
+}
+
+.theme_item:not(:nth-child(1)) {
+  margin-top: 10rpx;
+}
+
+.head_img {
+  /* width: 690rpx;
+  height: 388rpx; */
+  width: 150rpx;
+  height: 120rpx;
+}
+
+.btn_group {
+  width: 230rpx;
+  /* display: flex;
+  justify-content: flex-start; */
+  font-size: 26rpx;
+  color: #888;
+  position: relative;
+}
+
+/* .change_btn image {
+  width: 50rpx;
+  height: 45rpx;
+  margin-right: 10rpx;
+  position: absolute;
+  right: 150rpx;
+  bottom: 10rpx;
+} */
+.change_btn image {
+  width: 44rpx;
+  height: 45rpx;
+  margin-right: 10rpx;
+  position: absolute;
+  right: 70rpx;
+  bottom: 10rpx;
+}
+.lock {
+  margin-right: 20rpx;
+  display: flex;
+  align-items: center;
+}
+
+/* .lock image {
+  width: 44rpx;
+  height: 45rpx;
+  margin-right: 10rpx;
+  position: absolute;
+  right: 70rpx;
+  bottom: 10rpx;
+} */
+.lock image {
+  width: 50rpx;
+  height: 45rpx;
+  margin-right: 10rpx;
+  position: absolute;
+  right: 150rpx;
+  bottom: 10rpx;
+}
+
+.Fill_clock {
+  display: flex;
+  align-items: center;
+  margin-right: 20rpx;
+}
+
+.Fill_clock image {
+ width: 50rpx;
+  height: 45rpx;
+  /* margin-right: 10rpx; */
+  position: absolute;
+  right: 150rpx;
+  bottom: 10rpx;
+}
+
+.delete_btn image {
+  width: 38rpx;
+  height: 36rpx;
+  margin-right: 10rpx;
+}
+
+.change_btn {
+  margin-right: 20rpx;
+  display: flex;
+  align-items: center;
+}
+
+.delete_btn image {
+  width: 50rpx;
+  height: 45rpx;
+  margin-right: 10rpx;
+  position: absolute;
+  right: 0;
+  bottom: 10rpx;
+}
+
+.delete_btn {
+  margin-right: 20rpx;
+  display: flex;
+  align-items: center;
+}
+
+.img_box {
+  width: 150rpx;
+  height: 110rpx;
+  position: absolute;
+  left: 30rpx;
+  top: 22rpx;
+  font-size: 0;
+  /* margin-top: 30rpx; */
+}
+
+.img_box::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.no_imgBox image {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 200rpx;
+}
+
+.no_theme {
+  margin-top: 280rpx;
+  text-align: center;
+}
+
+.no_theme_title {
+  font-size: 28rpx;
+  color: #030303;
+  margin-top: 30rpx;
+}
+
+.title {
+  position: absolute;
+  left: 182rpx;
+}
+
+.time {
+  position: absolute;
+  left: 200rpx;
+  top: 68rpx;
+  font-size: 24rpx;
+  color: #888;
+}
+
+.icon_box {
+  position: absolute;
+  bottom: 10rpx;
+  right: 10rpx;
+}
+.clock_btn1{
+  color: #f5a949;
+  border: 2rpx solid #f5a949;
+  width: 60rpx;
+  position: absolute;
+  bottom: 12rpx;
+  right: 148rpx;
+  text-align: center;
+  font-size: 24rpx;
+  line-height: 28rpx;
+}
+.clock_btn2{
+  color: #bbbb;
+  border: 2rpx solid #bbbb;
+  width: 60rpx;
+  position: absolute;
+  bottom: 12rpx;
+  right: 148rpx;
+  text-align: center;
+  font-size: 24rpx;
+  line-height: 28rpx;
+}
+.clock_btn3{
+  color: #888;
+  border: 2rpx solid #888;
+  width:60rpx;
+
+  position: absolute;
+  bottom: 12rpx;
+  right: 148rpx;
+  text-align: center;
+  line-height: 28rpx;
+  font-size: 24rpx;
+}

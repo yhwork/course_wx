@@ -1,0 +1,16 @@
+<view class='search'>
+  <icon class="weui-icon-search_in-box" type="search" color='#888' size="20"></icon>
+  <input bindinput="inputvalue" auto-focus placeholder-style="color:#888;" placeholder='请输入班级ID'></input>
+  <button bindtap='searchClass'>搜索</button>
+</view>
+
+
+<view class='searchclass' wx:for='{{classLists}}' wx:key='' bindtap='GO_MYCLASS' data-classid="{{item.id}}">
+  <image src='{{item.classLogo?item.classLogo:"https://qa.oss.iforbao.com/public/default/circle_default.png!test"}}'></image>
+  <view class='right'>
+    <view class='name'>{{item.className}}</view>
+    <view>班级群号{{item.id}}</view>
+    <view>{{item.schoolName}}</view>
+  </view>
+</view>
+<view class='tishi'>{{tishi}}</view>

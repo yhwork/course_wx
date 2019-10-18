@@ -1,0 +1,8 @@
+<!--仅供视频播放使用页面-->
+<view class='video_box'>
+  <video id="myVideo" src='{{src}}' autoplay='{{show}}' show-fullscreen-btn='{{notShow}}' show-play-btn='{{show}}' enable-progress-gesture='{{show}}' show-center-play-btn='{{notShow}}' objectFit='cover' bindended='PLAY_END'>
+    <cover-view class='close' bindtap='STOP_PLAY'>
+      <cover-image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/close.png'></cover-image>
+    </cover-view>
+  </video>
+</view>

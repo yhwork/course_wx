@@ -1,0 +1,69 @@
+<view class="watchTv">
+  <!-- payContent -->
+  <view class='pay_content'>
+    <view class='content_left'>
+      <image src="{{conentImg}}" class='left_img'></image>
+    </view>
+    <view class='content_right'>
+      <view>
+        <text>{{title}}</text>
+      </view>
+      <view>
+        <text>{{subtitle}}</text>
+      </view>
+      <view class='right_text'>
+        <scroll-view scroll-x="true" class='lable_style'>
+          <view wx:for="{{lable=='[]'?'':lable}}" wx:key="index" class='info-label' style=' display: inline-block'>
+            {{item}}
+          </view>
+        </scroll-view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 视频列表 -->
+  <block wx:if='{{videoList!=""}}'>
+    <!-- <view class=""> -->
+    <view class="">
+      <view class="" wx:for="{{videoList}}" wx:key="index">
+        <view class='type-title ' wx:if='{{item.typeName}}'>{{item.typeName}}</view>
+        <view class="cover-img-container" bindtap="goWatch" data-id='{{item.id}}'>
+          <image class="cover-img" mode="aspectFit"  src="{{item.img}}"></image>
+          <image class="icon-play" mode="aspectFit" src="/assets/icons/icon_video.png" />
+          <view class="video-title">{{item.name}}</view>
+          <view class="video-time">{{item.time}}</view>
+        </view>
+      </view>
+    </view>
+    <view wx:for='{{material}}' wx:key>
+      <view class='type-title'>{{item.img_name}}</view>
+      <image src='{{item.img_url}}' data-path='{{item.img_url}}' bindtap='saveImg'></image>
+    </view>
+
+
+  </block>
+  <view class='prompt_wrap' wx:else>
+    <text class='prompt'>暂无视频</text>
+  </view>
+  <!-- 图片的名称类型 -->
+  <view class='video-imglist'>
+    <view class='video-imgtitle'>
+      <view class='video-imgtypename'> 视频资料<text></text></view>
+    </view>
+    <!-- 功能渲染点击放大下载 -->
+    <view class='video-filebox'>
+    
+      <view  class='video-imgbox' wx:for="{{videoImgList}}" wx:key="index">
+      
+        <view class='video-imgtitles' >{{item.img_name}}</view>
+        <view data-path='{{item.img_url}}' bindtap='saveImg'>
+          <image  mode='aspectFill' src='{{item.img_url}}'></image>
+        </view>
+    </view>
+    </view>
+  </view>
+
+
+
+
+</view>

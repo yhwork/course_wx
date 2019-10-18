@@ -1,0 +1,15 @@
+@import 'style/weui.wxss';
+@import 'style/font-awesome.wxss';
+@import 'style/app/app.wxss';
+@import 'style/audio.wxss';
+
+.font{
+   overflow: hidden;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+}
+
+.itemTexrt_brand{
+  border:1rpx solid #E1DEDE;
+}
+

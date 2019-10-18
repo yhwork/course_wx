@@ -1,0 +1,52 @@
+<import src="../../../components/templates/class/workInfo" />
+
+<template is='workInfo' data='{{workInfor,isPreview:1,type}}' />
+
+<view class='classname'>
+  <view style='color:#0a4e7f'>通知班级</view>
+  <view class='schoolclassbox'>
+    <view class='schoolclass' wx:for='{{classname}}' wx:key=''>
+      <text>{{item.className}}</text>
+      <text>{{item.schoolName}}</text>
+    </view>
+  </view>
+  <view>
+  </view>
+</view>
+
+<view class='classname' wx:if='{{type==0&&workInfor.receiptType}}'>
+  <view style='color:#0a4e7f'>回执方式</view>
+  <view class='classbox'>
+    <view class='classlist' wx:for='{{receiptType}}' wx:key='' wx:if='{{item.id==workInfor.receiptType}}'>{{item.type}} </view>
+  </view>
+  <view class='img_video' wx:if='{{workInfor.receiptType==4}}' hidden='{{!playvideo}}'>
+    <input placeholder='请输入你的想法'></input>
+    <view class='add_btn_group'>
+      <view class='add_img' bindtap='CHANGE_AVATAR'>
+        <image mode='aspectFill' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/add_img.png'></image>
+        <text>图片</text>
+      </view>
+      <view class='add_audio' bindtap='SET_AUDIO'>
+        <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/audio_a.png'></image>
+        <text>语音</text>
+      </view>
+      <view class='add_video' bindtap='SET_VIDEO'>
+        <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/add_video.png'></image>
+        <text>视频</text>
+      </view>
+    </view>
+  </view>
+  <view>
+  </view>
+</view>
+<view class='bottomtab'>
+  <!-- <view class='look1' bindtap='CANCEL_CHOOSE_RECEIPT' style='width:30%'>取消</view> -->
+  <view class='set1' bindtap='SUBMIT' style='width:100%'>发布</view>
+</view>
+
+
+<view class='videobox' hidden='{{playvideo}}' bindtap='overVIDEO'>
+  <cover-image class='close' bindtap='close_video' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/close.png'></cover-image>
+  <video style='width:{{widths}}px;height:{{heights}}px' src='{{videoSrc}}' controls="false" autoplay='true' show-fullscreen-btn='false' bindended='overVIDEO'>
+  </video>
+</view>

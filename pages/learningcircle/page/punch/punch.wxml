@@ -1,0 +1,80 @@
+<!--pages/circle/punch/punch.wxml-->
+<view class='punch_container'>
+  <!-- header s -->
+  <view class='punch_header_wrap'>
+    <view class='punch_header_content'>
+      <view class='punch_header_left'>
+        <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/book.png'></image>
+      </view>
+      <view class='punch_header_right'>
+        <view class='right_t1'>不知道打卡和日记规则</view>
+        <view class='right_t2'>可以查看以下说明</view>
+      </view>
+    </view>
+  </view>
+  <!-- header e -->
+  <!-- container s -->
+  <view class='punch_content_wrap'>
+    <view class='punch_content_lists'>
+      <view class='lists_title'>打卡时间</view>
+      <view wx:if='{{flag}}'>
+        <view class='lists_content'>全天任意时间均可打卡</view>
+      </view>
+      <view wx:else>
+        <view class='lists_content'>{{startTime}}~{{endTime}}可打卡</view>
+      </view>
+    </view>
+    <view class='lists_title'>补打卡规则</view>
+    <view class='punch_content_lists' wx:if='{{reSignIn.type==1?true:""}}'>
+      <view class='lists_content'>参与者可对今天以前的日期补打卡</view>
+    </view>
+    <view wx:else>
+      <view class='lists_content'>参与者不能对今天以前的日期补打卡</view>
+    </view>
+    <view class='punch_content_lists lists_last'>
+      <view class='lists_title'>日记规则</view>
+      <view class='lists_content_t'>
+        <view wx:if='{{signInRepeat.type==1?true:""}}'>
+          <view class='lists_content_text'>*允许一天多次打卡</view>
+        </view>
+        <view wx:else>
+          <view class='lists_content_text'>*一天只能打卡一次</view>
+        </view>
+        <view wx:if='{{contentRule.signInUploadAudio==1||contentRule.signInUploadVideo==1||contentRule.signInUploadPicture==1?true:""}}'>
+          <view class='lists_content_text'>*发表日记时必须上传
+
+            <view wx:if='{{contentRule.signInUploadPicture==1?true:""}}'>
+              图片
+            </view>
+            <view wx:if='{{contentRule.signInUploadPicture==1&&(contentRule.signInUploadAudio==1||contentRule.signInUploadVideo==1)?true:""}}'>
+              、
+            </view>
+            <view wx:if='{{contentRule.signInUploadAudio==1?true:""}}'>
+              录音
+            </view>
+            <view wx:if='{{contentRule.signInUploadAudio==1&&contentRule.signInUploadVideo==1&&contentRule.signInUploadPicture==1?true:""}}'>
+              和
+            </view>
+            <view wx:elif='{{contentRule.signInUploadPicture==2&&contentRule.signInUploadAudio==1?true:""}}'>
+              、
+            </view>
+            <view wx:if='{{contentRule.signInUploadVideo==1?true:""}}'>
+              视频
+            </view>
+          </view>
+        </view>
+        <view wx:if='{{contentRule.signInMinWord!=""&&contentRule.signInMinWord!=null}}'>
+          <view class='lists_content_text'>*日记最少{{contentRule.signInMinWord}}字</view>
+        </view>
+      </view>
+    </view>
+    <view class='punch_content_lists'>
+    <view class='lists_title'>打卡周期</view>
+    <view class='punch_content_lists'>
+    </view>
+      <view class='lists_content'>{{signinCircle.startTime}}~{{signinCircle.endTime}}</view>
+    </view>
+  </view>
+  <!-- container e -->
+
+</view>

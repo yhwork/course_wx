@@ -1,0 +1,194 @@
+<view class='page_top'>
+  <view class='circle_img_box'>
+    <view class='title_imge_box' bind:tap="CHANGE_AVATAR" data-type='0'>
+      <image class='title_imge' mode='aspectFit' src='{{communityHeadImg?communityHeadImg:subject_default}}'></image>
+    </view>
+    <view class='title_text_box'>
+      <!-- <view class='title_text_name title_text'>主题标题:  -->
+      <view class='title_text_name title_text'>
+        <view class='title_text_name_input'>
+          <input class='title_ipt' placeholder='{{title}}' bindinput="CHANGE_CIRCLE_NAME" value='{{model.communityName}}'></input>
+        </view>
+      </view>
+
+      <view wx:if='{{model.type==2?true:""}}'>
+        <view class='tab_cell'>
+          <view class='c_title'>打卡关卡</view>
+          <view class='cell_right' wx:if='{{model.change==0}}'>第{{model.level}}关</view>
+          <view class='cell_right' wx:if='{{model.change==1}}'>第{{level}}关</view>
+        </view>
+      </view>
+
+
+      <view class='title_text_time title_text' wx:else>
+        <view class="picker_time" wx:if='{{model.change==0}}'>
+          <picker mode="date" value="{{date}}" start="2015-09-01" end="2026-09-01" bindchange="startDateChange">
+            <!-- <text hidden='{{SdateSelect}}'>开始日期</text>{{startDate}} -->
+            <view wx:if='{{startDate < maxSigninEndDate}}'>
+              {{maxSigninEndDate}}
+              <image class='drop' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/drop_down.png'></image>
+            </view>
+            <view wx:else>
+              {{startDate}}
+              <image class='drop' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/drop_down.png'></image>
+            </view>
+          </picker>—
+          <picker mode="date" value="{{date}}" start="2015-09-01" end="2026-09-01" bindchange="endDateChange">
+            <view wx:if='{{endDate < maxSigninEndDate}}'>
+              {{maxSigninEndDate}}
+              <image class='drop' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/drop_down.png'></image>
+            </view>
+            <view wx:else>
+              {{endDate}}
+              <image class='drop' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/drop_down.png'></image>
+            </view>
+            <!-- <text hidden='{{EdateSelect}}'>结束日期</text>{{endDate}} -->
+          </picker>
+        </view>
+        <view class="picker_time" wx:else>
+           <picker mode="date" value="{{date}}" start="2015-09-01" end="2026-09-01" bindchange="startDateChange">
+            <!-- <text hidden='{{SdateSelect}}'>开始日期</text>{{startDate}} -->
+            {{startDate}}
+            <image class='drop' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/drop_down.png'></image>
+          </picker>—
+          <picker mode="date" value="{{date}}" start="2015-09-01" end="2026-09-01" bindchange="endDateChange">
+            {{endDate}}
+            <image class='drop' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/drop_down.png'></image>
+            <!-- <text hidden='{{EdateSelect}}'>结束日期</text>{{endDate}} -->
+          </picker>
+        </view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 编辑主题 -->
+<view class='editor'>
+  <view class='title' wx:if="{{communitySubjectForPage.length==0}}">请选择要添加的内容:
+  </view>
+  <view wx:for="{{communitySubjectForPage}}" wx:key='idx' wx:for-item='item' wx:for-index='idx'>
+    <view class='intro_item' wx:if='{{item.contentType == 1}}'>
+      <view class='btn_group'>
+        <text>文字</text>
+        <image hidden='{{idx==0?true:false}}' data-arrayJ='{{communitySubject}}' data-array='{{communitySubjectForPage}}' data-idx='{{idx}}' class='move_up' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/move_up.png' bindtap='UPPER'></image>
+        <image hidden='{{idx==communitySubjectForPage.length-1?true:false}}' data-arrayJ='{{communitySubject}}' data-array='{{communitySubjectForPage}}' data-idx='{{idx}}' bindtap='DOWN' class='move_down' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/move_down.png'></image>
+        <image class='delete' data-idx='{{idx}}' data-infotype='3' data-contentType='{{item.contentType}}' bindtap='DEL' data-arrayJ='{{communitySubject}}' data-array='{{communitySubjectForPage}}' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/delete_in.png'></image>
+      </view>
+      <view class='content'>
+        <textarea focus="{{item.focus}}" placeholder='从这里开始写正文' bindinput="GET_CIRCLE_DETAIL" bindblur="SAVE_CIRCLEOWNER_DETAIL" value='{{item.content}}' data-idx='{{idx}}'>
+        </textarea>
+      </view>
+    </view>
+    <view class='intro_item' wx:if='{{item.contentType == 2}}'>
+      <view class='btn_group'>
+        <text>图片</text>
+        <image hidden='{{idx==0?true:false}}' data-arrayJ='{{communitySubject}}' data-array='{{communitySubjectForPage}}' data-idx='{{idx}}' class='move_up' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/move_up.png' bindtap='UPPER'></image>
+        <image hidden='{{idx==communitySubjectForPage.length-1?true:false}}' data-arrayJ='{{communitySubject}}' data-array='{{communitySubjectForPage}}' data-idx='{{idx}}' bindtap='DOWN' class='move_down' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/move_down.png'></image>
+        <image class='delete' data-idx='{{idx}}' data-infotype='3' data-contentType='{{item.contentType}}' bindtap='DEL' data-arrayJ='{{communitySubject}}' data-array='{{communitySubjectForPage}}' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/delete_in.png'></image>
+      </view>
+      <view class='content'>
+        <image class='intro_img' src='{{item.content}}'></image>
+      </view>
+    </view>
+    <view class='intro_item' wx:if='{{item.contentType == 3}}'>
+      <view class='btn_group'>
+        <text>音频</text>
+        <image hidden='{{idx==0?true:false}}' data-arrayJ='{{communitySubject}}' data-array='{{communitySubjectForPage}}' data-idx='{{idx}}' class='move_up' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/move_up.png' bindtap='UPPER'></image>
+        <image hidden='{{idx==communitySubjectForPage.length-1?true:false}}' data-arrayJ='{{communitySubject}}' data-array='{{communitySubjectForPage}}' data-idx='{{idx}}' bindtap='DOWN' class='move_down' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/move_down.png'></image>
+        <image class='delete' data-idx='{{idx}}' bindtap='DEL' data-contentType='{{item.contentType}}' data-arrayJ='{{communitySubject}}' data-array='{{communitySubjectForPage}}' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/delete_in.png'></image>
+      </view>
+      <view class='content'>
+        <view class='audio'>
+          <audio src="{{item.content}}" id="subjectAudio{{idx}}" bindtimeupdate="AUDIO_UPDATA_PROGRESS" bindended="AUDIO_PLAY_END"></audio>
+          <view class='playOrstop' bindtap='AUDIO_PLAY'>
+            <view class='play' data-play='{{item.play}}' style='display:{{item.play?"none":"flex"}}' catchtap='AUDIO_PLAY' data-idx='{{idx}}'></view>
+            <view class='stop' data-play='{{item.play}}' style='display:{{item.play?"flex":"none"}}' catchtap='AUDIO_STOP' data-idx='{{idx}}'>
+              <view class='shu'></view>
+              <view class='shu'></view>
+            </view>
+          </view>
+          <view class='slid' wx:for="{{subjectSlidlst}}" wx:key='slididx' wx:for-item='sitem' wx:for-index='slididx'>
+            <view wx:if='{{sitem.id==idx}}'>
+              <slider bindchange="AUDIO_SLIDER_CHANGE" block-size="12px" step="2" value="{{sitem.offset}}" max="{{sitem.max}}" class="slider" selected-color="#ff5e5e" />
+              <text class='time'>{{sitem.audio_duration}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='intro_item' wx:if='{{item.contentType == 4}}'>
+      <view class='btn_group'>
+        <text>视频</text>
+        <image hidden='{{idx==0?true:false}}' data-arrayJ='{{communitySubject}}' data-array='{{communitySubjectForPage}}' data-idx='{{idx}}' class='move_up' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/move_up.png' bindtap='UPPER'></image>
+        <image hidden='{{idx==communitySubjectForPage.length-1?true:false}}' data-arrayJ='{{communitySubject}}' data-array='{{communitySubjectForPage}}' data-idx='{{idx}}' bindtap='DOWN' class='move_down' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/move_down.png'></image>
+        <image class='delete' data-idx='{{idx}}' bindtap='DEL' data-contentType='{{item.contentType}}' data-arrayJ='{{communitySubject}}' data-array='{{communitySubjectForPage}}' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/delete_in.png'></image>
+      </view>
+      <view class='content'>
+        <video src='{{item.content}}'></video>
+      </view>
+    </view>
+  </view>
+  <!-- 添加按钮组 -->
+  <view class='add_btn_group'>
+    <view class='add_text' bindtap='SET_TEXT'>
+      <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/editor.png'></image>
+      <text>文本</text>
+    </view>
+    <view class='add_img' bindtap='CHANGE_AVATAR' data-type='1'>
+      <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/add_img.png'></image>
+      <text>图片</text>
+    </view>
+    <view class='add_audio' bindtap='SET_AUDIO'>
+      <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/audio_a.png'></image>
+      <text>语音</text>
+    </view>
+    <view class='add_video' bindtap='SET_VIDEO'>
+      <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/add_video.png'></image>
+      <text>视频</text>
+    </view>
+    <view class='add_public' bindtap='add_public'>
+      <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/public.png'></image>
+      <text>公众号文章</text>
+    </view>
+  </view>
+</view>
+
+
+<!-- 确认 -->
+<view class='submi' bindtap='SAVE_INFO' wx:if='{{model.type=="null"}}'>下一步</view>
+<view class='submit' bindtap='SAVE_INFO' wx:else>确认</view>
+<toast hidden="{{toast3Hidden}}" duration='3000' icon="warn" bindchange="toast2Change">{{errorMessage}}</toast>
+<view class='voice_mask' hidden='{{isSpeaking}}'>
+  <view class='voice_box'>
+    <view class='countDown' hidden='{{!startSpeak}}'>录音中，还剩{{startSpeak?countDownTime:""}}秒</view>
+    <image class='voice_btn' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/vioce.png' hidden='{{startSpeak}}' bindtap='START_AUDIO'></image>
+    <image class='voice_btn' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/vioce_play2.png' hidden='{{!startSpeak}}' bindtap='STOP_AUDIO'></image>
+    <view class='voice_title'>{{startSpeak?"点击结束":"点击开始"}}</view>
+  </view>
+</view>
+<view style='height:100rpx'></view>

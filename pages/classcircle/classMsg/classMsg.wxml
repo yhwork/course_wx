@@ -1,0 +1,262 @@
+<import src="../../../components/templates/class/classtypemsg" />
+<view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{message}}</view>
+
+<view class='top'>
+  <view class='left' style='width:{{userinfo.role==0?100:75}}%'>
+    <scroll-view class='l_tbox' scroll-x='true' style='height:100%;width:100%'>
+      <view class='imgs' wx:for='{{classinfo.listTeacher}}' wx:key=''>
+        <view class='aimg' style='{{!havereq?"height:85%;margin-top:15%;":""}}'><image mode="aspectFill" bindtap='{{userinfo.role==1?"SHOW_TEARCHMSG":""}}' bindtouchstart="mytouchstart" bindtouchend="mytouchend" data-id='{{item.teacherUserId}}' data-type='tearcher' src='{{item.teacherLogo?item.teacherLogo:img}}'></image>
+        <view class='tea_right' wx:if='{{item.status==1}}' hidden='{{!item.isOwner}}'>
+          <text bindtap='agreejoin' data-id='{{item.teacherUserId}}' data-type='tearcher'>同意</text>
+          <text class='reject' bindtap='rejectjoin' data-id='{{item.teacherUserId}}' data-type='tearcher'>拒绝</text>
+        </view>
+        <view class='tearch'>
+          <text wx:if='{{classinfo.classInfo.status!=2}}'>{{item.teachSubjects}}</text>
+          <text>{{item.teacherName}}</text>
+        </view></view>
+      </view>
+    </scroll-view>
+  </view>
+  <view class='right' style=' padding-top:{{classinfo.classInfo.isOwner=="false"&&userinfo.role==1?"20rpx":"0"}} ' wx:if='{{classinfo.classInfo.status==2}}' hidden='{{userinfo.role!=1}}'>
+    <view bindtap='classManage' wx:if='{{classinfo.classInfo.isOwner=="true"}}' class='classset'>班级管理</view>
+    <form bindsubmit="formSubmit" data-buttype='share' report-submit="true">
+      <button class='classset1' data-buttype='teacher' open-type='share'>邀请老师</button>
+    </form>
+    <form bindsubmit="formSubmit" data-buttype='share' report-submit="true">
+      <button class='classset1' data-buttype='child' formType="submit" open-type='share'>邀请家长</button>
+    </form>
+    <view class='fabubtn'>
+      <form class='add' bindsubmit="reportMsg" report-submit="true">
+        <button formType="submit" class='add addbtn'>
+          <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/editor.png'></image>
+          <text>发布</text>
+        </button>
+      </form>
+      <view class='fabutype' hidden='{{isSubmit}}'>
+        <view catchtap='CHOOSUBMITSETYPE' wx:for='{{peportType}}' data-type='{{item.id}}' wx:key=''>
+          <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/{{item.src}}.png'></image>
+          <text>{{item.value}}</text>
+        </view>
+      </view>
+      <view class='jtstyle' hidden='{{isSubmit}}'></view>
+    </view>
+  </view>
+</view>
+<block wx:if='{{classinfo.classInfo.status==2||classinfo.classInfo.isOwner=="true"}}'>
+  <!-- <scroll-view class='scroll' scroll-x style='width:100%;white-space: nowrap;box-sizing: border-box;'> -->
+  <view class='scroll' style='width:100%;'>
+    <form bindsubmit="CHOOSETYPE" report-submit="true" wx:for='{{tabList}}' class='{{item.select?"select1":""}}' data-idx='{{item.idx}}' wx:key='index'>
+      <button formType="submit" class='{{item.select?"btn select1":"btn"}}' style='height: 90rpx;'>
+        <view>{{item.value}}
+          <view class="select" wx:if='{{item.select}}'></view>
+        </view>
+      </button>
+    </form>
+  </view>
+ 
+  <view class='alllist'>
+    <template is='classtypemsg' data='{{idx,allList,role:userinfo.role}}' />
+    <view class='alistnumberbox' wx:if='{{idx==5}}'>
+      <view class='alistnumber' wx:for='{{childNumber}}' wx:key='indexs' wx:for-index='indexs'>
+        <view class='a_left'>
+          <image mode="aspectFill" catchtap='PREVIEWIMAGE' data-src='{{item.childLogo?item.childLogo:img}}' src='{{item.childLogo?item.childLogo:img}}'></image>
+          <view class='al_left'>
+            <text><text style='color:#000;font-size:28rpx' space='nbsp'>{{item.childName}}  </text>
+            <text wx:if='{{item.status==2}}'>{{item.addTime}}加入班级</text>
+            <text wx:if='{{item.status==1&&item.isOwner}}'>{{item.addTime}}申请加入班级</text></text>
+            <!-- <view wx:if='{{classinfo.classInfo.classType==1}}' style='margin-top:10rpx'>学号：{{item.childNo}}</view> -->
+            <view style='margin-top:10rpx' wx:if="{{item.childNo}}">学号：{{item.childNo}}</view>
+          </view>
+        </view>
+        <view class='a_right a_right2' wx:if='{{item.status==1&&item.isOwner}}'>
+          <button class='agree' bindtap='agreejoin' data-id='{{item.childId}}' data-type='child'>同意</button>
+          <button class='reject' bindtap='rejectjoin' data-id='{{item.childId}}' data-type='child'>拒绝</button>
+        </view>
+        <view class='a_right a_right2' wx:if='{{userinfo.role==1&&classinfo.classInfo.isOwner=="true"&&item.status==2}}'>
+          <image class='delnub' style='width: 40rpx;height: 45rpx;' class='outclass' bindtap='delclass' data-id='{{item.childId}}' data-type='child' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/classdel.png'></image>
+        </view>
+        <view class='a_right a_right3' wx:if='{{item.status==2&&item.childId==childId}}'>
+          <button class='outclass1' bindtap='reviseInfo' data-id='{{item.childId}}'>更改信息</button>
+          <button class='outclass1 exit' bindtap='outclass' data-id='{{item.childId}}' data-type='child'>退出</button>
+        </view>
+      </view>
+      <button wx:if='{{userinfo.role == 0}}' open-type='share' class='shareother'>邀请其他成员</button>
+    </view>
+  </view>
+</block>
+<block wx:else>
+  <view class='notfocus'>
+    <view class='classmsg'>{{classinfo.classInfo.className}} {{classinfo.classInfo.schoolName}}</view>
+    <view class='alistnumberbox' wx:if='{{classinfo.listChild.length>0}}'>
+      <view class='alistnumber' wx:for='{{classinfo.listChild}}' wx:key=''>
+        <view class='a_left'>
+          <image mode="aspectFill" src='{{item.childLogo?item.childLogo:img}}'></image>
+          <view class='al_left1'>
+            <text style='color:#000;font-size:28rpx'>{{item.childName}}  </text>
+            <view>
+              <text space='nbsp' wx:if='{{classinfo.classInfo.classType==1}}'>学号：{{item.childNo}}  {{item.addTime}}加入班级</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='number' wx:elif='{{classinfo.listTeacher.length==0&&classinfo.listChild.length==0}}'>还没有成员哦~</view>
+  </view>
+</block>
+
+<view class='joinclass'>
+  <form bindsubmit="showClocker" report-submit="true" class='choose' wx:if='{{!classinfo.classInfo.status||classinfo.classInfo.status==3||classinfo.classInfo.status==4||classinfo.classInfo.status==5}}'>
+    <button formType="submit" class='btn join'>立即加入</button>
+  </form>
+  <block wx:else>
+        <form bindsubmit="showClocker" report-submit="true" class='choose' wx:if='{{isagree == true}}' >
+    <button  class='btn await '>等待老师审核</button>
+  </form>
+  </block>
+
+  <!-- <view class='choose' wx:if='{{!classinfo.classInfo.status||classinfo.classInfo.status==3||classinfo.classInfo.status==4||classinfo.classInfo.status==5}}'>
+    <view class='join' bindtap='showClocker'>立即加入</view> 
+  </view>-->
+  <!-- <view class='choose' wx:elif='{{classinfo.classInfo.status=="1"}}'>
+    <view class='joined'>等待老师审核</view>
+  </view> -->
+</view>
+
+<!-- 选择打卡者 -->
+<view style='width:{{width}}px;height:{{height}}px' class='joinnum' hidden='{{isChild}}'>
+  <view class='childlist'>
+    <view class='choosechild'>选择加入班级的孩子：</view>
+    <view class='child' wx:for='{{childList}}' wx:key='' bindtap='JIOND' data-childid='{{item.childId}}'>
+      <image mode="aspectFill" src='{{item.logo?item.logo:img}}'></image>
+      <text>{{item.childName}}</text>
+    </view>
+  </view>
+</view>
+
+
+
+<!-- 申请加入填写信息 -->
+<!-- <view class='joinnum' catchtouchmove='true' style='width:{{width}}px;height:{{height}}px' hidden='{{joinmsg}}'> -->
+ <view class='joinnum ' catchtouchmove='true' style='width:{{width}}px;height:{{height}}px' hidden='{{joinmsg}}'>
+  <view class='j_box'>
+    <view class='input' style='margin:20rpx 0'>填写真实信息，让老师识别通过加群！</view>
+    <view class='input'>
+      <text>头像{{rolemsg}}</text>
+      <image catchtap='SETLOGO' src='{{saveJoinMsg.logo?saveJoinMsg.logo:img}}'></image>
+    </view>
+    <!-- <view class='input' style='margin-top:10rpx' wx:if='{{userinfo.role==0&&classinfo.classInfo.classType==1}}'> -->
+     <view class='input' style='margin-top:10rpx'> 
+      <text>学号(学生)</text>
+      <input bindblur='inputStudentId' placeholder-class="placeholderStyle" placeholder='请输入学号' maxlength='10'></input>
+    </view>
+    <view class='input'>
+      <text>真实姓名{{rolemsg}}</text>
+      <input bindblur='inputName' placeholder-class="placeholderStyle" placeholder='{{saveJoinMsg.name?saveJoinMsg.name:"请输入真实"}}'></input>
+    </view>
+    <view class='input' wx:if='{{userinfo.role==1}}'>
+      <text>教学科目(老师)</text>
+      <input bindblur='inputsubject' placeholder='{{saveJoinMsg.subjectName}}'></input>
+    </view>
+    <view class='input' wx:if='{{userinfo.role==1}}'>
+      <text>所在学校(老师)</text>
+      <input placeholder-class="placeholderStyle" disabled placeholder='{{saveJoinMsg.workOrganizationName}}'></input>
+    </view>
+    <view class='input' wx:if='{{isfrom=="share"}}' >
+      <text style='font-size:30rpx;color:#888'>如果角色有误,点击切换角色</text>
+      <view class='switchrole' bindtap='changeRole'>
+        <image class='switchimg' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/my_03.png'></image>
+        <view>切换角色</view>
+      </view>   
+    </view>
+    <view class='mgbox joinbaocun'>
+      <text catchtap='CANCELJOIN' class='cancel'>取消</text>
+      <text class='baocun' catchtap='SAVEJOIN'>保存</text>
+    </view>
+  </view>
+</view>
+
+<!-- 修改信息 -->
+<view class='joinnum' catchtouchmove='true' style='width:{{width}}px;height:{{height}}px' hidden='{{reviseinfo}}'>
+  <view class='j_box'>
+    <view class='input'>
+      <text>头像</text>
+      <image bindtap='SETLOGO' src='{{reviseMsg.childLogo?reviseMsg.childLogo:img}}'></image>
+    </view>
+    <view class='input'>
+      <text>真实姓名</text>
+      <input bindinput='inputName' placeholder-class="placeholderStyle" value='{{reviseMsg.childName}}' placeholder='{{reviseMsg.childName}}'></input>
+    </view>
+    <!-- <view class='input' style='margin-top:10rpx' wx:if='{{userinfo.role==0&&classinfo.classInfo.classType==1}}'> -->
+    <view class='input' style='margin-top:10rpx' > 
+      <text>学号</text>
+      <input bindinput='inputStudentId' value='{{reviseMsg.childNo}}' placeholder-class="placeholderStyle" placeholder='{{reviseMsg.childNo}}'></input>
+    </view>
+    <view class='input' wx:if='{{userinfo.role==1}}'>
+      <text>教学科目</text>
+      <input bindinput='inputsubject' placeholder='{{reviseMsg.subjectName}}'></input>
+    </view>
+    <view class='input' wx:if='{{userinfo.role==1}}'>
+      <text>所在学校</text>
+      <input placeholder-class="placeholderStyle" disabled placeholder='{{reviseMsg.workOrganizationName}}'></input>
+    </view>
+    <view class='mgbox'>
+      <text catchtap='CANCELJOIN' class='cancel'>取消</text>
+      <text class='baocun' catchtap='SAVE_REVISE_INFO'>保存</text>
+    </view>
+  </view>
+</view>
+
+<!-- 班级老师信息 -->
+<view catchtap='ESTOP' catchtouchmove='true' class='joinnum' style='width:{{width}}px;height:{{height}}px' hidden='{{showtearch}}'>
+  <view class='j_box'>
+    <view class='input'>
+      <text>头像</text>
+      <image src='{{showtearchmsg.teacherLogo?showtearchmsg.teacherLogo:img}}'></image>
+    </view>
+    <view class='input'>
+      <text>真实姓名</text>
+      <input disabled placeholder='{{showtearchmsg.teacherName}}'></input>
+    </view>
+    <view class='input'>
+      <text>教学科目</text>
+      <input disabled placeholder='{{showtearchmsg.teachSubjects}}'></input>
+    </view>
+    <view class='input'>
+      <text>所在学校</text>
+      <input placeholder-class="placeholderStyle" disabled placeholder='{{showtearchmsg.schoolName}}'></input>
+    </view>
+  </view>
+</view>
+
+<!-- 发布 -->
+<view class='fabubox' style='width:{{width}}px;height:{{height}}px' catchtouchmove='true' hidden='{{isSubmit}}' catchtap='ESTOP'></view>
+
+<view class='videobox' hidden='{{playvideo}}' bindtap='overVIDEO'>
+  <cover-image class='close' bindtap='close_video' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/close.png'></cover-image>
+  <video style='width:{{width}}px;height:{{height}}px' src='{{videoSrc}}' controls="false" autoplay='true' show-fullscreen-btn='false' bindended='overVIDEO'>
+  </video>
+</view>
+
+
+<view class='shear_bd' hidden='{{!shareShow}}' catchtouchmove='true'>
+  <view class='shear_box'>
+    <image class='class' src='{{createclass}}'></image>
+    <image bindtap="modalCandel" class='shear_close' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/delete_in.png'></image>
+    <button class='shear_btn_box' open-type='share'></button>
+  </view>
+</view>
+<!-- 提示功能 关注公众号 -->
+<view class="modal" wx:if="{{showFollowModel}}">
+  <view class="modal-box">
+    <view class="modal-box-title">提醒功能提示</view>
+    <view class="modal-box-content">提醒功能在小豆包课程表公众号中，请点击“关注”，回复“1”，获取链接，关注“小豆包课程表”公众号</view>
+    <view class="modal-box-buttons">
+      <view class="modal-box-button default" bindtap="CANCEL_FOLLOW">取消</view>
+      <button type="" class="modal-box-button primary" open-type="contact" session-from="reminder" plain>关注</button>
+    </view>
+  </view>
+</view>
+
+
+<!-- 分享 -->
+<canvas data-id="{{shareInfo.signInId}}" class="share-canvas" width="{{width}}" height="{{height}}" style="width:{{shareCavansOptions.width}}px;height:{{shareCavansOptions.height}}px;visibility:hidden;position:absolute;top:-1000rpx;" canvas-id="share_canvas"></canvas>

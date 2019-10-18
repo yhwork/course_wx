@@ -1,0 +1,29 @@
+<view class='msglist' wx:for='{{classMsgList}}' wx:key='' bindtap='GOSKIP' data-type='{{item.messageType}}' data-classid='{{item.classId}}' data-workid='{{item.referId}}' data-id='{{item.id}}'>
+  <view class='left'>
+    <image class='logo' mode='aspectFill' src='{{item.userLogo?item.userLogo:img}}'></image>
+    <view class='msg'>
+      <view class='msgtop'>
+        <!-- <text style='color:#f29219'>昵称：</text> -->
+        <text style='color:#f29219;font-size:30rpx'>{{item.userName}}</text>
+        <text style='font-size:26rpx;color:#888'>{{item.createDate}}</text>
+      </view>
+      <view class='msgbot'>
+        <!-- wx:elif='{{item.messageType=="MEMBER_JOIN"||item.messageType=="NOTIFY"}}' -->
+        <image wx:if='{{item.messageType=="WORK_LIKE"||item.messageType=="DYNAMIC_LIKE"}}' class='like' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/liked.png'></image>
+        <!-- <text class='content' wx:if="{{item.messageType=='WORK'}}">{{item.content}}</text> -->
+        <!-- <text wx:else class='content'>
+        <text wx:if='{{userinfo.role == 1}}'>
+        <text wx:if='{{item.messageType=="DYNAMIC"}}'>{{item.text?"评论了:"+item.text:item.content}}</text>
+        <text wx:if='{{item.messageType=="WORK"}}'>{{item.text?"提交作业:"+item.text:item.content}}</text>
+        </text>
+        <text wx:if='{{userinfo.role == 0}}'>
+        <text wx:if='{{item.messageType=="DYNAMIC"}}'>{{item.text?"评论了:"+item.text:item.content}}</text>
+        <text wx:elif='{{item.messageType=="WORK"}}'>{{item.text?"发布作业:"+item.text:item.content}}</text>
+        </text>
+        </text> -->
+        <text class='content'>{{item.content}}</text>
+      </view>
+    </view>
+  </view>
+  <image class='rightimg' wx:if='{{item.img}}' mode='aspectFill' src='{{item.img}}'></image>
+</view>

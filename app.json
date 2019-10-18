@@ -1,0 +1,206 @@
+{
+  "pages": [
+    
+    "pages/course/courseList/courseList",
+    "pages/course/course",
+    "pages/course/addCalendar/addCalendar",
+    "pages/circle/circle",
+    "pages/class/class",
+    "pages/mypage/mypage/mypage",
+    "pages/register/register",
+    "pages/mypage/mypage1/mypage",
+    "pages/course/p_manage/schoolout_manage",
+    "pages/course/p_manage/schoolout_manage_copy",
+    "pages/course/p_manage/schoolout_manage_detail",
+    "pages/course/p_manage/schoolout_manage_edit",
+    "pages/course/p_manage/schoolin_curriculum",
+    "pages/course/p_manage/schoolin_class_add",
+    "pages/course/p_add/schoolout_add1",
+    "pages/course/p_add/schoolout_add4",
+    "pages/course/p_add/schoolout_add3",
+    "pages/course/p_add/schoolout_add2",
+    "pages/course/p_lesson/schoolout_lesson_detail",
+    "pages/course/p_lesson/schoolout_lesson_change",
+    "pages/course/p_manage/schoolout_manage_checkwork",
+    "pages/course/p_manage/schoolout_manage_share",
+    "pages/course/p_lesson/schoolout_lesson_share",
+    "pages/course/p_manage/schoolin_manage_share",
+    "pages/course/p_manage/schoolin_manage_detail",
+    "pages/course/p_manage/schoolin_manage_edit",
+    "pages/course/p_add/schoolin_add1",
+    "pages/course/p_add/schoolin_add2",
+    "pages/course/p_add/schoolin_add3",
+    "pages/course/p_add/schoolin_tag_add",
+    "pages/course/p_exam/p_exam",
+    "pages/course/p_add/schoolin_tag_modify",
+    "pages/category/category",
+    "pages/category/subject/subjectlist",
+    "pages/register/info/p_info",
+    "pages/mypage/area/area",
+    "pages/area/area",
+    "pages/register/info/t_info",
+    "pages/register/mobilevalid",
+    "pages/mine/mine",
+    "pages/register/protocol/protocol",
+    "pages/mypage/authorityManagement/authorityManagement",
+    "pages/mypage/editMyChild/editMyChild",
+    "pages/mypage/modifyInformation/modifyInformation",
+    "pages/mypage/seen/seen",
+    "pages/mypage/myChildren/myChildren",
+    "pages/mypage/myFans/myFans",
+    "pages/mypage/personalInfo/personalInfo",
+    "pages/mypage/uesHelp/useHelp",
+    "pages/mypage/myCircle/myCircle",
+    "pages/mypage/myDiary",
+    "pages/mypage/school/school",
+    "pages/mypage/accumulatePoints/accumulatePoints",
+    "pages/mypage/pointsRule/pointsRule",
+    "upload/upload",
+    "pages/mypage/upinput/upinput"
+   
+  ],
+  "subPackages": [
+    {
+      "root": "pages/learningcircle",
+      "name": "learningcircle",
+      "pages": [
+        "page/addDiary/addDiary",
+        "page/allTheme/allTheme",
+        "page/apply/apply",
+        "page/cardRanking/cardRanking",
+        "page/cardSetting/cardSetting",
+        "page/cardTimeAlerting/cardTimeAlerting",
+        "page/cardTimeSet/cardTimeSet",
+        "page/changeTheme/changeTheme",
+        "page/circleAdmin/circleAdmin",
+        "page/circleDetail/circleDetail",
+        "page/circleEditor/circleEditor",
+        "page/circleList/circleList",
+        "page/circleReport/circleReport",
+        "page/circleSet/circleSet",
+        "page/clockCalendar/clockCalendar",
+        "page/complain/complain",
+        "page/creatTheme/creatTheme",
+        "page/creatTheme_c/creatTheme_c",
+        "page/themeDetail/themedetail",
+        "page/DiariesRules/DiariesRules",
+        "page/diaryDetail/diaryDetail",
+        "page/IntegralRule/IntegralRule",
+        "page/memAdmin/memAdmin",
+        "page/message/message",
+        "page/moreCircle/moreCircle",
+        "page/notLogin/notLogin",
+        "page/personalPage/personalPage",
+        "page/powerUp/powerUp",
+        "page/punch/punch",
+        "page/setprivacy/setprivacy",
+        "page/unCircleDetail/unCircleDetail",
+        "page/videoPlay/videoPlay",
+        "page/CircleType/CircleType",
+        "page/SubjectType/SubjectType",
+        "page/CircleIntroduction/CircleIntroduction",
+        "page/MainIntroduction/MainIntroduction",
+        "page/CircleDetails/CircleDetails",
+        "page/newCircle/newCircle",
+        "page/myCircle/myCircle",
+        "page/Productdetails/Productdetails",
+        "page/teacherIntroduction/teacherIntroduction",
+        "page/organizationIntro/organizationIntro",
+        "page/allcourse/allcourse"
+      ]
+    },
+    {
+      "root": "pages/classcircle",
+      "name": "classcircle",
+      "pages": [
+        "addClass/addClass",
+        "searchClass/searchClass",
+        "classMsg/classMsg",
+        "schoolType/schoolType",
+        "classManage/classManage",
+        "addPeport/addPeport",
+        "receiptType/receiptType",
+        "workMsg/workMsg",
+        "preview/preview",
+        "submitWork/submitWork",
+        "reviseClass/reviseClass",
+        "classMsgList/classMsgList"
+      ]
+    },
+    {
+      "root": "pages/buyShop",
+      "name": "buyShop",
+      "pages": [
+        "page/watchTvList/watchTvList",
+        "page/courseDetail/courseDetail",
+        "page/payList/payList",
+        "page/payComplete/payComplete",
+        "page/sharePage/sharePage",
+        "page/hotProduct/hotProduct",
+        "page/booking/booking",
+        "page/myOrder/myOrder",
+        "page/mywaitPay/mywaitPay",
+        "page/time/time",
+        "page/mynewBooking/mynewBooking",
+        "page/myColockin/myColockin",
+        "page/myAlreayClockin/myAlreayClockin",
+        "page/watchTv/watchTv",
+        "page/orderDetail/orderDetail",
+        "page/mywaitOrders/mywaitOrders",
+        "page/exam/exam",
+        "page/canlender/canlender",
+        "page/bookingsSuccess/bookingsSuccess",
+        "page/alreadyColockin/alreadyColockin"
+      ]
+    }
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#f29219",
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "color": "#8B8B8B",
+    "selectedColor": "#f29219",
+    "list": [
+      {
+        "pagePath": "pages/course/courseList/courseList",
+        "text": "课表",
+        "iconPath": "assets/icons/course.png",
+        "selectedIconPath": "assets/icons/course_selected.png"
+      },
+      {
+        "pagePath": "pages/circle/circle",
+        "text": "学习圈",
+        "iconPath": "assets/icons/circle.png",
+        "selectedIconPath": "assets/icons/circle_selected.png"
+      },
+      {
+        "pagePath": "pages/class/class",
+        "text": "班级圈",
+        "iconPath": "assets/icons/class.png",
+        "selectedIconPath": "assets/icons/class_selected.png"
+      },
+      {
+        "pagePath": "pages/mypage/mypage/mypage",
+        "text": "我的",
+        "iconPath": "assets/icons/my.png",
+        "selectedIconPath": "assets/icons/my_selected.png"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "获取当前位置用于展示位置信息"
+    }
+  },
+  "plugins": {
+    "calendar": {
+      "version": "1.1.3",
+      "provider": "wx92c68dae5a8bb046"
+    }
+  },
+  "sitemapLocation": "sitemap.json"
+}

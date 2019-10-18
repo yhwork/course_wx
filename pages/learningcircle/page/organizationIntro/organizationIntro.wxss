@@ -1,0 +1,444 @@
+/* 头部开始 */
+
+/* 页面固定代码 */
+
+.organization_wrap {
+  width: 750rpx;
+}
+
+.list_item {
+  background-color: rgba(225, 222, 222, 0.65);
+}
+
+.list_top {
+  display: flex;
+}
+
+.list_bottom {
+  height: 50rpx;
+  background-color: darkmagenta;
+}
+
+.top_image {
+  width: 102rpx;
+  height: 136rpx;
+  border-radius: 10rpx;
+  margin-top: 15rpx;
+}
+
+.top_teacherDetail {
+  display: block;
+  font-size: 30rpx;
+  width: 102rpx;
+  margin-right: 20rpx;
+}
+
+.teacherDetail_name {
+  width: 102rpx;
+  text-align: center;
+  font-size: 24rpx;
+  height: 40rpx;
+}
+
+.teacher_font {
+  font-size: 36rpx;
+  color: #101010;
+}
+
+.detail_font {
+  font-size: 30rpx;
+  line-height: 40rpx;
+  height: 40rpx;
+}
+
+.datail_day {
+  font-size: 24rpx;
+  line-height: 30rpx;
+  height: 30rpx;
+  color: #101010;
+}
+
+.detail_sale {
+  font-size: 24rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+}
+
+.sale_class {
+  color: #0a4e7f;
+}
+
+.datail_class {
+  margin-left: 140rpx;
+  color: #575252;
+}
+
+.datail_num {
+  margin-left: 50rpx;
+}
+
+.num_font {
+  margin-left: 15rpx;
+}
+
+.datial-arrow {
+  margin-left: 100rpx;
+}
+
+.detail_address {
+  font-size: 24rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  color: #0a4e7f;
+}
+
+.detail_name {
+  margin-left: 30rpx;
+}
+
+.teaching_year {
+  margin-left: 20rpx;
+}
+
+.teach_idea {
+  font-size: 24rpx;
+}
+
+.teachers_confirm {
+  color: #ff9800;
+}
+
+/* 头部结束 */
+
+/* ------------------tab切换开始------------- */
+
+.teacher_tab {
+  width: 750rpx;
+}
+
+.top_fontDetail {
+  padding: 15rpx;
+}
+
+.tab_header {
+  display: flex;
+  height: 80rpx;
+  line-height: 80rpx;
+  justify-content: space-between;
+  color: black;
+  width: 700rpx;
+  margin: 0 auto;
+}
+
+.show {
+  border-bottom: 1rpx solid darkorange;
+}
+
+.show_right {
+  margin-right: 30rpx;
+  border-bottom: 1rpx solid darkorange;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  display: flex;
+  justify-content: center;
+}
+
+/* tab头部结束 */
+
+/* tab-item开始 */
+
+.detail_times {
+  font-size: 24rpx;
+}
+
+.math_course {
+  width: 750rpx;
+  background-color: rgba(225, 222, 222, 0.65);
+  overflow: hidden;
+}
+
+.math_course .list_item {
+  margin-top: 10rpx;
+  background-color: white;
+}
+
+.datail_money {
+  margin-left: 180rpx;
+  color: red;
+}
+
+.math_course .datail_num {
+  margin-top: 10rpx;
+  color: red;
+  margin-left: 280rpx;
+}
+
+/* tab-item结束 */
+
+/* tab切换结束 */
+
+/* 教师介绍 item开始 */
+
+.course_introduction {
+  background-color: #e8e3e3;
+  width: 750rpx;
+  overflow: hidden;
+}
+
+.introduction_item {
+  background-color: white;
+  margin-top: 10rpx;
+  overflow: hidden;
+}
+
+.item_inner {
+  width: 720rpx;
+  margin: 25rpx auto;
+  height: 150rpx;
+}
+
+.inner_scroll {
+  overflow-y: auto;
+}
+
+.inner_wrap {
+  height: 100rpx;
+  overflow: auto;
+}
+
+.item_img {
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+  margin-right: 10rpx;
+}
+
+.innnerImage_wrap {
+  display: flex;
+  margin-top: 20rpx;
+}
+
+/* 教师介绍 item结束  */
+
+/* 动态 item  开始 */
+
+.activity_item {
+  width: 740rpx;
+  height: 800rpx;
+  background-color: white;
+}
+
+/* 动态 item  结束 */
+
+/* .add_style{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200rpx;
+  border-bottom: 1px solid #FF9800;
+  color:#FF9800;
+} */
+
+.add_style {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 5rpx solid #ff9800;
+  color: #ff9800;
+}
+
+.imgimg_item {
+  width: 240rpx;
+  height: 260rpx;
+}
+
+.img_new {
+  width: 230rpx;
+  height: 220rpx;
+}
+
+.no_mar {
+  margin-top: -10rpx;
+}
+
+.teacher_tabwrap .no_border {
+  border: none;
+}
+
+.praise_imgs {
+  width: 200rpx;
+  height: 130rpx;
+  margin-right: 20rpx;
+}
+
+.slide-image {
+  width: 100rpx;
+}
+
+.orga_height {
+  height: 500rpx;
+}
+
+.swiperwrap_height {
+  height: 500rpx;
+  overflow: hidden;
+}
+
+.school {
+  height: 350rpx;
+  overflow: auto;
+}
+
+.new_itemheight {
+  width: 720rpx;
+  margin: 25rpx auto;
+}
+
+.teachername {
+  text-align: center;
+  font-size: 24rpx;
+}
+
+swiper {
+  height: 180rpx;
+  display: block;
+}
+
+.trinkle {
+  width: 0;
+  height: 0;
+  border-width: 10rpx;
+  border-style: solid;
+  border-color: #ff9800 transparent transparent transparent;
+  display:inline-block;
+  margin-top: 10rpx;
+  margin-left: 10rpx;
+}
+
+.show{
+  border-color: black transparent transparent transparent;
+}
+
+/* 选择课程列表开始  */
+.wrap_box{
+  width: 750rpx;
+  display: flex;
+  background-color: white;
+  }
+  .one{
+   width: 20%;
+   text-align: center;
+  }
+  .two{
+    width: 20%;
+    text-align: center;
+ 
+
+  }
+  .three{
+    width: 60%;
+    text-align: center;
+    
+
+  }
+  .haveone{
+    width: 20%;
+    line-height: 60rpx;
+    font-size: 24rpx;
+    background-color:#E8E3E3;
+    text-align: center;
+    line-clamp: 62rpx;
+    height: 496rpx;
+    overflow-y: auto;
+  }
+  .havetwo{
+    width: 30%;
+    line-height: 60rpx;
+    text-align: center;
+    font-size: 24rpx;
+   margin-left: 20rpx;
+    height: 496rpx;
+    overflow-y:auto;
+  }
+    .havethree{
+      width: 50%;
+    
+      line-height: 60rpx;
+    
+      text-align: center;
+      font-size: 24rpx;
+       color: black;
+       height: 496rpx;
+       overflow-y: auto;
+    }
+    .box_border{
+      border-bottom: 1rpx solid #BBBBBB;
+    }
+    .special_border{
+       width:97%;
+       border-bottom: 1rpx solid #BBBBBB;
+       margin-left: 10rpx; 
+    }
+    .bgcolor{
+       background-color:#BBBBBB;
+
+    }
+    .bgco{
+      background-color: white;
+    }
+    .showline{
+      height: 62rpx;
+      line-height: 62rpx;
+    }
+    .active{
+      color: red;
+    }
+    .confirm_box{
+      width: 100%;
+      display: flex;
+      background-color: #FF9800;
+      text-align: center;
+      font-size: 30rpx;
+      height: 60rpx;
+      line-height: 60rpx;
+     
+
+    }
+    .confirm_box view{
+      width: 50%;
+      color: white;
+    
+      
+    }
+    .box_wrapper{
+      width: 750rpx;
+      height: 100%;
+      background: rgba(0,0,0,.5);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 9999;
+    }
+    .innnerwprapperbox{
+      position: absolute;
+      top: 50%;
+      margin-top: -340rpx;
+    }
+/* 选择课程列表结束 */
+/* 搜索课程按钮 开始 */
+
+.search_class{
+  width: 120rpx;
+  height: 50rpx;
+  background-color: #FF9800;
+  font-size: 24rpx;
+  line-height: 50rpx;
+  color: white;
+  text-align: center;
+  border-radius: 30rpx 0 0 30rpx;
+  position: fixed;
+  top:5%;
+  right: 0;
+  opacity: .8;
+}
+/* 搜索课程按钮  结束 */

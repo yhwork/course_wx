@@ -1,0 +1,15 @@
+<!--pages/circle/setprivacy/setprivacy.wxml-->
+<!-- 隐私设置 -->
+<view class='circle_type setprivacy_container '>
+  <view class='title '>隐私设置</view>
+  <radio-group class="radio-group" bindchange="typeLChange">
+   <view wx:for="{{typeList}}" wx:for-item='item' wx:key='idx'>
+     <label class="radio">
+      <radio value="{{item.value}}" checked="{{item.checked}}" />{{item.name}}
+    </label>
+      <view class="privacy_text" >{{item.explain}}</view>
+   </view>
+    
+     
+  </radio-group>
+</view>

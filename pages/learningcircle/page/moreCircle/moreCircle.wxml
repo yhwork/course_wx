@@ -1,0 +1,57 @@
+<!--pages/circle/moreCircle/moreCircle.wxml-->
+<view class='search_ipt'>
+  <view class='search_btn fa fa-search'></view>
+  <input placeholder='请输入圈子ID、圈子名称、以及圈主ID' bindconfirm='searchCircle' bindfocus='searchBlur' bindfocus='searchFocus'>
+  </input>
+</view>
+
+<!-- swiper -->
+<!-- <view class='wip_box' hidden='{{hide_swiper}}'>
+  <swiper indicatorDots='true' indicator-active-color='#f29219' indicator-color='#E5E5E5'>
+    <swiper-item></swiper-item>
+    <swiper-item></swiper-item>
+    <swiper-item></swiper-item>
+  </swiper>
+</view> -->
+
+<!-- 更多圈子列表 -->
+<view class='circle_box'>
+  <view class='nav_tab'>
+    <!-- <scroll-view scroll-x>
+      <view class='tab_item {{item.firSelected == 1 ? "select" : ""}}' bindtap='selectFirTab' wx:for='{{firTabList}}' wx:for-item='item' wx:for-index='i' wx:key='idx1' data-index="{{i}}" data-id="{{item.markId}}" data-flag="{{item.flag}}">{{item.markName}}</view>
+    </scroll-view>
+    <view class='sec_mask' hidden='{{hide_sec}}' catchtouchmove='eStop'>
+      <view class='sec_nav'>
+        <view class='sec_item {{item2.secSelected == 1 ? "sec_select" : ""}}' wx:for='{{secTabList}}' wx:for-item='item2' wx:for-index='j' wx:key='idx2' data-index="{{j}}" data-id="{{item2.markId}}" bindtap='selectSecTab'>{{item2.markName}}</view>
+        <view class='sec_nav_foot'>
+          <view class='clear' bindtap='clearLabelTap'>清除</view>
+          <view class='cancel' bindtap='cancel_hide_tap'>取消</view>
+          <view class='sure' bindtap='sure_hide_tap'>确定</view>
+        </view>
+      </view>
+    </view> -->
+    <block wx:for='{{selectlist}}' wx:key=''>
+      <view bindtap='selectFirTab' class='{{!item.select?"select_box":"bg"}}' data-index='{{index}}'  data-id='{{item.id}}'>
+        <view class='imgbox'><image src='{{item.img}}'></image></view>
+        <view>{{item.mark}}</view>
+      </view>
+    </block>
+  </view>
+  <view class='circle_item' data-id="{{item.communityId}}" bindtap='circleInfo' wx:for='{{discoverList}}' wx:for-item='item' wx:for-index='k' wx:key='idx'>
+    <image mode='aspectFill' src='{{item.img}}'></image>
+    <view class='item_right'>
+      <view class='title'>{{item.name}}</view>
+      <view wx:if='{{item.slogan}}' class='item_content'>{{item.slogan}}</view>
+      <view class='right_foot'>
+        <view class='member'>
+          成员
+          <text class='num'>{{item.memberNum}}</text>
+        </view>
+        <view class='clock'>
+          打卡
+          <text class='num'>{{item.signinNum}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

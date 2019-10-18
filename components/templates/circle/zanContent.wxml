@@ -1,0 +1,13 @@
+<template name='zan'>
+  <view class='comment_zan_sh'>
+    <view class='zan' bindtap='ALLZAN' data-like='{{zanList.isLike}}' data-idx='{{outindex}}' data-id='{{zanList.signInId}}'>
+      <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/zan.png'></image>
+      {{zanList.likeNum}}</view>
+    <navigator url='diaryDetail/diaryDetail?id={{zanList.signInId}}'>
+      <view class='comment'>
+        <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/comment.png'></image>
+        {{zanList.relpyNum}}</view>
+    </navigator>
+  </view>
+</template>
+

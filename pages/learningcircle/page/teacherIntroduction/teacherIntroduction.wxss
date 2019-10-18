@@ -1,0 +1,275 @@
+/* 兼容齐刘海 */
+
+/* page{
+      padding-bottom: 90rpx;  //有tabbar的要做兼容
+} */
+
+.teacher_list {
+  width: 750rpx;
+}
+.have_padding{
+  padding-top: 15rpx;
+}
+.list_item {
+  background-color: rgba(225, 222, 222, 0.65);
+}
+
+.list_top {
+  display: flex;
+}
+
+.list_bottom {
+  height: 50rpx;
+  background-color: darkmagenta;
+}
+
+.top_image {
+  width: 102rpx;
+  height: 136rpx;
+  border-radius: 10rpx;
+}
+
+.top_teacherDetail {
+  display: block;
+  font-size: 30rpx;
+  width: 102rpx;
+  margin-right: 20rpx;
+}
+
+.teacherDetail_name {
+  width: 102rpx;
+  text-align: center;
+  font-size: 24rpx;
+  height: 40rpx;
+}
+
+.teacher_font {
+  font-size: 36rpx;
+  color: #101010;
+}
+
+.detail_font {
+  font-size: 30rpx;
+  line-height: 40rpx;
+  height: 40rpx;
+}
+
+.datail_day {
+  font-size: 24rpx;
+  line-height: 30rpx;
+  height: 30rpx;
+  color: #101010;
+}
+
+.detail_sale {
+  font-size: 24rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+}
+
+.sale_class {
+  color: #101010;
+}
+
+.datail_class {
+  margin-left: 140rpx;
+  color: #575252;
+  width: 200rpx;
+}
+
+.datail_num {
+  margin-left: 50rpx;
+}
+
+.num_font {
+  margin-left: 15rpx;
+}
+
+.datial-arrow {
+  margin-left: 100rpx;
+}
+
+.detail_address {
+  font-size: 24rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  color: #0a4e7f;
+}
+
+.detail_name {
+  margin-left: 30rpx;
+}
+
+.teaching_year {
+  margin-left: 20rpx;
+}
+
+.teach_idea {
+  font-size: 24rpx;
+}
+
+.teachers_confirm {
+  color: #ff9800;
+}
+
+/* tab切换开始 */
+
+/* tab 头部开始 */
+
+.teacher_tab {
+  width: 750rpx;
+}
+.top_fontDetail{
+  padding: 15rpx;
+}
+.tab_header {
+  display: flex;
+  height: 80rpx;
+  line-height: 80rpx;
+  justify-content: space-between;
+  color: black;
+  width: 700rpx;
+  margin: 0 auto;
+}
+
+.show {
+  border-bottom: 1rpx solid darkorange;
+}
+
+.show_right {
+  margin-right: 30rpx;
+  border-bottom: 1rpx solid darkorange;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  display: flex;
+  justify-content: center;
+}
+
+/* tab头部结束 */
+
+/* tab-item开始 */
+
+.detail_times {
+  font-size: 24rpx;
+}
+
+.math_course {
+  width: 750rpx;
+  background-color: rgba(225, 222, 222, 0.65);
+  overflow: hidden;
+}
+
+.math_course .list_item {
+  margin-top: 10rpx;
+  background-color: white;
+}
+
+.datail_money {
+  margin-left: 180rpx;
+  color: red;
+}
+
+.math_course .datail_num {
+  margin-top: 10rpx;
+  color: red;
+  margin-left: 280rpx;
+}
+
+/* tab-item结束 */
+
+/* tab切换结束 */
+
+/* 教师介绍 item开始 */
+
+.course_introduction {
+  background-color: #e8e3e3;
+  width: 750rpx;
+  height: 1000rpx;
+  overflow: hidden;
+}
+
+.introduction_item {
+  background-color: white;
+  margin-top: 10rpx;
+  overflow: hidden;
+}
+.praise_bottom{
+  margin-bottom: 20rpx;
+}
+.intruduction_inner{
+  height: 300rpx;
+  overflow: auto;
+}
+
+.item_inner {
+  width: 720rpx;
+  margin: 15rpx auto;
+ 
+}
+
+
+
+.item_img {
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+  margin-right: 10rpx;
+}
+
+.innnerImage_wrap {
+  display: flex;
+  margin-top: 20rpx;
+}
+
+/* 教师介绍 item结束  */
+
+/* 动态 item  开始 */
+
+.activity_item {
+  width: 740rpx;
+  height: 800rpx;
+  background-color: white;
+}
+
+/* 动态 item  结束 */
+
+/* .add_style{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200rpx;
+  border-bottom: 1px solid #FF9800;
+  color:#FF9800;
+} */
+
+.add_style {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 5rpx solid #ff9800;
+  color: #ff9800;
+}
+
+.imgimg_item {
+  width: 240rpx;
+  height: 260rpx;
+}
+
+.img_new {
+  width: 230rpx;
+  height: 220rpx;
+}
+
+.no_mar {
+  margin-top: -10rpx;
+}
+
+.teacher_tabwrap .no_border {
+  border: none;
+}
+
+.praise_imgs {
+  width: 200rpx;
+  height: 130rpx;
+  margin-right: 20rpx;
+}

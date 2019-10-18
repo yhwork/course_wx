@@ -1,0 +1,102 @@
+<!--pages/circle/memAdmin/memAdmin.wxml-->
+<view class='nav_tab'>
+  <view class='tab_item {{currentTab==idx?"active":""}}' wx:for='{{tabs}}' wx:key='idx' data-idx='{{idx}}' bindtap='changeTab' wx:for-item='item' wx:for-index='idx'>{{item}}</view>
+</view>
+
+<scroll-view scroll-y="true" style="height:{{winH}}px;" bindscrolltolower='PAGEPLUS'>
+  <!-- 参与中 -->
+  <view class='jioning {{currentTab==0?"show":"hide"}}' wx:for='{{memberList}}' wx:for-item='item' wx:key='idx'>
+    <view class='basic_info'>
+      <view class='photo_box'>
+        <image class='photo' src='{{item.logo}}'></image>
+        <image class='sex' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/{{item.gender==1?"girl":"boy"}}.png'></image>
+      </view>
+      <view class='info_right'>
+        <view class='name'>{{item.nick_name}}</view>
+        <view class='user_num'>用户编号：{{item.id}}</view>
+      </view>
+    </view>
+    <view class='jion_info'>
+      <view class='jion_info_item'>
+        <view class='title'>加入时间</view>
+        <view class='content'>{{item.add_time}}</view>
+      </view>
+      <view class='jion_info_item'>
+        <view class='title'>打卡天数</view>
+        <view class='content'>{{item.allsignInDays}}</view>
+      </view>
+      <view class='jion_info_item'>
+        <view class='title'>打卡日记数</view>
+        <view class='content'>{{item.allSignInTimes}}</view>
+      </view>
+      <view class='jion_info_item'>
+        <view class='title'>最后一次打卡日期</view>
+        <view class='content'>{{item.lastSignInTime == null ? '无':item.lastSignInTime}}</view>
+      </view>
+    </view>
+    <view class='jion_foot'>
+      <view class='' bindtap='bindClockCalendar' data-memberid='{{item.communityUserId}}'>
+        <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/calendar.png' class='calendar_img'></image>
+        打卡日历
+      </view>
+      <view class='out' bindtap='REMOVEMEMBER' data-circleid='{{item.id}}' data-memberid='{{item.communityUserId}}'>
+        <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/out1.png' class='out_img'></image>
+        淘汰
+      </view>
+    </view>
+  </view>
+  <!-- 待审核 -->
+  <view class='wait_audit {{currentTab==1?"show":"hide"}}' wx:for='{{memberList}}' wx:for-item='item' wx:key='idx'>
+    <view class='wait_item'>
+      <view class='basic_info'>
+        <view class='photo_box'>
+          <image class='photo' src='{{item.logo}}'></image>
+          <image class='sex' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/{{item.gender==1?"girl":"boy"}}.png'></image>
+        </view>
+        <view class='info_right'>
+          <view class='name'>{{item.nick_name}}</view>
+          <view class='user_num'>用户编号：{{item.id}}</view>
+        </view>
+      </view>
+      <view class='appl_time'>
+        <view class='title'>申请加入时间</view>
+        <view class='date_time'>
+          <view class='date'>{{item.add_time}}</view>
+          <!-- <view class='time'>14:23:31</view> -->
+        </view>
+      </view>
+      <view class='wait_foot'>
+        <view class='refuse' bindtap='bindRefuseUser' data-circleid='{{item.id}}' data-memberid='{{item.communityUserId}}'>
+          <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/out1.png'></image>
+          拒绝</view>
+        <view class='agree' bindtap='bindAgreeUser' data-circleid='{{item.id}}' data-memberid='{{item.communityUserId}}'>
+          <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/agree.png'></image>
+          同意</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 已拒绝 -->
+  <view class='refused {{currentTab==2?"show":"hide"}}' wx:for='{{memberList}}' wx:for-item='item' wx:key='idx'>
+    <view class='refused_item'>
+      <view class='basic_info'>
+        <view class='photo_box'>
+          <image class='photo' src='{{item.logo}}'></image>
+          <image class='sex' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/{{item.gender==1?"girl":"boy"}}.png'></image>
+        </view>
+        <view class='info_right'>
+          <view class='name'>{{item.nick_name}}</view>
+          <view class='user_num'>用户编号：{{item.id}}</view>
+        </view>
+      </view>
+      <view class='appl_time'>
+        <view class='title'>申请加入时间</view>
+        <view class='date_time'>
+          <view class='date'>{{item.add_time}}</view>
+          <!-- <view class='time'>14:23:31</view> -->
+        </view>
+      </view>
+      <image class='refused_img' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/refused.png'></image>
+    </view>
+  </view>
+</scroll-view>

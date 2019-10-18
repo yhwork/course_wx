@@ -1,0 +1,17 @@
+@import "../myOrder/myOrder.wxss"
+.wrapbox_headers {
+  width: 690rpx;
+  margin: 10rpx auto;
+  font-size: 30rpx;
+  background-color: white;
+  padding: 0rpx 20rpx;
+}
+
+view>text {
+  line-height: 60rpx;
+}
+
+.wrap {
+  width: 750rpx;
+  background-color: #F2EDED;
+}

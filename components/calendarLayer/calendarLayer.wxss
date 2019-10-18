@@ -1,0 +1,102 @@
+@import '/style/weui.wxss';
+@import '/style/app/app.wxss';
+
+/* 日历 */
+
+page {
+  font-family: PingFangSC-Medium;
+}
+
+.calendar_mask {
+  /* display: none; */
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  background: #fff;
+}
+
+.calendar {
+  width: 100%;
+  /* height: 664rpx; */
+  background: #fff;
+  /* margin-top: 20rpx; */
+}
+.prev_tab,.next_tab{
+  display: block;
+  width: 80rpx;
+  height: 60rpx;
+  
+}
+.next_tab{
+  text-align: right;
+}
+.calendar_head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 90rpx;
+  padding: 0 40rpx;
+  font-size: 34rpx;
+  color: #f29219;
+}
+
+.calendar_head image {
+  width: 16rpx;
+  height: 26rpx;
+}
+
+.calendar .tr.week {
+  margin: 0;
+  background: none;
+  text-align: center;
+  font-size: 28rpx;
+  border-radius: 20rpx;
+  border-bottom: none;
+}
+
+.calendar .tr {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2rpx solid #e5e5e5;
+  padding: 0 20rpx;
+}
+
+.calendar .td {
+  width: 82rpx;
+  text-align: center;
+  color: #888;
+  border-radius: 6rpx;
+  padding: 20rpx 0 4rpx 0;
+}
+
+.calendar .week .td {
+  color: #000;
+}
+
+.date_active {
+  background: #f29219;
+  color: #fff !important;
+}
+
+.calendar .o_month {
+  color: #b2b2b2;
+}
+
+.course_num {
+  color: #f29219;
+  /* margin-top: 10rpx; */
+  font-size: 24rpx;
+  height: 20rpx;
+  line-height: 20rpx;
+}
+
+/* .prev_tab {
+  display: flex;
+} */
+
+.name {
+  color: #576b95;
+}

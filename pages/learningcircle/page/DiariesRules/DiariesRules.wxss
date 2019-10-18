@@ -1,0 +1,100 @@
+/* pages/circle/DiariesRules/DiariesRules.wxss */
+
+.cardsetting_container {
+  background: #fff;
+  min-height: 1180rpx;
+}
+
+.rules_wrap {
+  padding: 0 20rpx;
+}
+
+.switch_title_wrap {
+  height: 88rpx;
+  line-height: 88rpx;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.switch_title_left {
+  float: left;
+  height: 88rpx;
+  font-size: 34rpx;
+  font-family: PingFangSC-Regular;
+  color: #000;
+  line-height: 88rpx;
+}
+
+.switch_title_right {
+  float: right;
+  width: 110rpx;
+  height: 86rpx;
+  text-align: right;
+}
+
+.wx-switch-input {
+  width: 102rpx !important;
+  height: 62rpx !important;
+  background: #f29219 !important;
+  border: #f29219 !important; 
+}
+
+.wx-switch-input::before {
+  width: 100rpx !important;
+  height: 58rpx !important;
+  position: absolute;
+  top: 2rpx !important;
+}
+
+.switch_title_tips {
+  padding: 37rpx 20rpx;
+  overflow: hidden;
+}
+
+.switch_title_tips image {
+  float: left;
+}
+
+.switch_title_tips image {
+  width: 32rpx;
+  height: 32rpx;
+}
+
+.switch_title_tips .text {
+  float: left;
+  width: 625rpx;
+  height: 80rpx;
+  font-size: 26rpx;
+  font-family: PingFangSC-Regular;
+  color: rgba(136, 136, 136, 1);
+  line-height: 40rpx;
+  margin-left: 20rpx;
+}
+
+.switch_list_right .number {
+  float: left;
+  width: 180rpx;
+}
+
+.switch_list_right .number input {
+  height: 88rpx;
+  line-height: 88rpx;
+  font-size: 34rpx;
+  color: #b2b2b2;
+}
+
+.arrow_img {
+  float: right;
+  margin-left: 20rpx;
+}
+
+.arrow_img image {
+  width: 16rpx;
+  height: 27rpx;
+}
+
+.switch_list_right {
+  float: right;
+  width: 220rpx;
+  height: 86rpx;
+  text-align: right;
+}

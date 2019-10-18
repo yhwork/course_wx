@@ -1,0 +1,24 @@
+<!--pages/circle/cardSetting/cardSetting.wxml-->
+<view class="cardsetting_container">
+
+<view class="switch_title_wrap">
+   <view class='switch_title_left'>允许补打卡</view>
+   <view class='switch_title_right'>
+        <view class="page__bd">
+        <view class="section section_gap">
+            <view class="body-view">
+                <switch checked="{{switch1Checked}}" bindchange="switch1Change"/>
+            </view>
+        </view>
+    </view>
+   </view>
+</view>
+
+<view class="switch_title_tips">
+   <view class="image"> <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/care.png"></image> </view>
+   <view class="text">
+   参与者对今天以前的日期补打卡，补打卡总天数不超过 设置的天数，请勿设置为0
+   </view>
+</view>
+
+</view>

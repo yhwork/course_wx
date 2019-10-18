@@ -1,0 +1,38 @@
+<!--pages/circle/powerUp/powerUp.wxml-->
+<view class='page_top'>
+  <view class='hint'>竞争力排行24小时评估一次</view>
+  <view class='rank'>
+    <view class='yesToday'>
+      <view class='yesToday_rank'>30</view>
+      <text>昨日排名</text>
+    </view>
+    <view class='today'>
+      <view class='today_rank'>31</view>
+      <text>今日排名</text>
+      <view class='rank_change'>
+        <!-- <image ></image> -->
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 优良中差 -->
+<view class='grade'>
+  <progress percent="33" color="#F95B58" />
+  <view class='grade_list'>
+    <view>差</view>
+    <view>中</view>
+    <view>良</view>
+    <view>优</view>
+  </view>
+</view>
+
+<view class='com_hint'>完成以下内容操作将提升圈子在发现中的排名</view>
+<view class='handle_list'>
+  <view class='handle_item' wx:for='{{handle_list}}' wx:key='idx' wx:for-item='item' wx:for-index='idx'>
+    <view class='title'>{{item.title}}</view>
+    <view class='item_right'>
+    <text class='{{item.complete?"complete":""}}'>{{item.complete?"已完成":"待完成"}}</text>
+    <text class='fa fa-angle-right'></text>
+    </view>
+  </view>
+</view>

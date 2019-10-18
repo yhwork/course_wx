@@ -1,0 +1,275 @@
+/* pages/mypage/authorityManagement/authorityManagement.wxss */
+
+.fr {
+  float: right;
+}
+
+.fl {
+  float: left;
+}
+
+.manage_group {
+  /*margin-top: 20rpx;*/
+  padding: 0 30rpx;
+  background: #fff;
+}
+
+.manage_group2 {
+  /*margin-top: 20rpx;*/
+  padding: 0 30rpx;
+  background: #fff;
+}
+
+.manage_del_wrap {
+  height: 92rpx;
+  line-height: 92rpx;
+}
+
+.manage_del {
+  display: flex;
+  align-items: center;
+}
+
+.manage_del image {
+  width: 44rpx;
+  height: 44rpx;
+  margin-right: 10rpx;
+}
+
+.manage_del text {
+  font-size: 26rpx;
+  font-family: PingFangSC-Regular;
+  color: rgba(178, 178, 178, 1);
+}
+
+.switch_title_wrap {
+  height: 88rpx;
+  line-height: 88rpx;
+  /* border-bottom: 1px solid #e5e5e5; */
+}
+
+.switch_title_left {
+  float: left;
+  height: 95rpx;
+  font-size: 34rpx;
+  font-family: PingFangSC-Regular;
+  color: #000;
+  line-height: 88rpx;
+}
+
+.switch_title_right {
+  float: right;
+  /*width: 110rpx;*/
+  height: 86rpx;
+  text-align: right;
+}
+
+.switch_content_wrap {
+  height: 100rpx;
+  line-height: 100rpx;
+  border-bottom: 1px solid #e5e5e5;
+  border-top: 1px solid #e5e5e5;
+}
+
+.switch_content_left {
+  float: left;
+  position: fixed;
+  /* height:100rpx; */
+  font-size: 34rpx;
+  font-family: PingFangSC-Regular;
+  color: #000;
+  /* line-height:100rpx; */
+  display: flex;
+  align-items: center;
+}
+
+.switch_content_right {
+  float: right;
+  /*width: 110rpx;*/
+  height: 100rpx;
+  text-align: right;
+}
+
+.wx-switch-input {
+  width: 102rpx !important;
+  height: 62rpx !important;
+  background: #f29219 !important;
+  border: #f29219 !important; /*  */
+}
+
+.switch_title_tips {
+  padding: 37rpx 20rpx;
+  overflow: hidden;
+}
+
+.switch_title_tips image {
+  float: left;
+}
+
+.switch_title_tips image {
+  width: 32rpx;
+  height: 32rpx;
+}
+
+.switch_title_tips .text {
+  float: left;
+  width: 625rpx;
+  height: 80rpx;
+  font-size: 26rpx;
+  font-family: PingFangSC-Regular;
+  color: rgba(136, 136, 136, 1);
+  line-height: 40rpx;
+  margin-left: 20rpx;
+}
+
+.switch_list_right .number {
+  float: left;
+  width: 180rpx;
+}
+
+.switch_list_right .number input {
+  height: 88rpx;
+  line-height: 88rpx;
+  font-size: 34rpx;
+  color: #b2b2b2;
+}
+
+.arrow_img {
+  float: right;
+  margin-left: 20rpx;
+}
+
+.arrow_img image {
+  width: 16rpx;
+  height: 27rpx;
+}
+
+.switch_list_right {
+  float: right;
+  width: 220rpx;
+  height: 86rpx;
+  text-align: right;
+}
+
+/* 分享窗口提示 */
+
+.share_panel_mask {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+.panel_container {
+  width: 560rpx;
+  height: 261rpx;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 8rpx;
+  margin-left: 95rpx;
+  margin-top: 45%;
+  padding-top: 30rpx;
+}
+
+.panel_container_tit {
+  text-align: center;
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 36rpx;
+  font-family: PingFangSC-Regular;
+  color: rgba(0, 0, 0, 1);
+}
+
+.panel_container_text {
+  height: 88rpx;
+  font-size: 30rpx;
+  font-family: PingFangSC-Regular;
+  color: rgba(136, 136, 136, 1);
+  line-height: 88rpx;
+  margin-top: 20rpx;
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.panel_cancel {
+  width: 49%;
+  border-right: 1px solid #e5e5e5;
+  text-align: center;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 30rpx;
+  color: #000;
+}
+
+.panel_sure {
+  width: 50%;
+  text-align: center;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 30rpx;
+  color: #f29219;
+}
+
+.undeveloped {
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translateX(-50%);
+}
+
+.undeve_img {
+  width: 200rpx;
+  height: 200rpx;
+}
+
+.undeve_title {
+  font-size: 28rpx;
+  color: #353535;
+  margin-top: 50rpx;
+}
+
+.hint {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.share_hint {
+  border-top: 2rpx solid #e5e5e5;
+  padding: 40rpx 30rpx;
+  color: #888;
+  font-size: 26rpx;
+}
+
+.share_hint image {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 10rpx;
+}
+
+.share_hint .title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40rpx;
+}
+
+.hint_item {
+  display: flex;
+  line-height: 50rpx;
+}
+
+.header_img {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 96rpx;
+  margin-right: 10rpx;
+}

@@ -1,0 +1,272 @@
+<view class="page_hd">
+  <view class='main_head'>
+    <!-- 家长端 -->
+    <block wx:if="{{userInfo.role=='0'}}">
+      <view catchtap="CHANGE_LOGO" class='info'>
+        <image src="{{childInfo.logo?childInfo.logo:'https://qa.oss.iforbao.com/public/assets/img/girlb.png!org'}}" mode='aspectFill' class='head_img' style="width:80rpx;height:80rpx;border-radius:40rpx;"></image>
+        <image wx:if="{{shareChild=='0'}}" class="share3" src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/jin.png'></image>
+        <image wx:else class="{{shareChild==1?'share1':'share2'}}" src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/jin.png'></image>
+        <image class='sex' src='{{childInfo.gender?"https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/girl1.png":"https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/boy1.png"}}'></image>
+        <text class='name_a font'>{{childInfo.childName}}</text>
+        <image class='xiala' wx:if='{{childLength>1}}' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/xiala.png'></image>
+      </view>
+    </block>
+    <!-- 教师端头部信息 -->
+    <block wx:else>
+      <view class='info'>
+        <image src="{{userInfo.logo}}" class='head_img' style="width:80rpx;height:80rpx;border-radius:40rpx;"></image>
+        <text class='name_a font'>{{userInfo.name}}</text>
+      </view>
+    </block>
+    <!-- 日期 -->
+    <view class='name_b' bindtap="SHOW_CALENDAR">{{model.currentDate}}</view>
+    <!-- <text class='name_c' bindtap="COURSE_MANAGE">课程管理</text> -->
+    <view class='choosetype'>
+      <view class='head_box'>
+        <!-- 课程列表图标 -->
+        <!-- <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/2.png' wx:if='{{isList}}' catchtap=''></image>
+        <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/10.png' wx:else catchtap='chargeTab'></image> -->
+        <!-- 日历课程图标 -->
+        <!-- <image class='img' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/5.png' wx:if='{{isList}}' catchtap='chargeTab'></image> -->
+        <view class='tabchange' wx:if='{{isList}}' catchtap='chargeTab'>
+          <text>列表查看</text>
+        </view>
+        <view class='tabchange' wx:else catchtap='chargeTab'>
+          <text>日历查看</text>
+        </view>
+        <!-- <image class='img' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/2.png' wx:else catchtap='chargeTab'></image> -->
+        <!-- <image class='img' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/5.png' wx:else catchtap='chargeTab'></image> -->
+      </view>
+      <!-- <image bindtap='CHOOSE_TYPE' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/courseadd.png'></image> -->
+      <view class='fabutype' hidden='{{isSubmit}}'>
+        <view catchtap='CHOOSUBMITSETYPE' wx:for='{{userInfo.role == 0?childpeportType:teacherpeportType}}' data-type='{{item.id}}' wx:key=''>
+          <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/{{item.src}}.png'></image>
+          <text>{{item.value}}</text>
+        </view>
+      </view>
+      <view class='jtstyle' hidden='{{isSubmit}}'></view>
+    </view>
+  </view>
+</view>
+<!-- 展示方式 -->
+<view wx:if='{{isList}}'>
+  <view class='page'>
+    <!-- <view class="page_hd">
+      <view class='main_head'> -->
+    <!-- 家长端 -->
+    <!-- <block wx:if="{{userInfo.role=='0'}}">
+          <view bindtap="CHANGE_LOGO" class='info'>
+            <image src="{{childInfo.logo?childInfo.logo:'https://qa.oss.iforbao.com/public/assets/img/girlb.png!org'}}" mode='aspectFill' class='head_img' style="width:80rpx;height:80rpx;border-radius:40rpx;"></image>
+            <image src="{{childInfo.logo}}" mode='aspectFill' class='head_img' style="width:80rpx;height:80rpx;border-radius:40rpx;"></image>
+            <image wx:if="{{shareChild=='0'}}" class="share3" src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/jin.png'></image>
+            <image wx:else class="{{shareChild==1?'share1':'share2'}}" src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/jin.png'></image>
+            <image class='sex' src='{{childInfo.gender?"https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/girl1.png":"https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/boy1.png"}}'></image>
+            <text class='name_a'>{{childInfo.childName}}</text>
+            <image class='xiala' wx:if='{{childLength>1}}' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/xiala.png'></image>
+          </view>
+        </block> -->
+    <!-- 教师端 -->
+    <!-- <block wx:else>
+          <view class='info'>
+            <image src="{{userInfo.logo}}" class='head_img' style="width:80rpx;height:80rpx;border-radius:40rpx;"></image>
+            <text class='name_a'>{{userInfo.nickName}}</text>
+          </view>
+        </block> -->
+
+    <!-- <view class='name_b' bindtap="SHOW_CALENDAR">{{model.currentDate}}</view> -->
+    <!-- <text class='name_c' bindtap="COURSE_MANAGE">课程管理</text> -->
+    <!-- <view class='choosetype'>
+          <image bindtap='CHOOSE_TYPE' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/courseadd.png'></image>
+          <view class='fabutype' hidden='{{isSubmit}}'>
+            <view catchtap='CHOOSUBMITSETYPE' wx:for='{{userInfo.role == 0?childpeportType:teacherpeportType}}' data-type='{{item.id}}' wx:key=''>
+              <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/{{item.src}}.png'></image>
+              <text>{{item.value}}</text>
+            </view>
+          </view>
+          <view class='jtstyle' hidden='{{isSubmit}}'></view>
+        </view> -->
+    <!-- </view>
+    </view> -->
+
+
+    <!-- 广告弹窗 -->
+    <!-- <view class='wrap_modal' bindtap='gotoExam'>
+
+    <view wx:if="{{false}}" class='wrap_modal' bindtap='gotoExam'>
+
+      <text class='modal_wrap'>2019上海音协电子琴考级在线乐理考试调研问卷</text>
+    </view> -->
+    <view class="page_bd">
+      <view style="flex:auto;height:{{timetableHeight}}px;">
+        <timetable catch:date-changed="TIMETABLE_DATE_CHANGED" catch:lesson-date-changed="LESSON_DATE_CHANGED" data="{{lessons}}" dataLesson="{{dayLessons}}" childId="{{model.childId}}" date="{{model.currentDate}}"></timetable>
+      </view>
+    </view>
+  </view>
+
+  <view class='fabubox' style='width:{{width}}px;height:{{height}}px' catchtouchmove='true' hidden='{{isSubmit}}' catchtap='ESTOP'></view>
+
+  <view wx:if="{{false}}" class='add_course' bindtap="ADD_COURSE">
+    <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/addClass.png'></image>
+  </view>
+  <!-- 关注公众号 -->
+  <!-- <view class="modal" wx:if="{{showFollowModel}}">
+    <view class="modal-box">
+      <view class="modal-box-title">提醒功能提示</view>
+      <view class="modal-box-content">提醒功能在小豆包课程表公众号中，请点击“关注”，回复“1”，获取链接，关注“小豆包课程表”公众号</view>
+      <view class="modal-box-buttons">
+        <view class="modal-box-button default" bindtap="CANCEL_FOLLOW">取消</view>
+        <button type="" class="modal-box-button primary" open-type="contact" session-from="reminder" plain>关注</button>
+      </view>
+    </view>
+  </view> -->
+</view>
+<!-- 全部课程渲染 -->
+<view wx:else>
+  <view class='content_box' wx:for='{{dayLessons}}' wx:key=''>
+    <view class='title_box'>
+      <view>{{item.startDate}} {{item.week}}</view>
+    </view>
+  
+    <view class='item_list' wx:if='{{current==1}}'>
+      <view bindtap='courdetails' data-Id='{{items.id}}' class='courdetailsstyle'>
+        <view>
+          <text class='list_time'>{{item.sTime}}</text>
+          <text>{{item.name}}</text>
+        </view>
+        <view>
+          <text class='list_time'>{{item.eTime}}</text>
+          <text class='list_address'>{{item.classAddress}}</text>
+        </view>
+      </view>
+      <view class='list_operation'>
+        <view style='color:#fff'>缺席</view>
+        <view class='iconfont el-icon-lxy-ditu' wx:if='{{item.dataType==1}}' bindtap='OPEN_LOCATION' data-lat='{{item.latitude}}' data-log='{{item.longitude}}'></view>
+      </view>
+    </view>
+
+    <view class='item_list2' wx:elif="{{current==0}}">
+      <view>学校名称：{{item.schoolName}}</view>
+      <view>上学周期：{{item.startDate}}~{{item.endDate}}</view>
+      <view>
+        <text space='ensp'>课    程：</text>
+        <text class='courses'>{{item.courseName}}</text>
+      </view>
+    </view>
+
+    <view class='item_list' wx:else>
+      <view>
+        <view>
+          <text class='list_time'>{{item.sTime}}</text>
+          <text wx:if="{{item.dataType==1}}">{{item.name}}</text>
+          <text wx:else>{{item.schoolName}}</text>
+        </view>
+        <view>
+          <text class='list_time'>{{item.eTime}}</text>
+          <text wx:if="{{item.dataType==1}}" class='list_address'>{{item.classAddress}}</text>
+          <text wx:else class='list_address'>{{item.classAddress}}</text>
+        </view>
+      </view>
+      <view class='list_operation'>
+        <view style='color:#fff'>缺席</view>
+        <view class='iconfont el-icon-lxy-ditu' wx:if='{{item.dataType==1}}' bindtap='OPEN_LOCATION' data-lat='{{item.latitude}}' data-log='{{item.longitude}}'></view>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 更多的日程 -->
+  <view wx:if="morelessons">
+    <view class='content_box' wx:for='{{morelessons}}' wx:key='index'>
+      <view class='title_box'>
+        <view>{{item.date}}全部 {{item.week}}</view>
+      </view>
+      <view class='item_list' wx:for='{{item.courseList}}' wx:for-item="items" wx:key='index'>
+        <view bindtap='courdetails' data-Id='{{items.id}}' class='courdetailsstyle'>
+          <view>
+            <text class='list_time'>{{items.startTime}}</text>
+            <text>{{items.name}}</text>
+          </view>
+          <view>
+            <text class='list_time'>{{items.endTime}}</text>
+            <text class='list_address' wx:if='{{items.classAddress}}'>{{items.classAddress}}</text>
+          </view>
+        </view>
+        <view class='list_operation'>
+          <!-- <view style='color:#fff'>缺席</view> -->
+          <view class='iconfont el-icon-lxy-ditu' wx:if='{{items.dataType==1 && items.classAddress}}' bindtap='OPEN_LOCATION' data-lat='{{items.latitude}}' data-log='{{items.longitude}}'></view>
+        </view>
+      </view>
+
+      <!-- <view class='item_list2' wx:elif="{{current==0}}">
+      <view>学校名称：{{item.schoolName}}</view>
+      <view>上学周期：{{item.startDate}}~{{item.endDate}}</view>
+      <view>
+        <text space='ensp'>课    程：</text>
+        <text class='courses'>{{item.courseName}}</text>
+      </view>
+    
+      </view> -->
+      <!-- <view class='item_list' >
+        <view >
+          <view>
+            <text class='list_time'>{{item.sTime}}</text>
+            <text wx:if="{{item.dataType==1}}">{{item.name}}</text>
+            <text wx:else>{{item.schoolName}}</text>
+          </view>
+          <view>
+            <text class='list_time'>{{item.eTime}}</text>
+            <text wx:if="{{item.dataType==1}}" class='list_address'>{{item.classAddress}}</text>
+            <text wx:else class='list_address'>{{item.classAddress}}</text>
+          </view>
+        </view>
+        <view class='list_operation'>
+          <view style='color:#fff'>缺席</view>
+          <view class='iconfont el-icon-lxy-ditu' wx:if='{{item.dataType==1}}' bindtap='OPEN_LOCATION' data-lat='{{item.latitude}}' data-log='{{item.longitude}}'></view>
+        </view>
+      </view> -->
+
+    </view>
+    <!-- 返回 -->
+    <view class='backhome' wx:if="{{isback == 'false' || isback == false}}" bindtap='backhome'>
+      <text>返回课表</text>
+    </view>
+  </view>
+  <view wx:if='{{morelessons.length==0}}' class='content_info' bindtap='goAdd' data-current='{{current}}'>
+    <text>TA还没有{{current=='0'?'校内日程':'校外日程'}}，点击 <text class='add_info'>“添加”</text>为TA制定专属校外日程</text>
+  </view>
+</view>
+
+
+
+<view class="mymodalDlg" wx:if="{{loadChildAll}}">
+  <view class="weui-panel weui-panel_access">
+    <view class="weui-panel__bd">
+      <view class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" wx:for="{{childList}}" wx:for-item="item" wx:key="" data-id="{{item.childId}}" catchtap="CHOOSE_CHILD">
+        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg left">
+          <image class="weui-media-box__thumb" mode='aspectFill' wx:if='{{item.logo}}' src="{{item.logo}}" />
+          <image class="weui-media-box__thumb" wx:else src='https://oss.iforbao.com/public/assets/img/girlb.png'></image>
+        </view>
+        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg left">
+          <view class="weui-media-box__title">{{item.childName}}</view>
+          <view class="weui-media-box__desc">已有{{item.courseNum}}门课程</view>
+        </view>
+        <view class='rigth'>
+          <view class='rigth1' wx:if='{{item.myShareUser!=null}}'>
+            <image class='shareimg' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/share.png'></image>
+            <image class='header_img' wx:for='{{item.myShareUser}}' wx:key='' src='{{item}}'></image>
+          </view>
+          <view class='rigth1' wx:if='{{item.shareMeUser!=null}}'>
+            <image class='shareimg1' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/share.png'></image>
+            <image class='header_img' wx:for='{{item.shareMeUser}}' wx:key='' src='{{item}}'></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+</view>
+
+
+<!-- 日历 -->
+<block wx:if="{{showCalendar}}">
+  <calendarLayer catch:day-click="CALENDAR_DAY_CHANGED" catch:next-month="CALENDAR_MONTH_CHANGED" catch:prev-month="CALENDAR_MONTH_CHANGED" monthLessonNum="{{monthLessonNum}}" />
+</block>

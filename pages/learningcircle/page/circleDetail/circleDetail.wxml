@@ -1,0 +1,228 @@
+<!--pages/circle/circleDetail/circleDetail.wxml-->
+<view class="circleDetail_container">
+   <view class="circleDetail_wrap">
+<!-- 列表开始 -->
+   <view class="circle_lists">
+        <view class="circle_lists_left">
+           <image  src="https://timgsa.baidu.com/timg?image&quality=80 &size=b10000_10000&sec=1532504011533&di=99975468eec496258495ac9e33b3a980&imgtype=jpg&src=http%3A%2F%2Fd.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Fcb8065380cd79123bc5992ada1345982b3b780a9.jpg" ></image>
+        </view>
+        <view class="circle_lists_right">
+            <view class="circle_lists_title textover">跟我学英语跟我学英语跟我学英语跟我学英语跟我学英语</view>
+            <view class="circle_lists_text textover">从零基础学英语</view>
+            <view class="circle_lists_tabs"> 
+                <view class='lists_tabs'>
+                  成员 <text>30</text> 
+                </view>
+                <view class='lists_tabs'>
+                  打卡次数 <text>130</text> 
+                </view>
+            </view>
+        </view>
+     </view>
+     <!-- 列表结束 -->
+
+     <!-- 今日主题 -->
+     <view class='today_th'>
+       <view class='theme_top'>
+       <view class='title'>今日主题</view>
+         <view class='more_th'>全部主题
+          <text class='fa fa-angle-right'></text>
+         </view>
+      </view>
+      <view class='theme_cont'>
+         <view class='theme_title'>袋鼠与笼子</view>
+            <image class='head_img' src='https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2647220868,3361348433&fm=27&gp=0.jpg'></image>
+            <text>如果你无法简洁的表达你的想法，那只说明你还不够了解它。</text>     
+         </view>
+          <view class="theme_more_btn">查看全文</view>
+     </view>
+
+     <!-- 今日主题结束 -->
+     <!-- 圈子详情开始 -->
+<view class='page_center'>
+  <view class='nav_tab'>
+    <view class='{{currentTab==idx?"active":""}}' wx:key='idx' wx:for='{{nav_tab}}' wx:for-item='item' wx:for-index='idx' bindtap='CHANGE_TAB' data-idx='{{idx}}'>{{item}}</view>
+  </view>
+  <view class='de_di_mem'>
+    <!-- 圈子详情 -->
+    <view class='{{currentTab==0?"show":"hide"}}'>
+      <!-- 圈子详情 -->
+      <view class=' circle_detail'>
+        <view class='title'>圈主介绍</view>
+        <view class='introduce'>
+          
+          <image class='photo' src='https://timgsa.baidu.com/timg?image&quality=80 &size=b10000_10000&sec=1532502852587&di=7622b2fadc2ecfcc0b43714a339ef292&imgtype=jpg&src=http%3A%2F%2Fg.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F95eef01f3a292df5bee3b4ccb0315c6035a873c2.jpg'>
+         
+          </image>
+          <view class='intro_right'>
+            <view class='intro_r_title'>
+                <view class='name'>小逗逗</view>
+                <view class="care_btn">关注</view>
+            </view>
+            <view class='intro_detail'>
+              这个圈主比较懒，什么都没有写呢！
+            </view>
+          </view>
+           <view class="sex"><image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/boy.png"></image> </view>
+           
+
+        </view>
+      </view>
+      <!-- 圈主详情 -->
+      <view class='person_detail'>
+        <view class='title'>圈主详情</view>
+        这个圈主比较懒，什么都没写呢！
+      </view>
+    </view>
+
+    <!-- 圈子日记 -->
+    <view class='{{currentTab==1?"show":"hide"}}'>
+      <view class='diary_list'>
+        <view class='diary_item' wx:for='{{diarys}}' wx:key='idx' wx:for-index='idx'>
+          <view class='person_info'>
+            <view>
+              <image class='photo' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/home-img.png'></image>
+              <view class='na_ti'>
+                <text class='name'>包子</text>
+                <view class='time'>16分钟前</view>
+              </view>
+            </view>
+            <view class='p_in_right'>
+              <view class='att_btn'>关注</view>
+              <view class='more' bindtap='SHOW_HIDE_C' data-idx='{{idx}}' data-shorhi='{{item.toast_hide}}'>
+                <image class='more_img' src='../../assets/img/more.png'></image>
+                <view class='toast' hidden='{{item.toast_hide}}'>
+                  <image src='../../assets/img/toast.png'></image>
+                  <view class='complaint'>投诉</view>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class='diary_title'>
+            如果你无法简洁的表达你的想法，那只说明你还不够了解它。
+          </view>
+          <view class='audio'>
+            <audio poster="{{poster}}" src="" id="myAudio" loop></audio>
+            <view class='playOrstop'>
+              <view class='play'></view>
+              <view class='stop' hidden='true'>
+                <view class='shu'></view>
+                <view class='shu'></view>
+              </view>
+            </view>
+            <view class='bar'>
+              <view class='pro_pos' style='left:300rpx;'></view>
+              <view class='progress' style='width:300rpx;'></view>
+            </view>
+            <view class='audio_time'>-00:56</view>
+          </view>
+          <view class='diary_img'>
+            <image wx:for='{{item.diary_img}}' wx:for-key='item' wx:key="idx" src='{{item}}'></image>
+          </view>
+          <view class='comment_zan_sh'>
+            <view class='zan'>
+              <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/zan.png'></image>
+              30</view>
+            <view class='comment'>
+              <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/comment.png'></image>
+              40</view>
+            <view class='share'>
+              <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/share.png'></image>
+              45</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- 圈子成员 -->
+    <view class='{{currentTab==2?"show":"hide"}}'>
+
+       <view class='member'>
+          <view class='member_left'>
+            <image src='https://timgsa.baidu.com/timg?image&quality=80 &size=b10000_10000&sec=1532502852587&di=7622b2fadc2ecfcc0b43714a339ef292&imgtype=jpg&src=http%3A%2F%2Fg.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F95eef01f3a292df5bee3b4ccb0315c6035a873c2.jpg'>
+            </image>
+            <view class="member_right">
+               <view class='member_name'> 张三 </view>
+               <view class='time'> 2018-05-21加入 </view>
+            </view>
+          </view>
+       </view>
+       <view class='member'>
+          <view class='member_left'>
+            <image src='https://timgsa.baidu.com/timg?image&quality=80 &size=b10000_10000&sec=1532502852587&di=7622b2fadc2ecfcc0b43714a339ef292&imgtype=jpg&src=http%3A%2F%2Fg.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F95eef01f3a292df5bee3b4ccb0315c6035a873c2.jpg'>
+            </image>
+            <view class="member_right">
+               <view class='member_name'> 张三 </view>
+               <view class='time'> 2018-05-21加入 </view>
+            </view>
+          </view>
+       </view>
+
+       <view class='member mylists'>
+          <view class='member_left'>
+            <image src='https://timgsa.baidu.com/timg?image&quality=80 &size=b10000_10000&sec=1532502852587&di=7622b2fadc2ecfcc0b43714a339ef292&imgtype=jpg&src=http%3A%2F%2Fg.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F95eef01f3a292df5bee3b4ccb0315c6035a873c2.jpg'>
+            </image>
+            <view class="member_right">
+               <view class='member_name'> 吴秀波（我） </view>
+               <view class='time'> 2018-05-21加入 </view>
+            </view>
+            <view class="edit_btn"> <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/bianji.png"></image> <text>编辑</text> </view>
+          </view>
+       </view>
+        <view class='member'>
+          <view class='member_left'>
+            <image src='https://timgsa.baidu.com/timg?image&quality=80 &size=b10000_10000&sec=1532502852587&di=7622b2fadc2ecfcc0b43714a339ef292&imgtype=jpg&src=http%3A%2F%2Fg.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F95eef01f3a292df5bee3b4ccb0315c6035a873c2.jpg'>
+            </image>
+            <view class="member_right">
+               <view class='member_name'> 张三 </view>
+               <view class='time'> 2018-05-21加入 </view>
+            </view>
+          </view>
+       </view>
+
+
+
+    </view>
+  <!-- 打卡 -->
+    <view class='clock_btn'>
+        <navigator url='../../pages/circle/circleEditor/circleEditor?id={{model.communityId}}'>
+          打卡
+        </navigator>
+      </view>
+
+  </view>
+</view>
+   <!-- 圈子详情结束 -->
+
+   <!-- 底部 -->
+<view class='page_footer'>
+  <view class='footer_box'>
+    <view class='rule'>
+      <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/rule.png'></image>
+      打卡规则
+    </view>
+    <navigator url='../../pages/circle/circleEditor/circleEditor?id={{model.communityId}}'>
+      <view class='calendar'>
+        <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/rili.png'></image>
+        打卡日历
+      </view>
+    </navigator>
+    <navigator url='../../pages/circle/circleEditor/circleEditor?id={{model.communityId}}'>
+      <view class='rank'>
+        <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/rank.png'></image>
+        打卡排行
+      </view>
+    </navigator>
+
+    <view class='share'>
+      <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/share_1.png'></image>
+      邀请好友</view>
+  </view>
+</view>
+  
+  
+  
+  
+  
+  
+   </view>
+</view>

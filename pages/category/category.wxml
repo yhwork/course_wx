@@ -1,0 +1,72 @@
+<view class="page">
+  <view class='title'>请选择您的教学科目，如果没有请自定义添加</view>
+  <view class='subbox'>
+    <text class='{{item.isselect==1?"asubject select":"asubject"}}' bindtap='SELECT_REGION' wx:for='{{subjectList}}' wx:key='key' style='background-color:{{item.select?"#f29219":""}}' wx:if='{{item.sys==0}}' data-id='{{item.id}}' data-name='{{item.name}}'>{{item.name}}</text>
+  </view>
+  <view class='title' wx:if='{{haveZD}}'>自定义科目（长按可删除）</view>
+  <view class='subbox'>
+    <text bindtouchstart="mytouchstart" bindtouchend="mytouchend"  class='{{item.isselect?"asubject select":"asubject"}}' bindtap='DELSUBJECT' wx:for='{{subjectList}}' wx:key='key' wx:if='{{item.sys==1}}' data-id='{{item.id}}' data-name='{{item.name}}' style='background-color:{{item.select?"#f29219":""}}'>{{item.name}}</text>
+  </view>
+  <view class='custom' bindtap='ADDSUBJECT'>
+    <image class='add' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/add1.png'></image>自定义教学科目</view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- <view class="nav">
+        <view class="nav-son active">
+            <view class="content">{{level1name}}</view>
+            <view class="fa fa-chevron-down icon"></view>
+        </view>
+    </view>
+    <view class="nav">
+        <view class="nav-son active">
+            <view class="content">{{level2name}}</view>
+            <view class="fa fa-chevron-down icon"></view>
+        </view>
+    </view>
+    <view class="nav">
+        <view class="nav-son active">
+            <view class="content">{{level3name}}</view>
+            <view class="fa fa-chevron-down icon"></view>
+        </view>
+    </view>
+    <view class="quyu slidown">
+        <view class="qy quyu-left">
+            <view class="current2"  bindtap="SELECT_LEVEL1" wx:for="{{level1}}" wx:for-item="item" wx:key="index" data-id="{{item.id}}" data-name="{{item.name}}" data-index="{{index}}">
+                {{item.name}}
+            </view>
+        </view>
+        <view class="qy quyu-center">
+            <view class="current2"  bindtap="SELECT_LEVEL2" wx:for="{{level2}}" wx:for-item="item" wx:key="index" data-id="{{item.id}}" data-name="{{item.name}}" data-index="{{index}}">
+                {{item.name}}
+            </view>
+        </view>
+        <view class="qy quyu-right">
+            <view class="current2"  bindtap="SELECT_LEVEL3" wx:for="{{level3}}" wx:for-item="item" wx:key="index" data-id="{{item.id}}" data-name="{{item.name}}" data-index="{{index}}">
+                {{item.name}}
+            </view>
+        </view>    
+    </view>  -->
+
+
+</view>

@@ -1,0 +1,289 @@
+.page_top {
+  display: flex;
+  margin: 30rpx 20rpx;
+  padding: 40rpx 30rpx;
+  background: #fff;
+  border-radius: 8rpx;
+}
+
+.photo_box {
+  position: relative;
+  width: 84rpx;
+  height: 84rpx;
+}
+
+.photo {
+  width: 84rpx;
+  height: 84rpx;
+  border-radius: 84rpx;
+}
+
+.photo_box .sex {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.page_topRight {
+  margin-left: 30rpx;
+}
+
+.page_topRight .name {
+  font-size: 50rpx;
+  color: #111;
+  line-height: 1em;
+}
+
+.page_topRight .course_num {
+  font-size: 26rpx;
+  color: #555;
+  line-height: 1em;
+  margin-top: 14rpx;
+}
+.info_list{
+  background: #fff;
+}
+.info_item{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 88rpx;
+  padding: 0 30rpx;
+  font-size: 34rpx;
+}
+.info_right{
+  color: #B2B2B2;
+}
+.course_set {
+  margin-top: 30rpx;
+  background: #fff;
+}
+
+.course_set .title {
+  font-size: 34rpx;
+  color: #000;
+  padding: 20rpx 30rpx;
+}
+
+.odd_even {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30rpx;
+}
+
+.odd_even_left {
+  display: flex;
+}
+
+.odd_even_left .dian {
+  width: 24rpx;
+  height: 24rpx;
+  border-radius: 24rpx;
+  margin-right: 6rpx;
+}
+
+.odd .dian {
+  background: #f29219;
+}
+
+.even .dian {
+  background: #f95b58;
+}
+
+.odd, .even {
+  display: flex;
+  align-items: center;
+}
+
+.even {
+  margin-left: 40rpx;
+}
+
+.odd_even_set switch {
+  margin-left: 34rpx;
+}
+
+.wx-switch-input {
+  width: 102rpx !important;
+  height: 62rpx !important;
+  background: #f29219 !important;
+  border: #f29219 !important;
+}
+
+.wx-switch-input::before {
+  width: 100rpx !important;
+  height: 58rpx !important;
+  position: absolute;
+  top: 2rpx !important;
+}
+.thead .td {
+  background: #fdf4e8;
+}
+
+.course_table .firstTd.td {
+  width: 70rpx;
+  font-size: 22rpx;
+  color: #888;
+  background: #eee;
+  padding: 10rpx;
+  box-sizing: border-box;
+}
+
+.tr .td {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 136rpx;
+  height: 68rpx;
+  border-bottom: 2rpx solid #e5e5e5;
+  border-left: 2rpx solid #e5e5e5;
+  font-size: 26rpx;
+}
+
+.course_table .tr {
+  display: flex;
+}
+
+.td .subject {
+  width: 46rpx;
+  height: 46rpx;
+  border-radius: 46rpx;
+  line-height: 46rpx;
+  text-align: center;
+  border: 2rpx solid #e8e8e8;
+}
+
+.c_select {
+  background: #f29219;
+  color: #fff;
+}
+
+.even_w.c_select {
+  background: #f95b58;
+}
+
+.selected {
+  background: #e8e8e8;
+  color: #fff;
+}
+
+.course_table .hint {
+  display: flex;
+  align-items: center;
+  padding-left: 30rpx;
+  position: relative;
+  margin-top: 30rpx;
+}
+
+.hitn_detail {
+  max-width: 540rpx;
+}
+
+.edit_btn {
+  position: absolute;
+  top: 0;
+  right: 30rpx;
+  color: #f29219;
+  font-size: 26rpx;
+}
+
+.slect_tab {
+  padding: 0 30rpx 40rpx 30rpx;
+  border-bottom: 2rpx solid #e5e5e5;
+}
+
+.tab_item {
+  display: inline-block;
+  width: 160rpx;
+  height: 66rpx;
+  line-height: 66rpx;
+  background: #f0f0f0;
+  border-radius: 32rpx;
+  color: #888;
+  font-size: 32rpx;
+  margin-right: 50rpx;
+  margin-top: 30rpx;
+  position: relative;
+}
+.delete_btn{
+  position: absolute;
+  right: -6rpx;
+  top: -6rpx;
+}
+
+.circle {
+  display: inline-block;
+  width: 54rpx;
+  height: 54rpx;
+  border-radius: 54rpx;
+  background: #dbdbdb;
+  text-align: center;
+  color: #fff;
+  margin: 0 10rpx 0 8rpx;
+  line-height: 54rpx;
+}
+
+.tab_select {
+  background: #f29219;
+  color: #fff;
+}
+
+.tab_select .circle {
+  background: #fff;
+  color: #f29219;
+}
+
+.add_btn {
+  display: inline-block;
+  width: 160rpx;
+  height: 66rpx;
+  line-height: 68rpx;
+  border: 4rpx dashed #e5e5e5;
+  margin-right: 50rpx;
+  margin-top: 30rpx;
+  border-radius: 32rpx;
+  text-align: center;
+}
+
+.add_btn image {
+  width: 32rpx;
+  height: 32rpx;
+}
+
+.explain {
+  padding: 30rpx;
+  background: #fff;
+}
+.explain_item{
+  display: flex;
+  align-items: flex-start;
+}
+.explain_item view {
+  font-size: 26rpx;
+}
+
+.explain_detail {
+  width: 600rpx;
+}
+
+.submit {
+  width: 670rpx;
+  height: 94rpx;
+  border-radius: 10rpx;
+  margin: 120rpx auto 60rpx auto;
+}
+.hint_img{
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 20rpx;
+}
+.button-hover{
+  background: #f29219;
+}
+.delete_btn{
+  width: 32rpx;
+  height: 32rpx;
+}

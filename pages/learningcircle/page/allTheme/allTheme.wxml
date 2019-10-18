@@ -1,0 +1,180 @@
+<!--pages/circle/allTheme/allTheme.wxml-->
+<scroll-view scroll-y="true" style="max-height:1440rpx;" bindscrolltolower='PAGEPLUS'>
+  <view wx:for='{{themeList}}' wx:key='idx' wx:for-index='idx' wx:for-item='item'>
+    <view class='theme_item'>
+
+      <view class='title' wx:if='{{model.communityType==2}}'>【第{{item.level}}关】 {{item.title}}</view>
+      <view class='title' wx:else='' style='padding-left:16rpx;'>{{item.title}} </view>
+      <view class='time' wx:if='{{model.communityType==1}}'>
+        <view wx:if='{{item.signinStartDate==timeData&&item.signinEndDate==timeData}}'>
+          今日主题
+        </view>
+        <view wx:else>
+        {{item.signinEndDate}}
+        </view>
+      </view>
+      <view wx:if='{{item.signinStartDate>timeData}}'>
+        <navigator url=''>
+          <view class='img_box' bindtap='MARKED'>
+            <image class='head_img' src='{{item.picture}}'></image>
+          </view>
+        </navigator>
+      </view>
+      <view wx:else>
+        <navigator wx:if='{{model.communityType==1||item.isCurrent=="true"||item.isSignin=="true"}}' url='../themeDetail/themedetail?subjectId={{item.subjectId}}&&communityType={{model.type}}'>
+          <view class='img_box'>
+            <image class='head_img' src='{{item.picture}}'></image>
+          </view>
+        </navigator>
+        <navigator wx:else='' url=''>
+          <view class='img_box' bindtap='MARKED1' >
+            <image class='head_img' src='{{item.picture}}'></image>
+          </view>
+        </navigator>
+      </view>
+      <!-- <navigator wx:if='{{model.communityType==1||item.isCurrent=="true"||item.isSignin=="true"}}' url='../themeDetail/themedetail?subjectId={{item.subjectId}}&&communityType={{model.type}}'>
+        <view class='img_box'>
+          <image class='head_img' src='{{item.picture}}'></image>
+        </view>
+      </navigator>
+      <navigator wx:else='' url=''>
+        <view class='img_box'>
+          <image class='head_img' src='{{item.picture}}'></image>
+        </view>
+      </navigator> -->
+
+      <view>
+        <view class='icon_box'>
+          <view class='btn_group'>
+            <view wx:if='{{model.communityType==1&&item.signinStartDate<=timeData&&item.signinEndDate>=timeData}}'>
+              <view wx:if='{{item.isSignin=="false"}}'>
+                <navigator url='../themeDetail/themedetail?subjectId={{item.subjectId}}&&communityType={{model.type}}'>
+                  <view class='clock_btn1'>
+                    打卡
+                  </view>
+                </navigator>
+              </view>
+              <view wx:else>
+                <navigator url='../themeDetail/themedetail?subjectId={{item.subjectId}}&&communityType={{model.type}}'>
+                  <view class='clock_btn2'>
+                    已打
+                  </view>
+                </navigator>
+              </view>
+            </view>
+            <!-- 时间未到 -->
+            <view class='clock_btn3' wx:if='{{item.signinStartDate>timeData}}' bindtap='MARKED'>打卡</view>
+            <navigator url='../addDiary/addDiary?id={{item.subjectId}}&communityId={{item.communityId}}' wx:if='{{item.canSignin==true?true:""}}' wx:if='{{model.communityType==1&&item.signinEndDate<timeData}}'>
+              <view class='Fill_clock' wx:if='{{item.isSignin=="false"}}'>
+                <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/kebiao.png'></image>
+              </view>
+              <view wx:else>
+              <view class='clock_btn2'>
+                    已打
+                  </view>
+              </view>
+            </navigator>
+            
+
+
+
+
+
+
+
+
+
+
+            
+            <view wx:if='{{item.isOwner=="true"}}'>
+              <navigator url='../changeTheme/changeTheme?id={{item.communityId}}&subjectId={{item.subjectId}}&type={{model.type}}&level={{model.level}}&&change=1' wx:if='{{model.role}}'>
+                <!-- <navigator url='../changeTheme/changeTheme?id={{item.communityId}}&subjectId={{item.subjectId}}&type={{model.type}}&level={{model.level}}&&change=1' wx:else> -->
+                <view class='change_btn'>
+                  <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/editor.png'></image>
+
+                </view>
+              </navigator>
+            </view>
+            <view wx:if='{{model.communityType==2}}'>
+              <view class='lock' wx:if='{{item.isSignin=="false"}}'>
+                <view wx:if='{{item.isCurrent=="false"}}'>
+                  <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/lock.png'></image>
+                </view>
+              </view>
+            </view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <view wx:if='{{model.communityType==2}}'>
+
+              <view wx:if='{{item.isSignin=="false"}}'>
+                <navigator url='../themeDetail/themedetail?subjectId={{item.subjectId}}&&communityType={{model.type}}'>
+                  <view class='clock_btn1' wx:if='{{item.isCurrent=="true"}}'>
+                    打卡
+                  </view>
+                </navigator>
+              </view>
+              <navigator wx:else url='../themeDetail/themedetail?subjectId={{item.subjectId}}&&communityType={{model.type}}'>
+                <view class='clock_btn2'>
+                  已打
+                </view>
+              </navigator>
+
+            </view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <view class='delete_btn' bindtap='DEL_THEME' wx:if='{{model.communityType==1&&item.isOwner=="true"}}' data-subjectid='{{item.subjectId}}' data-status='2'>
+              <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/del.png'></image>
+
+            </view>
+            <view wx:else>
+              <view class='delete_btn' bindtap='DEL_THEME' wx:if='{{themeList.length==item.level&&item.isOwner=="true"}}' data-subjectid='{{item.subjectId}}' data-status='2'>
+                <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/del.png'></image>
+
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+
+<!-- 没有主题 -->
+<view class='no_theme' wx:if="{{themeList.length==0||!themeList}}">
+  <view class='no_imgBox'>
+    <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/no_have.png'></image>
+  </view>
+  <view class='no_theme_title'>暂时没有主题~</view>
+</view>

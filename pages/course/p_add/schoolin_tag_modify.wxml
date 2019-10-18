@@ -1,0 +1,11 @@
+<view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{message}}</view>
+<view class='hint'>
+<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/hint.png'></image>
+  <view>填写课程标签名称</view>
+</view>
+<view class='course_name'>
+  <view class='title'>课程名称</view>
+  <input value='{{model.tagName}}' maxlength="4" class='edit_label' id="tagName" name="tagName" bindinput="CHANGE_TAGNAME"></input>
+  <image class='delete_img' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/delete1.png' catchtap="DEL_TAG"></image>
+</view>
+<button class='submit' bindtap="SAVE_TAG">提交</button>

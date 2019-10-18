@@ -1,0 +1,6 @@
+{
+	"navigationBarTitleText": "课程复制",
+	"usingComponents": {
+        "calendar": "/components/calendar/calendar"
+   	}
+}

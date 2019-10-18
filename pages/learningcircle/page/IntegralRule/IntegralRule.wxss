@@ -1,0 +1,68 @@
+/* pages/circle/IntegralRule/IntegralRule.wxss */
+.textover {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.inte_container{
+
+}
+
+
+/* container s */
+.punch_content_wrap{
+  padding: 40rpx 30rpx;
+  background: #fff;
+  margin-bottom: 20rpx;
+}
+.punch_content_lists{
+  
+}
+.lists_title{
+height:45rpx;
+font-size:34rpx;
+color:#000000;
+line-height:45rpx;
+font-family:PingFangSC-Medium;
+font-weight: 600;
+
+}
+.mgtop{
+   margin-top: 30rpx;
+}
+.lists_content{
+margin-top: 16rpx;
+width:690rpx;
+height:38rpx;
+font-size:28rpx;
+font-family:PingFangSC-Regular;
+color:rgba(102,102,102,1);
+line-height:38rpx;
+}
+.lists_content_left{
+  width:580rpx;
+ text-align: left;
+ float: left;
+ color:#353535;
+}
+.lists_content_left text{
+  color: #888888;
+}
+
+.lists_content_right{
+  text-align: right;
+  float: right;
+  color:#353535;
+}
+
+.lists_content_t{
+ margin-top: 30rpx;
+
+}
+ .lists_content_text{
+ font-size:28rpx;
+ font-family:PingFangSC-Regular;
+ color:rgba(102,102,102,1);
+}

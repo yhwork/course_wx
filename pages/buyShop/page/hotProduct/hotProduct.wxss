@@ -1,0 +1,592 @@
+@import "../../../circle/circle.wxss";
+@import "../payList/payList.wxss";
+
+page {
+  padding-bottom: 70rpx;
+}
+
+.activityContent_wrap {
+  width: 750rpx;
+}
+
+.content_items {
+  width: 750rpx;
+  position: relative;
+}
+
+.hot_img {
+  width: 100%;
+  height: 100%;
+}
+
+.hot_swiper {
+  /* height: 400rpx; */
+    height: 500rpx;
+}
+
+.new_datail {
+  margin-top: 0rpx;
+  font-size: 32rpx;
+  font-weight: bolder;
+  color: black;
+  /* width: 600rpx; */
+  word-wrap: break-word;
+}
+
+/* 换行  只加宽度如果碰到英文及连续数字则无效 */
+
+.Course_introduction {
+  width: 730rpx;
+  padding: 0 10rpx;
+  background-color: white;
+}
+
+.intro_texts {
+  font-size: 25rpx;
+  line-height: 30rpx;
+  color: #aaa;
+  width: 550rpx;
+  word-wrap: break-word;
+  /* margin-top: 10rpx; */
+}
+
+.hot {
+  width: 750rpx;
+}
+
+.merchants_wrap {
+  width: 730rpx;
+}
+
+.hotsale_num {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20rpx;
+  margin-top: 20rpx;
+
+}
+
+.sale, .catroe {
+  display: flex;
+  align-items: center;
+  color: #aaa;
+}
+
+.special_flex {
+  height: 50rpx;
+}
+
+.buy-warn {
+  font-size: 24rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  /* background-color: #fffefe; */
+  padding: 10rpx;
+  color: black;
+  width: 730rpx;
+  font-weight: bolder;
+}
+
+.warn_time {
+  width: 35rpx;
+  height: 35rpx;
+}
+
+.warn_item {
+  display: flex;
+  align-items: center;
+  padding: 10rpx 0rpx;
+  border-bottom: 1rpx solid #e8e3e3;
+}
+
+.item_img {
+  display: flex;
+  align-items: center;
+  height: 35rpx;
+}
+
+.time_ont {
+  font-size: 24rpx;
+  margin-left: 10rpx;
+}
+
+.warn_img {
+  display: flex;
+  align-items: center;
+}
+
+.warn_wrap {
+  width: 720rpx;
+  margin: 0 auto;
+}
+
+.warn_context {
+  color: gray;
+}
+
+.shop_adress {
+  margin: 0 auto;
+  font-size: 24rpx;
+  font-weight: bolder;
+}
+
+.shop_adress .warn_item {
+  display: block;
+}
+
+.shop-shop {
+  color: #789eb9;
+}
+
+.detail_boxwrapb {
+  /* height: 400rpx; */
+  font-size: 24rpx;
+  width: 730rpx;
+  margin: 0 auto;
+  color: #aaa;
+  padding: 10rpx;
+  /* overflow: scroll; */
+  padding-bottom: 80rpx;
+  background-color: white;
+}
+
+.bottombar {
+  width: 750rpx;
+  background-color: #f3f2f2;
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  font-size: 24rpx;
+  height: 90rpx;
+}
+
+.save_img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+}
+
+.bar_service {
+  width: 15%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.service_image {
+  width: 40rpx;
+  height: 40rpx;
+  margin-top: 15rpx;
+}
+
+.service_content {
+  display: block;
+}
+
+.bar_save {
+  width: 15%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.bar_buy, .bar_buynow {
+  text-align: center;
+  font-size: 24rpx;
+  color: white;
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(139, 195, 74, 1);
+}
+
+.bar_buy2 {
+  width: 0rpx;
+  color: white;
+}
+
+.bar_buynow {
+  width: 40%;
+  background-color: #ff9800;
+}
+
+.bar_buynow2 {
+  width: 70%;
+  background-color: #ff9800;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 24rpx;
+  color: white;
+}
+
+.buy_top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.buy_bottom {
+  display: flex;
+}
+
+.bar_img {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.item_style {
+  width: 730rpx;
+  margin: 0 auto;
+  color: #aaa;
+  background-color: white;
+}
+
+.warn_wrap .warn_item:last-child {
+  border: none;
+}
+
+.modal_wraps {
+/* <<<<<<< HEAD */
+  width: 670rpx;
+  height: 380rpx;
+  padding: 30rpx 40rpx;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -375rpx;
+  margin-top: -250rpx;
+  font-size: 26rpx;
+  background-color: white;
+/* =======
+
+    width: 670rpx;
+    height: 380rpx;
+    padding: 30rpx 40rpx;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -375rpx;
+    margin-top: -250rpx;
+    font-size: 26rpx;
+    background-color: white;
+>>>>>>> 2bb318dd6ba4f5d2040bcadf9190ebb360b15614 */
+}
+
+.modal_text {
+  display: flex;
+}
+
+.item_study, .item_studys {
+  display: flex;
+  margin-top: 15rpx;
+  align-items: center;
+}
+
+
+.btn_cancle {
+  width: 150rpx;
+  height: 60rpx;
+  border: 1rpx solid #ff9800;
+  text-align: center;
+  line-height: 60rpx;
+  font-size: 26rpx;
+  border-radius: 10rpx;
+  color: #ff9800;
+}
+
+.btn_group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 50rpx;
+}
+
+.modal_text {
+  margin-top: 50rpx;
+}
+
+.input_style {
+  height: 40rpx;
+  border: 1rpx solid #8f8a8a;
+  width: 380rpx;
+  margin-left: 10rpx;
+}
+
+.modalstyle {
+  display: flex;
+  align-items: center;
+  color: black;
+}
+
+.promptText {
+  font-size: 18rpx;
+  color: red;
+  margin-left: 10rpx;
+  margin-top: -20rpx;
+}
+
+.mask {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.8);
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.showpadding {
+  font-size: 20rpx;
+}
+
+.wrap_top {
+  text-align: center;
+  font-size: 30rpx;
+  font-weight: bolder;
+}
+
+.wrap_tops {
+  text-align: center;
+  font-size: 30rpx;
+  font-weight: bolder;
+  margin-bottom: 50rpx;
+}
+
+.hotshare {
+  width: 730rpx;
+  display: flex;
+}
+
+.itemTexrt_brand {
+  border: 1rpx solid #e1dede;
+}
+
+.buy_top, .buy_bottom {
+  height: 50%;
+}
+
+.sharestyle {
+  width: 51rpx;
+  height:39rpx;
+  top:5rpx;
+   position: absolute; 
+}
+.sharestyles{
+  width: 35rpx;
+  height: 35rpx;
+  margin-left: 128rpx;
+  position: absolute;
+  left: 550rpx;
+  /* z-index:1; */
+  z-index: 10;
+}
+
+.shareBtn {
+  /* position: absolute;
+  left:650rpx;
+  top: 588rpx; */
+    width:109rpx !important;
+  /* height: 60rpx !important; */
+  /* background-color: chocolate; */
+  position: relative;
+
+}
+.sharebtn_s{
+  margin-left:345rpx;
+  margin-top: 23rpx;
+}
+
+.default-btn {
+  width: 160rpx;
+  height: 40rpx;
+  /* margin-top: 10rpx; */
+}
+
+.contenttext {
+  width: 700rpx;
+  /* margin: 0 auto; */
+  word-wrap: break-word;
+  line-height: 30rpx;
+}
+
+/* 去掉button  默认样式 */
+
+button::after {
+  border: none;
+}
+
+button {
+  background-color: #fff;
+}
+
+button {
+  border-radius: 0;
+}
+
+.item_study .exam-style, .item_studys .exam-style, .wrap_top .exam-style,
+.wrap_tops .exam-style, .exam_title .exam-style, .modal_text .exam-style {
+  color: black;
+}
+
+.buy_model {
+  background-color: white;
+  padding-top: 30rpx;
+  position: absolute;
+  z-index: 201;
+  bottom: 0;
+  width: 688rpx;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  overflow: hidden;
+}
+
+.title_content {
+  display: flex;
+  padding: 15rpx 0rpx;
+  font-size: 25rpx;
+  width: 688rpx;
+  overflow: hidden;
+}
+
+.changeBorder {
+  border: 1rpx solid #ff9800;
+  color: #ff9800;
+}
+
+.choose_price {
+  margin-left: 280rpx;
+  font-size: 25rpx;
+}
+
+.sub_price {
+  font-size: 25rpx;
+  margin-left: 30rpx;
+  text-decoration: line-through;
+}
+
+.back_bottom {
+  width: 750rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 130rpx;
+  font-size: 28rpx;
+  margin-bottom: 10rpx;
+  color: #ff9800;
+}
+
+.modal_mask {
+  width: 100%;
+  height: 100%;
+  position:fixed;
+  top: 0;
+  bottom:0;
+  right: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 200;
+}
+.modal_masks {
+  width: 100%;
+  height: 100%;
+  position:fixed;
+  top: 0;
+  bottom:0;
+  right: 0;
+  left: 0;
+  /* background: rgba(0, 0, 0, 0.5); */
+  /* z-index: 200; */
+}
+
+.back {
+  font-size: 36rpx;
+  margin-right: 10rpx;
+}
+
+.choose_price {
+  color: red;
+}
+
+.time_margin {
+  margin-left: 10rpx;
+}
+
+.price_color {
+  color: gray;
+}
+
+.back-width {
+  width:400rpx;
+  height: 60rpx;
+  display: flex;
+  line-height: 60rpx;
+}
+
+rich-text .rich-img {
+  width: 100%;
+  height: auto;
+}
+.priceBtn{
+  display: flex;
+}
+/* 去掉button 按钮点击默认背景颜色 */
+.button-hover{
+  background-color: white !important; 
+}
+.sharetext{
+  font-size: 20rpx;
+  color: #ff9800;
+ 
+}
+.sharev{
+  text-align: center;
+  margin-left: 45rpx;
+
+}
+.shop_prices{
+  font-size: 25rpx;
+  margin-left: 8rpx;
+  text-decoration: line-through;
+  width: 180rpx;
+  line-height: 94rpx;
+  display: block;
+}
+.activityC{
+  text-align: center;
+  width: 688rpx;
+}
+.backback{
+  width: 40rpx;
+  height: 40rpx;
+  margin-left: 510rpx;
+  margin-bottom: 20rpx;
+}
+.buy_title{
+  display: flex;
+  justify-content: center;
+ 
+  }
+ .modal-mask3{
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .2);
+  position: fixed;
+  left:0;
+  top:0;
+  z-index: 9999;
+
+}
+.bottombarback{
+height: 90rpx;
+position: fixed;
+bottom: 0;
+width: 750rpx;
+background-color: rgba(139, 195, 74, 1);
+text-align: center;
+line-height: 90rpx;
+color: white;
+}

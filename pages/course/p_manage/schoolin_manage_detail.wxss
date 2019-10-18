@@ -1,0 +1,98 @@
+@import "../p_add/schoolin_add1.wxss";
+
+.hint {
+  font-size: 30rpx;
+  height: 60rpx;
+  padding: 10rpx 30rpx;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+.page_top {
+  display: flex;
+  justify-content: right;
+  padding: 10rpx 30rpx;
+  background: #ffd08a;
+  margin: 0;
+  border-radius: 0;
+}
+
+.photo_box {
+  position: relative;
+  width: 84rpx;
+  height: 84rpx;
+}
+
+.photo {
+  width: 84rpx;
+  height: 84rpx;
+  border-radius: 84rpx;
+}
+
+.page_topRight .name {
+  font-size: 34rpx;
+  color: #f29219;
+  height: 100%;
+  line-height: 84rpx;
+}
+
+.page_footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  height: 90rpx;
+  background: #fff;
+  border-top: 2rpx solid #e6e6e6;
+  font-size: 26rpx;
+  color: #f29219;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+}
+.share{
+  color: #f29219;
+}
+.change image {
+  width: 32rpx;
+  height: 40rpx;
+}
+
+.copy image {
+  width: 44rpx;
+  height: 44rpx;
+}
+
+.delete image {
+  width: 40rpx;
+  height: 36rpx;
+}
+
+.share image {
+  width: 44rpx;
+  height: 44rpx;
+}
+
+button {
+  background: #fff;
+  padding: 0;
+  font-size: 26rpx;
+  color: #888;
+}
+
+button::after {
+  border: none;
+}
+
+.button-hover {
+  background: #fff;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+}
+
+.menu image {
+  margin-right: 10rpx;
+}

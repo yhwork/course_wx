@@ -1,0 +1,440 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"autoAudits": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": false
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.8.3",
+	"appid": "wx8cc819faddd66ace",
+	"projectname": "%E6%9C%80%E6%96%B0%E5%B0%8F%E8%B1%86%E5%8C%85",
+	"cloudfunctionTemplateRoot": "",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"scripts": {},
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": -1,
+					"name": "添加流程",
+					"pathName": "pages/course/p_add/schoolout_add1",
+					"query": ""
+				},
+				{
+					"id": 2,
+					"name": "老师",
+					"pathName": "pages/register/info/t_info",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 2,
+					"name": "班级圈跳转",
+					"pathName": "pages/class/class",
+					"query": "action=classNotifyTemplateMessage&id=92&classId=100000&role=0&type=0&childId=1989",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "发布",
+					"pathName": "pages/classcircle/addPeport/addPeport",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "班级圈",
+					"pathName": "pages/class/class",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "添加孩子",
+					"pathName": "pages/register/info/p_info",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 6,
+					"name": "老师介绍",
+					"pathName": "pages/learningcircle/page/teacherIntroduction/teacherIntroduction",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "课程详情页",
+					"pathName": "pages/learningcircle/page/courseDetail/courseDetail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 8,
+					"name": "商品详情页",
+					"pathName": "pages/learningcircle/page/Productdetails/Productdetails",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "机构介绍",
+					"pathName": "pages/learningcircle/page/organizationIntro/organizationIntro",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "学习圈",
+					"pathName": "pages/circle/circle",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "机构介绍",
+					"pathName": "pages/learningcircle/page/organizationIntro/organizationIntro",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 12,
+					"name": "全部课程",
+					"pathName": "pages/learningcircle/page/allcourse/allcourse",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "课程详情页",
+					"pathName": "pages/buyShop/page/courseDetail/courseDetail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "课程详情页",
+					"pathName": "pages/buyShop/page/forCourse/forCourse",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "测试页",
+					"pathName": "pages/buyShop/page/forCourse/forCourse",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 19,
+					"name": "支付页面",
+					"pathName": "pages/buySgop/page/payList/payList",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "支付页面",
+					"pathName": "pages/buyShop/page/payList/payList",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "支付完成页面",
+					"pathName": "pages/buyShop/page/payComplete/payComplete",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "分享页面",
+					"pathName": "pages/buyShop/page/sharePage/sharePage",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "学习圈主页",
+					"pathName": "pages/circle/circle",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "学习圈主页",
+					"pathName": "pages/circle/circle",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "学习圈主页",
+					"pathName": "pages/buyShop/hotProduct/hotProduct",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "爆款页面",
+					"pathName": "pages/buyShop/page/hotProduct/hotProduct",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 26,
+					"name": "预约",
+					"pathName": "pages/buyShop/page/booking/booking",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "预约",
+					"pathName": "pages/buyShop/page/hotProduct/hotProduct",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "日历",
+					"pathName": "pages/buyShop/page/day/day",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 29,
+					"name": "预约",
+					"pathName": "pages/buyShop/page/payList/payList",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的",
+					"pathName": "pages/buyShop/page/myOrder/myOrder",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的",
+					"pathName": "pages/mypage/mypage/mypage",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的付款",
+					"pathName": "pages/buyShop/page/mywaitPay/mywaitPay",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "班级圈跳转",
+					"pathName": "pages/circle/circle",
+					"query": "action=classNotifyTemplateMessage&id=92&classId=100000&role=0&type=0&childId=1989",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "视频",
+					"pathName": "pages/learningcircle/page/time/time",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "视频",
+					"pathName": "pages/buyShop/page/time/time",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的预约",
+					"pathName": "pages/buyShop/page/mywaitPay/mywaitPay",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "预约详情页",
+					"pathName": "pages/buyShop/page/myOrder/myOrder",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的预约",
+					"pathName": "pages/buyShop/page/mynewBooking/mynewBooking",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 37,
+					"name": "我的预约",
+					"pathName": "pages/buyShop/page/mynewBooking/mynewBooking",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的打卡",
+					"pathName": "pages/buyShop/page/myColockin/myColockin",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的已打卡",
+					"pathName": "pages/buyShop/page/myAlreayClockin/myAlreayClockin",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的已打卡",
+					"pathName": "pages/buyShop/page/watchTv/watchTv",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "待观看",
+					"pathName": "pages/buyShop/page/watchTv/watchTv",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "班级信息",
+					"pathName": "pages/classcircle/classMsg/classMsg",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 43,
+					"name": "qqq",
+					"pathName": "pages/buyShop/page/mywaitPay/mywaitPay",
+					"query": "childId=null&userId=100048&showIndex=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "订单详情",
+					"pathName": "pages/buyShop/page/orderDetail/orderDetail",
+					"query": "childId=null&userId=100048&showIndex=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的待付款订单详情",
+					"pathName": "pages/buyShop/page/orderDetail/orderDetail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的待付款订单详情",
+					"pathName": "pages/buyShop/page/mywaitOrders/mywaitOrders",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "调查问卷",
+					"pathName": "pages/buyShop/page/exam/exam",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "预约上课",
+					"pathName": "pages/buyShop/page/myOrder/myOrder",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "极点日历dem0",
+					"pathName": "pages/canlender/canlender",
+					"query": "pages/canlender/canlender",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "极点日历dem0",
+					"pathName": "pages/buyShop/page/bookingsSuccess/bookingsSuccess",
+					"query": "pages/canlender/canlender",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "Calendar",
+					"pathName": "pages/course/p_add/schoolout_add1",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "fdsf ",
+					"pathName": "pages/course/course",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 55,
+					"name": "ship",
+					"pathName": "pages/buyShop/page/mywaitPay/mywaitPay",
+					"query": "childId=null&userId=100048&showIndex=5",
+					"scene": null
+				},
+				{
+					"id": 55,
+					"name": "pages/buyShop/page/watchTv/watchTv",
+					"pathName": "pages/buyShop/page/watchTv/watchTv",
+					"query": "videoId=8&orderNumber=20190706202801344979894805213184",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "55",
+					"pathName": "pages/buyShop/page/watchTvList/watchTvList",
+					"query": "productId=127&orderNumber=20190708171055345655065400586240",
+					"scene": null
+				}
+			]
+		}
+	}
+}

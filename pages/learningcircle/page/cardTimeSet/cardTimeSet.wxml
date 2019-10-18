@@ -1,0 +1,112 @@
+<!--pages/circle/cardTimeSet/cardTimeSet.wxml-->
+<!-- 隐私设置 -->
+<view class='basic_info'>
+  <view class='photo_box'>
+    <image class='photo' src='{{model.masterLogo}}'>
+    </image>
+    <image class='sex' src='{{model.gender}}'></image>
+  </view>
+  <view class='info_right'>
+    <view class='name'>{{model.masterRealName}}</view>
+    <view class='title'>{{model.communityName}}</view>
+  </view>
+</view>
+  <view style='height:10rpx; background:#f4f4f4'></view> 
+
+
+
+
+
+
+<view class='circle_type setprivacy_container '>
+  <view class='title'>设置每日打卡时间</view>
+  <radio-group class="radio-group" bindchange="typeLChange">
+    <label class="radio" wx:for="{{typeList}}" wx:for-item='item' wx:key='idx'>
+      <radio value="{{item.value}}" checked="{{item.checked}}" />{{item.name}}
+    </label>
+  </radio-group>
+  <!-- 打卡时间内容 -->
+  <view class="card_time_wrap" hidden='{{hasDisplaySignTime}}'>
+    <view class="card_time_title">
+      <!-- <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/care.png'></image>
+      <text>点击选择更改相应的信息</text> -->
+    </view>
+
+    <!-- <view class='cl_date'>
+      <picker mode="time" value="{{startTime}}" start="2018-09-01" end="2026-09-01" bindchange="bindTimeChange">
+        <view class="picker">
+          <view class='star_date'>
+            <view class='title '>开始时间</view>
+            <view class='date time_number start_date'>{{time.communityStartTime}}</view>
+          </view>
+        </view>
+      </picker>
+
+      <image class='dao' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/more-time.png'></image>
+
+      <picker mode="time" value="{{endtime}}" start="{{time.communityStartTime}}" end="2026-09-01" bindchange="bindTimeChangeEnd">
+        <view class="picker">
+          <view class='end_date'>
+            <view class='title'>结束时间</view>
+            <view class='date end_time time_number'>{{time.communityEndTime}}</view>
+          </view>
+        </view>
+      </picker>
+
+    </view> -->
+    <view class='data_box'>
+      <view class='data_start'>
+        <view class='time_start'>开始日期:</view>
+        <picker mode="date" value="{{date}}"  style='width:50% ;' start="2015-09-01" end="2020-09-01" bindchange="bindDateChange">
+          <view class="picker">
+            <view class='star_date'>
+              <view class='date'>{{model.startDate}}</view>
+              <image class='drop_down' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/drop_down.png'></image>
+            </view>
+          </view>
+        </picker>
+      </view>
+      <view class='data_start'>
+        <view class='time_start'>结束日期:</view>
+        <picker mode="date" value="{{date}}" start="2015-09-01" style='width:50% ;' end="2020-09-01" bindchange="bindEndDateChange">
+          <view class="picker">
+            <view class='end_date'>
+              <view class='date'>{{model.endDate}}</view>
+              <image class='drop_down' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/drop_down.png'></image>
+            </view>
+          </view>
+        </picker>
+      </view>
+
+    </view>
+  </view>
+
+
+
+
+
+  <!-- <view class='cl_date'>
+  <picker mode="date" value="{{date}}" start="2015-09-01" end="2020-09-01" bindchange="bindDateChange">
+      <view class="picker">
+        <view class='star_date'>
+          <view class='title'>开始日期</view>
+          <view class='date'>{{model.communityStartDate}}</view>
+        </view>
+      </view>
+    </picker>
+
+   <image class='dao' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/more-time.png'></image>
+
+    <picker mode="date" value="{{date}}" start="2015-09-01" end="2020-09-01" bindchange="bindEndDateChange">
+      <view class="picker">
+        <view class='end_date'>
+          <view class='title'>结束日期</view>
+          <view class='date'>{{model.communityEndDate}}</view>
+        </view>
+      </view>
+    </picker>
+
+    </view> -->
+
+  <view class='save' bindtap='submitDataBind'>保存</view>
+</view>

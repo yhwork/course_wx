@@ -1,0 +1,107 @@
+<!--pages/mypage/uesHelp/useHelp.wxml-->
+<view class="index">
+  <!-- header s -->
+  <view class='userhelp_header'>
+    <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/usehelp.png'></image>
+  </view>
+ 
+<view class='usehelp_tips'>
+使用热点问题解答
+</view>
+  <view class="body usehelp_container">
+    <view class="widgets">
+      <view class="widgets__item">
+        <view id="content1" class="widgets__info {{content1Show ? 'widgets__info_show' : ''}}" bindtap="widgetsToggle">
+          <text class="widgets__info-name textover">为什么要给孩子创建课程表？</text>
+        </view>
+        <view class="widgets__list {{content1Show ? 'widgets__list_show' : ''}}">
+          <!-- 折叠内容 s -->
+          <view class='usehelp_text'>
+            <text>合理的规划孩子学习和玩耍的时间，劳逸结合，避免二者时间冲突； 避免传统纸质课表易丢失易磨损； 
+            课程繁多，容易出现缺勤、调课和补课状况。</text>
+          </view>
+          <!-- 折叠内容 e -->
+        </view>
+      </view>
+
+       <view class="widgets__item">
+        <view id="content2" class="widgets__info {{content2Show ? 'widgets__info_show' : ''}}" bindtap="widgetsToggle">
+          <text class="widgets__info-name">如何新建和删除课程表</text>
+        </view>
+        <view class="widgets__list {{content2Show ? 'widgets__list_show' : ''}}">
+           <!-- 折叠内容 s -->
+          <view class='usehelp_text'>
+            <text>前往课程表页面进行删除哦~~~</text>
+          </view>
+          <!-- 折叠内容 e -->
+        </view>
+      </view> 
+
+      <view class="widgets__item">
+        <view id="content3" class="widgets__info {{content3Show ? 'widgets__info_show' : ''}}" bindtap="widgetsToggle">
+          <text class="widgets__info-name">多个课程表如何切换</text>
+        </view>
+        <view class="widgets__list {{content3Show ? 'widgets__list_show' : ''}}">
+           <!-- 折叠内容 s -->
+          <view class='usehelp_text'>
+            <text>前往课程表页面切换哦~~~</text>
+          </view>
+          <!-- 折叠内容 e -->
+        </view>
+      </view> 
+
+      <view class="widgets__item">
+        <view id="content4" class="widgets__info {{content4Show ? 'widgets__info_show' : ''}}" bindtap="widgetsToggle">
+          <text class="widgets__info-name">课表之间的课程互相影响吗</text>
+        </view>
+        <view class="widgets__list {{content4Show ? 'widgets__list_show' : ''}}">
+           <!-- 折叠内容 s -->
+          <view class='usehelp_text'>
+            <text>是不影响的哦~~~</text>
+          </view>
+          <!-- 折叠内容 e -->
+        </view>
+      </view> 
+
+      <view class="widgets__item">
+        <view id="content5" class="widgets__info {{content5Show ? 'widgets__info_show' : ''}}" bindtap="widgetsToggle">
+          <text class="widgets__info-name">如何快速添加课程</text>
+        </view>
+        <view class="widgets__list {{content5Show ? 'widgets__list_show' : ''}}">
+           <!-- 折叠内容 s -->
+          <view class='usehelp_text'>
+            <text>前往课程表添加页面添加哦~~~</text>
+          </view>
+          <!-- 折叠内容 e -->
+        </view>
+      </view> 
+
+      <view class="widgets__item">
+        <view id="content6" class="widgets__info {{content6Show ? 'widgets__info_show' : ''}}" bindtap="widgetsToggle">
+          <text class="widgets__info-name">什么是时间重复，有什么作用？</text>
+        </view>
+        <view class="widgets__list {{content6Show ? 'widgets__list_show' : ''}}">
+           <!-- 折叠内容 s -->
+          <view class='usehelp_text'>
+            <text>前往课程表添加页面添加哦~~~</text>
+          </view>
+          <!-- 折叠内容 e -->
+        </view>
+      </view> 
+
+       <view class="widgets__item">
+        <view id="content7" class="widgets__info {{content7Show ? 'widgets__info_show' : ''}}" bindtap="widgetsToggle">
+          <text class="widgets__info-name">使用时间重复后，多排课程怎么办？</text>
+        </view>
+        <view class="widgets__list {{content7Show ? 'widgets__list_show' : ''}}">
+           <!-- 折叠内容 s -->
+          <view class='usehelp_text'>
+            <text>前往课程表添加页面添加哦~~~</text>
+          </view>
+          <!-- 折叠内容 e -->
+        </view>
+      </view> 
+
+    </view>
+  </view>
+</view>

@@ -1,0 +1,29 @@
+<!-- TODO 815不做人物标签 -->
+<!-- TODO 815不做跳转客态页 -->
+<view class="personal_container">
+  <view class="personal_lists">
+    <scroll-view scroll-y bindscrolltolower='nextPage' style='height:1200rpx'>
+      <view class="personal_lists_ul">
+        <view class="personal_lists_li" wx:for='{{possiblePersonList}}' wx:for-item='item' wx:for-index='index' wx:key='idx'>
+          <view class='fl personal_lists_header'>
+            <view class="r_info_info_pic">
+              <view class="pic_wrap">
+                <image bindtap='HOMEPAGE' data-id='{{item.id}}' src='{{item.logo}}'></image> 
+              </view>
+              <view class="sex">
+                <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/{{item.gender==0?"boy1":"girl1"}}.png'>></image>
+              </view>
+            </view>
+            <view class="personal_lists_info">
+              <view class='personal_lists_name textover'>{{item.nick_name}}</view>
+              <!-- <view class='personal_lists_taps'>学生党</view> -->
+            </view>
+          </view>
+          <view class='fr follow_wrap_btn'>
+            <view class="follow_btn" data-id='{{item.id}}' data-index='{{index}}' data-flag='{{item.flag}}' bindtap='focus' style='color:{{item.color}}'>{{item.text}}</view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

@@ -1,0 +1,221 @@
+.page__hd {
+  padding: 0;
+}
+
+.page__bd {
+  height: 100%;
+  padding-bottom: 0;
+}
+
+.main_bg {
+  width: 100%;
+  height: 200rpx;
+  background: #f59a27;
+  overflow: hidden;
+}
+
+.main_acc {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  padding: 50rpx;
+}
+
+.main_bg .head-img {
+  width: 84rpx;
+  height: 84rpx;
+  border-radius: 84rpx;
+  /* margin-right:50rpx; *//* float: right; */
+}
+
+.signimg {
+  width: 84rpx;
+  height: 28rpx;
+  /* float:left; *//* margin:80rpx 0 0 -155rpx; */
+}
+
+.a {
+  margin-left: -60rpx;
+}
+
+.icona {
+  width: 34rpx;
+  height: 32rpx;
+  margin-top: 10rpx;
+  float: left;
+}
+
+.iconb {
+  width: 38rpx;
+  height: 38rpx;
+  float: left;
+}
+.weui-cell input{
+  width: 60%;
+}
+
+.iconc {
+  width: 38rpx;
+  height: 38rpx;
+  float: left;
+}
+
+.weui-cell-ins_a {
+  width: 90%;
+  height: 350rpx;
+  background: #fff;
+  margin: 0 auto;
+  margin-top: 20rpx;
+  overflow: hidden;
+}
+
+.weui-cell-wenzi {
+  color: #f59a27;
+  margin: 40rpx 0 0 150rpx;
+  font-size: 28rpx;
+}
+
+.weui-cell-riqi {
+  width: 40%;
+  font-weight: 700;
+  margin-top: 20rpx;
+  text-align: right;
+  float: left;
+}
+
+.dao {
+  width: 5%;
+  height: 10rpx;
+  float: left;
+  margin: 40rpx 0 0 30rpx;
+}
+
+.weui-cell .b {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 40%;
+}
+
+.weui-cell-ins_b {
+  width: 90%;
+  height: 300rpx;
+  background: #fff;
+  margin: 0 auto;
+  margin-top: 20rpx;
+  overflow: hidden;
+}
+
+.dao_b {
+  width: 5%;
+  height: 10rpx;
+  float: left;
+  margin: 25rpx 0 0 30rpx;
+}
+
+.weui-cell-riqi_b {
+  width: 40%;
+  font-weight: 700;
+  margin: 20rpx 0 0 25rpx;
+  text-align: left;
+  float: left;
+}
+
+.weui-cell-clock {
+  margin: 60rpx 0 0 240rpx;
+  float: left;
+  font-size: 26rpx;
+  color: #f59a27;
+}
+
+.weui-cell-bottom {
+  height: 20rpx;
+  background: #f4f4f4;
+}
+
+.iconf {
+  width: 34rpx;
+  height: 32rpx;
+  margin-top: 10rpx;
+  float: left;
+}
+
+.icong {
+  width: 34rpx;
+  height: 32rpx;
+  margin-top: 10rpx;
+  float: left;
+}
+
+.btn_a {
+  width: 80%;
+  height: 80rpx;
+  margin: 50rpx auto;
+  color: #fff;
+  background: #f59a27;
+  font-size: 28rpx;
+  line-height: 80rpx;
+  border-radius: 3%;
+}
+
+.btn {
+  margin-top: 160rpx;
+  width: 35%;
+  height: 74rpx;
+  background: #fff;
+  border: 2rpx solid #f29219;
+  margin-left: 200rpx;
+}
+
+.input {
+  margin-top: -60rpx;
+  float: left;
+  width: 100%;
+  color: black;
+  margin-left: -10rpx;
+}
+
+.input1 {
+  margin-top: -58rpx;
+  float: left;
+  width: 100%;
+  color: black;
+  margin-left: 24rpx;
+}
+
+.all {
+  font-size: 28rpx;
+  float: left;
+  color: #f29219;
+  margin-left: 30rpx;
+}
+
+.jie {
+  font-size: 28rpx;
+  float: right;
+  color: #f29219;
+  margin-right: 30rpx;
+  margin-top: -68rpx;
+}
+
+.addr {
+  padding-right: 0 !important;
+}
+
+.weui-select {
+  /* width: 450rpx; */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.timelong {
+  border-radius: 60rpx;
+  width: 35%;
+  height: 60rpx;
+  padding-top: 8rpx;
+  background: #fff;
+  border: 2rpx solid #f29219;
+  margin-left: 200rpx;
+}

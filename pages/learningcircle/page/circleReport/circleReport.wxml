@@ -1,0 +1,17 @@
+<!--pages/circle/circleReport/circleReport.wxml-->
+<view class='complain_reason'>
+  <text class='rea_title'>选择举报该圈子的原因</text>
+  <view class='reason_list'>
+    <view class='reason_item' wx:for="{{reason_list}}" wx:key='idx' bindtap='reasonSelect' wx:for-index='idx' wx:for-item='item' data-idx='{{idx}}' data-unselect='{{item.unSelect}}'>
+      <image class='select_img' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/select.png' hidden='{{item.unSelect}}'></image>
+      <view class='circle'></view>
+      <view class='reason'>{{item.reason}}</view>
+    </view>
+  </view>
+</view>
+<!-- 备注 -->
+<view class='remark'>
+  <textarea bindblur="bindTextAreaBlur" placeholder="限80字" />
+</view>
+<!-- 提交 -->
+<view class='submit'>提交</view>

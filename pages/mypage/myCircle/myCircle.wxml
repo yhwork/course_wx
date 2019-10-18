@@ -1,0 +1,46 @@
+<view class='header_nav'>
+  <image bindtap='CHOOSE' data-id='{{users}}' data-type='0' id='user' class="{{idx>theindex-1?'choosed':'node'}}" data-index='{{theindex+1}}' src='{{userImg}}'></image>
+  <view class='username'>{{userName}}</view>
+  <view class='childs'>
+    <image bindtap='CHOOSE' wx:for='{{childList}}' wx:key='{{index}}' wx:for-item='item' class="{{index==idx?'choosed':'node'}}" data-id='{{item.childId}}' data-index='{{index}}' data-type='1' src="{{item.logo?item.logo:img}}"></image>
+
+  </view>
+</view>
+
+<view class='contents'>
+  <view class='titleBar'>
+    <view class="{{selected?'selected':'default'}}" bindtap="SELECD">
+      圈子列表
+    </view>
+    <view class="{{selected?'default':'selected'}}" bindtap="SELECD">
+      历史圈子
+    </view>
+  </view>
+
+  <view>
+    <view class="list" wx:if='{{circleList}}'>
+      <view wx:for='{{circleList.learnList}}' wx:key='{{index}}' wx:for-item='item'>
+        <navigator url='../../learningcircle/page/myCircle/myCircle?id={{item.communityId}}'>
+          <view class='lists_li'>
+            <view class='lists_li_left'>
+              <image mode='aspectFill' src="{{item.headPic?item.headPic:'https://qa.oss.iforbao.com/public/default/circle_default.png!test'}}"></image>
+              <text class='mycircle' wx:if='{{item.addBy==users}}'>圈主</text>
+              <view class='msg'>
+                <text>{{item.name}}</text>
+                <view class='msg-right'>
+                  <text class='memberNum'>{{item.memberNum}}人参加</text>
+                  <text class='signinNum'>{{item.signinNum}}次打卡</text>
+                </view>
+              </view>
+            </view>
+            <view class='lists_li_right'>
+              <image class='arrow' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
+            </view>
+          </view>
+        </navigator>
+      </view>
+
+    </view>
+    <view class="list" wx:else>还没有圈子，快去加入圈子吧</view>
+  </view>
+</view>

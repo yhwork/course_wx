@@ -1,0 +1,59 @@
+.allcourse_wrap{
+  width: 750rpx;
+  display: flex;
+  font-size: 24rpx;
+ 
+}
+.flex_wrap{
+  width: 20%;
+  background-color: gainsboro;
+}
+.flex_wrap view{
+  height: 60rpx;
+}
+.varies{
+  width:30%;
+  background-color: white;
+  
+}
+.varies view{
+ border-bottom: 1rpx solid gainsboro;
+ height: 59rpx;
+ text-align: center;
+ line-height: 59rpx;
+
+}
+.bg{
+  background-color: white;
+}
+.textF{
+  
+ 
+   height: 60rpx;
+   width: 100%;
+   display: flex;
+   justify-content: center;
+    line-height: 20rpx;
+    background-color: gainsboro;
+}
+.bg{
+   height: 60rpx;
+   width: 100%;
+   display: flex;
+   justify-content: center;
+    line-height: 20rpx;
+    background-color: white;
+}
+.two{
+  width: 30%;
+  height:59rpx;
+  border-bottom: 1rpx solid rebeccapurple;
+}
+.choose{
+  width: 50%;
+  height:59rpx;
+  line-height: 59rpx;
+  text-align: center;
+  border-bottom: 1rpx solid gainsboro;
+
+}

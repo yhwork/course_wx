@@ -1,0 +1,110 @@
+.exam {
+  width: 750rpx;
+  padding-bottom: 80rpx;
+}
+
+.exam_wrap {
+  width: 700rpx;
+  padding: 0 25rpx;
+}
+
+.exam_title {
+  font-size: 30rpx;
+  text-align: center;
+  font-weight: bolder;
+  line-height: 40rpx;
+}
+
+.title_prompt {
+  font-size: 24rpx;
+}
+
+.qustion_title {
+  font-size: 24rpx;
+}
+
+.exam_questions {
+  margin-top: 20rpx;
+  width: 700rpx;
+  height: 400rpx;
+}
+
+.radio-group {
+  border-bottom: 1px solid #ddd;
+}
+
+.radio {
+  display: block;
+  padding: 3px;
+  font-size: 24rpx;
+  margin-top: 30rpx;
+}
+
+.radio_type {
+  margin-right: 20rpx;
+}
+
+.exam_title text {
+  display: block;
+}
+
+.page__hd {
+  font-size: 28rpx;
+  height: 40rpx;
+}
+
+.type_style {
+  margin-right: 30rpx;
+}
+
+.blockvalue {
+  display: block;
+  width: 200rpx;
+}
+
+.special {
+  display: block;
+}
+
+.showtext {
+  display: flex;
+  align-items: center;
+}
+
+.btn, .btn_default, .btnshare {
+  width: 700rpx;
+  height: 80rpx;
+  background-color: #27aa28;
+  line-height: 80rpx;
+  border-radius: 20rpx;
+  margin: 0 auto;
+  margin-top: 1390rpx;
+  text-align: center;
+  color: white;
+}
+
+.btn_default {
+  background-color: white;
+  color: black;
+  margin-top: 30rpx;
+  border: 1rpx solid gray;
+}
+
+.btnshare {
+  margin-top: 30rpx;
+}
+
+.lineValue {
+  line-height: 57rpx;
+}
+
+.showtextstyle {
+  margin-bottom: 30rpx;
+}
+
+.btnShare {
+  width: 700rpx;
+  height: 80rpx;
+  border-radius: 20rpx;
+  margin-top: 30rpx;
+}

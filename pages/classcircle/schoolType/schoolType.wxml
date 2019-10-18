@@ -1,0 +1,11 @@
+<view class='top'>
+  <image src='{{img}}'></image>
+  <view class='tearch'>Hi,亲爱的老师</view>
+  <view class='type'>请选择学校类型</view>
+  <radio-group bindchange='rediochange'>
+    <label wx:for='{{schoolList}}' wx:key='index'>
+      <radio value='{{item.idx}}' bindtap='CHOOSETYPE' data-idx='{{item.idx}}' checked="{{item.checked}}"></radio>{{item.value}}
+    </label>
+  </radio-group>
+</view>
+<view class='btn' bindtap='NAXT'>下一步</view>

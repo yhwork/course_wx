@@ -1,0 +1,467 @@
+<view class="{{modalShow?'modal_masks':''}}">
+	<view class='hot'>
+		<view class='activityContent_wraps'>
+			<view class='item_wrap'>
+				<view class='content_items'>
+					<swiper
+					 indicator-dots="{{indicatorDots}}"
+					 indicator-color="{{color}}"
+					 indicator-active-color="{{activecolor}}"
+					 autoplay="{{autoplay}}"
+					 interval="{{interval}}"
+					 duration="{{duration}}"
+					 circular="true"
+					 class='hot_swiper'
+					>
+						<block wx:for="{{imgUrls}}" wx:key="index">
+							<swiper-item wx:for="{{product.imgVideo}}" wx:key="index">
+								<image
+								 src="{{item}}"
+								 class="slide-image"
+								 width="100%"
+								 height="100%"
+								 class='hot_img'
+								/>
+							</swiper-item>
+						</block>
+					</swiper>
+				</view>
+				<!-- 课程标签 -->
+				<view class='Course_introduction'>
+					<view class='hotshare'>
+						<view class='new_datail'>{{title}}</view>
+					</view>
+					<view class='course_brand'>
+						<scroll-view scroll-x="true">
+							<text class='itemTexrt_brand' wx:for="{{lable}}" wx:key="index">{{item}}</text>
+						</scroll-view>
+					</view>
+					<!-- 商家 -->
+					<view class='merchants_wrap special_flex'>
+						<view>
+							<text class='active_price'>
+                <text>¥</text>
+							<text>{{ isGroup=='1' ? groupPrice : disPrice }}</text>
+						  <text>|</text>
+							<!-- {{isGroup==1?disPrice:groupPrice}} -->
+							</text>
+						</view>
+						<view class='priceBtn'>
+							<view>
+								<text class='shop_prices'>
+                    <text>门市价</text>
+								<text>¥</text>
+								<text>{{origPrice}}</text>
+								</text>
+							</view>
+							<!-- 分享标签 -->
+							<view class='sharebtn_s'>
+								<view>
+									<button
+									 open-type="share"
+									 class='default-btn shareBtn'
+									 data-title='{{title}}'
+									 data-img='{{shareImg}}'
+									 data-productId='{{productId}}'
+									 data-courseId='{{courseId}}'
+									>
+										<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/shareagain.png' class='sharestyle' />
+									</button>
+								</view>
+								<view class="sharev">
+									<text class="sharetext">分享</text>
+								</view>
+							</view>
+						</view>
+					</view>
+					<view class='hotsale_num'>
+						<view class='sale'>
+							<text>已售：</text>
+							<text>{{product.count-product.surplusCount}}</text>
+						</view>
+						<view class='catroe' wx:if="{{type!=7}}">
+							<text>库存：</text>
+							<text>{{storeCountNum}}</text>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<!-- 购买须知 -->
+		<view hidden="{{type==29||type==7}}">
+			<text>类型{{type}}</text>
+			<view class='buy-warn'>购买须知</view>
+			<view class='warn_context'>
+				<view class='warn_wrap'>
+					<!-- item -->
+					<view class='warn_item'>
+						<view class='warn_img'>
+							<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/time.png' class='warn_time' />
+						</view>
+						<view class='time_ont'>2次课，每次课50分钟</view>
+					</view>
+					<!-- item -->
+					<view class='warn_item'>
+						<view class='warn_img'>
+							<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/xq.png' class='warn_time' />
+						</view>
+						<view class='time_ont'>适合2~5岁儿童</view>
+					</view>
+					<view class='warn_item'>
+						<view class='warn_img'>
+							<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/remind.png' class='warn_time' />
+						</view>
+						<view class='time_ont'>发码日期：预约即发码（系统发码）</view>
+					</view>
+					<view class='warn_item'>
+						<view class='warn_img'>
+							<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/remind.png' class='warn_time' />
+						</view>
+						<view class='time_ont'>预约方式：“待预约”订单在线预约</view>
+					</view>
+					<view class='warn_item'>
+						<view class='warn_img'>
+							<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/remind.png' class='warn_time' />
+						</view>
+						<view class='time_ont'>有效期为2019-10-23~2019-09-12</view>
+					</view>
+					<view class='warn_item'>
+						<view class='warn_img'>
+							<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/remind.png' class='warn_time' />
+						</view>
+						<view class='time_ont'>单人购买天天上限</view>
+					</view>
+				</view>
+			</view>
+		</view>
+
+		<!-- 拼单池 -->
+		<view class='pay_num' hidden='{{many==true||totalPerson==0}}'>
+			<view class='pay_group'>
+				<view>{{totalPerson}}</view>
+				<view>人正在拼单,可直接参与</view>
+			</view>
+			<view class='pay_see' bindtap='showM'>
+				查看更多
+			</view>
+		</view>
+		<!-- autoplay="{{pindanAutoplay}}" 
+circular="true"
+display-multiple-items="{{showNum<=1?showNum:2}}"
+vertical="true" -->
+		<swiper
+            interval="3000"
+            class='swiperWrap'
+            display-multiple-items="{{showNum<=1?showNum:2}}"
+            vertical="true"
+            autoplay="{{pindanAutoplay}}"
+            circular="true"
+            wx:if="{{totalPerson>0}}"
+		>
+			<block wx:for="{{newpoolist}}" wx:key="index" data-number='{{index}}'>
+				<swiper-item class="swiper-items" hidden="{{item.isShow}}">
+					<view class='payMsgList'>
+						<view class='list_left'>
+							<image src="{{item.userLogo}}" class='left_img' mode='scaleToFill' />
+							<text class='img_marign font'>{{item.userName}}</text>
+						</view>
+						<view class='list_middle'>
+							<view class='middle_bottom'>
+								<text>开营日期:</text>
+								<text class="openDate">{{item.startTime}}~{{item.endTime}}</text>
+							</view>
+							<view class='middle_top'>
+								<text> 还差</text>
+								<text>{{item.groupSurplusMember}}</text>
+								<text>人拼成</text>
+							</view>
+							<view class='middle_bottom'>
+								<text> 剩余</text>
+								<text >{{item.times}}</text>
+							</view>
+						</view>
+						<view class='list_right'>
+							<text bindtap='attendlist'  data-index="{{index}}" data-name='{{item.userName}}' data-time='{{item.groupEndTime}}' data-groupId="{{item.groupId}}" data-productCourseId="{{item.productCourseId}}" id="{{item.endGroup}}">去拼单</text>
+
+						</view>
+					</view>
+				</swiper-item>
+			</block>
+		</swiper>
+		<!-- 拼单池 -->
+		<!-- 商家地址 -->
+		<view class='shop_adress'>
+			<view class='buy-warn'>商家信息</view>
+			<view class='warn_item item_style' wx:for="{{address}}" wx:key="index">
+				<view>{{item.name}}</view>
+				<view
+				 class='shop-shop'
+				 wx:if="{{isGroup==true}}"
+				 bindtap='gotoaddress'
+				 id="{{item.latitude}}"
+				 data-longitude="{{item.longitude}}"
+				 data-address="{{item.address}}"
+				>{{item.address}}
+				</view>
+			</view>
+		</view>
+		<view class="detail_wrap">
+			<view class='buy-warn'>产品介绍</view>
+			<view class='detail_boxwrapb'>
+				<view>
+					<rich-text nodes="{{desrc}}" class='contenttext' />
+				</view>
+			</view>
+		</view>
+
+		<!-- 底部导航 -->
+		<!-- 底部导航开始 -->
+		<view class='bottombar' hidden="{{iscanBuy}}">
+			<view class='bar_service'>
+				<view class='save_img'>
+					<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/customer.png' class='bar_img' />
+				</view>
+				<view>
+					<text class='service_content'>客服</text>
+				</view>
+			</view>
+			<view class='bar_save'>
+				<view class='save_img'>
+					<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/saves.png' class='bar_img' />
+				</view>
+				<view>
+					<text class='service_content'>收藏</text>
+				</view>
+			</view>
+			<view class=" {{isGroup===true? 'bar_buynow':'bar_buynow2'}}" bindtap='goshop'>
+				<!-- 立即购买 -->
+				<view class='buy_wrap'>
+					<view class='buy_top'>
+						<view>¥</view>
+						<view>{{isGroup==0?disPrice:groupPrice}}</view>
+					</view>
+					<view class='buy_bottom'>
+						<view>立即购买</view>
+					</view>
+				</view>
+				<!-- 立即购买 -->
+			</view>
+      
+			<view class='{{isGroup==true?"bar_buy":"bar_buy2"}}' bindtap='buy' wx:if="{{isGroup==true}}">
+				<view class='buy_wrap'>
+					<view class='buy_top'>
+						<view wx:if="{{isGroup==true}}">¥</view>
+						<view wx:if="{{isGroup==true}}">{{groupPrice}}</view>
+					</view>
+					<view class='buy_bottom'>
+						<view>
+							<text wx:if="{{isGroup==true}}">{{groupNum}}</text>
+							<text wx:if="{{isGroup==true}}">人团</text>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+
+
+		<!-- 底部导航结束 -->
+    <!-- 返回按钮开始 -->
+    <view  bindtap="gotoPaylist" wx:if="{{back}}"  class="bottombarback">返回</view>
+    <!-- 返回按钮结束 -->
+		<!-- 验证弹框开始 -->
+		<view class='mask' hidden='{{isModalshow}}' catchtouchmove='stopPageScroll'>
+			<view class='modal_wraps'>
+				<view class='wrap_top'>
+					<text class='exam-style'>考试培训需要验证考试信息，请认真填写</text>
+				</view>
+				<view class="modal_text">
+					<view class='exam-style'>培训级别:</view>
+					<view style='color:red'>{{ level? level:""}}</view>
+					<view class='exam-style'>级</view>
+				</view>
+				<view class='item_study'>
+					<view class='exam-style'>准考证号: </view>
+					<view class='modalstyle'>
+						<input
+						 bindblur="bindReplaceInput1"
+						 placeholder="请填写准考证号"
+						 value='{{examNumber}}'
+						 type="text"
+						 class='input_style'
+						 placeholder-class="showpadding"
+						/>
+						<text class='promptText' hidden='{{courseNumber}}'>{{number}}</text>
+					</view>
+				</view>
+				<view class='item_study'>
+					<view class='exam-style'>考生姓名:</view>
+					<view class='modalstyle'>
+						<input
+						 bindblur="bindReplaceInput"
+						 placeholder="请填写考生姓名"
+						 type="text"
+						 class='input_style'
+						 value='{{studentName}}'
+						 placeholder-class='showpadding'
+						/>
+						<text class='promptText' hidden='{{courseName}}'>{{names}}</text>
+					</view>
+				</view>
+				<!-- 按钮组 -->
+				<view class='btn_group'>
+					<view class='btn_cancle' bindtap='cancleBtn'>取消</view>
+					<view class='btn_cancle' bindtap='cirBtn'>确定</view>
+				</view>
+			</view>
+		</view>
+		<!-- 验证弹框结束 -->
+
+		<!-- 手风琴弹框验证开始 -->
+		<view class='mask' catchtouchmove='stopPageScroll' hidden='{{sfqModalshow}}'>
+			<view class='modal_wraps'>
+				<view class='wrap_tops'>
+					<text class='exam-style'>考试培训需要验证考试信息，请认真填写</text>
+				</view>
+				<view class="modal_text">
+					<view class='exam-style'>培训级别:</view>
+					<view style='color:red'>{{ level? level:""}}</view>
+					<view class='exam-style'>级</view>
+				</view>
+				<view class='item_studys'>
+					<view class='exam-style'>考生姓名:</view>
+					<view class='modalstyle'>
+						<input
+						 bindblur="bindReplaceInput"
+						 placeholder="请填写考生姓名"
+						 type="text"
+						 class='input_style'
+						 value='{{studentName}}'
+						 placeholder-class='showpadding'
+						/>
+						<text class='promptText' hidden='{{courseName}}'>{{names}}</text>
+					</view>
+				</view>
+				<!-- 按钮组 -->
+				<view class='btn_group'>
+					<view class='btn_cancle' bindtap='SFQcancleBtn'>取消</view>
+					<view class='btn_cancle' bindtap='SFQcirBtn'>确定</view>
+				</view>
+			</view>
+		</view>
+		<!-- 手风琴弹框验证开始 -->
+
+	</view>
+
+	<!-- 活动类立即购买弹框 -->
+	<!-- 遮罩层 -->
+	<view class="modal_masks" wx:if="{{modalShow}}" catchtouchmove='stopPageScroll'>
+		<view class='modal_mask' />
+		<!-- 弹框内容 -->
+		<view class='buy_model'>
+			<view class='buy_title'>
+				<text>选择日期</text>
+				<image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/backback.png" class="backback" catchtap="closeModal" />
+			</view>
+			<!-- 夏令营第一期 -->
+			<view
+			 class='title_content  {{active==index ?"changeBorder":""}}'
+			 catchtap='changeBorder'
+			 wx:for="{{summerActive}}"
+			 wx:key="index"
+			 data-index='{{index}}'
+			 data-addBoder='{{item.addBoder}}'
+			 data-id="{{item.activityId}}"
+			 data-startDate="{{item.startDate}}"
+			 data-endDate="{{item.endDate}}"
+			>
+				<view class='choose_text'>
+					<text class='time_margin'>{{item.startDate}}</text>
+					~
+					<text class='time_margin'>{{item.endDate}}</text>
+				</view>
+			</view>
+			<view class='back_bottom'>
+				<view class='back-width'>
+					<view bindtap="activityBy" class="activityC">
+						<text>确定</text>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<!-- 活动类立即购买弹框 -->
+
+	<!-- 查看更多 -->
+	<view>
+		<view class='modal_mask3' hidden='{{showModal}}' catchtouchmove='stopPageScroll'>
+			<!-- <view class='modal_mask3' hidden='{{showModal}}' catchtouchmove='stopPageScroll'> -->
+			<view class='modal_wrap2'>
+				<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/close1.png' class='close' bindtap='closeM' />
+				<view class='wrap_top'>正在拼单</view>
+				<view class='list_wrapbpx'>
+					<view
+					 class='payMsgList newmargin'
+					 wx:for="{{newpoolist}}"
+					 wx:key="index"
+					 data-number='{{index}}'
+					>
+						<!-- <view class='payMsgList newmargin'> -->
+						<view class='list_left'>
+							<image src="{{item.userLogo}}" class='modal_img' />
+						</view>
+						<view class='list_middle list_left_add'>
+							<view class='middle_top font'>
+								<text>开营日期:</text>
+								<text class="openDatesa">{{item.startTime}}~{{item.endTime}}</text>
+							</view>
+							<view class='middle_top font'>
+								<text class='usernameStyle font'>{{item.userName}}</text>
+								<text> 还差</text>
+								<text>1</text>
+								<text>人拼成</text>
+							</view>
+							<view class='middle_bottom'>
+								<text> 剩余</text>
+								<text>{{item.times}}</text>
+							</view>
+						</view>
+						<view class='list_right right_special'>
+							<text bindtap='attendlist'  data-index="{{index}}" data-name='{{item.userName}}' data-time='{{item.groupEndTime}}' data-groupId="{{item.groupId}}" id="{{item.endGroup}}" >去拼单</text>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+
+		<!-- 发起拼单 弹框 开始-->
+		<view class='modal_mask' catchtouchmove='stopPageScroll' hidden='{{modalisShow}}'>
+			<view class='attendgroups'>
+				<view>
+					<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/close1.png' class='close' bindtap='closeLi' />
+				</view>
+				<view class='add_listgroup'>
+					<text>参与</text>
+					<text class='namelimit font'>{{userName}}</text>
+					<text>的拼单</text>
+				</view>
+				<view class='add_listgroupfont'>
+					<text>仅剩</text>
+					<text class='number'>1</text>
+					<text>个名额,</text>
+					<text>{{cutTime}}</text>
+					<text>后结束</text>
+				</view>
+				<view class='addgroupimg_wrap'>
+					<view class='sign'>
+						<text class='sign_master'>拼主</text>
+						<image src="{{pindanMaster}}" class='add_groupimage' mode='scaleToFill' />
+					</view>
+					<image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/asked.png" class='add_groupimages' mode='scaleToFill' />
+				</view>
+				<view class='lastbtn' bindtap='joingroup'>参与拼团</view>
+			</view>
+		</view>
+	</view>
+	<!-- 发起拼单 弹框 结束-->
+</view>
+

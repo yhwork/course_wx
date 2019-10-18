@@ -1,0 +1,9 @@
+@import "../orderDetail/orderDetail.wxss";
+.copy{
+  display: inline-block;
+}
+.order_item{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

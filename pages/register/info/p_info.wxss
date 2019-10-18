@@ -1,0 +1,161 @@
+page {
+  font-family: PingFangSC-Regular;
+}
+
+.page__hd {
+  background: url("https://timgsa.baidu.com/timg?image&quality=80 &size=b10000_10000&sec=1532422488724&di=d68b983fe28cdf63cd9fbea3365fd3a0&imgtype=jpg&src=http%3A%2F%2Ff.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F09fa513d269759ee58c4971cbefb43166c22df55.jpg") 100%/100%;
+  height: 310rpx;
+  box-sizing: border-box;
+  padding-left: 44rpx;
+  font-size: 30rpx;
+  color: #fff;
+  position: relative;
+}
+
+.writer {
+  text-align: right;
+}
+
+.photo {
+  width: 154rpx;
+  height: 154rpx;
+  border-radius: 154rpx;
+  background: #f1f1f1;
+  position: absolute;
+  bottom: -72rpx;
+  left: 30rpx;
+}
+
+.photo image {
+  width: 100%;
+  height: 100%;
+  border-radius: 154rpx;
+}
+
+.weui-cell-box {
+  margin-top: 20rpx;
+  background-color: #fff;
+}
+
+.weui-cells__title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.weui-cell:before {
+  right: 15px;
+  border-top: 1rpx solid #e5e5e5;
+}
+
+.hint {
+  margin-right: 20rpx;
+}
+
+.weui-input {
+  text-align: right;
+}
+
+.radio-group {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.page__desc {
+  color: #fff;
+}
+
+.radio-group label {
+  margin-left: 70rpx;
+  color: #888;
+  font-size: 34rpx;
+}
+
+.weui-input {
+  font-size: 34rpx;
+  color: #b2b2b2;
+}
+
+.weui-select {
+  font-size: 34rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
+
+.selected {
+  color: #000;
+}
+
+.weui-label {
+  font-size: 34rpx;
+  color: #000;
+}
+
+.weui-btn-area {
+  position: absolute;
+  bottom: 60rpx;
+  left: 50%;
+  transform: translate(-50%);
+  margin: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.weui-btn-area view {
+  width: 90%;
+  height: 94rpx;
+  line-height: 94rpx;
+  border-radius: 10rpx;
+  background-color: #f29219;
+  color: #fff;
+  text-align: center;
+}
+
+.weui-cell__hd {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.weui-cell__hd text {
+  color: red;
+}
+
+.hint {
+  width: 32rpx;
+  height: 32rpx;
+}
+
+.weui-input {
+  color: #000;
+}
+
+.weui-cell {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sex_icon {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 40rpx;
+  position: absolute;
+  z-index: 10;
+  right: 0;
+  bottom: 0;
+}
+
+.sex_icon image {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 40rpx;
+}
+button{
+  font-family: PingFangSC-Regular;
+}
+button::after {
+  border: none;
+}

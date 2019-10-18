@@ -1,0 +1,35 @@
+<!--pages/circle/notLogin/notLogin.wxml-->
+<view class='page_top'>
+  <image class='photo' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/avatar.jpg'></image>
+  <view class='name'>小莫妈妈</view>
+  <view class='atten'>关注</view>
+  <view class='top_foot'>
+    <view class='atten_num'>关注 30</view>
+    <view class='line'></view>
+    <view class='fans'>粉丝 60</view>
+  </view>
+</view>
+
+<!-- content -->
+<view class='page_body'>
+  <view class='tab_list'>
+    <view class='tab_item {{currentTab==idx?"active":""}}' bindtap='changeTab' wx:key='idx' wx:for='{{contents}}' wx:for-index='idx' wx:for-item='item' data-idx='{{idx}}'> {{item.tab}}</view>
+  </view>
+  <view class='content' wx:for='{{contents[currentTab].content}}' wx:for-item='item' wx:key='idx' wx:for-index='idx'>
+    <image src='{{item.cicle_img}}'></image>
+    <view class='item_right'>
+      <view class='title'>{{item.title}}</view>
+      <view class='item_content'>{{item.content}}</view>
+      <view class='right_foot'>
+        <view class='member'>
+          成员
+          <text class='num'>{{item.member}}</text>
+        </view>
+        <view class='clock'>
+          打卡
+          <text class='num'>{{item.clock_num}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

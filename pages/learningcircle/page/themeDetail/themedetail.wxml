@@ -1,0 +1,68 @@
+<!--pages/circle/themeDetail/themedetail.wxml-->
+
+<view class='theme_title'>{{info.title}}</view>
+  <view class='headImg_box'>
+    <image class='headImg' mode='widthFix' src='{{info.picture==null?"https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/notfound.png":info.picture}}'></image>
+  </view>
+<view class='main_body'>
+  <view class='time_name'>
+    <view class='time'>{{info.addTime}}</view>
+    <view class='name' wx:if='{{model.communityType==2}}'>第{{info.level}}关</view>
+  </view>
+  <view class='theme_cont'>
+    <view wx:for="{{communitySubjectForPage}}" wx:key='infoidx' wx:for-item='item' wx:for-index='infoidx'>
+      <view class='intro_item' wx:if='{{item.contentType == 1}}'>
+        <view class='content'>{{item.content}}</view>
+      </view>
+      <view class='intro_item' wx:if='{{item.contentType == 2}}'>
+        <view class='content img_content'>
+          <image class='intro_img'  mode='widthFix' src='{{item.content}}'></image>
+        </view>
+      </view>
+      <view class='audio' wx:if='{{item.contentType == 3}}'>
+        <audio src="{{item.content}}" id="diaryAudio{{infoidx}}" bindtimeupdate="AUDIO_UPDATA_PROGRESS" bindended="AUDIO_PLAY_END"></audio>
+        <view class='playOrstop' bindtap='AUDIO_PLAY'>
+          <view class='play' data-type='1' data-play='{{item.play}}' style='display:{{item.play?"none":"flex"}}' catchtap='AUDIO_PLAY' data-idx='{{infoidx}}'></view>
+          <view class='stop' data-type='1' data-play='{{item.play}}' style='display:{{item.play?"flex":"none"}}' catchtap='AUDIO_STOP' data-idx='{{infoidx}}'>
+            <view class='shu'></view>
+            <view class='shu'></view>
+          </view>
+        </view>
+        <view class='slid' wx:for="{{subjectSlidlst}}" wx:key='slididx' wx:for-item='sitem' wx:for-index='slididx'>
+          <view wx:if='{{sitem.id==infoidx}}'>
+            <slider bindchange="AUDIO_SLIDER_CHANGE" block-size="12px" step="2" value="{{sitem.offset}}" max="{{sitem.max}}" class="slider" selected-color="#ff5e5e" />
+            <text class='audio_time'>{{sitem.audio_duration}}</text>
+          </view>
+        </view>
+      </view>
+      <view class='intro_item' wx:if='{{item.contentType == 4}}'>
+        <view class='content'>
+          <video src='{{item.content}}'></video>
+        </view>
+      </view>
+    </view>
+    <view wx:if='{{communitySubjectForPage.length == 0}}'>
+      <view>这个圈主比较懒，什么都没写呢！</view>
+    </view>
+  </view>
+
+
+</view>
+<view wx:if='{{model.communityType==2&&info.isSignin=="true"}}'>
+<navigator url='../addDiary/addDiary?id={{info.subjectId}}&communityId={{info.communityId}}&communityType={{model.communityType}}'>
+<button>添加日记</button>
+</navigator>
+</view>
+<view wx:else>
+<view wx:if='{{info.isSignin=="true"}}'>
+<navigator url='../addDiary/addDiary?id={{info.subjectId}}&communityId={{info.communityId}}&communityType={{model.communityType}}'>
+<button>添加日记</button>
+</navigator>
+</view>
+<view wx:else>
+<navigator url='../addDiary/addDiary?id={{info.subjectId}}&communityId={{info.communityId}}&communityType={{model.communityType}}'>
+<button>打卡</button>
+</navigator>
+</view>
+</view>
+<view style='heright:100rpx;'></view>

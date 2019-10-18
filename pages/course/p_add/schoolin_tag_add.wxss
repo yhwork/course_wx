@@ -1,0 +1,43 @@
+page{
+  background: #f4f4f4;
+}
+.title{
+  white-space: nowrap;
+}
+.hint{
+  display: flex;
+  align-items: center;
+  font-size:26rpx;
+  color: #888;
+  padding: 28rpx 30rpx;
+  background: #fff;
+}
+.hint image{
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 20rpx;
+}
+.course_name{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 88rpx;
+  border-top: 2rpx solid #e5e5e5;
+  padding: 0 30rpx;
+  background: #fff;
+}
+input{
+  text-align: right;
+}
+.submit{
+  width: 670rpx;
+  height: 94rpx;
+  border-radius: 10rpx;
+  position: fixed;
+  bottom: 60rpx;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.button-hover{
+  background: #f29219;
+}

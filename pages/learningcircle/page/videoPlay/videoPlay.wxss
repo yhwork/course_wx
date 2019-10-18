@@ -1,0 +1,11 @@
+/* pages/circle/videoPlay/videoPlay.wxss */
+.close{
+  position: fixed;
+  right: 20rpx;
+  top: 20rpx;
+}
+
+.close image{
+  width: 50rpx;
+  height: 50rpx;
+}

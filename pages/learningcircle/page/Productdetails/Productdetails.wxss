@@ -1,0 +1,362 @@
+/* 兼容齐刘海 */
+
+page {
+  padding-bottom: 90rpx;
+}
+
+.Productdetails_wrap {
+  width: 100%;
+}
+
+.item_catch {
+  width: 100rpx;
+  font-size: 30rpx;
+  position: absolute;
+  z-index: 3;
+  left: 0rpx;
+  top: 112rpx;
+  line-height: 40rpx;
+  height: 40rpx;
+  color: white;
+  padding: 15rpx 40rpx;
+  background-color: orange;
+}
+
+.item_money {
+  font-size: 30rpx;
+  color: white;
+  position: absolute;
+  z-index: 3;
+  left: 0rpx;
+  top: 180rpx;
+  line-height: 40rpx;
+  height: 40rpx;
+  padding: 15rpx 30rpx;
+  background-color: #6e8089;
+}
+
+.introduction_detail {
+  font-size: 30rpx;
+  color: #5e5858;
+  margin-bottom: 15rpx;
+}
+
+.course_sale_ {
+  font-size: 24rpx;
+  color: gray;
+  display: inline-block;
+  margin-left: 135rpx;
+}
+
+.itemTexrt_brand {
+  font-size: 24rpx;
+  height: 30rpx;
+  border: 1px solid gray;
+  padding: 5rpx 10rpx;
+  color: gray;
+  letter-spacing: 2rpx;
+  margin-right: 10rpx;
+}
+
+.merchants_wrap {
+  width: 750rpx;
+  height: 70rpx;
+  font-size: 30rpx;
+  line-height: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #969292;
+  margin-top: 15rpx;
+}
+
+.commercial_shop {
+  display: flex;
+}
+
+.shop_one {
+  color: red;
+  font-size: 40rpx;
+}
+
+.shop_two {
+  margin-left: 10rpx;
+}
+
+.shop_three {
+  margin-left: 10rpx;
+}
+
+.shop_last {
+  margin-left: 320rpx;
+}
+
+.choose_teacher {
+  width: 750rpx;
+}
+
+.teacher_list {
+  width: 750rpx;
+  margin-top: 10rpx;
+  border-bottom: none;
+}
+
+.list_item {
+  border-bottom: 2rpx solid #bbb;
+}
+
+.list_top {
+  display: flex;
+  padding: 15rpx;
+}
+
+.list_bottom {
+  height: 50rpx;
+  background-color: darkmagenta;
+}
+
+.top_image {
+  width: 102rpx;
+  height: 102rpx;
+  border-radius: 10rpx;
+}
+
+.top_teacherDetail {
+  display: block;
+  font-size: 30rpx;
+  width: 102rpx;
+  margin-right: 20rpx;
+}
+
+.teacherDetail_name {
+  width: 102rpx;
+  text-align: center;
+  font-size: 24rpx;
+  height: 40rpx;
+}
+
+.teacher_font {
+  font-size: 36rpx;
+  color: #101010;
+}
+
+.detail_font {
+  font-size: 30rpx;
+  line-height: 40rpx;
+  height: 40rpx;
+}
+
+.datail_day {
+  font-size: 24rpx;
+  line-height: 30rpx;
+  height: 30rpx;
+  color: #101010;
+}
+
+.detail_sale {
+  font-size: 24rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+}
+
+.sale_class {
+  color: #101010;
+}
+
+.datail_class {
+  margin-left: 160rpx;
+  color: #575252;
+}
+
+.datail_num {
+  margin-left: 260rpx;
+  color: red;
+}
+
+.num_font {
+  margin-left: 15rpx;
+}
+
+.datial-arrow {
+  margin-left: 100rpx;
+}
+
+.detail_address {
+  font-size: 24rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  color: #0a4e7f;
+}
+
+.booking {
+  /* display: flex; */
+  width: 730rpx;
+  padding: 15rpx 10rpx;
+  height: 100rpx;
+  border-top: 1px solid rgba(187, 187, 187, 1);
+  border-bottom: 1px solid rgba(187, 187, 187, 1);
+}
+
+.booking_top {
+  display: flex;
+}
+
+.bookingTop_right {
+  display: flex;
+}
+
+.booking_group {
+  font-size: 24rpx;
+  height: 32rpx;
+  line-height: 32rpx;
+  text-align: center;
+  color: rgba(255, 152, 0, 1);
+  border: 2rpx solid #ff9800;
+  display: inline-block;
+  padding: 5rpx;
+}
+
+.booking_addgroup {
+  font-size: 24rpx;
+  margin-left: 10rpx;
+  color: rgba(16, 16, 16, 1);
+}
+
+.booking_sign {
+  font-size: 24rpx;
+}
+
+.bookingTop_right .shop_one, .bookingTop_right .shop_two {
+  font-size: 24rpx;
+}
+
+.bookingTop_create .shop_three {
+  font-size: 24rpx;
+}
+
+.bookingTop_right {
+  margin-left: 330rpx;
+}
+
+.booking_explation {
+  font-size: 24rpx;
+  color: rgba(94, 88, 88, 0.65);
+}
+
+.booking_begin {
+  width: 110rpx;
+  font-size: 24rpx;
+  margin-left: 100rpx;
+  height: 28rpx;
+  line-height: 28rpx;
+  padding: 6rpx 20rpx;
+  background-color: rgba(37, 155, 36, 1);
+  color: white;
+  border-radius: 10rpx;
+}
+
+.info_fontColor, .info_confirm {
+  color: #f29219;
+}
+
+.confirm_city {
+  margin-left: 10rpx;
+}
+
+.shop_info .datial-arrow {
+  color: red;
+  margin-left: 440rpx;
+}
+
+.choose_font {
+  margin-left: 20rpx;
+}
+
+.middleV {
+  height: 10rpx;
+  background-color: #e8e3e3;
+}
+
+.course_font {
+  font-size: 30rpx;
+}
+
+.course_info {
+  width: 690rpx;
+  /* padding有背景色   margin没有背景色 */
+  margin: 10rpx 30rpx;
+  height: 300rpx;
+  overflow-y: auto;
+}
+
+.course_detail {
+  font-size: 24rpx;
+  margin-left: 30rpx;
+}
+
+.bottombar {
+  width: 750rpx;
+  background-color: #f3f2f2;
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  font-size: 24rpx;
+  height: 70rpx;
+}
+
+.bar_service {
+  width: 15%;
+
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.service_image {
+  width: 40rpx;
+  height: 40rpx;
+  margin-top: 15rpx;
+}
+
+.service_content {
+  display: block;
+  
+}
+
+.bar_save {
+  width: 15%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+ 
+}
+
+.bar_buy,.bar_buynow{
+  text-align: center;
+  font-size: 24rpx;
+  color: white; 
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  background-color: rgba(139, 195, 74, 1);
+}
+
+.bar_buynow{
+  width:40%;
+  background-color: #ff9800;
+   
+}
+.buy_top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.buy_bottom{
+  display: flex;
+
+}
+.bar_img{
+  width: 30rpx;
+  height: 30rpx;
+}

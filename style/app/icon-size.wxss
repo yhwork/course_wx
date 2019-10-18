@@ -1,0 +1,11 @@
+.fa-map-marker {
+    font-size: 46rpx;
+}
+
+.fa-user {
+    font-size: 38rpx;
+}
+
+.fa-clock-o {
+    font-size: 38rpx;
+}

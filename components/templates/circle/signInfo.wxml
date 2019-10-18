@@ -1,0 +1,45 @@
+<import src='../../img_video/img_video' />
+<template name='signInfo'>
+  <view wx:for="{{infoList.communitySigninForPage}}" wx:key='infoidx' wx:for-item='item' wx:for-index='infoidx' style='display:block;'>
+    <view class='intro_item' wx:if='{{item.contentType == 1}}'>
+      <view class='content'>
+        <text>{{item.content}}</text>
+      </view>
+    </view>
+  </view>
+  <template is="msgItem" data='{{subjectImg:infoList.subjectImg,show:true,videooSrc:infoList.videooSrc,videooSrcIdx,subjectImgList:infoList.subjectImgList,FIREST:true,num,outindex,playid}}' />
+
+  <view wx:for="{{infoList.communitySigninForPage}}" wx:key='infoidx' wx:for-item='item' wx:for-index='infoidx' style='display:block;'>
+    <view class='audio' wx:if='{{item.contentType == 3}}'>
+      <audio src="{{item.content}}" id="{{outindex}}signinAudio{{infoidx}}" bindtimeupdate="DIARY_AUDIO_UPDATA_PROGRESS" bindended="DIARY_PLAY_AUDIO_END"></audio>
+      <view class='voice_animate1'>
+        <view class='voice_playimg' data-type='3' data-play='{{item.play}}' style='display:{{item.play?"none":"flex"}}' catchtap='DIARY_PLAY_AUDIO' data-idx='{{infoidx}}' data-outidx='{{outindex}}'>
+          <image wx:if='{{num==-1}}' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/voice_img.png'></image>
+          <image wx:else src='../../assets/img/voice_img.png'></image>
+        </view>
+        <view class='voice_stopimg' data-type='3' data-play='{{item.play}}' style='display:{{item.play?"flex":"none"}}' catchtap='DIARY_STOP_AUDIO' data-idx='{{infoidx}}' data-outidx='{{outindex}}'>
+          <image wx:if='{{num==-1}}' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/voice.gif'></image>
+          <image wx:else src='../../assets/img/voice.gif'></image>
+        </view>
+        <view wx:for="{{infoList.signinSlidlst}}" wx:key='slididx' wx:for-item='sitem' wx:for-index='slididx'>
+          <view class='proleft' wx:if='{{!sitem.audio_duration||sitem.audio_duration=="00:00"}}'>{{item.contentSize}}</view>
+          <view wx:else class="proleft">{{sitem.audio_duration}}</view>
+        </view>
+      </view>
+      <!-- <view class='playOrstop' >
+        <view class='play' data-type='3' data-play='{{item.play}}' style='display:{{item.play?"none":"flex"}}' catchtap='DIARY_PLAY_AUDIO' data-idx='{{infoidx}}' data-outidx='{{outindex}}'></view>
+        <view class='stop' data-type='3' data-play='{{item.play}}' style='display:{{item.play?"flex":"none"}}' catchtap='DIARY_STOP_AUDIO' data-idx='{{infoidx}}' data-outidx='{{outindex}}'>
+          <view class='shu'></view>
+          <view class='shu'></view>
+        </view>
+      </view>
+      <view class='slid' wx:for="{{infoList.signinSlidlst}}" wx:key='slididx' wx:for-item='sitem' wx:for-index='slididx'>
+        <view wx:if='{{sitem.id==infoidx}}'>
+          <slider bindchange="AUDIO_SLIDER_CHANGE" block-size="12px" step="2" value="{{sitem.offset}}" max="{{sitem.max}}" class="slider" selected-color="#ff5e5e" />
+          <text class='time' wx:if='{{!sitem.audio_duration||sitem.audio_duration=="00:00"}}'>{{item.contentSize}}</text>
+          <text class='time' wx:else>{{sitem.audio_duration}}</text>
+        </view>
+      </view> -->
+    </view>
+  </view>
+</template>

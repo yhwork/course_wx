@@ -1,0 +1,283 @@
+<!--pages/circle/newCircle.wxml-->
+<view class='newCircle_tit_box'>
+  <view class='newCircle_tit_name'>
+    <text>{{model.communityName}}</text>
+  </view>
+</view>
+<view wx:if='{{!communityHeadImg}}' class='newCircle_tit_img_box' bindtap='bindPhotoChange'>
+  <image mode='aspectFill' class='newCircle_tit_node' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/xiangji.png'></image>
+  <text>添加封面</text>
+</view>
+<view wx:else class='newCircle_tit_img_box' bindtap='bindPhotoChange'>
+  <image class='circleimg' src='{{communityHeadImg}}'></image>
+</view>
+
+<view class='usermsg'>
+  <view class='img_name'>
+    <image class='userlogo' src='{{userInfo.logo}}'></image>
+    <text>{{userInfo.nickName}}</text>
+  </view>
+  <view class='userid'>ID: {{userInfo.id}}</view>
+</view>
+
+<view class='newCircle_content_list'>
+  <view class='content_list'>圈子名称:</view>
+  <view class='content_list_input'>
+    <input class="list_input" placeholder="请填写圈子名称(8字以内)" bindinput='circleNameInput' maxlength='8' />
+  </view>
+  <view class='content_list_right'>
+    <image class='arrow' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
+  </view>
+</view>
+<view class='newCircle_content_list'>
+  <view class='content_list'>圈子类型:</view>
+  <view class="weui-cell__bd" bindtap='showLabel'>
+    <view class="weui-select weui-select_in-select-after .weui-cell__ft {{selected?'selected':''}}" style='text-align:left'>{{markNamelist}}</view>
+  </view>
+</view>
+
+<!-- <view class='newCircle_content_data'>
+  <view class='newCircle_content_data_start'>
+    <view class='title'>开始日期:</view>
+    <picker mode="date" value="{{date}}" style='width:73% ;  z-index:100' start="2019-01-01" end="2026-01-01" bindchange="bindDateChange">
+      <view class="picker">
+        <view class='star_date'>
+          <view class='date' style='font-size:28rpx;  color:#999;'>{{model.communityStartDate}}</view>
+        </view>
+      </view>
+    </picker>
+    <view class='content_data_right'>
+      <image class='arrow' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
+    </view>
+  </view>
+  <view class='newCircle_content_data_end'>
+    <view class='title'>结束日期:</view>
+    <picker mode="date" value="{{date}}" style='width:73%; z-index:100' start="2019-01-01" end="2026-01-01" bindchange="bindEndDateChange">
+      <view class="picker">
+        <view class='end_date'>
+
+          <view class='date' style='font-size:28rpx; color:#999;'>{{model.communityEndDate}}</view>
+        </view>
+      </view>
+    </picker>
+    <view class='content_data_right'>
+      <image class='arrow' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
+    </view>
+  </view>
+</view> -->
+
+<view class='newCircle_content_list' hidden='{{hasHiddenClockView}}'>
+  <view class='content_list'>打卡者 ：
+    <!-- <text decode="{{true}}">&ensp;</text>卡
+    <text decode="{{true}}">&ensp;</text>者 :  -->
+    </view>
+  <view class="weui-cell__bd" bindtap='showClocker'>
+    <view class="weui-select weui-select_in-select-after weui-cell__ft {{clockerS?'clockerS':''}}" style='text-align:left; color:#999;'>{{communitySignInChildName}}</view>
+  </view>
+</view>
+
+
+
+
+
+
+
+
+<view style='height：100rpx;'></view>
+<text decode="{{true}}">&ensp;&ensp;&ensp;</text>
+<view class='circle_type '>
+  <view class='title '>圈子隐私</view>
+  <radio-group class="radio-group" bindchange="typeLChange">
+    <label class="radio" wx:for="{{typeList}}" wx:for-item='item' wx:key='idx'>
+      <radio value="{{item.value}}" checked="{{item.checked}}" />{{item.name}}
+      <text>{{item.explain}}</text>
+    </label>
+  </radio-group>
+</view>
+
+<!-- <view class="weui-cell-box">
+  <view class="weui-cell weui-cell_input">
+    <view class="weui-cell__hd required">
+      <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/c_type_icon.png'></image>
+      <view class="weui-label">圈子类型</view>
+    </view>
+    <view class="weui-cell__bd">
+      <radio-group class="radio-group" bindchange="radioChange">
+        <label class="radio" wx:for="{{types}}" wx:key='idx'>
+          <radio value="{{item.value}}" />{{item.name}}
+        </label>
+      </radio-group>
+    </view>
+  </view>
+
+  <view class="weui-cell weui-cell_input">
+    <view class="weui-cell__hd required">
+      <image></image>
+      <view class="weui-label">圈子名称 </view>
+    </view>
+    <view class="weui-cell__bd">
+      <input class="weui-input" placeholder="请填写圈子名称(8字以内)" bindinput='circleNameInput' maxlength='8' />
+    </view>
+  </view>
+  <view class="weui-cell weui-cell_input">
+    <view class="weui-cell__hd">
+      <image></image>
+      <view class="weui-label">圈子理念</view>
+    </view>
+    <view class="weui-cell__bd">
+      <input class="weui-input" placeholder="圈子亮点(10字以内)" bindinput='circleIdeaInput' maxlength='10' />
+    </view>
+  </view>
+  <view class="weui-cell weui-cell_input">
+    <view class="weui-cell__hd">
+      <image></image>
+      <view class="weui-label">圈子标签</view>
+    </view>
+    <view class="weui-cell__bd" bindtap='showLabel'>
+      <view class="weui-select weui-select_in-select-after .weui-cell__ft {{selected?'selected':''}}">{{selectMarkNameArray}}</view>
+    </view>
+  </view>
+</view> -->
+<!-- 打卡日期时间 -->
+<!-- <view class='cl_date_time'>
+  <view class='title_box'>
+    <view class='title_left'>
+      <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/diray.png'></image>
+      <view class='title'>打卡日期</view>
+      <text class='require'>*</text>
+    </view>
+    <view class='title_right'>
+      <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/hint.png'></image>
+      <view class='hint'>点击选择更改相应的信息</view>
+    </view>
+  </view>
+  <view class='cl_date'>
+
+    <picker mode="date" value="{{date}}" start="2015-09-01" end="2020-09-01" bindchange="bindDateChange">
+      <view class="picker">
+        <view class='star_date'>
+          <view class='title'>开始日期</view>
+          <view class='date'>{{model.communityStartDate}}</view>
+        </view>
+      </view>
+    </picker>
+
+    <image class='dao' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/dao.png'></image>
+
+    <picker mode="date" value="{{date}}" start="2015-09-01" end="2020-09-01" bindchange="bindEndDateChange">
+      <view class="picker">
+        <view class='end_date'>
+          <view class='title'>结束日期</view>
+          <view class='date'>{{model.communityEndDate}}</view>
+        </view>
+      </view>
+    </picker>
+  </view>
+  <view class='title_box'>
+    <view class='title_left'>
+      <image class='cl_time_icon' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/icone.png'></image>
+      <view class='title'>打卡时间</view> -->
+<!-- <text class='require'>*</text> -->
+<!-- </view>
+    <view class='title_right'> -->
+<!-- <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/hint.png'></image> -->
+<!-- <view class='hint'>点击选择更改相应的信息</view> -->
+<!-- </view> -->
+<!-- </view> -->
+<!-- <view class='cl_time_type'>
+    <radio-group class="radio-group" bindchange="signTimesBind">
+      <label class="radio">
+        <radio value="1" />全天任意时间
+      </label>
+      <label class="radio">
+        <radio value="2" />指定时间段
+      </label>
+    </radio-group>
+  </view> -->
+<!-- <view class='cl_time' hidden='{{hasDisplaySignTime}}'>
+    <picker mode="time" value="{{startTime}}" start="01:01" end="23:01" bindchange="startTimeChange">
+      <view class="picker">
+        <view class='star_time'>
+          <view class='title'>开始时间</view>
+          <view class='date'>{{model.communitySignInStartTime}}</view>
+        </view>
+      </view>
+    </picker>
+
+    <image class='dao' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/dao.png'></image>
+
+    <picker mode="time" value="{{startTime}}" start="01:01" end="23:01" bindchange="endTimeChange">
+      <view class="picker">
+        <view class='end_time'>
+          <view class='title'>结束时间</view>
+          <view class='date'>{{model.communitySignInEndTime}}</view>
+        </view>
+      </view>
+    </picker>
+  </view>
+</view> -->
+
+<!-- <view class="weui-cell-box" hidden='{{hasHiddenClockView}}'>
+  <view class="weui-cell weui-cell_input">
+    <view class="weui-cell__hd">
+      <image class='clocker_icon' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/clock_icon.png'></image>
+      <view class="weui-label">打卡者</view>
+    </view>
+    <view class="weui-cell__bd" bindtap='showClocker'>
+      <view class="weui-select weui-select_in-select-after .weui-cell__ft {{clockerS?'clockerS':''}}">{{communitySignInChildName}}</view>
+    </view>
+  </view>
+</view> -->
+
+<!-- 圈子类型 -->
+<!-- <view class='circle_type '>
+  <view class='title '>圈子类型</view>
+  <radio-group class="radio-group" bindchange="typeLChange">
+    <label class="radio" wx:for="{{typeList}}" wx:for-item='item' wx:key='idx'>
+      <radio value="{{item.value}}" checked="{{item.checked}}" />{{item.name}}
+      <text>{{item.explain}}</text>
+    </label>
+  </radio-group>
+</view> -->
+
+<!-- 报名费 -->
+<!-- <view class='entry_fee'>
+  <view class='entry_feeTitle'>报名费</view>
+  <view class='switch_box' bindtap='switchEntryFee'>
+    <switch></switch> -->
+<!-- 暂时遮挡swicth按钮，以后开发删掉 -->
+<!-- <view class='mask'></view>
+  </view>
+</view> -->
+
+<!-- 新建按钮 -->
+<view class='creat' bindtap='saveMyCircle'>新建</view>
+<view style='height:94rpx'></view>
+<!-- 打卡者遮罩层 -->
+<view class='clocker_mask' hidden='{{clockerHihe}}' catchtouchmove='stopOther '>
+  <view class='clocker_box'>
+    <view class='clocker_item' wx:key='' wx:for="{{childrenDatas}}" data-index="{{index}}" wx:for-item='item' bindtap='closeClocker'>
+      <image class='clocker_pho' src='{{item.logo==null?img:item.logo}}'></image>
+      <view class='clocker_name'>{{item.childName}}</view>
+    </view>
+  </view>
+</view>
+
+<!-- 标签遮罩层 -->
+<view class='label_mask' catchtouchmove='stopOther ' hidden='{{labelHide}}'>
+  <view class='label_box'>
+    <view class='label_top '>
+      <image class='close_img ' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/close.png' bindtap='closeLabel'></image>
+      <text>点击选择标签</text>
+      <image class='check_img ' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/check.png' bindtap='saveMarksAndCloseLabel'></image>
+    </view>
+    <view class='label_foot '>
+      <view class="label_item {{item.firstMark}} {{item.secondMark}}" wx:for='{{markDatas}}' wx:key='{{index}}' data-markIndex="{{index}}" wx:for-item='item' bindtap='firstLevelMark'>{{item.markName}}
+        <view class='sec_level' hidden='{{item.dispalySecondMark}}'>
+          <view class='sec_level_lab {{items.hasClick}}' wx:for='{{secondMarkDatas}}' wx:key='{{index}}' data-secondMarkIndex='{{index}}' wx:for-item='items' catchtap='secondLevelMarkBind'>{{items.markName}}</view>
+        </view>
+      </view>
+    </view>
+    <view class='clear_label' bindtap='clearLabelTap'>清除标签</view>
+  </view>
+</view>

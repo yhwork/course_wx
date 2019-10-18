@@ -1,0 +1,49 @@
+<view class='mynewBooking'>
+  <!-- payContent -->
+  <view class='pay_content'>
+    <view class='content_left'>
+      <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/cap3.jpg" class='left_img'></image>
+    </view>
+    <view class='content_right'>
+      <view>
+        <text>香水</text>
+      </view>
+      <view>
+        <text>就问你好不好吃</text>
+      </view>
+      <view class='right_text'>
+        <text>赠送教程</text>
+        <text>金牌老师</text>
+        <text>及时答疑</text>
+      </view>
+    </view>
+  </view>
+  <!-- payContent -->
+  <view class='booking_top'></view>
+  <view class="booking_content">
+    <view class='content_title'>
+      <view>预约日期</view>
+      <view class='text-center'>预约时间</view>
+      <view class='text_lgin'>课程验证码</view>
+    </view>
+    <view class='booking_items'>
+      <view class='booking_top'></view>
+      <view class='content_title'>
+        <view>2019-08-02</view>
+        <view  class='text-center'>14:00</view>
+        <view class='repair text_lgin'>123445</view>
+      </view>
+    </view>
+        <view class='booking_items'>
+      <view class='content_title'>
+        <view>2019-08-02</view>
+        <view  class='text-center'>14:00</view>
+        <view class='repair text_lgin'>123445</view>
+      </view>
+    </view>
+  </view>
+  <view class='orgnaztion'>
+    <view>机构名称</view>
+     <view class='address'>机构地址</view>
+  </view>
+</view>

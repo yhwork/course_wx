@@ -1,0 +1,85 @@
+<!--pages/circle/IntegralRule/IntegralRule.wxml-->
+<view class='inte_container'>
+<!-- container s -->
+<view class='punch_content_wrap'>
+   <view class='punch_content_lists'>
+      <view class='lists_title'>练习得分</view>
+      <view class='lists_content '>
+         <text class='lists_content_left textover'>打卡日打卡</text>
+         <text class='lists_content_right'>+10</text>
+      </view>
+       <view class='lists_content'>
+         <text class='lists_content_left textover'>连续打卡第3天</text>
+         <text class='lists_content_right'>+10</text>
+      </view>
+       <view class='lists_content'>
+         <text class='lists_content_left textover'>连续打卡第7天 <text>（达成后重新计算连续天数）</text> </text>
+         <text class='lists_content_right'>+30</text>
+      </view>
+       <view class='lists_content'>
+         <text class='lists_content_left textover'>累计打卡10天 </text>
+         <text class='lists_content_right'>+20</text>
+      </view>
+       <view class='lists_content'>
+         <text class='lists_content_left textover'>打卡获得点赞 <text>（单日上限50）</text> </text>
+         <text class='lists_content_right'>+1</text>
+      </view>
+       <view class='lists_content'>
+         <text class='lists_content_left textover'>打卡获得评论 <text>（达成后重新计算连续天数）</text> </text>
+         <text class='lists_content_right'>+2</text>
+      </view>
+   </view>
+
+   <view class='punch_content_lists'>
+      <view class='lists_title mgtop'>互动奖励</view>
+       <view class='lists_content'>
+         <text class='lists_content_left textover'>点赞同学 <text>（单日上限10）</text> </text>
+         <text class='lists_content_right'>+1</text>
+      </view>
+       <view class='lists_content'>
+         <text class='lists_content_left textover'>评论同学 <text>（单日上限10）</text> </text>
+         <text class='lists_content_right'>+2</text>
+      </view>
+       <view class='lists_content'>
+         <text class='lists_content_left textover'>分享打卡到微信群 <text>（单日上限10）</text> </text>
+         <text class='lists_content_right'>+2</text>
+      </view>
+   </view>
+
+   <view class='punch_content_lists'>
+      <view class='lists_title mgtop'>老师评价</view>
+       <view class='lists_content'>
+         <text class='lists_content_left textover'>获得老师点评 </text>
+         <text class='lists_content_right'>+1</text>
+      </view>
+       <view class='lists_content'>
+         <text class='lists_content_left textover'>评论同学 <text>（单日上限10）</text> </text>
+         <text class='lists_content_right'>+5</text>
+      </view>
+       <view class='lists_content'>
+         <text class='lists_content_left textover'>老师打星评分 </text>
+         <text class='lists_content_right'>最高5分</text>
+      </view>
+   </view>
+
+  
+</view>
+<!-- container e -->
+<view class='punch_content_wrap'>
+    <view class='punch_content_lists'>
+      <view class='lists_title'>榜单说明</view>
+       <view class='lists_content'>
+         <text class='lists_content_left textover'>总排行榜：成员在本学习圈所获得的总积分 </text>
+      </view>
+       <view class='lists_content'>
+         <text class='lists_content_left textover'>本周排行榜：成员在本周内所得的积分排名</text>
+      </view>
+       <view class='lists_content'>
+         <text class='lists_content_left textover'>积分规则只计算学习圈周期内的打卡 </text>
+      </view>
+      <view class='lists_content'>
+         <text class='lists_content_left textover'>排名在10000名以内的成员将获得名次和成就卡 </text>
+      </view>
+   </view>
+</view>
+</view>

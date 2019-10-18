@@ -1,0 +1,141 @@
+@import "../workMsg/workMsg.wxss";
+
+.alist .a_top {
+  color: #0a4e7f;
+}
+
+.classname {
+  background-color: #fff;
+  box-sizing: border-box;
+  margin-top: 10rpx;
+  padding: 10rpx 30rpx;
+}
+
+.schoolclass {
+  width: 100%;
+  padding: 10rpx 0;
+  font-size: 28rpx;
+}
+
+.schoolclass text {
+  display: inline-block;
+}
+
+.schoolclass text:nth-child(1) {
+  width: 40%;
+}
+
+.schoolclass text:nth-child(2) {
+  width: 60%;
+}
+
+.classbox {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 20rpx;
+  /* background-color: #f8f8f8; */
+}
+
+.classlist {
+  font-size: 28rpx;
+  width: 46%;
+  display: inline-block;
+  overflow: hidden;
+  margin-bottom: 20rpx;
+}
+
+.bottomtab {
+  position: fixed;
+  bottom: 0rpx;
+  left: 0;
+  width: 100%;
+  height: 90rpx;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border: 2rpx solid #f29219;
+  box-sizing: border-box;
+}
+
+.bottomtab .look, .bottomtab .set {
+  width: 50%;
+  height: 100%;
+  line-height: 90rpx;
+  text-align: center;
+  border-radius: 0;
+}
+
+.bottomtab .look {
+  color: #f29219;
+  background-color: #fff;
+}
+
+.bottomtab .set {
+  background-color: #f29219;
+  color: white;
+}
+
+.add_btn_group {
+  display: flex;
+  align-items: center;
+  margin-top: 10rpx;
+}
+
+.add_video, .add_audio, .add_img {
+  display: flex;
+  align-items: center;
+  margin-right: 30rpx;
+  font-size: 28rpx;
+  color: #888;
+}
+
+.add_img image {
+  width: 36rpx;
+  height: 30rpx;
+  margin-right: 10rpx;
+}
+
+.add_audio image {
+  width: 24rpx;
+  height: 36rpx;
+  margin-right: 10rpx;
+}
+
+.add_video image {
+  width: 36rpx;
+  height: 24rpx;
+  margin-right: 10rpx;
+}
+
+.img_video {
+  border: 2rpx dashed #ccc;
+  padding: 10rpx;
+}
+
+.img_video input {
+  font-size: 28rpx;
+}
+
+.set1, .look1 {
+  height: 90rpx;
+  text-align: center;
+  line-height: 90rpx;
+  color: #f29219;
+}
+
+.set1 {
+  color: #fff;
+  background: #f29219;
+}
+
+.close{
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50rpx;
+  height: 50rpx;
+  z-index: 10
+}

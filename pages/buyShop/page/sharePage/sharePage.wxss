@@ -1,0 +1,119 @@
+.product_img {
+  width: 180rpx;
+  height: 200rpx;
+}
+
+.share_wrap {
+  width: 750rpx;
+}
+
+.wrap_top {
+  padding: 0 15rpx;
+  display: flex;
+  border-bottom: 1rpx solid #E8E3E3;
+}
+
+.wrap_text {
+  font-size: 26rpx;
+  margin-left: 20rpx;
+}
+
+.sign_color {
+  color: red;
+}
+
+.wrap_font {
+  color: red;
+  display: flex;
+}
+
+.font_right {
+  display: flex;
+  font-size: 26rpx;
+  margin-left: 300rpx;
+}
+
+.buttom_wrap {
+  display: flex;
+  height: 100rpx;
+  margin-top: 20rpx;
+  align-items: flex-end;
+}
+/* 底部 */
+/* 底部 */
+.wrap_bottom{
+  width: 750rpx;
+}
+.wrap_time{
+  font-size: 30rpx;
+  text-align: center;
+  color: #AAAAAA;
+
+}
+.wrap_inv{
+  font-size: 30rpx;
+  color: black;
+  font-weight: bolder;
+  text-align: center;
+  margin-top: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  }
+.inv_peo{
+   color: red;
+}
+.addgroupimg_wrap{
+  display: flex;
+  justify-content: center;
+  margin-top: 20rpx;
+}
+.sign_master{
+ 
+  height: 30rpx;
+  border-radius: 25%;
+  background-color: #ff9800;
+  font-size: 16rpx;
+  color: white;
+  position: absolute;
+  top:-10rpx;
+  left:-10rpx;
+}
+.sign{
+  position: relative;
+}
+.number{
+  color:#ff9800;
+}
+.add_groupimage {
+width:50rpx;
+height:50rpx;
+border-radius:50%;
+margin-right:10rpx;
+}
+.btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24rpx;
+  width: 500rpx;
+  background-color:#ff9800;
+  color:white;
+   line-height: 40rpx;
+   padding: 10rpx;
+   margin: 30rpx auto;
+   border-radius: 10rpx;   
+}
+.special_btn{
+  margin: 30rpx auto;
+  background-color: white;
+  border: 1rpx solid #ff9800;
+  color: #ff9800;
+}
+
+.prodect_des{
+  display: flex;
+  font-size: 24rpx;
+  justify-content: center;
+  color: gray;
+}

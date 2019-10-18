@@ -1,0 +1,13 @@
+<!--pages/circle/message/message.wxml-->
+<view class='msg_list'>
+  <view class='msg_item' bindtap='message_info' data-id='{{item.id}}' wx:for='{{list}}' wx:key='idx' wx:for-index='idx' wx:for-item='item' data-refid='{{item.referId}}'>
+    <image mode="aspectFill" class='photo' src='{{item.logo}}'></image>
+    <view class='msg_right'>
+      <view class='right_top'>
+        <view class='name'>{{item.nickName}}</view>
+        <view class='time'>{{item.time}}</view>
+      </view>
+      <view class='msg_cont'>{{item.content}}</view>
+    </view>
+  </view>
+</view> 

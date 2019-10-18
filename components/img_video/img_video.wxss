@@ -1,0 +1,80 @@
+
+/* components/img_video/img_video.wxss */
+
+.img_video_box {
+  background: #fff;
+}
+
+.img_item{
+  width: 32%;
+  height: 190rpx;
+  margin-bottom: 10rpx;
+}
+
+.delete_btn {
+  position: absolute;
+  top: -10rpx;
+  right: 6rpx;
+  width: 40rpx;
+  height: 40rpx;
+}
+.video_del{
+  right: -20rpx;
+}
+
+.video_box {
+  display: inline-block;
+  position: relative;
+  
+}
+
+.img_box {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: center;
+  
+}
+.img_box .img_item:nth-child(3n+2){
+  margin: 0 2%;
+}
+
+
+
+.img_content {
+  width: 100%;
+  height: 100%;
+  /* border-radius: 10rpx; */
+}
+
+ .video_box .img_content {
+  width: 230rpx;
+  height: 250rpx;
+  border-radius: 10rpx;
+}
+
+.videos,.playimg{
+  width: 100%;
+  height: 190px;
+  z-index: 0
+}
+
+.model-btn{
+    position:absolute;
+    left:0;
+    top:0;
+    bottom:0;
+    right:0;
+    margin:auto;
+    width:100rpx;
+    height:100rpx;
+    border-radius:50%;
+    background-color: rgba(0,0,0,.3);
+}
+.play-icon{
+    margin:28rpx 42rpx;
+    border-top:26rpx solid transparent;
+    border-left:36rpx solid #fff;
+    border-bottom:22rpx solid transparent;
+}

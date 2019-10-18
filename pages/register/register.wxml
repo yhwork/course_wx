@@ -1,0 +1,57 @@
+<view class='main'>
+  <image src='{{head}}' class='head-img' mode="widthFix"></image>
+
+  <view class='{{style}}'>
+    <block wx:if="{{model.changeRole=='0'}}">
+      <button hidden='{{btn}}' class='btn1' open-type="getUserInfo" bindgetuserinfo="CHOOSE_ROLE" data-role="1">
+        <image src='{{teacher_img}}' class='teacher-img' mode="widthFix"></image>
+        <view class='teacher'>我是老师</view>
+        <view class='teacher-duan'>教师端</view>
+      </button>
+      <!-- <button hidden='{{!btn1}}' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"> 获取用户手机号 </button> -->
+
+
+      <button hidden='{{btn}}' class='btn2' open-type="getUserInfo" bindgetuserinfo="CHOOSE_ROLE" data-role="0">
+        <image src='{{home_img}}' class='home-img' mode="widthFix"></image>
+        <view class='home'>我是家长/学生</view>
+        <!-- <view class='student'>我是学生</view> -->
+        <view class='home-duan'>家长/学生端</view>
+      </button>
+
+
+      <button hidden='{{isphone}}' class='btn2 phone' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
+        <image src='{{home_img}}' class='home-img' mode="widthFix"></image>
+        <view class='home'>我是{{type}}</view>
+        <view class='home-duan'>{{type}}端</view>
+      </button>
+
+    </block>
+
+
+
+
+    <block wx:else>
+      <button class='btn1' bindtap="CHANGE_ROLE" data-role="1">
+        <image src='{{teacher_img}}' class='teacher-img' mode="widthFix"></image>
+        <view class='teacher'>我是老师</view>
+        <view class='teacher-duan'>教师端</view>
+      </button>
+      <button class='btn2' bindtap="CHANGE_ROLE" data-role="0">
+        <image src='{{home_img}}' class='home-img' mode="widthFix"></image>
+        <view class='home'>我是家长/学生</view>
+        <!-- <view class='student'>我是学生</view> -->
+        <view class='home-duan'>家长/学生端</view>
+      </button>
+    </block>
+
+  </view>
+
+
+  <view class='choose'>请选择您的角色</view>
+  <view>
+    <view>亲！</view>
+    <view>请根据自己身条件选择角色</view>
+    <view>1.教师端：具有建立班级的权限，没有给孩子建立日程的权限</view>
+    <view>2.家长端：具有给孩子建立日程的权限</view>
+  </view>
+</view>

@@ -1,0 +1,291 @@
+<view class="page">
+  <view class="page__hd">
+    <block wx:if="{{userInfo.role=='0'}}">
+      <!-- 家长端 -->
+      <view class='head' bindtap="CHANGE_LOGO">
+        <view class='head-left'>
+          <view class=''>
+            <image wx:if='{{childInfo.logo}}' src='{{childInfo.logo}}' class='head-img'></image>
+            <image wx:else src='https://oss.iforbao.com/public/assets/img/girlb.png'></image>
+          </view>
+          <view class='logo_text'>
+            <text class='name font'>{{childInfo.childName}}</text>
+            <text class='schoolout_class font'>已有{{childInfo.courseNum}}门课程</text>
+          </view>
+        </view>
+        <view class='head-right'>
+          <image src='/assets/img/attention.png' class='attention' mode="widthFix"></image>
+          <text class='click'>点击头像切换对象</text>
+        </view>
+      </view>
+    </block>
+    <block wx:else>
+      <!-- 老师端 -->
+      <view class='head'>
+        <!--用户头部-->
+        <view class='head_teacher'>
+          <image src='{{userInfo.logo}}' class='head-img'></image>
+          <text class='name font'>{{userInfo.name}}</text>
+        </view>
+        <!-- <view class='head-right'>
+        </view> -->
+      </view>
+    </block>
+  </view>
+
+  <view class="page__bd">
+    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{message}}</view>
+    <view class="weui-tab">
+      <!-- <view class="course_type">
+        <block wx:for="{{tabs}}" wx:key="">
+          <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="TAB_CLICK">
+            <view class="weui-navbar__title">{{item}}</view>
+          </view>
+        </block>
+        <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);width:17%;margin-left:32rpx;"></view>
+      </view> -->
+
+      <!-- 切换tab -->
+      <view class="course_type">
+        <block wx:for="{{tabs}}" wx:key="index">
+          <view id="{{index}}" class="tab_box" bindtap="TAB_CLICK">
+            <image class='tab_img' src='{{item.url}}'></image>
+            <view class="weui-navbar__title {{activeIndex==index?'tab_active':''}}">{{item.name}}</view>
+          </view>
+        </block>
+      </view>
+
+
+
+      <view class="weui-tab__panel">
+        <!-- 校内 -->
+
+        <view class="" hidden="{{activeIndex != 0}}">
+          <view class="main1" wx:if='{{courseList.length!=0}}' wx:for="{{courseList}}" wx:for-item="item" wx:key="">
+            <view wx:if='{{item.imgType == 2}}'>
+               <view class="centers" bindtap='previmg' data-img='{{item.img}}'><image mode='widthFix' src='{{item.img}}'></image></view>
+               <!-- 操作 -->
+            <view class="weui-flex">
+              <!-- <view class="weui-flex__item weui-flex__item_xiang" bindtap="OPE_DETAIL" data-courseid="{{item.internalClassId}}">
+                <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/xq.png'></image>
+                <view class="xiang">详情</view>
+              </view> -->
+              <view class="weui-flex__item centers">
+                <view class="fa fa-pencil-square-o" bindtap="updataimg" data-courseid="{{item.id}}">修改</view>
+              </view>
+              <view class="weui-flex__item centers">
+                <!-- wx:if='{{editpower=="true"}}' -->
+                <view class="fa fa-trash-o" bindtap="deleteimg" data-courseid="{{item.id}}"> 删除</view>
+                <!-- <view wx:else style='color:#888' class="fa fa-trash-o" bindtap="nopower" data-courseid="{{item.id}}"> 删除</view> -->
+              </view>
+              <!-- <view class="weui-flex__item" wx:if='{{userInfo.role==0}}'>
+                <view class="fa fa-share-square-o" bindtap='SHOW_SHARE' data-id="{{item.internalClassId}}"> 分享</view>
+              </view>
+              <view class="weui-flex__item" wx:else>
+                <view class="fa fa-share-square-o" style='color:#888' data-id="{{item.internalClassId}}"> 分享</view>
+              </view> -->
+            </view>
+            
+            </view>
+            <view wx:else>
+              <view class="schoolout_manage_class">
+                <view class="schoolout_manage_class_name schoolout_manage_class_l">学校名称：{{item.schoolName}}</view>
+                <view class="schoolout_manage_class_start schoolout_manage_class_l">
+                  <text space='ensp'>班    级：{{item.className}}</text> </view>
+                <view class="schoolout_manage_class_end schoolout_manage_class_l">上学周期：{{item.startDate}}-{{item.endDate}}</view>
+                <view class="schoolout_manage_class_start schoolout_manage_class_l setText">
+                  <text space='ensp'>课    程：</text>
+                  <text class='courses'>{{item.courseName}}</text>
+                </view>
+              </view>
+              <!-- 操作 -->
+              <view class="weui-flex">
+                <view class="weui-flex__item weui-flex__item_xiang" bindtap="OPE_DETAIL" data-courseid="{{item.internalClassId}}">
+                  <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/xq.png'></image>
+                  <view class="xiang">详情</view>
+                </view>
+                <view class="weui-flex__item">
+                  <view class="fa fa-pencil-square-o" bindtap="OPE_EDIT" data-courseid="{{item.internalClassId}}">修改</view>
+                </view>
+                <view class="weui-flex__item">
+                  <!-- wx:if='{{editpower=="true"}}' -->
+                  <view class="fa fa-trash-o" bindtap="OPE_DEL" data-courseid="{{item.internalClassId}}"> 删除</view>
+                  <!-- <view wx:else style='color:#888' class="fa fa-trash-o" bindtap="nopower" data-courseid="{{item.id}}"> 删除</view> -->
+                </view>
+                <view class="weui-flex__item" wx:if='{{userInfo.role==0}}'>
+                  <view class="fa fa-share-square-o" bindtap='SHOW_SHARE' data-id="{{item.internalClassId}}"> 分享</view>
+                </view>
+                <view class="weui-flex__item" wx:else>
+                  <view class="fa fa-share-square-o" style='color:#888' data-id="{{item.internalClassId}}"> 分享</view>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="weui-tab__panel" wx:if='{{courseList.length==0}}' style='margin-top:50rpx;border:2rpx solid transparent' wx:if='{{courseList.length==0}}'>
+            <view class='no_course_box'>
+              <view class='no_course'>
+                <image class='no_img' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/no_have.png'></image>
+                <view> Ta 没有相关课程</view>
+              </view>
+            </view>
+          </view>
+        </view>
+
+        <!-- 校外课程 -->
+        <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
+
+          <view class="weui-tab">
+            <!-- tap切换 -->
+            <view class="weui-flex" style='font-weight:bold;'>
+              <view class="weui-flex__item" wx:for="{{courseCountNum}}" wx:key=''>
+                <view class="placeholder">{{item}}</view>
+              </view>
+            </view>
+            <view class="weui-navbar" style='margin-top:-64rpx;border-bottom:6rpx solid transparent;background:#ddd;'>
+              <block wx:for="{{tabsSub}}" wx:key="">
+                <view id="{{index}}" class="weui-navbar__item showtaps {{activeIndexSub == index ? 'weui-bar__item_on' : ''}}" bindtap="TAB_CLICK_SUB">
+                  <view class="weui-navbar__title">{{item.num}}</view>
+                  <view class="weui-navbar__title">{{item.type}}</view>
+                </view>
+              </block>
+              <view class="weui-navbar__slider" style="left: {{sliderLeftSub}}px; transform: translateX({{sliderOffsetSub}}px); -webkit-transform: translateX({{sliderOffsetSub}}px);width:14%;margin-left:36rpx;"></view>
+            </view>
+            <view class="weui-tab__panel" style='border:2rpx solid transparent' wx:if='{{courseList.length==0}}'>
+              <view class='no_course_box'>
+                <view class='no_course'>
+                  <image class='no_img' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/no_have.png'></image>
+                  <view> Ta 没有相关课程</view>
+                </view>
+              </view>
+            </view>
+
+            <view class="weui-tab__panel" style='border:2rpx solid transparent' wx:elif='{{courseList.length!==0}}'>
+              <view class="weui-tab__content" wx:for="{{courseList}}" wx:for-item="item" wx:key="" data-id="{{item.childId}}" wx:for-index="index">
+                <view class="weui-cells" class='main'>
+                  <view class="weui-cell">
+                    <view class="weui-cell__hd">{{item.name}}</view>
+                    <view class="weui-cell__bd"></view>
+                    <view class="weui-cell__ft" bindtap="VIEW_CHECK_WORK" data-courseid="{{item.id}}">Ta的考勤</view>
+                  </view>
+                  <!-- 修改处 -->
+                  <view class="schoolout_manage_class">
+                    <view class="schoolout_manage_class_name schoolout_manage_class_l">教学机构：{{item.orgName}}</view>
+                    <view class="schoolout_manage_class_start schoolout_manage_class_l">课程周期：{{item.beginDate}}-{{item.endDate}}</view>
+                    <view class="schoolout_manage_class_end schoolout_manage_class_l">课程时间：{{item.frequencyDesc}} {{item.beginTime}}-{{item.endTime}}</view>
+                  </view>
+
+
+                  <!-- <view class="weui-cell">
+                  
+                    <view class="weui-cell__hd start ">开始：{{item.beginDate}}</view>
+                    <view class="weui-cell__bd end">结束：{{item.endDate}}</view>
+                  </view> -->
+                  <!-- <view class="weui-cell">
+                    <view class="weui-cell__hd start1">{{item.frequencyDesc}} {{item.beginTime}}-{{item.endTime}}</view>
+                    <view class="weui-cell__ft name" style='color:#999;margin-left:100rpx;font-size:28rpx;margin-top:-38rpx'>{{item.orgName}}</view>
+                  </view> -->
+                  <view class="weui-cell_address" bindtap="OPEN_LOCATION" data-longitude="{{item.longitude}}" data-latitude="{{item.latitude}}">
+                    <!-- <view class="weui-cell__hd fa fa-map-marker map"></view> -->
+                    <view class="weui-cell__bd map-name schoolout_manage_class_l">{{item.classAddress}}</view>
+                  </view>
+                  <!-- <view class='line'></view> -->
+                  <view class="weui-flex">
+                    <view class="weui-flex__item weui-flex__item_xiang" bindtap="OPE_DETAIL" data-courseid="{{item.id}}">
+                      <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/xq.png'></image>
+                      <view class="xiang">详情</view>
+                    </view>
+                    <view class="weui-flex__item">
+                      <view wx:if='{{editpower=="true"}}' class="fa fa-pencil-square-o" bindtap="OPE_EDIT" data-courseid="{{item.id}}">修改</view>
+                      <view wx:else style='color:#888' class="fa fa-pencil-square-o" bindtap="nopower">修改</view>
+                    </view>
+                    <view class="weui-flex__item">
+                      <view class="fa fa-copy" bindtap="OPE_COPY" data-courseid="{{item.id}}"> 复制</view>
+                    </view>
+                    <view class="weui-flex__item">
+                      <view wx:if='{{editpower=="true"}}' class="fa fa-trash-o" bindtap="OPE_DEL" data-courseid="{{item.id}}"> 删除</view>
+                      <view wx:else style='color:#888' class="fa fa-trash-o" bindtap="nopower" data-courseid="{{item.id}}"> 删除</view>
+                    </view>
+                    <view class="weui-flex__item">
+                      <view class="fa fa-share-square-o" bindtap='SHOW_SHARE' data-index="{{index}}"> 分享</view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="mymodalDlg" wx:if="{{loadChildAll}}">
+  <view class="weui-panel weui-panel_access">
+    <view class="weui-panel__bd">
+      <view class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" wx:for="{{childList}}" wx:for-item="item" wx:key="" data-id="{{item.childId}}" catchtap="CHOOSE_CHILD">
+        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+          <image class="weui-media-box__thumb" wx:if='{{item.logo}}' src="{{item.logo}}" />
+          <image class="weui-media-box__thumb" wx:else src='https://oss.iforbao.com/public/assets/img/girlb.png'></image>
+        </view>
+        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+          <view class="weui-media-box__title">{{item.childName}}</view>
+          <view class="weui-media-box__desc">已有{{item.courseNum}}门课程</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+<!-- <view class='add_course' bindtap="ADD_COURSE">
+  <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/addClass.png'></image>
+</view> -->
+
+
+<!-- 分享 -->
+<view class='share_mask' hidden='{{shareHide}}'>
+  <view class='share_box'>
+    <view class='share_top'>
+      <view class='share_title'>{{userInfo.nickName}}@您，给你分享了如下课程</view>
+      <view class='cancel' bindtap='HIDE_SHARE'>取消</view>
+    </view>
+    <view class='share_center'>
+      <view class='course_name' wx:if='{{activeIndex==1}}'>{{shareInfo.name}}</view>
+      <view class='course_name' wx:else>{{shareInfo.className}}</view>
+      <view class='date' wx:if='{{activeIndex==1}}'>
+        <view class='start_date'>开始：{{shareInfo.beginDate}}</view>
+        <view class='end_date'>结束：{{shareInfo.endDate}}</view>
+      </view>
+      <view class='date' wx:else>
+        <view class='start_date'>开始：{{shareInfo.startDate}}</view>
+        <view class='end_date'>结束：{{shareInfo.endDate}}</view>
+      </view>
+      <view class='time_type' wx:if='{{activeIndex==1}}'>
+        <view class='time'>{{shareInfo.frequencyDesc}} {{shareInfo.beginTime}} - {{shareInfo.endTime}}</view>
+        <view class='type'>{{shareInfo.orgName}}</view>
+      </view>
+      <view class='time_type' wx:else>
+        <view class='courses'>课程： {{shareInfo.courseName}}</view>
+        <view class='type'>{{shareInfo.schoolName}}</view>
+      </view>
+      <view class='addr' wx:if='{{shareInfo.classAddress}}'>
+        <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/map.png'></image>
+        {{shareInfo.classAddress}}
+      </view>
+    </view>
+    <view class='share_foot'>
+      <button open-type="share" class='weiXin'>
+        <view class='weiXin'>
+          <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/wx_friend.png'></image>
+          微信好友
+        </view>
+      </button>
+      <!--<view class='xcx' bindtap="GET_WX_CODE">
+        <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/xcx_icon.png'></image>
+        小程序码</view>-->
+    </view>
+  </view>
+</view>
+
+<!-- <view hidden="{{activeIndex != 0}}" class='add_class_btn' bindtap='PREVIEW'>图片识别</view> -->
+<canvas class="share-canvas" style="width:{{shareCavansOptions.width}}px;height:{{shareCavansOptions.height}}px;visibility:hidden;position:absolute;top:-1000rpx;" canvas-id="share_canvas"></canvas>

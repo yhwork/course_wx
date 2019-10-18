@@ -1,0 +1,60 @@
+<!--components/img_video/img_video.wxml-->
+<template name="msgItem">
+  <view class='img_video_box' wx:if='{{videooSrc!=""||subjectImg.length>0}}'>
+    <view wx:if='{{type=="diary"}}'>
+      <view class='img_box' wx:if='{{subjectImg.length>0||videooSrc!="" }}'>
+        <view class='img_item' wx:for="{{communitySubjectForPage}}" wx:if='{{item.contentType == 2}}' wx:key='idx' wx:for-item='item' wx:for-index='idx'>
+          <image class='delete_btn' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/delete_in.png' data-contentType='2' bindtap='DEL' data-idx='{{idx}}' data-innerIdx='{{idx}}' wx:if='{{!show}}'></image>
+          <image class='img_content' mode='aspectFill' src='{{item.content}}' data-index='{{idx}}' data-src='{{item.content}}' data-imgList='{{subjectImgList}}' catchtap='PREVIEWIMAGE'></image>
+          <!-- </view>
+          </view> -->
+        </view>
+      </view>
+      <!-- <view class='video_box' wx:if='{{videooSrc!=""&&videooSrc!=null&&typeof(videooSrc)!="undefined"}}'>
+        <view wx:for="{{communitySubjectForPage}}" wx:key='idx' wx:for-item='item' wx:for-index='idx'>
+          <view wx:if='{{item.contentType == 4}}'>
+            <image class='delete_btn video_del' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/delete_in.png' data-contentType='4' data-idx='{{idx}}' bindtap='DEL' wx:if='{{!show}}'></image>
+            <image class='img_content' src='{{videooSrc}}?x-oss-process=video/snapshot,t_10000,m_fast' mode='aspectFill'></image>
+            <navigator url='../videoPlay/videoPlay?audioSrc={{videooSrc}}' wx:if='{{!FIREST}}'>
+              <view class='video_btn'></view>
+            </navigator>
+            <navigator url='../videoPlay/videoPlay?audioSrc={{videooSrc}}' wx:if='{{FIREST}}'>
+              <view class='video_btn'></view>
+            </navigator>
+          </view>
+        </view>
+      </view> -->
+      <view class='video_box' style='width: 100%;' wx:if='{{videooSrc!=""&&videooSrc!=null&&typeof(videooSrc)!="undefined"}}'>
+        <image class='delete_btn video_del' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/delete_in.png' data-contentType='4' data-idx='{{idx}}' bindtap='DEL' wx:if='{{!show}}'></image>
+        <view class='video_box' style='width: 100%;' wx:if='{{outindex === playid}}'>
+          <video class='videos' style='width:100%' poster='{{videooSrc}}?x-oss-process=video/snapshot,t_10000,m_fast' id="myVideo" src='{{videooSrc}}' show-fullscreen-btn enable-progress-gesture objectFit='cover'></video>
+        </view>
+        <view class='video_box' style='width: 100%;' wx:else>
+          <image hidden='{{play}}' class='playimg' src='{{videooSrc}}?x-oss-process=video/snapshot,t_10000,m_fast' mode='aspectFill'></image>
+          <view class="model-btn" bindtap='PLAY_START' data-outindex='{{outindex}}'>
+            <view class="play-icon"></view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view wx:else>
+      <view class='img_box' wx:if='{{subjectImg.length>0||videooSrc!="" }}'>
+        <view class='img_item' wx:for="{{subjectImg}}" wx:key='idx' wx:for-item='item' wx:for-index='idx'>
+          <image class='delete_btn' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/delete_in.png' data-contentType='2' bindtap='DEL' data-idx='{{item.id}}' data-innerIdx='{{idx}}' wx:if='{{!show}}'></image>
+          <image class='img_content' mode='aspectFill' src='{{item.content}}' data-index='{{idx}}' data-src='{{item.content}}' data-imgList='{{subjectImgList}}' catchtap='PREVIEWIMAGE'></image>
+        </view>
+      </view>
+      <view class='video_box' style='width: 100%;' wx:if='{{videooSrc!=""&&videooSrc!=null&&typeof(videooSrc)!="undefined"}}'>
+        <view class='video_box' style='width: 100%;' wx:if='{{outindex === playid}}'>
+          <video class='videos' poster='{{videooSrc}}?x-oss-process=video/snapshot,t_10000,m_fast' id="myVideo" src='{{videooSrc}}' show-fullscreen-btn enable-progress-gesture objectFit='cover'></video>
+        </view>
+        <view class='video_box' style='width: 100%;' wx:else>
+          <image hidden='{{play}}' class='playimg' src='{{videooSrc}}?x-oss-process=video/snapshot,t_10000,m_fast' mode='aspectFill'></image>
+          <view class="model-btn" bindtap='PLAY_START' data-outindex='{{outindex}}'>
+            <view class="play-icon"></view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

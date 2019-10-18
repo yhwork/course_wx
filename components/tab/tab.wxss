@@ -1,0 +1,8 @@
+@import '../../style/weui.wxss';
+.weui-navbar__slider {
+    background-color: #f29219;
+}
+
+.weui-navbar__item.weui-bar__item_on {
+    color: #f29219;
+}

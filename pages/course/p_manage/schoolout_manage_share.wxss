@@ -1,0 +1,239 @@
+page {
+  background: #f4f4f4;
+}
+
+/*
+  隐藏滚动条
+*/
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+  color:#ffffff;
+}
+
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  background-color:#FFFFFF;
+}
+
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color:#f7f8f7;
+}
+
+
+
+
+
+
+
+
+
+
+.page_top {
+  padding: 30rpx 30rpx 50rpx 30rpx;
+  background: #fff;
+  font-size: 26rpx;
+  color: #999;
+}
+
+.course_name_type {
+  display: flex;
+  align-items: center;
+}
+
+.course_name {
+  font-size: 34rpx;
+  color: #222;
+  margin-bottom: 10rpx;
+}
+
+.course_type {
+  margin-left: 20rpx;
+}
+
+.course_type image {
+  width: 84rpx;
+  height: 28rpx;
+  border-radius: 6rpx;
+}
+
+.date{
+  display: flex;
+  justify-content: left;
+  flex-direction: column;
+}
+.time, .start_date {
+  margin-right: 50rpx;
+}
+
+.addr {
+  display: flex;
+  align-items: center;
+  /* margin-top: 20rpx; */
+  color: #576b95;
+}
+
+.addr image {
+  width: 24rpx;
+  height: 30rpx;
+  margin-right: 20rpx;
+}
+
+.hint {
+  padding: 30rpx 30rpx 10rpx 30rpx;
+  font-size: 26rpx;
+  color: #cc928d;
+}
+
+.course_list {
+  padding: 4rpx;
+}
+
+.course_item {
+  display: inline-block;
+  width: 332rpx;
+  height: 300rpx;
+  padding: 30rpx;
+  background: #fff;
+  border-radius: 12rpx;
+  text-align: center;
+  box-sizing: border-box;
+  margin: 20rpx 0 0 26rpx;
+  vertical-align: middle;
+}
+
+.photo_box {
+  width: 154rpx;
+  height: 154rpx;
+  margin: 20rpx auto;
+  position: relative;
+}
+
+.photo_box image {
+  width: 154rpx;
+  height: 154rpx;
+  border-radius: 154rpx;
+}
+
+.photo_box .sex {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 40rpx;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.percen_name {
+  font-size: 34rpx;
+  color: #222;
+}
+
+.course_item .course_name {
+  font-size: 26rpx;
+  color: #888;
+  margin-top: 10rpx;
+}
+
+.add_btn {
+  width: 66rpx;
+  height: 66rpx;
+  margin: 60rpx auto;
+}
+
+.add_btn image {
+  width: 66rpx;
+  height: 66rpx;
+}
+
+.add_title {
+  font-size: 26rpx;
+  color: #b2b2b2;
+}
+
+.share_mask {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.share_box {
+  width: 100%;
+  padding: 30rpx 0;
+  background: #fff;
+  position: absolute;
+  bottom: 0;
+  box-sizing: border-box;
+}
+
+.hint_box {
+  padding: 0 30rpx;
+}
+
+.hint_title {
+  font-size: 36rpx;
+  color: #000;
+  text-align: center;
+}
+
+.hint_top {
+  padding: 10rpx 0;
+  position: relative;
+}
+
+.cancel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 26rpx;
+  color: #b2b2b2;
+}
+
+.hint_cont {
+  padding: 0 30rpx 30rpx 30rpx;
+  color: #888;
+  font-size: 30rpx;
+}
+
+.share_course_list {
+  padding: 10rpx 30rpx 70rpx 30rpx;
+  font-size: 28rpx;
+  color: #888;
+  background: #fafafa;
+}
+
+.share_course_item {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40rpx;
+}
+
+.share_course_name {
+  color: #000;
+}
+
+.change {
+  color: #f29219;
+}
+
+.save {
+  width: 670rpx;
+  height: 94rpx;
+  background: #f29219;
+  border-radius: 10rpx;
+  margin: 60rpx auto 30rpx auto;
+}
+
+.share_course_time{
+  margin-right: 20rpx;
+}

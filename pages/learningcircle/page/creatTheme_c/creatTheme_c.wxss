@@ -1,0 +1,11 @@
+/* pages/circle/creatTheme_c/creatTheme_c.wxss */
+@import '../creatTheme/creatTheme.wxss';
+.fa-angle-right{
+  font-size: 50rpx;
+  color: #C7C7CC;
+  margin-left: 30rpx;
+}
+.cell_right{
+  display: flex;
+  align-items: center;
+}

@@ -1,0 +1,69 @@
+@import "../addPeport/addPeport.wxss";
+.bottomtab .look,.bottomtab .set{
+  width: 100%;
+}
+.add_video, .add_audio,.add_img{
+  flex-flow: column;
+  height: 90rpx;
+  justify-content: space-between;
+  margin-right: 50rpx;
+}
+.add_btn_group image{
+  height: 30rpx;
+}
+.add_img image,.add_video image{
+  width: 40rpx;
+}
+
+.form_box {
+  padding: 0 30rpx;
+  background: #fff;
+}
+
+.fa-angle-right {
+  font-size: 50rpx;
+  color: #c7c7cc;
+  margin-left: 20rpx;
+}
+
+.pos_icon {
+  width: 32rpx;
+  height: 40rpx;
+  margin-right: 16rpx;
+}
+
+.see_icon {
+  margin-right: 16rpx;
+  width: 32rpx;
+  height: 36rpx;
+}
+
+.form_item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 0;
+}
+
+.form_item:nth-child(1) {
+  border-bottom: 2rpx solid #e5e5e5;
+}
+
+.form_left {
+  display: flex;
+  align-items: center;
+}
+
+.form_right {
+  display: flex;
+  align-items: center;
+  color: #b2b2b2;
+}
+
+.form_right .addr {
+  max-width: 440rpx;
+  font-size: 26rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

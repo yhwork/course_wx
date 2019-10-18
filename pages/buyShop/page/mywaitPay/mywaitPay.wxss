@@ -1,0 +1,384 @@
+.pay_box {
+  width: 750rpx;
+}
+
+.mywaitPay {
+  display: flex;
+  width: 750rpx;
+  background-color: white;
+}
+
+.pay_item {
+  width: 125rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 24rpx;
+  text-align: center;
+  color: black;
+}
+
+.ativeclass {
+  border-bottom: 1rpx solid #ff9800;
+}
+
+.pay_content,.pay_contents {
+  width: 720rpx;
+  /* 后期调试高度可能显示 *//* height: 140rpx; */
+  margin: 0 auto;
+  background-color: white;
+  border-bottom: 1rpx solid #f7f4f4;
+}
+
+.all_pay {
+  width: 750rpx;
+  padding-top: 30rpx;
+}
+
+.pay_content {
+  display: flex;
+}
+
+.content_left {
+  width: 180rpx;
+}
+
+.content_right {
+  width: 540rpx;
+}
+
+.left_img {
+  width: 160rpx;
+  height: 124rpx;
+}
+
+.content_right {
+  font-size: 24rpx;
+}
+
+.right_text text {
+  width: 170rpx;
+  padding: 0 15rpx;
+  border: 1rpx solid #aaa;
+  text-align: left;
+  margin-right: 15rpx;
+  margin-top: 5rpx;
+}
+
+.fontzx {
+  width: 170rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.right_text {
+  display: flex;
+}
+
+.right_money {
+  margin-left: 450rpx;
+}
+
+/* .rt_top{
+  margin-top: 60rpx;
+} */
+
+.pay_canc {
+  width: 710rpx;
+  text-align: right;
+  font-size: 24rpx;
+  background-color: white;
+  margin: 0 auto;
+  padding: 15rpx 20rpx;
+}
+
+.can_btn, .support_btn {
+  font-size: 24rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  padding: 10rpx 20rpx;
+  border: 1rpx solid #aaa;
+  border-radius: 10rpx;
+  margin-left: 20rpx;
+}
+
+.support_btn {
+  padding: 10rpx 30rpx;
+  background-color: #ff9800;
+  color: white;
+  margin-right: 10rpx;
+}
+
+.btn_wrap {
+  background-color: white;
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+}
+
+.content_item {
+  width: 100%;
+  height: 100%;
+}
+
+.item_top {
+  height: 20%;
+  display: flex;
+}
+
+.item_middle {
+  height: 40%;
+  display: flex;
+  align-items: center;
+  margin-top: 20rpx;
+}
+
+.item_buttom {
+  height: 10%;
+}
+
+.item_underbuttom,.item_underbuttoms {
+  height: 15%;
+  /* background-color: darkkhaki; */
+}
+.item_underbuttoms{
+     margin-left:530rpx;
+  }
+
+.content-wrap {
+  height: 360rpx;
+}
+
+.booking_wrap {
+  height: 150rpx;
+}
+
+.top_image {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.top_text {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 26rpx;
+  justify-content: flex-end;
+  color: #ff9800;
+}
+
+.image_style {
+  width: 50rpx;
+  height: 57rpx;
+}
+
+.font_text {
+  font-size: 26rpx;
+  margin-left: 20rpx;
+  width: 280rpx;
+}
+
+.arrowtext {
+  font-size: 30rpx;
+  color: gray;
+}
+
+.middleimage_style {
+  width: 140rpx;
+  height: 110rpx;
+}
+
+.middle-font {
+  font-size: 26rpx;
+}
+
+.middle-font {
+  font-size: 26rpx;
+  width: 430rpx;
+}
+
+.middle_middle {
+  display: flex;
+  margin-left: 20rpx;
+}
+
+.middle_right {
+  font-size: 20rpx;
+  margin-left: 60rpx;
+}
+
+.money_top, .money_buttom {
+  display: flex;
+}
+
+.money_buttom {
+  margin-left: 25rpx;
+}
+
+.num_style {
+  width: 30rpx;
+}
+
+.buttom_font {
+  font-size: 18rpx;
+}
+
+.item_buttom {
+  font-size: 26rpx;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.cancle {
+  width: 200rpx;
+  height: 60rpx;
+  border: 1rpx solid black;
+}
+
+.item_underbuttom,.item_underbuttoms {
+  display: flex;
+  font-size: 26rpx;
+  justify-content: flex-end;
+  margin-top: 20rpx;
+}
+
+.cancleBtn {
+  width: 150rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  background-color: white;
+  border: 1rpx solid #ff9800;
+  border-radius: 10rpx;
+  color: #ff9800;
+}
+
+.donfirmBtn {
+  padding-left: 10rpx;
+  padding-right:10rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  background-color: #ff9800;
+  color: white;
+  border-radius: 10rpx;
+  text-align: center;
+  margin-left: 10rpx;
+  font-size: 26rpx;
+}
+
+.middle_confirm {
+  font-size: 28rpx;
+  width: 130rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  border: 1rpx solid #ff9800;
+  text-align: center;
+  color: #ff9800;
+  border-radius: 10rpx;
+}
+
+.right_confirm {
+  margin-left: 0rpx;
+}
+
+.booking_wrap {
+  width: 720rpx;
+  margin: 0 auto;
+}
+
+.booking_bottom {
+  display: flex;
+  font-size: 26rpx;
+  justify-content: flex-end;
+  margin-bottom: 20rpx;
+  margin-top: 20rpx;
+}
+
+.my_booking {
+  margin-left: 40rpx;
+  background-color: #ff9800;
+  height: 40rpx;
+  line-height: 40rpx;
+  margin-right: 30rpx;
+  color: white;
+  width: 140rpx;
+  text-align: center;
+  border-radius: 10rpx;
+}
+
+.go_booking {
+  margin-left: 30rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  color: white;
+  background-color: #ff9800;
+  text-align: center;
+  border-radius: 10rpx;
+  width: 120rpx;
+}
+
+.right_text {
+  position: relative;
+}
+
+.see_btn {
+  width: 150rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  background-color: #ff9800;
+  text-align: center;
+  margin-left: 360rpx;
+  border-radius: 10rpx;
+  color: white;
+  border: none;
+  display: inline-block;
+  margin-top: 20rpx;
+}
+
+.new_righttext {
+  width: 580rpx;
+}
+
+.new_righttext text {
+  width: 100rpx;
+  padding: 0 5rpx;
+  border: 1rpx solid #aaa;
+  text-align: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20rpx;
+}
+
+.lable_style {
+  width: 600rpx;
+  height: 60rpx;
+  white-space: nowrap;
+  display: flex;
+}
+
+.lable_style text {
+  display: inline-block;
+  width: 120rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-left: 10rpx;
+  border: 1rpx solid #aaa;
+}
+
+.waitpayss {
+  margin-top: 30rpx;
+}
+
+.no_flex {
+  margin-top: 30rpx;
+}
+.buttonhover{
+  margin-left: 360rpx;
+}

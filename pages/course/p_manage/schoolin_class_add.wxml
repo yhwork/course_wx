@@ -1,0 +1,112 @@
+<!-- 信息提示 -->
+<view class="page-toptips_warn" wx:if="{{showTopTips}}">{{message}}</view>
+<!-- 孩子信息 -->
+<block wx:if="{{userInfo.role=='0'}}">
+  <view class='child_info'>
+    <view class='child_info_logo'>
+      <image class='info_logo' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/icond.png'></image>
+      <text class='child_info_name'>奈奈</text>
+    </view>
+  </view>
+</block>
+<block wx:else>
+  <scroll-view scroll-x style="width: 100%" class="table">
+    <block wx:for="{{tables}}" wx:key='' wx:for-item="table" wx:for-index="table_index">
+      <view class="tr gray" wx:if="{{table_index % 2 == 0}}">
+        <view class="td" wx:key='' wx:for="{{table}}" wx:item="item" bindtap="openModal" data-id="{{table_index}}">{{item}}</view>
+      </view>
+      <view class="tr" wx:else>
+        <view class="td" wx:key='' wx:for="{{table}}" wx:item="item" bindtap="openModal" data-id="{{table_index}}">{{item}}</view>
+      </view>
+    </block>
+  </scroll-view>
+  <view class='schoolin_class_tips'>
+    <image class='class_tips' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/care.png'></image>
+    <text>请选择您教授的课程</text>
+  </view>
+</block>
+<view class='page_top'>
+</view>
+<view class='schoolin_class_info ma-top'>
+  <view class='info_list'>
+    <image class='info_list_icon' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/icond.png"></image>
+    <text class='import'>*</text> 学校名称:
+    <view class='school' bindtap="VIEW_AREA">
+      <view class="weui-select weui-select_in-select-after .weui-cell__ft {{school_selected?'selected':''}}">
+        {{model.school ? model.school : '请选择'}}</view>
+    </view>
+  </view>
+</view>
+<view class='schoolin_class_info'>
+  <view class='info_list'>
+    <image class='info_list_icon' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/icond.png"></image>
+    <text class='import'>*</text> 班 级:
+    <view class='school'>
+      <input class="" placeholder="请填写所在班级" maxlength="4" placeholder-class='pla' bindinput="CLASS_NAME" />
+    </view>
+  </view>
+</view>
+<view class='schoolin_class_info'>
+  <view class='info_list' bindtap="CHANGE_BEGINDATE">
+    <image class='info_list_icon' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/icond.png"></image>
+    <text class='import'>*</text> 开学日期：
+    <view class='school'>
+      {{model.beginDate}}
+    </view>
+  </view>
+</view>
+<view class='schoolin_class_info'>
+  <view class='info_list'>
+    <image class='info_list_icon' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/icond.png"></image>
+    <text class='import'>*</text> 放假日期:
+    <view class='school'>
+      {{model.endDate}}
+      <!-- <input class="" placeholder="请填写所在班级" maxlength="4" placeholder-class='pla' bindinput="CLASS_NAME" /> -->
+    </view>
+  </view>
+</view>
+<view class='schoolin_class_info'>
+  <view class='info_list'>
+    <image class='info_list_icon' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/icond.png"></image>
+    <text class='import'>*</text> 第一节课时间：
+    <view class='school'>
+      <picker class='main_start_time' bindchange="CHANGE_TIMEFIRST" mode="time" start="07:00" end="21:00" value="{{model.startClassTime}}">
+        <text class='text_col'>{{model.startClassTime}}</text>
+      </picker>
+    </view>
+  </view>
+</view>
+<view class='schoolin_class_info'>
+  <view class='info_list'>
+    <image class='info_list_icon' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/icond.png"></image>
+    <text class='import'>*</text> 第五节课时间：
+    <view class='school'>
+      <picker class='main_start_time' bindchange="CHANGE_TIMEEND" mode="time" start="07:00" end="21:00" value="{{model.endClassTime}}">
+        <text class='text_col'>{{model.endClassTime}}</text>
+      </picker>
+    </view>
+  </view>
+</view>
+<view class='schoolin_class_info'>
+  <view class='info_list'>
+    <image class='info_list_icon' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/icond.png"></image>
+    课程时长：
+    <view class='school'>
+      <input class="weui-input main_lenght_time" placeholder="请填写课程时长，单位分钟" maxlength='5' bindinput="CHANGE_DURATION" />
+    </view>
+  </view>
+</view>
+<view class='schoolin_class_info'>
+  <view class='info_list'>
+    <image class='info_list_icon' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/icond.png"></image>
+    放学提醒：
+    <view class='school'>
+      <!-- <input class="weui-input main_lenght_time" placeholder="请填写课程时长，单位分钟" maxlength='5' bindinput="CHANGE_DURATION" /> -->
+    </view>
+  </view>
+</view>
+<view class='class_add_btn'>完成</view>
+<!-- 日历 -->
+<block wx:if="{{showCalendar}}">
+  <calendar catch:day-click="CALENDAR_DAY_CHANGED" />
+</block>

@@ -1,0 +1,15 @@
+@import "../p_add/schoolin_add1.wxss";
+@import "./schoolout_manage_share.wxss";
+
+.tr .td{
+  height: 80rpx;
+  background-color: #fff;
+}
+.thead .td{
+  background:#fdf4e8;
+}
+.hint {
+  margin-bottom: 10rpx;
+  padding: 20rpx 30rpx;
+  background-color: #fff;
+}

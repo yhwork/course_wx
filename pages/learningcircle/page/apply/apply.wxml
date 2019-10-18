@@ -1,0 +1,50 @@
+<!--pages/circle/apply/apply.wxml-->
+<view class="cardsetting_container">
+
+  <view class="rules_wrap">
+    <view class="switch_title_wrap">
+      <view class='switch_title_left'>昵称</view>
+      <view class='switch_list_right'>
+        <view class="number">
+          在路上
+        </view>
+      </view>
+    </view>
+
+    <view class="switch_title_wrap">
+      <view class='switch_title_left'>打卡者</view>
+      <view class='switch_list_right' bindtap='showClocker' >
+        <view class="number select">
+          请选择
+        </view>
+        <view class="arrow_img">
+          <image src='../../../assets/img/arrow_03.png'></image>
+        </view>
+      </view>
+    </view>
+
+    <!-- 打卡者遮罩层 s -->
+<view class='clocker_mask' hidden='{{clockerHihe}}' catchtouchmove='stopOther '>
+  <view class='clocker_box'>
+
+    <view class='clocker_item' bindtap='closeClocker'>
+      <image class='clocker_pho' src='https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1533041023356&di=2695ac109873e79d9bda914bb84dbb68&imgtype=0&src=http%3A%2F%2Fimg4.duitang.com%2Fuploads%2Fitem%2F201312%2F04%2F20131204133424_RVFdA.thumb.600_0.jpeg'></image>
+      <view class='clocker_name'>果果</view>
+    </view>
+<view class='clocker_item' bindtap='closeClocker'>
+      <image class='clocker_pho' src='https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1516485100,3373862177&fm=27&gp=0.jpg'></image>
+      <view class='clocker_name'>妞妞</view>
+    </view>
+
+  </view>
+</view>
+    <!-- 打卡者遮罩层 e -->
+
+
+
+
+
+
+
+  </view>
+</view>

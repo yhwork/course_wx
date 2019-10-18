@@ -1,0 +1,74 @@
+.CircleType_tit{
+  padding: 20rpx;
+  /* padding-left: 20rpx; */
+}
+.CircleType_list_name{
+  padding-bottom: 20rpx;
+  padding-left: 20rpx;
+}
+.CircleType_list{
+  width: 100%;
+  border-top:1px solid #bbbbbb;
+  background: #f8f8f8; 
+  display: flex;
+  flex-wrap: wrap;
+}
+ .CircleType_list_item{
+  border: 1px solid #bbbbbb;
+  border-radius: 10rpx;
+  width:122rpx;
+  height: 56rpx;
+  text-align: center;
+  line-height: 56rpx;
+  color: #d5d5d5;
+  font-size: 28rpx;
+  margin-top: 20rpx;
+  margin-left: 17rpx;
+}
+.sec_select {
+color:#f29219;
+}
+.CircleType_list_explain{
+  font-size: 28rpx;
+  padding: 20rpx;
+  color: #cfcfcf;
+}
+.list_custom image{
+  width: 42rpx;
+  height: 42rpx;
+}
+.list_custom{
+  padding-left: 20rpx;
+  color: #f2a440;
+  font-size: 32rpx;
+  display: flex;
+  align-items: center;
+}
+.CircleType_btn{
+   font-family: PingFangSC-Regular;
+  height: 94rpx;
+  width: 100%;
+  line-height: 94rpx;
+  border-radius: 10rpx;
+  text-align: center;
+  background: #f29219;
+  color: #fff;
+  font-size: 36rpx;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.custom{
+  padding-left: 20rpx;
+}
+/* .CircleType_list_box{
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+
+}
+.CircleType_list_name{
+  width: 24.5%;
+  text-align: center;
+} */

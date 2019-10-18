@@ -1,0 +1,9 @@
+{
+	"navigationBarTitleText": "课程表",
+    "enablePullDownRefresh": true,
+    "backgroundTextStyle": "dark",
+    "usingComponents": {
+        "timetable": "/components/timetable/timetable",
+        "calendarLayer": "/components/calendarLayer/calendarLayer"
+    }
+}

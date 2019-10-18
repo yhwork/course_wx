@@ -1,0 +1,142 @@
+.page-toptips_warn {
+  background: #e64340;
+  position: fixed;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 5px;
+  font-size: 14px;
+  text-align: center;
+  color: #fff;
+  z-index: 5000;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.child_info {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.child_info_logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 0rpx;
+  z-index: 10
+}
+
+.info_logo {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.schoolin_class_info {
+  position: relative;
+}
+
+.ma-top{
+  margin-top: 40rpx;
+}
+.info_list {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10rpx 20rpx;
+  background: white;
+  margin-top: 2px;
+  border-bottom: 2rpx solid #cdcecd;
+  height: 60rpx;
+}
+
+.info_list_icon {
+  width: 38rpx;
+  height: 36rpx;
+  margin-right: 28rpx;
+}
+
+.info_list_icon {
+  width: 38rpx;
+  height: 36rpx;
+  margin-right: 28rpx;
+}
+
+.import {
+  color: red;
+  margin-left: 10rpx;
+  position: absolute;
+  top: 25rpx;
+  left: 50rpx;
+}
+
+.school {
+  margin-left: 10rpx;
+}
+
+.class_add_btn {
+  background: #ff9800;
+  color: white;
+  height: 74rpx;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10rpx;
+  z-index: 10;
+}
+
+.main_lenght_time {
+  width: 130%;
+}
+
+
+/* 表格 */
+.table {
+  border: 0px solid darkgray;
+  font-size: 12px;
+  padding: 18rpx;
+  background: white;
+}
+
+.tr {
+  display: flex;
+  /* width: 2700rpx; */
+  align-items: center;
+  /* border: 2rpx solid #bbbbbb; */
+}
+
+.td {
+  border: 2rpx solid #bbb;
+  width: 17%;
+  height: 48rpx;
+  justify-content: center;
+  text-align: center;
+  word-wrap: break-word;
+  flex-shrink: 0;
+  line-height: 48rpx;
+}
+
+.td:nth-child(1) {
+  width: 50rpx;
+}
+.schoolin_class_tips{
+  padding: 0 20rpx;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 28rpx;
+  color: #cdcecd;
+}
+.name{
+  font-size: 28rpx;
+}
+.class_tips{
+  height: 32rpx;
+  width: 32rpx;
+  margin-right: 10rpx;
+}

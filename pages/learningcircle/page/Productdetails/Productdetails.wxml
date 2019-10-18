@@ -1,0 +1,266 @@
+<!--Productdetails.wxml-->
+<!-- *
+ @author:ting.Pan
+*@time:2019.4.8
+ -->
+<view class='Productdetails_wrap'>
+  <!-- 滑动轮播swiper开始 -->
+  <view class='swiper_box'>
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" current="{{current}}">
+      <block wx:for="{{imgUrls}}">
+        <swiper-item>
+          <image src="{{item}}" class="slide-image" style='width:100%;height:100%' />
+        </swiper-item>
+      </block>
+    </swiper>
+    <!-- 如果有拼团 显示 限时抢 -->
+    <text class="item_catch">限时抢</text>
+    <text class='item_money'>¥420元起</text>
+  </view>
+  <!-- 滑动轮播swiper结束-->
+  <!-- 商品介绍开始 -->
+  <view class='Course_introduction'>
+    <view class='introduction_detail'>详细介绍</view>
+    <view class='course_brand'>
+      <text class='itemTexrt_brand'>赠送教程</text>
+      <text class='itemTexrt_brand'>金牌讲师</text>
+      <text class='itemTexrt_brand'>及时答疑</text>
+      <text class='itemTexrt_brand'>及时答疑</text>
+    </view>
+    <!-- 商家 -->
+    <view class='merchants_wrap'>
+      <view class='commercial_shop'>
+        <!-- 拼团显示 99元起 -->
+        <view>
+          <text class='shop_one'>¥</text>
+          <text class='shop_one'>99</text>
+          <text class='shop_two'>起</text>
+        </view>
+        <view>
+          <text>|</text>
+          <text class='shop_three'>¥</text>
+          <text>300</text>
+        </view>
+        <view class='shop_last'>
+          <text class='course_sale_'>已售<text>200</text></text>
+        </view>
+      </view>
+    </view>
+    <!-- 拼团玩法显示开始 -->
+    <view class="booking">
+      <view class='booking_top'>
+        <view class='bookingTop_left'>
+          <text class='booking_group'>立减团</text>
+          <text class='booking_addgroup'>拼团玩法</text>
+          <text class='booking_sign'>？</text>
+        </view>
+        <view class='bookingTop_right'>
+          <view>
+            <text class='shop_one'>¥</text>
+            <text class='shop_one'>99</text>
+            <text class='shop_two'>起</text>
+          </view>
+          <view class='bookingTop_create'>
+            <text class='shop_three'>|</text>
+            <text class='shop_three'>¥</text>
+            <text class='shop_three'>300</text>
+          </view>
+        </view>
+      </view>
+      <view class='booking_buttom'>
+        <text class='booking_explation'>支付开团并邀请2人参加，评团失败自动退款</text>
+        <text class='booking_begin'>发起拼团</text>
+      </view>
+    </view>
+    <!-- 拼团玩法显示结束 -->
+  </view>
+  <!-- 商品介绍结束 -->
+  <!-- 选择老师开始 -->
+  <view class='choose_teacher'>
+
+    <view class='teacher_font'>
+      <text class='choose_font'>请选择老师</text>
+    </view>
+
+    <!-- 老师列表 -->
+    <view class="teacher_list">
+      <!-- 老师列表  item 开始 -->
+      <view class='list_item' bindtap='gotoTeacher'>
+        <view class='list_top'>
+          <view class='top_teacherDetail'>
+            <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/cap3.jpg" class='top_image'></image>
+            <view class='teacherDetail_name'>张三老师</view>
+          </view>
+
+          <view class='top_fontDetail'>
+            <view class='detail_font'>
+              <text>2017-09-10~2017-12-31</text>
+            </view>
+
+            <view class='datail_day'>
+              <text>每周日18:30-20:30</text>
+              <text class='datail_class'>
+         <text>50</text>
+              <text>次课</text>
+              </text>
+            </view>
+            <view class='detail_sale'>
+              <text class='sale_class'>已售<text>6</text></text>
+              <text class='datail_num'>
+              <text>剩余名额:</text>
+              <text class='num_font'>18</text>
+              <text class='datial-arrow'>→</text>
+              </text>
+            </view>
+            <view class='detail_address'>
+              <text>宜山路705号科技大厦一楼</text>
+            </view>
+          </view>
+
+        </view>
+      </view>
+
+      <!--老师列表  item结束  -->
+      <view class='list_item'>
+        <view class='list_top'>
+          <view class='top_teacherDetail'>
+            <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/cap3.jpg" class='top_image'></image>
+            <view class='teacherDetail_name'>张三老师</view>
+          </view>
+
+          <view class='top_fontDetail'>
+            <view class='detail_font'>
+              <text>2017-09-10~2017-12-31</text>
+            </view>
+
+            <view class='datail_day'>
+              <text>每周日18:30-20:30</text>
+              <text class='datail_class'>
+         <text>50</text>
+              <text>次课</text>
+              </text>
+            </view>
+            <view class='detail_sale'>
+              <text class='sale_class'>已售<text>6</text></text>
+              <text class='datail_num'>
+              <text>剩余名额:</text>
+              <text class='num_font'>18</text>
+              <text class='datial-arrow'>→</text>
+              </text>
+            </view>
+            <view class='detail_address'>
+              <text>宜山路705号科技大厦一楼</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 选择老师结束 -->
+  <!-- 中间背景色开始 -->
+  <view class="middleV"></view>
+  <!-- 中间背景色结束 -->
+  <!-- 商家信息开始 -->
+  <view class='shop_info' bindtap='gotoorganization'>
+    <view class='list_item'>
+      <view class='list_top'>
+        <view class='top_teacherDetail'>
+          <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/cap3.jpg" class='top_image'></image>
+        </view>
+
+        <view class='top_fontDetail'>
+          <view class='detail_font info_fontColor'>
+            <text>乐汉师 徐汇校区</text>
+          </view>
+
+          <view class='datail_day'>
+            <text>
+                <text class='info_confirm'>xx认证:</text>
+            <text class='confirm_city'>上海xxx</text>
+            </text>
+
+          </view>
+          <view class='detail_sale'>
+            <text class='sale_class'> 机构Slogan</text>
+            <text class='datial-arrow'>→</text>
+          </view>
+          <view class='detail_address'>
+            <!-- 评价点赞 问老板要不要？ -->
+            <!-- <text>宜山路705号科技大厦一楼</text> -->
+          </view>
+        </view>
+
+      </view>
+    </view>
+    <view class="middleV"></view>
+  </view>
+  <!-- 商家信息结束 -->
+  <!-- 课程详情开始 -->
+  <view class='course_info'>
+    <text class='course_font'>课程详情</text>
+    <text class='course_detail'>课程课程可曾课程课程可曾
+   课程课程可曾
+   课程课程可曾
+   课程课程可曾
+   课程课程可曾
+   课程课程可曾
+   
+   </text>
+  </view>
+
+  <!-- 课程详情结束 -->
+  <!-- 底部导航开始 -->
+  <view class='bottombar'>
+    <view class='bar_service'>
+      <view>
+        <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/cap3.jpg' class='bar_img'></image>
+      </view>
+      <view>
+        <text class='service_content'>客服</text>
+      </view>
+    </view>
+    <view class='bar_save'>
+      <view>
+        <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/cap3.jpg' class='bar_img'></image>
+      </view>
+      <view>
+        <text class='service_content'>收藏</text>
+      </view>
+    </view>
+    <view class='bar_buynow' bindtap='buy'>
+      <view class='buy_wrap'>
+        <view class='buy_top'>
+          <view>¥</view>
+          <view>300</view>
+        </view>
+        <view class='buy_bottom'>
+          <view>立即购买</view>
+        </view>
+      </view>
+    </view>
+
+
+
+    <view class='bar_buy' bindtap='buy'>
+      <view class='buy_wrap'>
+        <view class='buy_top'>
+          <view>¥</view>
+          <view>99</view>
+        </view>
+        <view class='buy_bottom'>
+          <view>
+            <text>3</text>
+            <text>人团</text>
+          </view>
+
+        </view>
+      </view>
+    </view>
+
+
+
+
+  </view>
+
+  <!-- 底部导航结束 -->
+</view>

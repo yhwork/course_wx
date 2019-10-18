@@ -1,0 +1,258 @@
+<view class='pay_box'>
+  <view class='mywaitPay'>
+    <view class='pay_item {{index==activeIndex?"ativeclass":""}}' wx:for="{{tabText}}" wx:key="index" data-index="{{index}}" bindtap='tabItem'>{{item.text}}</view>
+  </view>
+</view>
+<!-- 没有数据订单 -->
+<view>
+</view>
+<!-- tab -->
+<!-- 全部订单-->
+<view wx:if="{{activeIndex==0}}">
+  <!-- 跳转 订单详情 -->
+  <view class='all_pay' wx:for="{{userorderList}}" wx:key="index" wx:key="index" bindtap='{{item.productType=="8"?"goodsDetail":""}}' data-paystatus='{{item.payStatus}}' data-ordernumber='{{item.orderNumber}}' data-productId='{{item.productId}}' id="0"
+    data-type='0'>
+    <view class='pay_content'>
+      <view class='content_left'>
+        <image src="{{userorderList[index].imgVideo[0]}}" class='left_img'></image>
+      </view>
+      <view class='content_right'>
+        <view>
+          <text>{{item.title}}</text>
+        </view>
+        <view>
+          <!-- <text>{{item.descr}}</text> -->
+          <text class='right_money'><text>¥</text>
+          <text>{{item.money?item.money:"0.00"}}</text>
+          <!-- 去掉数字概念  下一版加上 -->
+          <!-- <text>*</text>
+            <text>1</text> -->
+          </text>
+        </view>
+        <!-- 去支付样式 -->
+        <view class='right_text'>
+          <scroll-view scroll-x="true" class='lable_style'>
+            <text wx:for="{{userorderList[index].lable=='[]'?'':userorderList[index].lable}}" class='font' wx:key="index">{{item}}</text>
+          </scroll-view>
+        </view>
+        <!-- 去支付 样式 -->
+        <!-- 待分享 样式 -->
+        <view class="item_underbuttom">
+          <block wx:if="{{item.orderStatusType==2}}">
+            <button open-type='share' class='donfirmBtn buttonhover' bindtap='addOrder' data-title='{{item.title}}' data-img='{{item.imgVideo[0]}}' data-productId='{{item.productId}}' data-courseId='{{item.courseId}}'>邀请好友拼单</button>
+          </block>
+          <block wx:if="{{item.orderStatusType==3}}">
+            <view class='donfirmBtn' catchtap='goBooking' data-ordernumber='{{item.orderNumber}}'>去预约</view>
+            <view class='donfirmBtn' catchtap='gotomyBooking' data-ordernumber='{{item.orderNumber}}'>我的预约</view>
+            <view class='donfirmBtn' catchtap='gotoColock' data-num='{{item.orderNumber}}'>去打卡</view>
+            <view class='donfirmBtn' catchtap='gotoAlreadyColock' data-num='{{item.orderNumber}}'>我的打卡</view>
+          </block>
+          <block wx:if="{{item.orderStatusType==1}}">
+            <view class='donfirmBtn' catchtap='waitPaymoney' data-ordernumber='{{item.orderNumber}}' data-productId='{{item.productId}}' data-productType='{{item.productType}}'>去支付</view>
+            <view class='donfirmBtn' catchtap='cancleOrder' data-ordernumber='{{item.orderNumber}}'>取消订单</view>
+          </block>
+          <block wx:if="{{item.orderStatusType==4}}">
+            <view class='donfirmBtn' catchtap='waitsee' data-productId='{{item.productId}}' data-num='{{item.orderNumber}}'>去观看</view>
+          </block>
+        </view>
+      </view>
+    </view>
+    <view class='pay_canc'>
+    </view>
+  </view>
+</view>
+<!-- 待付款 -->
+<view class='all_pay' wx:if="{{activeIndex==1}}" class='waitPay_style'>
+  <!-- <view class='all_pay' wx:if="{{activeIndex==1}}" bindtap='waitPay' class='waitPay_style'> -->
+  <!-- 渲染列表开始 -->
+  <view wx:for="{{waitPay}}" wx:key="index" class='waitpayss' bindtap='{{item.productType=="8"?"goodsDetail":""}}' data-paystatus='{{item.payStatus}}' data-ordernumber='{{item.orderNumber}}' data-productId='{{item.productId}}' id="0" data-type='0'>
+    <!-- 列表 -->
+    <view class='pay_content'>
+      <view class='content_left'>
+        <image src="{{waitPay[index].imgVideo[0]}}" class='left_img'></image>
+      </view>
+      <view class='content_right'>
+        <view>
+          <text>{{item.title}}</text>
+        </view>
+        <view class='rt_top'>
+          <text class='right_money'><text>¥</text>
+          <text>{{item.money?item.money:"0.00"}}</text>
+          <text>*</text>
+          <text>1</text></text>
+        </view>
+        <view class='right_text'>
+          <scroll-view scroll-x="true" class='lable_style'>
+            <text wx:for="{{item.lable=='[]'?'':item.lable}}" wx:key="index" class='font' style=' display: inline-block'>{{item}}</text>
+            <!-- <text >开开心心</text>
+          <text  class='font'  style=' display: inline-block'>开开心心的猪</text>
+          <text  class='font'  style=' display: inline-block'>开开心心的猪</text> -->
+          </scroll-view>
+        </view>
+      </view>
+    </view>
+    <!-- 列表 -->
+    <view class='pay_canc'>
+      <text>
+       <text>实付:</text>
+      <text>¥</text>
+      <text>{{item.payMoney?item.payMoney:"0.00"}}</text>
+      </text>
+    </view>
+    <view class='btn_wrap'>
+      <!-- 取消订单第一版不上  后期加上 -->
+      <text class='can_btn' catchtap='cancleOrder' data-ordernumber='{{item.orderNumber}}'>取消订单</text>
+      <text class='support_btn' catchtap='waitPaymoney' data-ordernumber='{{item.orderNumber}}' data-productId='{{item.productId}}' data-productType='{{item.productType}}'>去支付</text>
+    </view>
+  </view>
+</view>
+<!-- 待分享 -->
+<view class='all_pay' wx:if="{{activeIndex==2}}">
+  <view class='pay_contents content-wrap'>
+    <view class="content_item" wx:for="{{waitShare}}" wx:key="index" bindtap='{{item.productType=="8"?"goodsDetail":""}}' data-paystatus='{{item.payStatus}}' data-ordernumber='{{item.orderNumber}}' data-productId='{{item.productId}}' id="0" data-type='0'>
+      <view class='item_top'>
+        <view class='top_image'>
+          <image src="{{item.imgVideo[0]}}" class='image_style'></image>
+          <text class='font_text font'>{{item.title}}</text>
+
+        </view>
+        <view class='top_text'>
+          <text class='text_font'>待分享,差</text>
+          <text class='text_num'>1</text>
+          <text class='text_peo'>人</text>
+        </view>
+      </view>
+      <view class='item_middle'>
+        <view class='middle_left'>
+          <image src="{{item.imgVideo[0]}}" class='middleimage_style'></image>
+        </view>
+        <view class='middle_middle'>
+          <view class='middle-font font'>{{item.title}}</view>
+
+        </view>
+        <view class='middle_right'>
+          <view class='middle_money'>
+            <view class='money_top'>
+              <view>¥</view>
+              <view>{{item.money}}</view>
+            </view>
+            <view class='money_buttom'>
+              <view class='buttom_font'>X</view>
+              <view class='num_style font'>1</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class='item_buttom'>
+        <text>实付:</text>
+        <text>¥</text>
+        <text>{{item.payMoney}}</text>
+        <text>(免运费)</text>
+      </view>
+      <view class="item_underbuttoms">
+        <!-- <view class='cancleBtn' bindtap='cancleOrder' data-num='{{item.orderNumber}}'>取消订单</view> -->
+        <button open-type='share' class='donfirmBtn' bindtap='addOrder' data-title='{{item.title}}' data-img='{{item.imgVideo[0]}}' data-productId='{{item.productId}}' data-courseId='{{item.courseId}}' data-productCourseId="{{item.productCourseId}}">邀请好友拼单</button>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 待预约 -->
+<view class='all_booking' wx:if="{{activeIndex==3}}" wx:for="{{waitBooking}}" wx:key="index" bindtap='{{item.productType=="8"?"goodsDetail":""}}' data-paystatus='{{item.payStatus}}' data-ordernumber='{{item.orderNumber}}' data-productId='{{item.productId}}'
+  id="0" data-type='0'>
+  <view class='booking_wrapbox'>
+    <view class="content_item">
+      <view class='no_flex'>
+        <!-- 循环列表开始 -->
+        <view class='pay_content'>
+          <view class='content_left'>
+            <image src="{{waitBooking[index].imgVideo[0]}}" class='left_img'></image>
+          </view>
+          <view class='content_right'>
+            <view>
+              <text>{{item.title}}</text>
+            </view>
+            <view>
+              <!-- <text>就问你好不好吃</text> -->
+            </view>
+            <view class='right_text'>
+              <scroll-view scroll-x="true" class='lable_style'>
+                <!-- 记的更换数据  brand标签 -->
+                <!-- <text wx:for="{{item.lable=='[]'?'':item.lable}}" wx:key="index" class='font' style=' display: inline-block'>{{item}}</text> -->
+              </scroll-view>
+            </view>
+          </view>
+          <view>
+          </view>
+
+        </view>
+        <view class='booking_bottom'>
+          <view>还有{{counts}}次机会预约</view>
+          <view class='go_booking' catchtap='goBooking' data-ordernumber='{{item.orderNumber}}'>去预约</view>
+          <view class='my_booking' catchtap='gotomyBooking' data-ordernumber='{{item.orderNumber}}'>我的预约</view>
+        </view>
+        <!-- 循环列表结束 -->
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 待打卡 -->
+<view class='all_pay' wx:if="{{activeIndex==4}}" wx:for="{{waitClock}}" wx:key="index" bindtap='{{item.productType=="8"?"goodsDetail":""}}' data-paystatus='{{item.payStatus}}' data-ordernumber='{{item.orderNumber}}' data-productId='{{item.productId}}'
+  id="0" data-type='0'>
+  <view class='pay_content'>
+    <!-- 开始   把waitpay换掉，。替换-->
+    <!-- <view wx:for="{{waitPay}}" wx:key="index"> -->
+    <view>
+      <view class='pay_content'>
+        <view class='content_left'>
+          <image src="{{waitClock[index].imgVideo[0]}}" class='left_img'></image>
+        </view>
+        <view class='content_right'>
+          <view>
+            <text>{{item.title}}</text>
+          </view>
+          <view>
+            <!-- <text>就问你好不好吃</text> -->
+          </view>
+          <view class='right_text'>
+            <scroll-view scroll-x="true" class='lable_style'>
+              <!-- 记的更换数据  brand标签 -->
+              <text wx:for="{{item.lable=='[]'?'':item.lable}}" wx:key="index" class='font' style=' display: inline-block'>{{item}}</text>
+            </scroll-view>
+          </view>
+        </view>
+      </view>
+      <view class='btn_wrap'>
+        <text class='support_btn' catchtap='gotoColock' data-num='{{item.orderNumber}}'>去打卡</text>
+        <text class='support_btn' catchtap='gotoAlreadyColock' data-num='{{item.orderNumber}}'>我的打卡</text>
+      </view>
+    </view>
+    <!-- 结束 -->
+  </view>
+</view>
+<!-- 待观看 -->
+<view class='all_pay' wx:if="{{activeIndex==5}}" wx:for="{{waitSee}}" wx:key="index" bindtap='' data-paystatus='{{item.payStatus}}' data-ordernumber='{{item.orderNumber}}' data-productId='{{item.productId}}' id="0" data-type='0' bindtap='{{item.productType=="8"?"goodsDetail":""}}'
+  data-paystatus='{{item.payStatus}}' data-ordernumber='{{item.orderNumber}}' data-productId='{{item.productId}}' id="0" data-type='0'>
+  <!-- payContent -->
+  <view class='pay_content'>
+    <view class='content_left'>
+      <image src="{{waitSee[index].imgVideo[0]}}" class='left_img'></image>
+    </view>
+    <view class='content_right'>
+      <view>
+        <text>{{item.title}}</text>
+      </view>
+      <view>
+        <!-- <text>{{item.descr}}</text> -->
+      </view>
+      <view class='right_text'>
+        <scroll-view scroll-x="true" class='lable_style'>
+          <text wx:for="{{waitSee[index].lable}}" wx:key="index" class='font' style=' display: inline-block'>{{item}}</text>
+        </scroll-view>
+      </view>
+      <view>
+        <text class='see_btn' catchtap='waitsee' data-productId='{{item.productId}}' data-num='{{item.orderNumber}}'>去观看</text>
+      </view>
+    </view>
+  </view>
+  <!-- payContent -->
+</view>

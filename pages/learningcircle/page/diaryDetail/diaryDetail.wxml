@@ -1,0 +1,305 @@
+<!--pages/circle/diaryDetail/diaryDetail.wxml-->
+<import src="../../../../components/img_video/img_video" />
+
+
+<view class='page_top'>
+  <view class='basic_info'>
+    <image class='photo' src='{{diaryInfo.logo}}'></image>
+    <view class='basic_right'>
+      <view class='name'>{{diaryInfo.nickName}}</view>
+      <!-- <view class='time'>{{diaryInfo.signInTime}}</view> -->
+    </view>
+  </view>
+  <view class='diary'>
+    <!-- <view class='title'>{{diaryInfo.communityName}}</view> -->
+
+    <view class='theme_cont'>
+      <view wx:for="{{communityDiaryForPage}}" wx:key='infoidx' wx:for-item='item' wx:for-index='infoidx'>
+        <view class='intro_item' wx:if='{{item.contentType == 1}}'>
+          <view class='content'>{{item.content}}</view>
+        </view>
+      </view>
+    </view>
+
+
+
+    <view class='theme_cont'>
+      <view wx:for="{{communityDiaryForPage}}" wx:key='infoidx' wx:for-item='item' wx:for-index='infoidx'>
+        <!-- <view class='intro_item' wx:if='{{item.contentType == 2}}'>
+          <view class='content'>
+            <image class='intro_img' mode='widthFix' src='{{item.content}}'></image>
+          </view>
+        </view> -->
+        <view class='audio' wx:if='{{item.contentType == 3}}'>
+          <audio src="{{item.content}}" id="diaryAudio{{infoidx}}" bindtimeupdate="AUDIO_UPDATA_PROGRESS" bindended="AUDIO_PLAY_END"></audio>
+          <view class='playOrstop' bindtap='AUDIO_PLAY'>
+            <view class='play' data-type='1' data-play='{{item.play}}' style='display:{{item.play?"none":"flex"}}' catchtap='AUDIO_PLAY' data-idx='{{infoidx}}'></view>
+            <view class='stop' data-type='1' data-play='{{item.play}}' style='display:{{item.play?"flex":"none"}}' catchtap='AUDIO_STOP' data-idx='{{infoidx}}'>
+              <view class='shu'></view>
+              <view class='shu'></view>
+            </view>
+          </view>
+          <view class='slid' wx:for="{{diarySlidlst}}" wx:key='slididx' wx:for-item='sitem' wx:for-index='slididx'>
+            <view wx:if='{{sitem.id==infoidx}}'>
+              <slider bindchange="AUDIO_SLIDER_CHANGE" block-size="12px" step="2" value="{{sitem.offset}}" max="{{sitem.max}}" class="slider" selected-color="#ff5e5e" />
+              <text class='time'>{{sitem.audio_duration}}</text>
+            </view>
+          </view>
+        </view>
+        <!-- <view class='intro_item' wx:if='{{item.contentType == 4}}'>
+          <view class='content'>
+            <navigator url='../videoPlay/videoPlay?audioSrc={{item.content}}'>
+              <view class='video_btn_box'>
+                <image src='{{item.content}}?x-oss-process=video/snapshot,t_10000,m_fast' mode='aspectFit'></image>
+                <view class='video_btn'></view>
+              </view>
+            </navigator>
+          </view>
+        </view> -->
+      </view>
+      <template is="msgItem" data="{{subjectImg,show,videooSrc,videooSrcIdx,subjectImgList,FIREST,num:-1}}" />
+      <view wx:if='{{communityDiaryForPage.length == 0}}'>
+        <view>这个圈主比较懒，什么都没写呢！</view>
+      </view>
+
+      <view class='time'>{{diaryInfo.signInTime}}</view>
+      <view class='foot_tab'>
+        <view class='zan' bindtap='ZAN' data-like='{{diaryInfo.isLike}}' data-id='{{diaryInfo.signInId}}'>
+          <image wx:if='{{diaryInfo.isLike==0}}' src='../../../../assets/icons/zan.png'></image>
+           <image wx:if='{{diaryInfo.isLike==1}}' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/liked.png'></image>
+          点赞
+        </view>
+        <view class='comment_f' data-type='2' bindtap='showComment'>
+          <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/comment.png'></image>
+          评论
+        </view>
+        <view class='share' bindtap='showShareWin'>
+          <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/share.png'></image>
+          分享
+        </view>
+      </view>
+
+
+    </view>
+
+
+
+  </view>
+  <view class='att_comp'>
+    <!-- <view  class='{{diaryInfo.isFollow==1?"attention":"attentioned"}}' bindtap='SIGNLIKE' data-targetUserId='{{diaryInfo.userId}}' data-like='{{diaryInfo.isFollow}}'>{{diaryInfo.isFollow==1?"已关注":"关注"}}</view> -->
+    <view class='more'>
+      <image class='more_img' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/more.png' bindtap='MORE' data-type='{{complaintFlag}}'></image>
+      <navigator hidden='{{complaintFlag}}' url='../complain/complain?signInId={{diaryInfo.signInId}}'>
+        <view class='toast'>
+          <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/toast.png'></image>
+          <view class='complaint'>投诉</view>
+        </view>
+      </navigator>
+    </view>
+  </view>
+</view>
+
+
+<!-- 赞 -->
+<view wx:if='{{avatarList.length>0}}'>
+  <view class='zan_total'>
+    <!--点赞人员头像填充-->
+    <text class='title'>赞</text>
+    <view class='img_box'>
+      <image wx:for='{{avatarList}}' wx:key='idx' wx:for-index='idx' wx:for-item='item' class='photo' src='{{item.likedUserLogo}}'></image>
+    </view>
+  </view>
+</view>
+
+<!-- 评论 -->
+<view class='comment_box'>
+  <view wx:if='{{totalRecords>0?true:""}}'>
+    <view class='comment'>
+      <view class='total'>共{{totalRecords}}条评论</view>
+      <view class='comment_list'>
+        <!--循环展示所有评论-->
+        <view wx:for='{{commentList.data}}' wx:key='idx' wx:for-index='idx' wx:for-item='item'>
+          <view class='comment_item'>
+            <view class='comment_top'>
+              <!--评论首条头像-->
+              <view class='top_left'>
+                <image class='comment_photo' src='{{item.userLogo}}'></image>
+                <view class='name_t'>
+                  <view class='name'>{{item.userNickName}}</view>
+                  <view class='comment_time'>{{item.timeDiff}}</view>
+                </view>
+              </view>
+              <!--回复按钮-->
+              <view class='top_right' bindtap='showReply' data-commentId='{{item.commentId}}' data-replayId='{{item.addBy}}' data-replayName='{{item.userNickName}}' data-type='1'>
+                <view class='reply_btn'>
+                  <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/reply.png'></image>
+                  回复
+                </view>
+              </view>
+            </view>
+            <!--评论人做出的评论-->
+            <view wx:if='{{item.content!=""&&item.content!=null}}'>
+              <view class='comment_content'>
+                {{item.content}}
+              </view>
+            </view>
+            <view wx:else>
+              <view class='comment_content'>
+                <view class='comment_audio'>
+                  <view class='duration'>{{item.audio_duration}}</view>
+                  <audio src='{{item.audioUrl}}' id="commentAudio{{idx}}" bindtimeupdate="AUDIO_UPDATA_PROGRESS" bindended="AUDIO_PLAY_END"></audio>
+                  <view class='voice_animate'>
+                    <view class='audio_play' data-type='2' data-idx='{{idx}}' hidden='{{item.play}}' catchtap='AUDIO_PLAY'>
+                      <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/voice_img.png'></image>
+                    </view>
+                    <view class='audio_stop' data-type='2' data-idx='{{idx}}' hidden='{{!item.play}}' catchtap='AUDIO_STOP'>
+                      <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/voice.gif'></image>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <!--其他人对该回复做出的评论-->
+            <view wx:for='{{item.replyList.list}}' wx:key='inneridx' wx:for-index='inneridx' wx:for-item='inneritem'>
+              <view class='reply'>
+                <text class='master_name'>{{inneritem.userNickName}}</text> 回复
+                <text class='comm_name'>{{item.userNickName}}</text>:
+                <!--文本回复-->
+                <text wx:if='{{inneritem.content!=""&&inneritem.content!=null}}'>{{inneritem.content}}</text>
+                <!--语音回复-->
+                <view wx:else class='audio_aply'>
+                  <view class='comment_audio'>
+                    <view class='duration'>{{inneritem.audio_duration}}</view>
+                    <audio src='{{inneritem.audioUrl}}' id="{{idx}}replayAudio{{inneridx}}" bindtimeupdate="AUDIO_UPDATA_PROGRESS" bindended="AUDIO_PLAY_END"></audio>
+                    <view class='voice_animate'>
+                      <view class='audio_play' data-type='3' data-idx='{{idx}}' data-inneridx='{{inneridx}}' hidden='{{inneritem.play}}' catchtap='AUDIO_PLAY'>
+                        <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/voice_img.png'></image>
+                      </view>
+                      <view class='audio_stop' data-type='3' data-idx='{{idx}}' data-inneridx='{{inneridx}}' hidden='{{!inneritem.play}}' catchtap='AUDIO_STOP'>
+                        <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/voice.gif'></image>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view wx:else>
+    <view class='comment'>
+      <view class='total'> 暂无评论</view>
+    </view>
+  </view>
+</view>
+
+
+
+<!-- 底部按钮 -->
+<!-- <view class='foot_tab'>
+  <view class='zan' bindtap='ZAN' data-like='{{diaryInfo.isLike}}' data-id='{{diaryInfo.signInId}}'>
+    <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/zan.png'></image>
+    点赞
+  </view>
+  <view class='comment_f' data-type='2' bindtap='showComment'>
+    <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/comment.png'></image>
+    评论
+  </view>
+  <view class='share' bindtap='showShareWin'>
+    <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/share.png'></image>
+    分享
+  </view>
+</view> -->
+ 
+<!-- 评论框 -->
+<view class='comment_mask' catchtouchmove='eStop' hidden='{{iptHide}}' data-type='1' catchtap='hedeReply'>
+  <view class='comment_mask_box'>
+    <view class='comment_ipt'>
+      <view class='add' data-type='1' bindtap='SET_AUDIO'>
+        <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/audio1.png'></image>
+      </view>
+      <view catchtap='GETFOCUS' data-type='1'>
+        <!-- <input placeholder='评论' focus='{{commentFocus}}' value='{{text}}' bindinput='START_TEXT'></input> -->
+        <textarea class="textinput" placeholder-class="input_null" value='{{text}}' fixed="true"  maxlength="-1"  cursor-spacing="30" auto-height="true" focus="{{commentFocus}}" placeholder="评论" bindinput='START_TEXT'></textarea>
+      </view>
+      <view class='pub' data-type='1' bindtap='SEND_MESSAGE'>发表</view>
+    </view>
+    <view class='comment_voice' hidden='{{voiceFlag}}'>
+      <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/vioce.png'></image>
+      <view class='comment_voice_title' bindtap='TURNBACK'>删除录音</view>
+    </view>
+  </view>
+</view>
+
+<!-- 回复框 -->
+<view class='reply_mask' catchtouchmove='eStop' hidden='{{replyHide}}' data-type='2' catchtap='hedeReply'>
+  <view class='replay_mask_box'>
+    <view class='reply_ipt'>
+      <view class='add' data-type='2' bindtap='SET_AUDIO'>
+        <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/audio1.png'></image>
+      </view>
+      <view catchtap='GETFOCUS' data-type='2'>
+        <!-- <input placeholder='回复 {{replayName}}:' focus='{{replayFocus}}' value='{{text}}' bindinput='START_TEXT'></input> -->
+        <textarea class="textinput" placeholder-class="input_null" fixed="true" value='{{text}}' maxlength="-1"  cursor-spacing="30" auto-height="true" focus="{{replayFocus}}" bindinput='START_TEXT' placeholder="回复 {{replayName}}:"></textarea>
+      </view>
+      <view class='pub' data-type='1' bindtap='SEND_MESSAGE'>发表</view>
+    </view>
+    <view class='comment_voice' hidden='{{voiceFlag}}'>
+      <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/vioce.png'></image>
+      <view class='comment_voice_title' bindtap='TURNBACK'>删除录音</view>
+    </view>
+  </view>
+</view>
+<!-- 录音 -->
+<view class='voice_mask' hidden='{{isSpeaking}}' data-type='3' catchtouchmove='eStop'>
+  <view class='voice_box'>
+    <view class='countDown' hidden='{{!startSpeak}}'>录音中，还剩{{startSpeak?countDownTime:""}}秒</view>
+    <image class='voice_btn' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/vioce.png' bindtap='START_AUDIO' hidden='{{startSpeak}}'></image>
+    <image class='voice_btn' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/vioce_play2.png' bindtap='STOP_AUDIO' hidden='{{!startSpeak}}'></image>
+    <view class='voice_title'>{{startSpeak?"点击结束":"点击开始"}}</view>
+    <view class="voice_box_close" data-type='4' catchtap='hedeReply'>
+      <image class="voice_box_close_imge" src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/close.png'></image>
+    </view>
+
+  </view>
+</view>
+
+<!-- 分享遮罩层 -->
+<view class='invit_mask' catchtouchmove='eStop' hidden='{{invitHide}}'>
+  <view class='invit_box'>
+    <view class='invit_title'>
+      <view class='invit_title_l'>
+        <!-- <text class='name'>{{userInfo.nickName}}</text> @您，邀请您加入一个很棒的圈子 -->
+      </view>
+      <view class='cancel' bindtap='HIDE_INVIT'>取消</view>
+    </view>
+    <view class='invit_box_c'>
+      <view class='invit_c_title'>{{diaryInfo.communityName}}</view>
+      <view class='mem_clock'>
+        <view class='member'>成员 {{diaryInfo.partIn}}</view>
+        <view class='clock_num'>打卡次数 {{diaryInfo.signNum}}</view>
+      </view>
+      <view class='date'>
+        <view class='start_date'>开始：{{diaryInfo.subjectSignStart}}</view>
+        <view class='end_date'>结束：{{diaryInfo.subjectSignEnd}}</view>
+      </view>
+      <!-- <view class='time'>每天：{{diaryInfo.signinTime}}</view> -->
+    </view>
+    <view class='invit_foot'>
+      <button class='friend' open-type="share">
+        <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/wx_friend.png'></image>
+        微信好友
+      </button>
+      <!--<button class='friend_circle' bindtap='shareFriendCircle'>
+        <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/wx_friend_circle.png'></image>
+        微信朋友圈
+      </button>-->
+    </view>
+  </view>
+</view>
+
+<canvas data-id="{{diaryInfo.signInId}}" class="share-canvas" style="width:{{shareCavansOptions.width}}px;height:{{shareCavansOptions.height}}px;visibility:hidden;position:absolute;top:-1000rpx;" canvas-id="share_canvas"></canvas>
+
+<toast hidden="{{errorFlag}}" duration='3000' icon="warn" bindchange="toast2Change">{{errorMessage}}</toast>

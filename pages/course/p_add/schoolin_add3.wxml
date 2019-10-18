@@ -1,0 +1,160 @@
+<view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{message}}</view>
+<view class='page_top'>
+  <view class='photo_box'>
+    <image class='photo' src='{{childInfo.logo}}'></image>
+  </view>
+  <block wx:if="{{userInfo.role==0}}">
+    <view class='page_topRight'>
+      <view class='name'>{{childInfo.childName}}</view>
+    </view>
+  </block>
+  <block wx:else>
+    <view class='page_topRight'>
+      <view class='name'>{{userInfo.name}}</view>
+      <view class='course_num'> </view>
+    </view>
+  </block>
+</view>
+<block wx:if="{{userInfo.role==0}}">
+  <view class='hint'>
+    <image class='hint_img' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/icona.png'></image>
+    <text>学校名称：</text>{{schoolModel.school ?schoolModel.school:schoolInfo.school }}
+  </view>
+</block>
+<block wx:else>
+  <view class='hint'>
+    <image class='hint_img' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/icona.png'></image>
+    <text>学校名称：</text>{{schoolModel.school ?schoolModel.school:userInfo.workOrganizationName }}
+  </view>
+</block>
+<view class='hint' wx:if='{{userInfo.role==0}}'>
+  <image class='hint_img' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/classroom.png'></image>
+  <text>班级名称：</text> {{setClassMsg.className?setClassMsg.className:courseInfo.className}}
+</view>
+<view class='hint' wx:if='{{userInfo.role==1}}'>
+  <image class='hint_img' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/classroom.png'></image>
+  <text>班级名称：</text> {{setClassMsg.className?setClassMsg.className:className}}
+</view>
+<!-- <view class='hint'>
+  <image class='hint_img' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/hint.png'></image>
+  <text>上学周期：</text>
+</view> -->
+<!-- <view class='sure_info'>
+  <view class='class'>{{schoolInfo.school}}</view>
+  <view class='time_info'>开学时间：{{model.beginDate}}</view>
+  <view class='time_info'>第一节课时间： {{model.firstClassTime}}</view>
+  <view class='time_info'>第五节时间：{{model.fiveClassTime}}</view>
+  <view class='out_title'>放学时间</view>
+  <view class='outSchool_time'>
+    <block wx:for="{{weekDays}}" wx:for-item="item" wx:for-key="index" wx:key="">
+      <block wx:if="{{item.value!='17:00'}}">
+        <view class='outSchool_item'>
+          <view class='weekday'>{{item.name}}</view>
+          <view class='time'>{{item.value}}</view>
+        </view>
+      </block>
+    </block>
+  </view>
+  <view class='isHint'>
+    <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/speak.png'></image>
+    <text>{{model.remindTxt}}</text>
+  </view>
+</view> -->
+
+
+<view class='course_table'>
+  <view class='thead'>
+    <view class='tr'>
+      <view class='td firstTd'>
+        <view>星期节次</view>
+      </view>
+      <view class='td'>周一</view>
+      <view class='td'>周二</view>
+      <view class='td'>周三</view>
+      <view class='td'>周四</view>
+      <view class='td'>周五</view>
+    </view>
+  </view>
+  <view class='tbody'>
+    <view class='tr' wx:for="{{courseTable}}" wx:for-item="item" wx:key="" wx:for-index="index">
+    <block wx:for="{{item}}" wx:for-item="item1" wx:key="" wx:for-index="index1">
+      <block wx:if="{{index1==0}}">
+        <view class='td firstTd'>{{item1+1}}</view>
+      </block>
+      <block wx:else>
+        <view class='td'>{{item1.courseName}}{{item1.courseName1}}</view>
+      </block>
+    </block>
+  </view>
+  </view>
+  
+
+</view>
+
+<block wx:if='{{userInfo.role==0}}'>
+  <view class='schoolin_class_info'>
+    <view class='info_list'>
+      <image class='info_list_icon' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/time.png"></image>
+      <text class='import'>*</text> 第一节课时间：
+      <view class='school class_length'>{{model.oneStartTime}}</view>
+    </view>
+  </view>
+  <view class='schoolin_class_info'>
+    <view class='info_list'>
+      <image class='info_list_icon' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/time.png"></image>
+      <text class='import'>*</text> 第五节课时间：
+      <view class='school class_length'>{{model.fiveStartTime}}</view>
+    </view>
+  </view>
+
+  <view class='schoolin_class_info'>
+    <view class='info_list'>
+      <image class='info_list_icon' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/hint.png"></image>
+      <text class='import'></text>上课提醒：
+      <view class='school class_length'>{{model.remindTxt}}</view>
+    </view>
+  </view>
+</block>
+<block wx:else>
+  <view class='schoolin_class_info'>
+    <view class='info_list'>
+      <image class='info_list_icon' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/hint.png"></image>
+      <text class='import'></text>上课提醒：
+      <view class='school class_length'>{{model.remindTxt}}</view>
+    </view>
+  </view>
+  <!-- <view class='schoolin_class_info' hidden='{{model.remindTxt=="不提醒"}}'>
+    <view class='info_list'>
+      <image class='info_list_icon' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/time.png"></image>
+      <text class='import'>*</text> 第一节课时间：
+      <view class='school class_length'>{{model.firstClassTime}}</view>
+    </view>
+  </view> -->
+</block>
+
+<view class='outSchool_time' wx:if="{{userInfo.role==0}}">
+  <view class='line'></view>
+  <view class='endschooltime outSchool_item'>
+    <view class='weekday'>星期</view>
+    <view class='time'>放学时间</view>
+  </view>
+  <block wx:for="{{weekDays}}" wx:for-item="item" wx:for-key="index" wx:key="">
+    <block>
+      <view class='outSchool_item'>
+        <view class='weekday'>{{item.name}}</view>
+        <view class='time'>{{item.value}}</view>
+      </view>
+    </block>
+  </block>
+</view>
+<button class='submit' bindtap="SAVE_NEXT">完成</button>
+
+<view class='sharefrends' hidden='{{iptHide}}' catchtouchmove="ture">
+  <view class='mb'>
+    <image class='del' bindtap='delShare' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/delete_in.png'></image>
+    <image class='img' src='{{img}}'></image>
+    <button open-type='share'> </button>
+  </view>
+</view>
+
+<canvas class="share-canvas" style="width:{{shareCavansOptions.width}}px;height:{{shareCavansOptions.height}}px;visibility:hidden;position:absolute;top:-1000rpx;" canvas-id="share_canvas"></canvas>

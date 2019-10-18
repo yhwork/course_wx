@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "Ta的考勤",
+  "usingComponents": {
+        "calendar": "/components/calendar/calendar"
+    }
+}
