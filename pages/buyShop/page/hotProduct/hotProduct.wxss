@@ -23,7 +23,12 @@ page {
   /* height: 400rpx; */
     height: 500rpx;
 }
-
+.video_change{
+  width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  /* border: 1px solid rgba(0, 0, 0, .2); */
+}
 .new_datail {
   margin-top: 0rpx;
   font-size: 32rpx;
@@ -143,7 +148,8 @@ page {
   font-size: 24rpx;
   width: 730rpx;
   margin: 0 auto;
-  color: #aaa;
+  /* color: #aaa; */
+  color: #222;
   padding: 10rpx;
   /* overflow: scroll; */
   padding-bottom: 80rpx;
@@ -241,7 +247,7 @@ page {
 .item_style {
   width: 730rpx;
   margin: 0 auto;
-  color: #aaa;
+  color: #333;
   background-color: white;
 }
 

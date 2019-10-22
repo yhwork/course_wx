@@ -91,6 +91,8 @@ class hotProduct extends EPage {
       imgUrls: [
         "https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/cap3.jpg"
       ],
+      isvideo:false,
+      videoUrl:'http://iforbao-qa.oss-cn-shanghai.aliyuncs.com/videoTest/iforbao_video.mp4',
       indicatorDots: true,
       autoplay: true,
       interval: 2000,
@@ -213,10 +215,16 @@ class hotProduct extends EPage {
         put(effects.getProductAllGroupInfo)
       },
       [PAGE_LIFE.ON_SHARE_APP_MESSAGE](option) { //分享功能
+
+        this.setData({
+          isvideo:true
+        })
+
         let img = option.target.dataset.img
         let title = option.target.dataset.title
         let courseId = option.target.dataset.courseid
         let productId = option.target.dataset.productid
+
         return {
           title: title,
           desc: title,
@@ -233,7 +241,21 @@ class hotProduct extends EPage {
 
           }
         }
-      }
+      },
+            // 上拉刷新
+      [PAGE_LIFE.ON_PULL_DOWN_REFRESH]() { //上拉刷新
+        put(effects.getStoreProductHotList) //实时请求加载
+        wx.stopPullDownRefresh()
+
+      },
+      // 上拉刷新
+      [PAGE_LIFE.ON_PULL_DOWN_REFRESH]() { //上拉刷新
+        let time = null;
+        if(time){
+          clearTimeout(time)
+        }
+        time = setTimeout(() => { wx.stopPullDownRefresh()},300)
+      },
     }
   }
 
@@ -257,7 +279,17 @@ class hotProduct extends EPage {
         })
 
       },
-
+      [events.ui.bindended](){
+        console.log('结束')
+        this.setData({
+          isvideo: true
+        })
+      },
+      [events.ui.changeshare](e){
+        this.setData({
+          isvideo:true
+        })
+      },
       [events.ui.buy](e) { //点击团购按钮 购买
         //选择日期 
         this.setData({

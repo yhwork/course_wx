@@ -613,7 +613,10 @@ class editMyChildPage extends EPage {
             console.log('全部信息', this.data.resultModel)
             if ((this.data.resultModel.logo == null) || ((this.data.resultModel.logo.indexOf("http") < 0) &&
               (this.data.resultModel.logo.indexOf("png") < 0) && (this.data.resultModel.logo.indexOf("jpg") < 0))) {
-              this.data.resultModel.logo = this.data.boyimg;
+              // this.data.resultModel.logo = this.data.boyimg;
+              this.setData({
+                'resultModel.logo': this.data.boyimg
+              })
             }
 
             // 姓名

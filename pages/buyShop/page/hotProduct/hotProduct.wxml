@@ -2,7 +2,7 @@
 	<view class='hot'>
 		<view class='activityContent_wraps'>
 			<view class='item_wrap'>
-				<view class='content_items'>
+				<view class='content_items' wx:if='{{isvideo}}'>
 					<swiper
 					 indicator-dots="{{indicatorDots}}"
 					 indicator-color="{{color}}"
@@ -12,7 +12,7 @@
 					 duration="{{duration}}"
 					 circular="true"
 					 class='hot_swiper'
-					>
+					 >
 						<block wx:for="{{imgUrls}}" wx:key="index">
 							<swiper-item wx:for="{{product.imgVideo}}" wx:key="index">
 								<image
@@ -26,6 +26,9 @@
 						</block>
 					</swiper>
 				</view>
+        <view class="content_items" wx:else >
+           <video class="video_change" autoplay='{{true}}' width="100%" show-center-play-btn="{{false}}" src='{{videoUrl}}' controls="true" objectFit="fill" title='测试' bindended='{{bindended}}' ></video>
+        </view>
 				<!-- 课程标签 -->
 				<view class='Course_introduction'>
 					<view class='hotshare'>
@@ -55,10 +58,11 @@
 								</text>
 							</view>
 							<!-- 分享标签 -->
-							<view class='sharebtn_s'>
+							<view class='sharebtn_s' >
 								<view>
 									<button
 									 open-type="share"
+                   catchtap="changeshare"
 									 class='default-btn shareBtn'
 									 data-title='{{title}}'
 									 data-img='{{shareImg}}'

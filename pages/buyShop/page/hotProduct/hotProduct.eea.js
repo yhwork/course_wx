@@ -23,7 +23,9 @@ const events = {
     attendlist:null,
     closeLi:null,
     joingroup:null,
-    gotoPaylist:null
+    gotoPaylist:null,
+    changeshare:null,
+    bindended:null
   }
 }
 

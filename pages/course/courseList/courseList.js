@@ -800,14 +800,14 @@ class CourseListPage extends EPage {
                   }
                   lessonList[1] = a;
                   let startList = lessonLists[0].courseList.filter(item => {
-                    // let nowdate = moment().set({'hours': 11,'minutes':40}).format('YYYY-MM-DD:HH:mm');
-                    let nowdate = moment().format('YYYY-MM-DD:HH:mm');
+                    // let nowdate = moment().set({'hours': 15,'minutes':'01'}).format('YYYY-MM-DD HH:mm');
+                    let nowdate = moment().format('YYYY-MM-DD HH:mm');
                     let endTime = moment().set({
                       'hours': item.endTime.split(':')[0],
                       'minutes': item.endTime.split(':')[1]
-                    }).add(30, 'minutes').format('YYYY-MM-DD:HH:mm')
+                    }).add(30, 'minutes').format('YYYY-MM-DD HH:mm')
                     console.log('现在时间', nowdate, '结束时间', endTime)
-                    if (moment(nowdate, 'YYYY-MM-DD:HH:mm').valueOf() > moment(endTime, 'YYYY-MM-DD:HH:mm').valueOf()) {
+                    if (moment(nowdate, 'YYYY-MM-DD HH:mm').valueOf() > moment(endTime, 'YYYY-MM-DD HH:mm').valueOf()) {
                       console.log('已经过期', endTime)
                     } else {
                       console.log('没过期', item)
@@ -834,14 +834,14 @@ class CourseListPage extends EPage {
                 }
               } else if (lessonLists.length == 2) {
                 let startList = lessonLists[0].courseList.filter(item => {
-                  // let nowdate = moment().set({'hours': 11,'minutes':40}).format('YYYY-MM-DD:HH:mm');
-                  let nowdate = moment().format('YYYY-MM-DD:HH:mm');
+                  // let nowdate = moment().set({'hours': 11,'minutes':40}).format('YYYY-MM-DD HH:mm');
+                  let nowdate = moment().format('YYYY-MM-DD HH:mm');
                   let endTime = moment().set({
                     'hours': item.endTime.split(':')[0],
                     'minutes': item.endTime.split(':')[1]
-                  }).add(30, 'minutes').format('YYYY-MM-DD:HH:mm')
+                  }).add(30, 'minutes').format('YYYY-MM-DD HH:mm')
                   console.log('现在时间', nowdate, '结束时间', endTime)
-                  if (moment(nowdate, 'YYYY-MM-DD:HH:mm').valueOf() > moment(endTime, 'YYYY-MM-DD:HH:mm').valueOf()) {
+                  if (moment(nowdate, 'YYYY-MM-DD HH:mm').valueOf() > moment(endTime, 'YYYY-MM-DD HH:mm').valueOf()) {
                     console.log('已经过期', endTime)
                   } else {
                     console.log('没过期', item)
@@ -933,7 +933,7 @@ class CourseListPage extends EPage {
                   }
                   lessonList[0] = a
                   lessonList[1] = lessonLists[0]
-                } else {
+                } else {         // 第一天有数据
                   let a = {
                     date: tommrow,
                     week: weel_strs,
@@ -941,14 +941,14 @@ class CourseListPage extends EPage {
                   }
                   lessonList[1] = a;
                   let startList = lessonLists[0].courseList.filter(item => {
-                    // let nowdate = moment().set({'hours': 11,'minutes':40}).format('YYYY-MM-DD:HH:mm');
-                    let nowdate = moment().format('YYYY-MM-DD:HH:mm');
+                    // let nowdate = moment().set({'hours': 18,'minutes':'10'}).format('YYYY-MM-DD HH:mm');
+                    let nowdate = moment().format('YYYY-MM-DD HH:mm');
                     let endTime = moment().set({
                       'hours': item.endTime.split(':')[0],
                       'minutes': item.endTime.split(':')[1]
-                    }).add(30, 'minutes').format('YYYY-MM-DD:HH:mm')
+                    }).add(30, 'minutes').format('YYYY-MM-DD HH:mm')
                     console.log('现在时间', nowdate, '结束时间', endTime)
-                    if (moment(nowdate, 'YYYY-MM-DD:HH:mm').valueOf() > moment(endTime, 'YYYY-MM-DD:HH:mm').valueOf()) {
+                    if (moment(nowdate, 'YYYY-MM-DD HH:mm').valueOf() > moment(endTime, 'YYYY-MM-DD HH:mm').valueOf()) {
                       console.log('已经过期', endTime)
                     } else {
                       console.log('没过期', item)
@@ -978,14 +978,14 @@ class CourseListPage extends EPage {
               } else if (lessonLists.length == 2) {
                 let listdate = []
                 let startList = lessonLists[0].courseList.filter(item => {
-                  // let nowdate = moment().set({'hours': 11,'minutes':40}).format('YYYY-MM-DD:HH:mm');
-                  let nowdate = moment().format('YYYY-MM-DD:HH:mm');
+                  // let nowdate = moment().set({'hours': 17,'minutes':'53'}).format('YYYY-MM-DD HH:mm');
+                  let nowdate = moment().format('YYYY-MM-DD HH:mm');
                   let endTime = moment().set({
                     'hours': item.endTime.split(':')[0],
                     'minutes': item.endTime.split(':')[1]
-                  }).add(30, 'minutes').format('YYYY-MM-DD:HH:mm')
+                  }).add(30, 'minutes').format('YYYY-MM-DD HH:mm')
                   console.log('现在时间', nowdate, '结束时间', endTime)
-                  if (moment(nowdate, 'YYYY-MM-DD:HH:mm').valueOf() > moment(endTime, 'YYYY-MM-DD:HH:mm').valueOf()) {
+                  if (moment(nowdate, 'YYYY-MM-DD HH:mm').valueOf() > moment(endTime, 'YYYY-MM-DD HH:mm').valueOf()) {
                     console.log('已经过期', endTime)
                   } else {
                     console.log('没过期', item)

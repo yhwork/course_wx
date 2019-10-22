@@ -1,3 +1,5 @@
 {
-  "navigationBarTitleText": "产品详情"
+  "navigationBarTitleText": "产品详情",
+    "enablePullDownRefresh": true,
+    "backgroundTextStyle": "dark"
 }
