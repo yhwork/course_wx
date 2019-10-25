@@ -25,7 +25,12 @@ const events = {
     joingroup:null,
     gotoPaylist:null,
     changeshare:null,
-    bindended:null
+    bindended:null,
+    changeSwiiper:null,
+    bindplay:null,
+    bindpause:null,
+    videoTap:null,
+    catchTouchMove:null
   }
 }
 

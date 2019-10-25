@@ -86,16 +86,24 @@ import {
   actions
 } from './hotProduct.eea'
 class hotProduct extends EPage {
+  constructor(){
+    super()
+  }
+
   get data() {
     return {
       imgUrls: [
+        "https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/cap3.jpg",
+        "https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/cap3.jpg",
         "https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/cap3.jpg"
       ],
-      isvideo:false,
+      play:true,
+      isvideo:true,   // 显示视频  还是轮播
+      playindex:0,
       videoUrl:'http://iforbao-qa.oss-cn-shanghai.aliyuncs.com/videoTest/iforbao_video.mp4',
       indicatorDots: true,
       autoplay: true,
-      interval: 2000,
+      interval: 3000,
       duration: 1000,
       color: "#FF9800",
       activecolor: "white",
@@ -170,6 +178,7 @@ class hotProduct extends EPage {
     put
   }) {
     return {
+      that:this,
       [PAGE_LIFE.ON_LOAD](options) {
         console.log(181, options)
         let {
@@ -211,19 +220,22 @@ class hotProduct extends EPage {
         this.mapCtx = wx.createMapContext('myMap')
       },
       [PAGE_LIFE.ON_SHOW](option) {
-
+        console.log('调用uidi')
         put(effects.getProductAllGroupInfo)
       },
       [PAGE_LIFE.ON_SHARE_APP_MESSAGE](option) { //分享功能
 
-        this.setData({
-          isvideo:true
-        })
+        // this.setData({
+        //   isvideo:false
+        // })
 
         let img = option.target.dataset.img
         let title = option.target.dataset.title
         let courseId = option.target.dataset.courseid
         let productId = option.target.dataset.productid
+        let time =null,state=true;
+        
+
 
         return {
           title: title,
@@ -232,15 +244,35 @@ class hotProduct extends EPage {
           //## 此为转发给微信好友或微信群后，对方点击后进入的页面链接，可以根据自己的需求添加参数
           path: `/pages/course/courseList/courseList?action=share&code=${this.data.shortCode}&productId=${productId}&courseId=${courseId}`,
           //## 转发操作成功后的回调函数，用于对发起者的提示语句或其他逻辑处理
-          success: function(res) {
-            //console.log("转发成功")
+          success: function (res) {
+            console.log("转发成功")
           },
           //## 转发操作失败/取消 后的回调处理，一般是个提示语句即可
-          fail: function() {
-            //console.log("转发失败")
+          fail: function () {
+            console.log("转发失败")
 
           }
         }
+        // function throttle(fn, delay) {
+        //   let valid = true
+        //   return function () {
+        //     if (!valid) {
+        //       //休息时间 暂不接客
+        //       return false
+        //     }
+        //     // 工作时间，执行函数并且在间隔期内把状态位设为无效
+        //     valid = false
+        //     setTimeout(() => {
+        //       i++
+        //       valid = true;
+        //     }, delay)
+        //   }
+        // }
+  
+
+
+
+       
       },
             // 上拉刷新
       [PAGE_LIFE.ON_PULL_DOWN_REFRESH]() { //上拉刷新
@@ -260,8 +292,10 @@ class hotProduct extends EPage {
   }
 
   mapUIEvent({ //页面事件方法  
-    put
+    put,
+    dispatch
   }) {
+    let _this = this
     return {
       [events.ui.gotoaddress](e) {
         this.setData({
@@ -279,16 +313,110 @@ class hotProduct extends EPage {
         })
 
       },
-      [events.ui.bindended](){
-        console.log('结束')
+      [events.ui.changeSwiiper](e){
+        let changes = e.detail;
+        let index = changes.current;   // 当前轮播图的下标
+        if (changes.source =='touch'){
+          // 手动滑动
+
+          // debugger
+          // 如果没有视频播放的时候
+          if(!this.data.playindex){
+            this.setData({
+              playindex:index
+            })
+            var videoContext = wx.createVideoContext('video0') //这里对应的视频id
+            videoContext.pause()
+            // 开始播放
+            // videoContext.play()
+          }else{
+            // 有播放先暂停   其他再执行当前的    
+           
+            if (this.data.playindex != index) {
+              var videoContextPrev = wx.createVideoContext('video' + this.data.playindex)  // 获取视频的实例
+              videoContextPrev.pause()
+            }
+            this.setData({
+              playindex: index
+            })
+          }
+
+        }else{
+          // if (changes.source == 'autoplay'){
+          // autoplay  自动滚动
+          this.setData({
+            playindex: index
+          })
+
+          console.log(' 轮播状态' + this.data.autoplay)
+          console.log(' 当前下标' + this.data.playindex, index)
+          console.log(' 小图标显示' + this.data.play)
+        // }
+
+        }
+       
+      },
+      [events.ui.videoTap](){
+        let i = this.data.playindex;
+        //获取video
+        var videoContext = wx.createVideoContext('video'+i);
+        if (this.data.play) {
+          //开始播放
+          videoContext.play()//开始播放
+          this.setData({
+            play: false,
+            autoplay: false
+          })
+        } else {
+          //当play==false 显示图片 暂停
+          videoContext.pause()//暂停播放
+          this.setData({
+            play: true,
+            autoplay: true
+          })
+        }
+        let data = this.data
+         console.log(' 轮播状态'+data.autoplay)
+        console.log(' 当前下标'+data.playindex)
+        console.log(' 小图标显示'+data.play)
+   
+      },
+      [events.ui.catchTouchMove](){
+        return false;
+      },
+      [events.ui.bindplay](){
+        // 开始或继续播放
+        console.log('开始')
         this.setData({
-          isvideo: true
+          autoplay:false,
+          play:false,
         })
       },
-      [events.ui.changeshare](e){
+      [events.ui.bindpause]() {
+        // 结束开始执行轮播
+        console.log('暂停')
         this.setData({
-          isvideo:true
+          autoplay: true,
+          play: true,
         })
+      },
+      [events.ui.bindended](){
+        // console.log('结束')
+        // this.setData({
+        //   isvideo: true
+        // })
+      },
+      [events.ui.changeshare](e){
+        
+        // this.setData({
+        //   isvideo:false
+        // })
+        // _this.mapPageEvent(put)[PAGE_LIFE.ON_SHARE_APP_MESSAGE](e)
+
+        wx.showShareMenu({
+          withShareTicket: true
+        })
+        
       },
       [events.ui.buy](e) { //点击团购按钮 购买
         //选择日期 
