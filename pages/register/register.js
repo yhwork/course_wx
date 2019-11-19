@@ -28,7 +28,10 @@ class RegisterPage extends EPage {
       btn: false,
       isphone: true,
       code: '',
-      comfrom: 'change'
+      comfrom: 'change',
+      router:'',
+      productId:'',
+      courseId:''
     };
   }
 
@@ -38,7 +41,16 @@ class RegisterPage extends EPage {
   }) {
     return {
       [PAGE_LIFE.ON_LOAD](option) {
-        console.log(option)
+        console.log('授权',option)
+        if (option.hasOwnProperty('backrouter')){
+          if (option.backrouter == 'shop'){
+            let router = `${option.router}?courseId= ${option.courseId}&productId=${option.productId}`
+            console.log(router)
+            this.setData({
+              router
+            })
+          }
+        }
         if (option.comfrom) {
           this.setData({
             comfrom: "share",
@@ -55,8 +67,9 @@ class RegisterPage extends EPage {
             'model.changeRole': '1'
           })
         }
+        // debugger
         // console.log(option, this.data.model)
-        if (option.ope != 'changeRole') {
+        if (option.ope != 'changeRole' && option.backrouter == null ) {
           // if(option.action=='share'){
           let str = JSON.stringify(option)
           // console.log(str)
@@ -125,13 +138,13 @@ class RegisterPage extends EPage {
       },
       // 获取电话号码
       [events.ui.getPhoneNumber](e) {
-        // console.log(e)
+        console.log('phones',e)
         if (e.detail.errMsg == 'getPhoneNumber:fail user deny') {
           return;
         } else {
           this.setData({
             'inputMap.iv': e.detail.iv,
-            'inputMap.encryptedData': e.detail.encryptedData
+            'inputMap.encryptedData': e.detail.encryptedData  
           })
           // console.log(this.data.inputMap)
           put(effects.updateUserPhoneByWX);
@@ -210,13 +223,13 @@ class RegisterPage extends EPage {
                 let inputMap = {
                   code: this.data.code
                 }
-                // console.log(inputMap)
                 this.$api.user.addUserShareInfo(inputMap).then((res) => {
                   // console.log(22)
                   // console.log(res)
                 })
               }
-
+              let router = this.data.router
+              console.log('router', router)
               if (this.data.model.role == 1) {
                 this.$api.user.gerUserInfo().then(res => {
                   // console.log(res.data.result)
@@ -226,15 +239,32 @@ class RegisterPage extends EPage {
                       url: './info/t_info'
                     });
                   } else {
-                    wx.switchTab({
-                      url: '../course/courseList/courseList'
-                    })
+                    if (router){
+
+                        // 跳到tabbar页面
+                        // return wx.redirectTo({
+                        //   url:
+                        // })
+                    }else{
+                      wx.switchTab({
+                        url: '../course/courseList/courseList'
+                      })
+                    }
+
                   }
                 })
               } else {
-                wx.switchTab({
-                  url: '../course/courseList/courseList'
-                })
+                if (router) {
+                  var sss = '/pages/mypage/mypage/mypage'
+                  // 跳到tabbar页面
+                  return wx.navigateTo({
+                    url: router
+                  })
+                } else {
+                  wx.switchTab({
+                    url: '../course/courseList/courseList'
+                  })
+                }
               }
             }
           })

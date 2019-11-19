@@ -487,6 +487,11 @@ class CircleApi {
         name: "getProductGroupDetails",
         url: "/storeGroupProduct/getProductGroupDetails",
         method: "post"
+      },
+      { // 跳转pc登录
+        name: "getqrcode",
+        url: "/storeGroupProduct/getProductGroupDetails",
+        method: "post"
       }
 
     ]
@@ -1092,6 +1097,11 @@ class CircleApi {
   }
   getProductGroupDetails(model) { //产品详情页拼团信息
     return this._resource.getProductGroupDetails({
+      model: model
+    })
+  }
+  getqrcode(model){             // 扫码返回
+    return this._resource.getqrcode({
       model: model
     })
   }

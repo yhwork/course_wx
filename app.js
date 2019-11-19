@@ -83,24 +83,11 @@ app.remove = function (arr) { //删除数组
 
 // xdb.iforbao.com prod
 // qa.xdb.iforbao.com dev
-// 开发版
+// 开发版   qa
 
-// app.use(Api, {
-//   schema: 'https',
-//   host: 'qa.xdb.iforbao.com',
-//   port: 80
-// }, {
-//     client: '{"wap":"wap"}',
-//     source: 'wxapp',
-//     langCode: 'zh',
-//     version: '1.0'
-//   });
-
-// 正式版
-// console.log(app.globalData.childId)
 app.use(Api, {
   schema: 'https',
-  host: 'xdb.iforbao.com',
+  host: 'qa.xdb.iforbao.com',
   port: 80
 }, {
     client: '{"wap":"wap"}',
@@ -108,6 +95,19 @@ app.use(Api, {
     langCode: 'zh',
     version: '1.0'
   });
+
+// 正式版
+// console.log(app.globalData.childId)
+// app.use(Api, {
+//   schema: 'https',
+//   host: 'xdb.iforbao.com',
+//   port: 80
+// }, {
+//     client: '{"wap":"wap"}',
+//     source: 'wxapp',
+//     langCode: 'zh',
+//     version: '1.0'
+//   });
 
 
 app.use(Child);

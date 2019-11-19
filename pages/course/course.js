@@ -227,9 +227,7 @@ class CoursePage extends EPage {
           }
         )
 
-
-
-
+        // data = "{{lessons}}" dataLesson = "{{dayLessons}}" childId = "{{model.childId}}" date = "{{model.currentDate}}"
 
         // put(effects.GET_USER_INFO);
         // // put(effects.GET_CHILD);
@@ -861,7 +859,6 @@ class CoursePage extends EPage {
       [effects.loadCourseTimelist]() {
         let current  = this.data.current
         var role = this.data.userInfo.role;
-       
         // 判断家长端还是教师端
         if (role == 0) { // 家长端
           // 判断是校内0  校外0  查看更多

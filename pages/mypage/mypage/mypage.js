@@ -74,7 +74,6 @@ class upInput1 extends EPage {
       },
       [PAGE_LIFE.ON_SHOW](option) {
         //this.setData({ my_11: this.$api.extparam.getPageImgUrl('my_11') })
-
         wx.getSetting({
           success: (res) => {
             if (!res.authSetting['scope.userInfo']) {
@@ -178,6 +177,27 @@ class upInput1 extends EPage {
   }) {
 
     return {
+      // 扫码
+      [events.ui.scanCode](){
+        wx.scanCode({
+          onlyFromCamera: false,
+          success(res) {
+            // charSet: "utf-8"
+            // errMsg: "scanCode:ok"
+            // rawData: "5L2g6L+Y"
+            // result: "你好"
+            // scanType: "QR_CODE"
+
+            console.log('相机数据',res)
+            if (res.errMsg == 'scanCode:ok'){
+                wx.navigateTo({
+                  url: '/pages/mypage/qrcode/qrcode?val=11',
+                })
+            }
+            // 写一个授权界面  让用户扫码后显示
+          }
+        })
+      },
       // 个人主页
       [events.ui.MYHOMEPAGE]() {
         wx.navigateTo({

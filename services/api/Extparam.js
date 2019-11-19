@@ -6,18 +6,18 @@ const __extparams = {
 };
 
 // 开发版
-// const __paramsOther = {
-//   uploadUrl: 'https://qa.oss.iforbao.com',
-//   downloadUrl: 'https://qa.oss.iforbao.com',
-//   defaultStyle: 'test'
-// }
-
-// // 正式版
 const __paramsOther = {
-  uploadUrl: 'https://oss.iforbao.com',
-  downloadUrl: 'https://oss.iforbao.com',
+  uploadUrl: 'https://qa.oss.iforbao.com',
+  downloadUrl: 'https://qa.oss.iforbao.com',
   defaultStyle: 'test'
 }
+
+// // 正式版
+// const __paramsOther = {
+//   uploadUrl: 'https://oss.iforbao.com',
+//   downloadUrl: 'https://oss.iforbao.com',
+//   defaultStyle: 'test'
+// }
 
 
 

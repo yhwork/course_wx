@@ -1,0 +1,22 @@
+<!--pages/mypage/upinput/upinput.wxml-->
+<view class='upinput'>
+  <view class="qrcode">
+    <view class="qrcode_img">
+      <view  class='sex'><image src='{{childInfo=="0"?"https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/boy.png":"https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/girl.png"}}'></image>
+      </view>
+      <view class="qrcode_txt">
+        <text class="title">提拉米苏</text>
+      </view>
+    </view>
+    <view class="hr"></view>
+    <view class="qrcode">
+      <view class="txttitle">请求账号信息登录</view>
+      <view class="qrcodebtns">
+        <button bindtap="btnOk" data-value="true">同意</button>
+      </view>
+      <view>
+        <button bindtap="btnOk" data-value='false' >拒绝</button>
+      </view>
+    </view>
+  </view>
+</view>

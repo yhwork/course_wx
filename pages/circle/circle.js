@@ -40,102 +40,82 @@ class circle extends EPage {
     dispatch
   }) {
     return {
-      [PAGE_LIFE.on_tap]() {
-        let isAuto = this.data.isAuthorization
-        console.log('点击tab事件', isAuto);
-        if (isAuto) {
-          return false
-        } else {
-          wx.getSetting({
-            success: (res) => {
-              if (!res.authSetting['scope.userInfo']) {
-
-                this.setData({
-                  isAuthorization: false
-                })
-                console.log('没有授权用户信息', this.data.isAuthorization);
-
-                wx.showToast({
-                  title: '暂无该用户信息',
-                  icon: 'none',
-                  duration: 1500,
-                  mask: true,
-                  success: (res) => {
-                    let time = null;
-                    if(time){
-                       clearTimeout(time)
-                    }else{
-                      time = setTimeout(()=>{
-                        return wx.switchTab({
-                          //  url: '/pages/register/register'
-                          url: '/pages/mypage/mypage/mypage'
-                        })
-                      },1500)
-                    }
-                  },
-                  fail: (res) => {
-                    return wx.switchTab({
-                      //  url: '/pages/register/register'
-                      url: '/pages/mypage/mypage/mypage'
-                    })
-                  },
-                  complete: function (res) { },
-                })
-
-                // return wx.redirectTo({
-                //   url: '/pages/register/register'
-                // })
-              } else {
-                this.setData({
-                  isAuthorization: true
-                })
-                console.log('已经授权用户信息', this.data.isAuthorization)
-              }
-            },
-            fail(err) {
-              console.log('授权失败')
-            }
-          })
-          // return wx.redirectTo({
-          //   url: '/pages/register/register'
-          // })
-      }
-      },
+      // [PAGE_LIFE.on_tap]() {
+      //   let isAuto = this.data.isAuthorization
+      //   console.log('点击tab事件', isAuto);
+      //   if (isAuto) {
+      //     return false
+      //   } else {
+      //     wx.getSetting({
+      //       success: (res) => {
+      //         if (!res.authSetting['scope.userInfo']) {
+      //           this.setData({
+      //             isAuthorization: false
+      //           })
+      //           console.log('没有授权用户信息', this.data.isAuthorization);
+      //           wx.showToast({
+      //             title: '暂无该用户信息',
+      //             icon: 'none',
+      //             duration: 1500,
+      //             mask: true,
+      //             success: (res) => {
+      //               let time = null;
+      //               if(time){
+      //                  clearTimeout(time)
+      //               }else{
+      //                 time = setTimeout(()=>{
+      //                   return wx.switchTab({
+      //                     //  url: '/pages/register/register'
+      //                     url: '/pages/mypage/mypage/mypage'
+      //                   })
+      //                 },1500)
+      //               }
+      //             },
+      //             fail: (res) => {
+      //               return wx.switchTab({
+      //                 //  url: '/pages/register/register'
+      //                 url: '/pages/mypage/mypage/mypage'
+      //               })
+      //             },
+      //             complete: function (res) { },
+      //           })
+      //         } else {
+      //           this.setData({
+      //             isAuthorization: true
+      //           })
+      //           console.log('已经授权用户信息', this.data.isAuthorization)
+      //         }
+      //       },
+      //       fail(err) {
+      //         console.log('授权失败')
+      //       }
+      //     })
+      // }
+      // },
       // 页面 onload加载
       [PAGE_LIFE.ON_LOAD](option) {
-
-
         this.setData({
           'img': this.$api.extparam.getPageImgUrl('timg2')
-
         })
         put(effects.USERINFO, option)
         put(effects.getStoreInfoDetail)
         put(effects.getStoreProductHotList)
         put(effects.getStoreProductHotDetailsByPid)
-
-
       },
       // 页面显示隐藏
       [PAGE_LIFE.ON_SHOW]() {
         put(effects.getChildListByCondition)
-
       },
       // 上拉刷新
       [PAGE_LIFE.ON_PULL_DOWN_REFRESH]() { //上拉刷新
         put(effects.getStoreProductHotList) //实时请求加载
         wx.stopPullDownRefresh()
-
       },
       [PAGE_LIFE.ON_REACH_BOTTOM]() {
           // this.setData({
           //   showBottomtext:true
           // })
-    
-
       }
-
-
     }
   }
 

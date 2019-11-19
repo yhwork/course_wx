@@ -448,6 +448,7 @@ class mywaitPay extends EPage {
           childId: this.data.childId,
           getType: 0
         }).then(res => {
+          console.log(res,'全部')
           let userorderList = res.data.result.orderInfo
           userorderList.forEach((item, index) => {
             let obj = item.imgVideo

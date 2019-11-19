@@ -1,0 +1,59 @@
+/* pages/mypage/upinput/upinput.wxss */
+.upinput{
+  max-width: 750rpx;
+  overflow-x: hidden;
+  /* background-color: #999; */
+}
+.qrcode{
+  display: flex;
+  flex-flow: column wrap;
+  width: 100%;
+  align-items: center;
+}
+.qrcodebtns{
+  margin: 25rpx 10rpx;
+  display: flex;
+  flex-direction: column;
+}
+.qrcodebtns button:nth-child(1){
+  margin: 5rpx 4;
+  background-color: green
+}
+.qrcodebtns button:nth-child(2){
+  margin: 5rpx 4;
+  background-color:#6969;
+}
+.sex{
+  text-align: center;
+}
+.qrcode_img{
+  margin: 35rpx 10rpx 15rpx 10rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+image{
+  width: 85rpx;
+  height: 85rpx;
+}
+.qrcode_txt{
+  font-size: 36rpx;
+  color: black;
+  text-align: center;
+  margin-bottom: 15rpx;
+}
+.hr{
+  border-bottom: solid 1px rgba(0,0,0,.2);
+  background: #333;
+  height: 2rpx;
+  width: 600rpx;
+}
+.txttitle{
+  font-size: 24rpx;
+  color: #666;
+  margin-top: 15rpx;
+}
+.qrcodebox{
+
+}

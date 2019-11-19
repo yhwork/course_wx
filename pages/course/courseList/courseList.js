@@ -54,88 +54,58 @@ class CourseListPage extends EPage {
     dispatch
   }) {
     return {
-      [PAGE_LIFE.on_tap]() {
-        let isAuto = this.data.isAuthorization
-        console.log('点击tab事件', isAuto);
-        if (isAuto) {
-          return false
-        } else {
-          wx.getSetting({
-            success: (res) => {
-              if (!res.authSetting['scope.userInfo']) {
-
-                this.setData({
-                  isAuthorization: false
-                })
-                console.log('没有授权用户信息', this.data.isAuthorization)
-                // return wx.redirectTo({
-                //   // url: '/pages/register/register'
-                //   url:'/pages/mypage/mypage/mypage'
-                // })
-                wx.showToast({
-                  title: '请先授权',
-                  icon: 'none',
-                  // image: '',
-                  duration: 1500,
-                  mask: true,
-                  success: function(res) {},
-                  fail: function(res) {},
-                  complete: function(res) {},
-                })
-              } else {
-                this.setData({
-                  isAuthorization: true
-                })
-                console.log('已经授权用户信息', this.data.isAuthorization)
-              }
-            },
-            fail(err) {
-              console.log('授权失败')
-            }
-          })
-        }
-      },
+      // [PAGE_LIFE.on_tap]() {
+      //   let isAuto = this.data.isAuthorization
+      //   if (isAuto) {
+      //     return false
+      //   } else {
+      //     wx.getSetting({
+      //       success: (res) => {
+      //         if (!res.authSetting['scope.userInfo']) {
+      //           this.setData({
+      //             isAuthorization: false
+      //           })
+      //           // return wx.redirectTo({
+      //           //   // url: '/pages/register/register'
+      //           //   url:'/pages/mypage/mypage/mypage'
+      //           // })
+      //           wx.showToast({
+      //             title: '请先授权',
+      //             icon: 'none',
+      //             // image: '',
+      //             duration: 1500,
+      //             mask: true,
+      //             success: function(res) {},
+      //             fail: function(res) {},
+      //             complete: function(res) {},
+      //           })
+      //         } else {
+      //           this.setData({
+      //             isAuthorization: true
+      //           })
+      //         }
+      //       },
+      //       fail(err) {
+      //         console.log('授权失败')
+      //       }
+      //     })
+      //   }
+      // },
       [PAGE_LIFE.ON_LOAD](option) {
+        console.log('值', option)
         put(effects.USERINFO) // 获取用户信息
         put(effects.CHECK_FOLLOW) // 是否关注公众号
-        // put(effects.getChildList) // 获取孩子列表
-        // 验证授权
-        console.log('值', option)
+      
 
-        wx.getSetting({
-          success: (res) => {
-            if (!res.authSetting['scope.userInfo']) {
-
-              this.setData({
-                isAuthorization: false
-              })
-              console.log('没有授权用户信息', this.data.isAuthorization)
-              // return wx.redirectTo({
-              //   url: '/pages/register/register'
-              // })
-            } else {
-              this.setData({
-                isAuthorization: true
-              })
-              console.log('已经授权用户信息', this.data.isAuthorization)
-            }
-          },
-          fail(err) {
-            console.log('授权失败')
-          }
-        })
         this.$common.checkAuth1().then(
           (res) => {
             console.log('授权了嘛', res)
             if (res.authSetting['scope.userInfo']) {
-              console.log('对不', option)
               if (option) {
                 put(effects.GET_SHARE, option)
               }
               dispatch(actions.HANDLE_ACTION, option);
-
             } else {
-              console.log('没有', option)
               let str = JSON.stringify(option)
               if (str != '{}') {
                 wx.redirectTo({
@@ -158,8 +128,24 @@ class CourseListPage extends EPage {
 
       [PAGE_LIFE.ON_SHOW]() {
         put(effects.USERINFO)
-        // put(effects.getChildList)
-        // put(effects.loadCourseTime)
+        wx.getSetting({
+          success: (res) => {
+            if (!res.authSetting['scope.userInfo']) {
+              this.setData({
+                isAuthorization: false
+              })
+              console.log('没有授权用户信息', this.data.isAuthorization)
+            } else {
+              this.setData({
+                isAuthorization: true
+              })
+              console.log('已经授权用户信息', this.data.isAuthorization)
+            }
+          },
+          fail(err) {
+            console.log('授权失败')
+          }
+        })
 
       },
       // 上拉刷新
@@ -193,7 +179,6 @@ class CourseListPage extends EPage {
           console.log('点击sssss')
           return false
         } else {
-
           wx.showToast({
             title: '暂无该用户信息',
             icon: 'none',
@@ -204,10 +189,11 @@ class CourseListPage extends EPage {
               if (time) {
                 clearTimeout(time)
               } else {
+                var sss = '/pages/mypage/mypage/mypage'
                 time = setTimeout(() => {
+                  // 跳到tabbar页面
                   return wx.switchTab({
-                    //  url: '/pages/register/register'
-                    url: '/pages/mypage/mypage/mypage'
+                    url: sss
                   })
                 }, 1500)
               }
@@ -464,70 +450,6 @@ class CourseListPage extends EPage {
           action
         } = option;
         console.log(action)
-        // if (!action) {
-        //   // 判断是否是由分享进来且第一次注册
-        //   this.$api.user.getUserShareInfo().then(res => {
-        //     if (res.data.result != null) {
-        //       this.setData({
-        //         code: res.data.result.code,
-        //         isShare: 1,
-        //         loadChildAll: false
-        //       })
-        //       console.log(this.data.code, this.data.isShare)
-        //     }
-        //     if (this.data.code != '') {
-        //       console.log('-----------------')
-        //       let inputMap = {
-        //         code: this.data.code
-        //       }
-        //       this.$api.user.getShareInfo(inputMap).then( //分享接口
-        //         (res) => {
-        //           console.log(res)
-        //           let result = res.data.result
-        //           if (res.data.errorCode == '0') {
-        //             let rs = JSON.parse(res.data.result.jsonData);
-        //             if (rs.target == 'course') {
-        //               wx.navigateTo({
-        //                 url: `/pages/course/p_manage/schoolout_manage_share?courseId=${rs.courseId}&code=${rs.shortCode}`
-        //               });
-        //             } else if (rs.target == 'lesson') {
-        //               wx.navigateTo({
-        //                 url: `/pages/course/p_lesson/schoolout_lesson_share?code=${rs.shortCode}`
-        //               });
-        //             } else if (rs.target == 'sign') {
-        //               wx.navigateTo({
-        //                 url: `/pages/learningcircle/page/diaryDetail/diaryDetail?id=${rs.signinId}code=${rs.shortCode}`
-        //               });
-        //             } else if (rs.target == 'community') {
-        //               wx.navigateTo({
-        //                 url: `/pages/learningcircle/page/myCircle/myCircle ?id=${rs.communityId}`
-        //               });
-        //             } else if (rs.target == 'child') {
-        //               wx.navigateTo({
-        //                 url: `/pages/mypage/editMyChild/editMyChild?childId=${rs.childId}&code=${rs.shortCode}`
-        //               });
-        //             } else if (rs.target == 'internalCourse') {
-        //               wx.navigateTo({
-        //                 url: `/pages/course/p_manage/schoolin_manage_share?code=${rs.internalClassId}`
-        //               });
-        //             } else if (rs.target == 'classCommunity') {
-        //               if (result.userRole == 0) {
-        //                 wx.navigateTo({
-        //                   url: `/pages/classcircle/classMsg/classMsg?classId=${rs.classId}&role=${result.userRole}&childId=${result.childId}`
-        //                 });
-        //               } else {
-        //                 wx.navigateTo({
-        //                   url: `/pages/classcircle/classMsg/classMsg?classId=${rs.classId}&role=${result.userRole}`
-        //                 });
-        //               }
-        //             }
-        //           }
-        //         }
-        //       )
-        //     }
-        //   })
-        //   return;
-        // }
         if (action === 'share') {
           console.log('登录成功')
           this.$api.user.getShareInfo(option).then(
@@ -622,7 +544,6 @@ class CourseListPage extends EPage {
       // 获取用户信息
       [effects.USERINFO](option) {
         this.$api.user.gerUserInfo({}).then(res => {
-          console.log('userinfo', res);
           var role = res.data.result.role;
           var nickName = res.data.result.nickName;
           var name = res.data.result.name;
@@ -681,7 +602,6 @@ class CourseListPage extends EPage {
           var i = this.data.childid_i
           this.data.childId
           // console.log('不是第一次', this.data.childId);
-          console.log('孩子列表', list, i)
           // 判断是否是第一次点击  默认0
           if (i == '') {
             this.setData({
@@ -780,6 +700,7 @@ class CourseListPage extends EPage {
               imgType: imgType,
             })
             var lessonList = []
+            // 调用其他方法
             dispatch(actions.flutterDate)
             if (lessonLists != null) {
               if (lessonLists.length == 1) { // 有数据
@@ -806,7 +727,6 @@ class CourseListPage extends EPage {
                       'hours': item.endTime.split(':')[0],
                       'minutes': item.endTime.split(':')[1]
                     }).add(30, 'minutes').format('YYYY-MM-DD HH:mm')
-                    console.log('现在时间', nowdate, '结束时间', endTime)
                     if (moment(nowdate, 'YYYY-MM-DD HH:mm').valueOf() > moment(endTime, 'YYYY-MM-DD HH:mm').valueOf()) {
                       console.log('已经过期', endTime)
                     } else {
@@ -1198,7 +1118,6 @@ class CourseListPage extends EPage {
         }
       },
       [actions.flutterDate](e) {
-        console.log('啊，我被执行拉')
       }
     }
   }

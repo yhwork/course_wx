@@ -4,17 +4,17 @@
   <view class='mypage_header_wrap'>
     <!-- header img  -->
     <view class='mypage_header_info_wrap'>
-      <view class='mypage_header_info_right'>
+      <view class='mypage_header_info_right'  bind:tap='MYHOMEPAGE'>
         <image mode='aspectFill' class='header' src="{{userInfo.logo}}">
         </image>
       </view>
       <view class='mypage_header_info_left'>
-        <view class='header_info_left_name textover'>{{userInfo.name==null?userInfo.nickName:userInfo.name}}</view>
+        <view  bind:tap='MYHOMEPAGE' class='header_info_left_name textover'>{{userInfo.name==null?userInfo.nickName:userInfo.name}}</view>
         <view wx:if='{{!isAuthorization}}'  bindtap='changeTeacherBind' class='header_info_left_id '><text class="txtbig">授权登录</text> </view>
         <view wx:else class='header_info_left_id textover'>ID号：{{userInfo.id}}</view>
       </view>
-      <view class='mypage_header_info_index' bind:tap='MYHOMEPAGE'>
-        <text>个人主页</text>
+      <view class='mypage_header_info_index' bindtap="scanCode">
+        <text>扫一扫</text>
         <image class='arrow' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/next.png'></image>
       </view>
     </view>

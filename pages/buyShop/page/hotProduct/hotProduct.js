@@ -128,7 +128,6 @@ class hotProduct extends EPage {
       studentName: "",
       orgId: "",
       userId: "",
-      productId: "",
       childId: "",
       showIndex: 5,
       orderNumber: "",
@@ -168,7 +167,8 @@ class hotProduct extends EPage {
       iscanBuy: false,
       arrpoolist: [],
       changeText: true,
-      back:false
+      back:false,
+      isAuthorization: true
 
 
     };
@@ -236,13 +236,13 @@ class hotProduct extends EPage {
         let time =null,state=true;
         
 
-
+        
         return {
           title: title,
           desc: title,
           // imageUrl:img,
           //## 此为转发给微信好友或微信群后，对方点击后进入的页面链接，可以根据自己的需求添加参数
-          path: `/pages/course/courseList/courseList?action=share&code=${this.data.shortCode}&productId=${productId}&courseId=${courseId}`,
+          path: `/pages/buyShop/page/hotProduct/hotProduct?action=share&code=${this.data.shortCode}&productId=${productId}&courseId=${courseId}`,
           //## 转发操作成功后的回调函数，用于对发起者的提示语句或其他逻辑处理
           success: function (res) {
             console.log("转发成功")
@@ -429,196 +429,225 @@ class hotProduct extends EPage {
       [events.ui.gotoPaylist](e) { //跳转购买页
         console.log(271,this.data.userId,this.data.productCourseId)
         wx.navigateTo({
-          url: `../payList/payList?changeText=${this.data.changeText}&productId=${this.data.productId}&courseId=${this.data.courseId}&childId=${this.data.childId}&userId=${this.data.userId}&productCourseId=${this.data.courseId}`,
+          url: `../payList/payList?changeText=${this.data.changeText}&productId=${this.data.productId}&courseId=${this.data.productId}&childId=${this.data.childId}&userId=${this.data.userId}&productCourseId=${this.data.courseId}`,
         })
       },
       [events.ui.goshop](e) { //打开校验框
-        //购买选择类型弹框  夏令营活动选择日期
+        // 验证是否授权
         var that = this
-        this.setData({
-          active: -1
-        })
-        if (this.data.type == 7) { //进行准考验证
-          if (this.data.verifyType == 1) { //钢琴考级校验 
-            this.setData({
-              isModalshow: false
-            })
-          } else if (this.data.verifyType == 2) { //手风琴考级验证
-            this.setData({ //手风琴考试资格验证
-              sfqModalshow: false
-            })
+        wx.getSetting({
+          success: (res) => {
+            if (!res.authSetting['scope.userInfo']) {
+              this.setData({
+                isAuthorization: false
+              })
+              console.log('没有授权用户信息', this.data.isAuthorization)
+              return wx.redirectTo({
+                url: `/pages/register/register?backrouter=shop&router=/pages/buyShop/page/hotProduct/hotProduct&productId=${this.data.productId}&courseId=${this.data.courseId}`
+                // url:'/pages/mypage/mypage/mypage'
+              })
+              wx.showToast({
+                title: '请先授权',
+                icon: 'none',
+                // image: '',
+                duration: 1500,
+                mask: true,
+              })
+            } else {
+              this.setData({
+                isAuthorization: true
+              })
+              console.log('已经授权用户信息', this.data.isAuthorization)
+              this.setData({
+                active: -1
+              })
+              if (this.data.type == 7) { //进行准考验证
+                if (this.data.verifyType == 1) { //钢琴考级校验 
+                  this.setData({
+                    isModalshow: false
+                  })
+                } else if (this.data.verifyType == 2) { //手风琴考级验证
+                  this.setData({ //手风琴考试资格验证
+                    sfqModalshow: false
+                  })
 
-          }else{
+                } else {
 
-            this.$api.circle.addStoreProductGroupHotByNew({
-              productId: this.data.productId,
-              childId: this.data.childId,
-              productCourseId: this.data.activityId == '' ? 0:this.data.activityId,
-              activityId: this.data.activityId
-            }).then((res) => {
-              if (res.data.errorCode == 0 && res.data.result != null) { //数据不为空
-                this.setData({
-                  orderNumber: res.data.result.orderNumber
-                })
-                let wxPayResult = res.data.result.wxPayResult
-                this.setData({
-                  appId: wxPayResult.appId,
-                  nonceStr: wxPayResult.nonceStr,
-                  packageValue: wxPayResult.packageValue,
-                  paySign: wxPayResult.paySign,
-                  signType: wxPayResult.signType,
-                  timeStamp: wxPayResult.timeStamp
-                })
-                var pages = this
-                wx.requestPayment({
-                  "appId": this.data.appId,
-                  "timeStamp": this.data.timeStamp,
-                  "nonceStr": this.data.nonceStr,
-                  "package": this.data.packageValue,
-                  "signType": "MD5",
-                  "paySign": this.data.paySign,
-                  success(res) { //支付成功 跳转支付成功待观看页面
-                    if (pages.data.type == 8) { //8 线下课程 支付成功跳转 到待预约
-                      wx.navigateTo({
-                        url: `/pages/buyShop/page/mywaitPay/mywaitPay?showIndex=3&userId=${pages.data.userId}`
+                  this.$api.circle.addStoreProductGroupHotByNew({
+                    productId: this.data.productId,
+                    childId: this.data.childId,
+                    productCourseId: this.data.activityId == '' ? 0 : this.data.activityId,
+                    activityId: this.data.activityId
+                  }).then((res) => {
+                    if (res.data.errorCode == 0 && res.data.result != null) { //数据不为空
+                      this.setData({
+                        orderNumber: res.data.result.orderNumber
                       })
-                    } else { // 视屏课程 支付成功到待观看 7
-                      pages.setData({
-                        showIndex: 5
+                      let wxPayResult = res.data.result.wxPayResult
+                      this.setData({
+                        appId: wxPayResult.appId,
+                        nonceStr: wxPayResult.nonceStr,
+                        packageValue: wxPayResult.packageValue,
+                        paySign: wxPayResult.paySign,
+                        signType: wxPayResult.signType,
+                        timeStamp: wxPayResult.timeStamp
                       })
-                      wx.navigateTo({
-                        url: `/pages/buyShop/page/mywaitPay/mywaitPay?showIndex=${pages.data.showIndex}&userId=${pages.data.userId}`
+                      var pages = this
+                      wx.requestPayment({
+                        "appId": this.data.appId,
+                        "timeStamp": this.data.timeStamp,
+                        "nonceStr": this.data.nonceStr,
+                        "package": this.data.packageValue,
+                        "signType": "MD5",
+                        "paySign": this.data.paySign,
+                        success(res) { //支付成功 跳转支付成功待观看页面
+                          if (pages.data.type == 8) { //8 线下课程 支付成功跳转 到待预约
+                            wx.navigateTo({
+                              url: `/pages/buyShop/page/mywaitPay/mywaitPay?showIndex=3&userId=${pages.data.userId}`
+                            })
+                          } else { // 视屏课程 支付成功到待观看 7
+                            pages.setData({
+                              showIndex: 5
+                            })
+                            wx.navigateTo({
+                              url: `/pages/buyShop/page/mywaitPay/mywaitPay?showIndex=${pages.data.showIndex}&userId=${pages.data.userId}`
+                            })
+                          }
+                          //支付成功改变订单状态
+                          that.$api.circle.storePayQueryOrder({
+                            outTradeNo: that.data.orderNumber
+                          }).then((res) => {
+
+                          })
+                        },
+                        fail(res) {
+                          wx.showToast({
+                            title: '支付失败',
+                            mask: true,
+                            icon: 'success',
+                          })
+                          //跳待支付页面
+                          pages.setData({
+                            showIndex: 1
+                          })
+                          wx.navigateTo({
+                            url: `/pages/buyShop/page/mywaitPay/mywaitPay?showIndex=${pages.data.showIndex}&userId=${pages.data.userId}`
+                          })
+                        }
                       })
+
+                    } else {
+                      wx.showToast({
+                        title: "获取后端数据失败",
+                        mask: true,
+                        icon: 'success'
+                      })
+
                     }
-                    //支付成功改变订单状态
-                    that.$api.circle.storePayQueryOrder({
-                      outTradeNo: that.data.orderNumber
-                    }).then((res) => {
 
-                    })
-                  },
-                  fail(res) {
-                    wx.showToast({
-                      title: '支付失败',
-                      mask: true,
-                      icon: 'success',
-                    })
-                    //跳待支付页面
-                    pages.setData({
-                      showIndex: 1
-                    })
-                    wx.navigateTo({
-                      url: `/pages/buyShop/page/mywaitPay/mywaitPay?showIndex=${pages.data.showIndex}&userId=${pages.data.userId}`
-                    })
-                  }
+                  })
+                }
+
+              } else if (this.data.type == 29) { //活动类弹框
+                this.setData({
+                  modalShow: true, //购买弹框显示
+                  groupBuy: false
                 })
+              } else { //不等于7直接购买 
+                this.setData({
+                  isModalshow: true,
+                  showIndex: 5
+                })
+                console.log('产品类型', this.data.type)
+                //唤起支付接口
+                this.$api.circle.addStoreProductGroupHotByNew({
+                  productId: this.data.productId,
+                  childId: this.data.childId,
+                  productCourseId: this.data.activityId,
+                  activityId: this.data.activityId
 
-              } else {
-                wx.showToast({
-                  title: "获取后端数据失败",
-                  mask: true,
-                  icon: 'success'
+                }).then((res) => {
+                  if (res.data.errorCode == 0 && res.data.result != null) { //数据不为空
+                    this.setData({
+                      orderNumber: res.data.result.orderNumber
+                    })
+                    let wxPayResult = res.data.result.wxPayResult
+                    this.setData({
+                      appId: wxPayResult.appId,
+                      nonceStr: wxPayResult.nonceStr,
+                      packageValue: wxPayResult.packageValue,
+                      paySign: wxPayResult.paySign,
+                      signType: wxPayResult.signType,
+                      timeStamp: wxPayResult.timeStamp
+                    })
+                    var pages = this
+                    wx.requestPayment({
+                      "appId": this.data.appId,
+                      "timeStamp": this.data.timeStamp,
+                      "nonceStr": this.data.nonceStr,
+                      "package": this.data.packageValue,
+                      "signType": "MD5",
+                      "paySign": this.data.paySign,
+                      success(res) { //支付成功 跳转支付成功待观看页面
+                        if (pages.data.type == 8) { //8 线下课程 支付成功跳转 到待预约
+                          wx.navigateTo({
+                            url: `/pages/buyShop/page/mywaitPay/mywaitPay?showIndex=3&userId=${pages.data.userId}`
+                          })
+                        } else { // 视屏课程 支付成功到待观看 7
+                          pages.setData({
+                            showIndex: 5
+                          })
+                          wx.navigateTo({
+                            url: `/pages/buyShop/page/mywaitPay/mywaitPay?showIndex=${pages.data.showIndex}&userId=${pages.data.userId}`
+                          })
+                        }
+                        //支付成功改变订单状态
+                        that.$api.circle.storePayQueryOrder({
+                          outTradeNo: that.data.orderNumber
+                        }).then((res) => {
+
+                        })
+                      },
+                      fail(res) {
+                        wx.showToast({
+                          title: '支付失败',
+                          mask: true,
+                          icon: 'success',
+                        })
+                        //跳待支付页面
+                        pages.setData({
+                          showIndex: 1
+                        })
+                        wx.navigateTo({
+                          url: `/pages/buyShop/page/mywaitPay/mywaitPay?showIndex=${pages.data.showIndex}&userId=${pages.data.userId}`
+                        })
+                      }
+                    })
+
+                  } else {
+                    wx.showToast({
+                      title: "获取后端数据失败",
+                      mask: true,
+                      icon: 'success'
+                    })
+
+                  }
+
                 })
 
               }
-
-            })
-          }
-
-        } else if (this.data.type == 29) { //活动类弹框
-          this.setData({
-            modalShow: true, //购买弹框显示
-            groupBuy: false
-          })
-        } else { //不等于7直接购买 
-          this.setData({
-            isModalshow: true,
-            showIndex: 5
-          })
-          console.log('产品类型', this.data.type)
-          //唤起支付接口
-          this.$api.circle.addStoreProductGroupHotByNew({
-            productId: this.data.productId,
-            childId: this.data.childId,
-            productCourseId: this.data.activityId,
-            activityId: this.data.activityId
-            
-          }).then((res) => {
-            if (res.data.errorCode == 0 && res.data.result != null) { //数据不为空
               this.setData({
-                orderNumber: res.data.result.orderNumber
+                studentName: "",
+                examNumber: "",
+                courseNumber: true,
+                courseName: true
               })
-              let wxPayResult = res.data.result.wxPayResult
-              this.setData({
-                appId: wxPayResult.appId,
-                nonceStr: wxPayResult.nonceStr,
-                packageValue: wxPayResult.packageValue,
-                paySign: wxPayResult.paySign,
-                signType: wxPayResult.signType,
-                timeStamp: wxPayResult.timeStamp
-              })
-              var pages = this
-              wx.requestPayment({
-                "appId": this.data.appId,
-                "timeStamp": this.data.timeStamp,
-                "nonceStr": this.data.nonceStr,
-                "package": this.data.packageValue,
-                "signType": "MD5",
-                "paySign": this.data.paySign,
-                success(res) { //支付成功 跳转支付成功待观看页面
-                  if (pages.data.type == 8) { //8 线下课程 支付成功跳转 到待预约
-                    wx.navigateTo({
-                      url: `/pages/buyShop/page/mywaitPay/mywaitPay?showIndex=3&userId=${pages.data.userId}`
-                    })
-                  } else { // 视屏课程 支付成功到待观看 7
-                    pages.setData({
-                      showIndex: 5
-                    })
-                    wx.navigateTo({
-                      url: `/pages/buyShop/page/mywaitPay/mywaitPay?showIndex=${pages.data.showIndex}&userId=${pages.data.userId}`
-                    })
-                  }
-                  //支付成功改变订单状态
-                  that.$api.circle.storePayQueryOrder({
-                    outTradeNo: that.data.orderNumber
-                  }).then((res) => {
-
-                  })
-                },
-                fail(res) {
-                  wx.showToast({
-                    title: '支付失败',
-                    mask: true,
-                    icon: 'success',
-                  })
-                  //跳待支付页面
-                  pages.setData({
-                    showIndex: 1
-                  })
-                  wx.navigateTo({
-                    url: `/pages/buyShop/page/mywaitPay/mywaitPay?showIndex=${pages.data.showIndex}&userId=${pages.data.userId}`
-                  })
-                }
-              })
-
-            } else {
-              wx.showToast({
-                title: "获取后端数据失败",
-                mask: true,
-                icon: 'success'
-              })
-
             }
-
-          })
-
-        }
-        this.setData({
-          studentName: "",
-          examNumber: "",
-          courseNumber: true,
-          courseName: true
+          },
+          fail: function(res) {},
+          complete: function(res) {},
         })
+        //购买选择类型弹框  夏令营活动选择日期
       },
       [events.ui.stopPageScroll](e) { //catchtouchmove阻止弹窗后滚动穿透 放在当前显示的元素节点上
         return

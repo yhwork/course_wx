@@ -23,8 +23,8 @@ const events = {
     accumulatePoints: null,
     myPay: null,
     myallList: null,
-    waitpayIntem: null
-    
+    waitpayIntem: null,
+    scanCode:null
   }
 }
 // 接口事件
