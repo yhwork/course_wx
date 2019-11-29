@@ -5,7 +5,7 @@ export const events = {
         TAP_WEEK: null,
         TAP_DAY: null,
         LESSON_DETAIL: null,
-        OPEN_LOCATION: null
+        OPEN_LOCATION: null,
     }
 }
 
@@ -18,4 +18,5 @@ export const actions = {
     TRIGGER_DATE_CHANGE: null,
     MAP_DATA: null,
     MAP_LESSON_DATA: null,
+    init:null,
 }

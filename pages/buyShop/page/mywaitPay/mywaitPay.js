@@ -570,7 +570,6 @@ class mywaitPay extends EPage {
           childId: this.data.childId,
           getType: 6
         }).then(res => {
-          console.log("待观看数据")
           console.log("待观看数据", res.data.result.orderInfo)
           let waitSee = res.data.result.orderInfo
           waitSee.forEach((item, index) => {

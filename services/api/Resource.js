@@ -44,9 +44,6 @@ const __config_method = function (auth, path, extparam, options) {
                 method:"POST",
                 data:data,
                 header: {
-
-
-                  
                     'content-type': 'application/x-www-form-urlencoded'
                 },
                 success: resp => {

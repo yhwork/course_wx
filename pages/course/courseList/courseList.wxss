@@ -1,51 +1,350 @@
 /* pages/course/courseList/courseList.wxss */
-@import '/pages/circle/circle.wxss';
-.page_index{
+/* @import '/pages/circle/circle.wxss'; */
+
+.page_index {
   position: fixed;
   top: 0;
   left: 0;
-  right:0;
+  right: 0;
   bottom: 0;
   /* background-color: rosybrown; */
-  z-index: 99
-}   
-page {
-  background: #ebebeb;
+  z-index: 99;
 }
-.el-icon-lxy-iconfontzhizuobiaozhun19{
+
+page {
+  background: #f3f3f3;
+}
+
+.el-icon-lxy-iconfontzhizuobiaozhun19 {
   font-weight: bold;
 }
-.add{
+
+.add {
   color: #ccc;
 }
+
 .banner_box {
-  /* background: #f9e2c1; */
-  background: #ffd596;
+  /* background: #f9e2c1; *//* background: #ffd596; */
   padding: 20rpx 30rpx;
   font-size: 30rpx;
+  display: flex;
+  flex-flow: column wrap;
+  /* align-items: center; */
 }
-.courdetailsstyle{
+
+.courdetailsstyle {
   width: 80%;
   /* border: 1px solid red; */
 }
 
-.head_box{
-  color: #FF9800;
-  position: relative;
-  /* border: 1px solid red; */
+.mains {
 }
-.head_box, .title_box {
+
+.header {
   display: flex;
+  flex-flow: row nowrap;
   align-items: center;
   justify-content: space-between;
 }
 
-.itemlisttxt{
+.header_top {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.header_active {
+  width: 64rpx;
+  height: 64rpx;
+  background-color: #ffecb2;
+  border-radius: 10rpx;
+  position: relative;
+}
+
+.bd {
+  border: 1px solid red;
+}
+
+.header_swipe {
+  display: flex;
+  height: 64rpx;
+}
+
+.userName {
+  height: 22rpx;
+  font-family: PingFang-SC-Medium;
+  font-size: 22rpx;
+  font-weight: normal;
+  font-stretch: normal;
+  letter-spacing: 0px;
+  color: #e7c60e;
+  margin-top: 15rpx;
+}
+
+.header_swipeimg {
+  width: 31rpx;
+  height: 20rpx;
+  opacity: 0.5;
+  /* border: 1px springgreen solid; */
+  margin: 0 15rpx;
+  line-height: 20rpx;
+}
+
+.header_item {
+  margin: 0 10rpx;
+  width: 64rpx;
+  height: 64rpx;
+  background-color: #ffecb2;
+  border-radius: 10rpx;
+  position: relative;
+}
+
+.message {
+  position: absolute;
+  width: 25rpx;
+  height: 25rpx;
+  border-radius: 50%;
+  background-color: #ff3a3a;
+  font-family: PingFang-SC-Medium;
+  font-size: 18rpx;
+  font-weight: normal;
+  font-stretch: normal;
+  letter-spacing: 0px;
+  color: #fff;
+  top: -10rpx;
+  right: -10rpx;
+  text-align: center;
+  line-height: 25rpx;
+}
+.message1 {
+  background-color: #9e9e9e;
+
+}
+
+.look_pic {
+  padding: 5rpx;
+  width: 49rpx;
+  height: 44rpx;
+}
+
+.head_box {
+  color: #ff9800;
+  position: relative;
+  margin-bottom: 45rpx;
+}
+.title_box {
+  margin:25rpx 0  45rpx 0;
+  padding: 7rpx 20rpx;
+  font-size: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.head_box {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.header_swipe_actives{
+  border-radius:8rpx;
+  overflow: hidden;
+  width: 64rpx;
+  height: 64rpx;
+  position: absolute;
+  top: 0; 
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #e7c60e;
+  z-index: 11;
+  opacity: 0.6
+}
+.head_box image {
+  width: 100%;
+  /* height: 80rpx; */
+  border-radius: 8rpx;
+  /* margin-right: 10rpx; */
+}
+
+.head_box .sex {
+  /* width: 35rpx;
+  height: 35rpx;
+  position: absolute;
+  bottom: -5rpx;
+  left: 50rpx; */
+}
+
+.list_view {
+  color:white;
+  box-sizing: border-box;
+  height: 45rpx;
+  width: 258rpx;
+  background-color: #e7c60e;
+  border-radius: 21rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24rpx;
+
+}
+.list_view image{
+  width: 100%;
+  height: auto;
+  padding: 0;
+  margin: 0;
+}
+.addimg{
+  /* border: 1px solid red; */
+  width: 24rpx;
+  height: 24rpx;
+  background-color: #e7c60e;
+  margin-right: 10rpx;
+  line-height: 24rpx;
+}
+.mains_banner {
+  width: 690rpx;
+  height: 294rpx;
+  /* background-color: #ffecb2; */
+  box-shadow: 0rpx 3rpx 32rpx 3rpx rgba(123, 126, 128, 0.15);
+  border-radius: 30rpx;
+  margin-bottom: 48rpx;
+  position: relative;
+  box-sizing: border-box;
+  z-index: 10
+}
+.size_banner2{
+  width: 182rpx;
+	height: 56rpx;
+  position: absolute;
+  bottom: 46rpx;
+  left: 93rpx;
+  padding: 5rpx 15rpx;
+	background-color: #ffffff;
+	border-radius: 28rpx;
+  font-family: PingFangSC-Medium;
+	font-size: 30rpx;
+	font-weight: 600;
+	font-stretch: normal;
+	letter-spacing: 0px;
+	color: #ecc910;
+  text-align:center;
+
+  line-height: 56rpx;
+}
+.size_banner{
+  position: absolute;
+  top:62rpx;
+  left: 66rpx;
+  z-index: 22;
+  	width: 236rpx;
+	height: 44rpx;
+	font-family: FZPTYJW--GB1-0;
+	font-size: 48rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	letter-spacing: 0px;
+	color: #ffffff;
+}
+.size_banner1{
+  position: absolute;
+  top:120rpx;
+  left: 42rpx;
+  z-index: 22;
+ width: 284rpx;
+	height: 48rpx;
+	font-family: FZPTYJW--GB1-0;
+	font-size: 48rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	letter-spacing: 0px;
+	color: #ffffff;
+}
+.mains_banner image{
+  width: 100%;
+  height: auto;
+}
+.course_list{
+  display: flex;
+  flex-flow: column wrap;
+  padding: 5px 30rpx;
+  
+
+}
+
+.course_item{
+  display: flex;
+  justify-content: space-between;
+  
+  width: 690rpx;
+	height: 125rpx;
+	background-color: #ffffff;
+    box-shadow: 0rpx 3rpx 32rpx 3rpx rgba(123, 126, 128, 0.15);
+	/* box-shadow: 0px 1rpx 32rpx 0rpx 
+		rgba(150, 149, 149, 0.26); */
+	border-radius: 30rpx;
+  margin-bottom: 34rpx;
+  padding: 14rpx 28rpx;
+  /* border: 1px solid red; */
+  box-sizing:border-box;
+}
+.course_item_left{
+  font-size: 24rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	letter-spacing: 0px;
+	color: #666666;   
+}
+.course_item_right{
+  align-self: center;
+	font-family: PingFang-SC-Regular;
+	font-size: 20rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	letter-spacing: 0px;
+	color: #333333;
+  display: flex;
+
+}
+.course_item_title{
+  	/* width: 181px; */
+	/* height: 25rpx; */
+	font-family: PingFang-SC-Medium;
+	font-size: 26rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	letter-spacing: 0px;
+	color: #000000;  
+}
+
+.icon-details{
+  margin-left: 30rpx;
+  width: 38rpx;
+	height: 38rpx;
+}
+.icon-details image{
+  width: 100%;
+}
+.icon-dizi {
+	width: 20rpx;
+	height: 25rpx;
+  margin-left: 15rpx;
+}
+.icon-dizi image{
+  width: 100%;
+  height: auto;
+}
+.adress{
+  display: flex;
+  color: #0a4e7f
+}
+.itemlisttxt {
   overflow: hidden;
   height: 84rpx;
   background-color: white;
 }
-.itemlisttxt text{
+
+.itemlisttxt text {
   font-size: 28rpx !important;
   color: #948d8d;
   width: 78%;
@@ -54,50 +353,43 @@ page {
   padding-right: 50rpx;
 }
 
-.head_box image {
-  width: 80rpx;
-  height: 80rpx;
-  border-radius: 8rpx;
-  margin-right: 10rpx;
+.icon_img {
+  width: 40rpx !important;
+  height: 40rpx !important;
 }
-.head_box .sex {
-  width: 35rpx;
-  height: 35rpx;
-  position: absolute;
-  bottom: -5rpx;
-  left: 50rpx;
-}
-.icon_img{
-  width: 40rpx!important;
-  height: 40rpx!important;
-}
+
 .label_box {
   display: flex;
   align-items: center;
   justify-content: space-between;
   text-align: center;
-  margin-top: 20rpx;
- color: #000;
+  color: #000;
 }
-.label_item{
+
+.label_item {
   font-size: 25rpx;
   position: relative;
 }
-.namecolor{
+
+.namecolor {
   max-width: 150rpx;
   color: #ff9800;
 }
-.label_item.active{
- color: #ff9800;
+
+.label_item.active {
+  color: #ff9800;
 }
+
 .label_item image {
   width: 60rpx;
   height: 60rpx;
 }
-.label_item view{
- color: #ff9800;
+
+.label_item view {
+  color: #333;
 }
-.label_info{
+
+.label_info {
   position: absolute;
   left: -40rpx;
   top: 110rpx;
@@ -106,14 +398,11 @@ page {
   background: rgba(0, 0, 0, 0.5);
   font-size: 26rpx;
   color: #fff;
-  padding:10rpx;
+  padding: 10rpx;
   line-height: 50rpx;
 }
 
-.title_box {
-  padding: 7rpx 20rpx;
-  font-size: 30rpx;
-}
+
 
 .item_list {
   display: flex;
@@ -142,27 +431,23 @@ page {
   margin-right: 30rpx;
 }
 
- .list_address {
-  width:700rpx;
+.list_address {
+  width: 700rpx;
   color: #0a4e7f;
   overflow: hidden;
-  text-overflow:ellipsis;
-  white-space: nowrap
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
-.list_view{
-  color: #FF9800;
-}
-.add_btn{
-  background: #fff;
-  margin-top: 20rpx;
-  padding: 20rpx 15rpx;
-  box-sizing: border-box;
 
+.add_btn {
+  background: #fff;
 }
-.fontsize{
+
+.fontsize {
   font-size: 26rpx;
 }
-.mask_box{
+
+.mask_box {
   width: 100%;
   height: 100%;
   position: fixed;
@@ -170,7 +455,8 @@ page {
   left: 0;
   background: rgba(0, 0, 0, 0.5);
 }
-.popup_item{
+
+.popup_item {
   display: flex;
   align-items: center;
   background: #fff;
@@ -178,13 +464,15 @@ page {
   box-sizing: border-box;
   border-bottom: 1rpx solid #ebebeb;
 }
-.popup_item image{
+
+.popup_item image {
   width: 80rpx;
   height: 80rpx;
   margin-right: 20rpx;
   border-radius: 8rpx;
 }
-.el-icon-lxy-ditu{
+
+.el-icon-lxy-ditu {
   font-size: 48rpx;
   color: #ff9800;
 }

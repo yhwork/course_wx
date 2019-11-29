@@ -110,6 +110,7 @@ class watchTv extends EPage {
 
   mapEffect( {put} ) { //调接口 方法   存储方法方便调用
     return {
+      // 获取视频详情
       [effects.getHotVideoDetails]() {
         this.$api.circle.getHotVideoDetails({
           videoId: this.data.videoId,

@@ -597,41 +597,93 @@ class CourseListPage extends EPage {
       },
       //获取孩子列表
       [effects.getChildList]() {
-        this.$api.circle.getChildListByCondition({}).then(res => {
-          let list = res.data.result.childList
-          var i = this.data.childid_i
-          this.data.childId
-          // console.log('不是第一次', this.data.childId);
-          // 判断是否是第一次点击  默认0
-          if (i == '') {
-            this.setData({
-              childlist: list,
-              headImg: list[0].logo,
-              userName: list[0].childName,
-              childId: list[0].childId,
-              gender: list[0].gender,
-            })
-            wx.setStorage({
-              key: 'childId',
-              data: list[0].childId,
-            })
-          } else {
-            this.setData({
-              headImg: list[i].logo,
-              userName: list[i].childName,
-              childId: list[i].childId,
-              gender: list[i].gender,
-              childlist: list,
-              // chooldchild
-            })
-            wx.setStorage({
-              key: 'childId',
-              data: list[0].childId,
-            })
+        // 判断是家长端还是教师端的
+        let role = this.data.role;                 // 判断角色
+        let childList = [];                         // 控制优先级
+        let secnder = [];                           // 备选优先级
+        const currentDate = moment(new Date(), 'YYYY-MM-DD').format('YYYY-MM-DD');
+        this.$api.circle.getChildListByCondition({}).then(async res => {
+          var i = this.data.childid_i              // 第一次点击
+          if (res.data.errorCode == '0') {
+            let list = res.data.result.childList;  // 小孩列表
+            console.log('小孩id',list)
+            for (let item of list){
+            // list.map(  (item,index)=>{
+              let params = {
+                queryDate: currentDate,
+                childId: item.childId
+              }
+              // console.log('参数家长0', params, role); 
+              let data =  await this.$api.course.loadCourseTime(params)  // 查找课程
+              console.log('课程',data)
+              var lessonLists = data.data.result.list;           // 课程
+              if (lessonLists != null && lessonLists.length >= 1) {                    // 两天都有数据
+                  if (currentDate == lessonLists[0].date) { // 第一天有数据
+                    console.log('第一天数据的条数', lessonLists[0].courseList.length)
+                    childList.push({ 
+                      headImg: item.logo,
+                      userName: item.childName,
+                      childId: item.childId,
+                      gender: item.gender,
+                      })            // 记录改小孩的id
+                      // 设置 消息的数量
+                      this.setData({
+                        messagenum: lessonLists[0].courseList.length
+                      })
+                  }else{
+                    console.log('第二天数据的条数', lessonLists[0].courseList.length)
+                    secnder.push({
+                      headImg: item.logo,
+                      userName: item.childName,
+                      childId: item.childId,
+                      gender: item.gender,
+                    })
+                  }
+              }
+            }
+            if (i == '') {
+              if (childList.length > 0) {
+                this.setData({
+                  childlist: childList,
+                  headImg: childList[0].logo,
+                  userName: childList[0].childName,
+                  childId: childList[0].childId,
+                  gender: childList[0].gender,
+                })
+                wx.setStorage({
+                  key: 'childId',
+                  data: childList[0].childId,
+                })
+              } else if (secnder.length > 0) {
+                this.setData({
+                  childlist: secnder,
+                  headImg: secnder[0].logo,
+                  userName: secnder[0].childName,
+                  childId: secnder[0].childId,
+                  gender: secnder[0].gender,
+                })
+                wx.setStorage({
+                  key: 'childId',
+                  data: secnder[0].childId,
+                })
+              }
+              console.log('第一次优化完', childList[0], secnder[0])
+            } else {
+              this.setData({
+                headImg: list[i].logo,
+                userName: list[i].childName,
+                childId: list[i].childId,
+                gender: list[i].gender,
+                childlist: list,
+                // chooldchild
+              })
+              wx.setStorage({
+                key: 'childId',
+                data: list[i].childId,
+              })
+            }
           }
-          // put(effects.GET_DAY_LESSON)
           put(effects.loadCourseTime) // 最近
-
         })
       },
       // 最近
@@ -836,6 +888,7 @@ class CourseListPage extends EPage {
               })
               return
             }
+
             let lessonLists = res.data.result.list
             console.log('最近日程', lessonLists)
             let imgType = res.data.result.imgType; // 校内日程日否含有图片   true

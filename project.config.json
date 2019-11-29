@@ -10,6 +10,7 @@
 		"minified": true,
 		"newFeature": true,
 		"coverView": true,
+		"nodeModules": true,
 		"autoAudits": false,
 		"checkInvalidKey": true,
 		"checkSiteMap": false,
@@ -19,10 +20,10 @@
 			"disablePlugins": [],
 			"outputPath": ""
 		},
-		"nodeModules": true
+		"enhance": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.9.0",
+	"libVersion": "2.9.4",
 	"appid": "wx08f68831d02497ce",
 	"projectname": "%E6%9C%80%E6%96%B0%E5%B0%8F%E8%B1%86%E5%8C%85",
 	"cloudfunctionTemplateRoot": "",
@@ -48,14 +49,19 @@
 		"game": {
 			"list": []
 		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
 		"miniprogram": {
 			"current": -1,
 			"list": [
 				{
-					"id": -1,
-					"name": "添加流程",
-					"pathName": "pages/course/p_add/schoolout_add1",
-					"query": ""
+					"id": 0,
+					"name": "首页",
+					"pathName": "pages/course/courseList/courseList",
+					"query": "",
+					"scene": 1001
 				},
 				{
 					"id": 2,

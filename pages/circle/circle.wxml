@@ -1,17 +1,15 @@
 <view class='cirlce'>
-  <view class='mall-wrap'>
+  <view class='mall-wrap'  hidden="{{true}}">
     <view class="mall" bindtap='maskShow' hidden='{{userinfo}}'>
       <view class='mall_top'>
         <!-- 头像 -->
         <view class='top_userinfo'>
-          <!-- <image src='{{childlist[index].logo}}' class='img-useinfo avator'></image> -->
-          <!-- <image src="{{childInfo.logo?childInfo.logo:'https://qa.oss.iforbao.com/public/assets/img/girlb.png!org'}}" mode='aspectFill' class='head_img' style="width:80rpx;height:80rpx;border-radius:40rpx;"></image> -->
           <image src="{{childlist[index].logo?childlist[index].logo:'https://qa.oss.iforbao.com/public/assets/img/girlb.png!org'}}" class='img-useinfo avator'></image>
         </view>
         <!-- 用户名 -->
         <view class='userinfo-wrap'>
           <view class='userinfo_text font'>
-            <text>{{childlist[index].childName}}</text>
+            <text>{{childlist[index].childName}}  </text>
           </view>
           <view class='userinfo_text special_text'>
           </view>
@@ -37,6 +35,95 @@
     </view>
   </view>
   <!-- 选择小孩列表结束 -->
+  <!-- banner -->
+  <view class="banner">
+    <view class="banner_box">
+        <swiper class="banner_swiper" autoplay="{{true}}"  duration="3500" easing-function='easeInOutCubic'>
+            <block wx:for="{{[red,blue,yellow]}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
+              <swiper-item>
+                <view class="swiper-item {{item}}"></view>
+              </swiper-item>
+            </block>
+        </swiper>
+    </view>
+  </view>
+  <!-- 分类 -->
+  <view class="soft">
+      <view class="soft_bg"> </view>
+      <view class="soft_box">
+        <block wx:for="{{5}}" wx:for-index="idx" wx:for-item="item" wx:key="idx" >
+            <view class="soft_item {{idx==0?'soft_soft_item_active':''}}" ></view>
+            <!-- <image src="" mode="aspectFill"></image> -->
+        </block>
+      </view>
+      <!-- 活动 -->
+      <view class="autodoor">
+          <view class="autodoors autodoors_active">
+             报名入口
+          </view>
+          <view class="autodoors">
+             答题入口
+          </view>
+      </view>
+  </view>
+ <!-- 活动 -->
+  <view class="mobile">
+   <!-- 限时福利 -->
+    <view class="mobile_import">        
+      <view class="mobile_import_header">
+        <view class="mobile_import_hl">
+            <view class="erect"></view>
+            <view class="erect_ml">限时福利</view>
+        </view>
+        <view class="mobile_import_hr" >
+          <view>更多</view>
+          <view class="erect_mr">></view>
+        </view>
+      </view>
+      <view class="mobile_import_box">
+          <view class="mobile_import_img"></view>
+          <view class="mobile_import_cnt">
+              <view class="mobile_import_cnt_title">机器人6级培训</view>
+              <view class="mobile_import_cnt_price">￥ 350</view>
+              <view class="mobile_import_cnt_Sold">已售 666</view>
+          </view>
+          <!-- 按钮 -->
+          <view class="mobile_import_btn">
+              立即购买
+          </view>
+      </view>
+    </view>
+    <!-- 机器人培训 -->
+    <view class="mobile_type">
+<view class="mobile_import_header">
+        <view class="mobile_import_hl">
+            <view class="erect"></view>
+            <view class="erect_ml">机器人培训</view>
+        </view>
+        <view class="mobile_import_hr" >
+          <view>更多</view>
+          <view class="erect_mr">></view>
+        </view>
+      </view>
+      <view class="mobile_type_box">
+          <view class="mobile_type_item ">
+1
+          </view>
+          <view class="mobile_type_item ">
+          2
+          </view>
+           <view class="mobile_type_item ">
+          3
+          </view>
+            <view class="mobile_type_item ">
+          4
+          </view>
+            <view class="mobile_type_item ">
+          5
+          </view>
+      </view>
+    </view>
+  </view>
   <!-- 活动内容 -->
   <view class='activityContent_wrap' wx:for="{{arr}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
     <view class='item_wrap'>

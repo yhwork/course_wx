@@ -132,6 +132,7 @@
       "root": "pages/buyShop",
       "name": "buyShop",
       "pages": [
+        "page/answer/answer",
         "page/watchTvList/watchTvList",
         "page/courseDetail/courseDetail",
         "page/payList/payList",
@@ -157,9 +158,9 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#f29219",
+    "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "",
-    "navigationBarTextStyle": "white",
+    "navigationBarTextStyle": "black",
     "enablePullDownRefresh": true
   },
   "tabBar": {

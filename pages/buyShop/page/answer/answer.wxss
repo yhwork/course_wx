@@ -1,0 +1,322 @@
+html { width: 100%; overflow-x:hidden;}
+body { width: 100%; background:#eee; font-family:'microsoft yahei'; font-size:18px; overflow-x:hidden;}
+img { vertical-align:bottom;}
+a { color:#333; text-decoration:none;}
+
+
+
+
+
+
+/* hand cursor on clickable elements */
+/* .clickable,
+label, 
+input[type=button], 
+input[type=submit], 
+input[type=file], 
+button {
+  cursor: pointer;
+} */
+
+/* Webkit browsers add a 2px margin outside the chrome of form elements */
+button, input, select, textarea {margin: 0;}
+
+/* make buttons play nice in IE */
+button,
+input[type=button] {width: auto; overflow: visible;}
+ 
+/* scale images in IE7 more attractively */
+.ie7 img {-ms-interpolation-mode: bicubic;}
+
+/* prevent BG image flicker upon hover 
+   (commented out as usage is rare, and the filter syntax messes with some pre-processors)
+.ie6 html {filter: expression(document.execCommand("BackgroundImageCache", false, true));}
+*/
+
+/* let's clear some floats */
+.clearfix:before, .clearfix:after { content: "\0020"; display: block; height: 0; overflow: hidden; }  
+.clearfix:after { clear: both; }  
+.clearfix { zoom: 1; }  
+
+.flex_box{
+  display: flex;
+  flex-flow: column wrap;
+  border: 1px solid red;
+}
+
+.radio-group{
+  justify-content: space-around;
+  display: flex;
+  flex-direction: column;
+  padding-left: 25rpx;
+   font-size: 26rpx;
+}
+radio,checkbox{
+  padding: 15rpx 0 15rpx 15rpx;
+}
+.checkbox{
+  font-size: 26rpx;
+  padding-left: 25rpx;
+  display: flex;
+  /* margin: 15rpx 0 15rpx 15rpx; */
+}
+.disflex{
+  /* border: 1px solid red; */
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+}
+
+
+/* 自定义 radio 样式 */
+/* radio{
+    width: 46rpx;
+    height: 46rpx;
+}
+ 
+radio .wx-radio-input{
+    border-radius: 50%; 
+    width: 46rpx;
+    height: 46rpx;
+} */
+ 
+/* 选中后的样式 （可根据设计稿需求自己修改） */
+radio .wx-radio-input.wx-radio-input-checked::before{
+    border-radius: 50%;
+    width: 60rpx;
+    height: 60rpx;
+    line-height:60rpx;
+    text-align: center;
+    font-size:32rpx; /* 对勾大小 26rpx */
+    color:#fff; /* 对勾颜色 */
+    background: #2facff;
+    border-color: #2facff;
+}
+
+
+/* 自定义 checkbox 样式 */
+checkbox-group{
+    /* width: 50rpx;  */
+}
+ .checkbox:hover{
+   background: #e8e8e8;
+ }
+/* 未选中的 背景样式 */
+checkbox .wx-checkbox-input{
+    border-radius: 50%;/* 圆角 */
+    width: 40rpx; /* 背景的宽 */
+    height: 40rpx; /* 背景的高 */
+}
+ 
+/* 选中后的样式 （可根据设计稿需求自己修改） */
+checkbox .wx-checkbox-input.wx-checkbox-input-checked{
+    background: #2facff;
+    border-color: #2facff;
+}
+ 
+checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
+    border-radius: 50%;
+    width: 46rpx;
+    height: 46rpx;
+    line-height: 46rpx;
+    text-align: center;
+    font-size: 28rpx; /* 对勾大小 28rpx */
+    color: #fff; /* 对勾颜色 白色 */
+    background: transparent;
+    transform: translate(-50%, -50%) scale(1);
+    -webkit-transform: translate(-50%, -50%) scale(1);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* *:focus {outline: none;}  */
+
+.login { width: 500px; height: 120px; position: absolute; top: 50%; left: 50%; margin: -150px 0px 0px -250px;}
+.login .title { font-size: 26px; color: #128fd1; padding-bottom: 30px;}
+.input { width: 500px; position: relative;}
+.input input { width: 100%; padding: 15px 10px; border-radius: 5px; border:#CCC solid 1px;}
+.input text { display: block; width: 100px; height: 54px; line-height: 54px; background: #128fd1; color: #FFF; text-align: center; border-radius: 0px 5px 5px 0px; cursor: pointer; position: absolute; right: -21px; top: 0px;}
+
+#main { padding: 20px 100px; height: 100%;}
+
+h2 { padding: 20px; font-size: 20px; color:#128fd1; background: #FFF; border: #e1e1e1 solid 1px; margin: 0px; font-weight: normal; margin-bottom: 40px;}
+
+.list { }
+
+.list h1 { background:#FFF; text-align: center; padding-right: 450px; margin-bottom: 30px; padding: 20px 0px;}
+.list h1 img { width: 50%;}
+
+.list .item {  border: #e1e1e1 solid 1px;}
+.list .item .q { background: #f7f7f7; border-bottom: #e1e1e1 solid 1px; padding: 15px 20px;}
+.list .item .q img { vertical-align:-5px; width: 25px; cursor: pointer;}
+.list .item .q text { padding: 0px 10px; margin: 0px 10px; background: #128fd1; color: #FFF; border-radius: 3px;}
+.list .item .s { background: #FFF; padding: 10px 20px;}
+.list .item .s.min-height { padding: 50px 20px;}
+.list .item .s text { padding-right: 30px;}
+.list .item .a { background: #f7f7f7; padding-left: 0px; position: relative;}
+.list .item .a:hover { background: #efefef;}
+.list .item .a input { vertical-align: 0px; margin-left: 20px; position: absolute; left: 10px; top: 20px; width: 16px; height: 16px;}
+.list .item .a label { display: block; padding: 15px 20px 15px 55px;}
+.list .item .a.on { background: #128fd1;}
+.list .item .a.on label { color: #FFF;}
+.hidden{
+  position: relative;
+  left: 999rpx;
+}
+.aside { width: 350px; position:fixed; left: -36%; top: -36%;transform: translate(50%,50%); max-height: 100%;transition:transform 0.8s; overflow-y: auto; }
+.aside_models{ width: 350px; position:fixed; left: -36%; top: -36%;transform: translate(50%,800%); transition:transform 0.8s ;  max-height: 100%; overflow-y: auto; }
+.alertmsg{
+  height: 65rpx;
+  border: 1px solid rgba(237, 237, 237, 1);
+  box-shadow: 1rpx 1rpx 8rpx 0rpx rgba(237, 237, 237, 1);
+  margin-bottom: 15rpx; 
+  padding: 0 10rpx;
+  border-radius: 15rpx;
+  text-align: center;
+  font-size: 36rpx;
+  color: #128fd1;
+  line-height: 65rpx;
+}
+.aside .time { background: #FFF; text-align: center; padding: 10px 0px; font-size: 18px; }
+.aside .time .closeTime {text-align: center; height:55rpx; width: 55rpx;font-size: 32rpx; border: 1px solid rgba(237, 237, 237, 1); border-radius: 50%; position:absolute; top: 5rpx;right: 10rpx;background-color: #696969}
+.titles{height: 45rpx;padding: 5rpx 10rpx}
+.aside .time text { color: #128fd1; font-size: 30px; vertical-align: -5px;}
+.aside .name { padding: 20px; background: #FFF;}
+.aside .item { padding: 20px; background: #FFF; border-top: #efefef solid 1px;}
+.aside .item .info { padding-left: 10px; border-left: #128fd1 solid 3px; margin-bottom: 10px;}
+.aside .item .head { float: left; width: 105px; border: #efefef solid 1px;}
+.aside .item .list { width: 190px; padding-right:0px; float: right;}
+.aside .item .list li { padding-top: 10px;}
+.aside .item .grid text { display: block; width: 29px; height: 29px; float: left; background: #e8e8e8; margin: 1px; line-height: 29px; text-align: center; cursor: pointer;}
+.aside .item .grid text.on { background: #128fd1; color: #FFF;}
+.aside .item .grid text.ons { background: #c1c4c5; color: #FFF;}
+.aside .button{ padding: 20px; background: #FFF; padding-top: 0px;}
+.aside .button text{ display: block; height: 45px; line-height: 45px; background: #128fd1; color: #FFF; text-align: center; border-radius: 3px; cursor: pointer;}
+
+.alert { width: 700px; border-radius:5px; font-family:'microsoft yahei'; display: none;}
+.alert .name { border-bottom: #efefef solid 1px; padding-bottom: 10px;}
+.alert .text { padding-bottom: 30px; padding-top: 10px; text-align: justify;}
+.alert .btns { text-align: right;}
+.alert .btns text { padding: 6px 25px; margin-left: 10px; background: #128fd1; color: #FFF; text-align: center; border-radius: 3px; cursor: pointer;}
+
+/*.radio-btn input[type="radio"], .check-box input[type="checkbox"] {
+    visibility: hidden;
+}*/
+/*Custom checkbox*/
+ .check-box {
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    display: inline-block;
+    margin: 2px 7px 0 0;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 1px #ccc;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    background: rgb(255, 255, 255);
+    background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(47%, rgba(246, 246, 246, 1)), color-stop(100%, rgba(237, 237, 237, 1)));
+    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+    background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+    background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed', GradientType=0);
+    border: 1px solid #ccc;
+}
+.check-box i {
+    background: url('css/check_mark.png') no-repeat center center;
+    position: absolute;
+    left: 3px;
+    bottom: -15px;
+    width: 16px;
+    height: 16px;
+    opacity: .5;
+    -webkit-transition: all 400ms ease-in-out;
+    -moz-transition: all 400ms ease-in-out;
+    -o-transition: all 400ms ease-in-out;
+    transition: all 400ms ease-in-out;
+    -webkit-transform:rotateZ(-180deg);
+    -moz-transform:rotateZ(-180deg);
+    -o-transform:rotateZ(-180deg);
+    transform:rotateZ(-180deg);
+}
+.checkedBox {
+    -moz-box-shadow: inset 0 0 5px 1px #ccc;
+    -webkit-box-shadow: inset 0 0 5px 1px #ccc;
+    box-shadow: inset 0 0 5px 1px #ccc;
+    border-bottom-color: #fff;
+}
+.checkedBox i {
+    bottom: 2px;
+    -webkit-transform:rotateZ(0deg);
+    -moz-transform:rotateZ(0deg);
+    -o-transform:rotateZ(0deg);
+    transform:rotateZ(0deg);
+}
+/*Custom radio button*/
+ .radio-btn {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    margin: 3px 7px 0 0;
+    cursor: pointer;
+    position: relative;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 1px #ccc;
+    background: rgb(255, 255, 255);
+    background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(47%, rgba(246, 246, 246, 1)), color-stop(100%, rgba(237, 237, 237, 1)));
+    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+    background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+    background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed', GradientType=0);
+}
+.checkedRadio {
+    -moz-box-shadow: inset 0 0 5px 1px #ccc;
+    -webkit-box-shadow: inset 0 0 5px 1px #ccc;
+    box-shadow: inset 0 0 5px 1px #ccc;
+}
+.radio-btn i {
+    border: 1px solid #E1E2E4;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    left: 4px;
+    top: 4px;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+}
+.checkedRadio i {
+    background-color: #898A8C;
+}

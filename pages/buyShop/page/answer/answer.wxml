@@ -1,0 +1,80 @@
+<view class="flex_box">
+  <view class="list">
+    <!-- <h1><image src="/static/unit/test/skin/logo.png"></h1> -->
+    <block wx:for="{{datas}}" wx:for-item="item" wx:for-index='index' wx:key="index">
+     <block wx:if="{{item.type == 'err'}}">
+     <view class="titles">{{item.soft}}</view>
+      <view class="item"  wx:for='{{item.data}}' wx:for-item='items' wx:for-index='index' key='index'>
+        <view class="q">第<text>{{index+1}}</text>{{items.name}}</view>
+        <radio-group class="radio-group" data-id='{{items.id}}'  data-type='{{items.type}}' bindchange="radioChange">
+          <radio class="radio" wx:for='{{items.result}}' wx:for-index='i' wx:for-item='itemss' value="{{itemss.state}}" wx:key='i'>
+            <text>{{itemss.txt}}</text>
+          </radio>
+        </radio-group>
+      </view>
+     </block>
+     <block wx:elif='{{item.type=="redio"}}'>
+     <view class="titles">{{item.soft}}</view>
+      <view class="item"  wx:for='{{item.data}}' wx:for-item='items' wx:for-index='index' key='index'>
+        <view class="q">第<text>{{index+1}}</text>{{items.name}}</view>
+        <radio-group class="radio-group" data-id='{{items.id}}'  data-type='{{items.type}}' bindchange="radioChange">
+          <radio class="a" wx:for='{{items.result}}' wx:for-index='i' wx:for-item='itemss' value="{{itemss.state}}" wx:key='i'>
+            <text>{{itemss.txt}}</text>
+          </radio>
+        </radio-group>
+      </view>
+     </block>
+      <block wx:else>
+       <view class="titles">{{item.soft}}</view>
+       <view class="item" wx:for='{{item.data}}' wx:for-item='items' wx:for-index='index' key='index' >     
+        <view class="q">第<text>{{index+1}}</text>{{items.name}}</view>
+        <checkbox-group bindchange="checkAll" data-id='{{items.id}}' data-type='{{items.type}}' class="text-left flex flex-vc pd-lr30">
+          <label class="checkbox" wx:for='{{items.result}}'   wx:for-index='i' wx:for-item='itemss' value="{{itemss.state}}" wx:key='i'>
+            <checkbox value='{{itemss.state}}' ><view class="disflex">{{itemss.txt}}</view></checkbox>
+          </label>
+        </checkbox-group>
+      </view>
+      </block>
+     
+    </block>
+    <view bindtap="closetime" class="alertmsg">完成</view>
+  </view>
+  <view wx:if='{{true}}' wx:hidden="{{true}}" class="aside {{ismoudle==true?'aside_models ':'aside'}}">
+    <view class="time">得分
+      <text>{{mycope?mycope:''}}</text>
+      <text bindtap="closetime" class="closeTime">X</text>
+    </view>
+    <block wx:for="{{datas}}" wx:for-item="item" wx:for-index='index' wx:key="index">
+    <view class="item">
+      <view class="info">{{item.soft}}</view>
+      <view class="grid clearfix">
+        <block wx:for='{{item.data}}' wx:for-item='items' wx:for-index='index' key='index'>
+             <text id="grid-1339" class =" {{items.scope?'on':'ons' }} ">{{index+1>=10?index+1:'0' + (index+1)}}</text>
+        </block>
+
+       
+      </view>
+    </view>
+    </block>
+    <view class="button">
+      <text id="submit" bindtap="addnum" >提交试卷</text>
+    </view>
+  </view>
+
+  <view id="alert-time" class="alert">
+    <view class="name">提示消息</view>
+    <view class="text">考试已经结束，请确认提交考卷</view>
+    <view class="btns">
+      <text class="confirm">确定</text>
+    </view>
+  </view>
+
+  <view id="alert-ajax" class="alert">
+    <view class="name">提示消息</view>
+    <view class="text">考试还未结束，确定提前交卷吗</view>
+    <view class="btns">
+      <text class="cancel">取消</text>
+      <text class="confirm">确定</text>
+    </view>
+  </view>
+</view>

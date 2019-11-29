@@ -108,6 +108,7 @@ class watchTvList extends EPage {
     put
   }) {
     return {
+      // 去观看
       [events.ui.goWatch] (e){
         console.log(e)
         let id = e.currentTarget.dataset.id
@@ -116,7 +117,7 @@ class watchTvList extends EPage {
           url: `../watchTv/watchTv?videoId=${id}&orderNumber=${orderNumber}`
         })
       },
-
+      // 视频播放结束
       [events.ui.endMovie](e) { //视频播放结束回调函数
         console.log('end', e)
         this.setData({
@@ -199,7 +200,6 @@ class watchTvList extends EPage {
 
       },
       // 检测视频播放
-      
       [events.ui.controlVideo](e) { //控制视频播放
         let index = e.currentTarget.dataset.index
         index = String(index)
@@ -292,6 +292,7 @@ class watchTvList extends EPage {
           }
         })
       },
+      // 获取视频列表
       [effects.getHotVideoList]() {
         this.$api.circle.getHotVideoList({
           productId: this.data.productId,
@@ -314,10 +315,11 @@ class watchTvList extends EPage {
               videoList:list,
               material: JSON.parse(info.material)
             });
-            // console.log("videoList", list)
+            console.log("videoList", list)
           }
         })
       },
+      // 获取视频详情
       [effects.getHotVideoDetails]() {
         this.$api.circle.getHotVideoDetails({
           productId: this.data.productId,
@@ -380,6 +382,7 @@ class watchTvList extends EPage {
         })
 
       },
+      // 增加视频数量
       [effects.addUserVideoCount]() {
         this.$api.circle.addUserVideoCount({
           orderNumber: this.data.orderNumber,
