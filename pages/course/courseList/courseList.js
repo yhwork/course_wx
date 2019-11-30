@@ -15,9 +15,11 @@ const app = getApp();
 class CourseListPage extends EPage {
   get data() {
     return {
+      animationData:'',
       childlist: [],
       showFollowModel: false,
       chooldchild: {},
+      messagenum:'',
       headImg: '', // 头像
       userName: '', // 孩子姓名
       nickName: '', // 用户昵称
@@ -95,7 +97,7 @@ class CourseListPage extends EPage {
         console.log('值', option)
         put(effects.USERINFO) // 获取用户信息
         put(effects.CHECK_FOLLOW) // 是否关注公众号
-      
+
 
         this.$common.checkAuth1().then(
           (res) => {
@@ -170,6 +172,27 @@ class CourseListPage extends EPage {
     dispatch
   }) {
     return {
+      // 扫码
+      [events.ui.scanCode]() {
+        wx.scanCode({
+          onlyFromCamera: false,
+          success(res) {
+            // charSet: "utf-8"
+            // errMsg: "scanCode:ok"
+            // rawData: "5L2g6L+Y"
+            // result: "你好"
+            // scanType: "QR_CODE"
+
+            console.log('相机数据', res)
+            if (res.errMsg == 'scanCode:ok') {
+              wx.navigateTo({
+                url: '/pages/mypage/qrcode/qrcode?val=11',
+              })
+            }
+            // 写一个授权界面  让用户扫码后显示
+          }
+        })
+      },
       // 点击授权事件
       [events.ui.scopeUserInfo](e) {
 
@@ -393,6 +416,16 @@ class CourseListPage extends EPage {
       },
       // 切换小孩子
       [events.ui.chargeUser](e) {
+        var animation = wx.createAnimation({
+          duration: 800,
+          timingFunction: 'ease'
+        })
+        //rotate3d: 参数 x,y,z轴,  翻转度数
+        //其中x,y,z轴为0-1范围，y轴设置为1，代表以y轴为旋转轴
+        animation.rotate3d(0, 1, 0, 180).step()
+        this.setData({
+          animationData: animation.export()
+        })
         // 重新请求小孩子列表
         var childid = e.currentTarget.dataset.id;
         var i = e.currentTarget.dataset.i;
@@ -408,14 +441,16 @@ class CourseListPage extends EPage {
               headImg: item.logo,
               userName: item.childName,
               childId: item.childId,
-              gender: item.gender
+              gender: item.gender,
+              messagenum: item.courseNum
             })
           }
         })
         this.setData({
           mask_state: false,
           childId: childid,
-          'model.childId': childid
+          'model.childId': childid,
+          'header_item':'header_item'
         })
         wx.setStorage({
           key: 'childId',
@@ -598,67 +633,76 @@ class CourseListPage extends EPage {
       //获取孩子列表
       [effects.getChildList]() {
         // 判断是家长端还是教师端的
-        let role = this.data.role;                 // 判断角色
-        let childList = [];                         // 控制优先级
-        let secnder = [];                           // 备选优先级
+        let role = this.data.role; // 判断角色
+        let childList = []; // 控制优先级
+        let secnder = [];   // 备选优先级
+        let messagenum = [] // 消息数量
         const currentDate = moment(new Date(), 'YYYY-MM-DD').format('YYYY-MM-DD');
         this.$api.circle.getChildListByCondition({}).then(async res => {
-          var i = this.data.childid_i              // 第一次点击
+          var i = this.data.childid_i // 第一次点击
           if (res.data.errorCode == '0') {
-            let list = res.data.result.childList;  // 小孩列表
-            console.log('小孩id',list)
-            for (let item of list){
-            // list.map(  (item,index)=>{
+            let list = res.data.result.childList; // 小孩列表
+            for(let item of list){
+          
+              item.courseNum='';
               let params = {
                 queryDate: currentDate,
                 childId: item.childId
               }
-              // console.log('参数家长0', params, role); 
-              let data =  await this.$api.course.loadCourseTime(params)  // 查找课程
-              console.log('课程',data)
-              var lessonLists = data.data.result.list;           // 课程
-              if (lessonLists != null && lessonLists.length >= 1) {                    // 两天都有数据
-                  if (currentDate == lessonLists[0].date) { // 第一天有数据
-                    console.log('第一天数据的条数', lessonLists[0].courseList.length)
-                    childList.push({ 
-                      headImg: item.logo,
-                      userName: item.childName,
-                      childId: item.childId,
-                      gender: item.gender,
-                      })            // 记录改小孩的id
-                      // 设置 消息的数量
-                      this.setData({
-                        messagenum: lessonLists[0].courseList.length
-                      })
-                  }else{
-                    console.log('第二天数据的条数', lessonLists[0].courseList.length)
-                    secnder.push({
-                      headImg: item.logo,
-                      userName: item.childName,
-                      childId: item.childId,
-                      gender: item.gender,
-                    })
-                  }
+              let data = await this.$api.course.loadCourseTime(params) // 查找课程
+              // console.log('课程', data)
+              var lessonLists = data.data.result.list; // 课程
+              if (lessonLists != null && lessonLists.length >= 1) { // 两天都有数据
+
+
+
+                if (currentDate == lessonLists[0].date) { // 第一天有数据
+                  item.courseNum = lessonLists[0].courseList.length; // 当天的课程数
+                  childList.push({
+                    headImg: item.logo,
+                    userName: item.childName,
+                    childId: item.childId,
+                    gender: item.gender,
+                    messagenum: lessonLists[0].courseList.length,
+
+                  })
+                } else {
+                  
+                  secnder.push({
+                    headImg: item.logo,
+                    userName: item.childName,
+                    childId: item.childId,
+                    gender: item.gender,
+                  })
+                }
+                // console.log('小孩日程数据', childList, secnder)
               }
+              //  return item
             }
+            // console.log('小孩列表', list)
+            // console.log('优先小孩 课程', childList)
             if (i == '') {
               if (childList.length > 0) {
                 this.setData({
-                  childlist: childList,
-                  headImg: childList[0].logo,
-                  userName: childList[0].childName,
+                  childlist: list,
+                  headImg: childList[0].headImg,
+                  userName: childList[0].userName,
                   childId: childList[0].childId,
                   gender: childList[0].gender,
+                  messagenum: childList[0].messagenum
                 })
                 wx.setStorage({
                   key: 'childId',
                   data: childList[0].childId,
                 })
+                // console.log('初始化完成',this.data.childList, this.data.userName)
               } else if (secnder.length > 0) {
+                
+                // console.log('1111111111111111111111111111111111111111111111111')
                 this.setData({
-                  childlist: secnder,
+                  childlist: list,
                   headImg: secnder[0].logo,
-                  userName: secnder[0].childName,
+                  userName: secnder[0].userName,
                   childId: secnder[0].childId,
                   gender: secnder[0].gender,
                 })
@@ -667,7 +711,6 @@ class CourseListPage extends EPage {
                   data: secnder[0].childId,
                 })
               }
-              console.log('第一次优化完', childList[0], secnder[0])
             } else {
               this.setData({
                 headImg: list[i].logo,
@@ -675,12 +718,13 @@ class CourseListPage extends EPage {
                 childId: list[i].childId,
                 gender: list[i].gender,
                 childlist: list,
-                // chooldchild
+                messagenum: list[0].messagenum
               })
               wx.setStorage({
                 key: 'childId',
                 data: list[i].childId,
               })
+              // console.log('选择小孩子', this.data.childList, this.data.userName)
             }
           }
           put(effects.loadCourseTime) // 最近
@@ -692,8 +736,7 @@ class CourseListPage extends EPage {
         const currentDate = moment(new Date(), 'YYYY-MM-DD').format('YYYY-MM-DD');
 
         // 判断是家长端还是教师端的
-        var role = this.data.role; //
-
+        var role = this.data.role;
         Date.prototype.format = function(fmt) {
           var o = {
             "M+": this.getMonth() + 1, //月份
@@ -725,88 +768,70 @@ class CourseListPage extends EPage {
           console.log('参数家长0', params, role);
           this.$api.course.loadCourseTime(params).then((res) => {
             console.log('1', res.data.result)
-            // 两天都没有数据
-            if (res.data.result == null) {
-              let a1 = {
-                date: currentDate,
-                week: weel_str,
-                courseList: []
-              }
-              let a2 = {
-                date: tommrow,
-                week: weel_strs,
-                courseList: []
-              }
-              lessonList[0] = a1;
-              lessonList[1] = a2;
+            var lessonList = res.data.result.list; // 
+            let courselist = []
+            if (lessonList === undefined) {
 
-              console.log(lessonList);
+                this.setData({
+                  lessonLists: []
+                })
+                console.log('没有课程')
+                
+                let obj ={
+                  classAddress: "",
+                  courseType:'' ,
+                  dataType: '',
+                  dataTypeName: "",
+                  duration: 15,
+                  endTime: "",
+                  id: '',
+                  name: "",
+                  pm: "",
+                  startDate: "今天",
+                  startTime: "暂无数据",
+                  type: "0",
+                }
+              for(let i=0;i<2;i++){
+                obj.startDate= i=1?'今天':'明天'
+                courselist.push(obj)
+              }
+             
               this.setData({
-                lessonLists: lessonList
+                lessonLists: courselist
               })
+
               return
-            }
-            var lessonLists = res.data.result.list; // 
-            let imgType = res.data.result.imgType; // 校内日程日否含有图片   true
-            this.setData({
-              imgType: imgType,
-            })
-            var lessonList = []
-            // 调用其他方法
-            dispatch(actions.flutterDate)
-            if (lessonLists != null) {
-              if (lessonLists.length == 1) { // 有数据
-                if (currentDate != lessonLists[0].date) { // 第二天有数据
-                  console.log('第二天有数据', currentDate, lessonLists[0].date)
-                  let a = {
-                    date: currentDate,
-                    week: weel_str,
-                    courseList: []
-                  }
-                  lessonList[0] = a
-                  lessonList[1] = lessonLists[0]
-                } else { // 第一天有数据
-                  let a = {
-                    date: tommrow,
-                    week: weel_strs,
-                    courseList: []
-                  }
-                  lessonList[1] = a;
-                  let startList = lessonLists[0].courseList.filter(item => {
-                    // let nowdate = moment().set({'hours': 15,'minutes':'01'}).format('YYYY-MM-DD HH:mm');
-                    let nowdate = moment().format('YYYY-MM-DD HH:mm');
-                    let endTime = moment().set({
-                      'hours': item.endTime.split(':')[0],
-                      'minutes': item.endTime.split(':')[1]
-                    }).add(30, 'minutes').format('YYYY-MM-DD HH:mm')
-                    if (moment(nowdate, 'YYYY-MM-DD HH:mm').valueOf() > moment(endTime, 'YYYY-MM-DD HH:mm').valueOf()) {
-                      console.log('已经过期', endTime)
-                    } else {
-                      console.log('没过期', item)
-                      return item
+            }else{
+            
+              let nowdate  = moment().format('YYYY-MM-DD');
+              console.log(nowdate)
+              
+              lessonList.map((item,index)=>{
+                if (item.courseList.length>0){
+                  for (let course of item.courseList){
+                    // console.log(moment(course.startDate).valueOf(), moment(nowdate).valueOf())
+                    if (moment(nowdate).isSame(course.startDate)){
+                      course.startDate = '今天'
+                    }else{
+                      
                     }
-                  })
-                  // 判断今天的数据是否过期
-                  if (startList.length == 0) {
-                    let a = {
-                      date: currentDate,
-                      week: weel_str,
-                      courseList: []
-                    }
-                    lessonList[0] = a;
-                  } else {
-                    let a = {
-                      date: currentDate,
-                      week: weel_str,
-                      courseList: []
-                    }
-                    a.courseList = startList;
-                    lessonList[0] = a
+                  
+                   let time_a = moment().set({'hours': course.startTime.split(':')[0], 'minutes': course.startTime.split(':')[1] }).format('a-HH:mm');
+                    course['pm'] = time_a.split('-')[0]=='am'?'上午':'下午'
+                    courselist.push(course);
                   }
                 }
-              } else if (lessonLists.length == 2) {
-                let startList = lessonLists[0].courseList.filter(item => {
-                  // let nowdate = moment().set({'hours': 11,'minutes':40}).format('YYYY-MM-DD HH:mm');
+                return item
+              })
+
+              console.log('课程', courselist)
+
+              // 过滤时间 
+
+              let startList = courselist.filter(item => {
+                // let nowdate = moment().set({'hours': 18,'minutes':'10'}).format('YYYY-MM-DD HH:mm');
+                // 只过滤今天的内容
+                if (item.startDate === '今天'){
                   let nowdate = moment().format('YYYY-MM-DD HH:mm');
                   let endTime = moment().set({
                     'hours': item.endTime.split(':')[0],
@@ -819,45 +844,174 @@ class CourseListPage extends EPage {
                     console.log('没过期', item)
                     return item
                   }
-                })
-                // 判断今天的数据是否过期
-                if (startList.length == 0) {
-                  let a = {
-                    date: currentDate,
-                    week: weel_str,
-                    courseList: []
-                  }
-                  lessonLists[0] = a;
-                } else {
-                  let a = {
-                    date: currentDate,
-                    week: weel_str,
-                    courseList: []
-                  }
-                  a.courseList = startList;
-                  lessonLists[0] = a
+                }else{
+                  return item
                 }
-                lessonList = lessonLists
-              }
-            } else { // 最近两天都没有数据
-              console.log('列表无数据');
-              let a1 = {
-                date: currentDate,
-                week: weel_str,
-                courseList: []
-              }
-              let a2 = {
-                date: tommrow,
-                week: weel_strs,
-                courseList: []
-              }
-              lessonList[0] = a1;
-              lessonList[1] = a2;
+                
+              })
+
+
+              this.setData({
+                lessonLists: startList
+              })
+              
+
+
             }
-            console.log(lessonList);
-            this.setData({
-              lessonLists: lessonList
-            })
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            // 两天都没有数据
+            // if (res.data.result == null) {
+            //   let a1 = {
+            //     date: currentDate,
+            //     week: weel_str,
+            //     courseList: []
+            //   }
+            //   let a2 = {
+            //     date: tommrow,
+            //     week: weel_strs,
+            //     courseList: []
+            //   }
+            //   lessonList[0] = a1;
+            //   lessonList[1] = a2;
+
+            //   console.log(lessonList);
+            //   this.setData({
+            //     lessonLists: lessonList
+            //   })
+            //   return
+            // }
+            // var lessonLists = res.data.result.list; // 
+            // let imgType = res.data.result.imgType; // 校内日程日否含有图片   true
+            // this.setData({
+            //   imgType: imgType,
+            // })
+            // var lessonList = []
+            // // 调用其他方法
+            // dispatch(actions.flutterDate)
+            // if (lessonLists != null) {
+            //   if (lessonLists.length == 1) { // 有数据
+            //     if (currentDate != lessonLists[0].date) { // 第二天有数据
+            //       console.log('第二天有数据', currentDate, lessonLists[0].date)
+            //       let a = {
+            //         date: currentDate,
+            //         week: weel_str,
+            //         courseList: []
+            //       }
+            //       lessonList[0] = a
+            //       lessonList[1] = lessonLists[0]
+            //     } else { // 第一天有数据
+            //       let a = {
+            //         date: tommrow,
+            //         week: weel_strs,
+            //         courseList: []
+            //       }
+            //       lessonList[1] = a;
+            //       let startList = lessonLists[0].courseList.filter(item => {
+            //         // let nowdate = moment().set({'hours': 15,'minutes':'01'}).format('YYYY-MM-DD HH:mm');
+            //         let nowdate = moment().format('YYYY-MM-DD HH:mm');
+            //         let endTime = moment().set({
+            //           'hours': item.endTime.split(':')[0],
+            //           'minutes': item.endTime.split(':')[1]
+            //         }).add(30, 'minutes').format('YYYY-MM-DD HH:mm')
+            //         if (moment(nowdate, 'YYYY-MM-DD HH:mm').valueOf() > moment(endTime, 'YYYY-MM-DD HH:mm').valueOf()) {
+            //           console.log('已经过期', endTime)
+            //         } else {
+            //           console.log('没过期', item)
+            //           return item
+            //         }
+            //       })
+            //       // 判断今天的数据是否过期
+            //       if (startList.length == 0) {
+            //         let a = {
+            //           date: currentDate,
+            //           week: weel_str,
+            //           courseList: []
+            //         }
+            //         lessonList[0] = a;
+            //       } else {
+            //         let a = {
+            //           date: currentDate,
+            //           week: weel_str,
+            //           courseList: []
+            //         }
+            //         a.courseList = startList;
+            //         lessonList[0] = a
+            //       }
+            //     }
+            //   } else if (lessonLists.length == 2) {
+            //     let startList = lessonLists[0].courseList.filter(item => {
+            //       // let nowdate = moment().set({'hours': 11,'minutes':40}).format('YYYY-MM-DD HH:mm');
+            //       let nowdate = moment().format('YYYY-MM-DD HH:mm');
+            //       let endTime = moment().set({
+            //         'hours': item.endTime.split(':')[0],
+            //         'minutes': item.endTime.split(':')[1]
+            //       }).add(30, 'minutes').format('YYYY-MM-DD HH:mm')
+            //       console.log('现在时间', nowdate, '结束时间', endTime)
+            //       if (moment(nowdate, 'YYYY-MM-DD HH:mm').valueOf() > moment(endTime, 'YYYY-MM-DD HH:mm').valueOf()) {
+            //         console.log('已经过期', endTime)
+            //       } else {
+            //         console.log('没过期', item)
+            //         return item
+            //       }
+            //     })
+            //     // 判断今天的数据是否过期
+            //     if (startList.length == 0) {
+            //       let a = {
+            //         date: currentDate,
+            //         week: weel_str,
+            //         courseList: []
+            //       }
+            //       lessonLists[0] = a;
+            //     } else {
+            //       let a = {
+            //         date: currentDate,
+            //         week: weel_str,
+            //         courseList: []
+            //       }
+            //       a.courseList = startList;
+            //       lessonLists[0] = a
+            //     }
+            //     lessonList = lessonLists
+            //   }
+            // } else { // 最近两天都没有数据
+            //   console.log('列表无数据');
+            //   let a1 = {
+            //     date: currentDate,
+            //     week: weel_str,
+            //     courseList: []
+            //   }
+            //   let a2 = {
+            //     date: tommrow,
+            //     week: weel_strs,
+            //     courseList: []
+            //   }
+            //   lessonList[0] = a1;
+            //   lessonList[1] = a2;
+            // }
+            // console.log(lessonList);
+            // this.setData({
+            //   lessonLists: lessonList
+            // })
           })
         } else if (role == 1) {
           var params = {
@@ -906,7 +1060,7 @@ class CourseListPage extends EPage {
                   }
                   lessonList[0] = a
                   lessonList[1] = lessonLists[0]
-                } else {         // 第一天有数据
+                } else { // 第一天有数据
                   let a = {
                     date: tommrow,
                     week: weel_strs,
@@ -1170,8 +1324,7 @@ class CourseListPage extends EPage {
           })
         }
       },
-      [actions.flutterDate](e) {
-      }
+      [actions.flutterDate](e) {}
     }
   }
 }

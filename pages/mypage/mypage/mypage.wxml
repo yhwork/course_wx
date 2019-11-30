@@ -13,10 +13,10 @@
         <view wx:if='{{!isAuthorization}}'  bindtap='changeTeacherBind' class='header_info_left_id '><text class="txtbig">授权登录</text> </view>
         <view wx:else class='header_info_left_id textover'>ID号：{{userInfo.id}}</view>
       </view>
-      <view class='mypage_header_info_index' bindtap="scanCode">
+      <!-- <view class='mypage_header_info_index' bindtap="scanCode">
         <text>扫一扫</text>
         <image class='arrow' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/next.png'></image>
-      </view>
+      </view> -->
     </view>
     <view class='my_order'>
       <view class='order_top'>

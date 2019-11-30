@@ -1,5 +1,6 @@
 const events = {
   ui: {
+    scanCode:null,
     CHANGE_LOGO:null,
     goIndex: null,
     addClass: null,

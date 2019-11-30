@@ -1,7 +1,7 @@
 const events = {
   // 界面事件
   ui: {
-
+    scanCode:null,
     stopOther: null,
     showClocker: null,
     closeClocker: null,

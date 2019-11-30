@@ -1,6 +1,7 @@
 /* pages/course/courseList/courseList.wxss */
 /* @import '/pages/circle/circle.wxss'; */
 
+
 .page_index {
   position: fixed;
   top: 0;
@@ -60,8 +61,12 @@ page {
   background-color: #ffecb2;
   border-radius: 10rpx;
   position: relative;
+  /* transform: scale(360) */
 }
-
+ image{
+  max-width: 100%;
+  height: 100%;
+}
 .bd {
   border: 1px solid red;
 }
@@ -98,8 +103,17 @@ page {
   background-color: #ffecb2;
   border-radius: 10rpx;
   position: relative;
+  transition: 0.5s transform;
 }
-
+.header_item:hover{
+  transform: scale(1);
+  transition: all 0.4s ease-in-out;
+}
+.header_item:hover:after {
+ transform: scale(0);
+ opacity: 1;
+ transition: 0s;
+}
 .message {
   position: absolute;
   width: 25rpx;
@@ -160,8 +174,12 @@ page {
   z-index: 11;
   opacity: 0.6
 }
+ img{
+    max-width: 100%;
+    height: 100%;
+}
 .head_box image {
-  width: 100%;
+  /* width: 100%; */
   /* height: 80rpx; */
   border-radius: 8rpx;
   /* margin-right: 10rpx; */
