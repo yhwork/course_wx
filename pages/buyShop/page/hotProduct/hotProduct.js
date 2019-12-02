@@ -98,6 +98,7 @@ class hotProduct extends EPage {
         "https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/cap3.jpg"
       ],
       play:true,
+      adress_Detail:{}, //地址详情
       isvideo:true,   // 显示视频  还是轮播
       playindex:0,
       videoUrl:'http://iforbao-qa.oss-cn-shanghai.aliyuncs.com/videoTest/iforbao_video.mp4',
@@ -150,7 +151,7 @@ class hotProduct extends EPage {
       shareImg: "",
       activityId: "",
       shortCode: "",
-      summerActive: [],
+      summerActive: [],   // 夏令营
       groupBuy: "",
       groupModal: "",
       newpoolist: [],
@@ -297,6 +298,15 @@ class hotProduct extends EPage {
   }) {
     let _this = this
     return {
+      //查看位置
+      [events.ui.OPEN_LOCATION](e) {
+        let longitude = Number(e.currentTarget.dataset.log);
+        let latitude = Number(e.currentTarget.dataset.lat);
+        wx.openLocation({
+          latitude: latitude,
+          longitude: longitude
+        })
+      },
       [events.ui.gotoaddress](e) {
         this.setData({
           lat: e.target.id,
@@ -962,38 +972,42 @@ class hotProduct extends EPage {
 
   mapEffect() { //调接口 方法   存储方法方便调用
     return {
+      // 产品详情接口
+      /**
+       * courseIdDetail
+       * courseOrgAddress
+       * orgDetail
+       * product
+       * resultType
+       */
       [effects.getStoreProductHotDetailsByPid]() {
         this.$api.circle.getStoreProductHotDetailsByPid(this.data.param).then(res => {
           console.log('详情参数', res.data.result);
-          let type = res.data.result.resultType //8线想下课程待预约， 7线上课程是视频待观看
+          let { 
+            courseIdDetail,
+            courseOrgAddress,
+            orgDetail, 
+            product, 
+            activity,
+            resultType } = res.data.result;
+
+          //8线想下课程待预约， 7线上课程是视频待观看
           this.setData({
-            type: type
+            type: resultType
           })
-          this.setData({
-            summerActive: res.data.result.activity
-          })
+          // 夏令营
+          if (activity)
+          this.setData({ summerActive: activity})
           let userId='';
-          let orgId = res.data.result.courseOrgAddress[0].orgId
-          if (type != 29) {
-            let list = res.data.result.courseIdDetail
-             userId = list.userId
-            
+          let orgId = courseOrgAddress[0].orgId
+          if (resultType != 29) {
+            userId  = res.data.result.courseIdDetail.userId
           }
-          let product = res.data.result.product
-          let extratext = product.descr
-
-          this.setData({ //富文本图片溢出处理
-            desrc: extratext.replace(/\<img/gi, '<img class="rich-img"')
-          })
-
-          let storeCountNum = product.count
-          let img = product.imgVideo
-          let newimg = JSON.parse(img)
-          let newimgArr = Object.values(newimg)
-          product.imgVideo = newimgArr
+          product.imgVideo = Object.values(JSON.parse(product.imgVideo))
           this.setData({
+            desrc: product.descr.replace(/\<img/gi, '<img class="rich-img"'),  //富文本图片溢出处理
             product: product,
-            storeCountNum: storeCountNum,
+            storeCountNum: product.count,
             groupNum: product.memberNum,
             subjectId: product.subjectId,
             verifyType: product.verifyType
@@ -1004,8 +1018,6 @@ class hotProduct extends EPage {
           let newlabobj = JSON.parse(lableObj)
           let labObjArr = Object.values(newlabobj)
           product.lable = labObjArr
-          let address = res.data.result.courseOrgAddress
-          let num = address.length
           let iGroup = product.iGroup
           if (iGroup == 1) {
             this.setData({
@@ -1019,10 +1031,11 @@ class hotProduct extends EPage {
           console.log('价格', product.disPrice)
           this.setData({
             // name: list.name,
+            adress_Detail: orgDetail,
             origPrice: product.origPrice,
             title: product.title,
-            address: address,
-            num: num,
+            address: courseOrgAddress,
+            num: courseOrgAddress.length,
             orgId: orgId,
             userId: userId,
             level: product.level,
@@ -1040,7 +1053,7 @@ class hotProduct extends EPage {
           checkCode: this.data.examNumber,
           checkName: this.data.studentName,
           productId: this.data.productId
-        }).then(res => {
+        }).then(res => { 
           let isBuy = res.data.result.BuyVerify.isBuy
           let isNameFlag = res.data.result.BuyVerify.resultValue
           if (isBuy == "OK") {

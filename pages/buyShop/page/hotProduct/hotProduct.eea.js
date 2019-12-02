@@ -30,7 +30,8 @@ const events = {
     bindplay:null,
     bindpause:null,
     videoTap:null,
-    catchTouchMove:null
+    catchTouchMove:null,
+    OPEN_LOCATION: null  // 查看地址
   }
 }
 
