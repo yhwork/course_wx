@@ -1,5 +1,5 @@
 <view class='cirlce'>
-  <view class='mall-wrap'  hidden="{{true}}">
+  <view class='mall-wrap' hidden="{{true}}">
     <view class="mall" bindtap='maskShow' hidden='{{userinfo}}'>
       <view class='mall_top'>
         <!-- 头像 -->
@@ -35,104 +35,39 @@
     </view>
   </view>
   <!-- 选择小孩列表结束 -->
-  <!-- banner -->
-  <view class="banner">
-    <view class="banner_box">
-        <swiper class="banner_swiper" autoplay="{{true}}"  duration="3500" easing-function='easeInOutCubic'>
-            <block wx:for="{{[red,blue,yellow]}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
-              <swiper-item>
-                <view class="swiper-item {{item}}"></view>
-              </swiper-item>
-            </block>
-        </swiper>
-    </view>
+
+  <!-- 活动 -->
+  <view class="active_list">
+    <block wx:for='{{arr}}' wx:for-index="index" wx:for-item='item' :key='index'>
+      <view class="active_item" bindtap='gotodetailitem' id="{{item.course_id}}" data-productId="{{item.productId}}" data-isgroup='{{item.i_group}}' data-kinds='{{item.type}}'>
+        <view class="banners">
+          <image src='{{arr[index].img_video[0]}}' class='item_imgs' mode='widthFix'></image>
+        </view>
+        <view class="active_content">
+          <view class="active_title">
+            <view>{{item.title}}</view>
+            <view class="active_priced">
+              <view>￥{{item.i_group==1?item.group_price:item.dis_price}}</view>
+              <view>门市价：￥{{item.orig_price}}</view>
+              <view> 已售：{{item.count - item.surplus_count}}</view>
+            </view>
+          </view>
+          <view class="buyshoop">
+            <view class="btn_shop">抢购中</view>
+          </view>
+        </view>
+      </view>
+    </block>
   </view>
-  <!-- 分类 -->
-  <view class="soft">
-      <view class="soft_bg"> </view>
-      <view class="soft_box">
-        <block wx:for="{{5}}" wx:for-index="idx" wx:for-item="item" wx:key="idx" >
-            <view class="soft_item {{idx==0?'soft_soft_item_active':''}}" ></view>
-            <!-- <image src="" mode="aspectFill"></image> -->
-        </block>
-      </view>
-      <!-- 活动 -->
-      <view class="autodoor">
-          <view class="autodoors autodoors_active">
-             报名入口
-          </view>
-          <view class="autodoors">
-             答题入口
-          </view>
-      </view>
-  </view>
- <!-- 活动 -->
-  <view class="mobile">
-   <!-- 限时福利 -->
-    <view class="mobile_import">        
-      <view class="mobile_import_header">
-        <view class="mobile_import_hl">
-            <view class="erect"></view>
-            <view class="erect_ml">限时福利</view>
-        </view>
-        <view class="mobile_import_hr" >
-          <view>更多</view>
-          <view class="erect_mr">></view>
-        </view>
-      </view>
-      <view class="mobile_import_box">
-          <view class="mobile_import_img"></view>
-          <view class="mobile_import_cnt">
-              <view class="mobile_import_cnt_title">机器人6级培训</view>
-              <view class="mobile_import_cnt_price">￥ 350</view>
-              <view class="mobile_import_cnt_Sold">已售 666</view>
-          </view>
-          <!-- 按钮 -->
-          <view class="mobile_import_btn">
-              立即购买
-          </view>
-      </view>
-    </view>
-    <!-- 机器人培训 -->
-    <view class="mobile_type">
-<view class="mobile_import_header">
-        <view class="mobile_import_hl">
-            <view class="erect"></view>
-            <view class="erect_ml">机器人培训</view>
-        </view>
-        <view class="mobile_import_hr" >
-          <view>更多</view>
-          <view class="erect_mr">></view>
-        </view>
-      </view>
-      <view class="mobile_type_box">
-          <view class="mobile_type_item ">
-1
-          </view>
-          <view class="mobile_type_item ">
-          2
-          </view>
-           <view class="mobile_type_item ">
-          3
-          </view>
-            <view class="mobile_type_item ">
-          4
-          </view>
-            <view class="mobile_type_item ">
-          5
-          </view>
-      </view>
-    </view>
-  </view>
-  <!-- 活动内容 -->
-  <view class='activityContent_wrap' wx:for="{{arr}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
+
+  <!-- <view class='activityContent_wrap' wx:for="{{arr}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
     <view class='item_wrap'>
       <view class='content_item'>
         <image src='{{arr[idx].img_video[0]}}' class='item_img' bindtap='gotodetailitem' id="{{item.course_id}}" data-productId="{{item.productId}}" data-isgroup='{{item.i_group}}' data-kinds='{{item.type}}'></image>
-        <!-- <text class='item_font'>{{item.end_time}}</text> -->
+        
         <text class="item_catch">抢购中</text>
       </view>
-      <!-- 课程标签 -->
+
       <view class='Course_introduction'>
         <view class='introduction_detail'>{{item.title}}</view>
         <view class='intro_text font'>{{item.subtitle}}</view>
@@ -141,43 +76,43 @@
             <text class='itemTexrt_brand font' wx:for="{{item.lable}}" wx:key="index">{{item}}</text>
           </scroll-view>
         </view>
-        <!-- 商家 -->
+     
         <view class='merchants_wrap special_flex'>
-        <view class="leftprice">
-          <view>
-            <!-- <text class='active_price'> -->
-             <text class="redFont">¥</text>
-            <!-- <text>{{item.group_price}}</text>| -->
-             <text class="redFont">{{item.i_group==1?item.group_price:item.dis_price}}</text>|
-            <!-- </text> -->
-          </view>
-          <view>
-            <text class='shop_price'>
+          <view class="leftprice">
+            <view>
+        
+              <text class="redFont">¥</text>
+      
+              <text class="redFont">{{item.i_group==1?item.group_price:item.dis_price}}</text>|
+   
+            </view>
+            <view>
+              <text class='shop_price'>
              <text>门市价</text>
-             <text>¥</text>
-            <text>{{item.orig_price}}</text>
-            </text>
+              <text>¥</text>
+              <text>{{item.orig_price}}</text>
+              </text>
+            </view>
           </view>
-        </view>
           <view class='sale_num'>
             <text class="alreadyNum">已售:</text>
             <text class='sale_numbers font'>{{item.count-item.surplus_count}}</text>
-            <!-- <text class='sale_numbers font'>1000</text> -->
+        
           </view>
         </view>
       </view>
     </view>
-  </view>
-  </view>
-  <view wx:if="{{showBottomtext}}">已经到底了~~</view>
-  <!-- 广告弹窗 -->
-  <!-- <view  class='wrap_modal' bindtap='gotoExam'> -->
-
-  <!-- <view class='wrap_modal' bindtap='gotoExam'>
-    <text class='modal_wrap'>2019年上海音协电子琴考级在线乐理考试调研问卷</text>
   </view> -->
-<!-- </view> -->
+</view>
+<view wx:if="{{showBottomtext}}">已经到底了~~</view>
+<!-- 广告弹窗 -->
+<!-- <view  class='wrap_modal' bindtap='gotoExam'>
+
+<view class='wrap_modal' bindtap='gotoExam'>
+    <text class='modal_wrap'>2019年上海音协电子琴考级在线乐理考试调研问卷</text>
+  </view>
+</view> -->
 <!-- <view class="modal"></view> -->
 <view class="adContainer">
-   <ad unit-id="adunit-bd5c2d93436027d2" bindload="adLoad"  binderror="adError" bindclose="adClose" ad-intervals="30"></ad>
+  <ad unit-id="adunit-bd5c2d93436027d2" bindload="adLoad" binderror="adError" bindclose="adClose" ad-intervals="30"></ad>
 </view>

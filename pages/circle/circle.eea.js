@@ -6,6 +6,7 @@ const events = {
     choseItem:null,
     gotoExam:null,
     adError:null,
+
   }
 }
 

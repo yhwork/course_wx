@@ -132,10 +132,11 @@ class circle extends EPage {
       [events.ui.stopPageScroll](e) { //catchtouchmove阻止弹窗后滚动穿透
         return
       },
+      // 进入详情页
       [events.ui.gotodetailitem](e) {
-        console.log(e)
+        console.log('derails',e)
         this.setData({
-          courseId: e.target.id,
+          courseId: e.currentTarget.id,
           productId: e.currentTarget.dataset.productid,
           isGroup: e.currentTarget.dataset.isgroup,
           type: e.currentTarget.dataset.kinds
@@ -180,13 +181,12 @@ class circle extends EPage {
         this.$api.circle.getStoreInfoDetail({
           producId: 1
         }).then(res => {
-          console.log(res.data.result)
+          console.log('是啥',res.data.result)
           let product = res.data.result
         })
       },
-      
+      // 订单列表
       [effects.getStoreProductHotList]() {
-
         this.$api.circle.getStoreProductHotList({}).then(res => {
           let list = res.data.result.productList
           list.forEach((item, index) => {
@@ -203,9 +203,10 @@ class circle extends EPage {
             arr: list,
             lable: list.lable
           })
+          console.log('订单', list)
         })
-
       },
+      // 小孩列表
       [effects.getChildListByCondition]() {
         this.$api.circle.getChildListByCondition({}).then(res => {
           console.log(res.data.result.childList)
@@ -219,7 +220,7 @@ class circle extends EPage {
             childName: list[0].childName
           })
           wx.setStorageSync("selectChildId", this.data.childId)
-          console.log(this.data.childId)
+          console.log('getChildListByCondition', this.data.childlist)
         })
 
       }
