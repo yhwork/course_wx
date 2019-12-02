@@ -117,11 +117,19 @@
 
 <view class='title_box' style='background:#fff;'>
   <view>最近日程</view>
-  <view class='list_view' bindtap='addClass'>
-    <view class="addimg">
-      <image lazy-load='{{true}}' mode='widthFix' src="/assets/local/64dfce9688ef8970e3297c0f6d1b21d.png"></image>
+  <view class="nearly_addcourse">
+    <view class='list_view' bindtap='addClass'>
+      <view class="addimg">
+        <image lazy-load='{{true}}' mode='widthFix' src="/assets/local/64dfce9688ef8970e3297c0f6d1b21d.png"></image>
+      </view>
+      <view>添加校外课程</view>
     </view>
-    <view>添加新的课程</view>
+    <view class='list_view' bindtap='addClass'>
+      <view class="addimg">
+        <image lazy-load='{{true}}' mode='widthFix' src="/assets/local/64dfce9688ef8970e3297c0f6d1b21d.png"></image>
+      </view>
+      <view>添加校内日程</view>
+    </view>
   </view>
 
 
@@ -135,9 +143,9 @@
         <view>{{ items.pm}}
           <text>{{items.startTime}}-{{items.endTime}}</text>
         </view>
-        <view hidden='{{items.classAddress == ""}}' class="adress" bindtap='OPEN_LOCATION' data-lat='{{items.latitude}}' data-log='{{items.longitude }}'>
+        <view hidden='{{items.dataType == 2 }}' class="adress" bindtap='OPEN_LOCATION' data-lat='{{items.latitude}}' data-log='{{items.longitude }}'>
           <text>{{items.classAddress}}</text>
-          <view class="icon-dizi">
+          <view hidden='{{items.classAddress == ""}}' class="icon-dizi">
             <image lazy-load='{{true}}' mode='widthFix' src='/assets/local/icon-dizi@2x.png'></image>
           </view>
         </view>

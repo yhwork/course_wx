@@ -5,6 +5,154 @@ page {
   padding-bottom: 70rpx;
 }
 
+.bd{
+  border: 1px solid red;
+}
+
+/* 新版 */
+.hotproducr_detail{
+  max-width: 100%;
+  background-color: #f3f3f3
+}
+.hotproducr_detail_price{
+  /* width: 749rpx; */
+	height: 197rpx;
+	background-color: #ffffff;
+  padding: 25rpx 30rpx 0 30rpx;
+  position: relative;
+}
+.hotproducr_detail_price .title{
+	font-family: PingFang-SC-Medium;
+	font-size: 28rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	letter-spacing: -1rpx;
+	color: #333333;
+}
+.hotproducr_detail_price .oldprice{
+  font-family: PingFang-SC-Regular;
+	font-size: 22rpx;
+	font-weight: normal;
+  font-stretch: normal;
+	letter-spacing: -1rpx;
+	color: #666666;
+  text-decoration: line-through;
+  padding: 0;
+  /* margin-bottom:16rpx; */
+}
+.hotproducr_detail_price .activeprice{
+	font-family: PingFang-SC-Medium;
+	font-size: 22rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	letter-spacing: -1rpx;
+	color: #f63232;
+}
+.hotproducr_detail_price .paysum{
+  /* margin-top: 15rpx; */
+  font-family: PingFang-SC-Regular;
+	font-size: 22rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	letter-spacing: -1rpx;
+	color: #666666;
+}
+ .share_btn,.adress_icon{
+  position: absolute;
+  /* border: 1px solid red; */
+  width:35rpx;
+	height:35rpx;
+  bottom: 26rpx;
+  right: 26rpx;
+  font-size:20rpx;
+}
+.adress_icon image,.share_btn image{
+  width: 100%;
+}
+.hotproducr_detail_price text{
+  font-size: 26rpx;
+  margin-left: 5rpx;
+}
+.hotproducr_detail_adress{
+	margin: 10rpx 0;
+	height: 172rpx;
+	background-color: #ffffff;
+  padding: 0 30rpx;
+  position: relative;
+}
+.adress_title{
+  font-family: PingFang-SC-Medium;
+	font-size: 28rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	/* line-height: 16rpx; */
+	letter-spacing: -1rpx;
+	color: #333333;
+  padding: 25rpx 0 10rpx 0;
+}
+.product_adress_title{
+	font-family: PingFang-SC-Regular;
+	font-size: 24rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	/* line-height: 16px; */
+	letter-spacing: -1rpx;
+	color: #444444;
+  margin-bottom:10rpx;
+}
+.hotproducr_detail_adress .adress{
+  	font-family: PingFang-SC-Regular;
+	font-size: 24rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	letter-spacing: -1rpx;
+	color: #999999;
+}
+.hotproducr_detail_introduce{
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  background-color: #fff;
+  margin-bottom: 124rpx;
+}
+.hotproducr_detail_ito_top{
+  background-color: #ffffff;
+  width: 100%;
+  padding: 0 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 98rpx;
+  box-sizing: border-box;
+  margin-bottom: 10rpx;
+}
+.hotproducr_detail_ito_top>view:nth-child(1){
+  padding-left: 54rpx
+}
+.hotproducr_detail_ito_top>view:nth-child(2){
+  padding-right: 54rpx
+}
+.hotproducr_detail_introduce>.content_box{
+  /* border: 1px solid rebeccapurple; */
+  padding: 25rpx 0;
+  	width: 694rpx;
+	/* height: 446rpx; */
+	background-color: #ffffff;
+	box-shadow: 0rpx 3rpx 32rpx 3rpx rgba(123, 126, 128, 0.15);
+}
+.active_btns{
+  color: #ece60e;
+}
+
+
+
+
+
+
+
+
+
+/* 新版结束 */
 .activityContent_wrap {
   width: 750rpx;
 }
@@ -15,34 +163,11 @@ page {
 }
 
 .videoimage{
-  
-  /* display: flex;
-  justify-content: center;
-  align-items: center;*/
-
-  /* position: fixed; 
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  background-color: rgba(0, 0, 0, .2);
-  border: 1px solid red;*/
   width: 94rpx;
   height: 94rpx;
   margin-left: 50%;
   margin-top: 30%;
   transform: translate(-50%,-50%);
-}
-.playImg{
-  /* position: absolute;
-  background-size: 120%;
-  top: 50%;
-  text-align: center;
-  left: 50%;
-  background-color: rgba(0, 0, 0, .2);
-  margin-left:-47rpx;
-  transform: translateY(-50%);
-  width: 94rpx;
-  height: 94rpx; */
 }
 .hot_img {
   width: 100%;
@@ -57,7 +182,7 @@ page {
 }
 .hot_swiper {
   /* height: 400rpx; */
-    height:475rpx;
+    height:470rpx;
 }
 .video_change{
   width: 100%;
@@ -66,12 +191,15 @@ page {
   /* border: 1px solid rgba(0, 0, 0, .2); */
 }
 .new_datail {
-  margin-top: 0rpx;
-  font-size: 32rpx;
-  font-weight: bolder;
-  color: black;
-  /* width: 600rpx; */
-  word-wrap: break-word;
+  margin: 29rpx 0 14rpx 31rpx;
+	height: 28rpx;
+	font-family: PingFang-SC-Medium;
+	font-size: 28rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	letter-spacing: -1rpx;
+  line-height: 28rpx;
+	color: #333333;
 }
 
 /* 换行  只加宽度如果碰到英文及连续数字则无效 */
@@ -93,6 +221,7 @@ page {
 
 .hot {
   width: 750rpx;
+  background-color: #f3f3f3;
 }
 
 .merchants_wrap {
@@ -194,12 +323,14 @@ page {
 
 .bottombar {
   width: 750rpx;
+  height: 94rpx;
+	box-shadow: 0px 0px 16px 2px 
+		rgba(196, 196, 196, 0.26);
   background-color: #f3f2f2;
   display: flex;
   position: fixed;
   bottom: 0;
   font-size: 24rpx;
-  height: 90rpx;
 }
 
 .save_img {
@@ -255,8 +386,10 @@ page {
 }
 
 .bar_buynow2 {
-  width: 70%;
+  width: 68%;
   background-color: #ff9800;
+  border-radius: 15rpx;
+  padding-right: 4rpx;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -426,12 +559,24 @@ page {
   /* z-index:1; */
   z-index: 10;
 }
+.share_btn>button{
+  /* border: 1px solid red; */
+  width: 45rpx;
+  height: 45rpx;
 
+}
+.share_btn>button>image{
+    width: 35rpx;
+    height: 35rpx;
+    position: relative;
+    top:-22rpx;
+    left: -22rpx;
+}
 .shareBtn {
   /* position: absolute;
   left:650rpx;
   top: 588rpx; */
-    width:109rpx !important;
+   width:60rpx !important;
   /* height: 60rpx !important; */
   /* background-color: chocolate; */
   position: relative;

@@ -2,30 +2,26 @@
   <view class='hot'>
     <view class='activityContent_wraps'>
       <view class='item_wrap'>
+        <!-- 显示视频播放 -->
         <view class='content_items' wx:if='{{isvideo}}'>
           <swiper indicator-dots="{{indicatorDots}}" indicator-color="{{color}}" indicator-active-color="{{activecolor}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" easing-function='easeInOutCubic' circular="true" bindchange='changeSwiiper'
             class='hot_swiper'>
             <block wx:for="{{imgUrls}}" wx:key="index" wx:for-index="idx">
               <swiper-item catchtouchmove='catchTouchMove' wx:for="{{product.imgVideo}}" wx:key="index">
-                <!-- <image
-								 src="{{item}}"
-								 class="slide-image"
-								 width="100%"
-								 height="100%"
+                <!-- <image src="{{item}}"  class="slide-image"  width="100%" 	 height="100%"
 								 class='hot_img'
 								/> -->
-
                 <video bindplay='bindplay' bindtap="videoTap" bindpause='bindpause' class="video_change hot_video" id='video{{idx}}' autoplay='{{false}}' width="100%" show-center-play-btn="{{false}}" src='{{videoUrl}}' controls="true" objectFit="fill" show-mute-btn='{{true}}'
                   title='测试' enable-progress-gesture='{{false}}' show-play-btn='{{false}}' poster="{{imgUrls[0]}}" bindended='bindended'>
                   <cover-view class="videoimage">
                     <cover-image bindtap="videoTap" class="playImg" src="../../../../assets/icons/plus.jpg" wx:if="{{play}}"></cover-image>
                   </cover-view>
-
                 </video>
               </swiper-item>
             </block>
           </swiper>
         </view>
+        <!-- 显示图片轮播 -->
         <view class="content_items" wx:else>
           <swiper indicator-dots="{{indicatorDots}}" indicator-color="{{color}}" indicator-active-color="{{activecolor}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" easing-function='easeInOutCubic' circular="true" bindchange='changeSwiiper'
             class='hot_swiper'>
@@ -36,24 +32,24 @@
             </block>
           </swiper>
         </view>
-        <!-- 课程标签 -->
-        <view class='Course_introduction'>
+        
+        <!-- <view class='Course_introduction bd'>
           <view class='hotshare'>
-            <view class='new_datail'>{{title}}</view>
+            <view class='new_datail bd'>{{title}}</view>
           </view>
           <view class='course_brand'>
             <scroll-view scroll-x="true">
               <text class='itemTexrt_brand' wx:for="{{lable}}" wx:key="index">{{item}}</text>
             </scroll-view>
           </view>
-          <!-- 商家 -->
+       
           <view class='merchants_wrap special_flex'>
             <view>
               <text class='active_price'>
                 <text>¥</text>
               <text>{{ isGroup=='1' ? groupPrice : disPrice }}</text>
               <text>|</text>
-              <!-- {{isGroup==1?disPrice:groupPrice}} -->
+          
               </text>
             </view>
             <view class='priceBtn'>
@@ -64,7 +60,7 @@
                 <text>{{origPrice}}</text>
                 </text>
               </view>
-              <!-- 分享标签 -->
+              
               <view class='sharebtn_s'>
                 <view >
                   <button open-type="share" bindtap="changeshare" class='default-btn shareBtn' data-title='{{title}}' data-img='{{shareImg}}' data-productId='{{productId}}' data-courseId='{{courseId}}'>
@@ -89,23 +85,23 @@
               <text>{{storeCountNum}}</text>
             </view>
           </view>
-        </view>
+        </view> -->
       </view>
     </view>
     <!-- 购买须知 -->
-    <view hidden="{{type==29||type==7}}">
+    <!-- <view hidden="{{type==29||type==7}}">
       <text>类型{{type}}</text>
       <view class='buy-warn'>购买须知</view>
       <view class='warn_context'>
         <view class='warn_wrap'>
-          <!-- item -->
+     
           <view class='warn_item'>
             <view class='warn_img'>
               <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/time.png' class='warn_time' />
             </view>
             <view class='time_ont'>2次课，每次课50分钟</view>
           </view>
-          <!-- item -->
+        
           <view class='warn_item'>
             <view class='warn_img'>
               <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/xq.png' class='warn_time' />
@@ -138,6 +134,44 @@
           </view>
         </view>
       </view>
+    </view> -->
+    <!-- 详情内容 -->
+
+    <view class="hotproducr_detail">
+        <!--  -->
+        <view class="hotproducr_detail_price">
+          <view class="title ">
+              {{title}}
+          </view>
+          <view class="oldprice ">
+              门市价 <text>￥{{origPrice}}</text> 
+          </view>
+          <view class="activeprice ">
+              活动价<text>￥{{ isGroup=='1' ? groupPrice : disPrice }}</text> 
+          </view>
+          <view class="paysum">
+              已售：{{product.count-product.surplusCount}}
+          </view> 
+          <view class="share_btn">
+              <button open-type="share" bindtap="changeshare" data-title='{{title}}' data-img='{{shareImg}}' data-productId='{{productId}}' data-courseId='{{courseId}}'> <image src='/assets/local/fenxiang@2x.png'  mode="widthFix"></image></button>
+             
+              
+          </view>
+        </view>
+        <view class="hotproducr_detail_adress"  bindtap='OPEN_LOCATION' data-lat='{{adress_Detail.latitude}}' data-log='{{adress_Detail.longitude }}' >
+            <view class="adress_title">门店地址</view>
+            <view class="product_adress_title">{{adress_Detail.name}}</view>
+            <view class="adress"><text>{{adress_Detail.address}}</text><view class="adress_icon"> <image src='/assets/local/icon-dizi@2x.png' mode="widthFix"></image></view> </view>
+        </view>
+        <view class="hotproducr_detail_introduce">
+             <view class="hotproducr_detail_ito_top">
+                <view class="active_btns">产品介绍</view>
+                <view class="">课程目录</view>
+             </view> 
+             <view class="content_box">
+                  <rich-text nodes="{{desrc}}" class='contenttext' />
+             </view>  
+        </view>
     </view>
 
     <!-- 拼单池 -->
@@ -187,7 +221,8 @@ vertical="true" -->
     </swiper>
     <!-- 拼单池 -->
     <!-- 商家地址 -->
-    <view class='shop_adress'>
+
+    <!-- <view class='shop_adress'>
       <view class='buy-warn'>商家信息</view>
       <view class='warn_item item_style' wx:for="{{address}}" wx:key="index">
         <view>{{item.name}}</view>
@@ -202,7 +237,7 @@ vertical="true" -->
           <rich-text nodes="{{desrc}}" class='contenttext' />
         </view>
       </view>
-    </view>
+    </view> -->
 
     <!-- 底部导航 -->
     <!-- 底部导航开始 -->
@@ -224,7 +259,6 @@ vertical="true" -->
         </view>
       </view>
       <view class=" {{isGroup===true? 'bar_buynow':'bar_buynow2'}}" bindtap='goshop'>
-        <!-- 立即购买 -->
         <view class='buy_wrap'>
           <view class='buy_top'>
             <view>¥</view>
@@ -234,9 +268,8 @@ vertical="true" -->
             <view>立即购买</view>
           </view>
         </view>
-        <!-- 立即购买 -->
-      </view>
 
+      </view>
       <view class='{{isGroup==true?"bar_buy":"bar_buy2"}}' bindtap='buy' wx:if="{{isGroup==true}}">
         <view class='buy_wrap'>
           <view class='buy_top'>

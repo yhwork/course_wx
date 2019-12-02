@@ -654,20 +654,43 @@ class CourseListPage extends EPage {
               var lessonLists = data.data.result.list; // 课程
               if (lessonLists != null && lessonLists.length >= 1) { // 两天都有数据
 
-
+               
 
                 if (currentDate == lessonLists[0].date) { // 第一天有数据
-                  item.courseNum = lessonLists[0].courseList.length; // 当天的课程数
+
+                  let startList = lessonLists[0].courseList.filter(item => {
+                    // let nowdate = moment().set({'hours': 18,'minutes':'10'}).format('YYYY-MM-DD HH:mm');
+                    // 只过滤今天的内容
+                    if (item.startDate === '今天') {
+                      let nowdate = moment().format('YYYY-MM-DD HH:mm');
+                      let endTime = moment().set({
+                        'hours': item.endTime.split(':')[0],
+                        'minutes': item.endTime.split(':')[1]
+                      }).add(30, 'minutes').format('YYYY-MM-DD HH:mm')
+                      console.log('现在时间', nowdate, '结束时间', endTime)
+                      if (moment(nowdate, 'YYYY-MM-DD HH:mm').valueOf() > moment(endTime, 'YYYY-MM-DD HH:mm').valueOf()) {
+                        console.log('已经过期', endTime)
+                      } else {
+                        console.log('没过期', item)
+                        return item
+                      }
+                    } else {
+                      return item
+                    }
+
+                  })
+
+
+                  item.courseNum = startList.length + lessonLists[1].courseList.length; // 当天的课程数
+                  // 改成两天的课程
                   childList.push({
                     headImg: item.logo,
                     userName: item.childName,
                     childId: item.childId,
                     gender: item.gender,
-                    messagenum: lessonLists[0].courseList.length,
-
+                    messagenum: item.courseNum,
                   })
                 } else {
-                  
                   secnder.push({
                     headImg: item.logo,
                     userName: item.childName,
@@ -675,6 +698,7 @@ class CourseListPage extends EPage {
                     gender: item.gender,
                   })
                 }
+
                 // console.log('小孩日程数据', childList, secnder)
               }
               //  return item
@@ -769,7 +793,7 @@ class CourseListPage extends EPage {
           this.$api.course.loadCourseTime(params).then((res) => {
             console.log('1', res.data.result)
             var lessonList = res.data.result.list; // 
-            let courselist = []
+            let courselist = []                    // 课程总数
             if (lessonList === undefined) {
 
                 this.setData({
@@ -852,7 +876,9 @@ class CourseListPage extends EPage {
 
 
               this.setData({
-                lessonLists: startList
+                lessonLists: startList,
+                // 设置消息显示的数量
+                messagenum: startList.length
               })
               
 

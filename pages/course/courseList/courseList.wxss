@@ -13,7 +13,7 @@
 }
 
 page {
-  background: #f3f3f3;
+  background: #fff;
 }
 
 .el-icon-lxy-iconfontzhizuobiaozhun19 {
@@ -192,12 +192,17 @@ page {
   bottom: -5rpx;
   left: 50rpx; */
 }
-
+.nearly_addcourse{
+  display: flex;
+}
+.list_view:nth-child(1){
+  margin-right: 25rpx;
+}
 .list_view {
   color:white;
   box-sizing: border-box;
   height: 45rpx;
-  width: 258rpx;
+  width: 220rpx;
   background-color: #e7c60e;
   border-radius: 21rpx;
   display: flex;

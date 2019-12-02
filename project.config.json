@@ -447,6 +447,20 @@
 					"pathName": "pages/buyShop/page/watchTvList/watchTvList",
 					"query": "productId=127&orderNumber=20190708171055345655065400586240",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "学习圈",
+					"pathName": "pages/circle/circle",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "产品详情页",
+					"pathName": "pages/buyShop/page/hotProduct/hotProduct",
+					"query": "courseId=62&productId= 176&childId=100380& isGroup=0& type=0",
+					"scene": null
 				}
 			]
 		}
