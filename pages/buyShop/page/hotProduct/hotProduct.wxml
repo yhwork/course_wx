@@ -14,7 +14,7 @@
                 <video bindplay='bindplay' bindtap="videoTap" bindpause='bindpause' class="video_change hot_video" id='video{{idx}}' autoplay='{{false}}' width="100%" show-center-play-btn="{{false}}" src='{{videoUrl}}' controls="true" objectFit="fill" show-mute-btn='{{true}}'
                   title='测试' enable-progress-gesture='{{false}}' show-play-btn='{{false}}' poster="{{imgUrls[0]}}" bindended='bindended'>
                   <cover-view class="videoimage">
-                    <cover-image bindtap="videoTap" class="playImg" src="../../../../assets/icons/plus.jpg" wx:if="{{play}}"></cover-image>
+                    <cover-image bindtap="videoTap" class="playImg" src="/assets/local/bofang@2x.png" wx:if="{{play}}"></cover-image>
                   </cover-view>
                 </video>
               </swiper-item>
@@ -165,12 +165,26 @@
         </view>
         <view class="hotproducr_detail_introduce">
              <view class="hotproducr_detail_ito_top">
-                <view class="active_btns">产品介绍</view>
-                <view class="">课程目录</view>
-             </view> 
-             <view class="content_box">
-                  <rich-text nodes="{{desrc}}" class='contenttext' />
+                <view  bindtap="changelook"  data-id="0" class="{{islist == true?'active_btns':''}}">产品介绍</view>
+                <view  bindtap="changelook"  data-id="1" class="{{islist == false?'active_btns':''}}">课程目录</view>
              </view>  
+             <view wx:if='{{islist}}' class="content_box">
+                  <rich-text nodes="{{desrc}}" class='contenttext' />
+             </view> 
+             <view wx:else ='{{!islist}}' class="content_box1">
+          　　　　　　 <view class="item_list" wx:for="{{content}}" wx:for-index= 'index' key='index'>
+                            <view class="item_list_title"  data-changeid="{{item.id}}" bindtap="showHide">
+                                <view class="title_details"><text>{{item.id}}</text><text>{{item.title}}</text> </view>
+                                <view class="title_date">00:00-02:06</view>
+                                <view class="title_icons">
+                                  <image src='/assets/local/xiangxia@2x.png'  mode="widthFix"></image>
+                                </view>
+                            </view>
+                            <view class="item_lsit_content" wx:if='{{item.shows}}'>
+                                          {{item.contents}}
+                            </view>
+                      </view> 
+             </view>
         </view>
     </view>
 

@@ -1,5 +1,7 @@
 .pay_box {
   width: 750rpx;
+  padding: 0 30rpx;
+
 }
 
 .mywaitPay {
@@ -9,7 +11,8 @@
 }
 
 .pay_item {
-  width: 125rpx;
+  flex: 1;
+  /* width: 125rpx; */
   height: 60rpx;
   line-height: 60rpx;
   font-size: 24rpx;
@@ -20,30 +23,59 @@
 .ativeclass {
   border-bottom: 1rpx solid #ff9800;
 }
-
-.pay_content,.pay_contents {
+.pay_contents {
   width: 720rpx;
   /* 后期调试高度可能显示 *//* height: 140rpx; */
   margin: 0 auto;
-  background-color: white;
+  background-color: #fff;
   border-bottom: 1rpx solid #f7f4f4;
 }
 
 .all_pay {
   width: 750rpx;
-  padding-top: 30rpx;
+  /* padding-top: 30rpx; */
+  padding: 30rpx;
 }
 
 .pay_content {
   display: flex;
+  width: 690rpx;
+	height: 210rpx;
+	background-color: #ffffff;
+	box-shadow: 1rpx 1rpx 27rpx 0rpx 
+		rgba(150, 149, 149, 0.26);
+	border-radius: 10rpx;
+  /* border: 1px solid red; */
 }
 
 .content_left {
-  width: 180rpx;
+  /* width: 180rpx; */
+  width: 231rpx;
+	height: 210rpx;
+	background-color: #e7c60e;
+	border-radius: 10rpx;
+  overflow: hidden;
 }
-
+.content_left  image{
+  min-width: 232rpx;
+	/* min-height: 210rpx; */
+  width: 100%;
+  height: 100%;
+}
+.content_right_title{
+  width: 351tpx;
+  padding: 28rpx 0 0 32rpx;
+	font-family: PingFang-SC-Medium;
+	font-size: 26rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	letter-spacing: -1rpx;
+	color: #333333;
+  /* border: 1px solid red; */
+}
 .content_right {
-  width: 540rpx;
+  position: relative;
+  width: 450rpx;
 }
 
 .left_img {
@@ -56,12 +88,17 @@
 }
 
 .right_text text {
-  width: 170rpx;
-  padding: 0 15rpx;
-  border: 1rpx solid #aaa;
+  /* width: 120rpx; */
+  padding: 0 10rpx;
+  /* border: 1rpx solid rgba(0,0,0,.2); */
   text-align: left;
   margin-right: 15rpx;
   margin-top: 5rpx;
+  font-size: 22rpx;
+  background-color: #cfcfcf;
+  color: #333333;
+  border-radius:10rpx;
+  box-sizing: border-box;
 }
 
 .fontzx {
@@ -73,10 +110,15 @@
 
 .right_text {
   display: flex;
+  margin-top: 8rpx;
 }
 
 .right_money {
-  margin-left: 450rpx;
+  position: absolute;
+  left: 32rpx;
+  color: red;
+  bottom: 30rpx;
+  /* margin-left: 450rpx; */
 }
 
 /* .rt_top{
@@ -92,31 +134,29 @@
   padding: 15rpx 20rpx;
 }
 
-.can_btn, .support_btn {
-  font-size: 24rpx;
-  height: 40rpx;
-  line-height: 40rpx;
-  padding: 10rpx 20rpx;
-  border: 1rpx solid #aaa;
-  border-radius: 10rpx;
-  margin-left: 20rpx;
-}
-
-.support_btn {
-  padding: 10rpx 30rpx;
-  background-color: #ff9800;
-  color: white;
-  margin-right: 10rpx;
-}
-
 .btn_wrap {
+  bottom: 25rpx;
+  right: 0;
+  position: absolute;
+  /* border: 1px solid red; */
   background-color: white;
   display: flex;
   justify-content: flex-end;
-  padding-top: 20rpx;
-  padding-bottom: 20rpx;
 }
-
+.can_btn, .support_btn{
+  padding-left: 10rpx;
+  /* padding-right:10rpx; */
+  color: white;
+  text-align: center;
+  margin-left: 10rpx;
+  font-size: 24rpx;
+  /* height: 60rpx; */
+  width: 109rpx;
+	height:46rpx;
+   line-height: 46rpx;
+	background-color: #e7c60e;
+	border-radius: 10rpx;
+}
 .content_item {
   width: 100%;
   height: 100%;
@@ -257,18 +297,39 @@
   border-radius: 10rpx;
   color: #ff9800;
 }
-
-.donfirmBtn {
+.donfirmBtn1{
+  position: absolute;
+  bottom: 25rpx;
+  right: 145rpx;
   padding-left: 10rpx;
-  padding-right:10rpx;
-  height: 50rpx;
-  line-height: 50rpx;
-  background-color: #ff9800;
+  /* padding-right:10rpx; */
   color: white;
-  border-radius: 10rpx;
   text-align: center;
   margin-left: 10rpx;
-  font-size: 26rpx;
+  font-size: 24rpx;
+  /* height: 60rpx; */
+  width: 109rpx;
+	height:46rpx;
+   line-height: 46rpx;
+	background-color: #e7c60e;
+	border-radius: 10rpx;
+}
+.donfirmBtn,.see_btn {
+  position: absolute;
+  bottom: 25rpx;
+  right: 0rpx;
+  padding-left: 10rpx;
+  /* padding-right:10rpx; */
+  color: white;
+  text-align: center;
+  margin-left: 10rpx;
+  font-size: 24rpx;
+  /* height: 60rpx; */
+  width: 109rpx;
+	height:46rpx;
+   line-height: 46rpx;
+	background-color: #e7c60e;
+	border-radius: 10rpx;
 }
 
 .middle_confirm {
@@ -326,7 +387,7 @@
   position: relative;
 }
 
-.see_btn {
+/* .see_btn {
   width: 150rpx;
   height: 60rpx;
   line-height: 60rpx;
@@ -338,7 +399,7 @@
   border: none;
   display: inline-block;
   margin-top: 20rpx;
-}
+} */
 
 .new_righttext {
   width: 580rpx;
@@ -364,12 +425,10 @@
 
 .lable_style text {
   display: inline-block;
-  width: 120rpx;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  margin-left: 10rpx;
-  border: 1rpx solid #aaa;
+  margin-left: 32rpx;
 }
 
 .waitpayss {

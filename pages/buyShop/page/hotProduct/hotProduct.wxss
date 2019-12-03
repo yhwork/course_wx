@@ -135,7 +135,7 @@ page {
 .hotproducr_detail_introduce>.content_box{
   /* border: 1px solid rebeccapurple; */
   padding: 25rpx 0;
-  	width: 694rpx;
+  width: 694rpx;
 	/* height: 446rpx; */
 	background-color: #ffffff;
 	box-shadow: 0rpx 3rpx 32rpx 3rpx rgba(123, 126, 128, 0.15);
@@ -143,6 +143,77 @@ page {
 .active_btns{
   color: #ece60e;
 }
+.hotproducr_detail_introduce>.content_box1{
+  width: 694rpx;
+	/* height: 446rpx; */
+	background-color: #ffffff;
+	/* box-shadow: 0rpx 3rpx 32rpx 3rpx rgba(123, 126, 128, 0.15); */
+}
+
+
+
+
+ .container-wrap{
+max-width: 100%;
+overflow: auto;
+box-sizing: border-box;
+}
+ .item_list{
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  min-height: 100rpx;
+ 	box-shadow:0rpx 3rpx 22rpx 3rpx rgba(123, 126, 128, 0.15);
+  margin-bottom:15rpx;
+}
+.item_list_title{
+    height: 100rpx;
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 50rpx;
+    font-family: PingFang-SC-Regular;
+	  font-size: 24rpx;
+    position: relative;
+}
+.item_list_title>view:nth-child(2){
+  color: #6969;
+  font-size: 22rpx;
+}
+.title_icons{
+  position: absolute;
+  top: 40rpx;
+  right: 58rpx;
+  width: 30rpx;
+	height: 30rpx;
+	/* background-color: #595959; */
+}
+.title_details{
+  display: flex;
+  margin-bottom: 15rpx;
+}
+.title_details>text:nth-child(1){
+  margin-right: 35rpx;
+  color: #e7c601
+}
+.title_icons>image{
+  width: 100%;
+}
+.item_lsit_content{
+  padding:15rpx 50rpx;
+  box-sizing: border-box;
+	height: 118rpx;
+	background-color: #f7f7f7;
+	opacity: 0.6;
+  border: solid 1rpx #ebe5e5;
+	font-family: PingFang-SC-Regular;
+	font-size: 20rpx;
+	font-weight: normal;
+	font-stretch: normal;
+	letter-spacing:1px;
+	color: #999999;
+}
 
 
 
@@ -150,9 +221,18 @@ page {
 
 
 
+
+
+.playImg{
+  width: 36rpx;
+  height: 36rpx;
+  /* border: 1px solid red; */
+}
 
 
 /* 新版结束 */
+
+
 .activityContent_wrap {
   width: 750rpx;
 }
@@ -163,8 +243,8 @@ page {
 }
 
 .videoimage{
-  width: 94rpx;
-  height: 94rpx;
+  width: 38rpx;
+  height: 38rpx;
   margin-left: 50%;
   margin-top: 30%;
   transform: translate(-50%,-50%);
@@ -597,7 +677,9 @@ page {
   width: 700rpx;
   /* margin: 0 auto; */
   word-wrap: break-word;
-  line-height: 30rpx;
+  line-height: 30px;
+  position: relative;
+  top: -15rpx;
 }
 
 /* 去掉button  默认样式 */

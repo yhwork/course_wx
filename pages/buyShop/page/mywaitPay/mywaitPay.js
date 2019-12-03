@@ -15,24 +15,35 @@ class mywaitPay extends EPage {
     return {
       // tabText: ["全部", "待付款", "待分享", "待预约", "待打卡", "待观看"],
       tabText: [{
-        text: "全部",
-        isFlag: false
-      }, {
-        text: "待付款",
-        isFlag: 0
-      }, {
-        text: "待分享",
-        isFlag: 0
-      }, {
-        text: "待预约",
-        isFlag: 0
-      }, {
-        text: "待打卡",
-        isFlag: 0
-      }, {
-        text: "待观看",
-        isFlag: 0
-      }],
+          text: "全部",
+          isFlag: false,
+          id: 0,
+        }, {
+          id: 1,
+          text: "待付款",
+          isFlag: 0
+        }, 
+        {
+          id: 2,
+          text: "待分享",
+          isFlag: 0
+        },
+        // {
+        //   id: 3,
+        //   text: "待预约",
+        //   isFlag: 0
+        // },
+        //  {
+        //   id: 4,
+        //   text: "待打卡",
+        //   isFlag: 0
+        // },
+        {
+          id: 5,
+          text: "待观看",
+          isFlag: 0
+        }
+      ],
       activeIndex: 0,
       userId: "",
       childId: "",
@@ -60,7 +71,7 @@ class mywaitPay extends EPage {
       waitClock: "",
       shortCode: "",
       showin: false,
-      productcourseid:""
+      productcourseid: ""
 
     };
   }
@@ -70,6 +81,7 @@ class mywaitPay extends EPage {
   }) {
     return {
       [PAGE_LIFE.ON_LOAD](option) {
+        console.log('值', option)
         let activeIndex = option.activeIndex //订单详情删除按钮传过来的tab切换的index
         let type = option.type //订单详情删除按钮传过来的tab切换请求时的类型
         let showIndex = option.showIndex //后期把showIndex 改成 activeIndex
@@ -89,13 +101,13 @@ class mywaitPay extends EPage {
         })
       },
       [PAGE_LIFE.ON_SHARE_APP_MESSAGE](option) {
-        console.log("打印分享参数",option)
+        console.log("打印分享参数", option)
         let img = option.target.dataset.img
         let title = option.target.dataset.title
         let courseId = option.target.dataset.courseid
         let productId = option.target.dataset.productid
         let productcourseid = option.target.dataset.productcourseid
-        console.log("打印productcourseid",productcourseid)
+        console.log("打印productcourseid", productcourseid)
         return {
           title: title,
           desc: '',
@@ -103,12 +115,12 @@ class mywaitPay extends EPage {
           //## 此为转发给微信好友或微信群后，对方点击后进入的页面链接，可以根据自己的需求添加参数
           path: `/pages/course/courseList/courseList?action=share&code=${this.data.shortCode}&productId=${productId}&courseId=${courseId}& childId=${this.data.childId}&productcourseId=${productcourseid}`,
           //## 转发操作成功后的回调函数，用于对发起者的提示语句或其他逻辑处理
-          success: function (res) {
+          success: function(res) {
             console.log("转发成功")
 
           },
           //## 转发操作失败/取消 后的回调处理，一般是个提示语句即可
-          fail: function () {
+          fail: function() {
             console.log("转发失败")
 
           }
@@ -136,17 +148,17 @@ class mywaitPay extends EPage {
             console.log('order', res)
             // 先判断请求信息
             let waitPay = res.data.result.orderInfo
-            console.log(136,waitPay)
+            console.log(136, waitPay)
             waitPay.forEach((item, index, array) => {
-         
-               let newobj = JSON.parse(item.imgVideo)
+
+              let newobj = JSON.parse(item.imgVideo)
               let objArr = Object.values(newobj)
               waitPay[index].imgVideo = objArr
-       
-                let newlabobj = JSON.parse(item.lable)
+
+              let newlabobj = JSON.parse(item.lable)
               let labObjArr = Object.values(newlabobj)
               waitPay[index].lable = labObjArr
-              
+
             })
             this.setData({
               waitPay: waitPay,
@@ -181,7 +193,7 @@ class mywaitPay extends EPage {
               })
 
             } else {
-              
+
             }
           })
 
@@ -247,8 +259,10 @@ class mywaitPay extends EPage {
           })
         }
         if (this.data.activeIndex == 5) { //待观看
-          this.data.tabText[5].isFlag = ++this.data.tabText[3].isFlag
-          let num = this.data.tabText[5].isFlag
+
+          // this.data.tabText[5].isFlag = ++this.data.tabText[3].isFlag
+          // let num = this.data.tabText[5].isFlag
+          // 获取待观看视频列表
           this.$api.mypage.getStoreOrderAllByChildId({
             userId: this.data.userId,
             // userId: 100048,
@@ -256,34 +270,29 @@ class mywaitPay extends EPage {
             getType: 6
           }).then(res => {
             let waitSee = res.data.result.orderInfo
-            // console.log(254, waitSee)
-            waitSee.forEach((item, index) => {
-              let obj = item.imgVideo
-              let newobj = JSON.parse(obj)
-              let objArr = Object.values(newobj)
-              // console.log(objArr)
-              waitSee[index].imgVideo = objArr
-              let lableObj = item.lable
-              let newlabobj = JSON.parse(lableObj)
-              let labObjArr = Object.values(newlabobj)
-              waitSee[index].lable = labObjArr
+            waitSee= waitSee.map((item, index) => {
+              item.imgVideo= Object.values(JSON.parse(item.imgVideo))    // 数组 返回属性的值
+              item.lable = Object.values(JSON.parse(item.lable))
+              return item
             })
             this.setData({
               waitSee: waitSee
             })
+            console.log('111111',this.data.waitSee)
             // wx.setStorageSync("waitSee", this.data.waitSee)
 
           })
         }
-        put(effects.DEMO)
-        put(effects.DEMOWAITPAY)
-        put(effects.DEMOWAITSHARE)
-        put(effects.DEMOWAITBOOKING)
-        put(effects.DEMOWAITRECORD)
-        put(effects.DEMOWAITBACK)
+
+        // put(effects.DEMO)
+        // put(effects.DEMOWAITPAY)
+        // put(effects.DEMOWAITSHARE)
+        // put(effects.DEMOWAITBOOKING)
+        // put(effects.DEMOWAITRECORD)
+        // put(effects.DEMOWAITBACK)        // 带观看
       },
       [events.ui.waitPaymoney](e) { //去支付
-       console.log("打印去支付===========")
+        console.log("打印去支付===========")
         var that = this
         //跳转待观看或者是待预约
         this.setData({
@@ -309,7 +318,6 @@ class mywaitPay extends EPage {
           url: `../mynewBooking/mynewBooking?orderNumber=${orderNumber}&childId=${this.data.childId}`
         })
       },
-
       [events.ui.gotoColock](e) { //去打卡
         let orderNumber = e.currentTarget.dataset.num
         // console.log(orderNumber)
@@ -319,7 +327,7 @@ class mywaitPay extends EPage {
         // console.log(orderNumber)
         put(effects.getStorePunchToGo)
       },
-
+      // 去观看
       [events.ui.waitsee](e) {
         // wx.showToast({
         //   title: '请在7月6号观看',
@@ -334,12 +342,24 @@ class mywaitPay extends EPage {
           productId: productId
 
         })
+
+        // pages/buyShop/page/watchTv/watchTv           观看
+
+        // pages/buyShop/page/watchTvList/watchTvList    产品id和订单数
+        // wx.navigateTo({
+        //   url: `../watchTvList/watchTvList?productId=${productId}&orderNumber=${num}`
+        // })
         wx.navigateTo({
-          url: `../watchTvList/watchTvList?productId=${productId}&orderNumber=${num}`
+          url: `/pages/buyShop/page/watchTv/watchTv?productId=${productId}&orderNumber=${num}`,
+          success: function(res) {},
+          fail: function(res) {},
+          complete: function(res) {},
         })
+
+
       },
       [events.ui.goodsDetail](e) { //跳转商品详情
-       console.log("跳转商品详情页============")
+        console.log("跳转商品详情页============")
         let activeIndex = e.currentTarget.id //显示的activeIndex
         let type = e.currentTarget.id //  tab切换的订单类型 和activeIndex值一样
         let status = e.currentTarget.dataset.paystatus
@@ -373,7 +393,7 @@ class mywaitPay extends EPage {
           showCancel: true,
           cancelText: '取消',
           confirmText: '确认',
-          success: function (res) {
+          success: function(res) {
             console.log(res)
             if (res.cancel) {
               //点击取消,默认隐藏弹框
@@ -448,7 +468,7 @@ class mywaitPay extends EPage {
           childId: this.data.childId,
           getType: 0
         }).then(res => {
-          console.log(res,'全部')
+          console.log(res, '全部')
           let userorderList = res.data.result.orderInfo
           userorderList.forEach((item, index) => {
             let obj = item.imgVideo
@@ -460,7 +480,6 @@ class mywaitPay extends EPage {
             let labObjArr = Object.values(newlabobj)
             userorderList[index].lable = labObjArr
           })
-
           this.setData({
             userorderList: userorderList
           })
@@ -611,7 +630,7 @@ class mywaitPay extends EPage {
         })
       },
       [effects.addStorePayWx]() { //微信支付接口
-      console.log("调取微信支付接口===========")
+        console.log("调取微信支付接口===========")
         var that = this
         this.$api.circle.addStorePayWx({
           productId: this.data.productId,
@@ -619,7 +638,7 @@ class mywaitPay extends EPage {
           childId: this.data.childId,
           orderId: this.data.orderId
         }).then((res) => {
-      
+
           if (res.data.errorCode == 0 && res.data.result != null) { //数据不为空
             this.setData({
               orderNumber: res.data.result.orderId
@@ -643,7 +662,7 @@ class mywaitPay extends EPage {
               "signType": "MD5",
               "paySign": this.data.paySign,
               success(res) { //点击去支付成功按钮  跳转支付成功页面
-              console.log(640,res)
+                console.log(640, res)
                 if (that.data.productType == 7) { //跳转待观看
                   that.setData({ //支付成功跳转待观看 
                     activeIndex: 5
@@ -652,18 +671,18 @@ class mywaitPay extends EPage {
                   that.setData({ //已经支付
                     isPay: true
                   })
-                } else if (that.data.productType == 29){//活动类的
+                } else if (that.data.productType == 29) { //活动类的
                   that.setData({ //支付成功跳转待分享
                     activeIndex: 2
                   })
                   put(effects.DEMOWAITSHARE)
 
                 } else if (that.data.productType == 5) { //点击去支付成功按钮 跳转待预约
-                that.setData({
+                  that.setData({
                     activeIndex: 3
-                })
-                 that.setData({ //支付成功后 记录数据状态，再次点击待支付的时候  待支付数据进行删除一条
-                  isPay: true
+                  })
+                  that.setData({ //支付成功后 记录数据状态，再次点击待支付的时候  待支付数据进行删除一条
+                    isPay: true
                   })
                   put(effects.DEMOWAITBOOKING)
                 }

@@ -29,15 +29,23 @@ class watchTv extends EPage {
   }) {
     return {
       [PAGE_LIFE.ON_LOAD](options) { //获取参数
-        let videoId = options.videoId;
-        let orderNumber = options.orderNumber;
-        this.setData({
-          videoId: videoId,
-          orderNumber: orderNumber,
-          controls: true
-        })
-        var time = null;
-        put(effects.getHotVideoDetails);
+        console.log('值', options)
+        if (options.hasOwnProperty('productId') && options.hasOwnProperty('orderNumber')){
+          put(effects.getHotVideoList, options);    // 获取视频列表
+
+        }else{
+          
+        }
+        // // productId orderNumber
+        // let videoId = options.videoId;
+        // let orderNumber = options.orderNumber;
+        // this.setData({
+        //   videoId: videoId,
+        //   orderNumber: orderNumber,
+        //   controls: true
+        // })
+        // var time = null;
+        // put(effects.getHotVideoDetails);
         // 获取进度
         
         // this.$api.circle.addVideoStar({
@@ -110,6 +118,34 @@ class watchTv extends EPage {
 
   mapEffect( {put} ) { //调接口 方法   存储方法方便调用
     return {
+      // 获取视频列表
+      [effects.getHotVideoList](obj){
+        this.$api.circle.getHotVideoList({
+          productId: obj.productId,
+          orderNumber: obj.orderNumber
+        }).then(async res => {
+          if (res.data.errorCode == 0 && res.data.result) {
+            let data = res.data.result;
+            this.setData({
+              videoId: data.list[0].id,   // 默认第一天视频的id
+              orderNumber: obj.orderNumber,
+              videoList: data.list,
+              controls: true
+            })
+            put(effects.getHotVideoDetails);
+            // this.setData({
+            //   title: data.info.title,
+            //   subtitle: data.info.subtitle,
+            //   lable: Object.values(JSON.parse(data.info.lable)),
+            //   conentImg: Object.values(JSON.parse(data.info.imgVideo)),
+            //   videoList: data.list,
+            //   material: JSON.parse(data.info.material)
+            // })
+
+            console.log("videoList", data)
+          }
+        })
+      },
       // 获取视频详情
       [effects.getHotVideoDetails]() {
         this.$api.circle.getHotVideoDetails({

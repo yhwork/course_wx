@@ -2,6 +2,8 @@ const events = {
   ui: {
     eStop: null,
     // 点击地图方法
+    changelook:null,
+    showHide:null,
     getloc: null,
     gotoaddress: null,
     buy: null,

@@ -18,7 +18,8 @@ export const effects = { //写接口名称
   getHotVideoDetails: null,//去观看视频
   addUserVideoCount:null,//视频次数
   addVideoTime:null,    // 视频播放进度
-  getVideoStar:null   // 启动播放位置
+  getVideoStar:null,   // 启动播放位置
+  getHotVideoList:null  // 获取视频列表
 }
 
 

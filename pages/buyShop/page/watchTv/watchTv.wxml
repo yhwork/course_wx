@@ -1,6 +1,7 @@
 <view>
-  <view>{{model.name}}</view>
+  <!-- <view>{{model.name}}</view> -->
   <view class="video-container" wx:if="{{model.isvideo == 'true'}}">
+    <view class="video_fix">
     <video id="myVideo" class="video" src="{{model.url}}" controls="{{controls}}" bindended="endMovie" play-btn-position="center" enable-play-gesture="{{true}}" enable-progress-gesture="{{false}}" show-fullscreen-btn="{{true}}" title="{{model.title}}" bindfullscreenchange="handleFullScreen"
       bindtimeupdate='onTimeUpdate' initial-time='{{number_time}}' bindpause='pause_video' />
     <!-- <cover-view  class='myplayvideo'>
@@ -8,11 +9,12 @@
     </cover-view> -->
     <cover-view class="video-drag-disable">
     </cover-view>
+    </view> 
     <!-- 标题 -->
     <view class="video_details">
       <view class="video_details_top">
-        <view class="video_details_title">机器人2级培训</view>
-        <view class="video_details_prograss">已观看2%</view>
+        <view class="video_details_title">{{model.name}}</view>
+        <!-- <view class="video_details_prograss">已观看2%</view> -->
       </view>
       <!-- 目录 -->
       <view class="video_catelog">
@@ -23,40 +25,19 @@
         <view class="video_catelog_width">
           <scroll-view scroll-x="{{true}}" style=" white-space: nowrap; display: flex">
             <view class="video_catelog_box">
-              <view class="video_catelog_box_item">
-                <view class="video_details_img"></view>
-                <view>机器人2级第一节</view>
-              </view>
-              <view class="video_catelog_box_item">
-                <view class="video_details_img"></view>
-                <view>机器人2级第一节</view>
-              </view>
-              <view class="video_catelog_box_item">
-                <view class="video_details_img"></view>
-                <view>机器人2级第一节</view>
-              </view>
-              <view class="video_catelog_box_item">
-                <view class="video_details_img"></view>
-                <view>机器人2级第一节</view>
-              </view>
-              <view class="video_catelog_box_item">
-                <view class="video_details_img"></view>
-                <view>机器人2级第一节</view>
+              <view class="video_catelog_box_item" wx:for='{{videoList}}' wx:for-index='index' key='index'>
+                <view class="video_details_img">
+                  <image src="{{item.img}}" mode="widthFix"></image>
+                </view>
+                <view class="font">{{item.name}}</view>
               </view>
             </view>
 
           </scroll-view>
         </view>
-        <view class="shop_details">
-            <view>
-              商家信息
-            </view>
-            <view>
-            位置</view>
-        </view>
         <view class="video_shop_details_name">
           <view>
-            产品详情
+            课程详情
           </view>
           <view class="video_shop_details_txt">
             <view>让学生了解机器人的发展和应用现状，理解机器人的概念和工作方式，为进一步学习机器人技术的有关知识打下基础</view>
@@ -64,9 +45,18 @@
             <view>通过机器人竞赛和完成各项任务，使学生在搭建机器人和编制程序的过程中培养动手能力、协作能力和创造能力</view>
           </view>
         </view>
+        <view class="shop_details">
+          <view>
+            特殊说明
+          </view>
+          <view>
+
+          </view>
+        </view>
       </view>
-      <view class="messages"> 
-        扫码登录 <strong> https://qa.xdb.iforbao.com </strong> 在PC端观看
+      <view class="messages">
+        扫码登录
+        <strong> https://qa.xdb.iforbao.com </strong> 在PC端观看
       </view>
     </view>
   </view>

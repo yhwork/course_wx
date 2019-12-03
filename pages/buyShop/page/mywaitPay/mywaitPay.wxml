@@ -1,6 +1,6 @@
 <view class='pay_box'>
   <view class='mywaitPay'>
-    <view class='pay_item {{index==activeIndex?"ativeclass":""}}' wx:for="{{tabText}}" wx:key="index" data-index="{{index}}" bindtap='tabItem'>{{item.text}}</view>
+    <view class='pay_item {{item.id==activeIndex?"ativeclass":""}}' wx:for="{{tabText}}" wx:key="index" data-index="{{item.id}}" bindtap='tabItem'>{{item.text}}</view>
   </view>
 </view>
 <!-- 没有数据订单 -->
@@ -13,11 +13,11 @@
   <view class='all_pay' wx:for="{{userorderList}}" wx:key="index" wx:key="index" bindtap='{{item.productType=="8"?"goodsDetail":""}}' data-paystatus='{{item.payStatus}}' data-ordernumber='{{item.orderNumber}}' data-productId='{{item.productId}}' id="0"
     data-type='0'>
     <view class='pay_content'>
-      <view class='content_left'>
+      <view class='content_left font'>
         <image src="{{userorderList[index].imgVideo[0]}}" class='left_img'></image>
       </view>
       <view class='content_right'>
-        <view>
+        <view class="content_right_title font">
           <text>{{item.title}}</text>
         </view>
         <view>
@@ -49,7 +49,7 @@
           </block>
           <block wx:if="{{item.orderStatusType==1}}">
             <view class='donfirmBtn' catchtap='waitPaymoney' data-ordernumber='{{item.orderNumber}}' data-productId='{{item.productId}}' data-productType='{{item.productType}}'>去支付</view>
-            <view class='donfirmBtn' catchtap='cancleOrder' data-ordernumber='{{item.orderNumber}}'>取消订单</view>
+            <view class='donfirmBtn1' catchtap='cancleOrder' data-ordernumber='{{item.orderNumber}}'>取消订单</view>
           </block>
           <block wx:if="{{item.orderStatusType==4}}">
             <view class='donfirmBtn' catchtap='waitsee' data-productId='{{item.productId}}' data-num='{{item.orderNumber}}'>去观看</view>
@@ -57,8 +57,8 @@
         </view>
       </view>
     </view>
-    <view class='pay_canc'>
-    </view>
+    <!-- <view class='pay_canc'>
+    </view> -->
   </view>
 </view>
 <!-- 待付款 -->
@@ -68,18 +68,19 @@
   <view wx:for="{{waitPay}}" wx:key="index" class='waitpayss' bindtap='{{item.productType=="8"?"goodsDetail":""}}' data-paystatus='{{item.payStatus}}' data-ordernumber='{{item.orderNumber}}' data-productId='{{item.productId}}' id="0" data-type='0'>
     <!-- 列表 -->
     <view class='pay_content'>
-      <view class='content_left'>
+      <view class='content_left font'>
         <image src="{{waitPay[index].imgVideo[0]}}" class='left_img'></image>
       </view>
       <view class='content_right'>
-        <view>
+        <view class="content_right_title font">
           <text>{{item.title}}</text>
         </view>
         <view class='rt_top'>
           <text class='right_money'><text>¥</text>
           <text>{{item.money?item.money:"0.00"}}</text>
-          <text>*</text>
-          <text>1</text></text>
+          <!-- <text>*</text>
+          <text>1</text> -->
+          </text>
         </view>
         <view class='right_text'>
           <scroll-view scroll-x="true" class='lable_style'>
@@ -89,21 +90,22 @@
           <text  class='font'  style=' display: inline-block'>开开心心的猪</text> -->
           </scroll-view>
         </view>
+        <!-- 列表 -->
+        <view class='pay_canc'>
+          <text>
+       <text>实付:</text>
+          <text>¥</text>
+          <text>{{item.payMoney?item.payMoney:"0.00"}}</text>
+          </text>
+        </view>
+        <view class='btn_wrap'>
+          <!-- 取消订单第一版不上  后期加上 -->
+          <text class='can_btn' catchtap='cancleOrder' data-ordernumber='{{item.orderNumber}}'>取消订单</text>
+          <text class='support_btn' catchtap='waitPaymoney' data-ordernumber='{{item.orderNumber}}' data-productId='{{item.productId}}' data-productType='{{item.productType}}'>去支付</text>
+        </view>
       </view>
     </view>
-    <!-- 列表 -->
-    <view class='pay_canc'>
-      <text>
-       <text>实付:</text>
-      <text>¥</text>
-      <text>{{item.payMoney?item.payMoney:"0.00"}}</text>
-      </text>
-    </view>
-    <view class='btn_wrap'>
-      <!-- 取消订单第一版不上  后期加上 -->
-      <text class='can_btn' catchtap='cancleOrder' data-ordernumber='{{item.orderNumber}}'>取消订单</text>
-      <text class='support_btn' catchtap='waitPaymoney' data-ordernumber='{{item.orderNumber}}' data-productId='{{item.productId}}' data-productType='{{item.productType}}'>去支付</text>
-    </view>
+
   </view>
 </view>
 <!-- 待分享 -->
@@ -232,17 +234,17 @@
 <!-- 待观看 -->
 <view class='all_pay' wx:if="{{activeIndex==5}}" wx:for="{{waitSee}}" wx:key="index" bindtap='' data-paystatus='{{item.payStatus}}' data-ordernumber='{{item.orderNumber}}' data-productId='{{item.productId}}' id="0" data-type='0' bindtap='{{item.productType=="8"?"goodsDetail":""}}'
   data-paystatus='{{item.payStatus}}' data-ordernumber='{{item.orderNumber}}' data-productId='{{item.productId}}' id="0" data-type='0'>
-  <!-- payContent -->
   <view class='pay_content'>
+
     <view class='content_left'>
       <image src="{{waitSee[index].imgVideo[0]}}" class='left_img'></image>
     </view>
+
     <view class='content_right'>
-      <view>
+      <view class="content_right_title font">
         <text>{{item.title}}</text>
       </view>
       <view>
-        <!-- <text>{{item.descr}}</text> -->
       </view>
       <view class='right_text'>
         <scroll-view scroll-x="true" class='lable_style'>
@@ -254,5 +256,4 @@
       </view>
     </view>
   </view>
-  <!-- payContent -->
 </view>

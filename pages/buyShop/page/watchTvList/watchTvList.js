@@ -81,6 +81,7 @@ class watchTvList extends EPage {
   }) {
     return {
       [PAGE_LIFE.ON_LOAD](options) { //获取参数
+        console.log('带观看详情', options)
         let productId = options.productId
         this.setData({
           productId: productId,
