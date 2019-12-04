@@ -1,17 +1,18 @@
 <view class="timetable">
 <!-- 日历头部 -->
   <view class="timetable-head">
+    <!-- 周 -->
     <view class="cell-group row">
-      <view class="cell week" bindtap="TAP_WEEK" style="color:#f29219;">{{diffWeek}}</view>
+      <view class="cell week yh_temhead" bindtap="TAP_WEEK" style="color:#f29219;"> <text>{{diffWeek}}</text> </view>
       <view class="cell week {{day.today?'today_color':''}} {{day.date==dateLesson && timetable==false ? 'selected': '' }}" wx:for="{{days}}" wx:for-item="day" wx:key="{{index}}" bindtap="TAP_DAY" data-item="{{day.date}}">
-        <block wx:if="{{!day.today}}">
+        <block>
           {{day.text.week}}
         </block>
-        <block wx:else> 
+        <!-- <block wx:else> 
           今天
-        </block>
-        <block wx:if="{{!day.today}}">
-          <view class="desc">{{day.text.date}}</view>
+        </block> -->
+        <block >
+          <view class="desc {{day.today?'yh_quan':''}}">{{day.text.date}}</view>
         </block>
       </view>
     </view>
@@ -22,11 +23,23 @@
       <swiper-item>
         <view class="timetable-body">
           <view class="cell-group column">
-            <view class="cell-group row" wx:for="{{hours}}" wx:for-item="hour" wx:key="{{index}}">
+            <view class="cell-group row" wx:for="{{hours}}" wx:for-item="hour" wx:for-index='index' wx:key="index">
               <view class="cell">{{hour}}:00</view>
-              <view class="cell {{day.today?'today-background':''}}" wx:for="{{days}}" wx:for-item="day" wx:key="{{index}}">
-                <view class="timetable-item {{item.$value.colorClass}}" style="top:{{item.$value.top}};height:{{item.$value.height}};" wx:for="{{itemsList[0]}}" wx:key="{{index}}" wx:if="{{day.date === item.$value.date && hour === item.$value.hour}}" bindtap="{{item.courseType==2?'LESSON_DETAIL':''}}"
-                  data-lessonid="{{item.id}}">
+              <view class="cell {{index == axis.cell && idx == axis.row?'box_active':'box_active1'}} {{day.today?'today-background':''}}" 
+                    wx:for="{{days}}" wx:for-item="day" wx:for-index='idx' wx:key="idx"
+                    data-time="{{hour}}"
+                    data-date="{{day.date}}"
+                    data-keyrow="{{idx}}"
+                    data-keycell="{{index}}"
+                    bindtap="LESSON_ADD"
+                    >
+              <view 
+                class="timetable-item {{item.$value.colorClass}}" 
+                style="top:{{item.$value.top}};height:{{item.$value.height}};" 
+                wx:for="{{itemsList[0]}}" wx:key="{{index}}" 
+                wx:if="{{day.date === item.$value.date && hour === item.$value.hour}}" 
+                bindtap="{{item.courseType==2?'LESSON_DETAIL':'LESSON_ADD'}}"
+                data-lessonid="{{item.id}}">
                   <view>{{item.name}}</view>
                   <view wx:if='{{item.courseType==2}}'>{{item.schoolName}}</view>
                   <view wx:if='{{item.courseType!=1}}'>{{item.beginTime}}</view>

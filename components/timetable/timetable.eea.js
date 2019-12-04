@@ -5,7 +5,8 @@ export const events = {
         TAP_WEEK: null,
         TAP_DAY: null,
         LESSON_DETAIL: null,
-        OPEN_LOCATION: null,
+        OPEN_LOCATION: null,  
+         LESSON_ADD:null,   // 添加课程
     }
 }
 

@@ -23,7 +23,7 @@ class TimetableComponent extends EComponent {
       },
       weekText: {
         type: Array,
-        value: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+        value: ['一', '二', '三', '四', '五', '六', '日']
       },
       date: {
         type: String,
@@ -61,7 +61,11 @@ class TimetableComponent extends EComponent {
       timetable: true,    // 日期表
 
       lessonList: [], //每天的课
-      dateLesson: []
+      dateLesson: [],
+      axis:{
+        row:0,
+        cell:0
+      },
     };
   }
 
@@ -180,12 +184,24 @@ class TimetableComponent extends EComponent {
           timetable: this.data.timetable
         });
       },
+      [events.ui.LESSON_ADD](e){
+        let date = e.currentTarget.dataset.date;
+        let time = e.currentTarget.dataset.time;
+        let row = e.currentTarget.dataset.keyrow;
+        let cell = e.currentTarget.dataset.keycell;
+        this.setData({
+          axis: { row, cell}
+        })
+        console.log('添加课程', date, time)
+        console.log(e)
+      },
+      // 每个小按钮点击事件
       [events.ui.LESSON_DETAIL](e) {
         const lessonId = e.currentTarget.dataset.lessonid
-        // console.log(lessonId, this.data.childId)
-        wx.navigateTo({
-          url: './p_lesson/schoolout_lesson_detail?lessonId=' + lessonId + '&childId=' + this.data.childId
-        })
+        console.log(lessonId, this.data.childId)
+        // wx.navigateTo({
+        //   url: './p_lesson/schoolout_lesson_detail?lessonId=' + lessonId + '&childId=' + this.data.childId
+        // })
 
       }
 
@@ -212,11 +228,12 @@ class TimetableComponent extends EComponent {
             date: day.format('YYYY-MM-DD'),
             today: day.isSame(moment(), 'day'),
             text: {
-              date: day.format('DD日'),
+              date: day.format('DD'),   // 生成指定格式数据day.format('DD日')
               week: text
             }
           };
         });
+        // console.log('数据',days)
         this.setData({
           days
         });
@@ -256,11 +273,14 @@ class TimetableComponent extends EComponent {
           const date = moment.unix(item.date);
           const min = parseInt(date.format('mm'));
           let colorClass = ''
+          // 出勤
           if (item.status == 1) {
             colorClass = 'lesson-attend lesson-attend-color';
           } else if (item.status == 0) {
+          // 调课
             if (item.type == 2) {
               colorClass = 'lesson-change lesson-change-color';
+            // 补课
             } else if (item.type == 3) {
               colorClass = 'lesson-remedial lesson-remedial-color';
             } else {

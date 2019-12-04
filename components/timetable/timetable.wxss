@@ -37,8 +37,16 @@
 }
 
 .cell-group .cell.week {
+ 
   font-size: 28rpx;
   color: #000;
+}
+.yh_temhead{
+  line-height: 28rpx;
+ word-wrap: break-word;
+}
+.yh_temhead text{
+  width: 40rpx;
 }
 
 .cell-group.row>.cell:first-of-type {
@@ -48,7 +56,11 @@
 .cell-group.column>.cell:first-of-type {
   border-top: 1px solid #efefef;
 }
-
+.yh_quan{
+  border-radius: 50%;
+  background-color: yellow;
+  color: white;
+}
 .desc {
   font-size: 24rpx;
   color: #999;
@@ -257,6 +269,13 @@
 
 .lesson-remedial-color {
   color: #6d97b4;
+}
+
+.box_active{
+  background: darkgoldenrod;
+}
+.box_active1{
+  /* background: red; */
 }
 
 .cell-group .today-background {
