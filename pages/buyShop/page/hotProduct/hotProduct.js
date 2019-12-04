@@ -395,7 +395,7 @@ class hotProduct extends EPage {
 
           // debugger
           // 如果没有视频播放的时候
-          if(!this.data.playindex){
+          if(!this.data.playindex){ 
             this.setData({
               playindex:index
             })
