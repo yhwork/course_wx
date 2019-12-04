@@ -10,7 +10,11 @@ export const events = { //事件
     onTimeUpdate:null,   // 视频进度
     pause_video:null,    // 视频暂停
     handleFullScreen: null,
-    timeupdate:null
+    timeupdate:null,
+    videlistacive:null, // 点击播放视频
+    playvideo:null,     // 开始播放
+    btnvideo:null,      // 点击视频区域
+    videoTap:null,      // 点击开始
   }
 }
 
