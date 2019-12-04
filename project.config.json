@@ -421,10 +421,10 @@
 					"scene": null
 				},
 				{
-					"id": 55,
-					"name": "ship",
-					"pathName": "pages/buyShop/page/mywaitPay/mywaitPay",
-					"query": "childId=null&userId=100048&showIndex=5",
+					"id": 52,
+					"name": "课程表",
+					"pathName": "pages/course/course",
+					"query": "current=1&childId=100380",
 					"scene": null
 				},
 				{

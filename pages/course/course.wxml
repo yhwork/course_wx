@@ -1,7 +1,7 @@
 <view class="page_hd">
   <view class='main_head'>
     <!-- 家长端 -->
-    <block wx:if="{{userInfo.role=='0'}}">
+    <!-- <block wx:if="{{userInfo.role=='0'}}">
       <view catchtap="CHANGE_LOGO" class='info'>
         <image src="{{childInfo.logo?childInfo.logo:'https://qa.oss.iforbao.com/public/assets/img/girlb.png!org'}}" mode='aspectFill' class='head_img' style="width:80rpx;height:80rpx;border-radius:40rpx;"></image>
         <image wx:if="{{shareChild=='0'}}" class="share3" src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/jin.png'></image>
@@ -10,34 +10,28 @@
         <text class='name_a font'>{{childInfo.childName}}</text>
         <image class='xiala' wx:if='{{childLength>1}}' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/xiala.png'></image>
       </view>
-    </block>
+    </block> -->
     <!-- 教师端头部信息 -->
-    <block wx:else>
+    <!-- <block wx:else>
       <view class='info'>
         <image src="{{userInfo.logo}}" class='head_img' style="width:80rpx;height:80rpx;border-radius:40rpx;"></image>
         <text class='name_a font'>{{userInfo.name}}</text>
       </view>
-    </block>
+    </block> -->
     <!-- 日期 -->
-    <view class='name_b' bindtap="SHOW_CALENDAR">{{model.currentDate}}</view>
+
     <!-- <text class='name_c' bindtap="COURSE_MANAGE">课程管理</text> -->
-    <view class='choosetype'>
       <view class='head_box'>
-        <!-- 课程列表图标 -->
-        <!-- <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/2.png' wx:if='{{isList}}' catchtap=''></image>
-        <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/10.png' wx:else catchtap='chargeTab'></image> -->
-        <!-- 日历课程图标 -->
-        <!-- <image class='img' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/5.png' wx:if='{{isList}}' catchtap='chargeTab'></image> -->
-        <view class='tabchange' wx:if='{{isList}}' catchtap='chargeTab'>
-          <text>列表查看</text>
+        <!-- <view class='tabchange' wx:if='{{isList}}' catchtap='chargeTab'>
+          <view>列表查看</view>
+          <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/2.png' wx:if='{{isList}}' catchtap=''></image>
+        </view> -->
+        <view class='tabchange' >
+          <view  catchtap='chargeTab' >{{isList==false?'列表查看':'日历查看'}}</view>
+          <image class='img' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/5.png' wx:if='{{isList}}' catchtap='chargeTab'></image>
         </view>
-        <view class='tabchange' wx:else catchtap='chargeTab'>
-          <text>日历查看</text>
-        </view>
-        <!-- <image class='img' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/2.png' wx:else catchtap='chargeTab'></image> -->
-        <!-- <image class='img' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/5.png' wx:else catchtap='chargeTab'></image> -->
+         <view class='name_b' bindtap="SHOW_CALENDAR">{{model.currentDate}}</view>
       </view>
-      <!-- <image bindtap='CHOOSE_TYPE' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/courseadd.png'></image> -->
       <view class='fabutype' hidden='{{isSubmit}}'>
         <view catchtap='CHOOSUBMITSETYPE' wx:for='{{userInfo.role == 0?childpeportType:teacherpeportType}}' data-type='{{item.id}}' wx:key=''>
           <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/{{item.src}}.png'></image>
@@ -45,60 +39,15 @@
         </view>
       </view>
       <view class='jtstyle' hidden='{{isSubmit}}'></view>
-    </view>
   </view>
 </view>
 <!-- 展示方式 -->
 <view wx:if='{{isList}}'>
   <view class='page'>
-    <!-- <view class="page_hd">
-      <view class='main_head'> -->
-    <!-- 家长端 -->
-    <!-- <block wx:if="{{userInfo.role=='0'}}">
-          <view bindtap="CHANGE_LOGO" class='info'>
-            <image src="{{childInfo.logo?childInfo.logo:'https://qa.oss.iforbao.com/public/assets/img/girlb.png!org'}}" mode='aspectFill' class='head_img' style="width:80rpx;height:80rpx;border-radius:40rpx;"></image>
-            <image src="{{childInfo.logo}}" mode='aspectFill' class='head_img' style="width:80rpx;height:80rpx;border-radius:40rpx;"></image>
-            <image wx:if="{{shareChild=='0'}}" class="share3" src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/jin.png'></image>
-            <image wx:else class="{{shareChild==1?'share1':'share2'}}" src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/jin.png'></image>
-            <image class='sex' src='{{childInfo.gender?"https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/girl1.png":"https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/boy1.png"}}'></image>
-            <text class='name_a'>{{childInfo.childName}}</text>
-            <image class='xiala' wx:if='{{childLength>1}}' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/xiala.png'></image>
-          </view>
-        </block> -->
-    <!-- 教师端 -->
-    <!-- <block wx:else>
-          <view class='info'>
-            <image src="{{userInfo.logo}}" class='head_img' style="width:80rpx;height:80rpx;border-radius:40rpx;"></image>
-            <text class='name_a'>{{userInfo.nickName}}</text>
-          </view>
-        </block> -->
-
-    <!-- <view class='name_b' bindtap="SHOW_CALENDAR">{{model.currentDate}}</view> -->
-    <!-- <text class='name_c' bindtap="COURSE_MANAGE">课程管理</text> -->
-    <!-- <view class='choosetype'>
-          <image bindtap='CHOOSE_TYPE' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/courseadd.png'></image>
-          <view class='fabutype' hidden='{{isSubmit}}'>
-            <view catchtap='CHOOSUBMITSETYPE' wx:for='{{userInfo.role == 0?childpeportType:teacherpeportType}}' data-type='{{item.id}}' wx:key=''>
-              <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/{{item.src}}.png'></image>
-              <text>{{item.value}}</text>
-            </view>
-          </view>
-          <view class='jtstyle' hidden='{{isSubmit}}'></view>
-        </view> -->
-    <!-- </view>
-    </view> -->
-
-
-    <!-- 广告弹窗 -->
-    <!-- <view class='wrap_modal' bindtap='gotoExam'>
-
-    <view wx:if="{{false}}" class='wrap_modal' bindtap='gotoExam'>
-
-      <text class='modal_wrap'>2019上海音协电子琴考级在线乐理考试调研问卷</text>
-    </view> -->
     <view class="page_bd">
       <view style="flex:auto;height:{{timetableHeight}}px;">
-        <timetable catch:date-changed="TIMETABLE_DATE_CHANGED" catch:lesson-date-changed="LESSON_DATE_CHANGED" data="{{lessons}}" dataLesson="{{dayLessons}}" childId="{{model.childId}}" date="{{model.currentDate}}"></timetable>
+        <timetable catch:date-changed="TIMETABLE_DATE_CHANGED" catch:lesson-date-changed="LESSON_DATE_CHANGED" data="{{lessons}}" dataLesson="{{dayLessons}}" childId="{{model.childId}}" date="{{model.currentDate}}">
+        </timetable>
       </view>
     </view>
   </view>
@@ -126,7 +75,7 @@
     <view class='title_box'>
       <view>{{item.startDate}} {{item.week}}</view>
     </view>
-  
+
     <view class='item_list' wx:if='{{current==1}}'>
       <view bindtap='courdetails' data-Id='{{items.id}}' class='courdetailsstyle'>
         <view>
@@ -172,7 +121,7 @@
       </view>
     </view>
   </view>
-  
+
   <!-- 更多的日程 -->
   <view wx:if="morelessons">
     <view class='content_box' wx:for='{{morelessons}}' wx:key='index'>

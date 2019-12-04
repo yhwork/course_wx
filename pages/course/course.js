@@ -83,7 +83,6 @@ class CoursePage extends EPage {
       current: '',
       isback: false,
       productCourseId: "",
-      childId: ""
 
     };
   }
@@ -111,17 +110,25 @@ class CoursePage extends EPage {
           put(effects.GET_USER_INFO); // 获取用户信息
         }else{
           console.info('莫有小孩')
-          this.$api.child.get().then(
-            res => {
+          wx.getStorage({
+            key: 'childId',
+            success:(res)=>{
               this.setData({
-                'childId': res.data.result.childList[0].childId
+                childId: option.childId
               })
-              if (option.current == 0) {
-                put(effects.GET_USER_INFO); // 获取用户信息
-              } else {
-                put(effects.GET_USER_INFO); // 获取用户信息
-              }
-            })
+            },
+            fail:(res)=>{
+              console.log('获取小孩失败')
+              this.$api.child.get().then(
+                res => {
+                  this.setData({
+                    'childId': res.data.result.childList[0].childId
+                  })
+                })
+            },
+            complete: function(res) {},
+          })
+          put(effects.GET_USER_INFO); // 获取用户信
         }
         console.log('值', option);
         if (option.isback) {

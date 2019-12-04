@@ -643,7 +643,6 @@ class CourseListPage extends EPage {
           if (res.data.errorCode == '0') {
             let list = res.data.result.childList; // 小孩列表
             for(let item of list){
-          
               item.courseNum='';
               let params = {
                 queryDate: currentDate,
