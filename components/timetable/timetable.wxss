@@ -43,12 +43,17 @@
 }
 .yh_temhead{
   line-height: 28rpx;
- word-wrap: break-word;
+  word-wrap: break-word;
 }
 .yh_temhead text{
   width: 40rpx;
+    color: #efef0b;
 }
-
+.yh_temheaddate{
+  color: #e0e098 !important;
+  font-family: PingFang-SC-Medium;
+	font-size: 24rpx;
+}
 .cell-group.row>.cell:first-of-type {
   border-left: 1px solid #efefef;
 }
@@ -58,8 +63,12 @@
 }
 .yh_quan{
   border-radius: 50%;
-  background-color: yellow;
-  color: white;
+  background-color: rgb(202, 202, 87);
+  color: white !important;
+  height: 50rpx;
+  text-align: center;
+  line-height: 50rpx;
+  width: 50rpx;
 }
 .desc {
   font-size: 24rpx;
@@ -101,7 +110,7 @@
 }
 
 .timetable-body .cell {
-  border-right: 1px solid transparent;
+  /* border-right: 1px solid transparent; */
 }
 
 .timetable-body-item {
@@ -276,6 +285,7 @@
 }
 .box_active1{
   /* background: red; */
+  border: 1rpx solid rgba(236,236, 236, 0.2)
 }
 
 .cell-group .today-background {
