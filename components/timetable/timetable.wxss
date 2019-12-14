@@ -63,7 +63,8 @@
 }
 .yh_quan{
   border-radius: 50%;
-  background-color: rgb(202, 202, 87);
+  /* background-color: rgb(202, 202, 87); */
+  background-color: #ebeb3e;
   color: white !important;
   height: 50rpx;
   text-align: center;
@@ -237,7 +238,10 @@
 }
 
 .lesson-attend-color {
-  color: #b3b3be;
+  /* color: #b3b3be; */
+  color: white;
+  background-color:  #b3b3be;
+  height: 100%;
 }
 
 /*未上*/

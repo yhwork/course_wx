@@ -26,7 +26,8 @@
             <view class="cell-group row" wx:for="{{hours}}" wx:for-item="hour" wx:for-index='index' wx:key="index">
               <view class="cell yh_temheaddate">{{hour}}:00</view>
               <!-- {{day.today?'today-background':''}} -->
-              <view class="cell {{index == axis.cell && idx == axis.row?'box_active':'box_active1'}} " 
+              <view 
+                    class="cell {{index == axis.cell && idx == axis.row?'box_active':'box_active1'}} " 
                     wx:for="{{days}}" wx:for-item="day" wx:for-index='idx' wx:key="idx"
                     data-time="{{hour}}"
                     data-date="{{day.date}}"
@@ -35,18 +36,18 @@
                     bindtap="LESSON_ADD"
                     >
                     <!-- 自动判断日程显示的大小 -->
+                      <!-- style="top:{{item.$value.top}};height:{{item.$value.height}};"  -->
               <view 
-                class="timetable-item {{item.$value.colorClass}}" 
-                style="top:{{item.$value.top}};height:{{item.$value.height}};" 
-                wx:for="{{itemsList[0]}}" wx:key="{{index}}" 
-                wx:if="{{day.date === item.$value.date && hour === item.$value.hour}}" 
-                bindtap="{{item.courseType==2?'LESSON_DETAIL':'LESSON_ADD'}}"
-                data-lessonid="{{item.id}}">
-                  <view>{{item.name}}</view>
-                  <view wx:if='{{item.courseType==2}}'>{{item.schoolName}}</view>
-                  <view wx:if='{{item.courseType!=1}}'>{{item.beginTime}}</view>
-                  <view wx:if='{{item.courseType==2}}'>{{item.endTime}}</view>
-                </view>
+                    class="timetable-item {{item.$value.colorClass}}" 
+                    wx:for="{{itemsList[0]}}" wx:key="{{index}}" 
+                    wx:if="{{day.date === item.$value.date && hour === item.$value.hour}}" 
+                    bindtap="{{item.courseType==2?'LESSON_DETAIL':'LESSON_ADD'}}"
+                    data-lessonid="{{item.id}}">
+                      <view>{{item.name}}</view>
+                      <view wx:if='{{item.courseType==2}}'>{{item.schoolName}}</view>
+                      <view wx:if='{{item.courseType!=1}}'>{{item.beginTime}}</view>
+                      <view wx:if='{{item.courseType==2}}'>{{item.endTime}}</view>
+                    </view>
               </view>
             </view>
           </view>
@@ -56,10 +57,24 @@
         <view class="timetable-body">
           <view class="cell-group column">
             <view class="cell-group row" wx:for="{{hours}}" wx:for-item="hour" wx:key="{{index}}">
-              <view class="cell">{{hour}}:00</view>
-              <view class="cell {{day.today?'today-background':''}}" wx:for="{{days}}" wx:for-item="day" wx:key="{{index}}">
-                <view class="timetable-item {{item.$value.colorClass}}" style="top:{{item.$value.top}};height:{{item.$value.height}}" wx:for="{{itemsList[1]}}" wx:key="{{index}}" wx:if="{{day.date === item.$value.date && hour === item.$value.hour}}" bindtap="{{item.courseType==2?'LESSON_DETAIL':''}}"
-                  data-lessonid="{{item.id}}">
+              <view class="cell yh_temheaddate">{{hour}}:00</view>
+              <view 
+                      class="cell {{index == axis.cell && idx == axis.row?'box_active':'box_active1'}} " 
+                      wx:for="{{days}}" wx:for-item="day" wx:for-index='idx' wx:key="idx"
+                      data-time="{{hour}}"
+                      data-date="{{day.date}}"
+                      data-keyrow="{{idx}}"
+                      data-keycell="{{index}}"
+                      bindtap="LESSON_ADD"
+                      >
+                <view 
+                      class="timetable-item {{item.$value.colorClass}}" 
+                    
+                      wx:for="{{itemsList[1]}}" 
+                      wx:key="{{index}}" 
+                      wx:if="{{day.date === item.$value.date && hour === item.$value.hour}}" 
+                      bindtap="{{item.courseType==2?'LESSON_DETAIL':'LESSON_ADD'}}"
+                      data-lessonid="{{item.id}}">
                   <view>{{item.name}}</view>
                   <view class='limet_text' wx:if='{{item.courseType==2}}'>{{item.schoolName}}</view>
                   <view wx:if='{{item.courseType!=1}}'>{{item.beginTime}}</view>
@@ -74,10 +89,24 @@
         <view class="timetable-body">
           <view class="cell-group column">
             <view class="cell-group row" wx:for="{{hours}}" wx:for-item="hour" wx:key="{{index}}">
-              <view class="cell">{{hour}}:00</view>
-              <view class="cell {{day.today?'today-background':''}}" wx:for="{{days}}" wx:for-item="day" wx:key="{{index}}">
-                <view class="timetable-item {{item.$value.colorClass}}" style="top:{{item.$value.top}};height:{{item.$value.height}}" wx:for="{{itemsList[2]}}" wx:key="{{index}}" wx:if="{{day.date === item.$value.date && hour === item.$value.hour}}" bindtap="{{item.courseType==2?'LESSON_DETAIL':''}}"
-                  data-lessonid="{{item.id}}">
+              <view class="cell yh_temheaddate">{{hour}}:00</view>
+              <view 
+                      class="cell {{index == axis.cell && idx == axis.row?'box_active':'box_active1'}} " 
+                      wx:for="{{days}}" wx:for-item="day" wx:for-index='idx' wx:key="idx"
+                      data-time="{{hour}}"
+                      data-date="{{day.date}}"
+                      data-keyrow="{{idx}}"
+                      data-keycell="{{index}}"
+                      bindtap="LESSON_ADD"
+                  >
+                <view 
+                    class="timetable-item {{item.$value.colorClass}}" 
+                    style="top:{{item.$value.top}};height:{{item.$value.height}}"
+                    wx:for="{{itemsList[2]}}"
+                    wx:key="{{index}}"
+                    wx:if="{{day.date === item.$value.date && hour === item.$value.hour}}" 
+                    bindtap="{{item.courseType==2?'LESSON_DETAIL':'LESSON_ADD'}}"
+                    data-lessonid="{{item.id}}">
                   <view>{{item.name}}</view>
                   <view wx:if='{{item.courseType==2}}'>{{item.schoolName}}</view>
                   <view wx:if='{{item.courseType!=1}}'>{{item.beginTime}}</view>
