@@ -189,11 +189,22 @@ class TimetableComponent extends EComponent {
         let time = e.currentTarget.dataset.time;
         let row = e.currentTarget.dataset.keyrow;
         let cell = e.currentTarget.dataset.keycell;
-        this.setData({
-          axis: { row, cell}
-        })
-        console.log('添加课程', date, time)
-        console.log(e)
+        // itemsList
+        let warns = this.data.itemsList[0];
+        // 判断是否第二次点击
+        if(row == this.data.axis.row && cell == this.data.axis.cell ){
+          console.log('添加课程')
+          // 进行添加课程
+        }else{
+          // 判断是不是点击了重复   some部分满足条件。  every 全部满足条件 filter按条件过滤   reduce
+          let isads = warns.some((item) => { return date === item.$value.date && time === item.$value.hour })
+          if (!isads) {
+            this.setData({
+              axis: { row, cell }
+            })
+          }
+          console.log('切换时间', isads, date, time)
+        }
       },
       // 每个小按钮点击事件
       [events.ui.LESSON_DETAIL](e) {
@@ -263,13 +274,9 @@ class TimetableComponent extends EComponent {
       },
       [actions.MAP_DATA](data) {
         //if (!data || data.length === 0) { return; }
-        // console.log(data)
-
+        console.log(data)
         const itemsList = [[], [], []];
-
         itemsList[this._week.last] = data.map((item, i) => {
-
-
           const date = moment.unix(item.date);
           const min = parseInt(date.format('mm'));
           let colorClass = ''
@@ -277,7 +284,7 @@ class TimetableComponent extends EComponent {
           if (item.status == 1) {
             colorClass = 'lesson-attend lesson-attend-color';
           } else if (item.status == 0) {
-          // 调课
+            // 调课
             if (item.type == 2) {
               colorClass = 'lesson-change lesson-change-color';
             // 补课
@@ -289,6 +296,7 @@ class TimetableComponent extends EComponent {
           } else {
             colorClass = 'lesson-absent lesson-absent-color';
           }
+            // 过渡时间
           if (!item.duration) {
             item.duration = 42
           }
@@ -297,6 +305,7 @@ class TimetableComponent extends EComponent {
             item.courseType = 3; //放学
             colorClass = 'school_after'
           }
+          // 如果同一天  且上课时间小时连着则   第一个的框框变大，第二条数据为空
           item.$value = {
             date: date.format('YYYY-MM-DD'),
             hour: parseInt(date.format('HH')),
