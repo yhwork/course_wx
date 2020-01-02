@@ -1,4 +1,4 @@
-import { EApp, EPage, PAGE_LIFE } from '../../../../eea/index'
+import { EApp, EPage, PAGE_LIFE } from '../../eea/index'
 import { events, effects, actions } from './create_class.eea'
 
 class CreateClassPage extends EPage {

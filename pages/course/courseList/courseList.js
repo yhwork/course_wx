@@ -15,11 +15,11 @@ const app = getApp();
 class CourseListPage extends EPage {
   get data() {
     return {
-      animationData:'',
+      animationData: '',
       childlist: [],
       showFollowModel: false,
       chooldchild: {},
-      messagenum:'',
+      messagenum: '',
       headImg: '', // 头像
       userName: '', // 孩子姓名
       nickName: '', // 用户昵称
@@ -186,7 +186,7 @@ class CourseListPage extends EPage {
             console.log('相机数据', res)
             if (res.errMsg == 'scanCode:ok') {
               wx.navigateTo({
-                url: '/pages/mypage/qrcode/qrcode?val=11',
+                url: '/pages/mydemo/pages/qrcode/qrcode?val=11',
               })
             }
             // 写一个授权界面  让用户扫码后显示
@@ -227,7 +227,7 @@ class CourseListPage extends EPage {
                 url: '/pages/mypage/mypage/mypage'
               })
             },
-            complete: function(res) {},
+            complete: function (res) {},
           })
 
         }
@@ -254,9 +254,25 @@ class CourseListPage extends EPage {
                 url: '/pages/course/p_manage/schoolout_manage?activeIndex=0' + "&childId=" + childId, // 打开校内
               })
             } else {
-              wx.navigateTo({
-                url: '/pages/course/course?current=' + state + "&childId=" + childId,
+              // 校内查询是否有课程  有课程 跳转课程列表  没有泽跳转 添加校内课程
+              this.$api.course.getAllInternalCourseName({
+                childId: childId
+              }).then(res => {
+                if (res.data.errorCode == 0 && res.data.result.length >= 0) {
+                  wx.navigateTo({
+                    url: '/pages/course/course?current=' + state + "&childId=" + childId,
+                  })
+
+                } else {
+                  wx.navigateTo({
+                    url: `/pages/course/p_add/schoolout_add1?childId=${childId}&activeIndex=0`,
+                  })
+                }
               })
+
+              // wx.navigateTo({
+              //   url: '/pages/course/course?current=' + state + "&childId=" + childId,
+              // })
             }
 
           } else if (state == 3) {
@@ -294,11 +310,20 @@ class CourseListPage extends EPage {
 
       },
       // 新建日程
-      [events.ui.addClass]() {
-        var childId = this.data.childId
-        wx.navigateTo({
-          url: '/pages/course/p_add/schoolout_add1?childId=' + childId,
-        })
+      [events.ui.addClass](e) {
+        let {
+          childId
+        } = this.data
+        if (e.currentTarget.dataset.current == 1) {
+          wx.navigateTo({
+            url: `/pages/course/p_add/schoolout_add1?childId=${childId}&activeIndex=1`,
+          })
+        } else {
+          wx.navigateTo({
+            url: `/pages/course/p_add/schoolout_add1?childId=${childId}&activeIndex=0`,
+          })
+        }
+
       },
       // 点击切换身份
       [events.ui.showMask]() {
@@ -377,9 +402,9 @@ class CourseListPage extends EPage {
           // 跳到创建班级界面
           wx.switchTab({
             url: '/pages/class/class',
-            success: function(res) {},
-            fail: function(res) {},
-            complete: function(res) {},
+            success: function (res) {},
+            fail: function (res) {},
+            complete: function (res) {},
           })
         }
       },
@@ -432,7 +457,7 @@ class CourseListPage extends EPage {
         this.setData({
           childid_i: i
         })
-        console.log(childid, i)
+     
         var childlist = this.data.childlist
         childlist.forEach(item => {
           console.log(item)
@@ -450,12 +475,13 @@ class CourseListPage extends EPage {
           mask_state: false,
           childId: childid,
           'model.childId': childid,
-          'header_item':'header_item'
+          'header_item': 'header_item'
         })
         wx.setStorage({
           key: 'childId',
           data: childid
         })
+        // console.log('切换小孩的id', this.data.childId)  ok
         put(effects.loadCourseTime) // 最近
       },
       //查看位置
@@ -467,8 +493,6 @@ class CourseListPage extends EPage {
           longitude: longitude
         })
       },
-
-
     }
   }
   // 接口 api
@@ -626,8 +650,6 @@ class CourseListPage extends EPage {
               title: '课程表（教师端）',
             })
           }
-
-
         })
       },
       //获取孩子列表
@@ -635,15 +657,15 @@ class CourseListPage extends EPage {
         // 判断是家长端还是教师端的
         let role = this.data.role; // 判断角色
         let childList = []; // 控制优先级
-        let secnder = [];   // 备选优先级
+        let secnder = []; // 备选优先级
         let messagenum = [] // 消息数量
         const currentDate = moment(new Date(), 'YYYY-MM-DD').format('YYYY-MM-DD');
         this.$api.circle.getChildListByCondition({}).then(async res => {
           var i = this.data.childid_i // 第一次点击
           if (res.data.errorCode == '0') {
             let list = res.data.result.childList; // 小孩列表
-            for(let item of list){
-              item.courseNum='';
+            for (let item of list) {
+              item.courseNum = '';
               let params = {
                 queryDate: currentDate,
                 childId: item.childId
@@ -653,7 +675,7 @@ class CourseListPage extends EPage {
               var lessonLists = data.data.result.list; // 课程
               if (lessonLists != null && lessonLists.length >= 1) { // 两天都有数据
 
-               
+
 
                 if (currentDate == lessonLists[0].date) { // 第一天有数据
 
@@ -678,9 +700,17 @@ class CourseListPage extends EPage {
                     }
 
                   })
+                  
+                  if(lessonLists[1]){
+                    item.courseNum = startList.length + lessonLists[1].courseList.length; // 两天的课程数
+                  }else{
+                    item.courseNum = startList.length ; // 两天的课程数
+                  }
 
+               
 
-                  item.courseNum = startList.length + lessonLists[1].courseList.length; // 当天的课程数
+                  console.log('')
+
                   // 改成两天的课程
                   childList.push({
                     headImg: item.logo,
@@ -720,8 +750,7 @@ class CourseListPage extends EPage {
                 })
                 // console.log('初始化完成',this.data.childList, this.data.userName)
               } else if (secnder.length > 0) {
-                
-                // console.log('1111111111111111111111111111111111111111111111111')
+
                 this.setData({
                   childlist: list,
                   headImg: secnder[0].logo,
@@ -760,7 +789,7 @@ class CourseListPage extends EPage {
 
         // 判断是家长端还是教师端的
         var role = this.data.role;
-        Date.prototype.format = function(fmt) {
+        Date.prototype.format = function (fmt) {
           var o = {
             "M+": this.getMonth() + 1, //月份
             "d+": this.getDate(), //日
@@ -792,55 +821,58 @@ class CourseListPage extends EPage {
           this.$api.course.loadCourseTime(params).then((res) => {
             console.log('1', res.data.result)
             var lessonList = res.data.result.list; // 
-            let courselist = []                    // 课程总数
+            let courselist = [] // 课程总数
             if (lessonList === undefined) {
 
-                this.setData({
-                  lessonLists: []
-                })
-                console.log('没有课程')
-                
-                let obj ={
-                  classAddress: "",
-                  courseType:'' ,
-                  dataType: '',
-                  dataTypeName: "",
-                  duration: 15,
-                  endTime: "",
-                  id: '',
-                  name: "",
-                  pm: "",
-                  startDate: "今天",
-                  startTime: "暂无数据",
-                  type: "0",
-                }
-              for(let i=0;i<2;i++){
-                obj.startDate= i=1?'今天':'明天'
+              this.setData({
+                lessonLists: []
+              })
+              console.log('没有课程')
+
+              let obj = {
+                classAddress: "",
+                courseType: '',
+                dataType: '',
+                dataTypeName: "",
+                duration: 15,
+                endTime: "",
+                id: '',
+                name: "",
+                pm: "",
+                startDate: "今天",
+                startTime: "暂无数据",
+                type: "0",
+              }
+              for (let i = 0; i < 2; i++) {
+                obj.startDate = i = 1 ? '今天' : '明天'
                 courselist.push(obj)
               }
-             
+
               this.setData({
                 lessonLists: courselist
               })
 
               return
-            }else{
-            
-              let nowdate  = moment().format('YYYY-MM-DD');
+            } else {
+
+              let nowdate = moment().format('YYYY-MM-DD');
               console.log(nowdate)
-              
-              lessonList.map((item,index)=>{
-                if (item.courseList.length>0){
-                  for (let course of item.courseList){
+
+              lessonList.map((item, index) => {
+                if (item.courseList.length > 0) {
+                  for (let course of item.courseList) {
                     // console.log(moment(course.startDate).valueOf(), moment(nowdate).valueOf())
-                    if (moment(nowdate).isSame(course.startDate)){
+                    if (moment(nowdate).isSame(course.startDate)) {
                       course.startDate = '今天'
-                    }else{
-                      
+                    } else {
+
                     }
-                  
-                   let time_a = moment().set({'hours': course.startTime.split(':')[0], 'minutes': course.startTime.split(':')[1] }).format('a-HH:mm');
-                    course['pm'] = time_a.split('-')[0]=='am'?'上午':'下午'
+
+                    let time_a = moment().set({
+                      'hours': course.startTime.split(':')[0],
+                      'minutes': course.startTime.split(':')[1]
+                    }).format('a-HH:mm');
+                    course['pm'] = time_a.split('-')[0] == 'am' ? '上午' : '下午'
                     courselist.push(course);
                   }
                 }
@@ -854,7 +886,7 @@ class CourseListPage extends EPage {
               let startList = courselist.filter(item => {
                 // let nowdate = moment().set({'hours': 18,'minutes':'10'}).format('YYYY-MM-DD HH:mm');
                 // 只过滤今天的内容
-                if (item.startDate === '今天'){
+                if (item.startDate === '今天') {
                   let nowdate = moment().format('YYYY-MM-DD HH:mm');
                   let endTime = moment().set({
                     'hours': item.endTime.split(':')[0],
@@ -867,10 +899,10 @@ class CourseListPage extends EPage {
                     console.log('没过期', item)
                     return item
                   }
-                }else{
+                } else {
                   return item
                 }
-                
+
               })
 
 
@@ -879,11 +911,8 @@ class CourseListPage extends EPage {
                 // 设置消息显示的数量
                 messagenum: startList.length
               })
-              
-
-
             }
-            
+
 
 
 

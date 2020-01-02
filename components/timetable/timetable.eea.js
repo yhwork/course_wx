@@ -20,4 +20,5 @@ export const actions = {
     MAP_DATA: null,
     MAP_LESSON_DATA: null,
     init:null,
+  
 }

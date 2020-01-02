@@ -51,10 +51,12 @@ class MyApp extends EApp {
 }
 
 const app = new MyApp();
+// 配置全局变量
 app.globalData = {
   childId: null,
   userId: null
 }
+// 全局方法
 app.remove = function (arr) { //删除数组
   for (var i = 0; i < array.length; i++) {
     if (arr[i]) {

@@ -118,13 +118,13 @@
 <view class='title_box' style='background:#fff;'>
   <view>最近日程</view>
   <view class="nearly_addcourse">
-    <view class='list_view' bindtap='addClass'>
+    <view class='list_view' data-current="1" bindtap='addClass'>
       <view class="addimg">
         <image lazy-load='{{true}}' mode='widthFix' src="/assets/local/64dfce9688ef8970e3297c0f6d1b21d.png"></image>
       </view>
       <view>添加校外课程</view>
     </view>
-    <view class='list_view' bindtap='addClass'>
+    <view class='list_view' data-current='0' bindtap='addClass'>
       <view class="addimg">
         <image lazy-load='{{true}}' mode='widthFix' src="/assets/local/64dfce9688ef8970e3297c0f6d1b21d.png"></image>
       </view>
@@ -158,7 +158,7 @@
       </view>
     </view>
   </block>
-</view>
+</view> 
 <!-- 最近两天课程表 -->
 <!-- <view class='content_box' wx:for='{{lessonLists}}' wx:key=''>
   <view class='title_box'>

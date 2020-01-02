@@ -1,6 +1,5 @@
 {
   "pages": [
-    
     "pages/course/courseList/courseList",
     "pages/course/course",
     "pages/course/addCalendar/addCalendar",
@@ -55,12 +54,19 @@
     "pages/mypage/school/school",
     "pages/mypage/accumulatePoints/accumulatePoints",
     "pages/mypage/pointsRule/pointsRule",
-    "upload/upload",
-    "pages/mypage/upinput/upinput",
-    "pages/mypage/qrcode/qrcode"
-
+    "upload/upload"
+   
   ],
   "subPackages": [
+    {
+      "root":"pages/mydemo",
+      "name":"libcourse",
+      "pages":[
+        "pages/editName/rditname",
+        "pages/qrcode/qrcode"
+
+      ]
+    },
     {
       "root": "pages/learningcircle",
       "name": "learningcircle",

@@ -17,6 +17,7 @@ import moment from '../../lib/moment.min.js'
 class CoursePage extends EPage {
   get data() {
     return {
+      btnclick: false,
       userInfo: {}, //当前用户信息
       lessons: [], //一周的课 
       dayLessons: [], //当天的课
@@ -83,6 +84,7 @@ class CoursePage extends EPage {
       current: '',
       isback: false,
       productCourseId: "",
+    
 
     };
   }
@@ -104,7 +106,8 @@ class CoursePage extends EPage {
       [PAGE_LIFE.ON_LOAD](option) {
         if (option.hasOwnProperty('childId')) {
           this.setData({
-            childId: option.childId
+            childId: option.childId,
+            btnclick: false,
           })
           console.info('有小孩')
           put(effects.GET_USER_INFO); // 获取用户信息
@@ -295,6 +298,7 @@ class CoursePage extends EPage {
   mapUIEvent({
     put
   }) {
+    let api = this.$api
     return {
       // 返回主页
       [events.ui.backhome]() {
@@ -307,6 +311,33 @@ class CoursePage extends EPage {
           },
           complete: function(res) {},
         })
+      },
+      // 添加课程
+      [events.ui.add_course](data){
+        let date = data.detail.date;
+        let time = data.detail.time;
+        let { current, childId} = this.data
+        console.log('添加的课程', time, current)
+        // 判断校内还是校外
+        if (current == 1){
+          wx.navigateTo({
+            url: `/pages/course/p_add/schoolout_add1?childId=${childId}&activeIndex=1`,
+          })
+        }else if(current == 0){
+          // 校内查询是否有课程  有课程 跳转课程列表  没有泽跳转 添加校内课程
+          api.course.getAllInternalCourseName({ childId: childId }).then(res => {
+            if (res.data.errorCode == 0 && res.data.result.length >= 0) {
+                  wx.navigateTo({
+                    url: '/pages/course/p_manage/schoolout_manage?activeIndex=0' + "&childId=" + childId, // 打开校内
+                  })
+            } else {
+              wx.navigateTo({
+                url: `/pages/course/p_add/schoolout_add1?childId=${childId}&activeIndex=0`,
+              })
+            }
+          })
+        }
+       
       },
       // 查看详情
       [events.ui.courdetails](e) {

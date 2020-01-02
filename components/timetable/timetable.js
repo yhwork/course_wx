@@ -13,6 +13,16 @@ import moment from '../../lib/moment.min.js';
 class TimetableComponent extends EComponent {
   get properties() {
     return {
+      // btnclick:{
+      //   type: Boolean,
+      //   value: true,
+      //   observer: (value) => {
+      //     console.log(value)
+      //     this.setData({
+      //       btnclick:value
+      //     })
+      //   }
+      // },
       childId: {
         type: String,
         value: ''
@@ -59,9 +69,10 @@ class TimetableComponent extends EComponent {
       ], //每周的课
       diffWeek: '本周',
       timetable: true,    // 日期表
-
+      btnclick:false,
       lessonList: [], //每天的课
       dateLesson: [],
+      add_course:false, // 添加课程
       axis:{
         row:0,
         cell:0
@@ -88,11 +99,8 @@ class TimetableComponent extends EComponent {
       [COMP_LIFE.ON_ATTACHED]() { },
 
       [COMP_LIFE.ON_READY]() {
-        if (!this.data.date) {
-          this.setData({
-            date: moment().format('YYYY-MM-DD')
-          });
-        }
+        console.log('再次加载')
+
         //this.context.dispatch(actions.TRIGGER_DATE_CHANGE);
       },
       [COMP_LIFE.ON_MOVED]() { },
@@ -184,29 +192,55 @@ class TimetableComponent extends EComponent {
           timetable: this.data.timetable
         });
       },
+      // 添加新的课程
       [events.ui.LESSON_ADD](e){
         let date = e.currentTarget.dataset.date;
         let time = e.currentTarget.dataset.time;
         let row = e.currentTarget.dataset.keyrow;
         let cell = e.currentTarget.dataset.keycell;
+        console.log('添加课程', row,cell)
+
         // itemsList
-        let warns = this.data.itemsList[0];
+        let warns = this.data.itemsList[this._week.last];
         // 判断是否第二次点击
         if(row == this.data.axis.row && cell == this.data.axis.cell ){
-          console.log('添加课程')
+          if(!this.data.btnclick){
+                // 把添加时间抛出去
+              this.triggerEvent('add-course', {
+                  date,
+                  time,
+                  childId
+                });
+              this.setData({
+                  btnclick:true
+              })
+          }
+
+          var childId = this.data.childId
+          this.setData({
+            add_course:true
+          })
+
           // 进行添加课程
+          // console.log('添加课程',this.data.add_course)
         }else{
+          // console.log(date,time)
+          if (!time && !date){
+            return false
+          }
           // 判断是不是点击了重复   some部分满足条件。  every 全部满足条件 filter按条件过滤   reduce
           let isads = warns.some((item) => { return date === item.$value.date && time === item.$value.hour })
+
           if (!isads) {
             this.setData({
-              axis: { row, cell }
+              axis: { row, cell },
+              add_course: false
             })
           }
-          console.log('切换时间', isads, date, time)
+          // console.log('切换时间', warns, isads, date, time, this.data.add_course)
         }
       },
-      // 每个小按钮点击事件
+      // 课程详情
       [events.ui.LESSON_DETAIL](e) {
         const lessonId = e.currentTarget.dataset.lessonid
         console.log(lessonId, this.data.childId)
@@ -273,29 +307,71 @@ class TimetableComponent extends EComponent {
 
       },
       [actions.MAP_DATA](data) {
-        //if (!data || data.length === 0) { return; }
+        if (!data || data.length === 0) { return; }
         console.log(data)
         const itemsList = [[], [], []];
         itemsList[this._week.last] = data.map((item, i) => {
           const date = moment.unix(item.date);
           const min = parseInt(date.format('mm'));
           let colorClass = ''
-          // 出勤
-          if (item.status == 1) {
-            colorClass = 'lesson-attend lesson-attend-color';
-          } else if (item.status == 0) {
-            // 调课
-            if (item.type == 2) {
-              colorClass = 'lesson-change lesson-change-color';
-            // 补课
-            } else if (item.type == 3) {
-              colorClass = 'lesson-remedial lesson-remedial-color';
+          //  校外
+          if(item.courseType == 2){
+            // 出勤
+            if (item.status == 1) {
+              colorClass = 'lesson-attend lesson-attend-color';
+            } else if (item.status == 0) {
+              // 调课
+              if (item.type == 2) {
+                colorClass = 'lesson-change lesson-change-color';
+                // 补课
+              } else if (item.type == 3) {
+                colorClass = 'lesson-remedial lesson-remedial-color';
+              } else {
+                colorClass = 'lesson-noton lesson-noton-color';
+              }
             } else {
-              colorClass = 'lesson-noton lesson-noton-color';
+              colorClass = 'lesson-absent lesson-absent-color';
             }
-          } else {
-            colorClass = 'lesson-absent lesson-absent-color';
+          } else if (item.courseType == 1){        // 校内课
+
+            let name = item.name.substr(0, 1); 
+            switch (name){
+              case '语':
+                colorClass = 'lesson-China';
+                break;
+              case '数':
+                colorClass = 'lesson-math';
+                break;
+              case '英':
+                colorClass = 'lesson-english ';
+                break;
+              default:
+                colorClass = 'lesson-default ';
+            }
+            // // 出勤
+            // if (item.status == 1) {
+            //   colorClass = 'lesson-attend lesson-attend-color';
+            // } else if (item.status == 0) {
+            //   // 调课
+            //   if (item.type == 2) {
+            //     colorClass = 'lesson-change lesson-change-color';
+            //     // 补课
+            //   } else if (item.type == 3) {
+            //     colorClass = 'lesson-remedial lesson-remedial-color';
+            //     // 未上课
+            //   } else {
+            //     colorClass = 'lesson-noton lesson-noton-color';
+            //   }
+            // } else {
+            //   // 缺课
+            //   colorClass = 'lesson-absent lesson-absent-color';
+            // }
+
+
           }
+
+
+
             // 过渡时间
           if (!item.duration) {
             item.duration = 42
@@ -316,10 +392,11 @@ class TimetableComponent extends EComponent {
           return item;
         });
         this.setData({
+          btnclick: false,
           itemsList,
           current: this._week.last
         });
-        // console.log(this.data.itemsList)
+        // console.log('是否改变',this.data.itemsList)
       },
       [actions.MAP_LESSON_DATA](data) {
         //if (!data || data.length === 0) { return; }

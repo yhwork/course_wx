@@ -12,4 +12,6 @@
 .itemTexrt_brand{
   border:1rpx solid #E1DEDE;
 }
-
+.bd{
+  border: 1px solid red;
+}

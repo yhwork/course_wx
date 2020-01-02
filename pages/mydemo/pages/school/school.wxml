@@ -1,0 +1,23 @@
+<view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{message}}</view>
+<view class='search' hidden='{{!addSchool}}'>
+  <icon class="weui-icon-search_in-box" type="search" size="20"></icon>
+  <input bindinput="inputvalue" placeholder='请输入学校的简称'></input>
+  <view class='sure' bindtap='INPUT_TYPING'>搜索</view>
+</view>
+<view class="school" wx:if='{{schoolList.length != 0||schoolList}}'>
+  <view wx:if='{{index<500}}' class="schoolbox"  wx:for="{{schoolList}}" wx:for-item="item" wx:key="" data-id="{{item.id}}" data-name="{{item.NAME}}" data-typecode="{{item.typeCode}}" data-city="{{item.city}}" bindtap="SET_SCHOOL">
+    <view class="weui-cell__bd">
+      <view>{{item.NAME}}</view>
+    </view>
+  </view>
+</view>
+<view wx:if='{{schoolList.length==0||!schoolList}}'>
+  <view class='no_school' style='color:red'>
+    {{msg}}
+  </view>
+</view>
+
+<view class='add ' hidden='{{addSchool}}'>
+  <input placeholder='输入学校全称' bindblur='INPUTNAME'></input>
+  <view  bindtap='ADDSCHOOL'>添加</view>
+</view>

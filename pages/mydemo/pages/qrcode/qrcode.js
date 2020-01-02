@@ -3,7 +3,7 @@ import {
   EApp,
   EPage,
   PAGE_LIFE
-} from '../../../eea/index'
+} from '../../../../eea/index'
 import {
   events,
   effects,
@@ -12,7 +12,7 @@ import {
 
 const that = this;
 // const audioPlay = require("../../lib/audioPlay");
-class qrcode extends EPage {
+class qrcodes extends EPage {
   get data() {
     return {
       selected: true,
@@ -157,8 +157,8 @@ class qrcode extends EPage {
 }
 
 EApp.instance.register({
-  type: qrcode,
-  id: 'qrcode',
+  type: qrcodes,
+  id: 'qrcodes',
   config: {
     events,
     effects,

@@ -37,6 +37,8 @@ const events = {
     handler: null,
     chargeTab:null,
     CREATE_COURSE:null,
+    getSchoolName:null,
+    getisweek:null
   }
 }
 

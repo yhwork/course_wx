@@ -3,16 +3,16 @@ import {
   EApp,
   EPage,
   PAGE_LIFE
-} from '../../../eea/index'
+} from '../../../../eea/index'
 import {
   events,
   effects,
   actions
-} from './upinput.eea'
+} from './upinputs.eea'
 
 const that = this;
 // const audioPlay = require("../../lib/audioPlay");
-class upInput extends EPage {
+class upInputs extends EPage {
   get data() {
     return {
       selected: true,
@@ -25,7 +25,6 @@ class upInput extends EPage {
       value:''
     };
   }
-
 
   mapPageEvent({
     put
@@ -117,9 +116,10 @@ class upInput extends EPage {
   }
 }
 
+
 EApp.instance.register({
-  type: upInput,
-  id: 'upInput',
+  type: upInputs,
+  id: 'upInputs',
   config: {
     events,
     effects,

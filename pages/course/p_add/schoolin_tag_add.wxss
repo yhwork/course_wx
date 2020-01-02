@@ -1,43 +1,76 @@
-page{
+page {
   background: #f4f4f4;
 }
-.title{
+
+.title {
   white-space: nowrap;
+  padding-left: 50rpx;
+  font-size: 28rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: rgba(51, 51, 51, 1);
 }
-.hint{
+
+.hint {
   display: flex;
   align-items: center;
-  font-size:26rpx;
+  font-size: 26rpx;
   color: #888;
   padding: 28rpx 30rpx;
   background: #fff;
 }
-.hint image{
+
+.hint image {
   width: 32rpx;
   height: 32rpx;
   margin-right: 20rpx;
 }
-.course_name{
+
+.pages {
+  background: #fff;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  padding: 0 15rpx;
+  height: 100vh;
+}
+
+.course_name {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 88rpx;
-  border-top: 2rpx solid #e5e5e5;
-  padding: 0 30rpx;
-  background: #fff;
+  width: 690rpx;
+  margin-top: 10rpx;
+  height: 78rpx;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 1rpx 27rpx 0rpx rgba(150, 149, 149, 0.26);
+  border-radius: 30px;
 }
-input{
-  text-align: right;
+
+input {
+  text-align: left;
+  font-size: 22rpx;
+  color: #696969;
 }
-.submit{
-  width: 670rpx;
-  height: 94rpx;
-  border-radius: 10rpx;
+
+.submit {
+  width:586rpx;
+  height:61rpx;
+  background:rgba(231,198,14,1);
+  border-radius:21rpx;
   position: fixed;
-  bottom: 60rpx;
+  top: 178rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   left: 50%;
   transform: translateX(-50%);
+  font-size:28rpx;
+font-family:PingFang SC;
+font-weight:500;
+color:rgba(255,255,255,1);
 }
-.button-hover{
+
+.button-hover {
   background: #f29219;
 }

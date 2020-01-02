@@ -456,7 +456,7 @@ class editMyChildPage extends EPage {
         // 跳转
         url: '../school/school?comefrom=childMsg&childId=' + this.data.model.childId
         wx.navigateTo({
-          url: '../upinput/upinput?val=' + val,
+          url: '/pages/mydemo/pages/editName/rditname?val=' + val,
         })
         if (this.data.userEdit == 'true') {
           this.setData({
@@ -630,21 +630,9 @@ class editMyChildPage extends EPage {
               },
               (reject) => { }
             );
-            // this.setData({
-            //   resultModel: this.data.resultModel
-            // })
-            // wx.setNavigationBarTitle({
-            //   title: this.data.resultModel.name
-            // })
+    
             if (this.data.fromPage != '') {
-              // 从地址页面回来
-              // this.setData({
-              //   'resultModel.school': this.data.schoolModel.school,
-              //   'paramModel.school': this.data.schoolModel.school,
-              //   'paramModel.schoolType': this.data.schoolModel.schoolType,
-              //   'paramModel.city': this.data.schoolModel.city,
-              //   'paramModel.schoolId': this.data.schoolModel.schoolid
-              // })
+  
               this.setData({
                 'resultModel.school': this.data.schoolModel.school,
                 'resultModel.schoolType': this.data.schoolModel.schoolType,
@@ -672,12 +660,7 @@ class editMyChildPage extends EPage {
               title: '保存成功',
             })
             console.log('家长');
-            // wx.redirectTo({
-            //   url: '../../course/courseList/courseList',
-            //   success: function(res) {},
-            //   fail: function(res) {},
-            //   complete: function(res) {},
-            // })
+ 
             var time = null;
             time = setTimeout(() => {
               wx.navigateBack({

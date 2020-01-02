@@ -14,8 +14,9 @@ var sliderWidth = 96;
 class SchooloutAdd1Page extends EPage {
   get data() {
     return {
+      weeks:'1',         // 每周
       select_img: '',
-      tabIndex: 0,
+      tabIndex: 1,      // 默认添加方式   0  拍照  1手动
       switched: false,
       userInfo: {}, //当前用户信息
       tabs: [{
@@ -30,8 +31,7 @@ class SchooloutAdd1Page extends EPage {
         }
       ],
 
-      activeIndex: 0, // 默认  显示的
-
+      activeIndex: 1, // 默认校内、校外显示的 1校外
       sliderOffset: 0,
       sliderLeft: 0,
       model: {
@@ -92,19 +92,31 @@ class SchooloutAdd1Page extends EPage {
     return {
       [PAGE_LIFE.ON_LOAD](option) {
         console.log('值', option)
+        let {current,childId} = option
         this.setData({
-          activeIndex: option.current ? option.current : 1
+          activeIndex: current?current:1,
+          'model.childId': childId
         })
-        //获取用户信息
-        put(effects.GET_USER_INFO, {
-          option
-        });
-        if (typeof option.childId != 'undefined') {
-          const childId = option.childId; //链接过来的childId
-          this.setData({
-            'model.childId': childId
-          });
+        if(current == 0){               // 校内
+          wx.setNavigationBarTitle({
+            title: '添加校内日程',
+          })
+        }else{
+          wx.setNavigationBarTitle({
+            title: '添加校外日程',
+          })
         }
+        //获取用户信息
+        put(effects.GET_USER_INFO, { option});
+        // console.log(this.data.activeIndex,current)
+        // if (typeof option.childId != 'undefined') {
+        //   const childId = option.childId; //链接过来的childId
+        //   this.setData({
+          
+        //   });
+        // }
+
+         
 
         put(effects.GET_CHILD);
         let courseTable = courseTableF();
@@ -287,10 +299,8 @@ class SchooloutAdd1Page extends EPage {
             })
           }
         });
-
-
-
       },
+      // 切换添加方式
       [events.ui.chargeTab](e) {
         console.log(e)
         this.setData({
@@ -320,7 +330,7 @@ class SchooloutAdd1Page extends EPage {
         }
       },
       // 选择班级
-      [events.ui.chooseClass](e) {
+      [events.ui.chooseClass](e) { 
         let num = e.detail.value
         let thisdata = "classList[" + num + "].className"
         let id = this.data.classList[num].classId
@@ -365,7 +375,22 @@ class SchooloutAdd1Page extends EPage {
           'model.name': e.detail.value
         });
       },
-
+      // 学校班级
+      [events.ui.getSchoolName](e){
+        let i = e.currentTarget.dataset.id;
+        let val = e.detail.value;
+        if(i==1){
+          console.log(val)
+        }else{
+          console.log(val)
+        }
+      },
+      [events.ui.getisweek](e){
+        let i = e.currentTarget.dataset.id;
+        this.setData({
+          weeks:i
+        })
+      },
       //切换头像
       [events.ui.CHANGE_LOGO](e) {
         put(effects.LOAD_CHILDALL);
@@ -564,7 +589,6 @@ class SchooloutAdd1Page extends EPage {
       },
       //跳转学校：
       [events.ui.chooseSchool](e) {
-
         console.log(this.data.model.childId)
         wx.navigateTo({
           url: '../../mypage/school/school?comefrom=changeschool&childId=' + this.data.model.childId

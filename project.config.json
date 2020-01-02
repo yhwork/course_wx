@@ -23,7 +23,7 @@
 		"enhance": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.9.4",
+	"libVersion": "2.10.0",
 	"appid": "wx08f68831d02497ce",
 	"projectname": "%E6%9C%80%E6%96%B0%E5%B0%8F%E8%B1%86%E5%8C%85",
 	"cloudfunctionTemplateRoot": "",
@@ -453,6 +453,48 @@
 					"name": "带观看",
 					"pathName": "pages/buyShop/page/mywaitPay/mywaitPay",
 					"query": "childId=100380&userId=101069",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/mypage/editName/rditname",
+					"pathName": " page/answer/answer",
+					"query": "current=1&childId=100380",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "答题",
+					"pathName": "pages/buyShop/page/answer/answer",
+					"query": "current=1&childId=100380",
+					"scene": null
+				},
+				{
+					"id": 59,
+					"name": "pages/mydemo/pages/editName/rditname",
+					"pathName": "pages/mydemo/pages/editName/rditname",
+					"query": "current=1&childId=100380",
+					"scene": null
+				},
+				{
+					"id": 60,
+					"name": "测试分包",
+					"pathName": "pages/mydemo/pages/editName/rditname",
+					"query": "current=1&childId=100380",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "授权",
+					"pathName": "pages/mydemo/pages/qrcode/qrcode",
+					"query": "current=1&childId=100380",
+					"scene": null
+				},
+				{
+					"id": 62,
+					"name": "添加课程",
+					"pathName": "pages/course/p_add/schoolout_add1",
+					"query": "childId=100380&current=0",
 					"scene": null
 				}
 			]

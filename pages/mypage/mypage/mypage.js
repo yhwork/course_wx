@@ -191,7 +191,7 @@ class upInput1 extends EPage {
             console.log('相机数据',res)
             if (res.errMsg == 'scanCode:ok'){
                 wx.navigateTo({
-                  url: '/pages/mypage/qrcode/qrcode?val=11',
+                  url: '/pages/mydemo/pages/qrcode/qrcode?val=11',
                 })
             }
             // 写一个授权界面  让用户扫码后显示

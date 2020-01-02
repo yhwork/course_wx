@@ -15,7 +15,6 @@ class SchooloutManagePage extends EPage {
   get data() {
     return {
       shareHide: true,
-      userInfo: {},
       // tabs: ["校内课程", "校外课程"],
       userInfo: {}, //当前用户信息
       tabs: [{
@@ -50,6 +49,7 @@ class SchooloutManagePage extends EPage {
       model: {
         childId: ''
       },
+      childId:'',
       childInfo: {},
       childList: {},
       shareCavansOptions: {
@@ -66,8 +66,7 @@ class SchooloutManagePage extends EPage {
     return {
       [PAGE_LIFE.ON_LOAD](option) {
         console.log('值',option)
-          
-
+        put(effects.GET_USER_INFO);
         wx.hideShareMenu();
         const {
           shareCavansOptions
@@ -75,6 +74,7 @@ class SchooloutManagePage extends EPage {
         shareCavansOptions.width = wx.getSystemInfoSync().screenWidth;
         shareCavansOptions.height = shareCavansOptions.width * 5 / 4;
         this.setData({
+          role: wx.getStorageSync('role'),
           shareCavansOptions
         });
         if (option.hasOwnProperty('activeIndex')) {
@@ -83,11 +83,12 @@ class SchooloutManagePage extends EPage {
           })
         }
 
-        put(effects.GET_USER_INFO);
+      
         if (option.hasOwnProperty('childId')) {
           console.log('有小孩id', option.childId)
           const childId = option.childId; //链接过来的childId
           this.setData({
+            childId,
             'model.childId': childId,
           });
         }else{
@@ -450,7 +451,7 @@ class SchooloutManagePage extends EPage {
                 shareInfo: shareInfo
               })
               // console.log(this.data)
-              if (this.data.userInfo.role == 0) {
+              if (this.data.role == 0) {
                 const param = {};
                 param.dataType = 6;
                 param.data = {
@@ -612,6 +613,7 @@ class SchooloutManagePage extends EPage {
               this.setData({
                 userInfo: res.data.result
               })
+              console.log(res.data.result)
             } else {
               this.$common.showMessage(this, res.data.errorMessage);
               return;
@@ -719,28 +721,31 @@ class SchooloutManagePage extends EPage {
             (rej) => {}
           )
         } else {
-          let map = {}
-          if (this.data.userInfo.role == 0) {
-            map = this.data.model
+          // 判断    用户角色
+          let { role, model } = this.data
+        
+          console.log('家长角色', role, this.data.userInfo.role)
+          if (this.data.role == 0) {
+            api.course.getAllInternalCourseName(model).then(
+              (res) => {
+                console.log('课程信息', res.data.result)
+
+                if (res.data.errorCode == 0) {
+                  // let imgType = res.data.result.imgType
+                  this.setData({
+                    courseList: res.data.result
+                  })
+                } else if (res.data.errorCode == 100006) {
+                  this.setData({
+                    courseList: []
+                  })
+                }
+
+              },
+              (rej) => { }
+            )
           }
-          api.course.getAllInternalCourseName(map).then(
-            (res) => {
-              console.log('课程信息', res.data.result)
 
-              if (res.data.errorCode == 0) {
-                // let imgType = res.data.result.imgType
-                this.setData({
-                  courseList: res.data.result
-                })
-              } else if (res.data.errorCode == 100006) {
-                this.setData({
-                  courseList: []
-                })
-              }
-
-            },
-            (rej) => {}
-          )
         }
       },
 

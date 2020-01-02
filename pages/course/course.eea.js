@@ -19,7 +19,8 @@ export const events = {
     chargeTab:null,
     goAdd:null,
     backhome:null,
-    courdetails:null
+    courdetails:null,
+    add_course:null
   }
 }
 
@@ -37,7 +38,8 @@ export const effects = {
   loadCourseTimelist:null,
   loadOutSchoolCourseListByWeek:null,    // 查询校外日历
   loadInternalCourseListByWeek:null,     // 查询校内日历
-  loadCourseList:null               // 查询校内外日程
+  loadCourseList:null,               // 查询校内外日程
+  select_incourse: null,
 }
 
 export const actions = {

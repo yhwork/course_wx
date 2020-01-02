@@ -33,7 +33,7 @@
          <view class='name_b' bindtap="SHOW_CALENDAR">{{model.currentDate}}</view>
       </view>
       <view class='fabutype' hidden='{{isSubmit}}'>
-        <view catchtap='CHOOSUBMITSETYPE' wx:for='{{userInfo.role == 0?childpeportType:teacherpeportType}}' data-type='{{item.id}}' wx:key=''>
+        <view catchtap='CHOOSUBMITSETYPE' wx:for='{{userInfo.role == 0?childpeportType:teacherpeportType}}' data-type='{{item.id}}' wx:key='index'>
           <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/{{item.src}}.png'></image>
           <text>{{item.value}}</text>
         </view>
@@ -46,7 +46,7 @@
   <view class='page'>
     <view class="page_bd">
       <view style="flex:auto;height:{{timetableHeight}}px;">
-        <timetable catch:date-changed="TIMETABLE_DATE_CHANGED" catch:lesson-date-changed="LESSON_DATE_CHANGED" data="{{lessons}}" dataLesson="{{dayLessons}}" childId="{{model.childId}}" date="{{model.currentDate}}">
+        <timetable catch:date-changed="TIMETABLE_DATE_CHANGED" catch:lesson-date-changed="LESSON_DATE_CHANGED" data="{{lessons}}" dataLesson="{{dayLessons}}" catch:add-course='add_course' btnclick='{{btnclick}}' childId="{{model.childId}}" date="{{model.currentDate}}">
         </timetable>
       </view>
     </view>
