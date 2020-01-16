@@ -359,8 +359,14 @@ page {
 }
 .adress{
   display: flex;
-  color: #0a4e7f
+  color: #0a4e7f;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
+.wt{
+  max-width: 420rpx;
+}
+
 .itemlisttxt {
   overflow: hidden;
   height: 84rpx;

@@ -26,7 +26,6 @@
           </view>
         </button>
       </form>
-      <view wx:if='{{!classList}}'>还没有班级呢~</view>
     </view>
   </view>
   <view class='message' bindtap='GO_CLASSMSG_LIST' wx:if='{{ msgcount !== 0}}'>
@@ -55,7 +54,7 @@
 
 </view>
 
-<view class='addbox'>
+<!-- <view class='addbox'>
   <view class='addclass' bindtap='GoSetClass' wx:if='{{userinfo.role==1}}'>
     <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/jia.png'></image>
     <text>创建班级</text>
@@ -64,8 +63,21 @@
     <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/jia.png'></image>
     <text>加入班级</text>
   </view>
-</view>
+</view> -->
 
+<!-- 没有课程显示 -->
+<view class="no_course" hidden="{{classList.length>0?true:false}}">
+    <view class="course_img ">
+        <image src="/assets/local/class/yuanquan.png"></image>
+        <image src="/assets/local/class/xingxing.png"></image>
+        <image src="/assets/local/class/laosu.png"></image>
+    </view>
+    <view class="no_course_txt ">
+       <text>你还没有加入班级群哦</text> 
+        <view bindtap='GoSetClass' wx:if='{{userinfo.role==1}}' class="add_group">创建班级</view>
+         <view bindtap='searchClass' wx:else class="add_group">加入班级</view>
+    </view>
+</view>
 
 <!-- 课表蒙层 -->
 <view class='mb' wx:if='{{userinfo.role == 0}}' hidden='{{hipeChild}}'>

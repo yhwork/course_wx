@@ -9,10 +9,11 @@ import {
   effects,
   actions
 } from './mypage.eea'
+// console.log('哈喽呀',EApp)
 
 const that = this;
 // const audioPlay = require("../../lib/audioPlay");
-class upInput1 extends EPage {
+class MYPAGES extends EPage {
   // 小程序data数据
   get data() {
     return {
@@ -39,25 +40,26 @@ class upInput1 extends EPage {
       userId: null,
       usersd: null,
       childId: null,
+
       // tabtext:["待付款","待分享","待预约","待打卡","退款订单"]
-      tabtext: [{
-        text: "待付款",
-        src: "https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/monney.png"
+      // tabtext: [{
+      //   text: "待付款",
+      //   src: "https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/monney.png"
 
-      }, {
-        text: "待分享",
-        src: "https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/shareone.png"
+      // }, {
+      //   text: "待分享",
+      //   src: "https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/shareone.png"
 
-      }, {
-        text: "待预约",
-        src: "https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/emails.png"
-      }, {
-        text: "待打卡",
-        src: "https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/daka.png"
-      }, {
-        text: "待观看",
-        src: "https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/daka.png"
-      }]
+      // }, {
+      //   text: "待预约",
+      //   src: "https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/emails.png"
+      // }, {
+      //   text: "待打卡",
+      //   src: "https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/daka.png"
+      // }, {
+      //   text: "待观看",
+      //   src: "https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/daka.png"
+      // }]
 
     };
   }
@@ -230,7 +232,7 @@ class upInput1 extends EPage {
       // 使用帮助
       [events.ui.playHelpBind](e) {
         wx.navigateTo({
-          url: '../uesHelp/useHelp',
+          url:"/pages/mypage/uesHelp/useHelp",
         })
       },
       // 权限管理
@@ -475,8 +477,8 @@ class upInput1 extends EPage {
 
 // 注册界面类
 EApp.instance.register({
-  type: upInput1,
-  id: 'upInput1',
+  type: MYPAGES,
+  id: 'MYPAGES',
   config: {
     events,
     effects,

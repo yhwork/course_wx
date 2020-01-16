@@ -1,4 +1,4 @@
-<view class="timetable">
+<view class="timetable bd">
 <!-- 日历头部 -->
   <view class="timetable-head">
     <!-- 周 -->
@@ -20,14 +20,15 @@
 
   <block wx:if="{{timetable}}">
     <swiper style="flex:auto;height:100%;" circular="{{true}}" bindchange="WEEK_CHANGED" bindanimationfinish="WEEK_ANI_FINISHED" current="{{current}}">
-      <swiper-item>
+      
+      <swiper-item >
         <view class="timetable-body">
           <view class="cell-group column">
             <view class="cell-group row" wx:for="{{hours}}" wx:for-item="hour" wx:for-index='index' wx:key="index">
               <view class="cell yh_temheaddate">{{hour}}:00</view>
               <!-- {{day.today?'today-background':''}} -->
               <view 
-                    class="cell {{index == axis.cell && idx == axis.row?add_course?'box_active2':'box_active':'box_active1'}} " 
+                    class="cell {{index == axis.cell && idx == axis.row && my_current==1 ?add_course ?'box_active2':'box_active':'box_active1'}} " 
                     wx:for="{{days}}" wx:for-item="day" wx:for-index='idx' wx:key="idx"
                     data-time="{{hour}}"
                     data-date="{{day.date}}"
@@ -38,7 +39,8 @@
                     <!-- 自动判断日程显示的大小 -->
                       <!-- style="top:{{item.$value.top}};height:{{item.$value.height}};"  -->
               <view 
-                    class="timetable-item {{item.$value.colorClass}}" 
+                    class="timetable-item {{item.$value.colorClass}} {{item.courseType ==1?'in_time_data':'' }}" 
+                    style="top:{{item.$value.top}};height:{{item.courseType==1?item.$value.height:''}}"
                     wx:for="{{itemsList[0]}}" wx:key="index1"
                     wx:if="{{day.date === item.$value.date && hour === item.$value.hour}}" 
                     bindtap="{{item.courseType==2?'LESSON_DETAIL':''}}"
@@ -53,13 +55,14 @@
           </view>
         </view>
       </swiper-item>
-      <swiper-item>
+      
+      <swiper-item  >
         <view class="timetable-body">
           <view class="cell-group column">
             <view class="cell-group row" wx:for="{{hours}}" wx:for-item="hour" wx:key="index">
               <view class="cell yh_temheaddate">{{hour}}:00</view>
               <view 
-                      class="cell {{index == axis.cell && idx == axis.row?'box_active':'box_active1'}} " 
+                     class="cell {{index == axis.cell && idx == axis.row && my_current==1?'box_active':'box_active1'}} " 
                       wx:for="{{days}}" wx:for-item="day" wx:for-index='idx' wx:key="idx"
                       data-time="{{hour}}"
                       data-date="{{day.date}}"
@@ -69,7 +72,7 @@
                       >
                 <view 
                       class="timetable-item {{item.$value.colorClass}}" 
-                    
+                      style="top:{{item.$value.top}};height:{{item.courseType==1?item.$value.height:''}}"
                       wx:for="{{itemsList[1]}}" 
                       wx:key="index1" 
                       wx:if="{{day.date === item.$value.date && hour === item.$value.hour}}" 
@@ -85,13 +88,15 @@
           </view>
         </view>
       </swiper-item>
-      <swiper-item>
+       <!-- catchtouchmove="stopTouchMove"    -->
+      <swiper-item  >
         <view class="timetable-body">
           <view class="cell-group column">
             <view class="cell-group row" wx:for="{{hours}}" wx:for-item="hour" wx:key="index">
-              <view class="cell yh_temheaddate">{{hour}}:00</view>
+              <view class="cell yh_temheaddate">{{hour}}:00</view> 
+              <!-- {{my_current==1? hour+':00': hour}} -->
               <view 
-                      class="cell {{index == axis.cell && idx == axis.row?'box_active':'box_active1'}} " 
+                      class="cell {{index == axis.cell && idx == axis.row && my_current==1?'box_active':'box_active1'}} " 
                       wx:for="{{days}}" wx:for-item="day" wx:for-index='idx' wx:key="idx"
                       data-time="{{hour}}"
                       data-date="{{day.date}}"
@@ -101,7 +106,7 @@
                   >
                 <view 
                     class="timetable-item {{item.$value.colorClass}}" 
-                  
+                    style="top:{{item.$value.top}};height:{{item.courseType==1?item.$value.height:''}}"
                     wx:for="{{itemsList[2]}}"
                     wx:key="index1"
                     wx:if="{{day.date === item.$value.date && hour === item.$value.hour}}" 
@@ -119,6 +124,7 @@
       </swiper-item>
     </swiper>
   </block>
+
   <!-- 不显示 -->
   <block wx:else>
     <view class='lesson_box'>

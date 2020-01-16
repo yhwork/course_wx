@@ -24,6 +24,9 @@ class SchoolinAdd3Page extends EPage {
         id: 'share_canvas',
         width: 0,
         height: 0
+      },
+      userInfo:{
+        role:0
       }
     };
   }

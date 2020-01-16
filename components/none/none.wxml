@@ -1,0 +1,14 @@
+  
+  
+  
+    <view class="no_course" hidden="{{classList.length>0?true:false}}">
+        <view class="course_img ">
+            <image src="/assets/local/class/yuanquan.png"></image>
+            <image src="/assets/local/class/xingxing.png"></image>
+            <image src="/assets/local/class/laosu.png"></image>
+        </view>
+        <view class="no_course_txt ">
+          <text>你还没有加入班级群哦</text> 
+            <view bindtap='ROUTER_GO'  class="add_group">{{title}}</view>
+        </view>
+    </view>

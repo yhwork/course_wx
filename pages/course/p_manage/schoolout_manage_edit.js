@@ -16,19 +16,19 @@ class SchooloutManageEditPage extends EPage {
 
   get data() {
     return {
-      userInfo: {}, //当前用户信息
-      tabs: ["上课时间", "增加课程", "删除课程"],
-      activeIndex: 0,
-      sliderOffset: 0,
-      sliderLeft: 0,
+      userInfo: {},                                 //当前用户信息
+      tabs: ["上课时间", "增加课节", "删除课程"],
+      activeIndex: 0,                               // 二级切换下标
+      sliderOffset: 0, 
+      sliderLeft: 0,                                // 元素左边的距离
       tabsSub: ["未上", "已上", "全部"],
       activeIndexSub: 0,
       sliderOffsetSub: 0,
       sliderLeftSub: 0,
       tabsSub1: ["课程信息修改", "课节信息修改"],
-      activeIndexSub1: 1,
+      activeIndexSub1: 1,                           // 一级切换下标
       sliderOffsetSub1: 0,
-      sliderLeftSub1: 0,
+      sliderLeftSub1: 0,                            // left 距离
       repDis: false,
       model: {
         childId: '',
@@ -113,7 +113,16 @@ class SchooloutManageEditPage extends EPage {
       opeTxt: '调整上课时间',
       selectAllTxt: '全选',
       selectAll: false, //控制全选图标
-      showCalendar: false
+      showCalendar: false,
+      mask:true,
+      location:false,
+      course:{
+        reapet:false,
+        time:false,
+        alert:false
+      },
+      value:'',
+      value3:''
     };
   }
 
@@ -122,7 +131,7 @@ class SchooloutManageEditPage extends EPage {
   }) {
     return {
       [PAGE_LIFE.ON_LOAD](option) {
-        console.log(option)
+        console.log('值',option)
         const childId = option.childId; //链接过来的childId
         const courseId = option.courseId; //课程id
         this.setData({
@@ -159,6 +168,7 @@ class SchooloutManageEditPage extends EPage {
     put
   }) {
     return {
+      // 一级切换
       [events.ui.TAB_CLICK_SUBS](e) {
         this.setData({
           sliderOffsetSub1: e.currentTarget.offsetLeft,
@@ -179,8 +189,8 @@ class SchooloutManageEditPage extends EPage {
           })
         }
       },
+      // 二级切换
       [events.ui.TAB_CLICK](e) {
-
         this.setData({
           sliderOffset: e.currentTarget.offsetLeft,
           activeIndex: e.currentTarget.id
@@ -235,17 +245,94 @@ class SchooloutManageEditPage extends EPage {
       },
       //地点
       [events.ui.SELECT_ADDRESS]() {
-        wx.chooseLocation({
-          success: (res) => {
-            const address = res.address || res.name;
-            this.setData({
-              'courseInfo.classAddress': address,
-              'courseInfo.latitude': res.latitude,
-              'courseInfo.longitude': res.longitude
-            });
+        console.log('选择地点')
 
+        let that = this
+        wx.getSetting({
+          success(res) {
+            console.log(res)
+            if (!res.authSetting['scope.userLocation']) {
+              wx.authorize({
+                scope: 'scope.userLocation',
+                success() {
+                  wx.chooseLocation({
+                    success: (res) => {
+                      console.log(res);
+                      const address = res.address || res.name;
+                      that.setData({
+                        'courseInfo.classAddress': address,
+                        'courseInfo.latitude': res.latitude,
+                        'courseInfo.longitude': res.longitude
+                      });
+                    },
+                  })
+                },
+                fail() {
+                  // setTimeout( res => {
+                  that.setData({
+                    location: true
+                  })
+                  // },500)
+                }
+              })
+            } else {
+              console.log('获取位置')
+              wx.chooseLocation({
+                success: (res) => {
+                  console.log(res);
+                  const address = res.address || res.name;
+                  that.setData({
+                    'courseInfo.classAddress': address,
+                    'courseInfo.latitude': res.latitude,
+                    'courseInfo.longitude': res.longitude
+                  });
+                },
+              })
+            }
+          },
+          fail(res) {
+            wx.hideLoading()
+            console.log('wx.getSetting 失败回调')
+            console.log(res);
           }
-        });
+        })
+
+
+        // wx.chooseLocation({
+        //   success: (res) => {
+        //     const address = res.address || res.name;
+        //     this.setData({
+        //       'courseInfo.classAddress': address,
+        //       'courseInfo.latitude': res.latitude,
+        //       'courseInfo.longitude': res.longitude
+        //     });
+
+        //   },
+        //   fail:function (res) {
+        //     console.log('getLocation res fail:', res);
+        //     // 系统关闭定位
+        //     if(res.errMsg === 'getLocation:fail:system permission denied' || res.errMsg === 'getLocation:fail:system permission deny'){
+        //         return wx.showModal({
+        //             title:'无法获取你的位置信息',
+        //             content:'请到手机系统的[设置]->[位置信息]中打开定位服务，并允许微信使用定位服务。',
+        //             showCancel:false,
+        //             confirmText:'确定',
+        //             confirmColor:'#0052A4'
+        //         })
+        //     }
+        //     //用户取消授权
+        //     if(res.errMsg === 'getLocation:fail:auth deny' || res.errMsg === 'getLocation:fail:auth denied'){
+        //         //用户取消授权
+        //        return wx.showToast({
+        //          title: '用户取消授权',
+        //          duration: 1500,
+        //          icon: 'none',
+        //        })
+        //     }else{
+        //       getLocation.call(this)
+        //     }
+        // }
+        // });
       },
       //教室
       [events.ui.CHANGE_CLASSROOM](e) {
@@ -313,6 +400,98 @@ class SchooloutManageEditPage extends EPage {
           endclass: false,
           'courseInfo.endClassTime': moment(this.data.courseInfo.startClassTime, 'HH:mm').add('minute', e.detail.value).format('HH:mm')
         });
+      },
+      // 选择课程节数
+      [events.ui.bindChange1](e) {
+        let stute = e.currentTarget.dataset.id
+        const val = e.detail.value
+        console.log(val, stute)
+        if (stute == 1) {
+          // if (this.$common.isIntNum(val[0])) {
+          //   this.setData({
+          //     'model.num': val[0],
+          //     // 'model.duration': val[0],    // 课程时长
+          //   })
+          //     put(effects.CHANGE_ENDDATE);
+          // } else {
+           
+          //   return  wx.showToast({
+          //     title: '请输入正确的数值',
+          //     icon: 'none',
+          //     duration: 2000
+          //   })
+          // }
+        } else if (stute == 2) {
+
+          // console.log('重复', e, this.data.model.num)
+            console.log(e.detail.value)
+            if (e.detail.value != 0) {
+              this.setData({
+                 'courseInfo.repetitionIndex': e.detail.value[0],
+                 'courseInfo.repetitionTxt': this.data.repetitionItems[e.detail.value],
+                 "endShow": false
+              });
+              if (e.detail.value == 4) {
+                this.setData({
+                  mask:true,
+                  'userDefined': true,
+                  'course.reapet': false,
+                });
+                put(effects.CHANGE_ENDDATE);
+              }
+              if (this.$common.isIntNum(this.data.model.num)) {
+                // 获取结束日期
+                put(effects.CHANGE_ENDDATE);
+              }
+            } else {
+              this.$common.showMessage(this, '请选择重复方式');
+              this.setData({
+                'model.repetitionIndex': e.detail.value[0],
+                 endShow: true
+              })
+            }
+            put(effects.UPDATE_WEEKDAY);
+            put(effects.CHANGE_ENDDATE);
+        } else if (stute == 3) { // 开始时间
+          let  time = `${Math.abs(val[0]-1)<10?'0'+ Math.abs(val[0]-1) :Math.abs(val[0]-1)}:${Math.abs(val[1]-1)<10?'0'+ Math.abs(val[1]-1) :Math.abs(val[1]-1)}`
+          this.setData({
+            'courseInfo.startClassTime': time,
+            'courseInfo.endClassTime': moment(time, 'HH:mm').add('minute', this.data.courseInfo.duration).format('HH:mm')
+          });
+        } else if (stute == 4) {
+          this.setData({
+            'courseInfo.remindIndex': e.detail.value,
+            'courseInfo.remindTxt': this.data.remindItems[e.detail.value].name,
+            'courseInfo.remindValue': this.data.remindItems[e.detail.value].value
+          });
+        }
+      },
+      [events.ui.quit](e) {
+        console.log('退出')
+        let state = e.currentTarget.dataset.id
+        if (state == 1) {
+          this.setData({
+            mask: true,
+            location:false,
+            'course.num': false,
+            'course.reapet': false,
+            'course.time': false,
+            'course.alert': false,
+            showCalendar: false
+          })
+          // 把数据导入
+
+        } else {
+          this.setData({
+            mask: true,
+            location:false,
+            'course.num': false,
+            'course.reapet': false,
+            'course.time': false,
+            'course.alert': false,
+            showCalendar: false
+          })
+        }
 
       },
       //开始时间
@@ -382,7 +561,30 @@ class SchooloutManageEditPage extends EPage {
         put(effects.CHANGE_ENDDATE);
       },
 
-      //上课提醒
+      // 弹框提示
+      [events.ui.CHANGE_ALERT](e) {
+          let stute = e.currentTarget.dataset.id;
+          if(stute == 1){
+            // 打开 上课提醒
+            this.setData({
+              mask:false,
+              'course.alert':true,
+            })
+          }else if(stute == 2){
+            // 打开 重复
+            this.setData({
+              mask:false,
+              'course.reapet':true,
+            })
+          }else if(stute == 3){
+            // 打开上课时间
+            this.setData({
+              mask:false,
+              'course.time':true,
+            })
+          }
+          console.log(stute)
+      },
       [events.ui.CHANGE_REMIND](e) {
         this.setData({
           'courseInfo.remindIndex': e.detail.value,
@@ -537,6 +739,9 @@ class SchooloutManageEditPage extends EPage {
       },
       //阻止遮罩层下滚动页面
       [events.ui.eStop](e) {
+        this.setData({
+          showCalendar:false
+        })
         return false;
       }
 

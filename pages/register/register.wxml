@@ -1,18 +1,32 @@
-<view class='main'>
-  <image src='{{head}}' class='head-img' mode="widthFix"></image>
-
-  <view class='{{style}}'>
+<view class='page'>
+ 
+  
+  <view   class='head-img'>
+   <swiper indicator-dots="{{true}}" class="banners"
+        autoplay="{{true}}" circular="{{true}}"  duration="{{duration}}">
+        <!-- <block wx:for="{{background}}" wx:key="*this"> -->
+          <swiper-item class='ban_s'> 
+             <image  class="banners" src='/assets/local/mypage/banner.png'  mode="widthFix"></image>
+          </swiper-item>
+           <swiper-item  class='ban_s'>
+             <image class="banners" src='/assets/local/mypage/banner1.png'  mode="widthFix"></image>
+          </swiper-item>
+        <!-- </block> -->
+      </swiper>
+      
+  </view>
+  <view class='{{style}}' class="sel_role">
     <block wx:if="{{model.changeRole=='0'}}">
-      <button hidden='{{btn}}' class='btn1' open-type="getUserInfo" bindgetuserinfo="CHOOSE_ROLE" data-role="1">
-        <image src='{{teacher_img}}' class='teacher-img' mode="widthFix"></image>
-        <view class='teacher'>我是老师</view>
-        <view class='teacher-duan'>教师端</view>
+      <button hidden='{{btn}}' class='btn2' open-type="getUserInfo" bindgetuserinfo="CHOOSE_ROLE" data-role="1">
+        <image src='/assets/local/mypage/teacher.png' class='teacher-img' mode="widthFix"></image>
+        <view class='home'>我是老师</view>
+        <view class='home-duan'>教师端</view>
       </button>
       <!-- <button hidden='{{!btn1}}' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"> 获取用户手机号 </button> -->
 
 
       <button hidden='{{btn}}' class='btn2' open-type="getUserInfo" bindgetuserinfo="CHOOSE_ROLE" data-role="0">
-        <image src='{{home_img}}' class='home-img' mode="widthFix"></image>
+        <image src='/assets/local/mypage/reg.png' class='home-img' mode="widthFix"></image>
         <view class='home'>我是家长/学生</view>
         <!-- <view class='student'>我是学生</view> -->
         <view class='home-duan'>家长/学生端</view>
@@ -32,9 +46,9 @@
 
     <block wx:else>
       <button class='btn1' bindtap="CHANGE_ROLE" data-role="1">
-        <image src='{{teacher_img}}' class='teacher-img' mode="widthFix"></image>
-        <view class='teacher'>我是老师</view>
-        <view class='teacher-duan'>教师端</view>
+        <image src='{{teacher_img}}' class='btn2' mode="widthFix"></image>
+        <view class='home'>我是老师</view>
+        <view class='home-duan'>教师端</view>
       </button>
       <button class='btn2' bindtap="CHANGE_ROLE" data-role="0">
         <image src='{{home_img}}' class='home-img' mode="widthFix"></image>
@@ -48,7 +62,7 @@
 
 
   <view class='choose'>请选择您的角色</view>
-  <view>
+  <view class="jieshao">
     <view>亲！</view>
     <view>请根据自己身条件选择角色</view>
     <view>1.教师端：具有建立班级的权限，没有给孩子建立日程的权限</view>

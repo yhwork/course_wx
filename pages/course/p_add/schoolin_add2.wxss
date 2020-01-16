@@ -1,8 +1,61 @@
 @import "../p_manage/schoolin_manage_edit.wxss";
+@import "./schoolout_add2.wxss";
 
-page {
-  background: #f4f4f4;
+.page__bd_main {
+  background: white;
+  display: flex;
+  /* height: 56rpx; */
+  /* border: 1px solid red; */
+  position: relative;
+  font-size: 28rpx;
+
+  align-items: center;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: rgba(51, 51, 51, 1);
 }
+.page .close{
+  position: relative;
+  border: 1px solid red;
+  z-index: 99;
+  top:400rpx;
+  width: 70rpx;
+  height: 70rpx;
+}
+.main {
+  /* position: relative; */
+  width: 100%;
+  /* padding-top: 15rpx; */
+}
+.add_padding {
+  padding: 15rpx 35rpx;
+  display: flex;
+  align-items: center;
+}
+.imp {
+  color: red;
+  line-height: 45rpx;
+  font-size: 28rpx;
+  margin-right: 8rpx;
+}
+
+.spacing{
+  margin-right: 22rpx;
+}
+.text_col {
+  font-size: 20rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: rgba(153, 153, 153, 1);
+  color: #808080;
+  white-space: nowrap;
+  width: 200px;
+  overflow: hidden;
+}
+
+
+
+
 
 .date_time_change {
   padding: 30rpx;

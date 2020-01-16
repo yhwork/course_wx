@@ -40,7 +40,7 @@ page {
   align-items: center;
   justify-content: space-between;
   width: 690rpx;
-  margin-top: 10rpx;
+  margin-top: 70rpx;
   height: 78rpx;
   background: rgba(255, 255, 255, 1);
   box-shadow: 0px 1rpx 27rpx 0rpx rgba(150, 149, 149, 0.26);
@@ -54,21 +54,22 @@ input {
 }
 
 .submit {
+
   width:586rpx;
   height:61rpx;
   background:rgba(231,198,14,1);
   border-radius:21rpx;
   position: fixed;
-  top: 178rpx;
+  bottom:270rpx;
   display: flex;
   align-items: center;
   justify-content: center;
   left: 50%;
   transform: translateX(-50%);
   font-size:28rpx;
-font-family:PingFang SC;
-font-weight:500;
-color:rgba(255,255,255,1);
+  font-family:PingFang SC;
+  font-weight:500;
+  color:rgba(255,255,255,1);
 }
 
 .button-hover {

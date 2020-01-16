@@ -12,7 +12,8 @@ import {
 class myChildrenPage extends EPage {
   get data() {
     return {
-      resultModel: {}
+      resultModel: {},
+      isdata:false
     };
   }
 
@@ -21,6 +22,7 @@ class myChildrenPage extends EPage {
   }) {
     return {
       [PAGE_LIFE.ON_LOAD](option) {
+        console.log('值',option)
         put(effects.loadMyChildrens);
         this.setData({
           boy: this.$api.extparam.getPageImgUrl('boyb'),
@@ -97,7 +99,16 @@ class myChildrenPage extends EPage {
                 childData[i].shareMeUser = shareMeList
               }
             }
-
+            if(childData.length>0){
+              this.setData({
+                isdata:true
+              }) 
+            }else{
+             
+              this.setData({
+                isdata:false
+              }) 
+            }
             this.setData({
               resultModel: childData
             })

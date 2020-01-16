@@ -134,6 +134,7 @@ class SchooloutAdd3Page extends EPage {
   }
   mapEffect() {
     return {
+      
       [effects.SAVE_NEXT]() {
         const model = this.data.courseInfo;
         console.log(model);

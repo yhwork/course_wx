@@ -13,7 +13,9 @@ const moment = require('../../../lib/moment.min.js');
 class SchoolinAdd2Page extends EPage {
   get data() {
     return {
-      userInfo: {},
+      userInfo: {
+        'role':0      // 角色设计
+      },
       courseInfo: {},
       childInfo: {},
       tishi:'选择实际开学时间',
@@ -39,7 +41,7 @@ class SchoolinAdd2Page extends EPage {
         beginWeekDay: '',
         endWeekDay: '',
         rules: [],
-
+        
       },
       remindItems: [{
           name: '不提醒',
@@ -94,8 +96,14 @@ class SchoolinAdd2Page extends EPage {
       changeEnd: false,
       hide: true,
       tachertime: true,
-      childTime:true
-
+      childTime:true,
+      mask:true,           // 蒙版
+      course:{
+        "starttime":false,
+        "endtime":false,
+        "outschool":false,
+      },
+      value3:[8,1]
     };
   }
 
@@ -104,11 +112,10 @@ class SchoolinAdd2Page extends EPage {
   }) {
     return {
       [PAGE_LIFE.ON_LOAD](option) {
-        // console.log(option)
+        console.log('值',option)
         this.setData({
           'schoolInfo': option
         })
-        // console.log(this.data.schoolInfo)
       },
       [PAGE_LIFE.ON_SHOW]() {
         put(effects.UPDATE_WEEKDAY);
@@ -204,11 +211,78 @@ class SchoolinAdd2Page extends EPage {
     put
   }) {
     return {
-      [events.ui.CHANGE_BEGINDATE](e) {
-        this.setData({
-          showCalendar: true,
-          changeBegin: true
-        });
+      [events.ui.bindChange1](e){
+        let stute  =e.currentTarget.dataset.id
+        const val = e.detail.value
+        console.log(val,stute)
+        if(stute == 1){
+          if (this.$common.isIntNum(val[0])) {
+            this.setData({
+             one:`${Math.abs(val[0]-1)<10?'0'+ Math.abs(val[0]-1) :Math.abs(val[0]-1)}:${Math.abs(val[1]-1)<10?'0'+ Math.abs(val[1]-1) :Math.abs(val[1]-1)}`
+            })
+          }
+        }else if(stute==2){
+          this.setData({
+            five:`${Math.abs(val[0]-1)<10?'0'+ Math.abs(val[0]-1) :Math.abs(val[0]-1)}:${Math.abs(val[1]-1)<10?'0'+ Math.abs(val[1]-1) :Math.abs(val[1]-1)}`
+          })
+        }else if(stute==3){
+          this.setData({
+          'model.remindIndex': val[0],
+          'model.remindTxt': this.data.remindItems[ val[0]].name,
+          'model.remindTime': this.data.remindItems[ val[0]].value
+          })
+        }
+      },
+      // 退出
+      [events.ui.quit](e){
+        console.log('退出')
+        let state  =e.currentTarget.dataset.id
+        if(state==1){
+          this.setData({
+            mask:true,
+            'course.starttime':false,
+            'course.endtime':false,
+            'course.outschool':false,
+            showCalendar:false
+          })
+          // 把数据导入
+        }else{
+          this.setData({
+             mask:true,
+            'course.starttime':false,
+            'course.endtime':false,
+            'course.outschool':false,
+            showCalendar:false
+          })
+        }
+       
+      },
+      // 开学日期
+      [events.ui.selectok1](e) {
+        let stute  =e.currentTarget.dataset.id
+        console.log('选择好课程节数',stute)
+        if(stute ==1){
+          this.setData({
+            mask:false,
+            showCalendar: true,
+            changeBegin: true
+          })
+        }else if(stute ==2){
+          this.setData({
+            mask:false,
+            'course.starttime':true
+          })
+        }else if(stute == 3){
+          this.setData({
+            mask:false,
+            'course.endtime':true
+          })
+        }else if(stute == 4){
+          this.setData({
+            mask:false,
+            'course.outschool':true
+          })
+        }
       },
       [events.ui.CHANGE_ENDDATE](e) {
         this.setData({
@@ -217,12 +291,11 @@ class SchoolinAdd2Page extends EPage {
         });
       },
       [events.ui.CALENDAR_DAY_CHANGED](e) {
-        this.setData({
-          tishi:''
-        })
         const currentDate = moment(e.detail.year + ' ' + e.detail.month + ' ' + e.detail.day, 'YYYY-MM-DD').format('YYYY-MM-DD');
         this.setData({
-          showCalendar: false
+          showCalendar: false,
+          tishi:'',
+          mask:true,  // 蒙版
         })
         if (this.data.changeBegin) {
           this.setData({
@@ -231,7 +304,7 @@ class SchoolinAdd2Page extends EPage {
             'model.endDate': moment(e.detail.year + ' ' + e.detail.month + ' ' + e.detail.day, 'YYYY-MM-DD').add(126, 'day').format('YYYY-MM-DD'),
           })
         }
-        if (this.data.changeEnd) {
+        if (this.data.changeEnd) { 
           this.setData({
             'model.endDate': currentDate,
             changeEnd: false
@@ -239,7 +312,9 @@ class SchoolinAdd2Page extends EPage {
         }
         put(effects.UPDATE_WEEKDAY);
       },
+      // 上课时间
       [events.ui.CHANGE_TIMEFIRST](e) {
+        console.log(e.detail.value)
         this.setData({
           one: e.detail.value,
           'model.oneStartTime': e.detail.value

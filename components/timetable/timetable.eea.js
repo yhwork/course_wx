@@ -7,6 +7,7 @@ export const events = {
         LESSON_DETAIL: null,
         OPEN_LOCATION: null,  
          LESSON_ADD:null,   // 添加课程
+         stopTouchMove:null
     }
 }
 

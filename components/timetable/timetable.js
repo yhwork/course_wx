@@ -13,16 +13,23 @@ import moment from '../../lib/moment.min.js';
 class TimetableComponent extends EComponent {
   get properties() {
     return {
-      // btnclick:{
-      //   type: Boolean,
-      //   value: true,
-      //   observer: (value) => {
-      //     console.log(value)
-      //     this.setData({
-      //       btnclick:value
-      //     })
-      //   }
-      // },
+      btnclick:{
+        type: Boolean,
+        value: true,
+        observer: (value) => {
+          console.log(value)
+          this.setData({
+            btnclick:value
+          })
+        }
+      },
+      my_current:{
+        type: String,
+        value:1,
+        observer: (value) => {
+          this.context.dispatch(actions.UPDATE_DAYS);
+        }
+      },
       childId: {
         type: String,
         value: ''
@@ -30,6 +37,10 @@ class TimetableComponent extends EComponent {
       hours: {
         type: Array,
         value: [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
+      },
+      weekText_in: {
+        type: Array,
+        value: ['一', '二', '三', '四', '五']
       },
       weekText: {
         type: Array,
@@ -99,7 +110,7 @@ class TimetableComponent extends EComponent {
       [COMP_LIFE.ON_ATTACHED]() { },
 
       [COMP_LIFE.ON_READY]() {
-        console.log('再次加载')
+        // console.log('再次加载',this.data.my_current)
 
         //this.context.dispatch(actions.TRIGGER_DATE_CHANGE);
       },
@@ -156,6 +167,10 @@ class TimetableComponent extends EComponent {
           date
         });
         this._week.date = null;
+      },
+      [events.ui.stopTouchMove](){
+        // if(this.data.my_current==0)
+        // return false
       },
       [events.ui.TAP_WEEK](e) {
         if (this.data.diffWeek == '本周') {
@@ -262,10 +277,17 @@ class TimetableComponent extends EComponent {
 
       // 改变日期
       [actions.UPDATE_DAYS]() {
-        const {
+        let {
           weekText,
           date
         } = this.data;
+
+        if(this.data.my_current==1){
+          weekText = ['一', '二', '三', '四', '五','六','日']
+          
+        }else{
+          weekText = ['一', '二', '三', '四', '五']
+        }
         const mon = moment(date).isoWeekday(1);
         const days = weekText.map((text, i) => {
           const day = moment(mon).add(i, 'day');
@@ -278,7 +300,8 @@ class TimetableComponent extends EComponent {
             }
           };
         });
-        // console.log('数据',days)
+
+        console.log('数据',days)
         this.setData({
           days
         });
@@ -308,7 +331,6 @@ class TimetableComponent extends EComponent {
       },
       [actions.MAP_DATA](data) {
         if (!data || data.length === 0) { return; }
-        console.log(data)
         const itemsList = [[], [], []];
         itemsList[this._week.last] = data.map((item, i) => {
           const date = moment.unix(item.date);
@@ -366,12 +388,7 @@ class TimetableComponent extends EComponent {
             //   // 缺课
             //   colorClass = 'lesson-absent lesson-absent-color';
             // }
-
-
           }
-
-
-
             // 过渡时间
           if (!item.duration) {
             item.duration = 42
@@ -391,11 +408,20 @@ class TimetableComponent extends EComponent {
           };
           return item;
         });
-        this.setData({
-          btnclick: false,
-          itemsList,
-          current: this._week.last
-        });
+        if(this.data.my_current==0){
+          this.setData({
+            btnclick: false,
+            itemsList:itemsList,
+            current: this._week.last
+          });
+        }else{
+          this.setData({
+            btnclick: false,
+            itemsList,
+            current: this._week.last
+          });
+        }
+        
         // console.log('是否改变',this.data.itemsList)
       },
       [actions.MAP_LESSON_DATA](data) {

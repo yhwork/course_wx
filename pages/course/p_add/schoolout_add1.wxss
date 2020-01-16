@@ -1,6 +1,9 @@
+page {
+  background: #fff;
+}
+
 .page {
   background: #fff;
-  height: 100%;
   display: flex;
   flex-flow: column wrap;
   /* padding: 0 15rpx; */
@@ -16,17 +19,22 @@
 }
 
 .add_courseItem {
-  width: 220rpx;
-  height: 230rpx;
-  background: rgba(255, 255, 255, 1);
+
+  width: 278rpx;
+  height: 278rpx;
+  /* background: rgba(255, 255, 255, 1);
   box-shadow: 0px 1rpx 27rpx 0px rgba(150, 149, 149, 0.3);
   border-radius: 30rpx;
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
+  /* border: 1px solid red; */
 }
-
+.add_courseItem image{
+  width: 100%;
+  height: 100%;
+}
 .icon_addcourse {
   width: 114rpx;
   height: 96rpx;
@@ -35,18 +43,21 @@
 }
 
 .add_course1 {
-  width:690rpx;
-  height:239rpx;
-  background:rgba(255,255,255,1);
-  box-shadow:0rpx 1rpx 27rpx 0rpx rgba(150,149,149,0.26);
-  border-radius:30rpx;
-  margin:12rpx 0px 42rpx 0px;
+  width: 690rpx;
+  height: 176rpx;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0rpx 1rpx 27rpx 0rpx rgba(150, 149, 149, 0.26);
+  border-radius: 30rpx;
+
+  margin: 70rpx 0px 42rpx 0px;
+
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
 }
-.add_course1_item input{
-  border-bottom: 1px solid rgba(44, 40, 40, 0.5);
+
+.add_course1_item input {
+  border-bottom: 1px solid rgba(44, 40, 40, 0.1);
   height: 45rpx;
   color: #a2a2a2;
   letter-spacing: 2rpx;
@@ -56,14 +67,16 @@
   padding-left: 12rpx;
   width: 400rpx;
 }
-.radio-group{
+
+.radio-group {
   margin-left: 16rpx;
   display: flex;
   align-items: center;
 }
-.checkdata{
-  
-  margin:0 10rpx;
+
+.checkdata {
+
+  margin: 0 10rpx;
   display: flex;
   align-items: center;
   width: 22rpx;
@@ -71,27 +84,32 @@
   border-radius: 50%;
   background-color: #dd9309;
 }
+
 /* 选中后的样式 （可根据设计稿需求自己修改） */
-radio .wx-radio-input.wx-radio-input-checked::before{
+radio .wx-radio-input.wx-radio-input-checked::before {
   border-radius: 50%;
   width: 46rpx;
   height: 46rpx;
-  line-height:60rpx;
+  line-height: 60rpx;
   text-align: center;
-  font-size:22rpx; /* 对勾大小 26rpx */
-  color:#fff; /* 对勾颜色 */
+  font-size: 22rpx;
+  /* 对勾大小 26rpx */
+  color: #fff;
+  /* 对勾颜色 */
   background: #e6870a;
   border-color: #dd9309;
 }
-.myradio{
+
+.myradio {
   letter-spacing: 10rpx;
 }
-.radio{
-  margin-left:14rpx;
-  font-size:20rpx;
-  font-family:PingFang SC;
-  font-weight:400;
-  color:rgba(102,102,102,1);
+
+.radio {
+  margin-left: 14rpx;
+  font-size: 20rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: rgba(102, 102, 102, 1);
 
 }
 
@@ -117,20 +135,77 @@ height:27rpx; */
 
 .add_in_school {
   position: relative;
+  height: 100%;
   top: 0;
   bottom: 0;
-  /* border: 1px solid red; */
   display: flex;
 }
-.checkdatas{
-    margin:0 10rpx;
-    display: flex;
-    align-items: center;
-    width: 22rpx;
-    height: 22rpx;
-    border-radius: 50%;
-    /* background-color: #6e6860; */
-    border: 2rpx solid  #6e6860;
+
+.add_out_school {
+  margin-top: 70rpx;
+  min-height: 100%;
+  /* border: 1px solid red; */
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+}
+
+.add_out_course {
+  width: 690rpx;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 1rpx 27rpx 0px rgba(150, 149, 149, 0.26);
+  border-radius: 30rpx;
+  overflow: hidden;
+}
+
+
+.import1 {
+  color: red;
+  margin-left: 10rpx;
+  position: absolute;
+  /* top: 0rpx; */
+  left: 66rpx;
+}
+
+.weui-cell__hd {
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: rgba(51, 51, 51, 1);
+
+}
+
+.weui-cell__hd image {
+  width: 38rpx;
+  height: 36rpx;
+  margin-right: 28rpx;
+}
+
+.import {
+  color: red;
+  margin-right: 6rpx;
+  line-height: 42rpx;
+  font-size: 28rpx;
+}
+
+.ma-b {
+  /* margin-bottom: 4px; */
+}
+
+
+
+
+.checkdatas {
+  margin: 0 10rpx;
+  display: flex;
+  align-items: center;
+  width: 22rpx;
+  height: 22rpx;
+  border-radius: 50%;
+  /* background-color: #6e6860; */
+  border: 2rpx solid #6e6860;
 }
 
 
@@ -201,21 +276,7 @@ height:27rpx; */
   margin-top: 26rpx;
 }
 
-.import {
-  color: red;
-  margin-left: 10rpx;
-  position: absolute;
-  top: 0rpx;
-  left: 40rpx;
-}
 
-.import1 {
-  color: red;
-  margin-left: 10rpx;
-  position: absolute;
-  /* top: 0rpx; */
-  left: 66rpx;
-}
 
 .el-icon-lxy-tianjia {
   text-align: center;
@@ -228,10 +289,11 @@ height:27rpx; */
 }
 
 .pla {
-  color: #999;
-  font-size: 29rpx;
+  text-align: left;
+  color: rgba(153, 153, 153, 1);
+  font-size: 20rpx;
   font-weight: normal;
-  margin-right: 30rpx;
+  /* margin-right: 30rpx; */
   width: 100%;
 }
 
@@ -259,10 +321,10 @@ height:27rpx; */
 
 input {
   /* color: #000 !important; */
-  font-size:20rpx;
-  font-family:PingFang SC;
-  font-weight:400;
-  color:rgba(102,102,102,1);
+  font-size: 20rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: rgba(102, 102, 102, 1);
 }
 
 .weui-select {
@@ -279,10 +341,6 @@ input {
   /* padding-right:95px !important; */
 }
 
-.weui-cell__bd input {
-  font-size: 32rpx;
-  overflow: hidden;
-}
 
 /* 以下修改 */
 
@@ -378,6 +436,31 @@ input {
   font-size: 24rpx;
 }
 
+.btn_box {
+  position: fixed;
+  width: 586rpx;
+  height: 61rpx;
+  background: rgba(231, 198, 14, 1);
+  border-radius: 21rpx;
+  bottom: 250rpx;
+}
+
+.btn2 {
+  width: 586rpx;
+  height: 61rpx;
+  background: rgba(231, 198, 14, 1);
+  border-radius: 21rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 28rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 1);
+  /* line-height:16rpx; */
+}
+
 .class {
   font-size: 26rpx;
   display: flex;
@@ -386,40 +469,33 @@ input {
   color: #ff9800;
 }
 
+.page__bd_list1 {
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.page__bd_list {
+  padding: 12rpx 42rpx;
+  box-sizing: border-box;
+}
+
 .page__bd_list1_class {
   display: flex;
   justify-content: center;
-  padding: 15rpx 10rpx;
+  padding: 20rpx 0rpx;
   background: white;
-  margin-top: 2px;
 }
 
-.weui-cell__hd {
-  display: flex;
-  align-items: center;
-  /* width: 170rpx; */
-  font-size: 32rpx;
-  position: relative;
-}
 
-.weui-cell__hd image {
-  width: 38rpx;
-  height: 36rpx;
-  margin-right: 28rpx;
-}
-
-.ma-b {
-  /* margin-bottom: 4px; */
-}
 
 .list2 {
   background: #f8f8f8;
   width: 100%;
   height: 180rpx;
   /* margin-top: 25rpx; */
-  padding-bottom: 50rpx;
+  /* padding-bottom: 50rpx; */
   position: fixed;
-  bottom: 0;
+  bottom: 50rpx;
 }
 
 .center {
@@ -540,7 +616,12 @@ input {
   /* border-radius: 200rpx; */
   /* margin-bottom: 30rpx; */
 }
-
+.header_box{
+  height: 76rpx !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .upload_class {
   padding: 20rpx 0;
   display: flex;
@@ -548,26 +629,8 @@ input {
   align-items: center;
 }
 
-.add_class_btn {
-  /* background: #f29219; */
-  color: white;
-  height: 92rpx;
-  width: 100%;
-  /* position: absolute; */
-  /* left: 50%; */
-  /* bottom: 0; */
-  display: flex;
-  flex-direction: row;
-  /* transform: translateX(-50%); */
-  /* display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10rpx;
-  z-index: 100; */
-}
-
 .auto {
-  background: rgba(231,198,14,1);
+  background: rgba(231, 198, 14, 1);
   color: white;
   height: 92rpx;
   width: 50%;
@@ -583,19 +646,32 @@ input {
   text-align: center;
   line-height: 92rpx;
   border-radius: 10rpx;
-  border: 1px solidrgba(231,198,14,1);
+  border: 1px solidrgba(231, 198, 14, 1);
+}
+
+.add_class_btn {
+  position: fixed;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .NEXT {
-  background:rgba(231,198,14,1);
-  color: white;
-  height: 92rpx;
   width: 100%;
+  height: 84rpx;
+  background: rgba(231, 198, 14, 1);
+  border-radius: 30rpx 30rpx 0 0;
   text-align: center;
-  line-height: 90rpx;
-  border-radius: 20rpx 20rpx 0 0;
-  position: fixed;
-  bottom: 0rpx;
+  line-height: 84rpx;
+
+  font-size: 28rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 1);
+
 }
 
 /* 校内课程表 */
@@ -632,10 +708,10 @@ input {
 
 .course_set {
   /* margin-top: 30rpx; */
-  background:rgba(255,255,255,1);
-  box-shadow:0px 1rpx 27rpx 0px rgba(150,149,149,0.26);
-  border-radius:30rpx;
-  padding:10rpx;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 1rpx 27rpx 0px rgba(150, 149, 149, 0.26);
+  border-radius: 30rpx;
+  padding: 10rpx 0 25rpx 15rpx;
   box-sizing: border-box;
 
 }
@@ -669,7 +745,7 @@ input {
 }
 
 .odd .dian {
-  background:rgba(231,198,14,1);
+  background: rgba(231, 198, 14, 1);
 }
 
 .even .dian {
@@ -690,6 +766,43 @@ input {
   margin-left: 30rpx;
 }
 
+.switchs{
+  position: relative;
+  display: flex;
+  height: 46rpx;
+  width: 100rpx;
+  font-size: 24rpx;
+  background-color: rgb(228, 224, 224);
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 25rpx;
+  color: white;
+}
+.switchs .checked{
+  background: #E7C60E !important;
+  color: white;
+  position: absolute;
+  height: 40rpx;
+  width: 40rpx;
+  border-radius: 50%;
+  transition:0.3s all;
+  text-align: center;
+  line-height: 40rpx;
+  border:1rpx solid rgb(231, 209, 96);
+}
+
+.switchs .left{
+  left: 4rpx;
+  transition:0.3s all ;
+}
+.switchs .right{
+  left: 50rpx;
+  transition:0.3s all;
+}
+
+
+
+
 .odd_even_set switch {
   margin-left: 10rpx;
   height: 56rpx;
@@ -702,8 +815,8 @@ input {
 .wx-switch-input {
   width: 102rpx !important;
   height: 62rpx !important;
-  background: #f29219 !important;
-  border: #f29219 !important;
+  background: #E7C60E !important;
+  border: #E7C60E !important;
 }
 
 .wx-switch-input::before {
@@ -712,15 +825,35 @@ input {
   position: absolute;
   top: 2rpx !important;
 }
-.myweeks{
-  font-size: 14rpx;
+
+.isswitchs{
+  font-size:20rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  color:rgba(102,102,102,1);
+  display: flex;
+  align-items: center;
+  margin-left: 25rpx;
+}
+
+
+
+.myweek{
+  height: 76rpx !important;
+}
+.myweeks {
+  font-size: 16rpx;
+  font-family:PingFang SC;
   padding: 10rpx;
   box-sizing: border-box;
 }
+.bgclass{
+  background-color: rgb(220, 245, 237);
+}
 .thead .td {
-  border-top:none;
+  border-top: none;
   /* background: #fdf4e8; */
-  font-size: 22rpx  !important;
+  font-size: 22rpx !important;
   color: #666 !important;
 }
 
@@ -733,21 +866,23 @@ input {
   /* box-sizing: border-box; */
   border-left: none;
 }
-.course_tables{
+
+.course_tables {
   display: flex;
   flex-flow: column wrap;
-  padding:0 15rpx 0 15rpx;
+  /* padding:0 15rpx 0 15rpx; */
   box-sizing: border-box;
   /* width:690px; */
   /* height:750px; */
 
   /* border: 1px solid red; */
 }
+
 .tr .td {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 122rpx;
+  width: 120rpx;
   height: 68rpx;
   border-bottom: 2rpx solid #e5e5e5;
   border-left: 2rpx solid #e5e5e5;
@@ -767,15 +902,37 @@ input {
   border: 2rpx solid #e8e8e8;
 }
 
+.page .yuwen{
+  color: #ebab45  ;
+  background-color:#ebab45  ;
+}
+.page .shuxue{
+  color: #ed9bc3 ;
+  background-color: #ed9bc3  ;
+}
+.page .yingyu{
+  color: #7fdff2   ;
+  background-color: #7fdff2  ;
+}
+.page .defuls_course{
+  background: rgba(231, 198, 14, 1) ;
+  color: rgba(231, 198, 14, 1) ;
+}
+.tbody{
+  color: white ;
+}
+/* 选中的样式 */
 .c_select {
-  background: rgba(231,198,14,1);
-  color: #fff;
+  background: rgba(231, 198, 14, 1);
+  color: #fff !important;
 }
 
+/* 单双周  不同的颜色 */
 .even_w.c_select {
-  background: #f95b58;
+  background: #d47776;
 }
 
+/* 未选中的样式 */
 .selected {
   background: #a2a2a2;
   color: #fff;
@@ -810,17 +967,18 @@ input {
 }
 
 .tab_item {
+  opacity: 0.4;
   display: inline-block;
-  width: 150rpx;
-  height: 60rpx;
+  width: 124rpx;
+  height: 37rpx;
   text-align: center;
-  line-height: 60rpx;
+  line-height: 37rpx;
   background: #f0f0f0;
   border-radius: 32rpx;
   color: #888;
   font-size: 24rpx;
-  margin-right: 10rpx;
-  margin-top: 20rpx;
+  /* margin-right: 10rpx; */
+  /* margin-top: 20rpx; */
   /* padding-left: rpx; */
   position: relative;
 }
@@ -841,34 +999,38 @@ input {
 
 .circle {
   display: inline-block;
-  width: 40rpx;
-  height: 40rpx;
+  width: 36rpx;
+  height: 36rpx;
   border-radius: 54rpx;
-  background: #dbdbdb;
+  background-color: #fff !important;
+  background: #fff;
   text-align: center;
-  color: #fff;
-  margin: 0 10rpx 0 0rpx;
-  line-height: 40rpx;
+  line-height: 36rpx;
+  position: absolute;
+  left: 2rpx;
 }
 
 .tab_select {
-  background:rgba(231,198,14,1);
+  background: rgba(231, 198, 14, 1);
   color: #fff;
+  opacity: 1;
+  transform: scale(1.2);
+  transition:0.2s all;
 }
 
 .tab_select .circle {
   background: #fff;
-  color: #f29219;
+  /* color: #f29219; */
 }
 
 .add_btn {
   position: absolute;
-  top: 50%;
+  top: 45%;
   right: 5%;
   transform: translateY(-50%);
   display: inline-block;
-  width: 60rpx;
-  height: 60rpx;
+  width: 37rpx;
+  height: 37rpx;
   /* line-height: 62rpx; */
   /* border: 4rpx dashed #e5e5e5; */
   /* margin-right: 50rpx; */
@@ -876,13 +1038,15 @@ input {
   border-radius: 32rpx;
   text-align: center;
 }
-
-.add_btn image {
-  width: 64rpx;
-  height: 64rpx;
+.add_btn image{
+  width: 37rpx;
+  height: 37rpx;
 }
 
+
 .explain {
+  margin: 15rpx 0 84rpx 0;
+
   padding: 30rpx;
   background: #fff;
 }
@@ -1000,4 +1164,38 @@ input {
 
 button[class="sure"]::after {
   border: 0;
+}
+
+
+
+
+/*轮播图*/
+.image_group{
+  position: relative;
+  /* margin-left: 20rpx; */
+  /* margin-top: 20rpx; */
+  margin:15rpx 20rpx;
+  height:60rpx;
+  width: 520rpx;
+  transition:0.5s all;
+}
+swiper-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.swiper_item {
+  width: 124rpx;
+  height: 40rpx;
+  overflow: hidden;
+  border-radius: 10rpx;
+  display: flex;
+  align-items: center;
+  position: relative;
+  justify-content: center;
+}
+
+.swiper_item image{
+  width: 100rpx;
+  height: 100rpx;
 }

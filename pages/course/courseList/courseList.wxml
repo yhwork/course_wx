@@ -13,14 +13,13 @@
           <image lazy-load='{{true}}'  src='/assets/local/tubiao-qiehuan@2x.png'></image>
         </view>
         <!-- 孩子列表 -->
-        <view class="header_swipe" wx:for='{{childlist}}' wx:for-index="index" key='index'>
+        <view class="header_swipe" wx:for='{{childlist}}' wx:for-index="index" wx:key='index'>
           <view class="header_item" data-i="{{index}}" data-id='{{item.childId}}' catchtap='chargeUser' wx:if='{{item.childId != childId}}'>
             <!-- 消息点 -->
             <image wx:if='{{item.logo}}' lazy-load='{{true}}'  src='{{item.logo}}'></image>
             <image wx:else src='https://oss.iforbao.com/public/assets/img/girlb.png'></image>
             <view wx:if='{{item.courseNum}}' class="message1 message">{{item.courseNum}}</view>
             <view class="header_swipe_actives">
-            
             </view>
           </view>
         </view>
@@ -103,7 +102,7 @@
 <!-- 切换小孩子 -->
 <view>
   <view class='mask_box' bindtap="changeMask" wx:if='{{mask_state}}'>
-    <view class='popup_box' wx:for='{{childlist}}' wx:key='' data-i="{{index}}" data-id='{{item.childId}}' catchtap='chargeUser'>
+    <view class='popup_box' wx:for='{{childlist}}' wx:key='index' data-i="{{index}}" data-id='{{item.childId}}' catchtap='chargeUser'>
       <view class='popup_item'>
         <!-- <image src='/assets/icons/my_selected.png'></image> -->
         <image wx:if='{{item.logo}}' src='{{item.logo}}'></image>
@@ -135,8 +134,8 @@
 
 </view>
 
-<view class="course_list">
-  <block wx:for='{{lessonLists}}' wx:for-index='index' wx:for-item='items' key='index'>
+<view class="course_list" wx:if='{{lessonLists}}'>
+  <block wx:for='{{lessonLists}}' wx:for-index='index' wx:for-item='items' wx:key='index'>
     <view class="course_item" data-Id='{{items.id}}' data-dataType='{{items.dataType}}' data-classid='{{items.internalClassId}}' bindtap='courdetails'>
       <view class="course_item_left">
         <view class="course_item_title">{{items.name}}</view>
@@ -144,7 +143,7 @@
           <text>{{items.startTime}}-{{items.endTime}}</text>
         </view>
         <view hidden='{{items.dataType == 2 }}' class="adress" bindtap='OPEN_LOCATION' data-lat='{{items.latitude}}' data-log='{{items.longitude }}'>
-          <text>{{items.classAddress}}</text>
+          <text class="font wt">{{items.classAddress}}</text>
           <view hidden='{{items.classAddress == ""}}' class="icon-dizi">
             <image lazy-load='{{true}}' mode='widthFix' src='/assets/local/icon-dizi@2x.png'></image>
           </view>
@@ -159,6 +158,33 @@
     </view>
   </block>
 </view> 
+
+
+
+<view class="course_list" wx:else>
+   <view class="course_item">
+      <view class="course_item_left">
+        <view class="course_item_title">{{items.name}}</view>
+        <view>{{ items.pm}}
+          <text>{{items.startTime}}-{{items.endTime}}</text>
+        </view>
+        <view class="adress" bindtap='OPEN_LOCATION'>
+          <text>{{items.classAddress}}</text>
+          <view hidden='{{items.classAddress == ""}}' class="icon-dizi">
+             <image lazy-load='{{true}}' mode='widthFix' src='/assets/local/icon-dizi@2x.png'></image>
+          </view>
+        </view>
+      </view>
+      <view class="course_item_right">
+        <view>{{items.startDate}}</view>
+        <view class="icon-details">
+          <image lazy-load='{{true}}' mode='widthFix' src='/assets/local/0d1875c84c5f7f1bb63306f83b13c53.png'></image>
+        </view>
+      </view>
+    </view>
+</view>
+
+
 <!-- 最近两天课程表 -->
 <!-- <view class='content_box' wx:for='{{lessonLists}}' wx:key=''>
   <view class='title_box'>
@@ -188,10 +214,7 @@
   </view>
 </view> -->
 
-
-
-
-
+      
 <!-- 校内新建 -->
 <!-- <view class='title_box add_btn' data-current='3' bindtap='goIndex'>
   <view class='list_view'>+ 查看更多</view>

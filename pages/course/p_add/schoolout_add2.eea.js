@@ -16,6 +16,9 @@ const events = {
     SHOW_CLASS_NUM: null,
     SHOW_CLASS_TIME: null,
     CHANGE_BEGINDATE: null,
+    quit:null,
+    selectok1:null,
+    bindChange1:null
   }
 }
 

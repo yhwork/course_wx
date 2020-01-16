@@ -14,6 +14,7 @@ class PInfoPage extends EPage {
     return {
       grade_selected: false,
       school_selected: false,
+      weeks:1,
       model: {
         gender: '0'
       },
@@ -144,6 +145,15 @@ class PInfoPage extends EPage {
     put
   }) {
     return {
+      [events.ui.getisweek](e){
+        let i = e.currentTarget.dataset.id;
+        console.log(i-1)
+        this.setData({
+          weeks:i,
+          'model.gender': i-1
+        })
+        this.$storage.set('model.gender', i-1);
+      },
       [events.ui.CHANGE_AVATAR]() {
         wx.showActionSheet({
           itemList: ['拍照', '从手机相册选择'],
@@ -176,20 +186,66 @@ class PInfoPage extends EPage {
           }
         });
       },
+
+      // 昵称
       [events.ui.CHANGE_NAME](e) {
         this.setData({
           'model.name': e.detail.value
         });
+        console.log(e.detail.value)
         this.$storage.set('model.name', e.detail.value);
+      }, 
+      // 学校   添加学校
+      [events.ui.CHANGE_SCHOOL](e) {
+        let val = e.detail.value
+        if (this.$common.isBlank(val)) {
+          wx.showToast({
+            icon:'none',
+            title: '请输入标准的学校名称',
+            duration:3000
+          })
+          return false;
+        }
+        // 把学校添加进库里面-----可以最后添加的
+        this.$api.area.addSchool({schoolName :val}).then( res => {
+          if (res.data.errorCode==0){
+            this.setData({
+              'model.school': val,
+              'model.schoolId':res.data.result.schoolId
+            })
+          }else{
+            wx.showToast({
+              icon:'none',
+              title: '添加失败',
+              duration:3000
+            })
+          }
+        }).catch(res=>{
+          wx.showToast({
+            icon:'none',
+            title: '添加失败',
+            duration:3000
+          })
+        })
+
       },
       //选择性别
       [events.ui.CHANGE_GENDER](e) {
+        console.log(e.detail.value)
         this.setData({
           'model.gender': e.detail.value
         })
+        console.log(e.detail.value)
         this.$storage.set('model.gender', e.detail.value);
       },
       //选择年级
+      [events.ui.CHANGE_GRADES](e) {
+        this.setData({
+          'model.grade': e.detail.value
+        })
+        console.log(e.detail.value)
+        this.$storage.set('model.grade', e.detail.value);
+      },
       [events.ui.CHANGE_GRADE](e) {
         if (this.data.grade[e.detail.value]) {
           this.setData({

@@ -29,7 +29,7 @@ class SchooloutAdd2Page extends EPage {
         weekDaysTxt: '星期一',
         remindIndex: 0,
         remindTxt: '不提醒',
-        remindValue: '0'
+        remindValue: '0',
       },
       repDis: false,
       beginWeekDay: '',
@@ -97,7 +97,13 @@ class SchooloutAdd2Page extends EPage {
       endclass: true,
       endShow: true,
       userDefined: false,
-      showCalendar: false
+      showCalendar: false,
+      mask: true, // 蒙版
+      course: {
+        'num': false, // 课程节数
+        'reapet': false
+      },
+      value3: [8, 2]
     };
   }
 
@@ -115,8 +121,13 @@ class SchooloutAdd2Page extends EPage {
         // }
       },
       [PAGE_LIFE.ON_SHOW](option) {
-        if (this.$storage.getSync('courseInfo')){
-          // console.log(this.$storage.getSync('courseInfo'))
+        let select_time = wx.getStorageSync('select_time');
+        // console.log('选择的值',select_time)
+        if(select_time){
+          this.setData({
+            'model.beginDate':select_time.date,
+            'model.startClassTime':select_time.time+':00',
+          })
         }
         this.setData({
           courseInfo: this.$storage.getSync('courseInfo'),
@@ -125,18 +136,19 @@ class SchooloutAdd2Page extends EPage {
         });
         // this.setData({ model: this.$storage.getSync('model') });
         put(effects.UPDATE_WEEKDAY);
-        
+
       }
     }
   }
 
-  mapUIEvent({ 
+  mapUIEvent({
     put
   }) {
     return {
       //上课日期
       [events.ui.CHANGE_BEGINDATE](e) {
         this.setData({
+          mask: false, 
           showCalendar: true
         });
       },
@@ -168,33 +180,32 @@ class SchooloutAdd2Page extends EPage {
       },
       //上课日期回调
       [events.ui.CALENDAR_DAY_CHANGED](e) {
-        console.log('wwww'+e)
+        // console.log('wwww'+e)
         const currentDate = moment(e.detail.year + ' ' + e.detail.month + ' ' + e.detail.day, 'YYYY-MM-DD').format('YYYY-MM-DD');
         this.setData({
           'model.beginDate': currentDate,
-          showCalendar: false
+           showCalendar: false,
+           mask: true,
         })
+        // 更改开始日期
         put(effects.UPDATE_WEEKDAY);
         if (this.$common.isIntNum(this.data.model.num)) {
+          // 获取结束日期
           put(effects.CHANGE_ENDDATE);
         }
       },
-
       //课程节数
       [events.ui.CHANGE_NUM](e) {
         if (this.$common.isIntNum(e.detail.value) == false) {
-          this.$common.showMessage(this, '请输入数字');
-          return false;
+          return wx.showToast({
+            icon: 'none',
+            duration:2000,
+            title: '请选择数字'
+          });
         }
         this.setData({
           'model.num': e.detail.value
         });
-        // if(e.detail.value==1){
-
-        // this.setData({repDis:true,'model.repetitionIndex':0,'model.repetitionTxt':this.data.repetitionItems[0]})
-        // }else{
-        // this.setData({repDis:false,'model.repetitionIndex':2,'model.repetitionTxt':this.data.repetitionItems[2]})
-        // }
         if (this.$common.isIntNum(e.detail.value)) {
           put(effects.CHANGE_ENDDATE);
         }
@@ -202,13 +213,15 @@ class SchooloutAdd2Page extends EPage {
       //课程时长
       [events.ui.CHANGE_DURATION](e) {
         if (this.$common.isIntNum(e.detail.value) == false) {
-          this.$common.showMessage(this, '请输入数字');
-          return false;
+          return wx.showToast({
+            icon: 'none',
+            duration:2000,
+            title: '请输入数字'
+          });
         }
         this.setData({
           'model.duration': e.detail.value,
           endclass: false,
-
         });
         this.setData({
           'model.endClassTime': moment(this.data.model.startClassTime, 'HH:mm').add('minute', this.data.model.duration).format('HH:mm')
@@ -217,9 +230,7 @@ class SchooloutAdd2Page extends EPage {
       //开课时间
       [events.ui.CHANGE_TIMEFIRST](e) {
         this.setData({
-          'model.startClassTime': e.detail.value
-        });
-        this.setData({
+          'model.startClassTime': e.detail.value,
           'model.endClassTime': moment(this.data.model.startClassTime, 'HH:mm').add('minute', this.data.model.duration).format('HH:mm')
         })
         console.log(this.data.model.startClassTime)
@@ -227,14 +238,19 @@ class SchooloutAdd2Page extends EPage {
 
       //重复
       [events.ui.CHANGE_REPETITION](e) {
+        console.log('重复', e, this.data.model.num)
         if (this.data.model.num == 0) {
-          this.$common.showMessage(this, '请填写课程节数');
+          wx.showToast({
+            title: '请输入课程课节',
+            icon: 'none',
+            duration: 2000
+          })
           return false;
         } else {
           console.log(e.detail.value)
           if (e.detail.value != 0) {
             this.setData({
-              'model.repetitionIndex': e.detail.value,
+              'model.repetitionIndex': e.detail.value[0],
               'model.repetitionTxt': this.data.repetitionItems[e.detail.value],
               "endShow": false
             });
@@ -247,14 +263,14 @@ class SchooloutAdd2Page extends EPage {
           } else {
             this.$common.showMessage(this, '请选择重复方式');
             this.setData({
-              'model.repetitionIndex' : e.detail.value,
-              endShow : true
+              'model.repetitionIndex': e.detail.value[0],
+              endShow: true
             })
           }
         }
         put(effects.CHANGE_ENDDATE);
       },
-      //自定义层
+      //自定义 ch
       [events.ui.CHANGE_CUSTOM_REPETITION](e) {
         const values = e.detail.value;
         const items = this.data.weekDayItems;
@@ -275,6 +291,7 @@ class SchooloutAdd2Page extends EPage {
         this.setData({
           'model.weekDays': values.join(',')
         });
+        console.log('自定义日期',items,this.data.model.weekDaysTxt.substr(1),values.join(','))
         this.setData({
           weekDayItems: items
         });
@@ -282,11 +299,17 @@ class SchooloutAdd2Page extends EPage {
       //确定自定义
       [events.ui.CHANGE_DEFINED](e) {
         if (this.$common.isBlank(this.data.model.weekDays)) {
-          this.$common.showMessage(this, '请选择星期')
-          return
+        
+          return wx.showToast({
+            title: '请选择星期',
+            duration: 0,
+            icon: 'none',
+            mask: true,
+          })
         }
         this.setData({
-          'userDefined': false
+          'userDefined': false,
+          mask:true
         });
         put(effects.CHANGE_ENDDATE);
       },
@@ -298,6 +321,131 @@ class SchooloutAdd2Page extends EPage {
           'model.remindTxt': this.data.remindItems[e.detail.value].name,
           'model.remindValue': this.data.remindItems[e.detail.value].value
         });
+      },
+      [events.ui.selectok1](e) {
+        let stute = e.currentTarget.dataset.id
+        console.log('选择好课程节数', stute)
+        if (stute == 1) {
+          this.setData({
+            mask: false,
+            'course.num': true
+          })
+        } else if (stute == 2) {
+          this.setData({
+            mask: false,
+            'course.reapet': true
+          })
+        } else if (stute == 3) {
+          this.setData({
+            mask: false,
+            'course.time': true
+          })
+        } else if (stute == 4) {
+          this.setData({
+            mask: false,
+            'course.alert': true
+          })
+        }
+
+      },
+      // 选择课程节数
+      [events.ui.bindChange1](e) {
+        let stute = e.currentTarget.dataset.id
+        const val = e.detail.value
+        console.log(val, stute)
+        if (stute == 1) {
+          if (this.$common.isIntNum(val[0])) {
+            this.setData({
+              'model.num': val[0],
+              // 'model.duration': val[0],    // 课程时长
+            })
+              put(effects.CHANGE_ENDDATE);
+          } else {
+           
+            return  wx.showToast({
+              title: '请输入正确的数值',
+              icon: 'none',
+              duration: 2000
+            })
+          }
+        } else if (stute == 2) {
+
+          console.log('重复', e, this.data.model.num)
+          if (this.data.model.num == '' || this.data.model.num == 0 ) {
+            return wx.showToast({
+              title: '请输入课程课节',
+              icon: 'none',
+              duration: 2000
+            })
+          } else {
+            put(effects.UPDATE_WEEKDAY);
+            console.log(e.detail.value)
+            if (e.detail.value != 0) {
+              this.setData({
+                'model.repetitionIndex': e.detail.value[0],
+                'model.repetitionTxt': this.data.repetitionItems[e.detail.value],
+                "endShow": false
+              });
+              if (e.detail.value == 4) {
+                this.setData({
+                  'userDefined': true,
+                  'course.reapet': false,
+                });
+              }
+              if (this.$common.isIntNum(this.data.model.num)) {
+                // 获取结束日期
+                put(effects.CHANGE_ENDDATE);
+              }
+            } else {
+              this.$common.showMessage(this, '请选择重复方式');
+              this.setData({
+                'model.repetitionIndex': e.detail.value[0],
+                 endShow: true
+              })
+            }
+
+          }
+          // put(effects.CHANGE_ENDDATE);
+          // this.setData({
+          //   'model.repetitionTxt': this.data.repetitionItems[e.detail.value],
+          // })
+        } else if (stute == 3) { // 开始时间
+          this.setData({
+            'model.startClassTime': `${Math.abs(val[0]-1)<10?'0'+ Math.abs(val[0]-1) :Math.abs(val[0]-1)}:${Math.abs(val[1]-1)<10?'0'+ Math.abs(val[1]-1) :Math.abs(val[1]-1)}`
+          })
+        } else if (stute == 4) {
+          this.setData({
+            'model.remindIndex': e.detail.value[0],
+            'model.remindTxt': this.data.remindItems[e.detail.value].name,
+            'model.remindValue': this.data.remindItems[e.detail.value].value
+          })
+        }
+      },
+      [events.ui.quit](e) {
+        console.log('退出')
+        let state = e.currentTarget.dataset.id
+        if (state == 1) {
+          this.setData({
+            mask: true,
+            'course.num': false,
+            'course.reapet': false,
+            'course.time': false,
+            'course.alert': false,
+            showCalendar: false
+          })
+          // 把数据导入
+
+        } else {
+          this.setData({
+            mask: true,
+            'course.num': false,
+            'course.reapet': false,
+            'course.time': false,
+            'course.alert': false,
+            showCalendar: false
+          })
+        }
+
       },
       //下一步
       [events.ui.SAVE_NEXT]() {
@@ -332,35 +480,54 @@ class SchooloutAdd2Page extends EPage {
           () => {}
         )
       },
-      [effects.SAVE_NEXT]() { 
+      [effects.SAVE_NEXT]() {
         const model = this.data.model;
         if (this.$common.isBlank(model.beginDate)) {
-          this.$common.showMessage(this, '请选择开学日期');
-          return false;
+          return  wx.showToast({
+            title: '请选择开学日期',
+            icon: 'none',
+            duration: 2000
+          })
         }
         if (this.$common.isBlank(model.num)) {
-          this.$common.showMessage(this, '请填写课程节数');
-          return false;
+          return wx.showToast({
+            title: '请填写课程节数',
+            icon: 'none',
+            duration: 2000
+          });
         }
         if (model.repetitionTxt == '无') {
-          this.$common.showMessage(this, '请选择重复方式');
-          return false;
+          return  wx.showToast({
+            title: '请选择重复方式',
+            icon: 'none',
+            duration: 2000
+          });;
         }
         if (!this.$common.isIntNum(model.num)) {
-          this.$common.showMessage(this, '请填写大于0的数字');
-          return false;
+          return  wx.showToast({
+            title: '请填写大于0的数字',
+            icon: 'none',
+            duration: 2000
+          });;
         }
         if (this.$common.isBlank(model.startClassTime)) {
-          this.$common.showMessage(this, '请选择开始时间');
-          return false;
+          return  wx.showToast({
+            title: '请选择开始时间',
+            icon: 'none',
+            duration: 2000
+          });;
         }
 
         if (this.$common.isBlank(model.duration) || model.duration == '0') {
-          this.$common.showMessage(this, '请填写课程时长');
-          return false;
+          return  wx.showToast({
+            title: '请填写课程时长',
+            icon: 'none',
+            duration: 2000
+          });;
         }
         this.$storage.set('courseInfo', Object.assign(this.data.courseInfo, this.data.model));
-        console.log(this.$storage)
+
+        console.log(wx.getStorageSync('courseInfo'))
         wx.navigateTo({
           url: './schoolout_add3'
         });

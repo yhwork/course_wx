@@ -31,7 +31,8 @@ class RegisterPage extends EPage {
       comfrom: 'change',
       router:'',
       productId:'',
-      courseId:''
+      courseId:'',
+      duration:3000
     };
   }
 

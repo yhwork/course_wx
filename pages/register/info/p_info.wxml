@@ -1,76 +1,125 @@
 <view class="page">
-  <view class="page__hd">
-    <view class="page__desc">如果你无法简洁的表达你的想法，那只说明你还不够了解它。</view>
-    <view class="page__desc writer">--阿尔伯特 爱因斯坦</view>
-    <view class='photo' bindtap='CHANGE_AVATAR'>
-      <image mode="aspectFill" src='{{ model.logourl ? model.logourl : (model.gender==1?girlb:boyb) }}'></image>
-      <view class='sex_icon'>
-        <image src='{{model.gender==1?"https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/girl.png":"https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/boy.png"}}'></image>
-      </view>
-    </view>
-  </view>
-  <view class="page__bd">
-    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{message}}</view>
-    <view class="weui-cells__title">
-      <image class='hint' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/hint.png'></image>
-      点击头像可更换照片</view>
+
+	<!--  -->
+	<view class="addCourse">
+		<view class="data">
+			<view class="add_head" wx:if='{{false}}' bindtap='CHANGE_AVATAR' >
+				<image  src="/assets/local/index/addCourse.png" class="img"></image>
+				<text>添加头像</text>
+			</view>
+      <view class="add_head bg" wx:else   bindtap='CHANGE_AVATAR' >
+				<image mode="aspectFill" class="add_head" src='{{ model.logourl ? model.logourl : (model.gender==1?girlb:boyb) }}'></image>
+        <view class='sex_icon'>
+          <image src='{{model.gender==1?"https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/girl.png":"https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/boy.png"}}'></image>
+        </view>
+			</view>
+			<view class="data_info">
+				<view class="item">
+					<text decode="{{true}}">昵 &nbsp; &nbsp; &nbsp; 称:</text>
+					<input placeholder="请输入昵称"  maxlength='5' bindinput="CHANGE_NAME" value="{{model.name}}" placeholder-class="placeholder"></input>
+				</view>
+				<view class="item">
+					<text decode="{{true}}">性 &nbsp; &nbsp; &nbsp; 别:</text>
+					<view class="gender">
+						<view class="radio-group" wx:for-items="{{ [{name:'男',id:1},{name:'女',id:2}]  }}" data-id="{{item.id}}" bindtap="getisweek" wx:key="index">
+							<view class=" {{item.id==weeks?'checkdata':'checkdatas'}}"></view>
+							<view>{{item.name}}</view>
+						</view>
+					</view>
+
+				</view>
+				<view class="item">
+					<text>我的学校:</text>
+					<input placeholder="请输入学校名称"  bindblur="CHANGE_SCHOOL" value="{{model.school}}" placeholder-class="placeholder"></input>
+				</view>
+				<view class="item">
+					<text>我的年级:</text>
+					<input placeholder="请输入班级名称" bindinput="CHANGE_GRADES" value="{{model.grade}}" placeholder-class="placeholder"></input>
+				</view>
+			</view>
+		</view>
+		<view class="btn">
+			<view bindtap="back">取消</view>
+			<view bindtap="SAVE">保存</view>
+		</view>
+	</view>
 
 
 
-    <view class="weui-cell-box">
-      <view class="weui-cell weui-cell_input">
-        <view class="weui-cell__hd">
-          <view class="weui-label">名字
-            <text>*</text>
-          </view>
-        </view>
-        <view class="weui-cell__bd">
-          <input class="weui-input" placeholder="请填写孩子昵称(5字以内)" maxlength='5' bindinput="CHANGE_NAME" value="{{model.name}}" />
-        </view>
-      </view>
-      <view class="weui-cell weui-cell_input">
-        <view class="weui-cell__hd">
-          <view class="weui-label">性别</view>
-        </view>
-        <view class="weui-cell__bd">
-          <radio-group class="radio-group" bindchange="CHANGE_GENDER">
-            <label class="radio" wx:for="{{genders}}" wx:key='idx'>
-              <radio value="{{item.value}}" checked="{{item.checked}}" />{{item.name}}
-            </label>
-          </radio-group>
-        </view>
-      </view>
-    </view>
-    <view class="weui-cell-box">
-      <view class="weui-cell weui-cell_select">
-        <view class="weui-cell__hd weui-cell__hd_in-select-after  required">
-          <view class="weui-label">我的学校</view>
-        </view>
+	<!-- <view class="page__hd">
+		<view class="page__desc">如果你无法简洁的表达你的想法，那只说明你还不够了解它。</view>
+		<view class="page__desc writer">--阿尔伯特 爱因斯坦</view>
+		<view class='photo' bindtap='CHANGE_AVATAR'>
+			<image mode="aspectFill" src='{{ model.logourl ? model.logourl : (model.gender==1?girlb:boyb) }}'></image>
+			<view class='sex_icon'>
+				<image src='{{model.gender==1?"https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/girl.png":"https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/boy.png"}}'></image>
+			</view>
+		</view>
+	</view>
+	<view class="page__bd">
+		<view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{message}}</view>
+		<view class="weui-cells__title">
+			<image class='hint' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/hint.png'></image>
+			点击头像可更换照片
+		</view>
 
-        <view class="weui-cell__bd" bindtap="VIEW_AREA">
-          <view class="weui-select weui-select_in-select-after .weui-cell__ft {{school_selected?'selected':''}}">
-            {{model.school ? model.school : '请选择'}}</view>
-        </view>
 
-      </view>
-      <view class="weui-cell weui-cell_select">
-        <view class="weui-cell__hd weui-cell__hd_in-select-after required">
-          <view class="weui-label">我的年级</view>
-        </view>
-        <picker bindchange="CHANGE_GRADE" value="{{greadindex}}" range="{{grade}}">
-          <view class="picker">
-            <view class="weui-cell__bd">
-              <view class="weui-select weui-select_in-select-after .weui-cell__ft {{grade_selected?'selected':''}}">{{grade[greadindex]?grade[greadindex]:'请选择'}}</view>
-            </view>
 
-          </view>
-        </picker>
-      </view>
-    </view>
+		<view class="weui-cell-box">
+			<view class="weui-cell weui-cell_input">
+				<view class="weui-cell__hd">
+					<view class="weui-label">名字
+						<text>*</text>
+					</view>
+				</view>
+				<view class="weui-cell__bd">
+					<input class="weui-input" placeholder="请填写孩子昵称(5字以内)" maxlength='5' bindinput="CHANGE_NAME" value="{{model.name}}" />
+				</view>
+			</view>
+			<view class="weui-cell weui-cell_input">
+				<view class="weui-cell__hd">
+					<view class="weui-label">性别</view>
+				</view>
+				<view class="weui-cell__bd">
+					<radio-group class="radio-group" bindchange="CHANGE_GENDER">
+						<label class="radio" wx:for="{{genders}}" wx:key='idx'>
+							<radio value="{{item.value}}" checked="{{item.checked}}" />{{item.name}}
+						</label>
+					</radio-group>
+				</view>
+			</view>
+		</view>
+		<view class="weui-cell-box">
+			<view class="weui-cell weui-cell_select">
+				<view class="weui-cell__hd weui-cell__hd_in-select-after  required">
+					<view class="weui-label">我的学校</view>
+				</view>
 
-    <view class="weui-btn-area">
-      <view class="weui" bindtap="back">返回主页</view>
-      <view class="weui" bindtap="SAVE">完成</view>
-    </view>
-  </view>
+				<view class="weui-cell__bd" bindtap="VIEW_AREA">
+					<view class="weui-select weui-select_in-select-after .weui-cell__ft {{school_selected?'selected':''}}">
+						{{model.school ? model.school : '请选择'}}</view>
+				</view>
+
+			</view>
+			<view class="weui-cell weui-cell_select">
+				<view class="weui-cell__hd weui-cell__hd_in-select-after required">
+					<view class="weui-label">我的年级</view>
+				</view>
+				<picker bindchange="CHANGE_GRADE" value="{{greadindex}}" range="{{grade}}">
+					<view class="picker">
+						<view class="weui-cell__bd">
+							<view class="weui-select weui-select_in-select-after .weui-cell__ft {{grade_selected?'selected':''}}">{{grade[greadindex]?grade[greadindex]:'请选择'}}</view>
+						</view>
+					</view>
+				</picker>
+			</view>
+		</view>
+
+		<view class="weui-btn-area">
+			<view class="weui" bindtap="back">返回主页</view>
+			<view class="weui" bindtap="SAVE">完成</view>
+		</view>
+	</view> -->
+
+
 </view>

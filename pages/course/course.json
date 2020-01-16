@@ -4,6 +4,7 @@
     "backgroundTextStyle": "dark",
     "usingComponents": {
         "timetable": "/components/timetable/timetable",
-        "calendarLayer": "/components/calendarLayer/calendarLayer"
+        "calendarLayer": "/components/calendarLayer/calendarLayer",
+        "nonePage":"/components/none/none"
     }
 }

@@ -53,20 +53,23 @@
 </view> -->
 
 <view class="page">
-
+	<!-- 校内添加 -->
 	<view class="add_in_school" hidden="{{activeIndex == 1}}">
-		<!-- 校内 -->
+		<!-- 没有校内课程展示 -->
 		<view class='title_box1' hidden="{{tabIndex == 1}}">
-			<view  bindtap="CREATE_COURSE" class='add_courseItem {{tabIndex==0?"active ":""}}' data-tabIndex='0'>
-				<view class="icon_addcourse">
-					<!-- <image src=""></image> -->
+			<view bindtap="CREATE_COURSE" class='add_courseItem {{tabIndex==0?"active ":""}}' data-tabIndex='0'>
+				<!-- <view class="icon_addcourse">
+			
 				</view>
-				<view class="icon_size"> 拍照上传 </view>
+				<view class="icon_size"> 拍照上传 </view> -->
+				<image src="/assets/local/index/paizhao.png"></image>
 			</view>
 			<view bindtap='chargeTab' class='add_courseItem {{tabIndex==1?"active":" "}}' data-tabIndex='1'>
-				<view class="icon_addcourse">
+				<!-- <view class="icon_addcourse">
+				
 				</view>
-				<view class="icon_size">手动添加</view>
+				<view class="icon_size">手动添加</view> -->
+				<image src="/assets/local/index/shoudong@2x.png"></image>
 			</view>
 
 			<!-- 拍照上传校内日程 -->
@@ -76,35 +79,23 @@
       <view wx:if='{{select_img}}' class='center'>
 				<image src="{{select_img}}" catchTap="chooseImageTap" mode="aspectFit" class="img" />
 			</view>
-		</view> -->
+			</view> -->
 		</view>
-
 		<!-- 手动添加校内日程 -->
 		<view class="center" wx:if="{{tabIndex ==1}}">
 			<view class='info_list'>
-        <!-- 家长端  -->
-        <view class="add_course1">
-            <view class="add_course1_item">
-                <view>学校名称：</view>
-                <input bindinput='getSchoolName' data-id="1" maxlength='16' placeholder="请输入学校"></input>
-            </view>
-            <view class="add_course1_item">
-                <view>班级名称：</view>
-                <input  bindinput='getSchoolName' data-id="0" placeholder="请输入班级"></input>
-            </view>
-            <view class="add_course1_item">
-                <view class="myradio">单双周：</view>
-                <view  class="radio-group" wx:for-items="{{ [{name:'单周',id:1},{name:'双周',id:2}]  }}" data-id="{{item.id}}" bindtap="getisweek" wx:key="index" >
-                    <view class=" {{item.id==weeks?'checkdata':'checkdatas'}}"></view>
-                    <view>{{item.name}}</view>
-                </view>
-                 <!-- <radio-group class="radio-group" bindchange="radioChange">
-                      <radio class="radio" wx:for-items="{{ [{name:'单周',checked:true},{name:'双周',checked:false}]  }}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
-                          <text>{{item.name}}</text>
-                      </radio>
-                  </radio-group> -->
-            </view>
-        </view>
+				<!-- 家长端  -->
+				<view class="add_course1">
+					<view class="add_course1_item">
+						<view>学校名称：</view>
+						<input bindblur='getSchoolName' bindconfirm='getSchoolName' data-id="1" maxlength='16' placeholder="例：上海逸夫小学"></input>
+					</view>
+					<view class="add_course1_item">
+						<view>班级名称：</view>
+						<input bindblur='getSchoolName' bindconfirm='getSchoolName' data-id="0" placeholder="请输入班级"></input>
+					</view>
+				
+				</view>
 				<!-- <block wx:if="{{userInfo.role=='0'}}">
 					<view class='page__bd_list1_class aaa'>
 						<view class='weui-cell__hd'>
@@ -152,136 +143,152 @@
 
 
 			<!-- 设置课程表 -->
-      <view class="course_tables">
-          	<view class='course_set'>
-				<!-- <view class='title'>课程设置</view> -->
-				<!-- <view class='odd_even'>
-					<view class='odd_even_left'>
-						<text>课程设置:</text>
-						<view class='odd_even_set'>
-							<text>开启双周</text>
-							<switch class='change' bindchange="BIND_SWITCH"></switch>
-						</view>
-						<view class='odd'>
-							<text>单周</text>
-							<view class='dian'></view>
-						</view>
-						<view class='even'>
-							<text>双周</text>
-							<view class='dian'></view>
-						</view>
-					</view>
-
-				</view> -->
-				<view class='course_table'>
-        	<view class='slect_tab'>
-						<block wx:for="{{InterNameList}}" wx:for-item="item" wx:key="" wx:for-index="index">
-							<view class="{{item.checked=='1'?'tab_item tab_select':'tab_item'}}" bindtap="CHOOSE_TAG" bindlongpress="BIND_LONG_PRESS" data-name="{{item.courseName}}">
-								<block wx:if="{{item.courseDel}}">
-									<image class='delete_btn' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/delete1.png' catchtap="DEL_TAG" data-index="{{index}}" data-coursename="{{item.courseName}}"></image>
-									<image class='edit_btn' bindtap="EDIT_TAG" src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/editor1.png'></image>
-								</block>
-								<view class='circle'>{{item.courseNameSub}}</view>
-								<text>{{item.courseName}}</text>
-							</view>
-						</block>
-
-						<view class='add_btn' bindtap="ADD_TAG">
-							<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/add1.png'></image>
-						</view>
-					</view>
-					<view class='thead'>
-						<view class='tr'>
-							<view class='td firstTd'>
-								<view class="myweeks">星期节次</view>
-							</view>
-							<view class='td'>周一</view>
-							<view class='td'>周二</view>
-							<view class='td'>周三</view>
-							<view class='td'>周四</view>
-							<view class='td'>周五</view>
-						</view>
-					</view>
-
-					<view class='tbody'>
-						<view class='tr' wx:for="{{courseTable}}" wx:for-item="item" wx:key="" wx:for-index="index">
-							<block wx:for="{{item}}" wx:for-item="item1" wx:key="" wx:for-index="index1">
-								<block wx:if="{{index1==0}}">
-									<view class='td firstTd'>{{item1+1}}</view>
-								</block>
-								<block wx:else>
-									<view class='td' catchtap="ADD_COURSE_CIRCLE" data-row="{{index}}" data-col="{{index1}}">
-										<view class='subject {{item1.courseClass}}' catchtap="{{switched?'':'BIND_COURSE'}}" data-row="{{index}}" data-col="{{index1}}">{{item1.courseNameSub}}</view>
-										<block wx:if="{{item1.courseSwitch}}">
-											<view class='subject {{item1.courseClass1}}' catchtap="{{switched?'':'BIND_COURSE_DOUBLE'}}" data-row="{{index}}" data-col="{{index1}}">{{item1.courseNameSub1}}</view>
-										</block>
-
+			<view class="course_tables">
+				<view class='course_set'>
+					<view class="add_course1_item">
+						<!-- <view class="myradio">单双周：</view>
+						<view class="radio-group" wx:for-items="{{ [{name:'单周',id:1},{name:'双周',id:2}]  }}" data-id="{{item.id}}" bindtap="getisweek" wx:key="index">
+							<view class=" {{item.id==weeks?'checkdata':'checkdatas'}}"></view>
+							<view>{{item.name}}</view>
+						</view> -->
+							<view class="switchs"  bindtap="getisweek">
+											<text>是</text>
+											<text>否</text>
+									<view class="checked {{weeks==true?'left':'right'}}">
+									{{weeks==true?'是':'否'}}
 									</view>
-								</block>
-							</block>
+							</view>
+							<text class="isswitchs "> (开启单双周)</text>
+						<view>
+							<!-- <switch checked='{{switched}}' type='{{switch}}' bindchange='getisweek'></switch> -->
+
 						</view>
 					</view>
+					<view class='course_table'>
+						<view class='slect_tab'>
 
-				
-				</view>
-			</view>
-			<view class='explain'>
-				<view>课程填写说明</view>
-				<view class='explain_item'>
-					<view class='serial'>1、</view>
-					<view class='explain_detail'>如果有单双周，请开启单双周设置，选择单双周的星期及课节，设置后关闭单双周设置，再进行课程填写</view>
-				</view>
-				<view class='explain_item'>
-					<view class='serial'>2、</view>
-					<view class='explain_detail'>如开启单双周设置，请务必填写完整单周与双周的课程，以免影响课程展示
+							<!-- <block wx:for="{{InterNameList}}" wx:for-item="item" wx:key="index" wx:for-index="index">
+								<view class="{{item.checked=='1'?'tab_item tab_select':'tab_item'}}" bindtap="CHOOSE_TAG" bindlongpress="BIND_LONG_PRESS" data-name="{{item.courseName}}">
+									<block wx:if="{{item.courseDel}}">
+										<image class='delete_btn' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/delete1.png' catchtap="DEL_TAG" data-index="{{index}}" data-coursename="{{item.courseName}}"></image>
+										<image class='edit_btn' bindtap="EDIT_TAG" src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/editor1.png'></image>
+									</block>
+									<view class='circle'>{{item.courseNameSub}}</view>
+									<text>{{item.courseName}}</text>
+								</view>
+							</block> -->
+							<!-- <view class="bd"> -->
+								<swiper indicator-dots="{{swiper.indicatorDots}}" bindchange='CHOOSE_TAGS' current="{{swiper.current}}" vertical="{{swiper.vertical}}" autoplay="{{swiper.autoplay}}" display-multiple-items='{{swiper.multiple}}'  previous-margin='{{swiper.previous}}' class="image_group">
+									<block wx:for="{{InterNameList}}" wx:for-item="item" wx:key="index">
+										<swiper-item>
+											<view class="swiper_item tab_item {{item.checked=='1'?'tab_select':''}} {{item.isbg==1?item.color:'defuls_course'}}"  bindlongpress="BIND_LONG_PRESS" data-cor="{{item.isbg==1?item.color:'#E7C60E'}}" data-name="{{item.courseName}}"  bindtap="CHOOSE_TAG" data-id="{{index}}">
+												<view class="circle {{item.isbg==1?item.color:'#E7C60E'}}">{{item.courseNameSub}}</view>
+												<text style="color:#fff;margin-left:10rpx">{{item.courseName}}</text>
+											</view>
+										</swiper-item>
+									</block>
+								</swiper>
+							<!-- </view> -->
+
+							<view class='add_btn' bindtap="ADD_TAG">
+								<image src='/assets/local/course/tianjia.png'></image>
+							</view>
+						</view>
+						<view class='thead'>
+							<view class='tr'>
+								<view class='td firstTd myweek'>
+									<view class="myweeks">星期节次</view>
+								</view>
+								<view class='td header_box' wx:for='{{weekList}}' wx:key='index'>
+									<text>{{item.name}}</text>
+									<text>{{item.data}} {{weekday==item.id?'(明天)':''}}</text>
+								</view>
+
+							</view>
+						</view>
+
+						<view class='tbody'>
+							<view class='tr' wx:for="{{courseTable}}" wx:for-item="item" wx:key="index" wx:for-index="index">
+								<block wx:for="{{item}}" wx:for-item="item1" wx:key="index1" wx:for-index="index1">
+									<block wx:if="{{index1==0}}">
+										<view class='td firstTd'>{{item1+1}}</view>
+									</block>
+									<block wx:else>
+										<view class='td {{ weekday == index1-1?"bgclass":"" }}' catchtap="ADD_COURSE_CIRCLE" data-row="{{index}}" data-col="{{index1}}">
+											<view class='subject {{item1.courseClass}}' catchtap="{{switched?'':'BIND_COURSE'}}" data-row="{{index}}" data-col="{{index1}}">{{item1.courseNameSub}}</view>
+											<block wx:if="{{item1.courseSwitch}}">
+												<view class='subject {{item1.courseClass1}}' catchtap="{{switched?'':'BIND_COURSE_DOUBLE'}}" data-row="{{index}}" data-col="{{index1}}">{{item1.courseNameSub1}}</view>
+											</block>
+										</view>
+									</block>
+								</block>
+							</view>
+						</view>
+
+
 					</view>
 				</view>
-				<view class='explain_item'>
-					<view class='serial'>3、</view>
-					<view class='explain_detail'>选中要添加的课程名称，然后点击课表中相应位置的圆圈既可添加该课程，再次点击则取消
+				<view class='explain'>
+					<view>课程填写说明</view>
+					<view class='explain_item'>
+						<view class='serial'>1、</view>
+						<view class='explain_detail'>如果有单双周，请开启单双周设置，选择单双周的星期及课节，设置后关闭单双周设置，再进行课程填写</view>
+					</view>
+					<view class='explain_item'>
+						<view class='serial'>2、</view>
+						<view class='explain_detail'>如开启单双周设置，请务必填写完整单周与双周的课程，以免影响课程展示
+						</view>
+					</view>
+					<view class='explain_item'>
+						<view class='serial'>3、</view>
+						<view class='explain_detail'>选中要添加的课程名称，然后点击课表中相应位置的圆圈既可添加该课程，再次点击则取消
+						</view>
+					</view>
+					<view class='explain_item'>
+						<view class='serial'>4、</view>
+						<view class='explain_detail'>长按课程名称，可修改和删除</view>
 					</view>
 				</view>
-				<view class='explain_item'>
-					<view class='serial'>4、</view>
-					<view class='explain_detail'>长按课程名称，可修改和删除</view>
-				</view>
 			</view>
-      </view>
-		
 		</view>
-
-		<!-- 校外 -->
-		<view class="weui-tab__content center" hidden="{{activeIndex ==0}}">
+		<!-- 校内按钮 -->
+		<view wx:if="{{activeIndex == 0}}" class='add_class_btn'>
+			<!-- 拍照 -->
+			<view wx:if="{{tabIndex==0}}" class='NEXT' bindtap='PREVIEW'>完成</view>
+			<!-- 手动 -->
+			<view wx:else class='NEXT' bindtap='PREVIEW'>下一步</view>
+		</view>
+	</view>
+	<!-- 校外添加 -->
+	<view class="add_out_school" hidden="{{activeIndex == 0}}">
+		<view class="add_out_course">
 			<view class='page__bd_list'>
 				<view class='page__bd_list1'>
 					<view class='page__bd_list1_class'>
 						<view class="weui-cell__hd imge_r">
-							<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/icond.png'></image>
-							课程名称:
 							<text class='import'>*</text>
+							<text>课程名称:</text>
 						</view>
-						<view class="weui-cell__bd ">
+						<view class="weui-cell__bd">
 							<input class="weui-cell__ft text_ft" placeholder="请填写课程名称(建议4字简称)" placeholder-class='pla' bindinput="CHANGE_NAME" />
 						</view>
 					</view>
 					<!-- 教育机构 -->
 					<view class='page__bd_list1_class ma-b' wx:if='{{userInfo.role==0}}'>
 						<view class="weui-cell__hd imge_r">
-							<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/icona.png'></image>
-							教学机构:
 							<text class='import'>*</text>
+							<text>教学机构:</text>
 						</view>
 						<view class="weui-cell__bd">
-							<!--  maxlength="4" -->
-							<input class="weui-cell__ft text_ft" placeholder="机构名称(建议4字简称)" placeholder-class='pla' bindinput="CHANGE_ORGNAME" value="{{model.orgName}}" />
+							<input placeholder="机构名称(建议4字简称)" placeholder-class='pla' bindinput="CHANGE_ORGNAME" value="{{model.orgName}}" />
 						</view>
 					</view>
 					<!-- 教育机构老师端 -->
 					<view class='page__bd_list1_class ma-b' wx:if='{{userInfo.role==1}}'>
 						<view class="weui-cell__hd imge_r">
 							<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/icona.png'></image>
-							教学机构:
 							<text class='import'>*</text>
+							<view>教学机构：</view>
 						</view>
 						<view class="weui-cell__bd">
 							<!--  maxlength="4" {{userInfo.workOrganizationName}} -->
@@ -307,11 +314,11 @@
 					</view>
 					<view class='page__bd_list1_class'>
 						<view class="weui-cell__hd imge_r">
-							<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/iconb.png'></image>
-							上课地点:
+							<text class='import' decode='{{true}}'> &nbsp; </text>
+							<view>上课地点:</view>
 						</view>
 						<view class="weui-cell__bd">
-							<view class="weui-select weui-select_in-select-after weui-cell__ft text_ft" style="font-size:30rpx;" bindtap="SELECT_ADDRESS">
+							<view class="weui-select weui-select_in-select-after weui-cell__ft text_ft" style="font-size:26rpx;" bindtap="SELECT_ADDRESS">
 								{{model.classAddress ? model.classAddress : '请选择'}}
 							</view>
 						</view>
@@ -320,7 +327,7 @@
 				<view class='page__bd_list3' hidden='{{isShow}}'>
 					<view class="page__bd_list1_class ma-b">
 						<view class="weui-cell__hd imge_r">
-							<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/classroom.png'></image>
+							<text class='import' decode='{{true}}'> &nbsp; </text>
 							教
 							<text style='color:#fff'>教室</text> 室:
 						</view>
@@ -330,8 +337,8 @@
 					</view>
 					<view class="page__bd_list1_class" wx:if='{{userInfo.role==0}}'>
 						<view class="weui-cell__hd imge_r">
-							<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/teacher.png'></image>
-							任教老师:
+							<text class='import' decode='{{true}}'> &nbsp; </text>
+							<view>任教老师:</view>
 						</view>
 						<view class="weui-cell__bd">
 							<input class="weui-cell__ft text_ft" placeholder="请填写教师名称(4字以内)" placeholder-class='pla' maxlength="4" bindinput="CHANGE_TEACHER" value="{{model.teacher}}" />
@@ -339,8 +346,8 @@
 					</view>
 					<view class="page__bd_list1_class ma-b">
 						<view class="weui-cell__hd imge_r">
-							<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/lianxi.png'></image>
-							联系方式:
+							<text class='import' decode='{{true}}'> &nbsp; </text>
+							<view>联系方式:</view>
 						</view>
 						<view class="weui-cell__bd">
 							<input class="weui-cell__ft text_ft" placeholder="请输入11位手机号" placeholder-class='pla' maxlength="11" bindinput="CHANGE_TEL" />
@@ -352,22 +359,12 @@
 				</view>
 			</view>
 		</view>
-
+		<!-- 校外 -->
+		<view class='btn_box' hidden="{{activeIndex == 0}}">
+			<button class='btn2' bindtap="SAVE_NEXT">下一步</button>
+		</view>
 	</view>
-
-
-	<!-- 校内 -->
-	<view hidden="{{activeIndex == 1}}" class='add_class_btn'>
-		<!-- 拍照 -->
-		<view wx:if="{{tabIndex==0}}" class='NEXT' bindtap='PREVIEW'>完成</view>
-		<!-- 手动 -->
-		<view wx:else class='NEXT' bindtap='PREVIEW'>下一步</view>
-	</view>
-	<!-- 校外 -->
-	<view class='list2' hidden="{{activeIndex == 0}}">
-		<button class='btn' bindtap="SAVE_NEXT">下一步</button>
-	</view>
-
+	<!-- 位置信息 -->
 	<view wx:if='{{location}}' class='locationbox' style='width:{{width}}px;height:{{height}}px;z-index:10'>
 		<view class='box'>
 			<view class='title'>提示</view>

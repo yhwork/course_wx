@@ -20,7 +20,8 @@ export const events = {
     goAdd:null,
     backhome:null,
     courdetails:null,
-    add_course:null
+    add_course:null,
+    back_change:null
   }
 }
 

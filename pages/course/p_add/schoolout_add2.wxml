@@ -1,8 +1,8 @@
 <view class="page">
-  <!-- 头部信息 -->
-  <!-- 验证提示 -->
-  <view class="page-toptips_warn" wx:if="{{showTopTips}}">{{message}}</view>
-  <view class="page__hd_top">
+	<!-- 头部信息 -->
+	<!-- 验证提示 -->
+	<!-- <view class="page-toptips_warn" wx:if="{{showTopTips}}">{{message}}</view> -->
+	<!-- <view class="page__hd_top">
     <view class='page__hd_name'>
       <block wx:if="{{userInfo.role=='0'}}">
         <image src='{{childInfo.logo}}' class='img school_out_l '></image>
@@ -14,7 +14,6 @@
       </block>
       <view class='alreday'>已有{{childInfo.courseNum}}门校外课程</view>
     </view>
-    <!-- <view class='line'></view> -->
     <view class="class-name">
       <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/icond.png'></image>
       课程名称：
@@ -29,173 +28,228 @@
       <text class='text_col'>{{courseInfo.orgName}}</text>
     </view>
   </view>
-  <view style='height:16rpx'></view>
-  <!-- 中间 -->
-  <view class='page__bd_main'>
-
-    <view class='main'>
-      <view class='page__bd_main_start add_padding text_l_p' bindtap="CHANGE_BEGINDATE">
-        <image class='image_l' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/data.png'></image>
-        开始日期：
-        <text class='imp'>*</text>
-        <text class='text_col'>{{model.beginDate}} {{beginWeekDay}}</text>
-      </view>
-      <!-- <image src='/assets/img/arrow_03.png' class='img_next_time' ></image> -->
-      <view class="fa fa-question-circle-o help-icon1" catchtap="SHOW_BEGIN_DATE_TIP"></view>
-    </view>
-
-
-  </view>
-  <view class='page__bd_main'>
-    <view class='main'>
-      <view class='page__bd_main_start add_padding text_l_p'>
-        <image class='image_l' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/course_num.png'></image>
-        课程节数:
-        <input placeholder='请输入课程节数' class='input_class' bindinput="CHANGE_NUM" value=''></input>
-        <text class='imp'>*</text>
-
-      </view>
-
-    </view>
-    <view class="fa fa-question-circle-o help-icon1" catchtap="SHOW_CLASS_NUM"></view>
-  </view>
-  <!-- 重复 -->
-  <view class='page__bd_main '>
-    <view class='main  weui-cell_select'>
-      <view class='page__bd_main_start add_padding text_l_p'>
-        <image class='image_l' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/repeat.png'></image>
-        重
-        <text decode="{{true}}">&ensp;&ensp;&ensp;&ensp;</text>复：
-        <view class="weui-cell__bd">
-          <picker bindchange="CHANGE_REPETITION" value="{{model.repetitionIndex}}" range="{{repetitionItems}}" disabled="{{repDis}}">
-            <view class=" weui-select_in-select-af weui-select-nex ">
-              <block wx:if="{{model.repetitionIndex==4}}">
-                <text class='text_col '>{{model.weekDaysTxt}}</text>
-              </block>
-              <block wx:else>
-                <text class='text_col'>{{repetitionItems[model.repetitionIndex]}}</text>
-
-              </block>
-            </view>
-          </picker>
-        </view>
-        <text class='imp'>*</text>
-        <!-- <image src='/assets/img/arrow_03.png' class='img_next'></image> -->
-      </view>
-    </view>
-  </view>
-  <!-- 结束日期 -->
-  <view class='page__bd_main'>
-    <view class='main'>
-      <view class='page__bd_main_start add_padding text_l_p' hidden="{{endShow}}">
-        <image class='image_l' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/data.png'></image>
-        结束日期：
-        <view>
-          <view class='time1'>
-            <text class='text_col text_color'>{{model.endDate}}</text>
-          </view>
-          <view class='week1'>
-            <text class='text_col text_color'>{{endWeekDay}}</text>
-          </view>
-        </view>
-      </view>
-    </view>
-  </view>
-  <!-- <开始时间> -->
-  <view style='height:16rpx'></view>
-  <view class='page__bd_main'>
-    <view class='main'>
-      <view class='page__bd_main_start add_padding'>
-        <image class='image_l' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/time.png'></image>
-        <text class='name_list '>开始时间：</text>
-        <text class='import'>*</text>
-        <picker class='main_start_time' bindchange="CHANGE_TIMEFIRST" mode="time" start="07:00" end="21:00" value="{{model.startClassTime}}">
-          <text class='text_col'>{{model.startClassTime}}</text>
-        </picker>
-        <!-- <image src='/assets/img/arrow_03.png' class='img_next'></image> -->
-      </view>
-
-    </view>
-  </view>
-  <!-- 课长时间 -->
-  <view class='page__bd_main'>
-    <view class='main'>
-      <view class='page__bd_main_start add_padding'>
-        <image class='image_l' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/duration.png'></image>
-        <text class='name_list'>课长时间：</text>
-        <text class='import'>*</text>
-        <input class="weui-input main_lenght_time" placeholder="请填写课程时长，分钟" maxlength='5' bindinput="CHANGE_DURATION" />
-      </view>
-
-    </view>
-    <view class="fa fa-question-circle-o help-icon1" bindtap='SHOW_CLASS_TIME'></view>
-  </view>
-  <!-- 下课时间 -->
-  <view class='page__bd_main'>
-    <view class='main'>
-      <view class='page__bd_main_start add_padding' hidden="{{endclass}}">
-        <image class='image_l' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/time.png'></image>
-        <text class='name_list'>下课时间：</text>
-        <text class='import'>*</text>
-        <view class='end_class_time'>
-          <text class='text_col text_color'>{{model.endClassTime}}</text> </view>
-
-      </view>
-    </view>
-  </view>
-  <!-- 课程提醒 -->
-  <view style='height:16rpx'></view>
-  <view class='page__bd_main'>
-    <view class='main'>
-      <view class='page__bd_main_start add_padding '>
-
-        <text class='name_list1'>
-        上课提醒：</text>
-
-        <image src="/assets/img/hint.png" class='zhuyi' mode="widthFix"></image>
-        <picker class='class_warn' bindchange="CHANGE_REMIND" value="{{model.remindIndex}}" range="{{remindItems}}" range-key="name">
-          <view class=" weui-select_in-select-afte weui-select-next">
-            <text class='text_col'>{{remindItems[model.remindIndex].name}}</text>
-          </view>
-        </picker>
-
-      </view>
-    </view>
-    <!-- <image src='/assets/img/arrow_03.png' class='img_next_time' ></image> -->
-    <view class="fa fa-question-circle-o help-icon2" bindtap="SHOW_REMINDER_TIP"></view>
-  </view>
-  <!-- 测试代码 -->
-
-
+  <view style='height:16rpx'></view> -->
+	<!-- 中间 -->
+	<view class="page_box ">
+		<!-- 开始日期 -->
+		<view class='page__bd_main'>
+			<view class='main'>
+				<view class='add_padding ' bindtap="CHANGE_BEGINDATE">
+					<text class='imp'>*</text>
+					<view class="spacing"> 开始日期:</view>
+					<text class='text_col'>{{model.beginDate}} {{beginWeekDay}}</text>
+				</view>
+				<!-- <view class="fa fa-question-circle-o help-icon1" catchtap="SHOW_BEGIN_DATE_TIP"></view> -->
+			</view>
+		</view>
+		<!-- 课程节数 -->
+		<view class='page__bd_main'>
+			<view class='main '>
+				<view class='add_padding'>
+					<text class='imp'>*</text>
+					<view class="spacing">课程节数:</view>
+					<input placeholder='请输入课程节数' class='input_class' data-id="1" bindinput="CHANGE_NUM" value='{{model.num==0?"":model.num}}'></input>
+				</view>
+			</view>
+			<view class="fa fa-question-circle-o help-icon1" catchtap="SHOW_CLASS_NUM"></view>
+		</view>
+		<!-- 重复 -->
+		<view class='page__bd_main'>
+			<view class='main '>
+				<view class=' add_padding '>
+					<text class='imp'>*</text>
+					<text class="spacing" decode='{{true}}'>重&nbsp; &nbsp; &nbsp; &nbsp;复:</text>
+					<view class="weui-cell__bd">
+				
+						<view wx:if="{{model.repetitionIndex==4}}" class='text_col ' data-id="2" bindtap='selectok1'>{{model.weekDaysTxt}}</view>
+						<view wx:else class='text_col ' data-id="2" bindtap='selectok1'>{{model.repetitionTxt}}</view>
+						<!-- <picker bindchange="CHANGE_REPETITION" value="{{model.repetitionIndex}}" range="{{repetitionItems}}" disabled="{{repDis}}">
+							<view class=" weui-select_in-select-af weui-select-nex ">
+								<block wx:if="{{model.repetitionIndex==4}}">
+									<text class='text_col '>{{model.weekDaysTxt}}</text>
+								</block>
+								<block wx:else>
+									<text class='text_col'>{{repetitionItems[model.repetitionIndex]}}</text>
+								</block>
+							</view>
+						</picker> -->
+					</view>
+				</view>
+			</view>
+		</view>
+		<!-- 结束日期 -->
+		<view class='page__bd_main' hidden="{{endShow}}">
+			<view class='main'>
+				<view class=' add_padding'>
+					<text class='imp'>*</text>
+					<text  class="spacing">结束日期:</text>
+					<view class="enddatas">
+						<view>
+							<text class='text_col text_color'>{{model.endDate}}</text>
+						</view>
+						<view>
+							<text class='text_col text_color'>{{endWeekDay}}</text>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<!-- 开始时间 -->
+	<view class="page_box ">
+		<view class='page__bd_main'>
+			<view class='main'>
+				<view class='add_padding'>
+					<text class='imp'>*</text>
+					<text  class="spacing">开始时间:</text>
+					<view data-id="3" bindtap='selectok1' class="text_col">
+						{{model.startClassTime}}
+					</view>
+					<!-- <picker bindchange="CHANGE_TIMEFIRST" mode="time" start="07:00" end="21:00" value="{{model.startClassTime}}">
+						<text class='text_col'>{{model.startClassTime}}</text>
+					</picker> -->
+				</view>
+			</view>
+		</view>
+		<!-- 课长时间 -->
+		<view class='page__bd_main'>
+			<view class='main'>
+				<view class='add_padding'>
+					<text class='imp'>*</text>
+					<text  class="spacing">课长时间:</text>
+					<input class='input_class' placeholder="请填写课程时长，分钟" maxlength='5' bindinput="CHANGE_DURATION" />
+				</view>
+			</view>
+			<view class="fa fa-question-circle-o help-icon1" bindtap='SHOW_CLASS_TIME'></view>
+		</view>
+		<!-- 下课时间 -->
+		<view class='page__bd_main' hidden="{{endclass}}">
+			<view class='main'>
+				<view class='add_padding'>
+					<text class='imp'>*</text>
+					<text  class="spacing">下课时间:</text>
+					<view>
+						<text class='text_col text_color'>{{model.endClassTime}}</text> </view>
+				</view>
+			</view>
+		</view>
+	</view>
+	
+	<!-- 下一步 -->
+	<view class=" btn_box">
+		<button class='btn2' bindtap="SAVE_NEXT">下一步</button>
+	</view>
+	<!-- 自定义重复日期 -->
+	<view class="modal" wx:if="{{userDefined}}">
+		<view class="modal-box">
+			<view class="weui-cell">
+				<view class="weui-cell__bd">
+					<checkbox-group bindchange="CHANGE_CUSTOM_REPETITION">
+						<label class="weui-cell weui-check__label" wx:for="{{weekDayItems}}" wx:key="value">
+							<checkbox class="weui-check" value="{{item.value}}" checked="{{item.checked}}" />
+							<view class="weui-cell__bd">{{item.name}}</view>
+							<view class="weui-cell__ft weui-check__ft_in-checkbox">
+								<icon class="weui-icon-checkbox_circle" type="circle" size="23" wx:if="{{!item.checked}}"></icon>
+								<icon class="weui-icon-checkbox_success" type="success" size="23" wx:if="{{item.checked}}"></icon>
+							</view>
+						</label>
+					</checkbox-group>
+					<view class="modal-box-buttons">
+						<button type="" class="modal-box-button primary" bindtap="CHANGE_DEFINED">确定</button>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<!-- 日历 -->
+	<view class="calendars bd" wx:if="{{showCalendar}}">
+		<calendar catch:day-click="CALENDAR_DAY_CHANGED" />
+		<view  bindtap="quit"  class="close">关闭</view>
+	</view>
+	<!-- 选择课程节数 -->
+	<view class="shoutais1  shoutais" wx:if='{{course.num}}'>
+		<view class="btn_dialog">
+			<view bindtap="quit">取消</view>
+			<view data-id="1" bindtap="quit">确定</view>
+		</view>
+		<picker-view indicator-class='mask_bg' indicator-style="height: 40px;" style="width: 100%; height: 200rpx;" data-id="1" value="{{value}}" bindchange="bindChange1">
+			<picker-view-column>
+				<view class="shoutais_item" wx:for="{{100}}" wx:key='index' style="line-height: 40px">
+					<view class="mask_bgs">{{item}}</view>
+				</view>
+			</picker-view-column>
+		</picker-view>
+	</view>
+	<!-- 重复日期 -->
+	<view class="shoutais2 shoutais" wx:if='{{course.reapet}}'>
+		<view class="btn_dialog">
+			<view bindtap="quit">取消</view>
+			<view data-id="1" bindtap="quit">确定</view>
+		</view>
+		<picker-view indicator-class='mask_bg' indicator-style="height: 40px;" style="width: 100%; height: 200rpx;" value="{{value}}" data-id="2" bindchange="bindChange1">
+			<picker-view-column>
+				<view class="shoutais_item" bindchange="CHANGE_REPETITION" value="{{model.repetitionIndex}}" wx:for="{{repetitionItems}}" style="line-height: 40px">
+					<view class="mask_bgs"> {{item}}</view>
+				</view>
+			</picker-view-column>
+		</picker-view>
+	</view>
+	<!-- 开始时间 -->
+	<view class="shoutais3 shoutais" wx:if='{{course.time}}'>
+		<view class="btn_dialog">
+			<view bindtap="quit">取消</view>
+			<view data-id="1" bindtap="quit">确定</view>
+		</view>
+		<picker-view indicator-class='mask_bg' indicator-style="height: 40px;" style="width: 100%; height: 200rpx;" value="{{value3}}" data-id="3" bindchange="bindChange1">
+			<picker-view-column>
+				<view>小时</view>
+				<view class="shoutais_item" wx:for="{{24}}" style="line-height: 50px">
+					<view class="mask_bgs"> {{item <10?'0'+item :item}}</view>
+				</view>
+			</picker-view-column>
+			<picker-view-column>
+				<view>分钟</view>
+				<view class="shoutais_item" wx:for="{{60}}" style="line-height: 50px">
+					<view class="mask_bgs"> {{item <10?'0'+item :item}}</view>
+				</view>
+			</picker-view-column>
+		</picker-view>
+	</view>
+	<!-- 上课提醒 -->
+	<view class="shoutais4 shoutais" wx:if='{{course.alert}}'>
+		<view class="btn_dialog">
+			<view bindtap="quit">取消</view>
+			<view data-id="1" bindtap="quit">确定</view>
+		</view>
+		<picker-view indicator-class='mask_bg' indicator-style="height: 40px;" style="width: 100%; height: 200rpx;" value="{{value4}}" data-id="4" bindchange="bindChange1">
+			<picker-view-column>
+				<view class="shoutais_item" wx:for="{{remindItems}}" style="line-height: 50px">
+					<view class="mask_bgs"> {{item.name}}</view>
+				</view>
+			</picker-view-column>
+		</picker-view>
+	</view>
+	<!-- 课程提醒 -->
+	<view class="page_box ">
+		<view class='page__bd_main'>
+			<view class='main'>
+				<view class='add_padding'>
+					<text class='imp' decode='{{true}}'> &nbsp; </text>
+					<text  class="spacing">上课提醒:</text>
+					<view data-id="4" class="text_col" bindtap='selectok1'>{{model.remindTxt}}</view>
+						<!-- 	<view class="weui-cell__bd">
+						<picker class='class_warn' bindchange="CHANGE_REMIND" value="{{model.remindIndex}}" range="{{remindItems}}" range-key="name">
+								<view class=" weui-select_in-select-afte weui-select-next">
+									<text class='text_col'>{{remindItems[model.remindIndex].name}}</text>
+								</view>
+						</picker>
+					</view> -->
+				</view>
+			</view>
+			<view class="fa fa-question-circle-o help-icon2" bindtap="SHOW_REMINDER_TIP"></view>
+		</view>
+	</view>
+	<!-- 蒙版 -->
+	<view bindtap="quit" class="page_bg" hidden="{{mask}}"></view>
 
 </view>
-
-<view class=" btn_box">
-  <button class='btn2' bindtap="SAVE_NEXT">下一步</button>
-</view>
-
-<view class="modal" wx:if="{{userDefined}}">
-  <view class="modal-box">
-    <view class="weui-cell weui-cell_select">
-      <view class="weui-cell__bd">
-        <checkbox-group bindchange="CHANGE_CUSTOM_REPETITION">
-          <label class="weui-cell weui-check__label" wx:for="{{weekDayItems}}" wx:key="value">
-            <checkbox class="weui-check" value="{{item.value}}" checked="{{item.checked}}" />
-            <view class="weui-cell__bd">{{item.name}}</view>
-            <view class="weui-cell__ft weui-check__ft_in-checkbox">
-              <icon class="weui-icon-checkbox_circle" type="circle" size="23" wx:if="{{!item.checked}}"></icon>
-              <icon class="weui-icon-checkbox_success" type="success" size="23" wx:if="{{item.checked}}"></icon>
-            </view>
-          </label>
-        </checkbox-group>
-        <view class="modal-box-buttons">
-          <button type="" class="modal-box-button primary" bindtap="CHANGE_DEFINED">确定</button>
-        </view>
-      </view>
-    </view>
-  </view>
-</view>
-<!-- 日历 -->
-<block wx:if="{{showCalendar}}">
-  <calendar catch:day-click="CALENDAR_DAY_CHANGED" />
-</block>

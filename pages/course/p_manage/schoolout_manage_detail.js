@@ -58,6 +58,7 @@ class SchooloutManageDetailPage extends EPage {
       calendarClass: 'calendar_mask',
       showCalendar: false,
       CALENDAR_NAME: '切换日历',
+      scrollTop:0,
       shareCavansOptions: {
         id: 'share_canvas',
         width: 0,
@@ -70,6 +71,31 @@ class SchooloutManageDetailPage extends EPage {
     put
   }) {
     return {
+      // 屏幕滚动
+      [PAGE_LIFE.ON_PAGE_SCROLL](ev){
+        console.log('滚动',ev)
+        var _this = this;
+        //当滚动的top值最大或者最小时，为什么要做这一步是由于在手机实测小程序的时候会发生滚动条回弹，所以为了解决回弹，设置默认最大最小值   
+        if (ev.scrollTop <= 0) {
+          ev.scrollTop = 0;
+        } else if (ev.scrollTop > wx.getSystemInfoSync().windowHeight) {
+          ev.scrollTop = wx.getSystemInfoSync().windowHeight;
+        }
+        //判断浏览器滚动条上下滚动   
+        if (ev.scrollTop > this.data.scrollTop || ev.scrollTop == wx.getSystemInfoSync().windowHeight) {
+            console.log('向下滚动');
+           
+           } else {
+            console.log('向上滚动');  
+            }  
+          //给scrollTop重新赋值    
+          setTimeout(function () {
+            _this.setData({
+              scrollTop: ev.scrollTop
+            })
+          }, 10)
+    
+      },
       [PAGE_LIFE.ON_LOAD](option) {
         wx.hideShareMenu();
         const {
@@ -311,20 +337,21 @@ class SchooloutManageDetailPage extends EPage {
       //课程详细信息
       [effects.GET_COURSE_BY_ID]() {
         console.log('课程信息',this.data.model)
+        let rs = {}
         api.course.getone(this.data.model).then(
           (res) => {
             console.log('课程信息', res)
-            const rs = res.data.result;
-            // rs.beginDate = moment(rs.issueTime).format('YYYY-MM-DD')
-            // rs.endDate = moment(rs.finishTime).format('YYYY-MM-DD')
-            // rs.beginTime = moment(rs.startTime, 'HH:mm').format('HH:mm')
-            // rs.endTime = moment(rs.endTime, 'HH:mm').format('HH:mm')
-            // rs.notifyTxt = ''
-            // this.data.remindItems.forEach(function(e) {
-            //   if (e.value == rs.notify) {
-            //     rs.notifyTxt = e.name
-            //   }
-            // })
+            rs = res.data.result;
+            rs.beginDate = moment(rs.issueTime).format('YYYY-MM-DD')
+            rs.endDate = moment(rs.finishTime).format('YYYY-MM-DD')
+            rs.beginTime = moment(rs.startTime, 'HH:mm').format('HH:mm')
+            rs.endTime = moment(rs.endTime, 'HH:mm').format('HH:mm')
+            rs.notifyTxt = ''
+            this.data.remindItems.forEach(function(e) {
+              if (e.value == rs.notify) {
+                rs.notifyTxt = e.name
+              }
+            })
             // console.log('课程信息',rs)
             this.setData({
               courseInfo: rs

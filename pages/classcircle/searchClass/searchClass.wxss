@@ -1,3 +1,6 @@
+.page{
+
+}
 .search {
   margin-top: 10rpx;
   width: 100%;
@@ -15,7 +18,8 @@
 
 .search input {
   width: 84%;
-  height: 80rpx;
+  font-size:24rpx;
+  height: 62rpx;
   border: 2rpx solid #ccc;
   border-radius: 10rpx 0 0 10rpx;
   padding-left: 10%;
@@ -25,15 +29,17 @@
 
 .search button {
   width: 16%;
-  height: 80rpx;
+  height: 62rpx;
   border-radius: 0 10rpx 10rpx 0;
   padding: 0;
   margin: 0;
   position: absolute;
   top: 0;
   right: 2%;
-  line-height: 80rpx;
-  font-size: 30rpx;
+  font-size:24rpx;
+font-family:PingFang SC;
+font-weight:500;
+  line-height: 62rpx;
 }
 
 .searchclass {

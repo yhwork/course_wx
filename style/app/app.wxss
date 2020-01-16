@@ -131,7 +131,7 @@ picker,
 
 button {
   border-radius: 60rpx;
-  background-color: #f29219;
+  background-color: #E7C60E;
   color: #fff;
 }
 
@@ -171,7 +171,7 @@ button.disabled {
 }
 
 .link {
-  color: #f29219;
+  color: #E7C60E
 }
 
 .navigation {
@@ -220,7 +220,7 @@ button.disabled {
 
 .label.normal {
   background-color: #fbdfbd;
-  color: #cd760c;
+  color: #E7C60E;
 }
 
 .label.accomplished {
@@ -265,7 +265,7 @@ button.disabled {
 }
 
 .course-noton-color {
-  color: #cc995c;
+  color:#E7C60E
 }
 
 /*缺课*/
@@ -312,4 +312,11 @@ button.disabled {
 .page__title{
   font-size: 28rpx;
   
+}
+.jieshao{
+  margin-top: 25rpx;
+font-size:20rpx;
+font-family:PingFang SC;
+font-weight:400;
+color:rgba(102,102,102,1);
 }

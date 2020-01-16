@@ -36,6 +36,7 @@ class school extends EPage {
   }) {
     return {
       [PAGE_LIFE.ON_LOAD](option) {
+        console.log('值',option)
         if (typeof option.comefrom != 'undefined') {
           this.setData({
             'model.comefrom': option.comefrom
@@ -101,6 +102,7 @@ class school extends EPage {
           wx.redirectTo({
             url: '../../register/info/p_info?childId=' + this.data.childId + "&from=area",
           })
+        // 添加校内课程
         } else if (this.data.model.comefrom == 'changeschool') {
           wx.navigateBack({})
         }
@@ -111,6 +113,8 @@ class school extends EPage {
           'inputname': e.detail.value
         })
       },  
+      // 添加自定义学校
+      
       [events.ui.ADDSCHOOL](){
         if (this.$common.isBlank(this.data.inputname)) {
           this.$common.showMessage(this, '请输入标准的学校名称');
@@ -173,6 +177,7 @@ class school extends EPage {
 
   mapEffect() {
     return {
+      // 查找所有学校
       [effects.SEARCH_SCHOOL]() {
         console.log(this.data.model)
         this.$api.area.schoolSearch(this.data.model).then((res) => {

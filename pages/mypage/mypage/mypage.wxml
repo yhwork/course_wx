@@ -1,224 +1,296 @@
-<!--pages/mypage/mypage/mypage.wxml-->
-<view class='mypage_container'>
-  <!-- header s -->
-  <view class='mypage_header_wrap'>
-    <!-- header img  -->
-    <view class='mypage_header_info_wrap'>
-      <view class='mypage_header_info_right'  bind:tap='MYHOMEPAGE'>
-        <image mode='aspectFill' class='header' src="{{userInfo.logo}}">
-        </image>
-      </view>
-      <view class='mypage_header_info_left'>
-        <view  bind:tap='MYHOMEPAGE' class='header_info_left_name textover'>{{userInfo.name==null?userInfo.nickName:userInfo.name}}</view>
-        <view wx:if='{{!isAuthorization}}'  bindtap='changeTeacherBind' class='header_info_left_id '><text class="txtbig">授权登录</text> </view>
-        <view wx:else class='header_info_left_id textover'>ID号：{{userInfo.id}}</view>
-      </view>
-      <!-- <view class='mypage_header_info_index' bindtap="scanCode">
-        <text>扫一扫</text>
-        <image class='arrow' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/next.png'></image>
-      </view> -->
-    </view>
-    <view class='my_order'>
-      <view class='order_top'>
-        <text>我的订单</text>
-        <view class='order_left' bindtap='myallList'>
-          <text>查看全部</text>
-          <image class='arrow1' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
-        </view>
-      </view>
-    </view>
-    <view class='order_itemwrap'>
-      <view class='item' wx:for="{{tabtext}}" wx:key="index" bindtap='waitpayIntem' data-index='{{index}}'>
-        <view class='item_img'>
-          <image class='arrow1' src='{{item.src}}'></image>
-        </view>
-        <view class='item_font'>
-          <text>{{item.text}}</text>
-        </view>
-      </view>
-    </view>
-    <view style='background:#f4f4f4; height:10rpx;'></view>
-    <!-- menu s -->
-    <view class='section_menus_wrap'>
-      <view class='section_menus_ul'>
-        <!-- 教师端 -->
-        <view class='section_menus_li' hidden='{{roleSwitchModel.myClass}}' bindtap='bindMyClass'>
-          <view class='section_menus_pic'>
-            <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/class.png'></image>
-          </view>
-          <view class='section_menus_text'>
-            我的班级
-          </view>
-        </view>
-        <!-- 教师端 -->
-        <view class='section_menus_li' bindtap='myCircle'>
-          <view class='section_menus_pic'>
-            <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/my_icon1.png'></image>
-          </view>
-          <view class='section_menus_text'>
-            我的圈子
-          </view>
-        </view>
-        <!-- myDiary -->
-        <view class='section_menus_li' bindtap='myDiary'>
-          <view class='section_menus_pic'>
-            <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/my_icon2.png'></image>
-          </view>
-          <view class='section_menus_text'>
-            我的日记
-          </view>
-        </view>
-        <view class='section_menus_li' bindtap='accumulatePoints'>
-          <view class='section_menus_pic'>
-            <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/my_icon5.png'></image>
-          </view>
-          <view class='section_menus_text'>
-            我的积分
-          </view>
-        </view>
-        <view class='section_menus_li' bindtap='showClocker'>
-          <view class='section_menus_pic'>
-            <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/my_icon3.png'></image>
-          </view>
-          <view class='section_menus_text'>
-            我的收藏
-          </view>
-        </view>
-        <view class='section_menus_li' bindtap='playHelpBind'>
-          <view class='section_menus_pic'>
-            <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/my_icon7.png'></image>
-          </view>
-          <view class='section_menus_text'>
-            使用帮助
-          </view>
-        </view>
-        <view class='section_menus_li' bindtap='messageCenterBind'>
-          <view class='section_menus_pic'>
-            <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/my_06.png'></image>
-          </view>
-          <view class='section_menus_text'>
-            我的消息
-          </view>
-        </view>
-        <view class='section_menus_li' bindtap='authManageBind' hidden='true'>
-          <view class='section_menus_pic'>
-            <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/my_icon6.png'></image>
-          </view>
-          <view class='section_menus_text'>
-            权限管理
-          </view>
-        </view>
-        <view class='section_menus_li' bindtap='changeTeacherBind'>
-          <view class='section_menus_pic'>
-            <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/my_03.png'></image>
-          </view>
-          <view wx:if='{{!isAuthorization}}'    class='section_menus_text '><text class="colos">授权登录</text></view>
-          <view wx:else class='section_menus_text'>{{role==1?'切换家长端':'切换教师端'}}</view>
-        </view>
-      </view>
-    </view>
+<view class="page">
+	<view class="pt_20 ">
+		<view class=" content">
+			<view class="header column c_center ">
+				<view class="header_logo">
+				</view>
+				<view wx:if='{{isAuthorization}}' bindtap='changeTeacherBind' class='header_name'>
+					<text  class="colos">授权登录</text>
+				</view>
+				<view wx:else class="header_name">
+					{{userInfo.name==null?userInfo.nickName:userInfo.name}}
+				</view>
+				<view class="class_grade">
+					徐汇小学 一年级
+				</view>
+			</view>
+			<view class="content_body ">
+				<view class="orders">
+					我的订单
+				</view>
+				<view class="order_menus ">
+					<view class="order_menus_item" bindtap='waitpayIntem' data-index='1'>
+						<view class="img_orders">
+							<image src="/assets/local/mypage/daifukuan.png"></image>
+						</view>
+						<text>待付款</text>
+					</view>
+					<view class="order_menus_item" bindtap='waitpayIntem' data-index='2'>
+						<view class="img_orders">
+							<image src="/assets/local/mypage/daiyuyue.png"></image>
+						</view>
+						<text>待预约</text>
+					</view>
+					<view class="order_menus_item" bindtap='waitpayIntem' data-index='3'>
+						<view class="img_orders">
+							<image src="/assets/local/mypage/daifengxiang.png"></image>
+						</view>
+						<text>待分享</text>
+					</view>
+					<view class="order_menus_item" bindtap='waitpayIntem' data-index='4'>
+						<view class="img_orders">
+							<image src="/assets/local/mypage/daiguankan.png"></image>
+						</view>
+						<text>待观看</text>
+					</view>
+				</view>
+			</view>
+		</view>
 
-  </view>
-  <view class='section_lists_wrap' hidden='true'>
-    <view class='section_lists_wrap_ul'>
-      <view class='section_lists_wrap_ul_li' bindtap='showClocker'>
-        <view class='section_icon'>
-          <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/my_19.png'></image>
-        </view>
-        我的圈子
-        <view class='panel_arrows'>
-          <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
-        </view>
-      </view>
-      <view class='section_lists_wrap_ul_li' bindtap='showClocker'>
-        <view class='section_icon'>
-          <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/my_20.png'></image>
-        </view>
-        我的打卡日记
-        <view class='panel_arrows'>
-          <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
-        </view>
-      </view>
-      <view class='section_lists_wrap_ul_li' bindtap='showClocker'>
-        <view class='section_icon'>
-          <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/my_21.png'></image>
-        </view>
-        我的收藏
-        <view class='panel_arrows'>
-          <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
-        </view>
-      </view>
+	</view>
+	<view class="content mt_5">
+		<view class="menus">
+			<view class="swip_item" bindtap='changeTeacherBind'>
+				<view class="swip_item_img">
+					<image src="/assets/local/mypage/qiehuan.png"></image>
+				</view>
 
-    </view>
-  </view>
 
-  <!-- 2g -->
-  <view class='section_lists_wrap' hidden='true'>
-    <view class='section_lists_wrap_ul'>
 
-      <view class='section_lists_wrap_ul_li' bindtap='showClocker'>
-        <view class='section_icon'>
-          <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/my_22.png'></image>
-        </view>
-        更新日志
-        <view class='panel_arrows'>
-          <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
-        </view>
-      </view>
-      <view class='section_lists_wrap_ul_li' bindtap='showClocker'>
-        <view class='section_icon'>
-          <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/my_24.png'></image>
-        </view>
-        我的积分
-        <view class='panel_arrows'>
-          <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
-        </view>
-      </view>
-      <view class='section_lists_wrap_ul_li'>
-        <view class='section_icon'>
-          <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/my_27.png'></image>
-        </view>
-        我的权限
-        <view class='panel_arrows'>
-          <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
-        </view>
-      </view>
 
-    </view>
-  </view>
-  <!-- 3g -->
-  <view class='section_lists_wrap' hidden='true'>
-    <view class='section_lists_wrap_ul'>
 
-      <view class='section_lists_wrap_ul_li'>
-        <view class='section_icon'>
-          <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/my_25.png'></image>
-        </view>
-        使用帮助
-        <view class='panel_arrows'>
-          <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
-        </view>
-      </view>
-      <view class='section_lists_wrap_ul_li' bindtap='showClocker'>
-        <view class='section_icon'>
-          <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/my_26.png'></image>
-        </view>
-        小豆包公告
-        <view class='panel_arrows'>
-          <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
-        </view>
-      </view>
-    </view>
-  </view>
-  <!-- 815不上功能提示窗口 -->
-  <view class='share_panel_mask {{clockerHide?"hide":"show"}}' catchtouchmove='stopOther '>
-    <view class='panel_container'>
-      <view class='panel_container_tit'>提示</view>
-      <view class='panel_container_text'>该功能正在开发中，敬请期待！</view>
-      <view class='panel_container_btn'>
-        <view class='fl panel_cancel' bindtap='closeClocker'>取消</view>
-        <view class='fl panel_sure' bindtap='closeClocker'>确定</view>
-      </view>
-    </view>
-  </view>
+				<view class="swip_item_txt">
+					{{role==1?'切换家长端':'切换教师端'}}
+				</view>
+				<image class="msg_img" mode="widthFix" src="/assets/local/mypage/right.png"></image>
+			</view>
+			<view class="swip_item" bindtap='playHelpBind'>
+				<view class="swip_item_img">
+					<image mode="widthFix" src="/assets/local/mypage/bangzhu.png"></image>
+				</view>
+				<view class="swip_item_txt">
+					使用帮助
+				</view>
+				<image class="msg_img" mode="widthFix" src="/assets/local/mypage/right.png"></image>
+			</view>
+		</view>
+	</view>
+</view>
+
+<view class='mypage_container' hidden="{{true}}">
+	<view class='mypage_header_wrap'>
+		<view class='mypage_header_info_wrap'>
+			<view class='mypage_header_info_right' bind:tap='MYHOMEPAGE'>
+				<image mode='aspectFill' class='header' src="{{userInfo.logo}}">
+				</image>
+			</view>
+			<view class='mypage_header_info_left'>
+				<view bind:tap='MYHOMEPAGE' class='header_info_left_name textover'>{{userInfo.name==null?userInfo.nickName:userInfo.name}}</view>
+				<view wx:if='{{!isAuthorization}}' bindtap='changeTeacherBind' class='header_info_left_id '><text class="txtbig">授权登录</text> </view>
+				<view wx:else class='header_info_left_id textover'>ID号：{{userInfo.id}}</view>
+			</view>
+		</view>
+		<view class='my_order'>
+			<view class='order_top'>
+				<text>我的订单</text>
+				<view class='order_left' bindtap='myallList'>
+					<text>查看全部</text>
+					<image class='arrow1' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
+				</view>
+			</view>
+		</view>
+		<view class='order_itemwrap'>
+			<view class='item' wx:for="{{tabtext}}" wx:key="index" bindtap='waitpayIntem' data-index='{{index}}'>
+				<view class='item_img'>
+					<image class='arrow1' src='{{item.src}}'></image>
+				</view>
+				<view class='item_font'>
+					<text>{{item.text}}</text>
+				</view>
+			</view>
+		</view>
+		<view style='background:#f4f4f4; height:10rpx;'></view>
+		<!-- menu s -->
+		<view class='section_menus_wrap'>
+			<view class='section_menus_ul'>
+				<!-- 教师端 -->
+				<view class='section_menus_li' hidden='{{roleSwitchModel.myClass}}' bindtap='bindMyClass'>
+					<view class='section_menus_pic'>
+						<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/class.png'></image>
+					</view>
+					<view class='section_menus_text'>
+						我的班级
+					</view>
+				</view>
+				<!-- 教师端 -->
+				<view class='section_menus_li' bindtap='myCircle'>
+					<view class='section_menus_pic'>
+						<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/my_icon1.png'></image>
+					</view>
+					<view class='section_menus_text'>
+						我的圈子
+					</view>
+				</view>
+				<!-- myDiary -->
+				<view class='section_menus_li' bindtap='myDiary'>
+					<view class='section_menus_pic'>
+						<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/my_icon2.png'></image>
+					</view>
+					<view class='section_menus_text'>
+						我的日记
+					</view>
+				</view>
+				<view class='section_menus_li' bindtap='accumulatePoints'>
+					<view class='section_menus_pic'>
+						<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/my_icon5.png'></image>
+					</view>
+					<view class='section_menus_text'>
+						我的积分
+					</view>
+				</view>
+				<view class='section_menus_li' bindtap='showClocker'>
+					<view class='section_menus_pic'>
+						<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/my_icon3.png'></image>
+					</view>
+					<view class='section_menus_text'>
+						我的收藏
+					</view>
+				</view>
+				<view class='section_menus_li' bindtap='playHelpBind'>
+					<view class='section_menus_pic'>
+						<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/my_icon7.png'></image>
+					</view>
+					<view class='section_menus_text'>
+						使用帮助
+					</view>
+				</view>
+				<view class='section_menus_li' bindtap='messageCenterBind'>
+					<view class='section_menus_pic'>
+						<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/my_06.png'></image>
+					</view>
+					<view class='section_menus_text'>
+						我的消息
+					</view>
+				</view>
+				<view class='section_menus_li' bindtap='authManageBind' hidden='true'>
+					<view class='section_menus_pic'>
+						<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/my_icon6.png'></image>
+					</view>
+					<view class='section_menus_text'>
+						权限管理
+					</view>
+				</view>
+				<view class='section_menus_li' bindtap='changeTeacherBind'>
+					<view class='section_menus_pic'>
+						<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/my_03.png'></image>
+					</view>
+					<view wx:if='{{!isAuthorization}}' class='section_menus_text '><text class="colos">授权登录</text></view>
+					<view wx:else class='section_menus_text'>{{role==1?'切换家长端':'切换教师端'}}</view>
+				</view>
+			</view>
+		</view>
+	</view>
+
+	<view class='section_lists_wrap' hidden='true'>
+		<view class='section_lists_wrap_ul'>
+			<view class='section_lists_wrap_ul_li' bindtap='showClocker'>
+				<view class='section_icon'>
+					<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/my_19.png'></image>
+				</view>
+				我的圈子
+				<view class='panel_arrows'>
+					<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
+				</view>
+			</view>
+			<view class='section_lists_wrap_ul_li' bindtap='showClocker'>
+				<view class='section_icon'>
+					<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/my_20.png'></image>
+				</view>
+				我的打卡日记
+				<view class='panel_arrows'>
+					<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
+				</view>
+			</view>
+			<view class='section_lists_wrap_ul_li' bindtap='showClocker'>
+				<view class='section_icon'>
+					<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/my_21.png'></image>
+				</view>
+				我的收藏
+				<view class='panel_arrows'>
+					<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
+				</view>
+			</view>
+
+		</view>
+	</view>
+
+	<!-- 2g -->
+	<view class='section_lists_wrap' hidden='true'>
+		<view class='section_lists_wrap_ul'>
+
+			<view class='section_lists_wrap_ul_li' bindtap='showClocker'>
+				<view class='section_icon'>
+					<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/my_22.png'></image>
+				</view>
+				更新日志
+				<view class='panel_arrows'>
+					<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
+				</view>
+			</view>
+			<view class='section_lists_wrap_ul_li' bindtap='showClocker'>
+				<view class='section_icon'>
+					<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/my_24.png'></image>
+				</view>
+				我的积分
+				<view class='panel_arrows'>
+					<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
+				</view>
+			</view>
+			<view class='section_lists_wrap_ul_li'>
+				<view class='section_icon'>
+					<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/my_27.png'></image>
+				</view>
+				我的权限
+				<view class='panel_arrows'>
+					<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
+				</view>
+			</view>
+
+		</view>
+	</view>
+	<!-- 3g -->
+	<view class='section_lists_wrap' hidden='true'>
+		<view class='section_lists_wrap_ul'>
+
+			<view class='section_lists_wrap_ul_li'>
+				<view class='section_icon'>
+					<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/my_25.png'></image>
+				</view>
+				使用帮助
+				<view class='panel_arrows'>
+					<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
+				</view>
+			</view>
+			<view class='section_lists_wrap_ul_li' bindtap='showClocker'>
+				<view class='section_icon'>
+					<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/my_26.png'></image>
+				</view>
+				小豆包公告
+				<view class='panel_arrows'>
+					<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
+				</view>
+			</view>
+		</view>
+	</view>
+	<!-- 815不上功能提示窗口 -->
+	<view class='share_panel_mask {{clockerHide?"hide":"show"}}' catchtouchmove='stopOther '>
+		<view class='panel_container'>
+			<view class='panel_container_tit'>提示</view>
+			<view class='panel_container_text'>该功能正在开发中，敬请期待！</view>
+			<view class='panel_container_btn'>
+				<view class='fl panel_cancel' bindtap='closeClocker'>取消</view>
+				<view class='fl panel_sure' bindtap='closeClocker'>确定</view>
+			</view>
+		</view>
+	</view>
 </view>

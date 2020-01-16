@@ -14,73 +14,85 @@ page {
   background: #fff;
   padding: 20rpx 30rpx;
 }
-.prev_tab,.next_tab{
+
+.prev_tab,
+.next_tab {
   width: 80rpx;
 }
-.next_tab{
+
+.next_tab {
   text-align: right;
 }
-.photo{
+
+.photo {
   width: 52rpx;
   height: 52rpx;
   border-radius: 52rpx;
   margin-right: 20rpx;
 }
-.info_left,.info_right{
+
+.info_left,
+.info_right {
   display: flex;
   align-items: center;
 }
-.course_name{
+
+.course_name {
   margin-left: 30rpx;
-  font-size:34rpx;
+  font-size: 34rpx;
   color: #222;
 }
-.school{
-  font-size:26rpx;
+
+.school {
+  font-size: 26rpx;
   color: #888;
 }
-.name{
+
+.name {
   color: #576B95;
-  font-size:34rpx;
+  font-size: 34rpx;
 }
-.checkwork_tab{
+
+.checkwork_tab {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 30rpx 60rpx;
   background: #FAFAFA;
   color: #353535;
-  font-size:28rpx;
+  font-size: 28rpx;
 }
-
-.tab_item{
+.calendar_title{
+  color:rgba(239,207,11,1);
+}
+.tab_item {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.tab_foot{
+.tab_foot {
   display: flex;
   align-items: center;
 }
 
-.active{
+.active {
   color: #F29219;
 }
 
-.calendar_body .td.absent{
+.calendar_body .td.absent {
   color: #ef5955;
 }
 
-.calendar_body .td.noton{
+.calendar_body .td.noton {
   color: #f9bd00;
 }
 
-.calendar_body .td.attend{
+.calendar_body .td.attend {
   color: #7ac000;
 }
 
-.calendar_mask{
+.calendar_mask {
   width: 100%;
   height: 100%;
   margin-top: 20rpx;
@@ -88,20 +100,36 @@ page {
 
 
 .calendar_mask_layer {
-  /* display: none; */
-  width: 100%;
-  height: 60%;
+ 
   position: fixed;
-  top: 0;
+  top: 190rpx;
+  left: 35rpx;
+  right: 35rpx;
   z-index: 10;
   background: #fff;
+  box-shadow:0px 1rpx 27rpx 0px rgba(150,149,149,0.26);
+  border-radius:30rpx;
+  overflow: hidden;
+}
+.close{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    position: relative;
+    bottom: -35rpx;
+    z-index: 66;
+    
 }
 
 
-
 .calendar {
-  width: 100%;
   background: #fff;
+
+  width: 690rpx;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 1rpx 27rpx 0px rgba(150, 149, 149, 0.26);
+  border-radius: 30rpx;
+  overflow: hidden;
 }
 
 .calendar_head {
@@ -120,12 +148,13 @@ page {
 }
 
 .calendar_body {
+  box-sizing: border-box;
   padding: 0 20rpx 20rpx;
 }
 
 .calendar .week {
   margin: 0;
-  background:none;
+  background: none;
   text-align: center;
   font-size: 28rpx;
   border-radius: 20rpx;
@@ -136,28 +165,38 @@ page {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: 94rpx;
+  height:72rpx;
 }
 
-.calendar .td{
-  width: 82rpx;
-  height: 80rpx;
-  line-height: 80rpx;
+.calendar .td {
+  width: 62rpx;
+  height: 60rpx;
   text-align: center;
-  color: #888;
+  color: rgba(102, 102, 102, 1);
+  font-family: PingFang SC;
+  font-weight: 400;
   border-radius: 6rpx;
 }
-.calendar .week .td{
-  color: #000;
-  font-size:28rpx;
+
+.calendar .week .td {
+  font-size: 28rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: rgba(51, 51, 51, 1);
 }
 
-.tr .date_active{
-  background: #f29219;
+.tr .date_active {
+ background:rgba(239,207,11,1);
   /*color: #fff !important;*/
-  color: #fff ;
+  color: #fff;
+  font-size: 24rpx;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  padding: 6rpx;
+  border-radius: 50%;
 }
 
-.calendar .o_month{
+.calendar .o_month {
   color: #B2B2B2;
 }

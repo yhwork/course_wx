@@ -1,13 +1,21 @@
 {
   "pages": [
     "pages/course/courseList/courseList",
+    "pages/mypage/uesHelp/useHelp",
+    "pages/mypage/mypage/mypage",
+    "pages/mypage/area/area",
+    "pages/mypage/myDiary",
+    "pages/mine/mine",
+    "pages/mypage/authorityManagement/authorityManagement",
+    "pages/mypage/accumulatePoints/accumulatePoints",
+    "pages/mypage/editMyChild/editMyChild",
+    "pages/mypage/modifyInformation/modifyInformation",
+    "pages/mypage/myChildren/myChildren",
     "pages/course/course",
     "pages/course/addCalendar/addCalendar",
     "pages/circle/circle",
     "pages/class/class",
-    "pages/mypage/mypage/mypage",
     "pages/register/register",
-    "pages/mypage/mypage1/mypage",
     "pages/course/p_manage/schoolout_manage",
     "pages/course/p_manage/schoolout_manage_copy",
     "pages/course/p_manage/schoolout_manage_detail",
@@ -34,37 +42,33 @@
     "pages/course/p_add/schoolin_tag_modify",
     "pages/category/category",
     "pages/category/subject/subjectlist",
-    "pages/register/info/p_info",
-    "pages/mypage/area/area",
     "pages/area/area",
-    "pages/register/info/t_info",
     "pages/register/mobilevalid",
-    "pages/mine/mine",
+    "pages/register/info/t_info",
+    "pages/register/info/p_info",
     "pages/register/protocol/protocol",
-    "pages/mypage/authorityManagement/authorityManagement",
-    "pages/mypage/editMyChild/editMyChild",
-    "pages/mypage/modifyInformation/modifyInformation",
-    "pages/mypage/seen/seen",
-    "pages/mypage/myChildren/myChildren",
-    "pages/mypage/myFans/myFans",
-    "pages/mypage/personalInfo/personalInfo",
-    "pages/mypage/uesHelp/useHelp",
-    "pages/mypage/myCircle/myCircle",
-    "pages/mypage/myDiary",
-    "pages/mypage/school/school",
-    "pages/mypage/accumulatePoints/accumulatePoints",
-    "pages/mypage/pointsRule/pointsRule",
-    "upload/upload"
-   
+    "components/none/none"
   ],
   "subPackages": [
     {
-      "root":"pages/mydemo",
-      "name":"libcourse",
-      "pages":[
+      "root": "pages/myindex",
+      "name": "mypage",
+      "pages": [
+        "pages/seen/seen",
+        "pages/personalInfo/personalInfo",
+        "pages/pointsRule/pointsRule",
+        "upload/upload",
+        "pages/myCircle/myCircle",
+        "pages/myFans/myFans"
+      ]
+    },
+    {
+      "root": "pages/mydemo",
+      "name": "libcourse",
+      "pages": [
         "pages/editName/rditname",
-        "pages/qrcode/qrcode"
-
+        "pages/qrcode/qrcode",
+        "pages/school/school"
       ]
     },
     {

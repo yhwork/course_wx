@@ -2,7 +2,6 @@ import regeneratorRuntime from '../../lib/runtime'
 import {
   EApp,
   EPage,
-
   PAGE_LIFE
 } from '../../eea/index'
 import {
@@ -13,7 +12,7 @@ import {
 
 const that = this;
 const audioPlay = require("../../lib/audioPlay");
-class myDiary extends EPage {
+class myDiary1 extends EPage {
   get data() {
     return {
       selected: true,
@@ -208,7 +207,7 @@ class myDiary extends EPage {
 }
 
 EApp.instance.register({
-  type: myDiary,
+  type: myDiary1,
   id: 'myDiary',
   config: {
     events,

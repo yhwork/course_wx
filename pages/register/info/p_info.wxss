@@ -2,6 +2,113 @@ page {
   font-family: PingFangSC-Regular;
 }
 
+.addCourse {
+  display: flex;
+  flex-flow: column wrap;
+  padding-top: 90rpx;
+}
+
+.addCourse .data {
+  width: 690rpx;
+  height: 467rpx;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 1rpx 27rpx 0px rgba(150, 149, 149, 0.26);
+  border-radius: 30rpx;
+  position: relative;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+}
+.addCourse .gender{
+  display: flex;
+  justify-content: flex-end;
+}
+.addCourse .bg{
+  background-color: none;
+}
+
+.add_head {
+  position: absolute;
+  top: -15%;
+  width: 134rpx;
+  height: 134rpx;
+  background: rgba(231, 198, 14, 1);
+  border-radius: 50%;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.add_head text {
+
+  font-size: 20rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 1);
+}
+
+.data_info {
+  position: absolute;
+  bottom: 60rpx;
+  left: 90rpx;
+  right: 90rpx;
+}
+.radio-group {
+  margin-left: 16rpx;
+  display: flex;
+  align-items: center;
+}
+
+.checkdatas {
+  margin: 0 10rpx;
+  display: flex;
+  align-items: center;
+  width: 22rpx;
+  height: 22rpx;
+  border-radius: 50%;
+  background-color: #f8f6f2;
+  border: 1rpx solid #6e6860;
+}
+.add_head .img{
+  width: 70rpx;
+  height: 70rpx;
+}
+.checkdata {
+  margin: 0 10rpx;
+  display: flex;
+  align-items: center;
+  width: 22rpx;
+  height: 22rpx;
+  border-radius: 50%;
+  background-color: #dd9309;
+  border: 1rpx solid #dd9309;
+}
+.data_info .item {
+  padding: 10rpx 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.addCourse .btn {
+  margin-top: 190rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.addCourse .btn>view {
+  text-align: center;
+  width: 293rpx;
+  height: 61rpx;
+  background: rgba(231, 198, 14, 1);
+  border-radius: 21rpx;
+  line-height: 61rpx;
+  font-size: 28rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 1);
+}
+
 .page__hd {
   background: url("https://timgsa.baidu.com/timg?image&quality=80 &size=b10000_10000&sec=1532422488724&di=d68b983fe28cdf63cd9fbea3365fd3a0&imgtype=jpg&src=http%3A%2F%2Ff.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F09fa513d269759ee58c4971cbefb43166c22df55.jpg") 100%/100%;
   height: 310rpx;
@@ -14,6 +121,22 @@ page {
 
 .writer {
   text-align: right;
+}
+
+.addCourse input {
+  text-align: right;
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: rgba(102, 102, 102, 1);
+}
+
+.placeholder {
+
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: rgba(102, 102, 102, 1);
 }
 
 .photo {
@@ -153,9 +276,11 @@ page {
   height: 40rpx;
   border-radius: 40rpx;
 }
-button{
+
+button {
   font-family: PingFangSC-Regular;
 }
+
 button::after {
   border: none;
 }

@@ -10,6 +10,7 @@ import {
 } from './courseList.eea'
 
 import moment from '../../../lib/moment.min.js'
+
 const app = getApp();
 
 class CourseListPage extends EPage {
@@ -254,25 +255,32 @@ class CourseListPage extends EPage {
                 url: '/pages/course/p_manage/schoolout_manage?activeIndex=0' + "&childId=" + childId, // 打开校内
               })
             } else {
+              // wx.navigateTo({
+              //   url: '/pages/course/p_manage/schoolout_manage?activeIndex=0' + "&childId=" + childId, // 打开校内
+              // })
+
+
               // 校内查询是否有课程  有课程 跳转课程列表  没有泽跳转 添加校内课程
-              this.$api.course.getAllInternalCourseName({
-                childId: childId
-              }).then(res => {
+              // wx.navigateTo({
+              //   url: `/pages/course/p_add/schoolout_add1?childId=${childId}&current=0`,
+              // })
+
+              // dataType
+              let params = { childId: childId}
+              this.$api.course.getAllInternalCourseName(params).then(res => {
+            
+
                 if (res.data.errorCode == 0 && res.data.result.length >= 0) {
                   wx.navigateTo({
                     url: '/pages/course/course?current=' + state + "&childId=" + childId,
                   })
-
                 } else {
                   wx.navigateTo({
-                    url: `/pages/course/p_add/schoolout_add1?childId=${childId}&activeIndex=0`,
+                    url: `/pages/course/p_add/schoolout_add1?childId=${childId}&current=0`,
                   })
                 }
-              })
 
-              // wx.navigateTo({
-              //   url: '/pages/course/course?current=' + state + "&childId=" + childId,
-              // })
+              })
             }
 
           } else if (state == 3) {
@@ -314,13 +322,14 @@ class CourseListPage extends EPage {
         let {
           childId
         } = this.data
-        if (e.currentTarget.dataset.current == 1) {
+        if (e.currentTarget.dataset.current == 1) {    // 校外
           wx.navigateTo({
             url: `/pages/course/p_add/schoolout_add1?childId=${childId}&activeIndex=1`,
           })
-        } else {
+        } else {   // 校内
+         
           wx.navigateTo({
-            url: `/pages/course/p_add/schoolout_add1?childId=${childId}&activeIndex=0`,
+            url: `/pages/course/p_add/schoolout_add1?childId=${childId}&current=0`,
           })
         }
 
@@ -672,13 +681,14 @@ class CourseListPage extends EPage {
               }
               let data = await this.$api.course.loadCourseTime(params) // 查找课程
               // console.log('课程', data)
+              if(data.data.imgType){
+                this.setData({
+                  imgType
+                })
+              }
               var lessonLists = data.data.result.list; // 课程
-              if (lessonLists != null && lessonLists.length >= 1) { // 两天都有数据
-
-
-
+              if (lessonLists != null && lessonLists.length >= 1){ 
                 if (currentDate == lessonLists[0].date) { // 第一天有数据
-
                   let startList = lessonLists[0].courseList.filter(item => {
                     // let nowdate = moment().set({'hours': 18,'minutes':'10'}).format('YYYY-MM-DD HH:mm');
                     // 只过滤今天的内容
@@ -698,7 +708,6 @@ class CourseListPage extends EPage {
                     } else {
                       return item
                     }
-
                   })
                   
                   if(lessonLists[1]){
@@ -706,11 +715,6 @@ class CourseListPage extends EPage {
                   }else{
                     item.courseNum = startList.length ; // 两天的课程数
                   }
-
-               
-
-                  console.log('')
-
                   // 改成两天的课程
                   childList.push({
                     headImg: item.logo,
@@ -728,9 +732,15 @@ class CourseListPage extends EPage {
                   })
                 }
 
-                // console.log('小孩日程数据', childList, secnder)
+              }else{
+                childList.push({
+                  headImg: item.logo,
+                  userName: item.childName,
+                  childId: item.childId,
+                  gender: item.gender,
+                  messagenum: item.courseNum,
+                })
               }
-              //  return item
             }
             // console.log('小孩列表', list)
             // console.log('优先小孩 课程', childList)

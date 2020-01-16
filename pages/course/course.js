@@ -17,12 +17,17 @@ import moment from '../../lib/moment.min.js'
 class CoursePage extends EPage {
   get data() {
     return {
+      title:'快点添加课程吧！',
       btnclick: false,
       userInfo: {}, //当前用户信息
       lessons: [], //一周的课 
       dayLessons: [], //当天的课
       morelessons: [], //更多的课
       monthLessonNum: [], //某月每天的课节数
+      select_time:{
+        date:'',
+        time:''
+      },
       model: {
         currentDate: moment().format('YYYY-MM-DD'),
         currentMonth: moment().format('YYYY-MM'),
@@ -81,14 +86,11 @@ class CoursePage extends EPage {
       ],
       isSubmit: true,
       isList: true, // 日历界面
-      current: '',
+      current: '',  // 校内课还是校外课
       isback: false,
       productCourseId: "",
-    
-
     };
   }
-
   mapPageEvent({
     put,
     dispatch
@@ -104,6 +106,7 @@ class CoursePage extends EPage {
        * 
        */
       [PAGE_LIFE.ON_LOAD](option) {
+        console.log('值',option)
         if (option.hasOwnProperty('childId')) {
           this.setData({
             childId: option.childId,
@@ -133,7 +136,6 @@ class CoursePage extends EPage {
           })
           put(effects.GET_USER_INFO); // 获取用户信
         }
-        console.log('值', option);
         if (option.isback) {
           this.setData({
             isback: option.isback
@@ -221,6 +223,10 @@ class CoursePage extends EPage {
       },
 
       [PAGE_LIFE.ON_SHOW]() {
+        console.log('值');
+        this.setData({
+          btnclick: false,
+        })
         //获取用户信息
         this.$common.checkAuth1().then(
           (res) => {
@@ -300,6 +306,10 @@ class CoursePage extends EPage {
   }) {
     let api = this.$api
     return {
+      // 没有课程添加课程
+      [events.ui.back_change](e){
+
+      },
       // 返回主页
       [events.ui.backhome]() {
         console.log('主页')
@@ -316,12 +326,17 @@ class CoursePage extends EPage {
       [events.ui.add_course](data){
         let date = data.detail.date;
         let time = data.detail.time;
-        let { current, childId} = this.data
-        console.log('添加的课程', time, current)
+        let select_time= {
+          date,time
+        }
+        let { current, childId} = this.data;
+        console.log('添加的课程', time, current,date)
+        wx.setStorageSync('select_time',select_time)
         // 判断校内还是校外
         if (current == 1){
+         
           wx.navigateTo({
-            url: `/pages/course/p_add/schoolout_add1?childId=${childId}&activeIndex=1`,
+            url: `/pages/course/p_add/schoolout_add1?childId=${childId}&activeIndex=1&time=${time}&date=${date}`,
           })
         }else if(current == 0){
           // 校内查询是否有课程  有课程 跳转课程列表  没有泽跳转 添加校内课程
@@ -371,15 +386,25 @@ class CoursePage extends EPage {
         })
       },
       // tab日历切换   默认
-      [events.ui.chargeTab]() {
-        this.setData({
-          isList: !(this.data.isList)
-        })
+      [events.ui.chargeTab](e) {
+        let id = e.currentTarget.dataset.id;
+        let childId = this.data.childId
+        if(id == 1){
+          this.setData({
+            isList: !(this.data.isList)
+          })
+        }else{
+          wx.navigateTo({
+            url: '/pages/course/p_manage/schoolout_manage?activeIndex=1' + "&childId=" + childId, // 打开校内
+          })
+        }
+        
+       
       },
       [events.ui.goAdd](e) {
-        var current = e.currentTarget.dataset.current
+        // console.log('当前',e.detail)
         wx.navigateTo({
-          url: '/pages/course/p_add/schoolout_add1?current=' + current,
+          url: '/pages/course/p_add/schoolout_add1?current=' +e.detail.current,
         })
       },
       [events.ui.CHOOSE_TYPE]() {
@@ -915,26 +940,27 @@ class CoursePage extends EPage {
             }
             console.log('孩子id', params, '角色状态', role, '日程状态', current);
             api.course.loadCourseList(params).then((res) => {
-              console.log('课表', res.data.result)
+             
               if (res.data.errorCode == 0 && res.data.result) {
                 this.setData({
-                  morelessons: res.data.result.splice(0, 100)
+                  morelessons: res.data.result.splice(0, 20)
                 })
               }else{
                 this.setData({
                   morelessons: []
                 })
               }
+               console.log('课表1',  this.data.morelessons)
             })
           } else{
             var params = {
               childId: this.data.childId,
             }
             api.course.loadCourseTimelist(params).then((res) => {
-              console.log('课表', res.data.result)
+         
               if (res.data.errorCode == 0 && res.data.result) {
                 this.setData({
-                  morelessons: res.data.result.splice(0, 100)
+                  morelessons: res.data.result.splice(0, 20)
                 })
               } else {
                 this.setData({
@@ -942,6 +968,7 @@ class CoursePage extends EPage {
                 })
                
               }
+              console.log('最近课表', this.data.morelessons)
             })
           }
         } else if (role == 1) { // 教师端
@@ -959,23 +986,25 @@ class CoursePage extends EPage {
               }
             }
             api.course.loadCourseList(params).then((res) => {
-              console.log('课表', res.data.result)
+              // console.log('课表', res.data.result)
               if (res.data.errorCode == 0 && res.data.result) {
                 put(effects.GET_WEEK_LESSON);
                 this.setData({
-                  morelessons: res.data.result.splice(0, 100)
+                  morelessons: res.data.result.splice(0, 20)
                 })
               }
+              console.log('老师校内外课表', this.data.morelessons)
             })
           } else {
             api.course.loadCourseTimelist({}).then((res) => {
-              console.log('课表', res.data.result)
+            
               if (res.data.errorCode == 0 && res.data.result) {
                 put(effects.GET_WEEK_LESSON);
                 this.setData({
-                  morelessons: res.data.result.splice(0, 100)
+                  morelessons: res.data.result.splice(0, 20)
                 })
               }
+              console.log('老师更多课表', this.data.morelessons)
             })
           }
 

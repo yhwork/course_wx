@@ -32,18 +32,23 @@ class SchooloutManagePage extends EPage {
       sliderLeftSub: 0,
       sliderOffsetSub: 0,
       tabsSub: [{
+        id:0,
         type: '全部',
-        num: ''
+        num: 0
       }, {
+        id:1,
         type: '已开课',
-        num: ''
+        num: 0
       }, {
+        id:2,
         type: '未开课',
-        num: ''
+        num: 0
       }, {
+        id:3,
         type: '已结课',
-        num: ''
+        num: 0
       }, ],
+      
       activeIndexSub: 1,
       loadChildAll: false,
       model: {
@@ -168,7 +173,7 @@ class SchooloutManagePage extends EPage {
     }
   }
 
-  mapUIEvent({
+  mapUIEvent({  
     put
   }) {
     return {
@@ -567,7 +572,12 @@ class SchooloutManagePage extends EPage {
         put(effects.GET_WX_CODE);
       },
       [events.ui.nopower]() {
-        this.$common.showMessage(this, '共享人没有开启孩子的权限');
+       return wx.showToast({
+         title: '共享人没有开启孩子的权限',
+         icon: 'none',
+         duration:'1500'
+       })
+        (this, '');
       }
     }
   }

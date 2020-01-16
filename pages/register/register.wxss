@@ -1,4 +1,4 @@
-.main{
+.main {
   background: #f4f4f4;
   width: 100%;
   height: 1220rpx;
@@ -6,25 +6,38 @@
   box-sizing: border-box;
 }
 
-.change{
+.change {
   display: flex;
   justify-content: center;
   transition: all 10s;
 }
 
-.phone{
-  box-shadow:5rpx 5rpx 3rpx 4rpx #f29219
+.phone {
+  box-shadow: 5rpx 5rpx 3rpx 4rpx #f29219
 }
-
-.head-img{
+.jieshao{
+  margin-top: 35rpx;
+  
+}
+.jieshao view{
+  line-height:60rpx;
+  letter-spacing:2rpx;
+  font-size:20rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  color:rgba(102,102,102,1);
+}
+.head-img {
   width: 100%;
   padding: 30rpx 0;
 }
-.teacher-img{
+
+.teacher-img {
   width: 64%;
   padding-top: 50rpx;
 }
-.btn1{
+
+.btn1 {
   width: 45%;
   height: 390rpx;
   background: #fff;
@@ -32,54 +45,86 @@
   /* left: 30rpx; */
   border-radius: 15rpx;
 }
-button::after{border:0}
-.teacher{
+
+button::after {
+  border: 0
+}
+.ban_s{
+  /* padding: 8rpx; */
+}
+.teacher {
   text-align: center;
   color: black;
   font-weight: bold;
   margin-top: -16rpx;
   font-size: 34rpx;
 }
-.teacher-duan{
+.banners{
+  width: 691rpx;
+  height: 290rpx;
+}
+.teacher-duan {
   color: #cacaca;
   font-size: 24rpx;
   text-align: center;
   margin-top: -18rpx;
 }
 
-.home-img{
+.home-img {
   width: 64%;
   padding-top: 50rpx;
 }
-.btn2{
-  width: 45%;
-  height: 390rpx;
+button.btn2{
+  margin:0
+}
+.btn2 {
+  width:304rpx;
+height:357rpx;
   background: #fff;
   float: right;
-  /* right: 30rpx; */
   border-radius: 15rpx;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 1rpx 27rpx 0px rgba(150, 149, 149, 0.28);
+  border-radius: 30rpx;
 }
-button::after{border:0}
-.home{
+
+button::after {
+  border: 0
+}
+.sel_role{
+  display: flex;
+  justify-content: space-between;
+}
+.home {
+  font-size: 26rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: rgba(14, 5, 10, 1);
   text-align: center;
-  color: black;
-  font-weight: bold;
-  margin-top: -16rpx;
-  font-size: 34rpx;
+  transform: translateY(-20rpx);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.home-duan{
-  color: #cacaca;
-  font-size: 24rpx;
-  text-align: center;
-  margin-top: -18rpx;
+
+.home-duan {
+  transform: translateY(-28rpx);
+  font-size: 20rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: rgba(102, 102, 102, 1);
+
 }
-.choose{
+
+.choose {
   text-align: center;
   color: #c4c4c4;
   font-size: 28rpx;
-  margin-top: 420rpx;
+  margin-top: 20rpx;
 }
-.student{
+
+.student {
   font-size: 24rpx;
   margin-top: -30rpx;
 }

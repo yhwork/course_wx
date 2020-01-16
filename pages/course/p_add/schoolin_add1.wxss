@@ -5,7 +5,10 @@
   background: #fff;
   border-radius: 8rpx;
 }
-
+image{
+  width: 100%;
+  height: auto;
+}
 .photo_box {
   position: relative;
   width: 84rpx;

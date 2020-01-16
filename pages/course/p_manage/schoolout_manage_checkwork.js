@@ -23,6 +23,7 @@ class SchooloutManageCheckWorkPage extends EPage {
     mapPageEvent({ put }) { 
         return {
             [PAGE_LIFE.ON_LOAD](option) {
+                console.log('值',option)
                 //获取用户信息
                 put(effects.GET_USER_INFO);
 

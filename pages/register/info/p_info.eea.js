@@ -7,6 +7,9 @@ const events = {
     VIEW_AREA: null,
     SAVE: null,
     back: null,
+    getisweek:null,
+    CHANGE_SCHOOL:null,
+    CHANGE_GRADES:null,
   }
 }
 

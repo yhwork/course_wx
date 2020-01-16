@@ -38,7 +38,9 @@ const events = {
     chargeTab:null,
     CREATE_COURSE:null,
     getSchoolName:null,
-    getisweek:null
+    getisweek:null,
+    CHOOSE_TAGS:null,
+    CHOOSE_ITEMS:null
   }
 }
 

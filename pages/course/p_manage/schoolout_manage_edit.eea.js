@@ -23,8 +23,10 @@ const events = {
     CALENDAR_DAY_CHANGED: null,
     CHANGE_REMIND_B: null,
     CLASS_NEW: null,
-    eStop: null
-
+    eStop: null,
+    bindChange1:null,
+    quit:null,
+    CHANGE_ALERT:null  
   }
 }
 

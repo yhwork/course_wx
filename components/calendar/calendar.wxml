@@ -54,6 +54,10 @@
             </block>
           </block>
         </view>
+
       </view>
+      <!-- <view class="close">
+            关闭
+      </view> -->
     </view>
   </view>

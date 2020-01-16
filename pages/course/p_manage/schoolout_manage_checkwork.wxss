@@ -10,67 +10,89 @@ page {
   padding: 20rpx 30rpx;
 }
 
-.photo{
+.photo {
   width: 52rpx;
   height: 52rpx;
   border-radius: 52rpx;
   margin-right: 20rpx;
 }
-.info_left,.info_right{
+
+.info_left,
+.info_right {
   display: flex;
   align-items: center;
 }
-.course_name{
+
+.course_name {
   margin-left: 30rpx;
-  font-size:34rpx;
+  font-size: 34rpx;
   color: #222;
 }
-.school{
-  font-size:26rpx;
+
+.school {
+  font-size: 26rpx;
   color: #888;
 }
-.name{
+
+.name {
   color: #576B95;
-  font-size:34rpx;
+  font-size: 34rpx;
 }
-.checkwork_tab{
+
+
+.item_data{
+
+font-size:24rpx;
+font-family:PingFang SC;
+font-weight:400;
+}
+.checkwork_tab {
+
+  margin-top: 15rpx;
+  width: 690rpx;
+  height: 101rpx;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 1rpx 27rpx 0px rgba(150, 149, 149, 0.26);
+  border-radius: 30rpx;
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 30rpx 60rpx;
-  background: #FAFAFA;
   color: #353535;
-  font-size:28rpx;
+  
 }
 
-.tab_item{
+.tab_item {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.tab_foot{
+.tab_foot {
   display: flex;
   align-items: center;
 }
-
-.active{
-  color: #F29219;
+.num{
+  font-size: 24rpx;
+}
+.active {
+  color:rgba(239,207,11,1);
 }
 
-.calendar_body .td.absent{
+.calendar_body .td.absent {
   color: #ef5955;
 }
 
-.calendar_body .td.noton{
+.calendar_body .td.noton {
   color: #f9bd00;
 }
 
-.calendar_body .td.attend{
+.calendar_body .td.attend {
   color: #7ac000;
 }
 
-.calendar_mask{
+.calendar_mask {
   width: 100%;
   height: 100%;
   margin-top: 20rpx;
@@ -102,7 +124,7 @@ page {
 
 .calendar .week {
   margin: 0;
-  background:none;
+  background: none;
   text-align: center;
   font-size: 28rpx;
   border-radius: 20rpx;
@@ -116,7 +138,7 @@ page {
   height: 94rpx;
 }
 
-.calendar .td{
+.calendar .td {
   width: 82rpx;
   height: 80rpx;
   line-height: 80rpx;
@@ -124,17 +146,17 @@ page {
   color: #888;
   border-radius: 6rpx;
 }
-.calendar .week .td{
+
+.calendar .week .td {
   color: #000;
-  font-size:28rpx;
+  font-size: 28rpx;
 }
 
-.date_active{
+.date_active {
   background: #f29219;
   color: #fff !important;
 }
 
-.calendar .o_month{
+.calendar .o_month {
   color: #B2B2B2;
 }
-

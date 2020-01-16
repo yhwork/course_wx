@@ -1,6 +1,6 @@
 const events = {
   ui: {
-    CHANGE_BEGINDATE: null,
+    selectok1: null,
     CHANGE_ENDDATE: null,
     CHANGE_REMIND: null,
     CALENDAR_DAY_CHANGED: null,
@@ -12,6 +12,8 @@ const events = {
     SAVE_NEXT: null,
     VIEW_AREA:null,
     SET_SCHOOLOUT:null,
+    quit:null,
+    bindChange1:null
   }
 }
 
