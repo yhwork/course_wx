@@ -15,7 +15,7 @@
       </swiper>
       
   </view>
-  <view class='{{style}}' class="sel_role">
+  <view class='sel_role {{style}}'>
     <block wx:if="{{model.changeRole=='0'}}">
       <button hidden='{{btn}}' class='btn2' open-type="getUserInfo" bindgetuserinfo="CHOOSE_ROLE" data-role="1">
         <image src='/assets/local/mypage/teacher.png' class='teacher-img' mode="widthFix"></image>
@@ -35,15 +35,11 @@
 
       <button hidden='{{isphone}}' class='btn2 phone' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
         <image src='{{home_img}}' class='home-img' mode="widthFix"></image>
-        <view class='home'>我是{{type}}</view>
+        <view class='home'>我是{{type}}1</view>
         <view class='home-duan'>{{type}}端</view>
       </button>
 
     </block>
-
-
-
-
     <block wx:else>
       <button class='btn1' bindtap="CHANGE_ROLE" data-role="1">
         <image src='{{teacher_img}}' class='btn2' mode="widthFix"></image>

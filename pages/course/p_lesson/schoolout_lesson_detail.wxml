@@ -1,238 +1,269 @@
 <view class="page">
-  <view class="page_hd">
-    <view class='main_bg'>
-      <view style='display:flex;align-items:center;'>
-        <view style="margin:0 0 0 50rpx;color:#000;font-size:40rpx;">{{lessonInfo.name}}</view>
-        <!-- <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/sign.png" class='signimg'></image> -->
-      </view>
-      <view>
-        <text style="margin:10rpx 100rpx 0 50rpx;;float:left;color:#eb9100;">{{lessonInfo.timeForClass}}</text>
-      </view>
-      <view class="touxiang">
-        <block wx:if="{{userInfo.role=='0'}}">
-          <image src='{{childInfo.logo}}' class='head-img'></image>
-        </block>
-        <block wx:else>
-          <image src='{{userInfo.logo}}' class='head-img'></image>
-        </block>
+	<view class="main">
+		<view class="main_bg">
+			<view class='mypage_top'>
+				<view class="mypage_course">
+					<view class="course_name">{{lessonInfo.name}}</view>
+					<view class="course_status">
+						<block wx:if="{{lessonInfo.status==1}}">
+							<view class='course_b'>
+								<view class="course-attend"></view>
+								<text class='chu course-attend-color'>出勤</text>
+							</view>
+						</block>
+						<block wx:elif="{{lessonInfo.status=='0'}}">
+							<block wx:if="{{lessonInfo.type==2}}">
+								<view class='course_b'>
+									<view class="course-change"></view>
+									<text class='chu course-change-color'>调课</text>
+								</view>
 
+							</block>
 
-        <block wx:if="{{lessonInfo.status==1}}">
-          <view class='course_b'>
-            <view class="course-attend"></view>
-            <text class='chu course-attend-color'>出勤</text>
-          </view>
-        </block>
-        <block wx:elif="{{lessonInfo.status=='0'}}">
-          <block wx:if="{{lessonInfo.type==2}}">
-            <view class='course_b'>
-              <view class="course-change"></view>
-              <text class='chu course-change-color'>调课</text>
-            </view>
+							<block wx:elif="{{lessonInfo.type==3}}">
+								<view class='course_b'>
+									<view class="course-remedial"></view>
+									<text class='chu course-remedial-color'>补课</text>
+								</view>
+							</block>
+							<block wx:else>
+								<view class='course_b'>
+									<view class="course-noton"></view>
+									<text class='chu course-noton-color'>未上</text>
+								</view>
+							</block>
+						</block>
+						<block wx:else>
+							<block wx:if="{{lessonInfo.type==1}}">
+								<view class='course_b'>
+									<view class="course-absent"></view>
+									<text class='chu course-absent-color'>缺席</text>
+								</view>
+							</block>
+						</block>
+					</view>
+				</view>
+				<view class="course_details">
+					<text>{{lessonInfo.timeForClass}}</text>
+				</view>
+			</view>
 
-          </block>
+			<view class="page_bd">
+				<view class="couese_num">
+					<text>共{{lessonInfo.allClass}}节课程</text>
+					<text>出勤{{lessonInfo.attendClass}}</text>
+					<text>剩余{{lessonInfo.leftClassShow}}</text>
+				</view>
 
-          <block wx:elif="{{lessonInfo.type==3}}">
-            <view class='course_b'>
-              <view class="course-remedial"></view>
-              <text class='chu course-remedial-color'>补课</text>
-            </view>
-          </block>
-          <block wx:else>
-            <view class='course_b'>
-              <view class="course-noton"></view>
-              <text class='chu course-noton-color'>未上</text>
-            </view>
-          </block>
-        </block>
-        <block wx:else>
-          <block wx:if="{{lessonInfo.type==1}}">
-            <view class='course_b'>
-              <view class="course-absent"></view>
-              <text class='chu course-absent-color'>缺席</text>
-            </view>
-          </block>
-        </block>
-      </view>
-    </view>
-    <view class="page_bd">
-      <view class="page__bd page__bd_spacing">
-        <view class="weui-progress" style="margin-top:10px;margin-bottom:10px;">
-          <view class="weui-progress__bar">
-            <progress percent="{{lessonInfo.percent}}" stroke-width="3" color='#F5A623' />
-          </view>
-        </view>
-      </view>
-      <view style='display:flex;justify-content: space-between;padding:0 30rpx;margin-bottom:16rpx;'>
-        <text style="font-size:26rpx;">共{{lessonInfo.allClass}}节课程</text>
-        <text style="font-size:26rpx;">出勤{{lessonInfo.attendClass}}</text>
-        <text style="font-size:26rpx;">剩余{{lessonInfo.leftClassShow}}</text>
-      </view>
-      <!-- 中间说明部分start -->
-      <view class="weui-cells weui-cells_after-title">
-        <!-- 第一个说明 -->
-        <view class="weui-cell">
-          <view class="weui-cell__bd b">
-            <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/icona.png" class='icona'></image>
-            <text style="margin-left: 20rpx;font-size:32rpx;">教学机构</text>
-          </view>
-          <view class="weui-cell__ft" style="font-size:30rpx;">{{lessonInfo.orgName}}</view>
-        </view>
+				<view class="page__bd">
+					<view class="weui-progress">
+						<view class="weui-progress__bar">
+							<progress percent="{{lessonInfo.percent}}" stroke-width="3" color='#EFCF0B' />
+						</view>
+					</view>
+				</view>
 
-        <view class="weui-cell" bindtap="OPEN_LOCATION">
-          <view class="weui-cell__bd">
-            <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/iconb.png" class='iconb'></image>
-            <text style="margin-left: 20rpx;font-size:32rpx;">上课地点</text>
-          </view>
-          <view class="weui-cell__ft" style="font-size:30rpx;color:#3B72A0;">{{lessonInfo.classAddress}}</view>
-        </view>
+				<!-- 中间说明部分start -->
+				<view class="course_list">
+					<view class="course_list_item">
+						<view class="weui-cell__bds">
+							<text >教学机构:</text>
+						</view>
+						<view class="weui-cell__ft"> {{lessonInfo.orgName}}</view>
+					</view>
+					<!-- <view class="course" bindtap="OPEN_LOCATION" data-longitude="{{item.longitude}}" data-latitude="{{item.latitude}}">
+						<view>上课地点:</view>
+						<text class="font course_right">{{items.classAddress}}</text>
+					</view> -->
+					<view wx:if="{{lessonInfo.classAddress}}" class="course_list_item" bindtap="OPEN_LOCATION">
+						<view class="weui-cell__bds">
+							<text>上课地点:</text>
+						</view>
+						<view class="weui-cell__ft">{{lessonInfo.classAddress}}</view>
+						<image src="/assets/local/course/adress.png" class="info_adress"></image>
+					</view>
 
-        <view class="weui-cell">
-          <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/xiangxidizhi.png" class='icona'></image>
-          <view class="weui-cell__bd" style="margin-left: 20rpx;font-size:32rpx;">教
-            <text decode="{{true}}">&ensp;&ensp;&ensp;&ensp;</text>室</view>
-          <view class="weui-cell__ft" style="font-size:30rpx;">{{lessonInfo.classRoom}}</view>
-        </view>
-      </view>
-      <view style='background:#f4f4f4; height:20rpx;'></view>
-      <!-- 中间说明部分center -->
-      <view class="weui-cells weui-cells_after-title">
-        <!-- 第二个说明 -->
-        <view class="weui-cell">
-          <view class="weui-cell__bd b">
-            <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/teacher.png" class='iconc'></image>
-            <text style="margin-left: 20rpx;font-size:32rpx;">任教老师</text>
-          </view>
-          <view class="weui-cell__ft" style="font-size:30rpx;">{{lessonInfo.teacher}}</view>
-        </view>
+					<view class="course_list_item" wx:if="{{lessonInfo.classRoom}}">
+						<view class="weui-cell__bds">教
+							<text decode="{{true}}">&ensp;&ensp;&ensp;&ensp;</text>室:</view>
+						<view class="weui-cell__ft">{{lessonInfo.classRoom}}</view>
+					</view>
+					<view class="course_list_item" wx:if="{{lessonInfo.teacher}}">
+						<view class="weui-cell__bds b">
+							<text >任教老师:</text>
+						</view>
+						<view class="weui-cell__ft" style="font-size:30rpx;">{{lessonInfo.teacher}}</view>
+					</view>
 
-        <view class="weui-cell">
-          <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/lianxi.png" class='icona'></image>
-          <view class="weui-cell__bd" style="margin-left: 20rpx;font-size:32rpx;">联系方式</view>
-          <view class="weui-cell__ft" style="font-size:30rpx;">{{lessonInfo.contactTel}}</view>
-        </view>
-      </view>
+					<view class="course_list_item" wx:if="{{lessonInfo.contactTel}}">
+						<view class="weui-cell__bds">联系方式:</view>
+						<view class="weui-cell__ft">{{lessonInfo.contactTel}}</view>
+					</view>
 
-      <!-- 中间说明部分end-->
-      <view style='background:#f4f4f4; height:20rpx;'></view>
-      <view class="weui-cells weui-cells_after-title">
-        <!-- 第二个说明 -->
-        <!--<view class="weui-cell">
-          <view class="weui-cell__bd b">
-            <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/icond.png" class='icond'></image>
-            <text style="margin-left: 20rpx;font-size:32rpx;">上课周期</text>
-          </view>
-          <view class="weui-cell__ft" style="font-size:30rpx;">{{lessonInfo.beginDate}}~{{lessonInfo.endDate}}</view>
-        </view>-->
+				</view>
 
-        <block wx:if="{{lessonInfo.type==2}}">
-          <view class="weui-cell">
-            <view class="weui-cell__bd b">
-              <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/change.png" class='icone'></image>
-              <text style="margin-left: 20rpx;font-size:32rpx;">被调时间</text>
-            </view>
-            <view class="weui-cell__ft" style="font-size:30rpx;color:red;">{{lessonInfo.modifyTime}}</view>
-          </view>
-        </block>
+				<block wx:if="{{lessonInfo.type==2}}">
+					<view class="course_list_item">
+						<view class="weui-cell__bds b">
+							<text >被调时间:</text>
+						</view>
+						<view class="weui-cell__ft">{{lessonInfo.modifyTime}}</view>
+					</view>
+				</block>
 
-        <block wx:elif="{{lessonInfo.type==3}}">
-          <view class="weui-cell">
-            <view class="weui-cell__bd b">
-              <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/absent.png" class='icong'></image>
-              <text style="margin-left: 20rpx;font-size:32rpx;">缺勤时间</text>
-            </view>
-            <view class="weui-cell__ft" style="font-size:30rpx;color:red;">{{lessonInfo.absentTime}}</view>
-          </view>
-        </block>
+				<block wx:elif="{{lessonInfo.type==3}}">
+					<view class="course_list_item">
+						<text class="weui-cell__bds b">
+						<text >缺勤时间:</text>
+						</text>
+						<view class="weui-cell__ft" style="font-size:30rpx;color:red;">{{lessonInfo.absentTime}}</view>
+					</view>
+				</block>
 
-        <view class="weui-cell">
-          <view class="weui-cell__bd b">
-            <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/hint.png" class='icong'></image>
-            <text style="margin-left: 20rpx;font-size:32rpx;">上课提醒</text>
-          </view>
-          <view class="weui-cell__ft" style="font-size:30rpx;">{{lessonInfo.notifyTxt}}</view>
-        </view>
-      </view>
-    </view>
-    <view class='bottom_a'>
-      <view class="weui-cell">
-        <block wx:if="{{lessonInfo.type==1}}">
-          <view class="b" bindtap="OPE_REMEDIAL">
-            <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/icon_a.png" class='bottomicona'></image>
-            <text style="margin-left: 10rpx;font-size:26rpx;color:#888;">补课</text>
-          </view>
-        </block>
-        <block wx:else>
-          <view class="b" bindtap="OPE_ABSENT">
-            <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/icon_a.png" class='bottomicona'></image>
-            <text wx:if="{{editpower=='true'}}" style="margin-left: 10rpx;font-size:26rpx;">缺勤</text>
-            <text wx:else style="margin-left: 10rpx;font-size:26rpx;color:#888;">缺勤</text>
-          </view>
-          <view class="b" bindtap="OPE_CHANGE">
-            <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/icon_b.png" class='bottomiconb'></image>
-            <text wx:if="{{editpower=='true'}}" style="margin-left: 10rpx;font-size:26rpx;">调课</text>
-            <text wx:else style="margin-left: 10rpx;font-size:26rpx;color:#888;">调课</text>
-          </view>
-        </block>
-        <view class="b" bindtap="OPE_DEL">
-          <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/out.png" class='bottomiconc'></image>
-          <text wx:if="{{editpower=='true'}}" style="margin-left: 10rpx;font-size:26rpx;">删除</text>
-          <text wx:else style="margin-left: 10rpx;font-size:26rpx;color:#888;">删除</text>
-        </view>
-        <view class="b">
-          <button bindtap='SHOW_SHARE'>
-            <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/share_2.png" class='bottomicond'></image>
-            <text style="margin-left: 10rpx;font-size:26rpx;">分享</text>
-          </button>
-        </view>
-      </view>
-    </view>
+				<view class="course_list_item">
+					<view class="weui-cell__bds b">
+						<text >上课提醒:</text>
+					</view>
+					<view class="weui-cell__ft">{{lessonInfo.notifyTxt}}</view>
+				</view>
 
+			</view>
+		</view>
+		<view class='bottom_a'>
 
+			<block wx:if="{{lessonInfo.type==1}}">
+				<view class="b" bindtap="OPE_REMEDIAL">
+					<image src="/assets/local/course/queqin.png" class='bottomicona'></image>
+					<text>补课</text>
+				</view>
+			</block>
+			<block wx:else>
+				<view class="b" bindtap="OPE_ABSENT">
+					<image src="/assets/local/course/queqin.png" class='bottomiconb'></image>
+					<text class="{{editpower=='true'?'bottom_b':'bottom_c'}}" >缺勤</text>
+				</view>
+				<view class="b" bindtap="OPE_CHANGE">
+					<image src="/assets/local/course/tiaoke.png" class='bottomiconb'></image>
+					<text class="{{editpower=='true'?'bottom_b':'bottom_c'}}"  >调课</text>
+				</view>
+			</block>
+			<view class="b" bindtap="OPE_DEL">
+				<image src="/assets/local/course/delete.png" class='bottomiconb'></image>
+				<text class="{{editpower=='true'?'bottom_b':'bottom_c'}}" >删除</text>
+			</view>
+			<view class="b" bindtap='SHOW_SHARE'>
+				<image src="/assets/local/course/share.png" class='bottomiconb'></image>
+				<text class="bottom_b">分享</text>
+			</view>
+		</view>
+	</view>
 
-
-  </view>
-</view>
-
-<!-- 
-<view class='share_mask' hidden='{{shareHide}}'>
-    <image src='{{shareInfo.imageUrl}}'></image>
-</view> -->
-
-<!-- 分享 -->
-<view class='share_mask' hidden='{{shareHide}}'>
-  <view class='share_box'>
-    <view class='share_top'>
-      <view class='share_title'>{{userInfo.nickName}}@您，给你分享了如下课程</view>
-      <view class='cancel' bindtap='HIDE_SHARE'>取消</view>
-    </view>
-    <view class='share_center'>
-      <view class='course_name'>{{shareInfo.name}}</view>
-      <!--<view class='date'>
+	<!-- 分享 -->
+	<view class='share_mask' hidden='{{shareHide}}'>
+		<view class='share_box'>
+			<view class='share_top'>
+				<view class='share_title'>{{userInfo.nickName}}@您，给你分享了如下课程</view>
+				<view class='cancel' bindtap='HIDE_SHARE'>取消</view>
+			</view>
+			<view class='share_center'>
+				<view class='course_name'>{{shareInfo.name}}</view>
+				<!--<view class='date'>
         <view class='start_date'>开始：{{shareInfo.beginDate}}</view>
         <view class='end_date'>结束：{{shareInfo.endDate}}</view>
       </view>-->
-      <view class='time_type'>
-        <view class='time'>{{shareInfo.timeForClass}}</view>
-        <view class='type'>{{shareInfo.orgName}}</view>
-      </view>
-      <view class='addr'>
-        <image src='../../..https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/map.png'></image>
-        {{shareInfo.classAddress}}
-      </view>
-    </view>
-    <view class='share_foot'>
-      <button open-type="share" class='weiXin'>
-        <view class='weiXin'>
-          <image src='../../..https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/wx_friend.png'></image>
-          微信好友
-        </view>
-      </button>
-      <!--<view class='xcx'>
+				<view class='time_type'>
+					<view class='time'>{{shareInfo.timeForClass}}</view>
+					<view class='type'>{{shareInfo.orgName}}</view>
+				</view>
+				<view class='addr'>
+					<image src='../../..https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/map.png'></image>
+					{{shareInfo.classAddress}}
+				</view>
+			</view>
+			<view class='share_foot'>
+				<button open-type="share" class='weiXin'>
+					<view class='weiXin'>
+						<image src='../../..https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/wx_friend.png'></image>
+						微信好友
+					</view>
+				</button>
+				<!--<view class='xcx'>
         <image src='../../..https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/xcx_icon.png'></image>
         小程序码</view>-->
-    </view>
-  </view>
-</view>
+			</view>
+		</view>
+	</view>
+	<canvas class="share-canvas" style="width:{{shareCavansOptions.width}}px;height:{{shareCavansOptions.height}}px;visibility:hidden;position:absolute;top:-1000rpx;" canvas-id="share_canvas"></canvas>
 
-<canvas class="share-canvas" style="width:{{shareCavansOptions.width}}px;height:{{shareCavansOptions.height}}px;visibility:hidden;position:absolute;top:-1000rpx;" canvas-id="share_canvas"></canvas>
+	<!-- 调课 -->
+	<view class="update_courses" hidden="{{course.update}}">
+		<view class="update_course_time">
+			<view class="update_course_date">
+				<view class="update_left">
+					<view class="name">上课日期</view>
+					<view class="times">{{updata_data.beginDate}}</view>
+				</view>
+				<view class="swip">
+					<image src="/assets/local/course/xiangyou.png"></image>
+				</view>
+				<view class="update_left" bindtap="CHANGE_BEGINDATE" data-times='1'>
+					<view>{{lessonInfo.beginDate}}</view>
+					<text wx:if='{{course.endDate}}'>(请选择上课日期)</text>
+				</view>
+			</view>
+			<view class="update_course_date" >
+				<view class="update_left">
+					<view class="name">上课时间</view>
+					<view class="times">{{updata_data.date}}</view>
+				</view>
+				<view class="swip">
+					<image src="/assets/local/course/xiangyou.png"></image>
+				</view>
+				<view class="update_left" bindtap="CHANGE_BEGINDATE" data-times='0'>
+					<view>{{lessonInfo.beginTime}}</view>
+					<text wx:if='{{course.beginTime}}'>(请选择上课时间)</text>
+				</view>
+			</view>
+		</view>
+		<view class='btn_box'>
+			<button class='btn2' bindtap="SAVE_NEXT">确认</button>
+		</view>
+	</view>
+
+	<!-- 开始时间 -->
+	<view class="shoutais4 shoutais" wx:if='{{course.time}}'>
+		<view class="btn_dialog">
+			<view bindtap="quit">取消</view>
+			<view data-id="1" bindtap="quit">确定</view>
+		</view>
+		<picker-view indicator-class='mask_bg' indicator-style="height: 40px;" style="width: 100%; height: 200rpx;" value="{{value3}}" data-id="3" bindchange="bindChange1">
+			<picker-view-column>
+				<view class="shoutais_item" wx:for="{{getdate}}" style="line-height: 50px" >
+					<view class="mask_bgs" > {{item}}</view>
+				</view>
+			</picker-view-column>
+			<picker-view-column>
+				<view class="shoutais_item" wx:for="{{gettime}}" style="line-height: 50px" >
+					<view class="mask_bgs"> {{item}}</view>
+				</view>
+			</picker-view-column>
+		</picker-view>
+	</view>
+
+	<!-- 蒙版 -->
+	<view bindtap="quit" class="{{isrwo==true?'page_bgs':'page_bg'}}" hidden="{{mask}}"></view>
+
+
+	<!-- 日历 -->
+	<block wx:if="{{showCalendar}}">
+	<view class="showCalendar"> 
+	<calendar class='showCalendar' catch:day-click="CALENDAR_DAY_CHANGED" />
+			<view bindtap="quit" class="close">
+				<image src="/assets/local/course/close.png"></image>
+			</view>
+	</view>
+			
+	</block>
+
+
+</view>

@@ -866,7 +866,7 @@ class CourseListPage extends EPage {
             } else {
 
               let nowdate = moment().format('YYYY-MM-DD');
-              console.log(nowdate)
+              // console.log(nowdate)
 
               lessonList.map((item, index) => {
                 if (item.courseList.length > 0) {
@@ -915,33 +915,12 @@ class CourseListPage extends EPage {
 
               })
 
-
               this.setData({
                 lessonLists: startList,
                 // 设置消息显示的数量
                 messagenum: startList.length
               })
             }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             // 两天都没有数据
             // if (res.data.result == null) {

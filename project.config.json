@@ -643,6 +643,34 @@
 					"pathName": "pages/course/course",
 					"query": "childId=101030&courseId=2986&current=0",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "校外课程详情",
+					"pathName": "pages/course/p_lesson/schoolout_lesson_detail",
+					"query": "lessonId=120686&childId=101030",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "调课时间",
+					"pathName": "pages/course/p_lesson/schoolout_lesson_change",
+					"query": "lessonId=120686&childId=101030",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "校内详情",
+					"pathName": "pages/course/p_manage/schoolin_manage_detail",
+					"query": "internalClassId=272",
+					"scene": null
+				},
+				{
+					"id": 87,
+					"name": "修改校内课程",
+					"pathName": "pages/course/p_manage/schoolin_manage_edit",
+					"query": "internalClassId=275",
+					"scene": null
 				}
 			]
 		}

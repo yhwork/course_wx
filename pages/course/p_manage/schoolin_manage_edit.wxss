@@ -2,6 +2,76 @@
 @import '../p_add/schoolout_add1.wxss';
 @import "../p_add/schoolin_add3.wxss";
 
+.course_types {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.add_class {
+  background: white;
+  position: relative;
+}
+
+.time_start {
+  display: flex;
+  align-items: center;
+
+}
+
+.add_class .right_data {
+  font-size: 20rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: rgba(102, 102, 102, 1);
+  margin-left: 30rpx;
+}
+
+.time_start>text {
+  display: flex;
+  align-items: center;
+  font-size: 20rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: rgba(102, 102, 102, 1);
+}
+
+.next {
+  width: 38rpx;
+  height: 38rpx;
+  position: absolute;
+  right: 20rpx;
+  top: 24rpx;
+}
+
+.add_class_time_data_start {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 20rpx 40rpx;
+  font-size: 32rpx;
+  box-sizing: border-box;
+}
+
+.playdate {
+  font-size: 28rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: rgba(51, 51, 51, 1);
+}
+
+.courseinfo_warn_img {
+  width: 38rpx;
+  height: 38rpx;
+  position: absolute;
+  right: 20rpx;
+}
+
+
+
+
+
 .rili {
   position: fixed;
   top: 0;
@@ -22,19 +92,23 @@
 .main_start_time view {
   text-align: right;
 }
-.inputclass{
+
+.inputclass {
   text-align: right;
 }
+
 .inputclass::-webkit-input-placeholder {
   text-align: right;
 }
-.set_box_tishi{
+
+.set_box_tishi {
   padding: 10rpx 30rpx;
   color: red;
   font-size: 28rpx;
   background-color: #fff;
   margin-top: 5rpx;
 }
+
 .classname {
   width: 100%;
   text-align: right;
@@ -81,10 +155,11 @@
   white-space: nowrap;
 }
 
-.setclassname{
+.setclassname {
   font-size: 28rpx;
-  
+
 }
+
 .top .school {
   color: #888;
 }
@@ -118,7 +193,8 @@
   border-radius: 84rpx;
 }
 
-.th, .tr {
+.th,
+.tr {
   border-bottom: none;
 }
 
@@ -218,13 +294,15 @@
   margin-right: 20rpx;
 }
 
-.date_change, .time_change_top {
+.date_change,
+.time_change_top {
   display: flex;
   align-items: flex-end;
   justify-content: center;
 }
 
-.date_change, .time_change {
+.date_change,
+.time_change {
   border: 2rpx solid #e6e6e6;
   border-radius: 8rpx;
   padding: 40rpx 0;
@@ -236,8 +314,7 @@
   height: 48rpx;
 }
 
-.weui .se
-.date_time_change {
+.weui .se .date_time_change {
   font-size: 46rpx;
   color: #000;
 }
@@ -331,10 +408,48 @@
   border-bottom: none;
 }
 
+.navbar__slider {
+  margin-top: 10rpx;
+  height: 8rpx;
+  position: absolute;
+  bottom: 0rpx;
+  
+  transform: translateX(50%);
+  width: 167rpx;
+  background-color:#EFCF0B;
+  border-radius: 25rpx;
+  transition: all 0.3s;
+}
+.slider_active{
+  right: 25%;
+  transition: all 0.3s;
+}
+.slider_actives{
+  right: 75%;
+  transition: all 0.3s;
+}
+.bar__item_on {
+  color: rgba(239, 207, 11, 1);
+
+}
+
+.weui-navbar__item {
+  width: 167rpx;
+  font-size: 28rpx;
+  font-family: PingFang SC;
+  color: #333;
+  font-weight: 500;
+  padding: 10rpx 0;
+}
+
 .course_set {
-  margin-top: 100rpx;
+  width: 690rpx;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 1rpx 27rpx 0px rgba(150, 149, 149, 0.26);
+  border-radius: 30rpx;
+  margin-top: 20rpx;
   background: #fff;
-  margin-bottom: 100rpx;
+  /* margin-bottom: 100rpx; */
 }
 
 .course_set .title {
@@ -379,7 +494,8 @@
   background: #f95b58;
 }
 
-.odd, .even {
+.odd,
+.even {
   display: flex;
   align-items: center;
 }

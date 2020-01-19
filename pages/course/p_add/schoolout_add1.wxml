@@ -94,7 +94,7 @@
 						<view>班级名称：</view>
 						<input bindblur='getSchoolName' bindconfirm='getSchoolName' data-id="0" placeholder="请输入班级"></input>
 					</view>
-				
+
 				</view>
 				<!-- <block wx:if="{{userInfo.role=='0'}}">
 					<view class='page__bd_list1_class aaa'>
@@ -144,52 +144,34 @@
 
 			<!-- 设置课程表 -->
 			<view class="course_tables">
-				<view class='course_set'>
-					<view class="add_course1_item">
-						<!-- <view class="myradio">单双周：</view>
-						<view class="radio-group" wx:for-items="{{ [{name:'单周',id:1},{name:'双周',id:2}]  }}" data-id="{{item.id}}" bindtap="getisweek" wx:key="index">
-							<view class=" {{item.id==weeks?'checkdata':'checkdatas'}}"></view>
-							<view>{{item.name}}</view>
-						</view> -->
-							<view class="switchs"  bindtap="getisweek">
-											<text>是</text>
-											<text>否</text>
-									<view class="checked {{weeks==true?'left':'right'}}">
-									{{weeks==true?'是':'否'}}
-									</view>
-							</view>
-							<text class="isswitchs "> (开启单双周)</text>
-						<view>
-							<!-- <switch checked='{{switched}}' type='{{switch}}' bindchange='getisweek'></switch> -->
 
+				<view class='course_set'>
+				
+					<view class="add_course1_item">
+						<view class="switchs" bindtap="getisweek">
+							<text>是</text>
+							<text>否</text>
+							<view class="checked {{weeks==true?'left':'right'}}">
+								{{weeks==true?'是':'否'}}
+							</view>
+						</view>
+						<text class="isswitchs "> (开启单双周)</text>
+						<view>
 						</view>
 					</view>
+
 					<view class='course_table'>
 						<view class='slect_tab'>
-
-							<!-- <block wx:for="{{InterNameList}}" wx:for-item="item" wx:key="index" wx:for-index="index">
-								<view class="{{item.checked=='1'?'tab_item tab_select':'tab_item'}}" bindtap="CHOOSE_TAG" bindlongpress="BIND_LONG_PRESS" data-name="{{item.courseName}}">
-									<block wx:if="{{item.courseDel}}">
-										<image class='delete_btn' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/delete1.png' catchtap="DEL_TAG" data-index="{{index}}" data-coursename="{{item.courseName}}"></image>
-										<image class='edit_btn' bindtap="EDIT_TAG" src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/editor1.png'></image>
-									</block>
-									<view class='circle'>{{item.courseNameSub}}</view>
-									<text>{{item.courseName}}</text>
-								</view>
-							</block> -->
-							<!-- <view class="bd"> -->
-								<swiper indicator-dots="{{swiper.indicatorDots}}" bindchange='CHOOSE_TAGS' current="{{swiper.current}}" vertical="{{swiper.vertical}}" autoplay="{{swiper.autoplay}}" display-multiple-items='{{swiper.multiple}}'  previous-margin='{{swiper.previous}}' class="image_group">
-									<block wx:for="{{InterNameList}}" wx:for-item="item" wx:key="index">
-										<swiper-item>
-											<view class="swiper_item tab_item {{item.checked=='1'?'tab_select':''}} {{item.isbg==1?item.color:'defuls_course'}}"  bindlongpress="BIND_LONG_PRESS" data-cor="{{item.isbg==1?item.color:'#E7C60E'}}" data-name="{{item.courseName}}"  bindtap="CHOOSE_TAG" data-id="{{index}}">
-												<view class="circle {{item.isbg==1?item.color:'#E7C60E'}}">{{item.courseNameSub}}</view>
-												<text style="color:#fff;margin-left:10rpx">{{item.courseName}}</text>
-											</view>
-										</swiper-item>
-									</block>
-								</swiper>
-							<!-- </view> -->
-
+							<swiper indicator-dots="{{swiper.indicatorDots}}" bindchange='CHOOSE_TAGS' current="{{swiper.current}}" vertical="{{swiper.vertical}}" autoplay="{{swiper.autoplay}}" display-multiple-items='{{swiper.multiple}}' previous-margin='{{swiper.previous}}' class="image_group">
+								<block wx:for="{{InterNameList}}" wx:for-item="item" wx:key="index">
+									<swiper-item>
+										<view class="swiper_item tab_item {{item.checked=='1'?'tab_select':''}} {{item.isbg==1?item.color:'defuls_course'}}" bindlongpress="BIND_LONG_PRESS" data-cor="{{item.isbg==1?item.color:'#E7C60E'}}" data-name="{{item.courseName}}" bindtap="CHOOSE_TAG" data-id="{{index}}">
+											<view class="circle {{item.isbg==1?item.color:'#E7C60E'}}">{{item.courseNameSub}}</view>
+											<text style="color:#fff;margin-left:10rpx">{{item.courseName}}</text>
+										</view>
+									</swiper-item>
+								</block>
+							</swiper>
 							<view class='add_btn' bindtap="ADD_TAG">
 								<image src='/assets/local/course/tianjia.png'></image>
 							</view>
@@ -203,10 +185,8 @@
 									<text>{{item.name}}</text>
 									<text>{{item.data}} {{weekday==item.id?'(明天)':''}}</text>
 								</view>
-
 							</view>
 						</view>
-
 						<view class='tbody'>
 							<view class='tr' wx:for="{{courseTable}}" wx:for-item="item" wx:key="index" wx:for-index="index">
 								<block wx:for="{{item}}" wx:for-item="item1" wx:key="index1" wx:for-index="index1">
@@ -215,7 +195,7 @@
 									</block>
 									<block wx:else>
 										<view class='td {{ weekday == index1-1?"bgclass":"" }}' catchtap="ADD_COURSE_CIRCLE" data-row="{{index}}" data-col="{{index1}}">
-											<view class='subject {{item1.courseClass}}' catchtap="{{switched?'':'BIND_COURSE'}}" data-row="{{index}}" data-col="{{index1}}">{{item1.courseNameSub}}</view>
+											<view class='subject {{item1.courseClass}}' data-cor="{{item1.courseClass}}" catchtap="{{switched?'':'BIND_COURSE'}}" data-row="{{index}}" data-col="{{index1}}">{{item1.courseName}}</view>
 											<block wx:if="{{item1.courseSwitch}}">
 												<view class='subject {{item1.courseClass1}}' catchtap="{{switched?'':'BIND_COURSE_DOUBLE'}}" data-row="{{index}}" data-col="{{index1}}">{{item1.courseNameSub1}}</view>
 											</block>
@@ -228,6 +208,7 @@
 
 					</view>
 				</view>
+
 				<view class='explain'>
 					<view>课程填写说明</view>
 					<view class='explain_item'>
@@ -324,6 +305,7 @@
 						</view>
 					</view>
 				</view>
+
 				<view class='page__bd_list3' hidden='{{isShow}}'>
 					<view class="page__bd_list1_class ma-b">
 						<view class="weui-cell__hd imge_r">
@@ -354,6 +336,7 @@
 						</view>
 					</view>
 				</view>
+
 				<view class='more' bindtap='ISSHOW'>
 					<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/{{isShow?"down":"up"}}.png'></image>
 				</view>

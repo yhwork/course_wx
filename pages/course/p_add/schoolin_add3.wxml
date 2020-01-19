@@ -114,7 +114,10 @@
 						<view class='td firstTd'>{{item1+1}}</view>
 					</block>
 					<block wx:else>
-						<view class='td'>{{item1.courseName}}{{item1.courseName1}}</view>
+						<view class='td grade'>
+							<text class="{{item1.courseClass}}">{{item1.courseName}}</text>	
+							<text class="{{item1.courseClass1}}" wx:if='{{item1.courseName1}}'>	{{item1.courseName1}}</text>
+						</view>
 					</block>
 				</block>
 			</view>

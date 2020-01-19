@@ -142,15 +142,13 @@
 		</view>
 		<picker-view indicator-class='mask_bg' indicator-style="height: 40px;" style="width: 100%; height: 200rpx;" value="{{value3}}" data-id="1" bindchange="bindChange1">
 			<picker-view-column>
-				<view>小时</view>
-				<view class="shoutais_item" wx:for="{{24}}" style="line-height: 40px">
-					<view class="mask_bgs"> {{item <10?'0'+item :item}}</view>
+				<view class="shoutais_item" wx:for="{{getdate}}" style="line-height: 40px">
+					<view class="mask_bgs"> {{item}}</view>
 				</view>
 			</picker-view-column>
 			<picker-view-column>
-				<view>分钟</view>
-				<view class="shoutais_item" wx:for="{{60}}" style="line-height: 40px">
-					<view class="mask_bgs"> {{item <10?'0'+item :item}}</view>
+				<view class="shoutais_item" wx:for="{{gettime}}" style="line-height: 40px">
+					<view class="mask_bgs"> {{item}}</view>
 				</view>
 			</picker-view-column>
 		</picker-view>
@@ -163,13 +161,11 @@
 		</view>
 		<picker-view indicator-class='mask_bg' indicator-style="height: 40px;" style="width: 100%; height: 200rpx;" value="{{value3}}" data-id="2" bindchange="bindChange1">
 			<picker-view-column>
-				<view>小时</view>
 				<view class="shoutais_item" wx:for="{{24}}" wx:key='index' style="line-height: 40px">
 					<view class="mask_bgs"> {{index <10?'0'+index :index}}</view>
 				</view>
 			</picker-view-column>
 			<picker-view-column>
-				<view>分钟</view>
 				<view class="shoutais_item" wx:for="{{60}}" wx:key='index' style="line-height: 40px">
 					<view class="mask_bgs"> {{index <10?'0'+index :index}}</view>
 				</view>
@@ -197,7 +193,9 @@
 	<!-- 日历 -->
 	<block wx:if="{{showCalendar}}">
 		<calendar catch:day-click="CALENDAR_DAY_CHANGED" />
-		<view bindtap="quit" class="close">关闭</view>
+		<view bindtap="quit" class="close">
+			<image src="/assets/local/course/close.png"></image>
+		</view>
 	</block>
 
 	<!-- 蒙版 -->

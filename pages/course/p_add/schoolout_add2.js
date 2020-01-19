@@ -8,11 +8,38 @@ import {
   effects,
   actions
 } from './schoolout_add2.eea'
+
+function set_times(stute) {
+  let val_time = [];
+  if (stute == true) {
+    for (let i = 6; i < 20; i++) {
+      if(i<10){
+        i= '0' +i
+      }
+      val_time.push(i)
+    }
+  } else {
+    let j = 0;
+    for (let i = 0; i < 4; i++) {
+      if(j==0){
+        val_time.push('0'+j)
+      }else{
+        val_time.push(j)
+      }
+      j += 15
+    }
+  }
+  return val_time
+}
+
+
 const moment = require('../../../lib/moment.min.js');
 
 class SchooloutAdd2Page extends EPage {
   get data() {
     return {
+      getdate: set_times(true),
+      gettime: set_times(),
       userInfo: {},
       courseInfo: {},
       childInfo: {},
@@ -351,7 +378,9 @@ class SchooloutAdd2Page extends EPage {
       // 选择课程节数
       [events.ui.bindChange1](e) {
         let stute = e.currentTarget.dataset.id
-        const val = e.detail.value
+        const val = e.detail.value;
+        let date = this.data.getdate;
+        let time = this.data.gettime;
         console.log(val, stute)
         if (stute == 1) {
           if (this.$common.isIntNum(val[0])) {
@@ -410,8 +439,10 @@ class SchooloutAdd2Page extends EPage {
           //   'model.repetitionTxt': this.data.repetitionItems[e.detail.value],
           // })
         } else if (stute == 3) { // 开始时间
+
+          console.log(`${ date[val[0]]}:${time[val[1]]}`)
           this.setData({
-            'model.startClassTime': `${Math.abs(val[0]-1)<10?'0'+ Math.abs(val[0]-1) :Math.abs(val[0]-1)}:${Math.abs(val[1]-1)<10?'0'+ Math.abs(val[1]-1) :Math.abs(val[1]-1)}`
+            'model.startClassTime':`${ date[val[0]]}:${time[val[1]]}`
           })
         } else if (stute == 4) {
           this.setData({

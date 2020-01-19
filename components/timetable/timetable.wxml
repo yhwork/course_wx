@@ -40,7 +40,7 @@
                       <!-- style="top:{{item.$value.top}};height:{{item.$value.height}};"  -->
               <view 
                     class="timetable-item {{item.$value.colorClass}} {{item.courseType ==1?'in_time_data':'' }}" 
-                    style="top:{{item.$value.top}};height:{{item.courseType==1?item.$value.height:''}}"
+                    style="top:{{item.$value.top}};height:{{item.courseType==1?item.$value.height:'100%'}}"
                     wx:for="{{itemsList[0]}}" wx:key="index1"
                     wx:if="{{day.date === item.$value.date && hour === item.$value.hour}}" 
                     bindtap="{{item.courseType==2?'LESSON_DETAIL':''}}"
@@ -63,7 +63,8 @@
               <view class="cell yh_temheaddate">{{hour}}:00</view>
               <view 
                      class="cell {{index == axis.cell && idx == axis.row && my_current==1?'box_active':'box_active1'}} " 
-                      wx:for="{{days}}" wx:for-item="day" wx:for-index='idx' wx:key="idx"
+                      wx:for="{{days}}" wx:for-item="day" wx:for-index='idx' 
+                      wx:key="idx"
                       data-time="{{hour}}"
                       data-date="{{day.date}}"
                       data-keyrow="{{idx}}"
@@ -72,7 +73,7 @@
                       >
                 <view 
                       class="timetable-item {{item.$value.colorClass}}" 
-                      style="top:{{item.$value.top}};height:{{item.courseType==1?item.$value.height:''}}"
+                      style="top:{{item.$value.top}};height:{{item.courseType==1?item.$value.height:'100%'}}"
                       wx:for="{{itemsList[1]}}" 
                       wx:key="index1" 
                       wx:if="{{day.date === item.$value.date && hour === item.$value.hour}}" 
@@ -89,6 +90,7 @@
         </view>
       </swiper-item>
        <!-- catchtouchmove="stopTouchMove"    -->
+
       <swiper-item  >
         <view class="timetable-body">
           <view class="cell-group column">
@@ -106,7 +108,7 @@
                   >
                 <view 
                     class="timetable-item {{item.$value.colorClass}}" 
-                    style="top:{{item.$value.top}};height:{{item.courseType==1?item.$value.height:''}}"
+                    style="top:{{item.$value.top}};height:{{item.courseType==1?item.$value.height:'100%'}}"
                     wx:for="{{itemsList[2]}}"
                     wx:key="index1"
                     wx:if="{{day.date === item.$value.date && hour === item.$value.hour}}" 
@@ -122,6 +124,7 @@
           </view>
         </view>
       </swiper-item>
+      
     </swiper>
   </block>
 

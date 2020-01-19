@@ -914,6 +914,56 @@ input {
   color: #7fdff2   ;
   background-color: #7fdff2  ;
 }
+.page .cor1{
+  color: rgb(82, 29, 117);
+  background-color:  rgb(82, 29, 117);
+}
+.page .cor2{
+  color: rgb(24, 57, 148);
+  background-color:rgb(24, 57, 148);
+}
+.page .cor3{
+  color: aquamarine;
+  background-color: aquamarine;
+}
+.page .cor4{
+  color: rgb(9, 91, 114);
+  background-color:  rgb(11, 95, 116);
+}
+.page .cor5{
+  color: rgb(37, 95, 13);
+  background-color:rgb(37, 95, 13);
+}
+.page .cor6{
+  color: rgb(9, 156, 58);
+  background-color: rgb(9, 156, 58);
+}
+.page .cor7{
+  color: rgb(218, 74, 38);
+  background-color: rgb(218, 74, 38);
+}
+.page .cor8{
+  color: rgb(207, 69, 122);
+  background-color: rgb(207, 69, 122);
+}
+.page .cor9{
+  color: rgb(125, 179, 82);
+  background-color: rgb(125, 179, 82);
+}
+.thanbg{
+  background-color: #fff !important;
+}
+.box_cor{
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  padding-right: 20rpx;
+}
+.sel_cor{
+  width: 30rpx;
+  height: 30rpx;
+  margin: 0 8rpx;
+}
 .page .defuls_course{
   background: rgba(231, 198, 14, 1) ;
   color: rgba(231, 198, 14, 1) ;

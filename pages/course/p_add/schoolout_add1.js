@@ -818,7 +818,6 @@ class SchooloutAdd1Page extends EPage {
 
 
         if (this.data.switched) {
-          this.$common.showMessage(this, '请先关闭单双周设置开关');
           return wx.showToast({
             title: '请先关闭单双周设置开关',
             duration: 1500,
@@ -827,8 +826,9 @@ class SchooloutAdd1Page extends EPage {
         }
         console.log('-------------------')
         let tagName = e.currentTarget.dataset.name    // 菜单选中的课
-        let InterNameList = this.data.InterNameList
+        let InterNameList = this.data.InterNameList;
         let courseTable = this.data.courseTable;
+        
         let color = e.currentTarget.dataset.cor;
         InterNameList.forEach(
           (item, index) => {
@@ -846,17 +846,17 @@ class SchooloutAdd1Page extends EPage {
             item.forEach(
               (item1, index1) => {
                 if (index1 != 0) {
-                  if (item1.courseName == tagName) {      // 当前课的名字
+                  if (item1.courseName == tagName) {            // 当前课的名字
                     item1.courseClass = `c_select ${color}`;
-                  } else if (item1.courseName != '') {    // 否
-                    item1.courseClass = `selected ${color}`;     // 灰色
+                  } else if (item1.courseName != '') {          // 否
+                    // item1.courseClass = `selected `;            // 灰色
                   } 
                   if (typeof item1.courseName1 != 'undefined') {    // 单双周  
                     if (item1.courseName1 == tagName) {             // 名字不一样
                       // item1.courseClass1 = 'even_w c_select';
-                      item1.courseClass1 = `even_w ${color} c_select`;
+                      item1.courseClass1 = `${color} c_select`;
                     } else if (item1.courseName1 != '') {           // 
-                      item1.courseClass1 = 'selected';
+                      // item1.courseClass1 = 'selected';
                     }
                   }
                 }
@@ -881,6 +881,8 @@ class SchooloutAdd1Page extends EPage {
         let courseTable = this.data.courseTable;
         let row = e.currentTarget.dataset.row;
         let col = e.currentTarget.dataset.col;
+        // 添加当前颜色
+        let color = e.currentTarget.dataset.cor;
         InterNameList.forEach(
           (item, index) => {
             if (item.checked == 1) {
@@ -894,13 +896,17 @@ class SchooloutAdd1Page extends EPage {
                   courseTable[row][col].courseIndex = '';
                 } else {
                   console.log(this.data.courseTable[row][col], this.data.courseTable[row][col].courseName1)
-                  console.log(currCourseName)
+                  console.log(currCourseName,item.color)
                   if (courseTable[row][col].courseName1 == currCourseName) {
-                    this.$common.showMessage(this, '双周课程名不能相同');
-                    return;
+                    return wx.showToast({
+                      title: '双周课程名不能相同',
+                      duration: 1500,
+                      icon: "none",
+                    })
                   } else {
                     courseTable[row][col].courseName = currCourseName;
-                    // courseTable[row][col].courseClass = 'c_select';
+                    // courseTable[row][col].courseClass = '';
+                     courseTable[row][col].courseClass =`c_select ${item.color}` ;
                     courseTable[row][col].courseNameSub = currCourseNameSub;
                     courseTable[row][col].courseIndex = index;
                   }
@@ -943,7 +949,7 @@ class SchooloutAdd1Page extends EPage {
                     return;
                   } else {
                     courseTable[row][col].courseName1 = currCourseName;
-                    courseTable[row][col].courseClass1 = 'even_w c_select';
+                    courseTable[row][col].courseClass1 = `c_select ${item.color}`;
                     courseTable[row][col].courseNameSub1 = currCourseNameSub;
                     courseTable[row][col].courseIndex1 = index;
                   }
@@ -1294,7 +1300,7 @@ class SchooloutAdd1Page extends EPage {
                     })
                   } else if (res.cancel) {
                     wx.switchTab({
-                      url: '../course',
+                      url: '/pages/course/courseList/courseListcourse',
                     })
                   }
                 }

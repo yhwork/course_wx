@@ -18,6 +18,67 @@
   margin:42rpx 0 0 15rpx;
  
 }
+
+.shoutais{
+  position: fixed;
+  top: 10%;
+  right: 50%;
+  transform: translate(50%,50%);
+  width:690rpx;
+  height:320rpx;
+  background:rgba(255,255,255,1);
+  box-shadow:0px 1rpx 27rpx 0px rgba(150,149,149,0.26);
+  border-radius:30rpx;
+  overflow: hidden;
+  z-index: 99;
+  text-align: center;
+}
+.enddatas{
+  display: flex;
+}
+.enddatas>view:first-child{
+  margin-right: 10rpx;
+}
+.page .shoutais1{
+  top: 8%
+}
+.page .shoutais2{
+  top: 12%
+}
+.page .shoutais3{
+  top: 20%
+}
+.page .shoutais4{
+  top: 32%
+}
+
+.weui-cell__hd {
+  float: right;
+}
+
+.count {
+  display: flex;
+}
+
+.page__bd_main {
+  background: white;
+  display: flex;
+  /* height: 56rpx; */
+  /* border: 1px solid red; */
+  position: relative;
+  font-size: 28rpx;
+
+  align-items: center;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: rgba(51, 51, 51, 1);
+}
+.add_padding {
+  padding: 15rpx 35rpx;
+  display: flex;
+  align-items: center;
+}
+
 .main_left{
   float:left;
 }

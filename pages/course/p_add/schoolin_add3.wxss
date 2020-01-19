@@ -17,6 +17,84 @@
   height: 84rpx;
 }
 
+.page .yuwen{
+  color: #ebab45  ;
+  /* background-color:#ebab45  ; */
+}
+.page .shuxue{
+  color: #ed9bc3 ;
+  /* background-color: #ed9bc3  ; */
+}
+.page .yingyu{
+  color: #7fdff2   ;
+  /* background-color: #7fdff2  ; */
+}
+.page .defuls_course{
+  /* background: rgba(231, 198, 14, 1) ; */
+  color: rgba(231, 198, 14, 1) ;
+}
+.cor1{
+  color: rgb(82, 29, 117);
+  /* background-color:  rgb(82, 29, 117); */
+}
+.cor2{
+  color: rgb(24, 57, 148);
+  /* background-color:rgb(24, 57, 148); */
+}
+.cor3{
+  color: aquamarine;
+  /* background-color: aquamarine; */
+}
+.cor4{
+  color: rgb(9, 91, 114);
+  /* background-color:  rgb(11, 95, 116); */
+}
+.cor5{
+  color: rgb(37, 95, 13);
+  /* background-color:rgb(37, 95, 13); */
+}
+.cor6{
+  color: rgb(9, 156, 58);
+  /* background-color: rgb(9, 156, 58); */
+}
+.cor7{
+  color: rgb(218, 74, 38);
+  /* background-color: rgb(218, 74, 38); */
+}
+.cor8{
+  color: rgb(207, 69, 122);
+  /* background-color: rgb(207, 69, 122); */
+}
+.cor9{
+  color: rgb(125, 179, 82);
+  /* background-color: rgb(125, 179, 82); */
+}
+.page .undefined{
+  /* background: rgba(231, 198, 14, 1) ; */
+  color: rgba(231, 198, 14, 1) ;
+}
+.thanbg{
+  background-color: #fff !important;
+}
+.grade{
+  display: flex;
+  justify-content: space-around;
+}
+
+.grade>text{
+  /* border: 1px solid red; */
+  font-weight: 500;
+  padding: 0 4rpx;
+  box-sizing: border-box;
+}
+.tbody{
+  /* color: white ; */
+}
+/* 选中的样式 */
+.c_select {
+  /* background: rgba(231, 198, 14, 1); */
+  /* color: #fff !important; */
+}
 .photo {
   width: 84rpx;
   height: 84rpx;

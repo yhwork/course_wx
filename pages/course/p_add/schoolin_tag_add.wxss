@@ -10,6 +10,71 @@ page {
   font-weight: 500;
   color: rgba(51, 51, 51, 1);
 }
+.page .yuwen{
+  color: #ebab45  ;
+  background-color:#ebab45  ;
+}
+.page .shuxue{
+  color: #ed9bc3 ;
+  background-color: #ed9bc3  ;
+}
+.page .yingyu{
+  color: #7fdff2   ;
+  background-color: #7fdff2  ;
+}
+
+.cor1{
+  color: rgb(82, 29, 117);
+  background-color:  rgb(82, 29, 117);
+}
+.cor2{
+  color: rgb(24, 57, 148);
+  background-color:rgb(24, 57, 148);
+}
+.cor3{
+  color: aquamarine;
+  background-color: aquamarine;
+}
+.cor4{
+  color: rgb(9, 91, 114);
+  background-color:  rgb(11, 95, 116);
+}
+.cor5{
+  color: rgb(37, 95, 13);
+  background-color:rgb(37, 95, 13);
+}
+.cor6{
+  color: rgb(9, 156, 58);
+  background-color: rgb(9, 156, 58);
+}
+.cor7{
+  color: rgb(218, 74, 38);
+  background-color: rgb(218, 74, 38);
+}
+.cor8{
+  color: rgb(207, 69, 122);
+  background-color: rgb(207, 69, 122);
+}
+.cor9{
+  color: rgb(125, 179, 82);
+  background-color: rgb(125, 179, 82);
+}
+.thanbg{
+  background-color: #fff !important;
+}
+.box_cor{
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  padding-right: 20rpx;
+}
+.sel_cor{
+  width: 30rpx;
+  height: 30rpx;
+  margin: 0 8rpx;
+}
+
+
 
 .hint {
   display: flex;

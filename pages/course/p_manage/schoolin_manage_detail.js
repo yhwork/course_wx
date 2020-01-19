@@ -2,7 +2,7 @@ import {
   EApp,
   EPage,
   PAGE_LIFE
-} from '../../../eea/index'
+} from '../../../eea/index' 
 import {
   events,
   effects,
@@ -27,12 +27,12 @@ class schoolinmanagedetail extends EPage {
       share_imageUrl:"",
     };
   }
-
   mapPageEvent({
     put
   }) {
     return {
       [PAGE_LIFE.ON_LOAD](option) {
+        console.log('值',option)
         const {
           shareCavansOptions
         } = this.data;
@@ -49,7 +49,6 @@ class schoolinmanagedetail extends EPage {
               childId: res.data
             })
           },
-         
         })
         //获取用户信息
         put(effects.GET_USER_INFO);
@@ -80,7 +79,6 @@ class schoolinmanagedetail extends EPage {
         const {
           shortCode,
           userInfo,
-         
           courseMsg
         } = this.data;
         wx.showToast({
@@ -122,12 +120,9 @@ class schoolinmanagedetail extends EPage {
           //获取用户信息
           put(effects.GET_USER_INFO);
         }, 200)
-
       }
-
     }
   }
-
   mapUIEvent({
     put
   }) {
@@ -167,7 +162,6 @@ class schoolinmanagedetail extends EPage {
           }
         })
       },
-
     }
   }
 
@@ -194,7 +188,7 @@ class schoolinmanagedetail extends EPage {
       // 获取课程表
       [effects.GETCourseDetails](data) {
         api.course.getInternalCourseDetails(data).then(res => {
-          console.log(res.data)
+          // console.log(res.data)
           this.setData({
             courseMsg: res.data.result,
             courseTable: res.data.result.courseList
@@ -245,7 +239,6 @@ class schoolinmanagedetail extends EPage {
           }
         })
       },
-
       // 删除
       [effects.DEL_INTERNALCOURSE]() {
         let inputMap = {
@@ -265,8 +258,6 @@ class schoolinmanagedetail extends EPage {
           }
         })
       },
-
-
     }
   }
 }

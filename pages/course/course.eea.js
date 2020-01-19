@@ -21,7 +21,8 @@ export const events = {
     backhome:null,
     courdetails:null,
     add_course:null,
-    back_change:null
+    back_change:null,
+    quit:null
   }
 }
 

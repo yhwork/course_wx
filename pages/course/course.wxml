@@ -1,23 +1,24 @@
 <view class="page1">
 	<!-- 校外展示方式 -->
-	<block wx:if='{{isList}}'>
-		<!-- 头部 -->
-		<view class='main_head'>
-			<view class='head_box'>
-				<view class='tabchange'>
-					<view catchtap='chargeTab' data-id="1">{{isList==false?'列表查看':'日历查看'}}</view>
-					<image class='img' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/5.png' wx:if='{{isList}}' data-id="2" catchtap='chargeTab'></image>
-				</view>
-				<view class='name_b' bindtap="SHOW_CALENDAR">{{model.currentDate}}</view>
+	<!-- 头部 -->
+	<view class='main_head'>
+		<view class='head_box'>
+			<view class='tabchange'>
+				<view catchtap='chargeTab' data-id="1">{{isList==false?'列表查看':'日历查看'}}</view>
+				<image class='img' src='/assets/local/course/guanli.png' data-id="2" catchtap='chargeTab'></image>
 			</view>
-			<view class='fabutype' hidden='{{isSubmit}}'>
-				<view catchtap='CHOOSUBMITSETYPE' wx:for='{{userInfo.role == 0?childpeportType:teacherpeportType}}' data-type='{{item.id}}' wx:key='index'>
-					<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/{{item.src}}.png'></image>
-					<text>{{item.value}}</text>
-				</view>
-			</view>
-			<view class='jtstyle' hidden='{{isSubmit}}'></view>
+			<view class='name_b' bindtap="SHOW_CALENDAR">{{model.currentDate}}</view>
 		</view>
+		<view class='fabutype' hidden='{{isSubmit}}'>
+			<view catchtap='CHOOSUBMITSETYPE' wx:for='{{userInfo.role == 0?childpeportType:teacherpeportType}}' data-type='{{item.id}}' wx:key='index'>
+				<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/{{item.src}}.png'></image>
+				<text>{{item.value}}</text>
+			</view>
+		</view>
+		<view class='jtstyle' hidden='{{isSubmit}}'></view>
+	</view>
+	<block wx:if='{{isList}}'>
+
 		<view class="page_bd">
 			<view style="flex:auto;height:{{timetableHeight}}px;">
 				<timetable my_current='{{current}}' catch:date-changed="TIMETABLE_DATE_CHANGED" catch:lesson-date-changed="LESSON_DATE_CHANGED" data="{{lessons}}" dataLesson="{{dayLessons}}" catch:add-course='add_course' btnclick='{{btnclick}}' childId="{{model.childId}}" date="{{model.currentDate}}">
@@ -31,12 +32,11 @@
 	</block>
 	<!-- 全部课程渲染 -->
 	<view wx:else>
-		<!-- -->
-		<view class='content_box' wx:for='{{dayLessons}}' wx:key='index'>
+		<!-- 日历详情 -->
+		<!-- <view class='content_box' wx:for='{{dayLessons}}' wx:key='index'>
 			<view class='title_box'>
 				<view>{{item.startDate}} {{item.week}}</view>
 			</view>
-			<!-- 校外 -->
 			<view class='item_list' wx:if='{{current==1}}'>
 				<view bindtap='courdetails' data-Id='{{items.id}}' class='courdetailsstyle'>
 					<view>
@@ -53,7 +53,6 @@
 					<view class='iconfont el-icon-lxy-ditu' wx:if='{{item.dataType==1}}' bindtap='OPEN_LOCATION' data-lat='{{item.latitude}}' data-log='{{item.longitude}}'></view>
 				</view>
 			</view>
-			<!-- 校内 -->
 			<view class='item_list2' wx:elif="{{current==0}}">
 				<view>学校名称：{{item.schoolName}}</view>
 				<view>上学周期：{{item.startDate}}~{{item.endDate}}</view>
@@ -62,7 +61,6 @@
 					<text class='courses'>{{item.courseName}}</text>
 				</view>
 			</view>
-			<!-- 全部 -->
 			<view class='item_list' wx:else>
 				<view>
 					<view>
@@ -81,7 +79,7 @@
 					<view class='iconfont el-icon-lxy-ditu' wx:if='{{item.dataType==1}}' bindtap='OPEN_LOCATION' data-lat='{{item.latitude}}' data-log='{{item.longitude}}'></view>
 				</view>
 			</view>
-		</view>
+		</view> -->
 
 		<!-- 日历列表 -->
 		<view wx:if="morelessons">
@@ -94,44 +92,54 @@
 							<text decode="{{true}}">课&nbsp; &nbsp; &nbsp; &nbsp;程:</text>
 							<view class="course_inlist">
 								<view class="course_initem" wx:for='{{item.courseList}}' wx:for-item="items" wx:key='index'>
-									<text class="tts">1</text>
-									<text class="tts">语文</text>
+									<text class="tts">{{index+1}}</text>
+									<text class="tts">{{items.name}}</text>
 								</view>
 							</view>
 
 						</view>
 						<view class="course">
 							<view>放学时间:</view>
-							<view class="course_right">5:20</view>
+							<view class="course_right">{{item.courseList[item.courseList.length -1].endTime}}</view>
 						</view>
 					</view>
 				</block>
 				<block wx:else>
-					<view class="bind_list">
-						<view class="title">绘画课</view>
+					<block class='content_box' wx:for='{{morelessons}}' wx:key='index'>
+						<block wx:for='{{item.courseList}}' wx:for-item="items" wx:key='index1'>
+							<view class="bind_list">
+								<view class="title">{{items.name}}</view>
+								<view class="course">
+									<view>教学机构:</view>
+									<view class="course_right">{{items.orgName}}</view>
+								</view>
+								<view class="course">
+									<view>上课日期:</view>
+									<view class="course_right">{{item.date}} ({{item.week}})</view>
+								</view>
+								<view class="course">
+									<view>上课时间:</view>
+									<view class="course_right">{{items.startTime}} - {{items.endTime}}</view>
+								</view>
 
-						<view class="course">
-							<view>教学机构:</view>
-							<view class="course_right">涂涂画画</view>
-						</view>
 
-						<view class="course">
-							<view>上课日期:</view>
-							<view class="course_right">2019、11、28（星期四）</view>
-						</view>
+								<!-- <view class="course_info_item" bindtap="OPEN_LOCATION" data-longitude="{{item.longitude}}" data-latitude="{{item.latitude}}">
+					
+						<image src="/assets/local/course/adress.png" class="info_adress"></image>
+					</view> -->
 
-						<view class="course">
-							<view>课程时间:</view>
-							<view class="course_right">上午9:00</view>
-						</view>
+								<view class="course" bindtap="OPEN_LOCATION" data-longitude="{{item.longitude}}" data-latitude="{{item.latitude}}">
+									<view>上课地点:</view>
+									<text class="font course_right">{{items.classAddress}}</text>
+									<image src="/assets/local/course/adress.png" class="info_adress"></image>
+								</view>
+							</view>
+						</block>
 
-						<view class="course">
-							<view>上课地点:</view>
-							<view class="course_right">5:20</view>
-						</view>
-					</view>
+					</block>
+
 				</block>
-							<!-- <view class='title_box'>
+				<!-- <view class='title_box'>
 							<view>{{item.date}}全部 {{item.week}}</view>
 						</view>
 						<view class='item_list' wx:for='{{item.courseList}}' wx:for-item="items" wx:key='index'>
@@ -157,7 +165,7 @@
 
 
 
-							<!-- <view class='item_list2' wx:elif="{{current==0}}">
+				<!-- <view class='item_list2' wx:elif="{{current==0}}">
 						<view>学校名称：{{item.schoolName}}</view>
 						<view>上学周期：{{item.startDate}}~{{item.endDate}}</view>
 						<view>
@@ -166,7 +174,7 @@
 						</view>
 					
 						</view> -->
-							<!-- <view class='item_list' >
+				<!-- <view class='item_list' >
 							<view >
 								<view>
 									<text class='list_time'>{{item.sTime}}</text>
@@ -188,7 +196,7 @@
 			</view>
 		</view>
 		<!-- 返回 -->
-			<!-- <view class='backhome' wx:if="{{isback == 'false' || isback == false}}" bindtap='backhome'>
+		<!-- <view class='backhome' wx:if="{{isback == 'false' || isback == false}}" bindtap='backhome'>
 				<text>返回课表</text>
 			</view> -->
 		<view wx:if='{{morelessons.length==0}}' class='content_info'>
@@ -226,6 +234,11 @@
 	</view>
 	<!-- 日历 -->
 	<block wx:if="{{showCalendar}}">
-		<calendarLayer catch:day-click="CALENDAR_DAY_CHANGED" catch:next-month="CALENDAR_MONTH_CHANGED" catch:prev-month="CALENDAR_MONTH_CHANGED" monthLessonNum="{{monthLessonNum}}" />
+		<view class="bd cale_mask_bg">
+			<calendarLayer catch:day-click="CALENDAR_DAY_CHANGED" catch:next-month="CALENDAR_MONTH_CHANGED" catch:prev-month="CALENDAR_MONTH_CHANGED" monthLessonNum="{{monthLessonNum}}" />
+			<view bindtap="quit" class="close">
+				<image src="/assets/local/course/close.png"></image>
+			</view>
+		</view>
 	</block>
 </view>

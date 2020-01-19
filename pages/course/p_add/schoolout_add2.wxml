@@ -164,7 +164,9 @@
 	<!-- 日历 -->
 	<view class="calendars bd" wx:if="{{showCalendar}}">
 		<calendar catch:day-click="CALENDAR_DAY_CHANGED" />
-		<view  bindtap="quit"  class="close">关闭</view>
+		<view bindtap="quit" class="close">
+				<image src="/assets/local/course/close.png"></image>
+			</view>
 	</view>
 	<!-- 选择课程节数 -->
 	<view class="shoutais1  shoutais" wx:if='{{course.num}}'>
@@ -202,15 +204,13 @@
 		</view>
 		<picker-view indicator-class='mask_bg' indicator-style="height: 40px;" style="width: 100%; height: 200rpx;" value="{{value3}}" data-id="3" bindchange="bindChange1">
 			<picker-view-column>
-				<view>小时</view>
-				<view class="shoutais_item" wx:for="{{24}}" style="line-height: 50px">
-					<view class="mask_bgs"> {{item <10?'0'+item :item}}</view>
+				<view class="shoutais_item" wx:for="{{getdate}}" style="line-height: 50px">
+					<view class="mask_bgs"> {{item}}</view>
 				</view>
 			</picker-view-column>
 			<picker-view-column>
-				<view>分钟</view>
-				<view class="shoutais_item" wx:for="{{60}}" style="line-height: 50px">
-					<view class="mask_bgs"> {{item <10?'0'+item :item}}</view>
+				<view class="shoutais_item" wx:for="{{gettime}}" style="line-height: 50px">
+					<view class="mask_bgs"> {{item}}</view>
 				</view>
 			</picker-view-column>
 		</picker-view>

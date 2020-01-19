@@ -8,22 +8,39 @@
   font-size: 48rpx;
   color: #ff9800;
 }
-
+.close{
+  position: relative;
+  z-index: 99;
+  top:400rpx;
+  width: 70rpx;
+  height: 70rpx;
+}
+.close image{
+  width: 100%;
+  height: 100%;
+}
 .page1 {
   width: 100%;
-  position: fixed;
   background-color: #fff;
   padding-bottom: 120rpx;
 }
-
+.cale_mask_bg{
+  
+}
 .bind_list {
   width: 690rpx;
-  height: 330rpx;
   background: rgba(255, 255, 255, 1);
   box-shadow: 0px 1rpx 27rpx 0px rgba(150, 149, 149, 0.26);
   border-radius: 30rpx;
   padding: 30rpx 40rpx;
   box-sizing: border-box;
+  margin-top: 40rpx;
+}
+.info_adress {
+  position: absolute;
+  right: 0;
+  width: 30rpx;
+  height: 36rpx;
 }
 .bind_list .tts{
   text-align: center;
@@ -59,6 +76,8 @@
   font-weight: 500;
   color: rgba(51, 51, 51, 1);
   padding: 20rpx 0;
+  align-items: center;
+  position: relative;
 }
 
 .bind_list .course_right {
@@ -67,6 +86,8 @@
   font-family:PingFang SC;
   font-weight:400;
   color:rgba(102,102,102,1);
+  display: flex;
+  align-items: center;
 }
 
 .bind_list .course:first-child {

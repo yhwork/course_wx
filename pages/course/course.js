@@ -112,7 +112,7 @@ class CoursePage extends EPage {
             childId: option.childId,
             btnclick: false,
           })
-          console.info('有小孩')
+          // console.info('有小孩')
           put(effects.GET_USER_INFO); // 获取用户信息
         }else{
           console.info('莫有小孩')
@@ -159,7 +159,7 @@ class CoursePage extends EPage {
               let childId = this.data.childId
               if (childList && childId){
                let data =  childList.filter(res=>childId == res.childId)
-               console.log('是否一样',data,childId)
+              //  console.log('是否一样',data,childId)
                 this.setData({
                   'model.childId': data[0].childId
                 })
@@ -223,7 +223,7 @@ class CoursePage extends EPage {
       },
 
       [PAGE_LIFE.ON_SHOW]() {
-        console.log('值');
+        // console.log('值');
         this.setData({
           btnclick: false,
         })
@@ -306,6 +306,12 @@ class CoursePage extends EPage {
   }) {
     let api = this.$api
     return {
+      // 关闭日历
+      [events.ui.quit](){
+        this.setData({
+          showCalendar:false
+        })
+      },
       // 没有课程添加课程
       [events.ui.back_change](e){
 
@@ -388,14 +394,15 @@ class CoursePage extends EPage {
       // tab日历切换   默认
       [events.ui.chargeTab](e) {
         let id = e.currentTarget.dataset.id;
-        let childId = this.data.childId
+        let childId = this.data.childId;
+        let current = this.data.current;
         if(id == 1){
           this.setData({
             isList: !(this.data.isList)
           })
         }else{
           wx.navigateTo({
-            url: '/pages/course/p_manage/schoolout_manage?activeIndex=1' + "&childId=" + childId, // 打开校内
+            url: `/pages/course/p_manage/schoolout_manage?activeIndex=${current}&childId=${childId}`, // 打开校内
           })
         }
         
@@ -506,7 +513,7 @@ class CoursePage extends EPage {
         const currentDate = moment().add(e.detail.diff, 'weeks').format('YYYY-MM-DD');
         if (this.data.model.comefrom == '') {
           this.setData({
-            'model.currentDate': currentDate
+            'model.currentDate': currentDate 
           })
         }
         this.setData({
@@ -587,7 +594,7 @@ class CoursePage extends EPage {
         var that = this;
         api.user.gerUserInfo().then(
           (res) => {
-            console.log('用户信息', res.data)
+            // console.log('用户信息', res.data)
             if (res.data.errorCode == 0) {
               this.setData({
                 userInfo: res.data.result,

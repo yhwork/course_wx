@@ -1,19 +1,30 @@
-.page__hd {
-  padding: 0;
+.page {
+  /* padding-top: 40rpx; */
 }
 
-.page__bd {
+.main {
+  padding: 30rpx 0;
   height: 100%;
-  padding-bottom: 0;
+}
+
+.mypage_top {
+  display: flex;
+  flex-flow: column wrap;
+
+}
+
+.mypage_top .mypage_course {
+  display: flex;
+  justify-content: space-between;
 }
 
 .main_bg {
-  width: 95%;
-  height: 150rpx;
-  background: #fff;
-  margin: 20rpx auto;
-  position: relative;
-  padding-top: 20rpx;
+  width: 690rpx;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 1rpx 27rpx 0px rgba(150, 149, 149, 0.26);
+  border-radius: 30rpx;
+  padding: 36rpx 40rpx 15rpx 40rpx;
+  box-sizing: border-box;
 }
 
 .main_acc {
@@ -71,7 +82,7 @@
 }
 
 .iconb {
-     width: 38rpx;
+  width: 38rpx;
   height: 38rpx;
 }
 
@@ -91,14 +102,14 @@
 }
 
 .iconf {
-   width: 38rpx;
+  width: 38rpx;
   height: 38rpx;
   margin-top: 10rpx;
   float: left;
 }
 
 .icong {
-    width: 38rpx;
+  width: 38rpx;
   height: 38rpx;
 }
 
@@ -123,29 +134,161 @@
 }
 
 .bottom_a {
-  width: 100%;
-  background: #fff;
-  position: fixed;
-  bottom: 0;
-  border-top: 2rpx solid #f1f1f1;
+  width: 690rpx;
+  height: 101rpx;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 1rpx 27rpx 0px rgba(150, 149, 149, 0.26);
+  border-radius: 30rpx;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 46rpx;
+}
+
+.bottom_b {
+  padding-top: 6rpx;
+  font-size: 20rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: #EFCF0B;
+}
+
+.bottom_c {
+  padding-top: 6rpx;
+  font-size: 20rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: rgb(206, 199, 199);
 }
 
 .weui-cell {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
-.weui-cell__bd {
+.course_list_item {
+  display: flex;
+  padding: 16rpx 0;
+  align-items: center;
+  position: relative;
+}
+
+.update_course_time {
+  width: 690rpx;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 1rpx 27rpx 0px rgba(150, 149, 149, 0.26);
+  border-radius: 30rpx;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-around;
+}
+.swip{
+  width: 113rpx;
+  height: 43rpx;
+}
+.swip image{
+  width: 100%;
+  height: 100%;
+}
+.update_left{
+  text-align: center;
+}
+.update_left .times{
+
+font-size:24rpx;
+font-family:PingFang SC;
+font-weight:500;
+color:rgba(102,102,102,1);
+}
+.update_left>view{
+font-size:28rpx;
+font-family:PingFang SC;
+font-weight:500;
+color:rgba(231,198,14,1);
+}
+.update_left>text{
+display: flex;
+text-align: center;
+justify-content: center;
+font-size:20rpx;
+font-family:PingFang SC;
+font-weight:400;
+color:rgba(153,153,153,1);
+line-height: 44rpx;
+}
+.update_course_date{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30rpx 40rpx;
+}
+.weui-cell__bds {
+  width: 118rpx;
+  font-size: 26rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: rgba(51, 51, 51, 1);
+  margin-right: 33rpx;
+}
+.btn_box {
+  
+  position: absolute;
+  right: 50%;
+  transform: translateX(50%);
+  width: 586rpx;
+  height: 61rpx;
+  background: rgba(231, 198, 14, 1);
+  border-radius: 21rpx;
+  bottom: -140rpx;
+  z-index: 10;
+}
+.showCalendar{
+  position: relative;
+  z-index: 99;
+}
+.page_bg{
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(41, 35, 35, 0.66);
+  z-index: 6;
+}
+.page_bgs{
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(41, 35, 35, 0.66);
+  z-index: 66;
+}
+.update_courses{
+  position: fixed;
+  top: 360rpx;
+  z-index: 10;
+}
+.btn2 {
+  width: 586rpx;
+  height: 61rpx;
+  background: rgba(231, 198, 14, 1);
+  border-radius: 21rpx;
   display: flex;
   align-items: center;
-}
+  justify-content: center;
 
+  font-size: 28rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 1);
+  /* line-height:16rpx; */
+}
 .weui-cell__ft {
-  max-width: 480rpx;
-  text-align: left;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  font-size: 20rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: rgba(102, 102, 102, 1);
 }
 
 .course_b {
@@ -155,7 +298,9 @@
 
 .b {
   display: flex;
+  flex-flow: column wrap;
   align-items: center;
+  justify-content: center;
 }
 
 button {
@@ -169,7 +314,7 @@ button::after {
 }
 
 
-.share_mask{
+.share_mask {
   width: 100%;
   height: 100%;
   position: fixed;
@@ -178,37 +323,72 @@ button::after {
   z-index: 1000;
 }
 
-.share_box{
+.share_box {
   width: 100%;
   background: #fff;
   position: absolute;
   bottom: 0;
 }
-.addr{
+
+.addr {
   display: flex;
   align-items: center;
   margin-top: 20rpx;
   color: #576B95;
 }
-.addr image{
+
+.addr image {
   width: 22rpx;
   height: 28rpx;
   margin-right: 20rpx;
 }
-.course_name{
-  font-size: 34rpx;
-  color: #222;
-  margin-bottom: 10rpx;
+
+.course_name {
+  font-size: 28rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: rgba(14, 5, 10, 1);
 }
-.share_top{
+
+.course_details {
+  padding: 30rpx 0;
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: rgba(102, 102, 102, 1);
+}
+
+.page__bd {
+  padding: 20rpx 0 20rpx 0;
+}
+
+.info_adress {
+  position: absolute;
+  right: 0;
+  width: 30rpx;
+  height: 36rpx;
+}
+
+.couese_num {
+
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: rgba(239, 207, 11, 1);
+  display: flex;
+  justify-content: space-between;
+}
+
+.share_top {
   display: flex;
   justify-content: space-between;
   padding: 30rpx 30rpx 20rpx 30rpx;
-  font-size:26rpx;
+  font-size: 26rpx;
   color: #f29219;
   position: relative;
 }
-.share_top::after{
+
+.share_top::after {
   content: "";
   width: 720rpx;
   height: 2rpx;
@@ -217,54 +397,134 @@ button::after {
   bottom: 0;
 }
 
-.share_top .cancel{
+.share_top .cancel {
   color: #B2B2B2;
 }
 
-.share_center{
+.share_center {
   padding: 30rpx;
   font-size: 26rpx;
   color: #999;
 }
 
-.date,.time_type{
+.date,
+.time_type {
   display: flex;
 }
 
-.start_date,.time_type .time{
-  margin-right: 50rpx;
+.shoutais{
+  position: fixed;
+  top: 10%;
+  right: 50%;
+  transform: translate(50%,50%);
+  width:690rpx;
+  height:320rpx;
+  background:rgba(255,255,255,1);
+  box-shadow:0px 1rpx 27rpx 0px rgba(150,149,149,0.26);
+  border-radius:30rpx;
+  overflow: hidden;
+  z-index: 99;
+  text-align: center;
+}
+.shoutais_item{
+  display: flex;
+  border:0;
+  flex-flow: column wrap;
+  align-items: center;                  
+  /* margin-bottom:6rpx; */
+  /* border-bottom: 2rpx solid rgba(232, 248, 14, 0.26); */
 }
 
-.share_foot{
+.btn_dialog{
+  display: flex;
+  justify-content: space-between;
+  height: 60rpx;
+  font-family:PingFang SC;
+font-weight:500;
+line-height:16rpx;
+  padding:40rpx 45rpx 0 45rpx;
+}
+.btn_dialog view:nth-child(2){
+  color:rgba(239,207,11,1);
+
+}
+.enddatas{
+  display: flex;
+}
+.enddatas>view:first-child{
+  margin-right: 10rpx;
+}
+.page .shoutais1{
+  top: 8%
+}
+.page .shoutais2{
+  top: 12%
+}
+.page .shoutais3{
+  top: 20%
+}
+.page .shoutais4{
+  top: 42%
+}
+.page .close{
+  position: relative;
+  z-index: 99;
+  top:240rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70rpx;
+  height: 70rpx;
+}
+.close image{
+  width: 100%;
+  height: 100%;
+}
+.start_date,
+.time_type .time {
+  margin-right: 50rpx;
+}
+.update_left .name{
+
+font-size:28rpx;
+font-family:PingFang SC;
+font-weight:500;
+color:rgba(14,5,10,1);
+}
+.share_foot {
   display: flex;
   justify-content: space-between;
   padding: 30rpx;
   font-size: 26rpx;
   color: #353535;
 }
-.xcx,.weiXin{
+
+.xcx,
+.weiXin {
   display: flex;
   align-items: center;
 }
-.xcx{
+
+.xcx {
   margin-right: 70rpx;
 }
-.share_foot image{
+
+.share_foot image {
   width: 90rpx;
   height: 90rpx;
   margin-right: 20rpx;
 }
 
-button{
+button {
   background: #fff;
-  color:#222; 
-  font-size:26rpx;
+  color: #222;
+  font-size: 26rpx;
   padding: 0;
 }
-.button-hover{
+
+.button-hover {
   background: #fff;
 }
 
-button::after{
+button::after {
   border: none;
 }

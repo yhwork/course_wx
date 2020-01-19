@@ -10,13 +10,76 @@ import {
   actions
 } from './schoolin_manage_edit.eea'
 const moment = require('../../../lib/moment.min.js');
-
+var weekOfday = moment('2020/01/12', 'YYYY/MM/DD').format('E') //计算今天是这周第几天
+var last_monday = moment().subtract(weekOfday - 1, 'days').format('YYYY/MM/DD'); //周一日期
+var last_sunday = moment().add(7 - weekOfday, 'days').format('YYYY/MM/DD'); //周日日期
+console.log('今天是周', weekOfday)
+console.log('周一日期', last_monday)
 var sliderWidth = 96;
 class SchoolinEditePage extends EPage {
 
   get data() {
     return {
+      InterNameList: [{
+          courseName: "语文",
+          courseNameSub: "语",
+          courseDel: false,
+          color: 'yuwen',
+          isbg: 1,
+          checked: 1
+        },
+        {
+          courseName: "英语",
+          courseNameSub: "英",
+          courseDel: false,
+          color: 'shuxue',
+          isbg: 1,
+          checked: 0
+        },
+        {
+          courseName: "数学",
+          courseNameSub: "数",
+          courseDel: false,
+          color: 'yingyu',
+          isbg: 1,
+          checked: 0
+        },
+      ],
       showCalendar: false,
+      weeks: false,
+      switched: false,
+      weekday: moment().format('E') > 6 ? 0 : moment().format('E'), // 今天是周几
+      swiper: {
+        indicatorDots: false,
+        autoplay: false,
+        interval: 5000,
+        vertical: false,
+        duration: 1000,
+        multiple: 3,
+        current: 0,
+        previous: '0rpx'
+      },
+      weekList: [{
+        name: '周一',
+        id: 0,
+        data: moment().subtract(weekOfday - 1, 'days').format('DD')
+      }, {
+        name: '周二',
+        id: 1,
+        data: moment().subtract(weekOfday - 2, 'days').format('DD')
+      }, {
+        id: 2,
+        name: '周三',
+        data: moment().subtract(weekOfday - 3, 'days').format('DD')
+      }, {
+        id: 3,
+        name: '周四',
+        data: moment().subtract(weekOfday - 4, 'days').format('DD')
+      }, {
+        id: 4,
+        name: '周五',
+        data: moment().subtract(weekOfday - 5, 'days').format('DD')
+      }],
       switched: false,
       shrink: false,
       infoHeight: 170,
@@ -28,7 +91,6 @@ class SchoolinEditePage extends EPage {
       sliderOffset: 0,
       sliderLeft: 0,
       activeIndex: 1,
-      InterNameList: [],
       weekDays: [{
           name: '周一',
           value: '15:30'
@@ -53,8 +115,8 @@ class SchoolinEditePage extends EPage {
       schoolname: '',
       model: {
         classId: '',
-        startDate: '',
-        endDate: '',
+        startDate: moment().format('YYYY-MM-DD'),
+        endDate: '结束日期',
         oneStartTime: '08:00',
         twoStartTime: '',
         threeStartTime: '',
@@ -68,6 +130,9 @@ class SchoolinEditePage extends EPage {
         endWeekDay: '',
       },
       beginWeekDay: '',
+      userInfo: {
+        role: 0
+      },
       courseList: [],
       childTime: true,
       remindItems: [{
@@ -103,6 +168,10 @@ class SchoolinEditePage extends EPage {
       setClassMsg: {},
       tachertime: true,
       theindex: 0,
+      courseMsg: {
+        schoolName: '学校名字可以编辑',
+        className: '班级名称',
+      }
     };
   }
 
@@ -111,6 +180,7 @@ class SchoolinEditePage extends EPage {
   }) {
     return {
       [PAGE_LIFE.ON_LOAD](option) {
+        console.log('值', option);
         if (typeof option.childId != 'undefined') {
           const childId = option.childId; //链接过来的childId
           this.setData({
@@ -130,7 +200,7 @@ class SchoolinEditePage extends EPage {
         put(effects.GET_USER_INFO)
         var that = this;
         wx.getSystemInfo({
-          success: function(res) {
+          success: function (res) {
             that.setData({
               sliderLeft: (res.windowWidth / that.data.tabs.length - sliderWidth) / 2,
               sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex,
@@ -144,7 +214,7 @@ class SchoolinEditePage extends EPage {
         let _this = this
         wx.getStorage({
           key: 'schoolinfo.name',
-          success: function(res) {
+          success: function (res) {
             _this.setData({
               schoolname: res.data
             })
@@ -166,7 +236,7 @@ class SchoolinEditePage extends EPage {
         })
         wx.getStorage({
           key: 'schoolinfo.schoolid',
-          success: function(res) {
+          success: function (res) {
             console.log(res.data)
             _this.setData({
               'courseMsg.schoolId': res.data
@@ -200,6 +270,159 @@ class SchoolinEditePage extends EPage {
     put
   }) {
     return {
+           // 选择校内课程名称
+           [events.ui.CHOOSE_TAG_SEL](e) {
+            let swiper = this.data.swiper;
+            let i = e.currentTarget.dataset.id;
+            let j = swiper.current;
+            let l = this.data.InterNameList.length;
+            console.log('点击', i, j, swiper, l)
+            if (i <= j) {
+              if (i == 0) {
+                swiper.previous = '0rpx';
+                swiper.multiple = 3;
+                swiper.current = Math.abs(j);
+              } else {
+                swiper.current = Math.abs(j - 1);
+              }
+              console.log('前面');
+              this.setData({
+                swiper: swiper
+              })
+            } else if (l -1> i) {
+              swiper.current = Math.abs(i - 1);
+              this.setData({
+                swiper: swiper
+              })
+              console.log('后面')
+            } else {
+              console.log('最后几个')
+            }
+    
+    
+    
+    
+            if (this.data.switched) {
+              return wx.showToast({
+                title: '请先关闭单双周设置开关',
+                duration: 1500,
+                icon: "none"
+              })
+            }
+         
+            let tagName = e.currentTarget.dataset.name    // 菜单选中的课
+            let InterNameList = this.data.InterNameList
+            let courseTable = this.data.courseTable;
+            let color = e.currentTarget.dataset.cor;
+
+            console.log(InterNameList,courseTable,'-------------------')
+            InterNameList.forEach(
+              (item, index) => {
+                if (item.courseName == tagName) {
+                  item.checked = 1
+                } else {
+                  item.checked = 0
+                }
+              }
+            )
+           
+            // 渲染表格样式
+            courseTable.forEach(
+              (item, index) => {
+                item.forEach(
+                  (item1, index1) => {
+                    if (index1 != 0) {
+                      if (item1.courseName == tagName) {            // 当前课的名字
+                        item1.courseClass = `c_select ${color}`;
+                      } else if (item1.courseName != '') {          // 否
+                        // item1.courseClass = `selected `;            // 灰色
+                      } 
+                      if (typeof item1.courseName1 != 'undefined') {    // 单双周  
+                        if (item1.courseName1 == tagName) {             // 名字不一样
+                          // item1.courseClass1 = 'even_w c_select';
+                          item1.courseClass1 = `${color} c_select`;
+                        } else if (item1.courseName1 != '') {           // 
+                          // item1.courseClass1 = 'selected';
+                        }
+                      }
+                    }
+                  }
+                )
+              }
+            )
+            this.setData({
+              InterNameList: InterNameList,
+              courseTable: courseTable
+            });
+            console.log('颜色',color,this.data.courseTable)
+            this.$storage.set('InterNameList', this.data.InterNameList);
+            
+          },
+      // 选课
+      [events.ui.CHOOSE_TAGS](e) {
+        console.log('选课', e.detail.current)
+        let swiper = this.data.swiper;
+        let InterNameList = this.data.InterNameList;
+        let weeks = this.data.weeks;
+        swiper.current = e.detail.current
+        if (e.detail.current == 0) {
+          swiper.previous = '0rpx';
+          this.setData({
+            swiper: swiper
+          })
+        } else {
+          this.setData({
+            swiper: swiper
+          })
+        }
+
+        if (!weeks) {
+          InterNameList.forEach(
+            (item, index) => {
+              if (index == swiper.current + 1) {
+                item.checked = 1
+              } else {
+                item.checked = 0
+              }
+            }
+          )
+          this.setData({
+            InterNameList
+          })
+        }
+
+      },
+      // 选择单双周
+      [events.ui.getisweek](e) {
+        // let i = e.currentTarget.dataset.id;
+        let i = e.detail.value;
+        console.log('i', i)
+        if (this.data.weeks) {
+          this.setData({
+            weeks: false,
+            switched: false
+          })
+        } else {
+          this.setData({
+            weeks: true,
+            switched: true,
+          })
+        }
+        let InterNameList = this.data.InterNameList
+        if (this.data.switched == true) {
+          InterNameList.forEach(item => {
+            console.log(item)
+            item.checked = 0
+          })
+        } else {
+          InterNameList[0].checked = 1
+        }
+        this.setData({
+          InterNameList: InterNameList
+        })
+
+        console.log(this.data.switched, this.data.InterNameList)
+      },
       //选择孩子
       [events.ui.CHOOSE_CHILD](e) {
         this.setData({
@@ -415,51 +638,51 @@ class SchoolinEditePage extends EPage {
         })
       },
       // 选择校内课程名称
-      [events.ui.CHOOSE_TAG](e) {
-        if (this.data.switched) {
-          this.$common.showMessage(this, '请先关闭单双周设置开关');
-          return;
-        }
-        console.log('-------------------')
-        let tagName = e.currentTarget.dataset.name
-        let InterNameList = this.data.InterNameList
-        let courseTable = this.data.courseTable;
-        InterNameList.forEach(
-          (item, index) => {
-            if (item.courseName == tagName) {
-              item.checked = 1
-            } else {
-              item.checked = 0
-            }
-          }
-        )
-        console.log(this.data.courseTable)
-        courseTable.forEach(
-          (item, index) => {
-            item.forEach(
-              (item1, index1) => {
-                if (index1 != 0 && (item1.courseName || item1.courseName1)) {
-                  if (item1.courseName == tagName) {
-                    item1.courseClass = 'c_select';
-                  } else if (item1.courseName != '' && item1.courseName) {
-                    item1.courseClass = 'selected';
-                  }
-                  if (typeof item1.courseName1 != 'undefined') {
-                    if (item1.courseName1 == tagName) {
-                      item1.courseClass1 = 'even_w c_select';
-                    } else if (item1.courseName1 != '') {
-                      item1.courseClass1 = 'selected';
-                    }
-                  }
-                }
-              })
-          })
-        this.setData({
-          InterNameList: InterNameList,
-          courseTable: courseTable
-        });
-        this.$storage.set('InterNameList', this.data.InterNameList);
-      },
+      // [events.ui.CHOOSE_TAG](e) {
+      //   if (this.data.switched) {
+      //     this.$common.showMessage(this, '请先关闭单双周设置开关');
+      //     return;
+      //   }
+      //   console.log('-------------------')
+      //   let tagName = e.currentTarget.dataset.name
+      //   let InterNameList = this.data.InterNameList
+      //   let courseTable = this.data.courseTable;
+      //   InterNameList.forEach(
+      //     (item, index) => {
+      //       if (item.courseName == tagName) {
+      //         item.checked = 1
+      //       } else {
+      //         item.checked = 0
+      //       }
+      //     }
+      //   )
+      //   console.log(this.data.courseTable)
+      //   courseTable.forEach(
+      //     (item, index) => {
+      //       item.forEach(
+      //         (item1, index1) => {
+      //           if (index1 != 0 && (item1.courseName || item1.courseName1)) {
+      //             if (item1.courseName == tagName) {
+      //               item1.courseClass = 'c_select';
+      //             } else if (item1.courseName != '' && item1.courseName) {
+      //               item1.courseClass = 'selected';
+      //             }
+      //             if (typeof item1.courseName1 != 'undefined') {
+      //               if (item1.courseName1 == tagName) {
+      //                 item1.courseClass1 = 'even_w c_select';
+      //               } else if (item1.courseName1 != '') {
+      //                 item1.courseClass1 = 'selected';
+      //               }
+      //             }
+      //           }
+      //         })
+      //     })
+      //   this.setData({
+      //     InterNameList: InterNameList,
+      //     courseTable: courseTable
+      //   });
+      //   this.$storage.set('InterNameList', this.data.InterNameList);
+      // },
       //老师设置上课时间
       [events.ui.CHANGE_CLASSTIME](e) {
         let classTime = e.detail.value;
@@ -678,7 +901,7 @@ class SchoolinEditePage extends EPage {
           content: '您确认要删除该课程吗？',
           showCancel: true,
           confirmColor: '#FF4500',
-          success: function(res) {
+          success: function (res) {
             if (res.confirm) {
               InterNameList.splice(index, 1);
               courseTable.forEach(
@@ -1195,25 +1418,25 @@ class SchoolinEditePage extends EPage {
                 icon: 'success',
                 duration: 1500,
                 mask: true,
-                success: (res)=> {
+                success: (res) => {
                   if (time) {
                     clearTimeout(time)
                   }
-                 let time= setTimeout(()=>{
-                   wx.navigateBack({
-                     delta: 1,
-                   })
-                  },1500)
+                  let time = setTimeout(() => {
+                    wx.navigateBack({
+                      delta: 1,
+                    })
+                  }, 1500)
 
                 },
-                fail: (res)=> {
+                fail: (res) => {
                   wx.navigateBack({
                     delta: 1,
                   })
                 },
-                complete: function(res) {},
+                complete: function (res) {},
               })
-              
+
               // setTimeout(function() {
               //   wx.switchTab({
               //     url: '../course',

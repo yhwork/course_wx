@@ -47,16 +47,24 @@
 
 .course_item {
   margin-top: 36rpx;
-
   width: 690rpx;
-  height: 448rpx;
+  height: 436rpx;
   background: rgba(255, 255, 255, 1);
   box-shadow: 0px 1rpx 27rpx 0px rgba(150, 149, 149, 0.26);
   border-radius: 30rpx;
 
   position: relative;
 }
-
+.course_item1{
+  margin-top: 36rpx;
+  padding-top: 16rpx;
+  width: 690rpx;
+  height: 366rpx;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 1rpx 27rpx 0px rgba(150, 149, 149, 0.26);
+  border-radius: 30rpx;
+  position: relative;
+}
 .course_info {
   padding: 0 35rpx;
   box-sizing: border-box;
@@ -77,7 +85,7 @@
 
 .course_name {
   display: flex;
-  height: 98rpx;
+  height: 76rpx;
   align-items: center;
   justify-content: space-between;
   padding: 0 35rpx;
@@ -85,7 +93,7 @@
 }
 
 .course_info_item {
-  margin-bottom: 4rpx;
+  padding-bottom: 10rpx;
   position: relative;
 }
 
@@ -770,9 +778,7 @@
 .course_name {
   font-size: 34rpx;
   color: #222;
-  margin-bottom: 10rpx;
 }
-
 .share_top {
   display: flex;
   justify-content: space-between;

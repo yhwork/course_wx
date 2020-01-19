@@ -22,6 +22,10 @@ const events = {
     chooseClass:null,
     CHANGE_TIMEFIVE:null,
     CHANGE_CLASSNAME:null,
+
+    getisweek:null,
+    CHOOSE_TAG_SEL:null,
+    CHOOSE_TAGS:null,
   }
 }
 

@@ -5,6 +5,7 @@ const events = {
         CHANGE_ENDTIME: null,
         SAVE: null,
         CALENDAR_DAY_CHANGED: null,
+        CHANGE_BEGINTIME:null,
     }
 }
 

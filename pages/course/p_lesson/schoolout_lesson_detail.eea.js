@@ -7,7 +7,12 @@ const events = {
         CHANGE_BEGINDATE: null,
         OPEN_LOCATION: null,
         SHOW_SHARE: null,
-        HIDE_SHARE: null
+        HIDE_SHARE: null,
+        showCalendar:null,
+        CALENDAR_DAY_CHANGED: null,
+        quit:null,
+        bindChange1:null,
+        SAVE_NEXT:null
     }
 }
 

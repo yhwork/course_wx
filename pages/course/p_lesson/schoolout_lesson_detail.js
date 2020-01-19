@@ -9,9 +9,36 @@ import {
   actions
 } from './schoolout_lesson_detail.eea'
 const moment = require('../../../lib/moment.min.js');
+
+function set_times(stute) { 
+  let val_time = [];
+  if (stute == true) {
+    for (let i = 6; i < 20; i++) {
+      if(i<10){
+        i= '0' +i
+      }
+      val_time.push(i)
+    }
+  } else {
+    let j = 0;
+    for (let i = 0; i < 4; i++) {
+      if(j==0){
+        val_time.push('0'+j)
+      }else{
+        val_time.push(j)
+      }
+      j += 15
+    }
+  }
+  return val_time
+}
+
+
 class SchooloutLessonDetailPage extends EPage {
   get data() {
     return {
+      getdate: set_times(true),
+      gettime: set_times(),
       shareHide: true,
       userInfo: {}, //当前用户信息
       model: {
@@ -52,20 +79,33 @@ class SchooloutLessonDetailPage extends EPage {
         }
       ],
       imageUrl: '',
+      mask: true,
+      course: {
+        'time': false,
+        'update': true,
+        endDate:true,
+        beginTime:true
+      },
+      isrwo: false,
+      updata_data:{
+        'date':'',
+        'time':''
+      },
       shareCavansOptions: {
         id: 'share_canvas',
         width: 0,
         height: 0
-      }
+      },
+      showCalendar: false,
     };
   }
 
   mapPageEvent({
     put
   }) {
+   
     return {
       [PAGE_LIFE.ON_LOAD](option) {
-
         console.log('值', option)
         wx.hideShareMenu();
         const {
@@ -125,9 +165,9 @@ class SchooloutLessonDetailPage extends EPage {
               wx.showToast({
                 title: '分享成功',
                 icon: 'success',
-                duration:1500,
+                duration: 1500,
                 mask: true,
-                success: (res)=> {
+                success: (res) => {
                   wx.navigateBack({
                     delta: 1,
                   })
@@ -163,8 +203,158 @@ class SchooloutLessonDetailPage extends EPage {
   mapUIEvent({
     put
   }) {
+    const api = this.$api;
     const common = this.$common;
+    const converter = this.$converter;
     return {
+      // 保存修改时间
+      [events.ui.SAVE_NEXT](e) {
+      
+        const model = this.data.model
+        model.type=2  // 调课
+        model.startTime = this.data.lessonInfo.beginDate + ' ' + this.data.lessonInfo.beginTime
+        model.endTime = this.data.lessonInfo.endDate + ' ' + this.data.lessonInfo.endTime
+        console.log(model);
+        api.course.updateLesson(this.data.model).then(
+          (res) => {
+            if (res.data.errorCode == '0') {
+              console.log('修改课程成功')
+              wx.showToast({
+                title: '修改课程成功',
+                duration:1500,
+                icon: "none",
+              })
+              this.setData({
+                mask: true,
+                'course.update': true,
+              })
+              // this.$storage.set('childId',model.childId)
+              // wx.navigateBack({
+              //   delta: 1, // 返回上一级
+              // })
+              // wx.reLaunch({
+              //   url: '/pages/course/course?current =' + 3 + "&childId=" + model.childId,
+              //   success: (res)=>{},
+              //   fail: function(res) {},
+              //   complete: function(res) {},
+              // })
+            } else if (res.data.errorCode == '100070') {
+              wx.showModal({
+                title: '警告',
+                content: `该时间段已经安排了课程“${res.data.result[0].NAME}”，请重新选择时间。`,
+                confirmText: '查看',
+                confirmColor: '#f29219',
+                showCancel: true,
+                cancelText: '取消',
+                success(resp) {
+                  if (resp.confirm) {
+                    wx.navigateTo({
+                      url: './schoolout_lesson_detail?lessonId=' + res.data.result[0].id + '&childId=' + model.childId
+                    })
+                  }
+                  if (resp.cancel) {
+
+                  }
+                }
+              });
+            } else if (res.data.errorCode == '100073' || res.data.errorCode == '100074') {
+              common.showMessage(this, res.data.errorMessage);
+            }
+
+          },
+          (rej) => {
+
+          }
+
+        )
+      },
+      // 下课时间
+      [events.ui.bindChange1](e) {
+
+        //  `${Math.abs(val[0]-1)<10?'0'+ Math.abs(val[0]-1) :Math.abs(val[0]-1)}:${Math.abs(val[1]-1)<10?'0'+ Math.abs(val[1]-1) :Math.abs(val[1]-1)}`
+        const val = e.detail.value;
+        let date = this.data.getdate;
+        let time = this.data.gettime;
+        
+        console.log(time[val[1]],date[val[0]],val )
+        this.setData({
+            'lessonInfo.beginTime':`${ date[val[0]]}:${time[val[1]]}`,
+            'lessonInfo.endTime': moment(`${ date[val[0]]}:${time[val[1]]}`,'HH:mm').add('minute',this.data.lessonInfo.duration).format('HH:mm')
+        })
+
+        // this.setData({ 
+        //   'lessonInfo.beginTime': e.detail.value,
+        //   'lessonInfo.endTime': moment(e.detail.value,'HH:mm').add('minute',this.data.lessonInfo.duration).format('HH:mm')
+        // });
+      },
+      // 消失
+      [events.ui.quit]() {
+        let isrwo = this.data.isrwo;
+        console.log('消失', isrwo)
+        if (isrwo) {
+          this.setData({
+            showCalendar: false,
+            'course.time': false,
+            isrwo: false,
+          })
+        } else {
+          this.setData({
+            showCalendar: false,
+            'course.time': false,
+            isrwo: false,
+            mask: true,
+            'course.update': true,
+          })
+        }
+      },
+      //上课日期
+      [events.ui.CHANGE_BEGINDATE](e) {
+        console.log(e)
+        var times = e.currentTarget.dataset.times;
+        if (times == 0) {
+          // 开始日期
+          this.setData({
+            state_datatime: true,
+            'course.time': true,
+            'course.beginTime':false
+          });
+
+        } else {
+          // 结束日期
+          this.setData({
+            state_datatime: false,
+            showCalendar: true,
+            'course.endDate':false
+          });
+        }
+        this.setData({
+          isrwo: true,
+        });
+      },
+      //上课日期回调
+      [events.ui.CALENDAR_DAY_CHANGED](e) {
+        console.log(this.data.state_datatime)
+        if (this.data.state_datatime == true) {
+          const currentDate = moment(e.detail.year + ' ' + e.detail.month + ' ' + e.detail.day, 'YYYY-MM-DD').format('YYYY-MM-DD');
+          console.log('日期1', currentDate)
+          this.setData({
+            'lessonInfo.beginDate': currentDate,    //开始时间
+            'lessonInfo.endDate': currentDate, // 结束时间
+            showCalendar: false,
+            isrwo: false,
+          });
+        } else {
+          const currentDate = moment(e.detail.year + ' ' + e.detail.month + ' ' + e.detail.day, 'YYYY-MM-DD').format('YYYY-MM-DD');
+          console.log('日期2', currentDate)
+          this.setData({
+            'lessonInfo.beginDate': currentDate,    //开始时间
+            'lessonInfo.endDate': currentDate, // 结束时间
+            showCalendar: false,
+            isrwo: false,
+          });
+        }
+        put(effects.UPDATE_WEEKDAY);
+      },
       //查看位置
       [events.ui.OPEN_LOCATION](e) {
         let longitude = Number(this.data.lessonInfo.longitude);
@@ -177,11 +367,16 @@ class SchooloutLessonDetailPage extends EPage {
       //调课
       [events.ui.OPE_CHANGE](e) {
         if (this.data.editpower == 'true') {
-          wx.redirectTo({
-            url: './schoolout_lesson_change?childId=' + this.data.model.childId + '&lessonId=' + this.data.model.lessonId + '&type=2&source=' + this.data.model.source
-          })
-        }
 
+          this.setData({
+            'course.update': false,
+             mask: false,
+          })
+          console.log(this.data.model,this.data.lessonInfo)
+          // wx.redirectTo({
+          //   url: './schoolout_lesson_change?childId=' + this.data.model.childId + '&lessonId=' + this.data.model.lessonId + '&type=2&source=' + this.data.model.source
+          // })
+        }
       },
       //补课
       [events.ui.OPE_REMEDIAL](e) {
@@ -222,7 +417,7 @@ class SchooloutLessonDetailPage extends EPage {
             content: '你确定要删除该课程么？',
             showCancel: true,
             confirmColor: '#FF4500',
-            success: function(res) {
+            success: function (res) {
               if (res.confirm) {
                 put(effects.DEL_LESSON);
               }
@@ -260,7 +455,7 @@ class SchooloutLessonDetailPage extends EPage {
                     'lessonId': shareInfo.lessonId,
                     'target': 'lesson',
                     'shortCode': res.data.result.shortCode,
-                    'childId':this.data.model.childId,
+                    'childId': this.data.model.childId,
                   };
                   this.$api.user.shareInfoRecord(param1).then(
                     (res) => {
@@ -335,6 +530,7 @@ class SchooloutLessonDetailPage extends EPage {
   }) {
     const api = this.$api;
     const common = this.$common;
+    const converter = this.$converter;
     return {
       //用户信息
       [effects.GET_USER_INFO]() {
@@ -379,7 +575,7 @@ class SchooloutLessonDetailPage extends EPage {
             rs.beginDate = moment(rs.startTime).format('YYYY-MM-DD')
             rs.endDate = moment(rs.endTime).format('YYYY-MM-DD')
             rs.notifyTxt = ''
-            this.data.remindItems.forEach(function(e) {
+            this.data.remindItems.forEach(function (e) {
               if (e.value == rs.notify) {
                 rs.notifyTxt = e.name
               }
@@ -390,7 +586,10 @@ class SchooloutLessonDetailPage extends EPage {
               rs.status = '';
             }
             this.setData({
-              lessonInfo: rs
+              lessonInfo: rs,
+              'updata_data.date':rs.startTime.split(' ')[1],
+              'updata_data.beginDate':rs.beginDate,
+              'lessonInfo.beginTime': rs.startTime.split(' ')[1],    //开始时间
             })
           },
           (rej) => {}
@@ -401,26 +600,25 @@ class SchooloutLessonDetailPage extends EPage {
         const model = this.data.model;
         model.type = 1;
         api.course.updateLesson(model).then(res => {
-          
           if (res.data.errorCode == '100073' || res.data.errorCode == '100074') {
             return common.showMessage(_this, '共享人没有开启修改孩子的权限');
           } else if (res.data.errorCode == 0) {
-          this.$storage.set('childId', model.childId).then(res => {
-           
+            this.$storage.set('childId', model.childId).then(res => {
+
               //返回上一级
-              const wxCurrPage = getCurrentPages();//获取当前页面的页面栈
-              const wxPrevPage = wxCurrPage[wxCurrPage.length - 2];//获取上级页面的page对象
-              console.log('获取当前页面的页面栈', wxCurrPage, 'sss',wxPrevPage);
+              const wxCurrPage = getCurrentPages(); //获取当前页面的页面栈
+              const wxPrevPage = wxCurrPage[wxCurrPage.length - 2]; //获取上级页面的page对象
+              console.log('获取当前页面的页面栈', wxCurrPage, 'sss', wxPrevPage);
               if (wxPrevPage) {
                 //修改上级页面的数据
                 wxPrevPage.setData({
-                  baseData: true,//baseData为上级页面的某个数据
+                  baseData: true, //baseData为上级页面的某个数据
                 })
               }
               wx.navigateBack({
-                delta: 1,  // 返回上一级
+                delta: 1, // 返回上一级
               })
-           
+
 
               // 返回列表
               // wx.reLaunch({

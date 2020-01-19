@@ -145,7 +145,7 @@ class TimetableComponent extends EComponent {
         const {
           date
         } = this.data;
-
+        // 向左向右
         if (((last + 1) % 3) === current) {
           this._week.date = moment(date).add(7, 'days').format('YYYY-MM-DD');
         } else {
@@ -259,9 +259,9 @@ class TimetableComponent extends EComponent {
       [events.ui.LESSON_DETAIL](e) {
         const lessonId = e.currentTarget.dataset.lessonid
         console.log(lessonId, this.data.childId)
-        // wx.navigateTo({
-        //   url: './p_lesson/schoolout_lesson_detail?lessonId=' + lessonId + '&childId=' + this.data.childId
-        // })
+        wx.navigateTo({
+          url: './p_lesson/schoolout_lesson_detail?lessonId=' + lessonId + '&childId=' + this.data.childId
+        })
 
       }
 

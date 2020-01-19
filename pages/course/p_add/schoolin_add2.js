@@ -9,10 +9,33 @@ import {
   actions
 } from './schoolin_add2.eea'
 const moment = require('../../../lib/moment.min.js');
-
+function set_times(stute) {
+  let val_time = [];
+  if (stute == true) {
+    for (let i = 6; i < 20; i++) {
+      if(i<10){
+        i= '0' +i
+      }
+      val_time.push(i)
+    }
+  } else {
+    let j = 0;
+    for (let i = 0; i < 4; i++) {
+      if(j==0){
+        val_time.push('0'+j)
+      }else{
+        val_time.push(j)
+      }
+      j += 15
+    }
+  }
+  return val_time
+}
 class SchoolinAdd2Page extends EPage {
   get data() {
     return {
+      getdate: set_times(true),
+      gettime: set_times(),
       userInfo: {
         'role':0      // 角色设计
       },
@@ -215,15 +238,19 @@ class SchoolinAdd2Page extends EPage {
         let stute  =e.currentTarget.dataset.id
         const val = e.detail.value
         console.log(val,stute)
+
+        let date = this.data.getdate;
+        let time = this.data.gettime;
+        console.log(`${ date[val[0]]}:${time[val[1]]}`)
         if(stute == 1){
           if (this.$common.isIntNum(val[0])) {
             this.setData({
-             one:`${Math.abs(val[0]-1)<10?'0'+ Math.abs(val[0]-1) :Math.abs(val[0]-1)}:${Math.abs(val[1]-1)<10?'0'+ Math.abs(val[1]-1) :Math.abs(val[1]-1)}`
+             one:`${ date[val[0]]}:${time[val[1]]}`
             })
           }
         }else if(stute==2){
           this.setData({
-            five:`${Math.abs(val[0]-1)<10?'0'+ Math.abs(val[0]-1) :Math.abs(val[0]-1)}:${Math.abs(val[1]-1)<10?'0'+ Math.abs(val[1]-1) :Math.abs(val[1]-1)}`
+            five:`${ date[val[0]]}:${time[val[1]]}`
           })
         }else if(stute==3){
           this.setData({
@@ -381,8 +408,11 @@ class SchoolinAdd2Page extends EPage {
       },
       [events.ui.CHANGE_DURATION](e) {
         if (this.$common.isIntNum(e.detail.value) == false) {
-          this.$common.showMessage(this, '请输入数字');
-          return false;
+          return wx.showToast({
+            title: '请输入数字',
+            duration: 1500,
+            icon: 'none',
+          });
         }
         this.setData({
           'model.duration': e.detail.value
@@ -486,8 +516,12 @@ class SchoolinAdd2Page extends EPage {
         let weekDays = this.data.weekDays
         let canNext = true;
         if (common.isBlank(this.data.model.startDate)) {
-          common.showMessage(this, '开学时间不能为空');
-          return false;
+          return wx.showToast({
+            title: '开学时间不能为空',
+            duration: 1500,
+            icon: "none",
+            mask: true,
+          });
         }
         if(this.data.userInfo.role==1){
           console.log(this.data.userInfo.role, this.data.tachertime)
@@ -552,8 +586,11 @@ class SchoolinAdd2Page extends EPage {
               })
             ))
         } else {
-          common.showMessage(this, '请选择上课时间');
-          return
+          return wx.showToast({
+            title: '请选择上课时间',
+            duration: 1500,
+            icon: "none",
+          })
         }
       },
     }

@@ -94,7 +94,7 @@ button::after {
 }
 .sel_role{
   display: flex;
-  justify-content: space-between;
+  justify-content:space-around;
 }
 .home {
   font-size: 26rpx;

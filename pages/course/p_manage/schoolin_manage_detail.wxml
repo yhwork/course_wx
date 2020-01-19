@@ -1,82 +1,88 @@
-<view class='page_top'>
-  <view class='photo_box'>
-    <image wx:if='{{userInfo.role==0}}' class='photo' src='{{courseMsg.childLogo?courseMsg.childLogo:"https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/gexing.png"}}'></image>
-    <image wx:else class='photo' src='{{courseMsg.teacherLogo?courseMsg.teacherLogo:"https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/gexing.png"}}'></image>
-    <!-- <image class='gender' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/{{courseMsg.childGender==0?"boy1":"girl1".png'></image> -->
-  </view>
-  <view class='page_topRight'>
-    <view class='name'>{{courseMsg.childName?courseMsg.childName:courseMsg.teacherName}}</view>
-  </view>
-</view>
+<!-- <view class='page_top'>
+	<view class='photo_box'>
+		<image wx:if='{{userInfo.role==0}}' class='photo' src='{{courseMsg.childLogo?courseMsg.childLogo:"https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/gexing.png"}}'></image>
+		<image wx:else class='photo' src='{{courseMsg.teacherLogo?courseMsg.teacherLogo:"https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/gexing.png"}}'></image>
+	</view>
+	<view class='page_topRight'>
+		<view class='name'>{{courseMsg.childName?courseMsg.childName:courseMsg.teacherName}}</view>
+	</view>
+</view> -->
+
+<view class="page">
+
+	<view class="top">
+		<view class="course_info">
+			<view class="course_info_item">
+				<text>学校名称:</text><text>{{courseMsg.schoolName}}</text>
+			</view>
+			<view class="course_info_item">
+				<text>上课时间:</text><text>{{courseMsg.oneStartTime}}</text>
+			</view>
+			<view class="course_info_item">
+				<text>放学时间:</text><text>{{courseMsg.sixStartTime}}</text>
+			</view>
+		</view>
+	</view>
 
 
-<view class='hint'>
-  <image class='hint_img' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/icona.png'></image>
-  <text>学校名称：</text>{{courseMsg.schoolName}}
-</view>
-
-<view class='hint'>
-  <image class='hint_img' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/classroom.png'></image>
-  <text>班级名称：</text> {{courseMsg.className}}
-</view>
-
-<view class='course_table'>
-  <view class='thead'>
-    <view class='tr'>
-      <view class='td firstTd'>
-        <view>星期节次</view>
-      </view>
-      <view class='td'>周一</view>
-      <view class='td'>周二</view>
-      <view class='td'>周三</view>
-      <view class='td'>周四</view>
-      <view class='td'>周五</view>
-    </view>
-  </view>
+	<view class='course_table'>
+		<view class='thead'>
+			<view class='tr'>
+				<view class='td firstTd'  style="color:#EFCF0B;">
+					<view>星期节次</view>
+				</view>
+				<view class='td ' style="color:#EFCF0B;">周一</view>
+				<view class='td ' style="color:#EFCF0B;">周二</view>
+				<view class='td ' style="color:#EFCF0B;">周三</view>
+				<view class='td ' style="color:#EFCF0B;">周四</view>
+				<view class='td ' style="color:#EFCF0B;">周五</view>
+			</view>
+		</view>
 
 
-  <view class='tbody'>
-    <view class='tr' wx:for="{{courseTable}}" wx:for-item="item" wx:key="" wx:for-index="index">
-      <block wx:for="{{item}}" wx:for-item="item1" wx:key="" wx:for-index="index1">
-        <block wx:if="{{index1==0}}">
-          <view class='td firstTd'>{{item1.num+1}}</view>
-        </block>
-        <block wx:else>
-          <view class='td'>{{item1.courseName}}{{item1.courseName1}}</view>
-        </block>
-      </block>
-    </view>
-  </view>
-</view>
+		<view class='tbody'>
+			<view class='tr' wx:for="{{courseTable}}" wx:for-item="item" wx:key="" wx:for-index="index">
+				<block wx:for="{{item}}" wx:for-item="item1" wx:key="" wx:for-index="index1">
+					<block wx:if="{{index1==0}}">
+						<view class='td firstTd'  style="color:#EFCF0B;">{{item1.num+1}}</view>
+					</block>
+					<block wx:else>
+						<view class='td'>{{item1.courseName}}{{item1.courseName1}}</view>
+					</block>
+				</block>
+			</view>
+		</view>
+	</view>
 
 
-<view class='page_footer'>
-<!--  -->
-  <view class='change menu' bindtap="OPE_EDIT">
-    <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/edit.png'></image>
-    <text>修改</text>
-  </view>
-  <view class='delete menu' bindtap="OPE_DEL">
-    <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/out.png'></image>
-    <text>删除</text>
-  </view>
-  <view wx:if='{{userInfo.role==0}}'>
-    <button open-type='share' class='share menu'>
-      <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/share_2.png'></image>
-      <text>分享</text>
-    </button>
-  </view>
-  <view wx:else>
-    <button class='share menu'>
-      <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/share1.png'></image>
-      <text style='color:#888'>分享</text>
-    </button>
-  </view>
+	<!-- <view class='page_footer'>
+		<view class='change menu' bindtap="OPE_EDIT">
+			<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/edit.png'></image>
+			<text>修改</text>
+		</view>
+		<view class='delete menu' bindtap="OPE_DEL">
+			<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/out.png'></image>
+			<text>删除</text>
+		</view>
+		<view wx:if='{{userInfo.role==0}}'>
+			<button open-type='share' class='share menu'>
+				<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/share_2.png'></image>
+				<text>分享</text>
+			</button>
+		</view>
+		<view wx:else>
+			<button class='share menu'>
+				<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/share1.png'></image>
+				<text style='color:#888'>分享</text>
+			</button>
+		</view>
+	</view> -->
+
 </view>
 
 <!-- 日历 -->
 <block wx:if="{{showCalendar}}">
-  <calendar catch:day-click="CALENDAR_DAY_CHANGED" />
+	<calendar catch:day-click="CALENDAR_DAY_CHANGED" />
 </block>
 
 <canvas class="share-canvas" style="width:{{shareCavansOptions.width}}px;height:{{shareCavansOptions.height}}px;visibility:hidden;position:absolute;top:-1000rpx;" canvas-id="share_canvas"></canvas>

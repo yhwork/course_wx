@@ -8,11 +8,14 @@
 }
 .close{
   position: relative;
-  border: 1px solid red;
   z-index: 99;
-  top:256rpx;
+  top:400rpx;
   width: 70rpx;
   height: 70rpx;
+}
+.close image{
+  width: 100%;
+  height: 100%;
 }
 .page__hd {
   height: 160rpx;

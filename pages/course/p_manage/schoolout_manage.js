@@ -1,4 +1,4 @@
-import {
+ import {
   EApp,
   EPage,
   PAGE_LIFE
@@ -370,19 +370,32 @@ class SchooloutManagePage extends EPage {
       //修改
       [events.ui.OPE_EDIT](e) {
         const courseId = e.currentTarget.dataset.courseid;
-        if (this.data.activeIndex == 1) {
+        let cactiveIndex = this.data.activeIndex;
+        console.log('修改',courseId,cactiveIndex)
+        if (this.data.activeIndex == 1) {   // 校外
           wx.navigateTo({
             url: './schoolout_manage_edit?childId=' + this.data.model.childId + '&courseId=' + courseId
           })
-        } else {
+        } else {                            // 校内
           wx.navigateTo({
             url: './schoolin_manage_edit?internalClassId=' + courseId
           })
         }
+
+        //       [events.ui.OPE_EDIT]() {
+        // let internalClassId = this.data.internalClassId
+        // wx.navigateTo({
+        //   url: './schoolin_manage_edit?internalClassId=' + internalClassId
+        // })
+      //},
+
+
+
       },
       //删除
       [events.ui.OPE_DEL](e) {
         const courseId = e.currentTarget.dataset.courseid;
+        console.log('删除',courseId)
         if (this.data.activeIndex == 0) {
           this.setData({
             internalClassId: courseId
@@ -577,7 +590,6 @@ class SchooloutManagePage extends EPage {
          icon: 'none',
          duration:'1500'
        })
-        (this, '');
       }
     }
   }
@@ -701,10 +713,11 @@ class SchooloutManagePage extends EPage {
 
       //课程信息
       [effects.LOAD_COURSE]() {
-        // console.log(this.data.model)
-        if (this.data.activeIndex == 1) {
+      console.log(11111111111111111111111111111111111111111111111111111,'问题')
+        if (this.data.activeIndex==1) {
           api.course.get(this.data.model).then(
             (res) => {
+              console.log('课程信息1',res.data.result)
               if (res.data.result.courseList) {
                 // 是否对孩子有权限
                 this.setData({
@@ -738,7 +751,7 @@ class SchooloutManagePage extends EPage {
           if (this.data.role == 0) {
             api.course.getAllInternalCourseName(model).then(
               (res) => {
-                console.log('课程信息', res.data.result)
+                console.log('课程信息2', res.data.result)
 
                 if (res.data.errorCode == 0) {
                   // let imgType = res.data.result.imgType
