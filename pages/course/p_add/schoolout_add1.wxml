@@ -53,10 +53,11 @@
 </view> -->
 
 <view class="page">
+
 	<!-- 校内添加 -->
 	<view class="add_in_school" hidden="{{activeIndex == 1}}">
 		<!-- 没有校内课程展示 -->
-		<view class='title_box1' hidden="{{tabIndex == 1}}">
+		<view class='title_box1' hidden="{{tabIndex == 1 && select_img}}">
 			<view bindtap="CREATE_COURSE" class='add_courseItem {{tabIndex==0?"active ":""}}' data-tabIndex='0'>
 				<!-- <view class="icon_addcourse">
 			
@@ -71,15 +72,10 @@
 				<view class="icon_size">手动添加</view> -->
 				<image src="/assets/local/index/shoudong@2x.png"></image>
 			</view>
-
-			<!-- 拍照上传校内日程 -->
-			<!-- <view wx:else>
-			<view wx:if='{{!select_img}}' bindtap="CREATE_COURSE" class='{{select_img.length == 0 ?"iconfont el-icon-lxy-tianjia":"iconfont el-icon-lxy-tianjia"}}'></view>
-			
-      <view wx:if='{{select_img}}' class='center'>
-				<image src="{{select_img}}" catchTap="chooseImageTap" mode="aspectFit" class="img" />
-			</view>
-			</view> -->
+		</view>
+		<!-- 拍照上传校内日程 -->
+		<view wx:if='{{select_img || tabIndex == 0}}' class='center'>
+			<image src="{{select_img}}" catchTap="chooseImageTap" mode="aspectFit" class="img" />
 		</view>
 		<!-- 手动添加校内日程 -->
 		<view class="center" wx:if="{{tabIndex ==1}}">
@@ -146,7 +142,7 @@
 			<view class="course_tables">
 
 				<view class='course_set'>
-				
+
 					<view class="add_course1_item">
 						<view class="switchs" bindtap="getisweek">
 							<text>是</text>
@@ -179,7 +175,7 @@
 						<view class='thead'>
 							<view class='tr'>
 								<view class='td firstTd myweek'>
-									<view class="myweeks">星期节次</view>
+									<view class="myweeks">本周</view>
 								</view>
 								<view class='td header_box' wx:for='{{weekList}}' wx:key='index'>
 									<text>{{item.name}}</text>

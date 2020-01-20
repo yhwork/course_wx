@@ -984,7 +984,7 @@ input {
 
 /* 未选中的样式 */
 .selected {
-  background: #a2a2a2;
+  /* background: #a2a2a2; */
   color: #fff;
 }
 
@@ -1010,7 +1010,7 @@ input {
 
 .slect_tab {
   display: flex;
-  padding: 0 12rpx 30rpx 12rpx;
+  /* padding: 0 12rpx 30rpx 12rpx; */
   position: relative;
   /* border-bottom: 2rpx solid #bbb; */
 

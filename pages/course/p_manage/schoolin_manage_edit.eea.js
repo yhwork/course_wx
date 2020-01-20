@@ -26,6 +26,7 @@ const events = {
     getisweek:null,
     CHOOSE_TAG_SEL:null,
     CHOOSE_TAGS:null,
+    bindChange1:null,
   }
 }
 

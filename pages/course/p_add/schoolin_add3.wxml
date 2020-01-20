@@ -93,7 +93,9 @@
   </view>
 </view> -->
 
-
+	<view class="course_tables">
+	
+	</view>
 	<view class='course_table'>
 		<view class='thead'>
 			<view class='tr'>

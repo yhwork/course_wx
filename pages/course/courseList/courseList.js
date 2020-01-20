@@ -468,6 +468,7 @@ class CourseListPage extends EPage {
         })
      
         var childlist = this.data.childlist
+        // console.log('小孩列表',childlist)
         childlist.forEach(item => {
           console.log(item)
           if (item.childId == childid) {
@@ -698,11 +699,11 @@ class CourseListPage extends EPage {
                         'hours': item.endTime.split(':')[0],
                         'minutes': item.endTime.split(':')[1]
                       }).add(30, 'minutes').format('YYYY-MM-DD HH:mm')
-                      console.log('现在时间', nowdate, '结束时间', endTime)
+                      // console.log('现在时间', nowdate, '结束时间', endTime)
                       if (moment(nowdate, 'YYYY-MM-DD HH:mm').valueOf() > moment(endTime, 'YYYY-MM-DD HH:mm').valueOf()) {
-                        console.log('已经过期', endTime)
+                        // console.log('已经过期', endTime)
                       } else {
-                        console.log('没过期', item)
+                        // console.log('没过期', item)
                         return item
                       }
                     } else {
@@ -715,6 +716,7 @@ class CourseListPage extends EPage {
                   }else{
                     item.courseNum = startList.length ; // 两天的课程数
                   }
+
                   // 改成两天的课程
                   childList.push({
                     headImg: item.logo,
@@ -760,7 +762,6 @@ class CourseListPage extends EPage {
                 })
                 // console.log('初始化完成',this.data.childList, this.data.userName)
               } else if (secnder.length > 0) {
-
                 this.setData({
                   childlist: list,
                   headImg: secnder[0].logo,
@@ -827,7 +828,7 @@ class CourseListPage extends EPage {
             queryDate: currentDate,
             childId: this.data.childId
           }
-          console.log('参数家长0', params, role);
+          // console.log('参数家长0', params, role);
           this.$api.course.loadCourseTime(params).then((res) => {
             console.log('1', res.data.result)
             var lessonList = res.data.result.list; // 
@@ -837,7 +838,7 @@ class CourseListPage extends EPage {
               this.setData({
                 lessonLists: []
               })
-              console.log('没有课程')
+              // console.log('没有课程')
 
               let obj = {
                 classAddress: "",
@@ -889,7 +890,7 @@ class CourseListPage extends EPage {
                 return item
               })
 
-              console.log('课程', courselist)
+              // console.log('课程', courselist)
 
               // 过滤时间 
 
@@ -902,11 +903,11 @@ class CourseListPage extends EPage {
                     'hours': item.endTime.split(':')[0],
                     'minutes': item.endTime.split(':')[1]
                   }).add(30, 'minutes').format('YYYY-MM-DD HH:mm')
-                  console.log('现在时间', nowdate, '结束时间', endTime)
+                  // console.log('现在时间', nowdate, '结束时间', endTime)
                   if (moment(nowdate, 'YYYY-MM-DD HH:mm').valueOf() > moment(endTime, 'YYYY-MM-DD HH:mm').valueOf()) {
-                    console.log('已经过期', endTime)
+                    // console.log('已经过期', endTime)
                   } else {
-                    console.log('没过期', item)
+                    // console.log('没过期', item)
                     return item
                   }
                 } else {
@@ -1062,7 +1063,7 @@ class CourseListPage extends EPage {
             // childId: this.data.childId
           }
           // 教师端
-          console.log('参数家长2', params, role)
+          // console.log('参数家长2', params, role)
           this.$api.course.loadCourseTime(params).then((res) => {
             let lessonList = []
             if (res.data.result == null) {
@@ -1087,7 +1088,7 @@ class CourseListPage extends EPage {
             }
 
             let lessonLists = res.data.result.list
-            console.log('最近日程', lessonLists)
+            // console.log('最近日程', lessonLists)
             let imgType = res.data.result.imgType; // 校内日程日否含有图片   true
             this.setData({
               imgType: imgType,
@@ -1095,7 +1096,7 @@ class CourseListPage extends EPage {
             if (lessonLists != null) { // 今天有数据
               if (lessonLists.length == 1) { // 第一天（今天）
                 if (currentDate != lessonLists[0].date) { // 第一天数据
-                  console.log('第一天没有数据')
+                  // console.log('第一天没有数据')
                   let a = {
                     date: currentDate,
                     week: weel_str,
@@ -1117,11 +1118,11 @@ class CourseListPage extends EPage {
                       'hours': item.endTime.split(':')[0],
                       'minutes': item.endTime.split(':')[1]
                     }).add(30, 'minutes').format('YYYY-MM-DD HH:mm')
-                    console.log('现在时间', nowdate, '结束时间', endTime)
+                    // console.log('现在时间', nowdate, '结束时间', endTime)
                     if (moment(nowdate, 'YYYY-MM-DD HH:mm').valueOf() > moment(endTime, 'YYYY-MM-DD HH:mm').valueOf()) {
-                      console.log('已经过期', endTime)
+                      // console.log('已经过期', endTime)
                     } else {
-                      console.log('没过期', item)
+                      // console.log('没过期', item)
                       return item
                     }
                   })
@@ -1154,11 +1155,11 @@ class CourseListPage extends EPage {
                     'hours': item.endTime.split(':')[0],
                     'minutes': item.endTime.split(':')[1]
                   }).add(30, 'minutes').format('YYYY-MM-DD HH:mm')
-                  console.log('现在时间', nowdate, '结束时间', endTime)
+                  // console.log('现在时间', nowdate, '结束时间', endTime)
                   if (moment(nowdate, 'YYYY-MM-DD HH:mm').valueOf() > moment(endTime, 'YYYY-MM-DD HH:mm').valueOf()) {
-                    console.log('已经过期', endTime)
+                    // console.log('已经过期', endTime)
                   } else {
-                    console.log('没过期', item)
+                    // console.log('没过期', item)
                     return item
                   }
                 })
@@ -1182,7 +1183,7 @@ class CourseListPage extends EPage {
                 lessonList = lessonLists
               }
             } else {
-              console.log('列表无数据');
+              // console.log('列表无数据');
               let a1 = {
                 date: currentDate,
                 week: weel_str,

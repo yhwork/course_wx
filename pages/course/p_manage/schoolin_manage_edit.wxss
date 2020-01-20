@@ -442,20 +442,23 @@
   padding: 10rpx 0;
 }
 
-.course_set {
+.course_sets {
   width: 690rpx;
   background: rgba(255, 255, 255, 1);
-  box-shadow: 0px 1rpx 27rpx 0px rgba(150, 149, 149, 0.26);
   border-radius: 30rpx;
+  background:rgba(255,255,255,1);
+box-shadow:0px 1rpx 27rpx 0px rgba(150,149,149,0.26);
   margin-top: 20rpx;
   background: #fff;
-  /* margin-bottom: 100rpx; */
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
-.course_set .title {
+.course_sets .title {
   font-size: 34rpx;
   color: #000;
   padding: 20rpx 30rpx;
+  box-sizing: border-box;
 }
 
 .odd_even {
@@ -541,7 +544,11 @@
   border-left: 2rpx solid #e5e5e5;
   font-size: 28rpx;
 }
-
+/* 未选中的样式 */
+.selected {
+  background: #a2a2a2;
+  color: #fff;
+}
 
 .c_select {
   background: #f29219;

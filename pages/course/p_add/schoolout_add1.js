@@ -849,7 +849,7 @@ class SchooloutAdd1Page extends EPage {
                   if (item1.courseName == tagName) {            // 当前课的名字
                     item1.courseClass = `c_select ${color}`;
                   } else if (item1.courseName != '') {          // 否
-                    // item1.courseClass = `selected `;            // 灰色
+                    item1.courseClass = `selected `;            // 灰色
                   } 
                   if (typeof item1.courseName1 != 'undefined') {    // 单双周  
                     if (item1.courseName1 == tagName) {             // 名字不一样
@@ -875,7 +875,11 @@ class SchooloutAdd1Page extends EPage {
       // 增加课程
       [events.ui.BIND_COURSE](e) {
         if (this.data.switched) {
-          return;
+          return wx.showToast({
+            title: '请先关闭单双周',
+            duration:1500,
+            icon: 'none',
+          });
         }
         let InterNameList = this.data.InterNameList;
         let courseTable = this.data.courseTable;
@@ -917,6 +921,8 @@ class SchooloutAdd1Page extends EPage {
               })
             }
           }
+
+          
         )
         this.$storage.set('InterNameList', this.data.InterNameList);
       },
