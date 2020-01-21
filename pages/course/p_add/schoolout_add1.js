@@ -22,7 +22,8 @@ class SchooloutAdd1Page extends EPage {
   get data() {
     return {
       weeks: false, // 每周/单双周
-      select_img: '',
+      select_img:'',
+      tabshow:true,
       tabIndex: 0, // 默认添加方式   0  拍照  1手动
       switched: false,
       userInfo: {}, //当前用户信息
@@ -88,7 +89,6 @@ class SchooloutAdd1Page extends EPage {
       schoolname: '',
       Next: 0,
       location: false,
-      select_img: '',
       // weekday: moment().format('E')>6?0:moment().format('E'),    // 今天是周几
       weekday: 6,
       select_time: {
@@ -139,11 +139,13 @@ class SchooloutAdd1Page extends EPage {
           current,
           childId,
           time,
-          date
+          date,
+          tabshow
         } = option
         this.setData({
           activeIndex: current ? current : 1,
-          'model.childId': childId
+          'model.childId': childId,
+          tabshow:tabshow?tabshow:true
         })
         // 直接从课程表进来的
         if (!time) {
@@ -406,6 +408,7 @@ class SchooloutAdd1Page extends EPage {
                     console.log(res.key)
                     let imgs = this.$api.extparam.getFileUrl(res.key).split('!')[0] + "!org";
                     this.setData({
+                      tabshow:false,
                       select_img: imgs,
                     })
 
@@ -424,7 +427,8 @@ class SchooloutAdd1Page extends EPage {
       [events.ui.chargeTab](e) {
         console.log(e)
         this.setData({
-          tabIndex: e.currentTarget.dataset.tabindex
+          tabIndex: e.currentTarget.dataset.tabindex,
+          tabshow:false
         })
       },
       // 创建校外班级 

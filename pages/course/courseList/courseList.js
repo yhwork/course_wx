@@ -255,6 +255,8 @@ class CourseListPage extends EPage {
                 url: '/pages/course/p_manage/schoolout_manage?activeIndex=0' + "&childId=" + childId, // 打开校内
               })
             } else {
+
+              
               // wx.navigateTo({
               //   url: '/pages/course/p_manage/schoolout_manage?activeIndex=0' + "&childId=" + childId, // 打开校内
               // })
@@ -266,10 +268,10 @@ class CourseListPage extends EPage {
               // })
 
               // dataType
-              let params = { childId: childId}
+              let params = {
+                childId: childId
+              }
               this.$api.course.getAllInternalCourseName(params).then(res => {
-            
-
                 if (res.data.errorCode == 0 && res.data.result.length >= 0) {
                   wx.navigateTo({
                     url: '/pages/course/course?current=' + state + "&childId=" + childId,
@@ -279,7 +281,6 @@ class CourseListPage extends EPage {
                     url: `/pages/course/p_add/schoolout_add1?childId=${childId}&current=0`,
                   })
                 }
-
               })
             }
 
@@ -322,12 +323,12 @@ class CourseListPage extends EPage {
         let {
           childId
         } = this.data
-        if (e.currentTarget.dataset.current == 1) {    // 校外
+        if (e.currentTarget.dataset.current == 1) { // 校外
           wx.navigateTo({
             url: `/pages/course/p_add/schoolout_add1?childId=${childId}&activeIndex=1`,
           })
-        } else {   // 校内
-         
+        } else { // 校内
+
           wx.navigateTo({
             url: `/pages/course/p_add/schoolout_add1?childId=${childId}&current=0`,
           })
@@ -353,7 +354,6 @@ class CourseListPage extends EPage {
           current: e.currentTarget.dataset.current,
           more_staste: false
         })
-        console.log('逝者嘛')
         let childId = this.data.childId;
         wx.navigateTo({
           url: '/pages/course/p_manage/schoolout_manage?activeIndex=1' + "&childId=" + childId, // 打开校内
@@ -466,7 +466,7 @@ class CourseListPage extends EPage {
         this.setData({
           childid_i: i
         })
-     
+
         var childlist = this.data.childlist
         // console.log('小孩列表',childlist)
         childlist.forEach(item => {
@@ -682,13 +682,13 @@ class CourseListPage extends EPage {
               }
               let data = await this.$api.course.loadCourseTime(params) // 查找课程
               // console.log('课程', data)
-              if(data.data.imgType){
+              if (data.data.imgType) {
                 this.setData({
                   imgType
                 })
               }
               var lessonLists = data.data.result.list; // 课程
-              if (lessonLists != null && lessonLists.length >= 1){ 
+              if (lessonLists != null && lessonLists.length >= 1) {
                 if (currentDate == lessonLists[0].date) { // 第一天有数据
                   let startList = lessonLists[0].courseList.filter(item => {
                     // let nowdate = moment().set({'hours': 18,'minutes':'10'}).format('YYYY-MM-DD HH:mm');
@@ -710,11 +710,11 @@ class CourseListPage extends EPage {
                       return item
                     }
                   })
-                  
-                  if(lessonLists[1]){
+
+                  if (lessonLists[1]) {
                     item.courseNum = startList.length + lessonLists[1].courseList.length; // 两天的课程数
-                  }else{
-                    item.courseNum = startList.length ; // 两天的课程数
+                  } else {
+                    item.courseNum = startList.length; // 两天的课程数
                   }
 
                   // 改成两天的课程
@@ -734,7 +734,7 @@ class CourseListPage extends EPage {
                   })
                 }
 
-              }else{
+              } else {
                 childList.push({
                   headImg: item.logo,
                   userName: item.childName,
@@ -830,7 +830,10 @@ class CourseListPage extends EPage {
           }
           // console.log('参数家长0', params, role);
           this.$api.course.loadCourseTime(params).then((res) => {
+
+
             console.log('1', res.data.result)
+            let imgType = res.data.result.imgType
             var lessonList = res.data.result.list; // 
             let courselist = [] // 课程总数
             if (lessonList === undefined) {
@@ -860,7 +863,8 @@ class CourseListPage extends EPage {
               }
 
               this.setData({
-                lessonLists: courselist
+                lessonLists: courselist,
+                imgType
               })
 
               return

@@ -57,7 +57,7 @@
 	<!-- 校内添加 -->
 	<view class="add_in_school" hidden="{{activeIndex == 1}}">
 		<!-- 没有校内课程展示 -->
-		<view class='title_box1' hidden="{{tabIndex == 1 && select_img}}">
+		<view class='title_box1' wx:if="{{tabshow == true}}">
 			<view bindtap="CREATE_COURSE" class='add_courseItem {{tabIndex==0?"active ":""}}' data-tabIndex='0'>
 				<!-- <view class="icon_addcourse">
 			
@@ -74,7 +74,7 @@
 			</view>
 		</view>
 		<!-- 拍照上传校内日程 -->
-		<view wx:if='{{select_img || tabIndex == 0}}' class='center'>
+		<view wx:if='{{tabIndex == 0}}' class='center'>
 			<image src="{{select_img}}" catchTap="chooseImageTap" mode="aspectFit" class="img" />
 		</view>
 		<!-- 手动添加校内日程 -->

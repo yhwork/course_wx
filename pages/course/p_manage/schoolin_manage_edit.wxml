@@ -65,7 +65,7 @@
 		<view class='add_class' wx:if='{{userInfo.role == "0"}}'>
 			<view class='add_class_time_data_start' data-id="4" bindtap="CHANGE_BEGINDATE">
 				<text class="playdate">放学提醒:</text>
-				<text class="right_data">{{schoolname?schoolname:courseMsg.schoolName}}</text>
+				<text class="right_data">{{remindItems[model.remindIndex].name}}</text>
 				<image src=' https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png' class='courseinfo_warn_img'></image>
 			</view>
 		</view>
@@ -283,12 +283,12 @@
 
 
 	<!-- 上课时间 -->
-	<view class="shoutais3 shoutais" wx:if='{{course.time}}'>
+	<view class="shoutais3 shoutais" wx:if='{{course.starttime}}'>
 		<view class="btn_dialog">
 			<view bindtap="quit">取消</view>
 			<view data-id="1" bindtap="quit">确定</view>
 		</view>
-		<picker-view indicator-class='mask_bg' indicator-style="height: 40px;" style="width: 100%; height: 200rpx;" value="{{value3}}" data-id="3" bindchange="bindChange1">
+		<picker-view indicator-class='mask_bg' indicator-style="height: 40px;" style="width: 100%; height: 200rpx;" value="{{value3}}" data-id="1" bindchange="bindChange1">
 			<picker-view-column>
 				<view class="shoutais_item" wx:for="{{getdate}}" style="line-height: 50px">
 					<view class="mask_bgs"> {{item}}</view>
@@ -303,14 +303,14 @@
 	</view>
 	
 	<!-- 放学时间 -->
-	<view class="shoutais3 shoutais" wx:if='{{course.time}}'>
+	<view class="shoutais3 shoutais" wx:if='{{course.endtime}}'>
 		<view class="btn_dialog">
 			<view bindtap="quit">取消</view>
 			<view data-id="1" bindtap="quit">确定</view>
 		</view>
-		<picker-view indicator-class='mask_bg' indicator-style="height: 40px;" style="width: 100%; height: 200rpx;" value="{{value3}}" data-id="3" bindchange="bindChange1">
+		<picker-view indicator-class='mask_bg' indicator-style="height: 40px;" style="width: 100%; height: 200rpx;" value="{{value3}}" data-id="2" bindchange="bindChange1">
 			<picker-view-column>
-				<view class="shoutais_item" wx:for="{{getdate}}" style="line-height: 50px">
+				<view class="shoutais_item" wx:for="{{0}}" style="line-height: 50px">
 					<view class="mask_bgs"> {{item}}</view>
 				</view>
 			</picker-view-column>
@@ -322,9 +322,24 @@
 		</picker-view>
 	</view>
 	<!-- 放学提醒 -->
-
+	<view class="shoutais4 shoutais" wx:if='{{course.alert}}'>
+		<view class="btn_dialog">
+			<view bindtap="quit">取消</view>
+			<view data-id="1" bindtap="quit">确定</view>
+		</view>
+		<picker-view indicator-class='mask_bg' indicator-style="height: 40px;" style="width: 100%; height: 200rpx;" value="{{value4}}" data-id="3" bindchange="bindChange1">
+			<picker-view-column>
+				<view class="shoutais_item" wx:for="{{remindItems}}" style="line-height: 50px">
+					<view class="mask_bgs"> {{item.name}}</view>
+				</view>
+			</picker-view-column>
+		</picker-view>
+	</view>
 	<!-- 日历 -->
 	<view class='rili' wx:if="{{showCalendar}}">
 		<calendar catch:day-click="CALENDAR_DAY_CHANGED" />
 	</view>
+		<!-- 蒙版 -->
+	<view bindtap="quit" class="page_bg" wx:if="{{ course.mask}}"></view>
+
 </view>

@@ -499,12 +499,13 @@ input {
 }
 
 .center {
-  width: 100%;
+  width:690rpx;
+  height:1073rpx;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  /* border: 1px solid red; */
+  /* border: 1px solid red;   */
 }
 
 .center img {

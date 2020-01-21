@@ -533,7 +533,15 @@ box-shadow:0px 1rpx 27rpx 0px rgba(150,149,149,0.26);
   padding: 10rpx;
   box-sizing: border-box;
 }
-
+.page_bg{
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(41, 35, 35, 0.26);
+  z-index: 6;
+}
 .tr .td {
   display: flex;
   align-items: center;

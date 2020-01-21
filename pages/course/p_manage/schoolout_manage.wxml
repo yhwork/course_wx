@@ -29,7 +29,7 @@
   </view> -->
 
 	<!-- 顶部菜单 -->
-	<view class="menus">
+	<view class="menus" wx:if="{{activeIndex == 1}}">
 		<view wx:for='{{tabsSub}}' bindtap="TAB_CLICK_SUB" id='{{index}}' class="item {{index==activeIndexSub?'menus_active':''}}" wx:key='index'>
 			<text>{{item.type}}</text>
 			<text>{{item.num}}</text>
@@ -84,35 +84,54 @@
 	</view>
 	<!-- 课外列表-校内 -->
 	<view class="course_list" wx:if="{{activeIndex == '0'}}">
-		<view class="course_item1" wx:for="{{courseList}}" wx:for-item="item" wx:key="index" data-id="{{item.childId}}" wx:for-index="index">
-			<!-- <view class="course_name">
-				<view>{{item.name}}</view>
-				<view></view>
-			</view> -->
-			<view class="course_info">
-				<view class="course_info_item">
-					<text>学校名称:</text><text>{{item.schoolName}}</text>
+		<block wx:for="{{courseList}}" wx:for-item="item" wx:key="index" data-id="{{item.childId}}" wx:for-index="index">
+			<!-- 校内图片 -->
+			<view wx:if='{{item.imgType == 2}}' class="course_item2">
+				<view class="centers " bindtap='previmg' data-img='{{item.img}}'>
+					<image mode='widthFix' src='{{item.img}}'></image>
 				</view>
-				<view class="course_info_item">
-					<text space='ensp'>班    级:</text><text>{{item.className}}</text>
-				</view>
-				<view class="course_info_item">
-					<text>上学周期:</text><text>{{item.startDate}}-{{item.endDate}}</text>
-				</view>
-				<view class="course_info_item">
-					<text space='ensp'>课    程:</text><text>{{item.courseName}}</text>
+				<!-- 操作 -->
+				<view class="weui-flex">
+					<view class="weui-flex__item centers">
+						<view class="fa fa-pencil-square-o" bindtap="updataimg" data-courseid="{{item.id}}">修改</view>
+					</view>
+					<view class="weui-flex__item centers">
+						<!-- wx:if='{{editpower=="true"}}' -->
+						<view class="fa fa-trash-o" bindtap="deleteimg" data-courseid="{{item.id}}"> 删除</view>
+						<!-- <view wx:else style='color:#888' class="fa fa-trash-o" bindtap="nopower" data-courseid="{{item.id}}"> 删除</view> -->
+					</view>
+				
 				</view>
 			</view>
-			<view class="change_info">
-				<view class="details1" bindtap="OPE_DETAIL" data-courseid="{{item.internalClassId}}">
-					<image src="/assets/local/course/details.png"></image>
-					<text>详情</text>
+			<view class="course_item1" wx:else>
+				<!-- <view class="course_name">
+				<view>{{item.name}}</view>
+				<view></view>
+		   	</view> -->
+				<view class="course_info">
+					<view class="course_info_item">
+						<text>学校名称:</text><text>{{item.schoolName}}</text>
+					</view>
+					<view class="course_info_item">
+						<text space='ensp'>班    级:</text><text>{{item.className}}</text>
+					</view>
+					<view class="course_info_item">
+						<text>上学周期:</text><text>{{item.startDate}}-{{item.endDate}}</text>
+					</view>
+					<view class="course_info_item">
+						<text space='ensp'>课    程:</text><text>{{item.courseName}}</text>
+					</view>
 				</view>
-				<view class="details1 ssss" bindtap="OPE_EDIT" data-courseid="{{item.internalClassId}}">
-					<image src="/assets/local/course/edit.png"></image>
-					<text >修改</text>
-				</view>
-				<!-- <view class="details1">
+				<view class="change_info">
+					<view class="details1" bindtap="OPE_DETAIL" data-courseid="{{item.internalClassId}}">
+						<image src="/assets/local/course/details.png"></image>
+						<text>详情</text>
+					</view>
+					<view class="details1 ssss" bindtap="OPE_EDIT" data-courseid="{{item.internalClassId}}">
+						<image src="/assets/local/course/edit.png"></image>
+						<text >修改</text>
+					</view>
+					<!-- <view class="details1">
 					<image src="/assets/local/course/add.png"></image>
 					<text>增加课时</text>
 				</view> -->
@@ -120,21 +139,25 @@
 						<image src="/assets/local/course/delete.png"></image>
 						<text>删除</text>
 					</view>
-				<block wx:if='{{userInfo.role==0}}'>
-					<view class="details1" bindtap='SHOW_SHARE' data-id="{{item.internalClassId}}">
-						<image src="/assets/local/course/share.png"></image>
-						<text>分享</text>
-					</view>
-				</block>
-				<block wx:else>
-					<view class="details1">
-						<image src="/assets/local/course/share.png"></image>
-						<text>分享</text>
-					</view>
-				</block>
+					<block wx:if='{{userInfo.role==0}}'>
+						<view class="details1" bindtap='SHOW_SHARE' data-id="{{item.internalClassId}}">
+							<image src="/assets/local/course/share.png"></image>
+							<text>分享</text>
+						</view>
+					</block>
+					<block wx:else>
+						<view class="details1">
+							<image src="/assets/local/course/share.png"></image>
+							<text>分享</text>
+						</view>
+					</block>
 
+				</view>
 			</view>
-		</view>
+
+		</block>
+
+
 	</view>
 
 
