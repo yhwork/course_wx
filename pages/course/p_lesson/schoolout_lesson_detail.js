@@ -11,7 +11,7 @@ import {
 const moment = require('../../../lib/moment.min.js');
 
 function set_times(stute) { 
-  let val_time = [];
+  let val_time = []; 
   if (stute == true) {
     for (let i = 6; i < 20; i++) {
       if(i<10){
@@ -461,7 +461,6 @@ class SchooloutLessonDetailPage extends EPage {
             param.dataType = 2;
             param.data = {
               'lessonId': shareInfo.lessonId,
-
             };
             this.$api.user.shareInfoRecord(param).then(
               (res) => {

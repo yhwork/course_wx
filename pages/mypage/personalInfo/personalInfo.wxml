@@ -142,7 +142,7 @@
           <image src='{{pageModel.gender==1?"https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/girl.png":"https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/boy.png"}}'></image>
         </view>
         <view class="userNmae">
-          {{pageModel.nickName}}
+          {{pageModel.name}}
         </view>
       </view>
       <view class="data_info">

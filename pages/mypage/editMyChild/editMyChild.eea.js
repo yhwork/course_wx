@@ -25,6 +25,7 @@ const events = {
 }
 
 const effects = {
+  SHAREINFOS:null,
   loadOneChildInfo:null,
   shareChildInfo:null,
   addChildToList:null,

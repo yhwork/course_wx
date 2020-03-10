@@ -148,7 +148,7 @@ class editMyChildPage extends EPage {
         }
         put(effects.loadOneChildInfo);
         put(effects.GET_USER_INFO);
-
+       
         // 调分享记录接口
         //put(effects.shareChildInfo);
 
@@ -232,7 +232,7 @@ class editMyChildPage extends EPage {
           return {
             title: `[${userInfo.nickName}@您]给您分享了“${shareInfo.name}”的信息`,
             path: `/pages/course/courseList/courseList?action=share&code=${shareInfo.shortCode}`,
-            imageUrl: `${shareInfo.imageUrl}`,
+            // imageUrl: `${shareInfo.imageUrl}`,
             success: (res) => {
               this.$common.showToast('分享成功', 'success')
             }
@@ -243,6 +243,11 @@ class editMyChildPage extends EPage {
           path: '/pages/course/courseList/courseList',
           imageUrl: '/assets/img/share.jpg'
         }
+      },
+      [PAGE_LIFE.ON_UNLOAD](e){
+        let mange =this.data.manage;
+        if (mange == 'true')
+        put(effects.updateChildShareListAuthority)
       },
     }
   }
@@ -390,11 +395,12 @@ class editMyChildPage extends EPage {
         // 调接口
         put(effects.addChildToList);
       },
-      //显示分享遮罩层
+      //显示分享遮罩层   // 页面加载时调用  销毁时取消
       [events.ui.SHOW_SHARE](e) {
         this.setData({
           shareHide: false,
         });
+       
         let shareInfo = this.data.resultModel;
         const param = {};
         param.dataType = 3;
@@ -411,7 +417,6 @@ class editMyChildPage extends EPage {
                 'target': 'child',
                 'shortCode': res.data.result.shortCode
               };
-              // console.log(param1)
               this.$api.user.shareInfoRecord(param1).then(
                 (res) => {
                   shareInfo.shortCode = res.data.result.shortCode;
@@ -589,6 +594,55 @@ class editMyChildPage extends EPage {
         // 孩子权限管理
         this.$api.circle.updateChildShareListAuthority(Params).then(s => {})
       },
+      //显示分享遮罩层   // 页面加载时调用  销毁时取消
+      [effects.SHAREINFOS](e) {
+        // this.setData({
+        //   shareHide: false,
+        // });
+        console.log('分享加载')
+        let shareInfo = this.data.resultModel;
+        const param = {};
+        param.dataType = 3;
+        param.data = {
+          'childId': shareInfo.id
+        };
+        this.$api.user.shareInfoRecord(param).then(
+          (res) => {
+            if (res.data.errorCode == '0') {
+              const param1 = {};
+              param1.dataType = 0;
+              param1.data = {
+                'childId': shareInfo.id,
+                'target': 'child',
+                'shortCode': res.data.result.shortCode
+              };
+              // console.log(param1)
+              this.$api.user.shareInfoRecord(param1).then(
+                (res) => {
+                  shareInfo.shortCode = res.data.result.shortCode;
+                  console.log(shareInfo);
+                  this.setData({
+                    shareInfo: shareInfo
+                  })
+                  this.$image.generateShareCourse(this.data.shareCavansOptions, shareInfo, 'child').then(imageUrl => {
+                    shareInfo.imageUrl = imageUrl;
+                    console.log(shareInfo.imageUrl)
+                    this.setData({
+                      shareHide: false,
+                      shareInfo
+                    });
+                    // console.log(this.data.shareHide)
+                  });
+                }
+              )
+            } else {
+              this.$common.showMessage(this, res.data.errorMessage);
+              return;
+            }
+          }
+        )
+
+      },
       [effects.deleteChildRelation]() {
         this.$api.circle.deleteChildShareAuthority(this.data.deleteParamModel).then(s => {
           if (s.data.errorCode == '0') {
@@ -736,6 +790,8 @@ class editMyChildPage extends EPage {
               this.setData({
                 userInfo: res.data.result
               })
+              put(effects.SHAREINFOS)
+              console.log('调用分享')
             } else {
               this.$common.showMessage(this, res.data.errorMessage);
               return;

@@ -127,8 +127,8 @@ class Image {
         ctx.setTextAlign('left');
         ctx.fillText(signNum + '次打卡', ctx.measureText(partIn + '人参与').width + padding.left * 2, padding.top * 2 + line_height + font_size1 + width * 300 / 600);
       } else if (source == 'child') {
+        console.log('小孩分享内容',shareInfo)
         const name = shareInfo.name;
-
         const font_size = 18;
         const padding = {
           top: 15,
@@ -147,8 +147,8 @@ class Image {
 
         ctx.setTextAlign('right');
         ctx.fillText(name, width - padding.right, padding.top + font_size);
-
-        ctx.drawImage('/assets/img/share_course.jpg', 0, padding.top + font_size + line_height * 2, width, width * 250 / 600)
+        // 分享图片  小孩分享
+        ctx.drawImage( 0, padding.top + font_size + line_height * 2, width, width * 250 / 600)
       } else if (source == 'diray') {
         const img = shareInfo.signInUserLogo
         console.log(img)

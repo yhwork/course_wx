@@ -378,12 +378,18 @@ class PInfoPage extends EPage {
                 console.log('创建孩子数据1', model, res.data);
                 this.$api.child.create(model).then(
                   (res) => {
-                    this.$storage.clear();
-                    if (typeof model.comeFrom != 'undefined' && model.comeFrom == 'addChild') {
-                      wx: wx.navigateBack({
-                        delta: 1,
+                    wx.removeStorageSync('resultModel')
+                    wx.removeStorageSync('model.comeFrom')
+                    wx.removeStorageSync('model.name')
+                    wx.removeStorageSync('schoolinfo.name')
+                    wx.removeStorageSync('schoolinfo.typecode')
+                    wx.removeStorageSync('schoolinfo.schoolid')
+                    // this.$storage.clear();
+                    if ( model.comeFrom == 'addChild') {
+                      wx.switchTab({
+                        url: '/pages/course/courseList/courseList',
                       })
-                    } else if (typeof this.data.model.comeFrom != 'undefined' && this.data.model.comeFrom == 'firstaddChild') {
+                    } else if ( this.data.model.comeFrom == 'firstaddChild') {
                       wx.switchTab({
                         url: '../mypage/mypage/mypage'
                       })
@@ -405,7 +411,6 @@ class PInfoPage extends EPage {
               console.log('创建孩子数据2', model)
               this.$api.child.create(model).then(
                 (res) => {
-                  this.$storage.clear();
                   if (typeof this.data.model.comeFrom != 'undefined' && this.data.model.comeFrom == 'addChild') {
                     wx.redirectTo({
                       url: '../../mypage/myChildren/myChildren'

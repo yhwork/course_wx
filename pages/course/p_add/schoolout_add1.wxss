@@ -865,6 +865,10 @@ input {
   font-family:PingFang SC;
   padding: 10rpx;
   box-sizing: border-box;
+   width: 20rpx;  
+  margin: 0 auto;  
+  line-height: 24rpx;  
+  color: #E7C60E;
 }
 .bgclass{
   background-color: rgb(220, 245, 237);

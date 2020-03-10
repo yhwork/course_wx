@@ -112,6 +112,7 @@
   position: absolute;
   bottom: -66rpx;
   width: 300rpx;
+  overflow: hidden;
   right: 50%;
   transform: translate(50%);
   text-align: center;

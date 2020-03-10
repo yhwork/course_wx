@@ -111,7 +111,7 @@
     <view class='thead'>
       <view class='tr'>
         <view class='td firstTd'>
-          <view>星期节次</view>
+          <view class="myweeks">本周</view>
         </view>
         <view class='td'>周一</view>
         <view class='td'>周二</view>
@@ -139,7 +139,7 @@
 
   </view>
 
-  <view class='outSchool_time' wx:if="{{userInfo.role==0}}">
+  <view class='outSchool_time' wx:if="{{false}}">
     <view class='line'></view>
     <view class='endschooltime outSchool_item'>
       <view class='weekday'>星期</view>
