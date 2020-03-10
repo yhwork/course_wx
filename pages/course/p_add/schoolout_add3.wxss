@@ -15,7 +15,12 @@
   clear:both;
   display:block;
 }
-
+.flex{
+  display: flex
+}
+.ml{
+  margin-left: 16rpx;
+}
 .list{
   background: #fff;
   width: 100%;
@@ -271,14 +276,17 @@ view{
   box-shadow:0px 1rpx 27rpx 0px rgba(150,149,149,0.26);
   border-radius:30rpx;
   overflow: hidden;
-  padding: 12rpx 42rpx;
+  padding: 0 46rpx;
   box-sizing: border-box;
 }
 .page__bd_list1_class{
   display: flex;
   justify-content: center;
-  padding: 20rpx 0rpx;
+  margin-top: 40rpx;
   background: white;
+}
+.page__bd_list1_class:last-child{
+  margin-bottom: 40rpx;
 }
 .weui-cell__hd{
   display: flex;
@@ -352,7 +360,7 @@ view{
 .btn_box{
   display: flex;
   position: fixed;
-  bottom:250rpx;
+  bottom:140rpx;
   justify-content:center;
   width:690rpx;
   height:61rpx;
@@ -436,7 +444,7 @@ align-items: center
 .mb {
   width: 540rpx;
   height: 626rpx;
-  background: #fff;
+  /* background: #fff; */
   position: relative;
   top: 50%;
   left: 50%;
@@ -459,12 +467,16 @@ align-items: center
 
 .sharefrends button{
   position: absolute;
-  bottom: 20rpx;
+  bottom: 6rpx;
   left: 50%;
   transform: translateX(-50%);
   width: 406rpx;
   height: 63rpx;
+  line-height: 63rpx;
   border-radius: 0;
   background-color: rgba(1, 1, 1, 0);
   border: none;
+}
+button::after{
+  border: none
 }

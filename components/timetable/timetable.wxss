@@ -254,7 +254,8 @@
 .lesson-default {
   width: 41px;
   height: 21px;
-  color: #cc995c;
+  color: #fff;
+  background-color: #cc995c;
 }
 
 .lesson-China {
@@ -335,16 +336,21 @@
 }
 
 .box_active {
-
   background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACcAAAAnCAQAAAAmqpm+AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAHdElNRQfjDA4LISzLOc9fAAAAQElEQVRIx+3VsQ0AIAzEwIAyEjMxbYZKQ49Fh2TXr2t/7IBVrPtoUo0lJycnJ/dURuEtWCZ5gIP5FXJycnKfcA052wSE1jU8KgAAAABJRU5ErkJggg==');
-  background-color: #dbd6d6;
-  background-size: 100%;
+  background-color: #f3f3f3;
+  background-size: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+
 }
 
 .box_active2 {
   background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADQAAAA0CAQAAABvcdNgAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAHdElNRQfjCx0OJQaCqSUHAAAATElEQVRYw+3WoQ0AIAxFQUrYfxCWBIuk4Jp7/udETWO1ZOcg7mc967wGAoFAIBAIdNNo82Od2MZK/1tv1btRPSj83iAQCAQCgUAloA0iiAe4z4ePXwAAAABJRU5ErkJggg==');
   /* background-color: #7ed321 !important; */
-  background-color: #d4cccc;
+  background-color: #f3f3f3;
+  background-size: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .box_active1 {

@@ -3,29 +3,23 @@
   box-sizing: border-box;
   position: relative;
 }
-
+.page_bg{
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(41, 35, 35, 0.26);
+  z-index: 8;
+}
 .el-icon-lxy-ditu {
   font-size: 48rpx;
   color: #ff9800;
-}
-.close{
-  position: relative;
-  z-index: 99;
-  top:400rpx;
-  width: 70rpx;
-  height: 70rpx;
-}
-.close image{
-  width: 100%;
-  height: 100%;
 }
 .page1 {
   width: 100%;
   background-color: #fff;
   padding-bottom: 120rpx;
-}
-.cale_mask_bg{
-  
 }
 .bind_list {
   width: 690rpx;

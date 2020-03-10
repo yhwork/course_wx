@@ -3,6 +3,7 @@ export const events = {
         PREV_MONTH: null,
         NEXT_MONTH: null,
         TAP_DAY: null,
+        quit:null,
     }
 }
 

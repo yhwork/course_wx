@@ -47,10 +47,10 @@
 				</view>
 				<view wx:if='{{courseInfo.classAddress}}' class="course_info_item" bindtap="OPEN_LOCATION">
 					<text>上课地点:</text><text class="font info_adress_tet">{{courseInfo.classAddress}}</text>
-					<image src="/assets/local/course/adress.png" class="info_adress"></image>
+					<image src="https://qa.oss.iforbao.com/public/assets/local/adress.png" class="info_adress"></image>
 				</view>
 				<view class="course_info_item"  wx:if='{{courseInfo.classRoom}}'>
-					<text decode="{{true}}">教&nbsp;&nbsp; &nbsp; 室:</text><text>{{courseInfo.classRoom}}</text>
+					<text decode="{{true}}">教&nbsp; &nbsp; &nbsp;&nbsp; 室:</text><text>{{courseInfo.classRoom}}</text>
 				</view>
 				<view wx:if='{{courseInfo.teacher}}' class="course_info_item">
 					<text>任教老师:</text><text>{{courseInfo.teacher}}</text>
@@ -122,12 +122,14 @@
 								<block wx:elif="{{item.status=='0'}}">
 									<block wx:if="{{item.type==2}}">
 										<view class="course-change"></view>
-										<view style="font-size:22rpx;margin-top:30rpx;float:left; position: absolute;right:38rpx;color:#75b0b0;">调课</view>
+										<view style="font-size:22rpx;margin-top:30rpx;float:left; position: absolute;right:38rpx;color:#75b0b0;"></view>
+                    <!-- 调课 -->
 									</block>
 
 									<block wx:elif="{{item.type==3}}">
 										<view class="course-remedial"></view>
-										<view style="font-size:22rpx;margin-top:30rpx;float:left; position: absolute;right:38rpx;color:#75b0b9;">补课</view>
+										<view style="font-size:22rpx;margin-top:30rpx;float:left; position: absolute;right:38rpx;color:#75b0b9;"></view>
+                    <!-- 补课 -->
 									</block>
 									<block wx:else>
 										<view class="course-noton"></view>

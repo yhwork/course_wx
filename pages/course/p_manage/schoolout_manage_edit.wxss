@@ -15,6 +15,30 @@ font-weight:500;
 color:rgba(255,255,255,1);
 /* line-height:16rpx; */
 }
+.navbar__slider {
+  margin-top: 10rpx;
+  height: 8rpx;
+  position: absolute;
+  bottom: 0rpx;
+  
+  transform: translateX(50%);
+  width: 167rpx;
+  background-color:#EFCF0B;
+  border-radius: 25rpx;
+  transition: all 0.3s;
+}
+.slider_active{
+  right: 25%;
+  transition: all 0.3s;
+}
+.slider_actives{
+  right: 75%;
+  transition: all 0.3s;
+}
+.bar__item_on {
+  color: rgba(239, 207, 11, 1);
+
+}
 .page_bg{
   position: absolute;
   top: 0;

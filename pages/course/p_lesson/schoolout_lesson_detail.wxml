@@ -1,269 +1,272 @@
 <view class="page">
-	<view class="main">
-		<view class="main_bg">
-			<view class='mypage_top'>
-				<view class="mypage_course">
-					<view class="course_name">{{lessonInfo.name}}</view>
-					<view class="course_status">
-						<block wx:if="{{lessonInfo.status==1}}">
-							<view class='course_b'>
-								<view class="course-attend"></view>
-								<text class='chu course-attend-color'>出勤</text>
-							</view>
-						</block>
-						<block wx:elif="{{lessonInfo.status=='0'}}">
-							<block wx:if="{{lessonInfo.type==2}}">
-								<view class='course_b'>
-									<view class="course-change"></view>
-									<text class='chu course-change-color'>调课</text>
-								</view>
+  <view class="main">
+    <view class="main_bg">
+      <view class='mypage_top'>
+        <view class="mypage_course">
+          <view class="course_name">{{lessonInfo.name}}</view>
+          <view class="course_status"> 
+            <block wx:if="{{lessonInfo.status==1}}">
+              <view class='course_b'>
+                <view class="course-attend"></view>
+                <text class='chu course-attend-color'>出勤</text>
+              </view>
+            </block>
+            <block wx:elif="{{lessonInfo.status=='0'}}">
+              <block wx:if="{{lessonInfo.type==2}}">
+                <view class='course_b'>
+                  <view class="course-change"></view>
+                  <text class='chu course-change-color'>调课</text>
+                </view>
 
-							</block>
+              </block>
 
-							<block wx:elif="{{lessonInfo.type==3}}">
-								<view class='course_b'>
-									<view class="course-remedial"></view>
-									<text class='chu course-remedial-color'>补课</text>
-								</view>
-							</block>
-							<block wx:else>
-								<view class='course_b'>
-									<view class="course-noton"></view>
-									<text class='chu course-noton-color'>未上</text>
-								</view>
-							</block>
-						</block>
-						<block wx:else>
-							<block wx:if="{{lessonInfo.type==1}}">
-								<view class='course_b'>
-									<view class="course-absent"></view>
-									<text class='chu course-absent-color'>缺席</text>
-								</view>
-							</block>
-						</block>
-					</view>
-				</view>
-				<view class="course_details">
-					<text>{{lessonInfo.timeForClass}}</text>
-				</view>
-			</view>
+              <block wx:elif="{{lessonInfo.type==3}}">
+                <view class='course_b'>
+                  <view class="course-remedial"></view>
+                  <text class='chu course-remedial-color'>补课</text>
+                </view>
+              </block>
+              <block wx:else>
+                <view class='course_b'>
+                  <view class="course-noton"></view>
+                  <text class='chu course-noton-color'>未上</text>
+                </view>
+              </block>
+            </block>
+            <block wx:else>
+              <block wx:if="{{lessonInfo.type==1}}">
+                <view class='course_b'>
+                  <view class="course-absent"></view>
+                  <text class='chu course-absent-color'>缺席</text>
+                </view>
+              </block>
+            </block>
+          </view>
+        </view>
+        <view class="course_details">
+          <text>{{lessonInfo.timeForClass}}</text>
+        </view>
+      </view>
 
-			<view class="page_bd">
-				<view class="couese_num">
-					<text>共{{lessonInfo.allClass}}节课程</text>
-					<text>出勤{{lessonInfo.attendClass}}</text>
-					<text>剩余{{lessonInfo.leftClassShow}}</text>
-				</view>
+      <view class="page_bd">
+        <view class="couese_num">
+          <text>共{{lessonInfo.allClass}}次课程</text>
+          <text>出勤{{lessonInfo.attendClass}}</text>
+          <text>剩余{{lessonInfo.leftClassShow}}</text>
+        </view>
 
-				<view class="page__bd">
-					<view class="weui-progress">
-						<view class="weui-progress__bar">
-							<progress percent="{{lessonInfo.percent}}" stroke-width="3" color='#EFCF0B' />
-						</view>
-					</view>
-				</view>
+        <view class="page__bd">
+          <view class="weui-progress">
+            <view class="weui-progress__bar">
+              <progress percent="{{lessonInfo.percent}}" stroke-width="3" color='#EFCF0B' />
+            </view>
+          </view>
+        </view>
 
-				<!-- 中间说明部分start -->
-				<view class="course_list">
-					<view class="course_list_item">
-						<view class="weui-cell__bds">
-							<text >教学机构:</text>
-						</view>
-						<view class="weui-cell__ft"> {{lessonInfo.orgName}}</view>
-					</view>
-					<!-- <view class="course" bindtap="OPEN_LOCATION" data-longitude="{{item.longitude}}" data-latitude="{{item.latitude}}">
+        <!-- 中间说明部分start -->
+        <view class="course_list">
+          <view class="course_list_item">
+            <view class="weui-cell__bds">
+              <text>教学机构:</text>
+            </view>
+            <view class="weui-cell__ft"> {{lessonInfo.orgName}}</view>
+          </view>
+          <!-- <view class="course" bindtap="OPEN_LOCATION" data-longitude="{{item.longitude}}" data-latitude="{{item.latitude}}">
 						<view>上课地点:</view>
 						<text class="font course_right">{{items.classAddress}}</text>
 					</view> -->
-					<view wx:if="{{lessonInfo.classAddress}}" class="course_list_item" bindtap="OPEN_LOCATION">
-						<view class="weui-cell__bds">
-							<text>上课地点:</text>
-						</view>
-						<view class="weui-cell__ft">{{lessonInfo.classAddress}}</view>
-						<image src="/assets/local/course/adress.png" class="info_adress"></image>
-					</view>
+          <view wx:if="{{lessonInfo.classAddress}}" class="course_list_item" bindtap="OPEN_LOCATION">
+            <view class="weui-cell__bds">
+              <text>上课地点:</text>
+            </view>
+            <view class="weui-cell__ft adress">
+              <text class="font wts">{{lessonInfo.classAddress}}</text>
+            </view>
+            <image src="https://qa.oss.iforbao.com/public/assets/local/adress.png" class="info_adress"></image>
+          </view>
 
-					<view class="course_list_item" wx:if="{{lessonInfo.classRoom}}">
-						<view class="weui-cell__bds">教
-							<text decode="{{true}}">&ensp;&ensp;&ensp;&ensp;</text>室:</view>
-						<view class="weui-cell__ft">{{lessonInfo.classRoom}}</view>
-					</view>
-					<view class="course_list_item" wx:if="{{lessonInfo.teacher}}">
-						<view class="weui-cell__bds b">
-							<text >任教老师:</text>
-						</view>
-						<view class="weui-cell__ft" style="font-size:30rpx;">{{lessonInfo.teacher}}</view>
-					</view>
+          <view class="course_list_item" wx:if="{{lessonInfo.classRoom}}">
+            <view class="weui-cell__bds">
+              <text>教<text style='color:#fff'>教室</text>室:</text>
+            </view>
+            <view class="weui-cell__ft">{{lessonInfo.classRoom}}</view>
+          </view>
+          <view class="course_list_item" wx:if="{{lessonInfo.teacher}}">
+            <view class="weui-cell__bds b">
+              <text>任教老师:</text>
+            </view>
+            <view class="weui-cell__ft">{{lessonInfo.teacher}}</view>
+          </view>
 
-					<view class="course_list_item" wx:if="{{lessonInfo.contactTel}}">
-						<view class="weui-cell__bds">联系方式:</view>
-						<view class="weui-cell__ft">{{lessonInfo.contactTel}}</view>
-					</view>
+          <view class="course_list_item" wx:if="{{lessonInfo.contactTel}}">
+            <view class="weui-cell__bds">联系方式:</view>
+            <view class="weui-cell__ft">{{lessonInfo.contactTel}}</view>
+          </view>
 
-				</view>
+        </view>
 
-				<block wx:if="{{lessonInfo.type==2}}">
-					<view class="course_list_item">
-						<view class="weui-cell__bds b">
-							<text >被调时间:</text>
-						</view>
-						<view class="weui-cell__ft">{{lessonInfo.modifyTime}}</view>
-					</view>
-				</block>
+        <block wx:if="{{lessonInfo.type==2}}">
+          <view class="course_list_item">
+            <view class="weui-cell__bds b">
+              <text>被调时间:</text>
+            </view>
+            <view class="weui-cell__ft" style="color:red;">{{lessonInfo.modifyTime}}</view>
+          </view>
+        </block>
 
-				<block wx:elif="{{lessonInfo.type==3}}">
-					<view class="course_list_item">
-						<text class="weui-cell__bds b">
+        <block wx:elif="{{lessonInfo.type==3}}">
+          <view class="course_list_item">
+            <text class="weui-cell__bds b">
 						<text >缺勤时间:</text>
-						</text>
-						<view class="weui-cell__ft" style="font-size:30rpx;color:red;">{{lessonInfo.absentTime}}</view>
-					</view>
-				</block>
+            </text>
+            <view class="weui-cell__ft" style="color:red;">{{lessonInfo.absentTime}}</view>
+          </view>
+        </block>
 
-				<view class="course_list_item">
-					<view class="weui-cell__bds b">
-						<text >上课提醒:</text>
-					</view>
-					<view class="weui-cell__ft">{{lessonInfo.notifyTxt}}</view>
-				</view>
+        <view class="course_list_item">
+          <view class="weui-cell__bds b">
+            <text>上课提醒:</text>
+          </view>
+          <view class="weui-cell__ft">{{lessonInfo.notifyTxt}}</view>
+        </view>
 
-			</view>
-		</view>
-		<view class='bottom_a'>
+      </view>
+    </view>
+    <view class='bottom_a'>
 
-			<block wx:if="{{lessonInfo.type==1}}">
-				<view class="b" bindtap="OPE_REMEDIAL">
-					<image src="/assets/local/course/queqin.png" class='bottomicona'></image>
-					<text>补课</text>
-				</view>
-			</block>
-			<block wx:else>
-				<view class="b" bindtap="OPE_ABSENT">
-					<image src="/assets/local/course/queqin.png" class='bottomiconb'></image>
-					<text class="{{editpower=='true'?'bottom_b':'bottom_c'}}" >缺勤</text>
-				</view>
-				<view class="b" bindtap="OPE_CHANGE">
-					<image src="/assets/local/course/tiaoke.png" class='bottomiconb'></image>
-					<text class="{{editpower=='true'?'bottom_b':'bottom_c'}}"  >调课</text>
-				</view>
-			</block>
-			<view class="b" bindtap="OPE_DEL">
-				<image src="/assets/local/course/delete.png" class='bottomiconb'></image>
-				<text class="{{editpower=='true'?'bottom_b':'bottom_c'}}" >删除</text>
-			</view>
-			<view class="b" bindtap='SHOW_SHARE'>
-				<image src="/assets/local/course/share.png" class='bottomiconb'></image>
-				<text class="bottom_b">分享</text>
-			</view>
-		</view>
-	</view>
+      <block wx:if="{{lessonInfo.type==1}}">
+        <view class="b" bindtap="OPE_REMEDIAL">
+          <image src="https://qa.oss.iforbao.com/public/assets/local/queqin.png" class='bottomicona'></image>
+          <text class="{{editpower=='true'?'bottom_b':'bottom_c'}}">补课</text>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="b" bindtap="OPE_ABSENT">
+          <image src="https://qa.oss.iforbao.com/public/assets/local/queqin.png" class='bottomiconb'></image>
+          <text class="{{editpower=='true'?'bottom_b':'bottom_c'}}">缺勤</text>
+        </view>
+        <view class="b" bindtap="OPE_CHANGE">
+          <image src="https://qa.oss.iforbao.com/public/assets/local/tiaoke.png" class='bottomiconb'></image>
+          <text class="{{editpower=='true'?'bottom_b':'bottom_c'}}">调课</text>
+        </view>
+      </block>
+      <view class="b" bindtap="OPE_DEL">
+        <image src="https://qa.oss.iforbao.com/public/assets/local/delete.png" class='bottomiconb'></image>
+        <text class="{{editpower=='true'?'bottom_b':'bottom_c'}}">删除</text>
+      </view>
+      <view class="b" bindtap='SHOW_SHARE'>
+        <image src="https://qa.oss.iforbao.com/public/assets/local/share.png" class='bottomiconb'></image>
+        <text class="bottom_b">分享</text>
+      </view>
+    </view>
+  </view>
 
-	<!-- 分享 -->
-	<view class='share_mask' hidden='{{shareHide}}'>
-		<view class='share_box'>
-			<view class='share_top'>
-				<view class='share_title'>{{userInfo.nickName}}@您，给你分享了如下课程</view>
-				<view class='cancel' bindtap='HIDE_SHARE'>取消</view>
-			</view>
-			<view class='share_center'>
-				<view class='course_name'>{{shareInfo.name}}</view>
-				<!--<view class='date'>
+  <!-- 分享 -->
+  <view class='share_mask' hidden='{{shareHide}}'>
+    <view class='share_box'>
+      <view class='share_top'>
+        <view class='share_title'>{{userInfo.nickName}}@您，给你分享了如下课程</view>
+        <view class='cancel' bindtap='HIDE_SHARE'>取消</view>
+      </view>
+      <view class='share_center'>
+        <view class='course_name'>{{shareInfo.name}}</view>
+        <!--<view class='date'>
         <view class='start_date'>开始：{{shareInfo.beginDate}}</view>
         <view class='end_date'>结束：{{shareInfo.endDate}}</view>
       </view>-->
-				<view class='time_type'>
-					<view class='time'>{{shareInfo.timeForClass}}</view>
-					<view class='type'>{{shareInfo.orgName}}</view>
-				</view>
-				<view class='addr'>
-					<image src='../../..https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/map.png'></image>
-					{{shareInfo.classAddress}}
-				</view>
-			</view>
-			<view class='share_foot'>
-				<button open-type="share" class='weiXin'>
-					<view class='weiXin'>
-						<image src='../../..https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/wx_friend.png'></image>
-						微信好友
-					</view>
-				</button>
-				<!--<view class='xcx'>
+        <view class='time_type'>
+          <view class='time'>{{shareInfo.timeForClass}}</view>
+          <view class='type'>{{shareInfo.orgName}}</view>
+        </view>
+        <view class='addr'>
+          <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/map.png'></image>
+          {{shareInfo.classAddress}}
+        </view>
+      </view>
+      <view class='share_foot'>
+        <button open-type="share" class='weiXin'>
+          <view class='weiXin'>
+            <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/wx_friend.png'></image>
+            <view class="wxsize">微信好友</view>
+          </view>
+        </button>
+        <!--<view class='xcx'>
         <image src='../../..https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/xcx_icon.png'></image>
         小程序码</view>-->
-			</view>
-		</view>
-	</view>
-	<canvas class="share-canvas" style="width:{{shareCavansOptions.width}}px;height:{{shareCavansOptions.height}}px;visibility:hidden;position:absolute;top:-1000rpx;" canvas-id="share_canvas"></canvas>
+      </view>
+    </view>
+  </view>
+  <canvas class="share-canvas" style="width:{{shareCavansOptions.width}}px;height:{{shareCavansOptions.height}}px;visibility:hidden;position:absolute;top:-1000rpx;" canvas-id="share_canvas"></canvas>
 
-	<!-- 调课 -->
-	<view class="update_courses" hidden="{{course.update}}">
-		<view class="update_course_time">
-			<view class="update_course_date">
-				<view class="update_left">
-					<view class="name">上课日期</view>
-					<view class="times">{{updata_data.beginDate}}</view>
-				</view>
-				<view class="swip">
-					<image src="/assets/local/course/xiangyou.png"></image>
-				</view>
-				<view class="update_left" bindtap="CHANGE_BEGINDATE" data-times='1'>
-					<view>{{lessonInfo.beginDate}}</view>
-					<text wx:if='{{course.endDate}}'>(请选择上课日期)</text>
-				</view>
-			</view>
-			<view class="update_course_date" >
-				<view class="update_left">
-					<view class="name">上课时间</view>
-					<view class="times">{{updata_data.date}}</view>
-				</view>
-				<view class="swip">
-					<image src="/assets/local/course/xiangyou.png"></image>
-				</view>
-				<view class="update_left" bindtap="CHANGE_BEGINDATE" data-times='0'>
-					<view>{{lessonInfo.beginTime}}</view>
-					<text wx:if='{{course.beginTime}}'>(请选择上课时间)</text>
-				</view>
-			</view>
-		</view>
-		<view class='btn_box'>
-			<button class='btn2' bindtap="SAVE_NEXT">确认</button>
-		</view>
-	</view>
+  <!-- 调课 -->
+  <view class="update_courses" hidden="{{course.update}}">
+    <view class="update_course_time">
+      <view class="update_course_date">
+        <view class="update_left">
+          <view class="name">上课日期</view>
+          <view class="times">{{updata_data.beginDate}}</view>
+        </view>
+        <view class="swip">
+          <image src="https://qa.oss.iforbao.com/public/assets/local/xiangyou.png"></image>
+        </view>
+        <view class="update_left" bindtap="CHANGE_BEGINDATE" data-times='1'>
+          <view>{{lessonInfo.beginDate}}</view>
+          <text wx:if='{{course.endDate}}'>(请选择上课日期)</text>
+        </view>
+      </view>
+      <view class="update_course_date">
+        <view class="update_left">
+          <view class="name">上课时间</view>
+          <view class="times">{{updata_data.date}}</view>
+        </view>
+        <view class="swip">
+          <image src="https://qa.oss.iforbao.com/public/assets/local/xiangyou.png"></image>
+        </view>
+        <view class="update_left" bindtap="CHANGE_BEGINDATE" data-times='0'>
+          <view>{{lessonInfo.beginTime}}</view>
+          <text wx:if='{{course.beginTime}}'>(请选择上课时间)</text>
+        </view>
+      </view>
+    </view>
+    <view class='btn_box'>
+      <button class='btn2' bindtap="SAVE_NEXT">确认</button>
+    </view>
+  </view>
 
-	<!-- 开始时间 -->
-	<view class="shoutais4 shoutais" wx:if='{{course.time}}'>
-		<view class="btn_dialog">
-			<view bindtap="quit">取消</view>
-			<view data-id="1" bindtap="quit">确定</view>
-		</view>
-		<picker-view indicator-class='mask_bg' indicator-style="height: 40px;" style="width: 100%; height: 200rpx;" value="{{value3}}" data-id="3" bindchange="bindChange1">
-			<picker-view-column>
-				<view class="shoutais_item" wx:for="{{getdate}}" style="line-height: 50px" >
-					<view class="mask_bgs" > {{item}}</view>
-				</view>
-			</picker-view-column>
-			<picker-view-column>
-				<view class="shoutais_item" wx:for="{{gettime}}" style="line-height: 50px" >
-					<view class="mask_bgs"> {{item}}</view>
-				</view>
-			</picker-view-column>
-		</picker-view>
-	</view>
+  <!-- 开始时间 -->
+  <view class="shoutais4 shoutais" wx:if='{{course.time}}'>
+    <view class="btn_dialog">
+      <view bindtap="quit">取消</view>
+      <view data-id="1" bindtap="quit">确定</view>
+    </view>
+    <picker-view indicator-class='mask_bg' indicator-style="height: 40px;" style="width: 100%; height: 200rpx;" value="{{value3}}" data-id="3" bindchange="bindChange1">
+      <picker-view-column>
+        <view class="shoutais_item" wx:for="{{getdate}}" style="line-height: 50px">
+          <view class="mask_bgs"> {{item}}</view>
+        </view>
+      </picker-view-column>
+      <picker-view-column>
+        <view class="shoutais_item" wx:for="{{gettime}}" style="line-height: 50px">
+          <view class="mask_bgs"> {{item}}</view>
+        </view>
+      </picker-view-column>
+    </picker-view>
+  </view>
 
-	<!-- 蒙版 -->
-	<view bindtap="quit" class="{{isrwo==true?'page_bgs':'page_bg'}}" hidden="{{mask}}"></view>
+  <!-- 蒙版 -->
+  <view bindtap="quit" class="{{isrwo==true?'page_bgs':'page_bg'}}" hidden="{{mask}}"></view>
 
 
-	<!-- 日历 -->
-	<block wx:if="{{showCalendar}}">
-	<view class="showCalendar"> 
-	<calendar class='showCalendar' catch:day-click="CALENDAR_DAY_CHANGED" />
-			<view bindtap="quit" class="close">
-				<image src="/assets/local/course/close.png"></image>
-			</view>
-	</view>
-			
-	</block>
+  <!-- 日历 -->
+  <block wx:if="{{showCalendar}}">
+    <view class="showCalendar">
+      <calendar class='showCalendar' catch:day-click="CALENDAR_DAY_CHANGED" />
+      <view bindtap="quit" class="close">
+        <image src="https://qa.oss.iforbao.com/public/assets/local/close.png"></image>
+      </view>
+    </view>
+
+  </block>
 
 
 </view>

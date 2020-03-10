@@ -1,6 +1,6 @@
 <view class="page">
 
-	<!-- <view class="page_hd">
+  <!-- <view class="page_hd">
     <view class="head">
       <view class="head_left">
         <view style="color:#fff;">{{courseInfo.name}}</view>
@@ -14,109 +14,110 @@
     </view>
   </view> -->
 
-	<!-- 修改 -->
-	<block wx:if="{{block3}}">
-		<view class="navbars">
-			<block wx:for="{{tabsSub1}}" wx:for-index="index" wx:key="" id="{{index}}">
-				<view id="{{index}}" class="weui-navbar__item {{activeIndexSub1 == index ? 'weui-bar__item_ons' : ''}}" bindtap="TAB_CLICK_SUBS">
-					<view class="title {{activeIndexSub1 == index ? 'weui-bar__item_ons' : 'weui-navbar__titles'}}">{{item}}</view>
-				</view>
-			</block>
-			<view class="weui-navbar__slider" style="left: {{sliderLeftSub1}}px; transform: translateX({{sliderOffsetSub1}}px); -webkit-transform: translateX({{sliderOffsetSub1}}px);width:21%;margin-left:20rpx;background:#eb9100;"></view>
-		</view>
-	</block>
+  <!-- 修改 -->
+  <block wx:if="{{block3}}">
+    <view class="navbars">
+      <block wx:for="{{tabsSub1}}" wx:for-index="index" wx:key="index" id="{{index}}">
+        <view id="{{index}}" class="weui-navbar__item {{activeIndexSub1 == index ? 'weui-bar__item_ons' : ''}}" bindtap="TAB_CLICK_SUBS">
+          <view class="title {{activeIndexSub1 == index ? 'weui-bar__item_ons' : 'weui-navbar__titles'}}">{{item}}</view>
+        </view>
+      </block>
+      <view class="navbar__slider {{activeIndexSub1 == 1 ?'slider_active':'slider_actives'}}"></view>
+      <!-- <view class="weui-navbar__slider" style="left: {{sliderLeftSub1}}px; transform: translateX({{sliderOffsetSub1}}px); -webkit-transform: translateX({{sliderOffsetSub1}}px);width:21%;margin-left:20rpx;background:#eb9100;"></view> -->
+    </view>
+  </block>
 
-	<view class="updata_course" hidden="{{activeIndexSub1 != 0}}">
-		<!-- 教学老师 -->
-		<view class="class_news">
-			<text>教学机构:</text>
-			<view class='text_right'>{{courseInfo.orgName}}</view>
-		</view>
-		<!-- 上课地点 -->
-		<view class="class_news" bindtap="SELECT_ADDRESS">
-			<text >上课地点:</text>
-			<text class="text_right" >{{courseInfo.classAddress ? courseInfo.classAddress : '请选择'}}</text>
-		</view>
-		<!-- 教室 -->
-		<view class="class_news">
-			<text >教<text decode="{{true}}">&ensp;&ensp;&ensp;&ensp;</text>室:</text>
-			<input type="text" value="{{courseInfo.classRoom}}" placeholder="请输入修改名称" class="class_news_input" maxlength="20" bindinput="CHANGE_CLASSROOM" />
-		</view>
-		<!-- 任教老师 -->
-		<view class="class_news">
-			<text >任教老师:</text>
-			<input type="text" value="{{courseInfo.teacher}}" placeholder="请输入修改名称" class="class_news_input" maxlength="5" bindinput="CHANGE_TEACHER" />
-		</view>
-		<!-- 联系方式 -->
-		<view class="class_news">
-			<text>联系方式:</text>
-			<input type="text" value="{{courseInfo.contactTel}}" placeholder="请输入修改名称" class="class_news_input" maxlength="11" bindinput="CHANGE_TEL" />
-		</view>
-		<!-- 上课提醒 -->
-		<view class="class_news" data-id="1" bindtap="CHANGE_ALERT">
-			<text>上课提醒:</text>
-			<!-- <picker  class='text_right' value="{{courseInfo.remindIndex}}" range="{{remindItems}}" range-key="name">
+  <view class="updata_course" hidden="{{activeIndexSub1 != 0}}">
+    <!-- 教学老师 -->
+    <view class="class_news">
+      <text>教学机构:</text>
+      <view class='text_right'>{{courseInfo.orgName}}</view>
+    </view>
+    <!-- 上课地点 -->
+    <view class="class_news" bindtap="SELECT_ADDRESS">
+      <text>上课地点:</text>
+      <text class="text_right">{{courseInfo.classAddress ? courseInfo.classAddress : '请选择'}}</text>
+    </view>
+    <!-- 教室 -->
+    <view class="class_news">
+      <text>教<text style="color:#fff">教室</text>室:</text>
+      <input type="text" value="{{courseInfo.classRoom}}" placeholder="请输入修改名称" class="class_news_input" maxlength="20" bindinput="CHANGE_CLASSROOM" />
+    </view>
+    <!-- 任教老师 -->
+    <view class="class_news">
+      <text>任教老师:</text>
+      <input type="text" value="{{courseInfo.teacher}}" placeholder="请输入教师名称" class="class_news_input" maxlength="5" bindinput="CHANGE_TEACHER" />
+    </view>
+    <!-- 联系方式 -->
+    <view class="class_news">
+      <text>联系方式:</text>
+      <input type="text" value="{{courseInfo.contactTel}}" placeholder="请输入手机号码" class="class_news_input" maxlength="11" bindinput="CHANGE_TEL" />
+    </view>
+    <!-- 上课提醒 -->
+    <view class="class_news" data-id="1" bindtap="CHANGE_ALERT">
+      <text>上课提醒:</text>
+      <!-- <picker  class='text_right' value="{{courseInfo.remindIndex}}" range="{{remindItems}}" range-key="name">
 				<text>{{remindItems[courseInfo.remindIndex].name}}</text>
 			</picker> -->
-			<text class='text_right'>{{courseInfo.remindTxt?courseInfo.remindTxt:'不提醒'}}</text>
-			<image src=' https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png' class='courseinfo_warn'></image>
-		</view>
-		<button class='btn_seve' bindtap="CLASS_NEW">保存</button>
-	</view>
-	<!-- 修改 -->
-	<view class="page_bd">
-		<view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{message}}</view>
+      <text class='text_right'>{{courseInfo.remindTxt?courseInfo.remindTxt:'不提醒'}}</text>
+      <image src=' https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png' class='courseinfo_warn'></image>
+    </view>
+    <button class='btn_seve' bindtap="CLASS_NEW">保存</button>
+  </view>
+  <!-- 修改 -->
+  <view class="page_bd">
+    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{message}}</view>
 
-		<view class="updata_course" hidden="{{activeIndexSub1 != 1}}">
-			<view class="two_menus">
-				<view wx:for="{{tabs}}" wx:for-index="index" wx:key="index" id="{{index}}" class="weui-navbar__item " bindtap="TAB_CLICK">
-					<view class="{{activeIndex == index ? 'weui-bar__item_on' : 'weui-navbar__title'}}">{{item}}</view>
-				</view>
-			</view>
-			<view class="tab_content">
-				<!-- 上课时间 -->
-				<block wx:if="{{block1}}">
-					<view class="three_course">
-						<!-- <block wx:for="{{tabsSub}}" wx:for-index="index" wx:key="" id="{{index}}">
+    <view class="updata_course" hidden="{{activeIndexSub1 != 1}}">
+      <view class="two_menus">
+        <view wx:for="{{tabs}}" wx:for-index="index" wx:key="index" id="{{index}}" class="weui-navbar__item " bindtap="TAB_CLICK">
+          <view class="{{activeIndex == index ? 'weui-bar__item_on' : 'weui-navbar__title'}}">{{item}}</view>
+        </view>
+      </view>
+      <view class="tab_content">
+        <!-- 上课时间 -->
+        <block wx:if="{{block1}}">
+          <view class="three_course">
+            <!-- <block wx:for="{{tabsSub}}" wx:for-index="index" wx:key="" id="{{index}}">
 							<view id="{{index}}" class="weui-navbar__item {{activeIndexSub == index ? 'weui-bar__item_ons' : ''}}" bindtap="TAB_CLICK_SUB">
 								<view class="{{activeIndexSub == index ? 'weui-bar__item_ons' : 'weui-navbar__titles'}}">{{item}}</view>
 							</view>
 						</block> -->
 
-						<!-- <view class="weui-navbar__slider" style="left: {{sliderLeftSub}}px; transform: translateX({{sliderOffsetSub}}px); -webkit-transform: translateX({{sliderOffsetSub}}px);width:8%;margin-left:60rpx;background:#eb9100;"></view> -->
-					</view>
-					<view class="tab_content">
-						<scroll-view scroll-y style='max-height:500rpx'>
-							<block wx:for="{{lessonInfo.list}}" wx:for-item="item" wx:for-index="index" wx:key="">
-								<view class="weui-cell">
-									<block wx:if="{{model.condition==3 && item.type==0}}">
-										<checkbox-group bindtap="CHAGNE_CHECKBOX" data-id="{{item.id}}" data-index="{{index}}">
-											<view class="weui-cell__hd weui-check__hd_in-checkbox">
-												<icon class="weui-icon-checkbox_circle" type="circle" size="23" wx:if="{{!item.checked}}"></icon>
-												<icon class="weui-icon-checkbox_success" type="success" size="23" wx:if="{{item.checked}}"></icon>
-											</view>
-										</checkbox-group>
-									</block>
-									<view class="weui-cell__bd b">
-										<text style="margin-left:30rpx;font-size:28rpx;">{{item.name}}</text>
-									</view>
-									<view class="weui-cell__ft" style="font-size:20rpx;margin-right:20rpx;">{{item.formatDate}}</view>
-									<view class="weui-cell__ft" style="font-size:20rpx;margin-right:20rpx;">{{item.formatBeginTime}}-{{item.formatEndTime}}</view>
-									<view class="weui-cell__ft" style="font-size:20rpx;margin-right:80rpx;">{{item.weekDay}}</view>
-									<block wx:if="{{item.type==1}}">
-										<view class="zhushi" style="padding-right:20rpx;">缺勤</view>
-									</block>
-									<block wx:elif="{{item.type==2}}">
-										<view class="zhushi" style="padding-right:20rpx;">调课</view>
-									</block>
-									<block wx:elif="{{item.type==3}}">
-										<view class="zhushi" style="padding-right:20rpx;">补课</view>
-									</block>
-								</view>
-							</block>
-						</scroll-view>
+            <!-- <view class="weui-navbar__slider" style="left: {{sliderLeftSub}}px; transform: translateX({{sliderOffsetSub}}px); -webkit-transform: translateX({{sliderOffsetSub}}px);width:8%;margin-left:60rpx;background:#eb9100;"></view> -->
+          </view>
+          <view class="tab_content">
+            <scroll-view scroll-y style='max-height:500rpx'>
+              <block wx:for="{{lessonInfo.list}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+                <view class="weui-cell">
+                  <block wx:if="{{model.condition==3 && item.type==0}}">
+                    <checkbox-group bindtap="CHAGNE_CHECKBOX" data-id="{{item.id}}" data-index="{{index}}">
+                      <view class="weui-cell__hd weui-check__hd_in-checkbox">
+                        <icon class="weui-icon-checkbox_circle" type="circle" size="23" wx:if="{{!item.checked}}"></icon>
+                        <icon class="weui-icon-checkbox_success" type="success" size="23" wx:if="{{item.checked}}"></icon>
+                      </view>
+                    </checkbox-group>
+                  </block>
+                  <view class="weui-cell__bd b">
+                    <text style="margin-left:30rpx;font-size:28rpx;">{{item.name}}</text>
+                  </view>
+                  <view class="weui-cell__ft" style="font-size:20rpx;margin-right:20rpx;">{{item.formatDate}}</view>
+                  <view class="weui-cell__ft" style="font-size:20rpx;margin-right:20rpx;">{{item.formatBeginTime}}-{{item.formatEndTime}}</view>
+                  <view class="weui-cell__ft" style="font-size:20rpx;margin-right:80rpx;">{{item.weekDay}}</view>
+                  <block wx:if="{{item.type==1}}">
+                    <view class="zhushi" style="padding-right:20rpx;">缺勤</view>
+                  </block>
+                  <block wx:elif="{{item.type==2}}">
+                    <view class="zhushi" style="padding-right:20rpx;">调课</view>
+                  </block>
+                  <block wx:elif="{{item.type==3}}">
+                    <view class="zhushi" style="padding-right:20rpx;">补课</view>
+                  </block>
+                </view>
+              </block>
+            </scroll-view>
 
-						<!-- <view class=" pro_bar">
+            <!-- <view class=" pro_bar">
 							<progress percent="{{lessonInfo.percent}}" activeColor='#F5A623' stroke-width="3" />
 						</view>
 						<view>
@@ -125,45 +126,46 @@
 							<text style="font-size:26rpx;margin-left:170rpx;">剩余{{lessonInfo.leftClassShow}}</text>
 						</view> -->
 
-					</view>
-				</block>
-				<!-- tab切换内容2/调整课程下一步 -->
-				<block wx:if="{{block2}}">
-					<view class="weui-tab__content">
+          </view>
+        </block>
+        <!-- tab切换内容2/调整课程下一步 -->
+        <block wx:if="{{block2}}">
+          <view class="weui-tab__content">
 
-						<!-- 开课日期 -->
-						<view class='add_class'>
-							<view class='add_class_time_data_start' bindtap="CHANGE_BEGINDATE">
-								<text class="playdate">开课日期:</text>
-								<view class='right_data'>
-									<text>{{courseInfo.beginDate}} {{courseInfo.beginWeekDay}}</text>
-								</view>
-								<image class='next' src=' https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
-							</view>
+            <!-- 开课日期 -->
+            <view class='add_class'>
+              <view class='add_class_time_data_start' bindtap="CHANGE_BEGINDATE">
+                <text class="playdate">开课日期:</text>
+                <view class='right_data'>
+                  <text>{{courseInfo.beginDate}} {{courseInfo.beginWeekDay}}</text>
+                </view>
+                <image class='next' src=' https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
+              </view>
 
-						</view>
-						<!-- 增加节数 -->
-						<view class='add_class'>
-							<view class='add_class_time_data_start'>
-								<text class="playdate">增加节数:</text>
-								<view class='right_data'>
-									<input bindinput="CHANGE_NUM" value="{{courseInfo.num}}" disabled="{{activeIndex==0?true:false}}"></input>
-								</view>
-							</view>
-						</view>
-						<!-- 重复 -->
-						<view class='add_class' data-id="2" bindtap="CHANGE_ALERT">
-							<view class='add_class_time_data_start'>
-								<text class="playdate" decode="{{true}}">重&ensp; &ensp; &ensp;复:</text>
-								<view class="right_data">
-									<block wx:if="{{courseInfo.repetitionIndex==4}}">
-										{{courseInfo.weekDaysTxt}}
-									</block>
-									<block wx:else>
-										{{repetitionItems[courseInfo.repetitionIndex]}}
-									</block>
-								</view>
-								<!-- <view class='time_start input_repeat' style='width:65%'>
+            </view>
+            <!-- 增加节数 -->
+            <view class='add_class'>
+              <view class='add_class_time_data_start'>
+                <text wx:if='{{activeIndex==0}}' class="playdate">上课次数:</text>
+                <text wx:else class="playdate">增加节数:</text>
+                <view class='right_data'>
+                  <input bindinput="CHANGE_NUM" value="{{courseInfo.num}}" disabled="{{activeIndex==0?true:false}}"></input>
+                </view>
+              </view>
+            </view>
+            <!-- 重复 -->
+            <view class='add_class' data-id="2" bindtap="CHANGE_ALERT">
+              <view class='add_class_time_data_start'>
+                <text class="playdate" decode="{{true}}">重<text style="color:#fff">重复</text>复:</text>
+                <view class="right_data">
+                  <block wx:if="{{courseInfo.repetitionIndex==4}}">
+                    {{courseInfo.weekDaysTxt}}
+                  </block>
+                  <block wx:else>
+                    {{repetitionItems[courseInfo.repetitionIndex]}}
+                  </block>
+                </view>
+                <!-- <view class='time_start input_repeat' style='width:65%'>
 									<picker bindchange="CHANGE_REPETITION" value="{{courseInfo.repetitionIndex}}" range="{{repetitionItems}}" disabled="{{repDis}}">
 										<view class="right_data">
 											<block wx:if="{{courseInfo.repetitionIndex==4}}">
@@ -175,63 +177,63 @@
 										</view>
 									</picker>
 								</view> -->
-							</view>
-						</view>
-						<!-- 结束日期 -->
-						<view class='add_class' hidden="{{endShow}}">
-							<view class='add_class_time_data_start'>
-								<text class="playdate">结课日期:</text>
-								<view class='right_data'>
-									<text style='color:rgb(4, 173, 255);'>{{courseInfo.endDate}} {{courseInfo.endWeekDay}}</text>
-								</view>
-							</view>
-						</view>
-						<!-- 上课时间 -->
-						<view class='add_class' data-id="3" bindtap="CHANGE_ALERT">
-							<view class='add_class_time_data_start'>
-								<text class="playdate">上课时间:</text>
-								<text class="right_data">{{courseInfo.startClassTime}}</text>
-								<!-- <view class='right_data ' style='width:65%'>
+              </view>
+            </view>
+            <!-- 结束日期 -->
+            <view class='add_class' hidden="{{endShow}}">
+              <view class='add_class_time_data_start'>
+                <text class="playdate">结课日期:</text>
+                <view class='right_data'>
+                  <text style='color:rgb(4, 173, 255);'>{{courseInfo.endDate}} {{courseInfo.endWeekDay}}</text>
+                </view>
+              </view>
+            </view>
+            <!-- 上课时间 -->
+            <view class='add_class' data-id="3" bindtap="CHANGE_ALERT">
+              <view class='add_class_time_data_start'>
+                <text class="playdate">上课时间:</text>
+                <text class="right_data">{{courseInfo.startClassTime}}</text>
+                <!-- <view class='right_data ' style='width:65%'>
 									<picker style='width:100%' bindchange="CHANGE_TIMEFIRST" mode="time" start="07:00" end="21:00" value="{{courseInfo.startClassTime}}">
 										<text class="right_data">{{courseInfo.startClassTime}}</text>
 									</picker>
 								</view> -->
-								<image src=' https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png' class='courseinfo_warn_img'></image>
-							</view>
-						</view>
-						<!-- 课时时长 -->
-						<view class='add_class'>
-							<view class='add_class_time_data_start'>
-								<text class="playdate">课长时间:</text>
-								<view class='right_data' style='width:65%'>
-									<input type="text" class='class_tim' value="{{courseInfo.duration}}" bindinput="CHANGE_DURATION" />
-								</view>
-								<image src=' https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png' class='courseinfo_warn_img'></image>
-							</view>
-						</view>
-						<!-- 下课时间 -->
-						<view class='add_class' >
-							<view class='add_class_time_data_start'>
-								<text class="playdate">下课时间:</text>
-								<text class="right_data">{{courseInfo.endClassTime}}</text>
-							</view>
-						</view>
-						<!-- 上课提醒 -->
-						<view class='add_class' data-id="1" bindtap="CHANGE_ALERT">
-							<view class='add_class_time_data_start'>
-								<text class="playdate">上课提醒:</text>
-								<text class="right_data">{{remindItems[courseInfo.remindIndex].name}}</text>
+                <image src=' https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png' class='courseinfo_warn_img'></image>
+              </view>
+            </view>
+            <!-- 课时时长 -->
+            <view class='add_class'>
+              <view class='add_class_time_data_start'>
+                <text class="playdate">课长时间:</text>
+                <view class='right_data' style='width:65%'>
+                  <input type="text" class='class_tim' value="{{courseInfo.duration}}" bindinput="CHANGE_DURATION" />
+                </view>
+                <image src=' https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png' class='courseinfo_warn_img'></image>
+              </view>
+            </view>
+            <!-- 下课时间 -->
+            <view class='add_class'>
+              <view class='add_class_time_data_start'>
+                <text class="playdate">下课时间:</text>
+                <text class="right_data">{{courseInfo.endClassTime}}</text>
+              </view>
+            </view>
+            <!-- 上课提醒 -->
+            <view class='add_class' data-id="1" bindtap="CHANGE_ALERT">
+              <view class='add_class_time_data_start'>
+                <text class="playdate">上课提醒:</text>
+                <text class="right_data">{{remindItems[courseInfo.remindIndex].name}}</text>
 
-								<!-- <view class='time_start' style='width:65%'>
+                <!-- <view class='time_start' style='width:65%'>
 									<picker style='width:100%' bindchange="CHANGE_REMIND" value="{{courseInfo.remindIndex}}" range="{{remindItems}}" range-key="name">
 										<text class="right_data">{{remindItems[courseInfo.remindIndex].name}}</text>
 									</picker>
 								</view> -->
-								<image class='next' src=' https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
-							</view>
-						</view>
+                <image class='next' src=' https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
+              </view>
+            </view>
 
-						<!-- <view class=" pro_bar">
+            <!-- <view class=" pro_bar">
 							<progress percent="{{lessonInfo.percent}}" activeColor='#F5A623' stroke-width="3" />
 						</view>
 						<view>
@@ -241,12 +243,12 @@
 						</view> -->
 
 
-						<button class='btn_seve' bindtap="SAVE">保存</button>
+            <button class='btn_seve' bindtap="SAVE">保存</button>
 
 
 
 
-						<!-- <view class='weui-cell-ins_a'>
+            <!-- <view class='weui-cell-ins_a'>
             <view class="weui-cell-wenzi">
               <text>开课日期</text>
               <text style='margin-left:120rpx;'>结课日期</text>
@@ -266,7 +268,7 @@
               <text class='jie'>节课</text>
             </button>
           </view> -->
-						<!-- <view class='weui-cell-ins_b'>
+            <!-- <view class='weui-cell-ins_b'>
             <view class="weui-cell-wenzi">
               <text>开始时间</text>
               <text style='margin-left:120rpx;'>结束时间</text>
@@ -284,8 +286,8 @@
               <text class='jie'>分钟</text>
             </button>
           </view> -->
-						<!-- <view class='weui-cell-bottom'></view> -->
-						<!-- <view class="weui-cells weui-cells_after-title">
+            <!-- <view class='weui-cell-bottom'></view> -->
+            <!-- <view class="weui-cells weui-cells_after-title">
        
             <view class="weui-cell">
               <view class="weui-cell__bd b">
@@ -319,123 +321,121 @@
             </view>
           </view> -->
 
-					</view>
-				</block>
-			</view>
+          </view>
+        </block>
+      </view>
 
-		</view>
+    </view>
 
-	</view>
-	<!-- 重复日期 -->
-	<view class="shoutais2 shoutais" wx:if='{{course.reapet}}'>
-		<view class="btn_dialog">
-			<view bindtap="quit">取消</view>
-			<view data-id="1" bindtap="quit">确定</view>
-		</view>
-		<picker-view indicator-class='mask_bg' indicator-style="height: 40px;" style="width: 100%; height: 200rpx;" value="{{value}}" data-id="2" bindchange="bindChange1">
-			<picker-view-column>
-				<view class="shoutais_item" bindchange="CHANGE_REPETITION" value="{{model.repetitionIndex}}" wx:for="{{repetitionItems}}" style="line-height: 40px">
-					<view class="mask_bgs"> {{item}}</view>
-				</view>
-			</picker-view-column>
-		</picker-view>
-	</view>
-	<!-- 开始时间 -->
-	<view class="shoutais3 shoutais" wx:if='{{course.time}}'>
-		<view class="btn_dialog">
-			<view bindtap="quit">取消</view>
-			<view data-id="1" bindtap="quit">确定</view>
-		</view>
-		<picker-view indicator-class='mask_bg' indicator-style="height: 40px;" style="width: 100%; height: 200rpx;" value="{{value3}}" data-id="3" bindchange="bindChange1">
-			<picker-view-column>
-				<view>小时</view>
-				<view class="shoutais_item" wx:for="{{24}}" style="line-height: 50px">
-					<view class="mask_bgs"> {{item <10?'0'+item :item}}</view>
-				</view>
-			</picker-view-column>
-			<picker-view-column>
-				<view>分钟</view>
-				<view class="shoutais_item" wx:for="{{60}}" style="line-height: 50px">
-					<view class="mask_bgs"> {{item <10?'0'+item :item}}</view>
-				</view>
-			</picker-view-column>
-		</picker-view>
-	</view>
-	<!-- 上课提醒 -->
-	<view class="shoutais4 shoutais" wx:if='{{course.alert}}'>
-		<view class="btn_dialog">
-			<view bindtap="quit">取消</view>
-			<view data-id="1" bindtap="quit">确定</view>
-		</view>
-		<picker-view indicator-class='mask_bg' indicator-style="height: 40px;" style="width: 100%; height: 200rpx;" value="{{value4}}" data-id="4" bindchange="bindChange1">
-			<picker-view-column>
-				<view class="shoutais_item" wx:for="{{remindItems}}" wx:key="index" style="line-height: 50px">
-					<view class="mask_bgs"> {{item.name}}</view>
-				</view>
-			</picker-view-column>
-		</picker-view>
-	</view>
-	<!-- 蒙版 -->
-	<view bindtap="quit" class="page_bg" hidden="{{mask}}"></view>
+  </view>
+  <!-- 重复日期 -->
+  <view class="shoutais2 shoutais" wx:if='{{course.reapet}}'>
+    <view class="btn_dialog">
+      <view bindtap="quit">取消</view>
+      <view data-id="1" bindtap="quit">确定</view>
+    </view>
+    <picker-view indicator-class='mask_bg' indicator-style="height: 40px;" style="width: 100%; height: 200rpx;" value="{{value}}" data-id="2" bindchange="bindChange1">
+      <picker-view-column>
+        <view class="shoutais_item" bindchange="CHANGE_REPETITION" value="{{model.repetitionIndex}}" wx:for="{{repetitionItems}}" style="line-height: 40px">
+          <view class="mask_bgs"> {{item}}</view>
+        </view>
+      </picker-view-column>
+    </picker-view>
+  </view>
+  <!-- 开始时间 -->
+  <view class="shoutais3 shoutais" wx:if='{{course.time}}'>
+    <view class="btn_dialog">
+      <view bindtap="quit">取消</view>
+      <view data-id="1" bindtap="quit">确定</view>
+    </view>
+    <picker-view indicator-class='mask_bg' indicator-style="height: 40px;" style="width: 100%; height: 200rpx;" value="{{value3}}" data-id="3" bindchange="bindChange1">
+       <picker-view-column>
+        <view class="shoutais_item" wx:for="{{getdate}}" style="line-height: 40px">
+          <view class="mask_bgs"> {{item}}</view>
+        </view>
+      </picker-view-column>
+      <picker-view-column>
+        <view class="shoutais_item" wx:for="{{gettime}}" style="line-height: 40px">
+          <view class="mask_bgs"> {{item}}</view>
+        </view>
+      </picker-view-column>
+    </picker-view>
+    </view>
+    <!-- 上课提醒 -->
+    <view class="shoutais4 shoutais" wx:if='{{course.alert}}'>
+      <view class="btn_dialog">
+        <view bindtap="quit">取消</view>
+        <view data-id="1" bindtap="quit">确定</view>
+      </view>
+      <picker-view indicator-class='mask_bg' indicator-style="height: 40px;" style="width: 100%; height: 200rpx;" value="{{value4}}" data-id="4" bindchange="bindChange1">
+        <picker-view-column>
+          <view class="shoutais_item" wx:for="{{remindItems}}" wx:key="index" style="line-height: 50px">
+            <view class="mask_bgs"> {{item.name}}</view>
+          </view>
+        </picker-view-column>
+      </picker-view>
+    </view>
+    <!-- 蒙版 -->
+    <view bindtap="quit" class="page_bg" hidden="{{mask}}"></view>
 
-	<!-- 位置信息 -->
-	<view wx:if='{{location}}' class='locationbox'>
-		<view class='box'>
-			<view class='title'>提示</view>
-			<view class='content'>您已拒绝授权，请到设置页面打开，否则无法使用位置信息</view>
-			<view class='bottons'>
-				<view class='cancel' bindtap='quit'>取消</view>
-				<button open-type="openSetting" class='sure' bindopensetting='handler'>授权地理位置</button>
-			</view>
-		</view>
-	</view>
-</view>
+    <!-- 位置信息 -->
+    <view wx:if='{{location}}' class='locationbox'>
+      <view class='box'>
+        <view class='title'>提示</view>
+        <view class='content'>您已拒绝授权，请到设置页面打开，否则无法使用位置信息</view>
+        <view class='bottons'>
+          <view class='cancel' bindtap='quit'>取消</view>
+          <button open-type="openSetting" class='sure' bindopensetting='handler'>授权地理位置</button>
+        </view>
+      </view>
+    </view>
+    </view>
 
 
 
-<view class="modal" wx:if="{{userDefined}}">
-	<view class="modal-box">
-		<view class="weui-cell weui-cell_select">
-			<view class="weui-cell__bd">
-				<checkbox-group bindchange="CHANGE_CUSTOM_REPETITION">
-					<label class="weui-cell weui-check__label" wx:for="{{weekDayItems}}" wx:key="value">
-						<checkbox class="weui-check" value="{{item.value}}" checked="{{item.checked}}" />
-						<view class="weui-cell__bd">{{item.name}}</view>
-						<view class="weui-cell__ft weui-check__ft_in-checkbox">
-							<icon class="weui-icon-checkbox_circle" type="circle" size="23" wx:if="{{!item.checked}}"></icon>
-							<icon class="weui-icon-checkbox_success" type="success" size="23" wx:if="{{item.checked}}"></icon>
-						</view>
-					</label>
-				</checkbox-group>
+    <view class="modal" wx:if="{{userDefined}}">
+      <view class="modal-box">
+        <view class="weui-cell weui-cell_select">
+          <view class="weui-cell__bd">
+            <checkbox-group bindchange="CHANGE_CUSTOM_REPETITION">
+              <label class="weui-cell weui-check__label" wx:for="{{weekDayItems}}" wx:key="value">
+                <checkbox class="weui-check" value="{{item.value}}" checked="{{item.checked}}" />
+                <view class="weui-cell__bd">{{item.name}}</view>
+                <view class="weui-cell__ft weui-check__ft_in-checkbox">
+                  <icon class="weui-icon-checkbox_circle" type="circle" size="23" wx:if="{{!item.checked}}"></icon>
+                  <icon class="weui-icon-checkbox_success" type="success" size="23" wx:if="{{item.checked}}"></icon>
+                </view>
+              </label>
+            </checkbox-group>
 
-				<view class="modal-box-buttons">
-					<button type="" class="modal-box-button primary" bindtap="CHANGE_DEFINED">确定</button>
-				</view>
-			</view>
-		</view>
-	</view>
-</view>
+            <view class="modal-box-buttons">
+              <button type="" class="modal-box-button primary" bindtap="CHANGE_DEFINED">确定</button>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
 
-<block wx:if="{{model.condition==3}}">
-	<view class="weui-cell_but">
-		<view class="weui-cell__bd select_box">
-			<checkbox-group bindtap="SELECT_ALL">
-				<view class="weui-cell__hd weui-check__hd_in-checkbox">
-					<icon class="weui-icon-checkbox_circle" type="circle" size="23" wx:if="{{!selectAll}}"></icon>
-					<icon class="weui-icon-checkbox_success" type="success" size="23" wx:if="{{selectAll}}"></icon>
-				</view>
-			</checkbox-group>
-			<text style="margin:30rpx 0 0 0;font-size:30rpx;">{{selectAllTxt}}</text>
-			<view class="click" bindtap="OPE_BUTTON">
-				<text>{{opeTxt}}</text>
-			</view>
-		</view>
-	</view>
-</block>
+    <block wx:if="{{model.condition==3}}">
+      <view class="weui-cell_but">
+        <view class="weui-cell__bd select_box">
+          <checkbox-group bindtap="SELECT_ALL">
+            <view class="weui-cell__hd weui-check__hd_in-checkbox">
+              <icon class="weui-icon-checkbox_circle" type="circle" size="23" wx:if="{{!selectAll}}"></icon>
+              <icon class="weui-icon-checkbox_success" type="success" size="23" wx:if="{{selectAll}}"></icon>
+            </view>
+          </checkbox-group>
+          <text style="margin:30rpx 0 0 0;font-size:30rpx;">{{selectAllTxt}}</text>
+          <view class="click" bindtap="OPE_BUTTON">
+            <text>{{opeTxt}}</text>
+          </view>
+        </view>
+      </view>
+    </block>
 
-<!-- 日历 -->
-<block wx:if="{{showCalendar}}">
-	<view class='calendar_mask' catchtouchmove='eStop' bindtap="eStop">
-		<calendar catch:day-click="CALENDAR_DAY_CHANGED" />
-	</view>
-</block>
+    <!-- 日历 -->
+    <block wx:if="{{showCalendar}}">
+      <view class='calendar_mask' catchtouchmove='eStop' bindtap="eStop">
+        <calendar catch:day-click="CALENDAR_DAY_CHANGED" />
+      </view>
+    </block>

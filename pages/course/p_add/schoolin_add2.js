@@ -9,7 +9,7 @@ import {
   actions
 } from './schoolin_add2.eea'
 const moment = require('../../../lib/moment.min.js');
-function set_times(stute) {
+function set_times(stute) { 
   let val_time = [];
   if (stute == true) {
     for (let i = 6; i < 20; i++) {
@@ -20,13 +20,13 @@ function set_times(stute) {
     }
   } else {
     let j = 0;
-    for (let i = 0; i < 4; i++) {
-      if(j==0){
+    for (let i = 0; i < 12; i++) {
+      if(j<10){
         val_time.push('0'+j)
       }else{
         val_time.push(j)
       }
-      j += 15
+      j += 5
     }
   }
   return val_time
@@ -43,7 +43,7 @@ class SchoolinAdd2Page extends EPage {
       childInfo: {},
       tishi:'选择实际开学时间',
       one: '08:00',
-      five: '13:00',
+      five: '16:30',
       model: {
         //  moment().format('YYYY-MM-DD')
         startDate:'',

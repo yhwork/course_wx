@@ -22,7 +22,7 @@
           bindpause='pause_video' 
     >
        <cover-view class="videoimage" wx:if='{{showcnt}}'>
-        <cover-image bindtap="videoTap" class="playImg" src="/assets/local/20191204150614.png" wx:if="{{!ispause}}"></cover-image>
+        <cover-image bindtap="videoTap" class="playImg" src="https://qa.oss.iforbao.com/public/assets/local/20191204150614.png" wx:if="{{!ispause}}"></cover-image>
         <cover-image bindtap="videoTap" class="playImg" src="/assets/local/20191204145243.png" wx:if="{{ispause}}"></cover-image>
     </cover-view>
     </video>

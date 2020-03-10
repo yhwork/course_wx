@@ -10,25 +10,50 @@ import {
 } from './schoolout_manage_edit.eea'
 const moment = require('../../../lib/moment.min.js');
 
+function set_times(stute) {
+  let val_time = [];
+  if (stute == true) {
+    for (let i = 6; i < 20; i++) {
+      if (i < 10) {
+        i = '0' + i
+      }
+      val_time.push(i)
+    }
+  } else {
+    let j = 0;
+    for (let i = 0; i < 12; i++) {
+      if (j < 10) {
+        val_time.push('0' + j)
+      } else {
+        val_time.push(j)
+      }
+      j += 5
+    }
+  }
+  return val_time
+}
+
 var sliderWidth = 96;
 
 class SchooloutManageEditPage extends EPage {
 
   get data() {
     return {
-      userInfo: {},                                 //当前用户信息
+      getdate: set_times(true),
+      gettime: set_times(),
+      userInfo: {}, //当前用户信息
       tabs: ["上课时间", "增加课节", "删除课程"],
-      activeIndex: 0,                               // 二级切换下标
-      sliderOffset: 0, 
-      sliderLeft: 0,                                // 元素左边的距离
+      activeIndex: 0, // 二级切换下标
+      sliderOffset: 0,
+      sliderLeft: 0, // 元素左边的距离
       tabsSub: ["未上", "已上", "全部"],
       activeIndexSub: 0,
       sliderOffsetSub: 0,
       sliderLeftSub: 0,
       tabsSub1: ["课程信息修改", "课节信息修改"],
-      activeIndexSub1: 1,                           // 一级切换下标
+      activeIndexSub1: 1, // 一级切换下标
       sliderOffsetSub1: 0,
-      sliderLeftSub1: 0,                            // left 距离
+      sliderLeftSub1: 0, // left 距离
       repDis: false,
       model: {
         childId: '',
@@ -114,15 +139,16 @@ class SchooloutManageEditPage extends EPage {
       selectAllTxt: '全选',
       selectAll: false, //控制全选图标
       showCalendar: false,
-      mask:true,
-      location:false,
-      course:{
-        reapet:false,
-        time:false,
-        alert:false
+      mask: true,
+      location: false,
+      course: {
+        reapet: false,
+        time: false,
+        alert: false
       },
-      value:'',
-      value3:''
+      value: '',
+      value3: '',
+      myactiveIndex:''
     };
   }
 
@@ -131,9 +157,14 @@ class SchooloutManageEditPage extends EPage {
   }) {
     return {
       [PAGE_LIFE.ON_LOAD](option) {
-        console.log('值',option)
+        console.log('值', option)
         const childId = option.childId; //链接过来的childId
         const courseId = option.courseId; //课程id
+        if (option.hasOwnProperty('activeIndex')){
+          this.setData({
+            myactiveIndex: option.activeIndex
+          })
+        }
         this.setData({
           'model.childId': childId,
           'model.courseId': courseId
@@ -149,10 +180,10 @@ class SchooloutManageEditPage extends EPage {
             that.setData({
               sliderLeft: (res.windowWidth / that.data.tabs.length - sliderWidth) / 2,
               sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex,
-              sliderLeftSub: (res.windowWidth / that.data.tabsSub.length - sliderWidth) / 2,
-              sliderOffsetSub: res.windowWidth / that.data.tabsSub.length * that.data.activeIndexSub,
-              sliderLeftSub1: (res.windowWidth / that.data.tabsSub1.length - sliderWidth) / 2,
-              sliderOffsetSub1: res.windowWidth / that.data.tabsSub1.length * that.data.activeIndexSub1
+              // sliderLeftSub: (res.windowWidth / that.data.tabsSub.length - sliderWidth) / 2,
+              // sliderOffsetSub: res.windowWidth / that.data.tabsSub.length * that.data.activeIndexSub,
+              // sliderLeftSub1: (res.windowWidth / that.data.tabsSub1.length - sliderWidth) / 2,
+              // sliderOffsetSub1: res.windowWidth / that.data.tabsSub1.length * that.data.activeIndexSub1
             });
           }
         });
@@ -414,7 +445,7 @@ class SchooloutManageEditPage extends EPage {
           //   })
           //     put(effects.CHANGE_ENDDATE);
           // } else {
-           
+
           //   return  wx.showToast({
           //     title: '请输入正确的数值',
           //     icon: 'none',
@@ -424,40 +455,52 @@ class SchooloutManageEditPage extends EPage {
         } else if (stute == 2) {
 
           // console.log('重复', e, this.data.model.num)
-            console.log(e.detail.value)
-            if (e.detail.value != 0) {
+          console.log(e.detail.value)
+          if (e.detail.value != 0) {
+            this.setData({
+              'courseInfo.repetitionIndex': e.detail.value[0],
+              'courseInfo.repetitionTxt': this.data.repetitionItems[e.detail.value],
+              "endShow": false
+            });
+            if (e.detail.value == 4) {
               this.setData({
-                 'courseInfo.repetitionIndex': e.detail.value[0],
-                 'courseInfo.repetitionTxt': this.data.repetitionItems[e.detail.value],
-                 "endShow": false
+                mask: true,
+                'userDefined': true,
+                'course.reapet': false,
               });
-              if (e.detail.value == 4) {
-                this.setData({
-                  mask:true,
-                  'userDefined': true,
-                  'course.reapet': false,
-                });
-                put(effects.CHANGE_ENDDATE);
-              }
-              if (this.$common.isIntNum(this.data.model.num)) {
-                // 获取结束日期
-                put(effects.CHANGE_ENDDATE);
-              }
-            } else {
-              this.$common.showMessage(this, '请选择重复方式');
-              this.setData({
-                'model.repetitionIndex': e.detail.value[0],
-                 endShow: true
-              })
+              put(effects.CHANGE_ENDDATE);
             }
-            put(effects.UPDATE_WEEKDAY);
-            put(effects.CHANGE_ENDDATE);
+            if (this.$common.isIntNum(this.data.model.num)) {
+              // 获取结束日期
+              put(effects.CHANGE_ENDDATE);
+            }
+          } else {
+            this.$common.showMessage(this, '请选择重复方式');
+            this.setData({
+              'model.repetitionIndex': e.detail.value[0],
+              endShow: true
+            })
+          }
+          put(effects.UPDATE_WEEKDAY);
+          put(effects.CHANGE_ENDDATE);
         } else if (stute == 3) { // 开始时间
-          let  time = `${Math.abs(val[0]-1)<10?'0'+ Math.abs(val[0]-1) :Math.abs(val[0]-1)}:${Math.abs(val[1]-1)<10?'0'+ Math.abs(val[1]-1) :Math.abs(val[1]-1)}`
-          this.setData({
-            'courseInfo.startClassTime': time,
-            'courseInfo.endClassTime': moment(time, 'HH:mm').add('minute', this.data.courseInfo.duration).format('HH:mm')
-          });
+          let date = this.data.getdate;
+          let time = this.data.gettime;
+          let time1 = `${date[val[0]]}:${time[val[1]]}`
+          if (this.$common.isIntNum(val[0])) {
+            this.setData({
+            'courseInfo.startClassTime': time1,
+            'courseInfo.endClassTime': moment(time1, 'HH:mm').add('minute', this.data.courseInfo.duration).format('HH:mm')
+            })
+          }
+          // let time = `${Math.abs(val[0]-1)<10?'0'+ Math.abs(val[0]-1) :Math.abs(val[0]-1)}:${Math.abs(val[1]-1)<10?'0'+ Math.abs(val[1]-1) :Math.abs(val[1]-1)}`
+          // this.setData({
+          //   'courseInfo.startClassTime': time,
+          //   'courseInfo.endClassTime': moment(time, 'HH:mm').add('minute', this.data.courseInfo.duration).format('HH:mm')
+          // });
+
+
+
         } else if (stute == 4) {
           this.setData({
             'courseInfo.remindIndex': e.detail.value,
@@ -472,7 +515,7 @@ class SchooloutManageEditPage extends EPage {
         if (state == 1) {
           this.setData({
             mask: true,
-            location:false,
+            location: false,
             'course.num': false,
             'course.reapet': false,
             'course.time': false,
@@ -484,7 +527,7 @@ class SchooloutManageEditPage extends EPage {
         } else {
           this.setData({
             mask: true,
-            location:false,
+            location: false,
             'course.num': false,
             'course.reapet': false,
             'course.time': false,
@@ -563,27 +606,27 @@ class SchooloutManageEditPage extends EPage {
 
       // 弹框提示
       [events.ui.CHANGE_ALERT](e) {
-          let stute = e.currentTarget.dataset.id;
-          if(stute == 1){
-            // 打开 上课提醒
-            this.setData({
-              mask:false,
-              'course.alert':true,
-            })
-          }else if(stute == 2){
-            // 打开 重复
-            this.setData({
-              mask:false,
-              'course.reapet':true,
-            })
-          }else if(stute == 3){
-            // 打开上课时间
-            this.setData({
-              mask:false,
-              'course.time':true,
-            })
-          }
-          console.log(stute)
+        let stute = e.currentTarget.dataset.id;
+        if (stute == 1) {
+          // 打开 上课提醒
+          this.setData({
+            mask: false,
+            'course.alert': true,
+          })
+        } else if (stute == 2) {
+          // 打开 重复
+          this.setData({
+            mask: false,
+            'course.reapet': true,
+          })
+        } else if (stute == 3) {
+          // 打开上课时间
+          this.setData({
+            mask: false,
+            'course.time': true,
+          })
+        }
+        console.log(stute)
       },
       [events.ui.CHANGE_REMIND](e) {
         this.setData({
@@ -664,13 +707,13 @@ class SchooloutManageEditPage extends EPage {
         // })
         if (this.data.activeIndex == 0) {
           //调整时间
-
           if (this.$common.isBlank(this.data.model.ids)) {
             this.$common.showMessage(this, '请勾选课节')
             return false;
           }
           this.setData({
-            'courseInfo.num': this.data.model.ids.length
+            'courseInfo.num': this.data.model.ids.length,
+            updata_num: 0
           })
           put(effects.CHANGE_BLOCK2);
           put(effects.CHANGE_ENDDATE);
@@ -705,8 +748,7 @@ class SchooloutManageEditPage extends EPage {
                   return false;
                 }
                 put(effects.DELETE_LESSON);
-              } else if (res.cancel) {
-              }
+              } else if (res.cancel) {}
             }
 
           })
@@ -739,9 +781,9 @@ class SchooloutManageEditPage extends EPage {
       },
       //阻止遮罩层下滚动页面
       [events.ui.eStop](e) {
-        this.setData({
-          showCalendar:false
-        })
+        // this.setData({
+        //   showCalendar: false
+        // })
         return false;
       }
 
@@ -960,26 +1002,26 @@ class SchooloutManageEditPage extends EPage {
         api.course.updateCourseInfo(model).then(
           (res) => {
             if (res.data.errorCode == '0') {
-              wx.navigateTo({
-                url: './schoolout_manage?childId=' + model.childId
+              let activeIndex = this.data.activeIndex;
+              console.log('这是个啥', res.data.result, activeIndex)
+              // pages/course/p_manage/schoolout_manage
+              // activeIndex = 1 & childId=102177
+
+              wx.showModal({
+                title: '提示',
+                content: '课程信息修改成功！',
+                showCancel: false,
+                confirmColor: '#EFCF0B',
+                confirmText: '完成修改',
+                success: function (res) {
+                  if (res.confirm) {
+
+                    wx.navigateBack({
+                      delta: 1,
+                    })
+                }
+                }
               })
-              // wx.showModal({
-              //   title: '提示',
-              //   content: '课程信息修改成功！',
-              //   showCancel: true,
-              //   confirmColor: '#f29219',
-              //   cancelColor: '#007aff',
-              //   confirmText: '继续修改',
-              //   cancelText: '完成修改',
-              //   success: function (res) {
-              //     if (res.confirm) {
-
-              //     } else if (res.cancel) {
-              //       wx.navigateTo({ url: './schoolout_manage?childId=' + model.childId })
-              //     }
-
-              //   }
-              // })
 
             }
 

@@ -2,9 +2,9 @@
 		<!-- 没有课程显示 -->
 		<view class="no_course" wx:if="{{!isdata}}">
 			<view class="course_img ">
-				<image src="/assets/local/class/yuanquan.png"></image>
-				<image src="/assets/local/class/xingxing.png"></image>
-				<image src="/assets/local/class/laosu.png"></image>
+				<image src="https://qa.oss.iforbao.com/public/assets/local/yuanquan.png"></image>
+				<image src="https://qa.oss.iforbao.com/public/assets/local/xingxing.png"></image>
+				<image src="https://qa.oss.iforbao.com/public/assets/local/laosu.png"></image>
 			</view>
 			<view class="no_course_txt ">
 				<text>你还没有添加个人课程表</text>
@@ -20,7 +20,7 @@
 							<image mode='aspectFill' class='header_img' src='{{item.logo}}'></image>
 							<image class='child_sex' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/{{item.gender==0?"boy1":"girl1"}}.png'></image>
 						</view>
-						<view class="name">{{item.childName}}</view>
+						<view class="name font">{{item.childName}}</view>
 					</view>
 					<view class='rigth'>
 						<image class='arrow' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>

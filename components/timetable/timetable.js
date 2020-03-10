@@ -48,8 +48,9 @@ class TimetableComponent extends EComponent {
       },
       date: {
         type: String,
-        value: '',
+        value: moment().format('YYYY-MM-DD'),
         observer: (value) => {
+          console.log(value,'date')
           this.context.dispatch(actions.TRIGGER_DATE_CHANGE);
         }
       },
@@ -57,6 +58,7 @@ class TimetableComponent extends EComponent {
         type: Array,
         value: [],
         observer: (value) => {
+          console.log('数据更新了',value)
           this.context.dispatch(actions.MAP_DATA, value);
         }
       },
@@ -73,6 +75,7 @@ class TimetableComponent extends EComponent {
   get data() {
     return {
       days: [],
+      current:0,
       itemsList: [
         [],
         [],
@@ -110,8 +113,12 @@ class TimetableComponent extends EComponent {
       [COMP_LIFE.ON_ATTACHED]() { },
 
       [COMP_LIFE.ON_READY]() {
-        // console.log('再次加载',this.data.my_current)
-
+        console.log('再次加载', this.data.current)
+        this.setData({
+          current:0
+          
+        })
+        this._week.last=0
         //this.context.dispatch(actions.TRIGGER_DATE_CHANGE);
       },
       [COMP_LIFE.ON_MOVED]() { },
@@ -139,6 +146,10 @@ class TimetableComponent extends EComponent {
         const {
           current
         } = e.detail;
+        this.setData({
+          current
+        })
+        console.log('当前第几个',current)
         const {
           last
         } = this._week;
@@ -154,6 +165,18 @@ class TimetableComponent extends EComponent {
 
         this._week.last = current;
         // console.log(this._week.last)
+
+
+
+      // if (!date) {
+      //   return;
+      // }else{
+      //   this.setData({
+      //     date: this._week
+      //   })
+      // }
+      //  this._week.date = null;
+
       },
       [events.ui.WEEK_ANI_FINISHED](e) {
         const {
@@ -162,7 +185,6 @@ class TimetableComponent extends EComponent {
         if (!date) {
           return;
         }
-
         this.setData({
           date
         });
@@ -189,23 +211,22 @@ class TimetableComponent extends EComponent {
 
       // 选择的日期
       [events.ui.TAP_DAY](e) {
-        //选中的日期
-        const dateLesson = e.currentTarget.dataset.item
-        console.log('选中日期', dateLesson)
-        // console.log(this.data.dateLesson.length == 0, dateLesson == this.data.dateLesson)
-        if (this.data.dateLesson.length == 0 || dateLesson == this.data.dateLesson) {
-          this.setData({
-            timetable: !this.data.timetable
-          })
-        }
-
-        this.setData({
-          dateLesson
-        });
-        this.triggerEvent('lesson-date-changed', {
-          dateLesson,
-          timetable: this.data.timetable
-        });
+        // //选中的日期
+        // const dateLesson = e.currentTarget.dataset.item
+        // console.log('选中日期', dateLesson)
+        // // console.log(this.data.dateLesson.length == 0, dateLesson == this.data.dateLesson)
+        // if (this.data.dateLesson.length == 0 || dateLesson == this.data.dateLesson) {
+        //   this.setData({
+        //     timetable: !this.data.timetable
+        //   })
+        // }
+        // this.setData({
+        //   dateLesson
+        // });
+        // this.triggerEvent('lesson-date-changed', {
+        //   dateLesson,
+        //   timetable: this.data.timetable
+        // });
       },
       // 添加新的课程
       [events.ui.LESSON_ADD](e){
@@ -312,6 +333,7 @@ class TimetableComponent extends EComponent {
         const begin = moment(moment().format('YYYY-MM-DD')).isoWeekday(1);
         const end = moment(this.data.date).isoWeekday(1);
         const diff = moment.duration(end.diff(begin)).asWeeks();
+        console.log(diff, this.data.date,'周')
         if (diff == 0) {
           this.setData({
             diffWeek: '本周'

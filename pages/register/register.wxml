@@ -6,10 +6,10 @@
         autoplay="{{true}}" circular="{{true}}"  duration="{{duration}}">
         <!-- <block wx:for="{{background}}" wx:key="*this"> -->
           <swiper-item class='ban_s'> 
-             <image  class="banners" src='/assets/local/mypage/banner.png'  mode="widthFix"></image>
+             <image  class="banners" src='https://qa.oss.iforbao.com/public/assets/local/banner.png'  mode="widthFix"></image>
           </swiper-item>
            <swiper-item  class='ban_s'>
-             <image class="banners" src='/assets/local/mypage/banner1.png'  mode="widthFix"></image>
+             <image class="banners" src='https://qa.oss.iforbao.com/public/assets/local/banner1.png'  mode="widthFix"></image>
           </swiper-item>
         <!-- </block> -->
       </swiper>
@@ -18,7 +18,7 @@
   <view class='sel_role {{style}}'>
     <block wx:if="{{model.changeRole=='0'}}">
       <button hidden='{{btn}}' class='btn2' open-type="getUserInfo" bindgetuserinfo="CHOOSE_ROLE" data-role="1">
-        <image src='/assets/local/mypage/teacher.png' class='teacher-img' mode="widthFix"></image>
+        <image src='https://qa.oss.iforbao.com/public/assets/local/teacher.png' class='teacher-img' mode="widthFix"></image>
         <view class='home'>我是老师</view>
         <view class='home-duan'>教师端</view>
       </button>
@@ -26,7 +26,7 @@
 
 
       <button hidden='{{btn}}' class='btn2' open-type="getUserInfo" bindgetuserinfo="CHOOSE_ROLE" data-role="0">
-        <image src='/assets/local/mypage/reg.png' class='home-img' mode="widthFix"></image>
+        <image src='https://qa.oss.iforbao.com/public/assets/local/reg.png' class='home-img' mode="widthFix"></image>
         <view class='home'>我是家长/学生</view>
         <!-- <view class='student'>我是学生</view> -->
         <view class='home-duan'>家长/学生端</view>
@@ -35,7 +35,7 @@
 
       <button hidden='{{isphone}}' class='btn2 phone' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
         <image src='{{home_img}}' class='home-img' mode="widthFix"></image>
-        <view class='home'>我是{{type}}1</view>
+        <view class='home'>我是{{type}}</view>
         <view class='home-duan'>{{type}}端</view>
       </button>
 

@@ -1,6 +1,6 @@
 <view class='editMyChild_container'>
-
-  <view class='personalInfo_container'>
+  <!-- 修改日程信息     -->
+  <view class='personalInfo_container ' wx:if='{{false}}'>
     <view class='info_header_wrapper'>
       <view class='info_header_wrap'>
         <view class='info_header_name'>头像</view>
@@ -10,31 +10,29 @@
           <image class='arrow' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png' wx:if="{{manage=='false'}}"></image>
         </view>
       </view>
-
       <view class='info_lists_wrap'>
         <view class='info_lists_li'>
           <view class='info_lists_li_title'>昵称</view>
           <view class='info_lists_li_right'>
             <!-- <input type='text' placeholder="{{resultModel.name}}"  disabled='{{manage=="true"}}' bindtap="{{manage=='false'?'bindNickInput':''}}"  /> -->
-            <input type='text' value='{{resultModel.name}}' data-values='{{resultModel.name}}' disabled='{{true}}' bindtap="{{manage=='false'?'bindNickInput':''}}"  />
+            <input type='text' value='{{resultModel.name}}' data-values='{{resultModel.name}}' disabled='{{true}}' bindtap="{{manage=='false'?'bindNickInput':''}}" />
             <image class='arrow' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png' wx:if="{{manage=='false'}}"></image>
           </view>
         </view>
         <view class='info_lists_li'>
           <view class='info_lists_li_title'>性别</view>
-          <view class='info_lists_li_right' bindtap="{{manage=='false'?'showGender':''}}" >
+          <view class='info_lists_li_right' bindtap="{{manage=='false'?'showGender':''}}">
             <view class='right_c'>{{resultModel.gender==0?'男':'女'}}</view>
             <image class='arrow' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png' wx:if='{{manage=="false"}}'></image>
           </view>
         </view>
         <view class='info_lists_li'>
           <view class='info_lists_li_title'>学校</view>
-          <view class='info_lists_li_right' bindtap="{{manage=='false'?'chooseSchool':''}}" >
+          <view class='info_lists_li_right' bindtap="{{manage=='false'?'chooseSchools':''}}">
             <view class='right_c'>{{resultModel.school}}</view>
             <image class='arrow' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png' wx:if='{{manage=="false"}}'></image>
           </view>
         </view>
-
         <view class='info_lists_li' hidden='true'>
           <view class='info_lists_li_title'>年级</view>
           <view class='info_lists_li_right'>
@@ -44,17 +42,85 @@
         </view>
       </view>
     </view>
-
   </view>
-
+  <view class="addCourse">
+    <view class="data">
+      <!-- <view class="add_head" wx:if='{{false}}' bindtap='CHANGE_AVATAR' >
+				<image  src="https://qa.oss.iforbao.com/public/assets/local/addCourse.png" class="img"></image>
+				<text>添加头像</text>
+			</view> -->
+      <view class="add_head1" bindtap="{{manage=='false'?'CHANGEPHOTO':''}}">
+        <image mode="aspectFill" class="add_head" src='{{resultModel.logo ? resultModel.logo : (model.gender==1?girlb:boyb) }}'></image>
+        <view class='sex_icon'>
+          <image src='{{resultModel.gender==1?"https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/girl.png":"https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/boy.png"}}'></image>
+        </view>
+        <view class="userNmae">
+          {{resultModel.name}}
+        </view>
+      </view>
+      <view class="data_info">
+        <view class="item">
+          <text decode="{{true}}">昵<text style="color:#fff">昵称</text>称:</text>
+          <input type='text' placeholder="请填写孩子昵称(5字以内)" value='{{resultModel.name}}' maxlength="5" data-values='{{resultModel.name}}' disabled='{{true}}' bindtap="{{manage=='false'?'bindNickInput':''}}" />
+          <image class='arrow' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png' wx:if="{{manage=='false'}}"></image>
+        </view>
+        <view class="item">
+          <text decode="{{true}}">性<text style="color:#fff">昵称</text>别:</text>
+          <view class="gender">
+            <view class="radio-group" wx:for-items="{{ [{name:'男',id:0},{name:'女',id:1}]  }}" data-id="{{item.id}}" bindtap="{{manage=='false'?'showGender':''}}" wx:key="index">
+              <view class=" {{item.id== resultModel.gender?'checkdata':'checkdatas'}}"></view>
+              <view>{{item.name}}</view>
+              <!-- {{resultModel.gender==0?'男':'女'}} -->
+            </view>
+          </view>
+        </view>
+        <view class="item" bindtap="{{manage=='false'?'CHOOSESCHOOL':''}}">
+          <text>我的学校</text>
+          <view class="weui-cell__bd">
+            <view class="schooldata {{school_selected?'selected':'defaults'}}">
+              {{resultModel.school ? resultModel.school : '请选择'}}</view>
+            <image class='arrow' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png' wx:if='{{manage=="false"}}'></image>
+          </view>
+        </view>
+        <!-- <view class="item">
+          <text>我的年级</text>
+          <picker bindchange="CHANGE_GRADE" value="{{greadindex}}" range="{{grade}}">
+            <view class="picker selectwt">
+              <view class="weui-cell__bd">
+                <view class="{{grade_selected?'selected':'defaults'}}">{{grade[greadindex]?grade[greadindex]:'请选择'}}</view>
+                <image class='arrow' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png' wx:if='{{manage=="false"}}'></image>
+              </view>
+            </view>
+          </picker>
+        </view> -->
+      </view>
+    </view>
+    <!-- 新建 -->
+    <view class="btn" wx:if='{{!msgalert}}'>
+      <view bindtap="bindDeleteTap" wx:if='{{childHeigth>1 && manage=="false"}}' class='edit_footer_left'>删除</view>
+      <view wx:else class='edit_footer_left'>删除</view>
+      <view bindtap="saveChildInfo">
+        <text>保存</text>
+      </view>
+    </view>
+    <!-- 共享 -->
+    <view wx:if='{{manage == "true"}}' class="btns">
+      <view wx:if='{{userEdit=="true"}}' class='edit_footer_center'>
+       <button open-type="share" >
+         <text>共享日程表</text>
+       </button>
+      </view>
+      <view wx:else class='edit_footer_center'>
+        <text>共享日程表</text>
+      </view>
+    </view>
+  </view>
   <view>
+
     <!-- 第二组 -->
     <view class='info_header_wrapper'>
       <!-- list s -->
       <view class='info_lists_wrap'>
-
-
-
         <view wx:if='{{relationList}}' class='info_lists'>
           <view>共享管理</view>
           <view class='info_lists_li'>
@@ -91,9 +157,10 @@
         </view> -->
       </view>
     </view>
-  </view>
 
-  <view class='share_hint' wx:if='{{msgalert}}'>
+
+  </view>
+  <view class='share_hint' wx:if='{{msgalert && false}}'>
     <view class='title'>
       <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/hint.png'></image>
       什么是日程表共享</view>
@@ -102,19 +169,16 @@
         <text>1、</text> 日程表共享是指与Ta人共同享受该日程表所有信息
       </view>
       <view class='hint_item'>
-        <text>2、</text> 日程表共享更适用于家庭，即一个人编辑，修改则被共
-   享人同步更新，做到全家信息统一，同步实时更新
+        <text>2、</text> 日程表共享更适用于家庭，即一个人编辑，修改则被共 享人同步更新，做到全家信息统一，同步实时更新
       </view>
       <view class='hint_item'>
         <text>3、</text> 如果该日程表的所属人是小孩子，则共享的信息包括孩子的日程信息、班级信息以及购买信息等
       </view>
-       <view class='hint_item'>
-        <text>4、</text> 日程表共享后，共享人可以分配被共享人权限，默认是
-   没有修改权限
+      <view class='hint_item'>
+        <text>4、</text> 日程表共享后，共享人可以分配被共享人权限，默认是 没有修改权限
       </view>
     </view>
   </view>
-
   <view class='share_panel_mask {{scopeHide?"hide":"show"}}' catchtouchmove='stopOther '>
     <view class='panel_container'>
       <view class='panel_container_tit'>提示</view>
@@ -125,10 +189,7 @@
       </view>
     </view>
   </view>
-
 </view>
-
-
 
 <!-- 性别 -->
 <view class='gender' hidden='{{genderHide}}'>
@@ -176,7 +237,7 @@
 <canvas class="share-canvas" style="width:{{shareCavansOptions.width}}px;height:{{shareCavansOptions.height}}px;visibility:hidden;position:absolute;top:-1000rpx;" canvas-id="share_canvas"></canvas>
 
 <!-- footer s -->
-<view class='edit_footer_wrap' >
+<view class='edit_footer_wrap' wx:if='{{false}}'>
   <block wx:if="{{manage=='false'}}">
     <view wx:if='{{childHeigth>1}}' class='fl edit_footer_left' bindtap='bindDeleteTap'>
       <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/out.png'></image>
@@ -201,13 +262,13 @@
 
   <block wx:else>
     <view wx:if='{{userEdit=="true"}}' class='fr edit_footer_right sharetext' bindtap='SHOW_SHARE'>
-        <!-- <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/share_1.png'></image> -->
-        <text>共享日程表</text>
-      </view>
-      <view wx:else class='fr edit_footer_right' bindtap='nopower'>
-        <!-- <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/noshare_1.png'></image> -->
-        <text>共享日程表</text>
-      </view>
+      <!-- <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/share_1.png'></image> -->
+      <text>共享日程表</text>
+    </view>
+    <view wx:else class='fr edit_footer_right' bindtap='nopower'>
+      <!-- <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/noshare_1.png'></image> -->
+      <text>共享日程表</text>
+    </view>
   </block>
 
 

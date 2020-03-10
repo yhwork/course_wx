@@ -567,8 +567,11 @@ class CalendarLayerComponent extends EComponent {
       },
       [events.ui.TAP_DAY](e) {
         this.dayClick(e)
-      }
-
+      },
+       [events.ui.quit](e) {
+         this.triggerEvent('day-close');
+       }
+      
     }
   }
 

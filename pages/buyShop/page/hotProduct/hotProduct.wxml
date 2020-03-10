@@ -14,7 +14,7 @@
                 <video bindplay='bindplay' bindtap="videoTap" bindpause='bindpause' class="video_change hot_video" id='video{{idx}}' autoplay='{{false}}' width="100%" show-center-play-btn="{{false}}" src='{{videoUrl}}' controls="true" objectFit="fill" show-mute-btn='{{true}}'
                   title='测试' enable-progress-gesture='{{false}}' show-play-btn='{{false}}' poster="{{imgUrls[0]}}" bindended='bindended'>
                   <cover-view class="videoimage">
-                    <cover-image bindtap="videoTap" class="playImg" src="/assets/local/bofang@2x.png" wx:if="{{play}}"></cover-image>
+                    <cover-image bindtap="videoTap" class="playImg" src="https://qa.oss.iforbao.com/public/assets/local/bofang@2x.png" wx:if="{{play}}"></cover-image>
                   </cover-view>
                 </video>
               </swiper-item>
@@ -153,7 +153,7 @@
               已售：{{product.count-product.surplusCount}}
           </view> 
           <view class="share_btn">
-              <button open-type="share" bindtap="changeshare" data-title='{{title}}' data-img='{{shareImg}}' data-productId='{{productId}}' data-courseId='{{courseId}}'> <image src='/assets/local/fenxiang@2x.png'  mode="widthFix"></image></button>
+              <button open-type="share" bindtap="changeshare" data-title='{{title}}' data-img='{{shareImg}}' data-productId='{{productId}}' data-courseId='{{courseId}}'> <image src='https://qa.oss.iforbao.com/public/assets/local/fenxiang@2x.png'  mode="widthFix"></image></button>
              
               
           </view>
@@ -161,7 +161,7 @@
         <view class="hotproducr_detail_adress"  bindtap='OPEN_LOCATION' data-lat='{{adress_Detail.latitude}}' data-log='{{adress_Detail.longitude }}' >
             <view class="adress_title">门店地址</view>
             <view class="product_adress_title">{{adress_Detail.name}}</view>
-            <view class="adress"><text>{{adress_Detail.address}}</text><view class="adress_icon"> <image src='/assets/local/icon-dizi@2x.png' mode="widthFix"></image></view> </view>
+            <view class="adress"><text>{{adress_Detail.address}}</text><view class="adress_icon"> <image src='https://qa.oss.iforbao.com/public/assets/local/icon-dizi@2x.png' mode="widthFix"></image></view> </view>
         </view>
         <view class="hotproducr_detail_introduce">
              <view class="hotproducr_detail_ito_top">
@@ -177,7 +177,7 @@
                                 <view class="title_details"><text>{{item.id}}</text><text>{{item.title}}</text> </view>
                                 <view class="title_date">00:00-02:06</view>
                                 <view class="title_icons">
-                                  <image src='/assets/local/xiangxia@2x.png'  mode="widthFix"></image>
+                                  <image src='https://qa.oss.iforbao.com/public/assets/local/xiangxia@2x.png'  mode="widthFix"></image>
                                 </view>
                             </view>
                             <view class="item_lsit_content" wx:if='{{item.shows}}'>

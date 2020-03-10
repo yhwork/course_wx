@@ -13,54 +13,55 @@ const moment = require('../../../lib/moment.min.js');
 var weekOfday = moment().format('E') //计算今天是这周第几天
 var last_monday = moment().subtract(weekOfday - 1, 'days').format('YYYY/MM/DD'); //周一日期
 var last_sunday = moment().add(7 - weekOfday, 'days').format('YYYY/MM/DD'); //周日日期
-console.log('今天是周', weekOfday)
-console.log('周一日期', last_monday)
+// console.log('今天是周', weekOfday)
+// console.log('周一日期', last_monday)
 var sliderWidth = 96;
+// function courseTableF() {
+//   let empty_course = new Array;
+//   for (let i = 0; i < 8; i++) {
+//     empty_course[i] = new Array;
+//     for (let j = 0; j < 6; j++) {
+//       if (j == 0) {
+//         empty_course[i][j] = i;
+//       } else {
+//         empty_course[i][j] = {
+//           courseName: '',
+//           courseNameSub: '',
+//           courseClass: '',
+//           courseIndex: ''
+//         }
+//       }
 
-function courseTableF() {
-  let empty_course = new Array;
-  for (let i = 0; i < 8; i++) {
-    empty_course[i] = new Array;
-    for (let j = 0; j < 6; j++) {
-      if (j == 0) {
-        empty_course[i][j] = i;
-      } else {
-        empty_course[i][j] = {
-          courseName: '',
-          courseNameSub: '',
-          courseClass: '',
-          courseIndex: ''
-        }
-      }
+//     }
 
-    }
+//   }
+//   console.log(empty_course)
+//   return empty_course;
+// }
 
-  }
-  console.log(empty_course)
-  return empty_course;
-}
 function set_times(stute) {
   let val_time = [];
   if (stute == true) {
     for (let i = 6; i < 20; i++) {
-      if(i<10){
-        i= '0' +i
+      if (i < 10) {
+        i = '0' + i
       }
       val_time.push(i)
     }
   } else {
     let j = 0;
-    for (let i = 0; i < 4; i++) {
-      if(j==0){
-        val_time.push('0'+j)
-      }else{
+    for (let i = 0; i < 12; i++) {
+      if (j < 10) {
+        val_time.push('0' + j)
+      } else {
         val_time.push(j)
       }
-      j += 15
+      j += 5
     }
   }
   return val_time
 }
+
 class SchoolinEditePage extends EPage {
 
   get data() {
@@ -79,7 +80,7 @@ class SchoolinEditePage extends EPage {
           courseDel: false,
           color: 'yuwen',
           isbg: 1,
-          checked: 1
+          checked: 0
         },
         {
           courseName: "英语",
@@ -98,6 +99,7 @@ class SchoolinEditePage extends EPage {
           checked: 0
         },
       ],
+
       showCalendar: false,
       weeks: false,
       switched: false,
@@ -143,7 +145,6 @@ class SchoolinEditePage extends EPage {
       activeIndex: 1,
       sliderOffset: 0,
       sliderLeft: 0,
-      activeIndex: 1,
       weekDays: [{
           name: '周一',
           value: '15:30'
@@ -261,10 +262,10 @@ class SchoolinEditePage extends EPage {
           }
         });
 
-        let courseTable = courseTableF();
-        this.setData({
-          courseTable: courseTable
-        })
+        // let courseTable = courseTableF();
+        // this.setData({
+        //   courseTable: courseTable
+        // })
 
       },
       [PAGE_LIFE.ON_SHOW]() {
@@ -302,10 +303,11 @@ class SchoolinEditePage extends EPage {
         })
         this.$storage.get('InterNameList').then(
             (res) => {
-              this.setData({
-                InterNameList: res.data
-              })
-
+              if(res.data){
+                this.setData({
+                  InterNameList: res.data
+                })
+              }
             },
             (rej) => {}
           ),
@@ -328,25 +330,23 @@ class SchoolinEditePage extends EPage {
   }) {
     return {
       [events.ui.quit](e) {
-        console.log('退出')
+       
         let state = e.currentTarget.dataset.id
+        console.log('退出', state)
         if (state == 1) {
           this.setData({
-            'course.mask': true,
-            'course.num': false,
-            'course.reapet': false,
-            'course.time': false,
+            'course.mask': false,
+            'course.starttime': false,
+            'course.endtime': false,
             'course.alert': false,
             showCalendar: false
           })
           // 把数据导入
-
         } else {
           this.setData({
-            'course.mask': true,
-            'course.num': false,
-            'course.reapet': false,
-            'course.time': false,
+            'course.mask': false,
+            'course.starttime': false,
+            'course.endtime': false,
             'course.alert': false,
             showCalendar: false
           })
@@ -613,23 +613,27 @@ class SchoolinEditePage extends EPage {
           // 开学日期
           this.setData({
             showCalendar: true,
-            changeBegin: true
+            changeBegin: true,
+            'course.mask': true
           });
         }else if(id == 2){
           // 上课时间
           this.setData({
-            'course.starttime':true
+            'course.starttime':true,
+            'course.mask': true
           })
         }else if(id ==3){
           // 放学时间
            // 上课时间
            this.setData({
-            'course.endtime':true
+            'course.endtime':true,
+             'course.mask': true
           })
         }else{
           // 放学提醒
           this.setData({
-            'course.alert':true
+            'course.alert':true,
+            'course.mask': true
           })
         }
 
@@ -646,6 +650,7 @@ class SchoolinEditePage extends EPage {
           this.setData({
             'model.startDate': currentDate,
             changeBegin: false,
+            'course.mask':false,
             'model.endDate': moment(e.detail.year + ' ' + e.detail.month + ' ' + e.detail.day, 'YYYY-MM-DD').add(126, 'day').format('YYYY-MM-DD'),
           })
         }
@@ -948,6 +953,7 @@ class SchoolinEditePage extends EPage {
       },
       // 加入双周
       [events.ui.ADD_COURSE_CIRCLE](e) {
+        
         if (this.data.switched == false) {
           return;
         }
@@ -1106,9 +1112,6 @@ class SchoolinEditePage extends EPage {
             }
           }
         )
-        this.setData({
-          InterNameList: InterNameList
-        });
         this.setData({
           InterNameList: InterNameList
         });
@@ -1275,11 +1278,22 @@ class SchoolinEditePage extends EPage {
               checked: 0
             })
           })
-          console.log(interName)
-          interName[0].checked = 1
+
+          interName[0].checked = 1;
+          let InterNameLists = interName.concat(this.data.InterNameList)
+          let result = [];
+          let obj = {};
+          for (var i = 0; i < InterNameLists.length; i++) {
+            if (!obj[InterNameLists[i].courseName]) {
+              result.push(InterNameLists[i]);
+              obj[InterNameLists[i].courseName] = true;
+            }
+          }
+          console.log(result)
           this.setData({
-            InterNameList: interName
+            InterNameList: result
           })
+
           if (this.data.model.remindIndex == 1) {
             if (this.data.model.remindTime == 0 || !this.data.model.remindTime) {
               this.setData({
@@ -1641,7 +1655,7 @@ class SchoolinEditePage extends EPage {
                 title: '修改成功',
                 icon: 'success',
                 duration: 1500,
-                'course.mask': true,
+                'course.mask': false,
                 success: (res) => {
                   if (time) {
                     clearTimeout(time)

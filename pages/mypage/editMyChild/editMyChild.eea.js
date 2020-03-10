@@ -10,7 +10,7 @@ const events = {
     bindDeleteTap:null,
     SHOW_SHARE:null,
     HIDE_SHARE:null,
-    chooseSchool:null,
+    chooseSchools:null,
     bindSchoolInput:null,
     CHANGEPHOTO:null,
     bindNickInput:null,
@@ -19,7 +19,8 @@ const events = {
     showGender:null,
     saveChildInfo:null,
     dozensOfCards:null,
-    nopower:null
+    nopower:null,
+    CHOOSESCHOOL:null
   }
 }
 

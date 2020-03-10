@@ -23,6 +23,18 @@ font-family:PingFang SC;
 font-weight:400;
 
 }
+.navbar__slider {
+  margin-top: 10rpx;
+  height: 8rpx;
+  position: absolute;
+  bottom: 0rpx;
+  
+  transform: translateX(50%);
+  width: 167rpx;
+  background-color:#EFCF0B;
+  border-radius: 25rpx;
+  transition: all 0.3s;
+}
 .manger_data .num{
 
 font-size:20rpx;

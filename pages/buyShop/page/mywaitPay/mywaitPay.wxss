@@ -1,6 +1,6 @@
 .pay_box {
   width: 750rpx;
-  padding: 0 30rpx;
+  /* padding: 0 30rpx; */
 
 }
 
@@ -126,19 +126,19 @@
 } */
 
 .pay_canc {
-  width: 710rpx;
+  /* width: 710rpx; */
   text-align: right;
   font-size: 24rpx;
   background-color: white;
   margin: 0 auto;
   padding: 15rpx 20rpx;
+  box-sizing: border-box;
 }
 
 .btn_wrap {
   bottom: 25rpx;
   right: 0;
-  position: absolute;
-  /* border: 1px solid red; */
+  /* position: absolute; */
   background-color: white;
   display: flex;
   justify-content: flex-end;
@@ -433,6 +433,9 @@
 
 .waitpayss {
   margin-top: 30rpx;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
 }
 
 .no_flex {

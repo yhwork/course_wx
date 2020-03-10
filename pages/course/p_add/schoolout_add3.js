@@ -26,7 +26,8 @@ class SchooloutAdd3Page extends EPage {
     return {
       [PAGE_LIFE.ON_LOAD](option) {
         this.setData({
-          img : this.$api.extparam.getPageImgUrl('newcourse')
+          // img : this.$api.extparam.getPageImgUrl('newcourse')
+          img:'https://qa.oss.iforbao.com/public/assets/local/share_course.png'
         })
         wx.getStorage({
           key: 'current',
@@ -87,6 +88,11 @@ class SchooloutAdd3Page extends EPage {
                 })
               },1000)
               
+            },
+            fail:()=>{
+              wx.switchTab({
+                url: '/pages/course/courseList/courseList?childId=' + this.data.childId,
+              })
             }
           }
         }
@@ -116,7 +122,7 @@ class SchooloutAdd3Page extends EPage {
 
         // 跳转tabbae页面
         wx.switchTab({
-          url: '/pages/course/courseList/courseList',
+          url: '/pages/course/courseList/courseList?childId='+this.data.childId,
           success: (res)=> {},
           fail: (res)=> {},
           complete: (res)=> {},
@@ -134,14 +140,15 @@ class SchooloutAdd3Page extends EPage {
   }
   mapEffect() {
     return {
-      
+      // 创建校外课程
       [effects.SAVE_NEXT]() {
         const model = this.data.courseInfo;
         console.log(model);
+        const childId = model.childId;
         this.$api.course.create(model).then(
           (res) => {    
             console.log(res)
-            const childId = this.data.childInfo.childId;
+            
             if (res.data.errorCode == '0') {
               console.log(res.data.result)
               this.setData({
@@ -151,10 +158,13 @@ class SchooloutAdd3Page extends EPage {
               
               const param = {};
               param.dataType = 1;
+              
               param.data = {
                 'courseId': this.data.courseId
               };
               let _this = this
+              // 清除课程
+              wx.removeStorageSync('courseInfo')
               this.$api.user.shareInfoRecord(param).then(
                 (res) => {
                   console.log(res)
@@ -193,7 +203,7 @@ class SchooloutAdd3Page extends EPage {
                 success(resp) {
                   if (resp.confirm) {
                     wx.navigateTo({
-                      url: '../p_lesson/schoolout_lesson_detail?lessonId=' + res.data.result[0].id + '&childId=' + childId
+                      url: '/pages/course/p_lesson/schoolout_lesson_detail?lessonId=' + res.data.result[0].id + '&childId=' + childId
                     })
                   }
                   if (resp.cancel) {

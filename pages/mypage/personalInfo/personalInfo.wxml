@@ -1,0 +1,245 @@
+<!--pages/mypage/personalInfo/personalInfo.wxml-->
+<view class='personalInfo_container' wx:if='{{false}}'>
+  <!-- header s -->
+  <view class='info_header_wrapper'>
+    <!-- header s -->
+    <view class='info_header_wrap'>
+      <view class='info_header_name'>头像
+      </view>
+      <view class='info_header_pic' bindtap='bindPhotoChange'>
+        <image mode='aspectFill' class='header' src='{{pageModel.logo}}'></image>
+        <image class='arrow' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
+      </view>
+    </view>
+    <!-- list s -->
+    <view class='info_lists_wrap'>
+      <view class='info_lists_li'>
+        <view class='info_lists_li_title'>昵称</view>
+        <view class='info_lists_li_right'>
+          <input class='textover' value='{{pageModel.name}}' maxlength="6" bindinput='bindNickInput'></input>
+          <image class='arrow' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
+        </view>
+      </view>
+      <view class='info_lists_li' hidden='{{pageModel.role==0?true:""}}'>
+        <view class='info_lists_li_title'>真实姓名</view>
+        <view class='info_lists_li_right'>
+          <input class='textover' value='{{pageModel.name}}' bindinput='bindName'></input>
+          <image class='arrow' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
+        </view>
+      </view>
+      <view class='info_lists_li'>
+        <view class='info_lists_li_title'>性别</view>
+        <view class='info_lists_li_right' bindtap='showGender'>
+          <text class='textover'>{{pageModel.gender==0?"男":"女"}}</text>
+          <!-- <input class= 'textover' value='{{pageModel.gender==0?"男":"女"}}' bindinput='bindSexInput'></input> -->
+          <image class='arrow' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
+        </view>
+      </view>
+      <view class='info_lists_li'>
+        <view class='info_lists_li_title'>居住地</view>
+        <view class='info_lists_li_right' bindtap='chooseAddr'>
+          <!-- <text class='textover'>{{pageModel.city}}</text> -->
+          <input class='textover' value='{{pageModel.city==null?"请选择城市":pageModel.city}}' bindinput='bindAddrInput'></input>
+          <image class='arrow' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
+        </view>
+      </view>
+      <view class='info_lists_li'>
+        <view class='info_lists_li_title'>个人签名</view>
+        <view class='info_lists_li_right'>
+          <input class='textover info_flag' value='{{pageModel.personalSign==null?"":pageModel.personalSign}}' bindinput='bindSignInput'></input>
+          <image class='arrow' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
+        </view>
+      </view>
+
+    </view>
+    <!-- list e -->
+  </view>
+  <!-- header e -->
+  <!-- 第二组 -->
+  <view class='info_header_wrapper'>
+    <!-- list s -->
+    <view class='info_lists_wrap'>
+      <view class='info_lists_li'>
+        <view class='info_lists_li_title'>手机</view>
+        <view class='info_lists_li_right'>
+          <text class='textover info_flag'>{{pageModel.phoneNum==null?"未绑定":pageModel.phoneNum}}</text>
+          <image class='arrow' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
+        </view>
+      </view>
+      <view class='info_lists_li'>
+        <view class='info_lists_li_title'>
+          <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/we_03.png'> </image>
+          <text>微信</text>
+        </view>
+        <view class='info_lists_li_right'>
+          <text class='textover'>已绑定</text>
+          <image class='arrow' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
+        </view>
+      </view>
+
+    </view>
+
+
+
+  </view>
+
+  <!-- 教师端 -->
+  <view class='info_header_wrapper' hidden='{{pageModel.role==0?true:""}}'>
+    <!-- list s -->
+    <view class='info_lists_wrap'>
+      <view class='info_lists_li' bindtap='bindTeacherSchool'>
+        <view class='info_lists_li_title'>学校</view>
+        <view class='info_lists_li_right'>
+          <input class='textover info_flag' bindinput='bindSchoolInput' value="{{pageModel.workOrganizationName==null?'':pageModel.workOrganizationName}}"></input>
+          <!-- <text class='textover info_flag'>{{pageModel.workOrganizationName==null?'':pageModel.workOrganizationName}}</text> -->
+          <image class='arrow' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
+        </view>
+      </view>
+
+      <view class='info_lists_li'>
+        <view class='info_lists_li_title'>教师类别</view>
+        <view class='info_lists_li_right'>
+          <text class='textover info_flag'>{{pageModel.teacherProp==1?'全日制':'非全日制'}}</text>
+          <image class='arrow' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
+        </view>
+      </view>
+
+      <view class='info_lists_li' bindtap='bindTeacherClass'>
+        <view class='info_lists_li_title'>
+          <text>学科</text>
+        </view>
+        <view class='info_lists_li_right'>
+          <text class='textover'>{{pageModel.subjectName}}</text>
+          <image class='arrow' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
+        </view>
+      </view>
+
+      <view class='info_lists_li'>
+        <view class='info_lists_li_title'>
+          <text>教师认证</text>
+        </view>
+        <view class='info_lists_li_right'>
+          <text class='textover'>{{hasBindPhoneText}}</text>
+          <image class='arrow' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 教师端 -->
+  <!-- list e -->
+
+  <view class='button_submit' bindtap='submitChangeInfo'>保存</view>
+
+</view>
+
+
+<view class="page">
+  <view class="addCourse">
+    <view class="data">
+      <view class="add_head1" bindtap='bindPhotoChange'>
+        <image mode="aspectFill" class="add_head" src='{{pageModel.logo ? pageModel.logo : (model.gender==1?girlb:boyb) }}'></image>
+        <view class='sex_icon'>
+          <image src='{{pageModel.gender==1?"https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/girl.png":"https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/boy.png"}}'></image>
+        </view>
+        <view class="userNmae">
+          {{pageModel.nickName}}
+        </view>
+      </view>
+      <view class="data_info">
+        <view class="item">
+          <text decode="{{true}}">昵<text style="color:#fff">昵称</text>称:</text>
+          <input type='text' placeholder="请填写昵称(5字以内)" value='{{pageModel.nickName}}' bindinput='bindNickInput' maxlength="5" data-values='{{resultModel.name}}' />
+          <image class='arrow' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png' wx:if="{{manage=='false'}}"></image>
+        </view>
+        <view class="item">
+          <text decode="{{true}}">真实姓名:</text>
+          <input type='text' placeholder="教师的真实姓名(5字以内)" maxlength="5" data-values='{{resultModel.name}}'  value='{{pageModel.name}}' bindinput='bindName' />
+          <image class='arrow' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png' wx:if="{{manage=='false'}}"></image>
+        </view>
+        <view class="item">
+          <text decode="{{true}}">性<text style="color:#fff">昵称</text>别:</text>
+          <view class="gender">
+            <view class="radio-group" wx:for-items="{{ [{name:'男',id:0},{name:'女',id:1}]  }}" data-id="{{item.id}}"  bindtap='showGender' wx:key="index">
+              <view class=" {{item.id== pageModel.gender?'checkdata':'checkdatas'}}"></view>
+              <view>{{item.name}}</view>
+            </view>
+          </view>
+        </view>
+
+      </view>
+    </view>
+    <view class="data">
+      <view class="data_info">
+        <view class="item" bindtap='chooseAddr'>
+          <text decode="{{true}}">现居地址:</text>
+          <input type='text' placeholder="请选择居住地址(5字以内)" value='{{pageModel.city==null?"请选择城市":pageModel.city}}' bindinput='bindAddrInput' disabled="{{true}}" />
+          <image class='arrow' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png' wx:if="{{manage=='false'}}"></image>
+        </view>
+        <view class="item">
+          <text decode="{{true}}">手<text style="color:#fff">手机</text>机:</text>
+          <input type='text' value='{{pageModel.phoneNum==null?"未绑定":pageModel.phoneNum}}' maxlength="11" disabled='{{true}}' />
+          <image class='arrow' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png' wx:if="{{manage=='false'}}"></image>
+        </view>
+        <view class="item">
+          <text decode="{{true}}">微<text style="color:#fff">微信</text>信:</text>
+          <input type='text' value='{{pageModel.phoneNum==null?"未绑定":"已绑定"}}' disabled='{{true}}' />
+          <image class='arrow' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png' wx:if="{{manage=='false'}}"></image>
+        </view>
+      </view>
+    </view>
+    <view class="data">
+      <view class="data_info">
+         <view class="item" bindtap='bindTeacherSchool'>
+          <text decode="{{true}}">学<text style="color:#fff">学校</text>校:</text>
+          <input type='text' placeholder="教师的真实姓名(5字以内)" bindinput='bindSchoolInput' value="{{pageModel.workOrganizationName==null?'':pageModel.workOrganizationName}}"  maxlength="5"  />
+          <image class='arrow' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png' wx:if="{{manage=='false'}}"></image>
+        </view>
+        <view class="item">
+          <text>教师类别</text>
+          <view class="weui-cell__bd">
+            <view class="schooldata">{{pageModel.teacherProp==1?'全日制':'非全日制'}}</view>
+            <image class='arrow' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png' wx:if='{{manage=="false"}}'></image>
+          </view>
+        </view>
+        <view class="item" bindtap='bindTeacherClass'>
+          <text decode="{{true}}">学<text style="color:#fff">学科</text>科:</text>
+          <view class="weui-cell__bd">
+            <view class="schooldata ">
+              {{pageModel.subjectName}}</view>
+            <image class='arrow' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png' wx:if='{{manage=="false"}}'></image>
+          </view>
+        </view>
+        <view class="item">
+          <text decode="{{true}}">教师认证:</text>
+          <view class="weui-cell__bd">
+            <view class="schooldata">
+              {{hasBindPhoneText}}</view>
+            <image class='arrow' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png' wx:if='{{manage=="false"}}'></image>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="btn">
+      <view bindtap="bindDeleteTap" class='edit_footer_left'>取消</view>
+      <view bindtap="submitChangeInfo">
+        <text>修改</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+
+
+
+<!-- 性别 -->
+<view class='gender' hidden='{{genderHide}}'>
+  <view class='gender_mask' bindtap='hideGender'></view>
+  <view class='gender_box'>
+    <view class='title'></view>
+    <view wx:for='{{genders}}' data-index='{{item.value}}' wx:key='idx' wx:for-item='item' class="radio" bindtap='hideGender'>
+      {{item.name}}
+    </view>
+  </view>
+</view>

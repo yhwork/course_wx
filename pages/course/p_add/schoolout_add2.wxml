@@ -47,8 +47,8 @@
 			<view class='main '>
 				<view class='add_padding'>
 					<text class='imp'>*</text>
-					<view class="spacing">课程节数:</view>
-					<input placeholder='请输入课程节数' class='input_class' data-id="1" bindinput="CHANGE_NUM" value='{{model.num==0?"":model.num}}'></input>
+					<view class="spacing">课程次数:</view>
+					<input placeholder='请输入课程次数' class='input_class' type="number" data-id="1" bindinput="CHANGE_NUM" value='{{model.num==0?"":model.num}}'></input>
 				</view>
 			</view>
 			<view class="fa fa-question-circle-o help-icon1" catchtap="SHOW_CLASS_NUM"></view>
@@ -58,10 +58,11 @@
 			<view class='main '>
 				<view class=' add_padding '>
 					<text class='imp'>*</text>
-					<text class="spacing" decode='{{true}}'>重&nbsp; &nbsp; &nbsp; &nbsp;复:</text>
+					<text class="spacing" decode='{{true}}'>重<text style="color:#fff">重复</text>复:</text>
 					<view class="weui-cell__bd">
-				
+  <!-- 自定义重复 -->
 						<view wx:if="{{model.repetitionIndex==4}}" class='text_col ' data-id="2" bindtap='selectok1'>{{model.weekDaysTxt}}</view>
+            <!-- 重复 -->
 						<view wx:else class='text_col ' data-id="2" bindtap='selectok1'>{{model.repetitionTxt}}</view>
 						<!-- <picker bindchange="CHANGE_REPETITION" value="{{model.repetitionIndex}}" range="{{repetitionItems}}" disabled="{{repDis}}">
 							<view class=" weui-select_in-select-af weui-select-nex ">
@@ -78,7 +79,7 @@
 			</view>
 		</view>
 		<!-- 结束日期 -->
-		<view class='page__bd_main' hidden="{{endShow}}">
+		<view class='page__bd_main' wx:if="{{!endShow}}">
 			<view class='main'>
 				<view class=' add_padding'>
 					<text class='imp'>*</text>
@@ -103,7 +104,7 @@
 					<text class='imp'>*</text>
 					<text  class="spacing">开始时间:</text>
 					<view data-id="3" bindtap='selectok1' class="text_col">
-						{{model.startClassTime}}
+						{{model.startClassTime?model.startClassTime:'请选择开始上课的时间'}}
 					</view>
 					<!-- <picker bindchange="CHANGE_TIMEFIRST" mode="time" start="07:00" end="21:00" value="{{model.startClassTime}}">
 						<text class='text_col'>{{model.startClassTime}}</text>
@@ -117,13 +118,13 @@
 				<view class='add_padding'>
 					<text class='imp'>*</text>
 					<text  class="spacing">课长时间:</text>
-					<input class='input_class' placeholder="请填写课程时长，分钟" maxlength='5' bindinput="CHANGE_DURATION" />
+					<input class='input_class' value="{{model.duration}}" placeholder="请填写课程时长，分钟" maxlength='5' bindinput="CHANGE_DURATION" />
 				</view>
 			</view>
 			<view class="fa fa-question-circle-o help-icon1" bindtap='SHOW_CLASS_TIME'></view>
 		</view>
 		<!-- 下课时间 -->
-		<view class='page__bd_main' hidden="{{endclass}}">
+		<view class='page__bd_main' wx:if="{{!endclass}}">
 			<view class='main'>
 				<view class='add_padding'>
 					<text class='imp'>*</text>
@@ -165,7 +166,7 @@
 	<view class="calendars bd" wx:if="{{showCalendar}}">
 		<calendar catch:day-click="CALENDAR_DAY_CHANGED" />
 		<view bindtap="quit" class="close">
-				<image src="/assets/local/course/close.png"></image>
+				<image src="https://qa.oss.iforbao.com/public/assets/local/close.png"></image>
 			</view>
 	</view>
 	<!-- 选择课程节数 -->

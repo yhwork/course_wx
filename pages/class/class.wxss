@@ -35,7 +35,6 @@ page {
 
 .course_img image:nth-child(1) {
   position: absolute;
-  
   width: 237rpx;
   height: 130rpx;
   animation: myAnimaiton 2s infinite;
@@ -43,32 +42,35 @@ page {
 
 .course_img image:nth-child(2) {
   position: absolute;
- 
-  
   width: 192rpx;
   height: 108rpx;
   animation: myAnimaiton 3s infinite;
 }
+
 @keyframes myAnimaiton {
   0% {
     top: 10rpx;
     opacity: 1;
     right: 15rpx;
   }
+
   25% {
     visibility: hidden;
     opacity: 0;
   }
+
   50% {
     visibility: visible;
     top: 5rpx;
-    right:25rpx;
+    right: 25rpx;
     opacity: 1;
   }
+
   75% {
     visibility: hidden;
     opacity: 0;
   }
+
   100% {
     top: 10rpx;
     right: 15rpx;
@@ -76,31 +78,29 @@ page {
     opacity: 1;
   }
 }
+
 .no_course_txt {
-    font-size:28rpx;
-    font-family:PingFang SC;
-    font-weight:500;
-    color:rgba(51,51,51,1);
-    display: flex;
-    flex-flow: column wrap;
-    align-items: center;
+  font-size: 28rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: rgba(51, 51, 51, 1);
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
 }
 
 .add_group {
-  margin-top:36rpx;
+  margin-top: 36rpx;
   width: 181rpx;
   height: 34rpx;
   background: rgba(231, 198, 14, 1);
   border-radius: 17rpx;
-
-text-align: center;
+  text-align: center;
   font-size: 20rpx;
   font-family: PingFang SC;
   font-weight: 500;
   color: rgba(253, 253, 253, 1);
 }
-
-
 
 .headname {
   width: 180rpx;
@@ -113,7 +113,6 @@ text-align: center;
 .mall-wrap {
   width: 750rpx;
   background-color: #ffd596;
-
 }
 
 .txtname {
@@ -147,14 +146,12 @@ text-align: center;
   color: #e588e5e5;
 }
 
-
 .choose_child {
   padding: 10rpx 30rpx;
   background-color: #ffd596;
 }
 
-.imgchild,
-.mb image {
+.imgchild, .mb image {
   width: 90rpx;
   height: 90rpx;
   border-radius: 10rpx;
@@ -224,7 +221,6 @@ text-align: center;
   color: #f29219;
 }
 
-
 .message {
   display: flex;
   align-items: center;
@@ -262,8 +258,7 @@ text-align: center;
   font-size: 28rpx;
 }
 
-.childmsg,
-.choose_child {
+.childmsg, .choose_child {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -293,19 +288,20 @@ text-align: center;
 }
 
 .section_lists_li image {
-  width: 110rpx;
-  height: 110rpx;
+  width: 90rpx;
+  height: 90rpx;
   margin-right: 20rpx;
+  border-radius: 50%;
+  border: 1rpx solid #fefefe
 }
 
 .section_lists_li {
-  border-bottom: 1px solid #e5e5e5;
-  /* padding-left: 20rpx; */
   display: flex;
   align-items: center;
-  padding: 10rpx 0;
 }
-
+.section_lists_li .fl text{
+  font-size: 24rpx;
+}
 .check_mark image {
   width: 26rpx;
   height: 18rpx;
@@ -335,8 +331,8 @@ text-align: center;
 }
 
 .addclass image {
-  width: 35rpx;
-  height: 35rpx;
+  width: 30rpx;
+  height: 30rpx;
   border: 2rpx solid #f29219;
   border-radius: 50%;
   overflow: hidden;
@@ -350,7 +346,7 @@ text-align: center;
   justify-content: flex-end;
   align-items: center;
   font-size: 30rpx;
-  color: #000;
+  color: #E7C60E;
 }
 
 .addbox {
@@ -361,14 +357,22 @@ text-align: center;
   align-items: center;
   justify-content: flex-end;
 }
-
+.btn:nth-child(1){
+  margin-top: 35rpx;
+}
 .btn {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  border-radius: 0;
+  width: 690rpx;
+  height: 173rpx;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 1rpx 27rpx 0px rgba(150, 149, 149, 0.26);
+  border-radius: 30rpx;
   background: #fff;
+  padding: 22rpx 0 22rpx 38rpx;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  box-sizing: border-box;
+  margin-bottom: 44rpx;
 }
 
 .listform {
@@ -383,8 +387,8 @@ text-align: center;
 .fl text {
   color: #888;
   text-align: left;
-  line-height: 40rpx;
-  font-size: 26rpx;
+  line-height: 32rpx;
+  font-size: 24rpx;
   white-space: nowrap;
   overflow: hidden;
 }

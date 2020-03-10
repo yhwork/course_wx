@@ -5,7 +5,7 @@
 		<view class='head_box'>
 			<view class='tabchange'>
 				<view catchtap='chargeTab' data-id="1">{{isList==false?'列表查看':'日历查看'}}</view>
-				<image class='img' src='/assets/local/course/guanli.png' data-id="2" catchtap='chargeTab'></image>
+				<image class='img' src='https://qa.oss.iforbao.com/public/assets/local/guanli.png' data-id="2" catchtap='chargeTab'></image>
 			</view>
 			<view class='name_b' bindtap="SHOW_CALENDAR">{{model.currentDate}}</view>
 		</view>
@@ -30,6 +30,8 @@
 			<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/addClass.png'></image>
 		</view>
 	</block>
+
+ 
 	<!-- 全部课程渲染 -->
 	<view wx:else>
 		<!-- 日历详情 -->
@@ -125,13 +127,13 @@
 
 								<!-- <view class="course_info_item" bindtap="OPEN_LOCATION" data-longitude="{{item.longitude}}" data-latitude="{{item.latitude}}">
 					
-						<image src="/assets/local/course/adress.png" class="info_adress"></image>
+						<image src="https://qa.oss.iforbao.com/public/assets/local/adress.png" class="info_adress"></image>
 					</view> -->
 
 								<view class="course" bindtap="OPEN_LOCATION" data-longitude="{{item.longitude}}" data-latitude="{{item.latitude}}">
 									<view>上课地点:</view>
-									<text class="font course_right">{{items.classAddress}}</text>
-									<image src="/assets/local/course/adress.png" class="info_adress"></image>
+									<text class="font course_right adress">{{items.classAddress}}</text>
+									<image src="https://qa.oss.iforbao.com/public/assets/local/adress.png" class="info_adress"></image>
 								</view>
 							</view>
 						</block>
@@ -234,11 +236,13 @@
 	</view>
 	<!-- 日历 -->
 	<block wx:if="{{showCalendar}}">
-		<view class="bd cale_mask_bg">
-			<calendarLayer catch:day-click="CALENDAR_DAY_CHANGED" catch:next-month="CALENDAR_MONTH_CHANGED" catch:prev-month="CALENDAR_MONTH_CHANGED" monthLessonNum="{{monthLessonNum}}" />
-			<view bindtap="quit" class="close">
-				<image src="/assets/local/course/close.png"></image>
-			</view>
+		<view class=" cale_mask_bg">
+			<calendarLayer catch:day-click="CALENDAR_DAY_CHANGED" catch:next-month="CALENDAR_MONTH_CHANGED" catch:prev-month="CALENDAR_MONTH_CHANGED" catch:day-close='quit' monthLessonNum="{{monthLessonNum}}" />
+			
 		</view>
 	</block>
+
+
 </view>
+   	<!-- 蒙版 -->
+	<view bindtap="quit" class="page_bg" wx:if="{{mask}}"></view>

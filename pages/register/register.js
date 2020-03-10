@@ -42,6 +42,9 @@ class RegisterPage extends EPage {
   }) {
     return {
       [PAGE_LIFE.ON_LOAD](option) {
+
+
+
         console.log('授权',option)
         if (option.hasOwnProperty('backrouter')){
           if (option.backrouter == 'shop'){
@@ -214,7 +217,6 @@ class RegisterPage extends EPage {
           (res) => {
             console.log('phone',res)
             if (res.data.errorCode == '0') {
-  
               wx: wx.showToast({
                 title: '绑定成功',
               })
@@ -231,9 +233,10 @@ class RegisterPage extends EPage {
               }
               let router = this.data.router
               console.log('router', router)
+              // 家长端获取  教室的数据
               if (this.data.model.role == 1) {
                 this.$api.user.gerUserInfo().then(res => {
-                  // console.log(res.data.result)
+                  console.log('是否有授权数据',res.data.result)
                   let result = res.data.result
                   if (!result.name) {
                     wx.navigateTo({

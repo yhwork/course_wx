@@ -22,7 +22,8 @@ class upInputs extends EPage {
       },
       diaryList: [],
       progress: 0,
-      value:''
+      value:'',
+      resultModel:{}
     };
   }
 
@@ -35,6 +36,13 @@ class upInputs extends EPage {
         this.setData({
           value:option.val
         })
+
+        // 读取缓存
+        this.setData({
+          resultModel: wx.getStorageSync("resultModel")
+        })
+       
+
         // 调用其他方法
         // put(effects.GETALL_CHILD_LIST)
         // put(effects.GETALL_DIARY_LIST)
@@ -87,13 +95,22 @@ class upInputs extends EPage {
           wx.navigateBack({
             delta: 1,
           })
-          this.$storage.set('valname', this.data.value);  
+          // // 合并缓存数据
+          // wx.setStorage({
+          //   key: 'resultModel',
+          //   data: Object.assign(this.data.resultModel, { name: vals }),
+          // })
         }else{
           var vals = e.detail.value;
           this.setData({
             value: vals
           })
-          this.$storage.set('valname', this.data.value);
+          // 合并缓存数据
+          // 合并缓存数据
+          wx.setStorage({
+            key: 'resultModel',
+            data: Object.assign(this.data.resultModel, { name: vals }),
+          })
         }
         
       }

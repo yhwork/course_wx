@@ -20,6 +20,7 @@ const events = {
     previmg:null,  // 图片预览
     updataimg:null,
     deleteimg:null,
+    backchange:null
   }
 }
 

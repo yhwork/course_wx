@@ -22,7 +22,7 @@
 				<view class='page__bd_list1_class'>
 					<view class="weui-cell__hd ">
 						<!-- <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/icond.png'></image> -->
-						 课程名称：
+						 课程名称:
 						<!-- <text class='import'>*</text> -->
 					</view>
 					<view class="weui-cell__bd">
@@ -34,7 +34,7 @@
 					<!-- <view class="weui-cell"> -->
 					<view class="weui-cell__hd ">
 						<!-- <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/icona.png'></image> -->
-						教学机构：
+						教学机构:
 						<!-- <text class='import'>*</text> -->
 					</view>
 					<view class="weui-cell__bd">
@@ -46,7 +46,7 @@
 				<view class='page__bd_list1_class'>
 					<view class="weui-cell__hd ">
 						<!-- <image class='image_l' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/data.png'></image> -->
-						上课日期:
+						上课周期:
 					</view>
 					<view class="weui-cell__bd">
 						<view class='time2'>{{courseInfo.beginDate}}至{{courseInfo.endDate}}</view>
@@ -56,7 +56,7 @@
 				<view class="page__bd_list1_class ">
 					<view class="weui-cell__hd ">
 						<!-- <image class='image_l' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/course_num.png'></image> -->
-						课程节数:
+						课程次数:
 					</view>
 					<view class="weui-cell__bd">
 						<view class='time2'>共{{courseInfo.num}}节</view>
@@ -65,9 +65,8 @@
 				<!-- 重复 -->
 				<view class='page__bd_list1_class '>
 					<view class="weui-cell__hd ">
-						<!-- <image class='image_l' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/repeat.png'></image> -->
-						重
-						<text decode="{{true}}">&nbsp; &nbsp; &nbsp;&nbsp;</text> 复：
+					 <text>重<text style='color:#fff'>重复</text>复:</text>
+						<!-- 重<text decode="{{true}}"><text style="color:#fff">重复</text></text>复: -->
 					</view>
 					<view class="weui-cell__bd">
 						<view class='time2'>{{courseInfo.repetitionIndex=='4'?courseInfo.weekDaysTxt:courseInfo.repetitionTxt}}</view>
@@ -81,8 +80,9 @@
 						上课时间:
 					</view>
 					<view class="weui-cell__bd">
-						<view class='time2'> {{courseInfo.startClassTime}}-{{courseInfo.endClassTime}}
-							<view class='pan' wx:if="{{courseInfo.repetitionIndex!=='1'&&courseInfo.repetitionIndex!=='4'}}">{{courseInfo.weedDayName}}</view>
+						<view class='time2 flex'>
+              <view>{{courseInfo.startClassTime}}-{{courseInfo.endClassTime}}</view> 
+							<!-- <view class="ml" wx:if="{{courseInfo.repetitionIndex!=='1'&&courseInfo.repetitionIndex!=='4'}}">{{courseInfo.weedDayName}}</view> -->
 						</view>
 
 					</view>
@@ -102,11 +102,11 @@
 				<view class='page__bd_list1_class '>
 					<view class="weui-cell__hd">
 						<!-- <image src='/assets/img/remind.png' class='img4' mode="widthFix"></image> -->
-						课程提醒：
+						课程提醒:
 					</view>
 					<view class="weui-cell__bd">
 						<view class='time2'>
-							<text class='text1'>{{courseInfo.remindTxt}}</text>
+							<text>{{courseInfo.remindTxt}}</text>
 						</view>
 					</view>
 				</view>
@@ -121,10 +121,12 @@
 	</view>
 </view>
 
+
+<!-- 分享 -->
 <view class='sharefrends' hidden='{{iptHide}}' catchtouchmove="ture">
 	<view class='mb'>
 		<image class='del' bindtap='delShare' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/delete_in.png'></image>
 		<image class='img' src='{{img}}'></image>
-		<button open-type='share'> </button>
+		<button open-type='share'>立即分享赢积分</button>
 	</view>
 </view>

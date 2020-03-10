@@ -13,7 +13,7 @@
 				<view class="widgets__item">
 					<view id="content1" class="widgets__info {{content1Show ? 'widgets__info_show' : ''}}" bindtap="widgetsToggle">
 						<text class="widgets__info-name textover">为什么要给孩子创建课程表？</text>
-             <image src="/assets/local/xiangxia@2x.png"  class=" {{content1Show?'down':'up'}} "></image>
+             <image src="https://qa.oss.iforbao.com/public/assets/local/xiangxia@2x.png"  class=" {{content1Show?'down':'up'}} "></image>
 					</view>
 					<view class="widgets__list {{content1Show ? 'widgets__list_show' : ''}}">
 						<!-- 折叠内容 s -->
@@ -28,7 +28,7 @@
 				<view class="widgets__item">
 					<view id="content2" class="widgets__info {{content2Show ? 'widgets__info_show' : ''}}" bindtap="widgetsToggle">
 						<text class="widgets__info-name">如何新建和删除课程表</text>
-             <image src="/assets/local/xiangxia@2x.png"  class=" {{content2Show?'down':'up'}} "></image>
+             <image src="https://qa.oss.iforbao.com/public/assets/local/xiangxia@2x.png"  class=" {{content2Show?'down':'up'}} "></image>
 					</view>
 					<view class="widgets__list {{content2Show ? 'widgets__list_show' : ''}}">
 						<!-- 折叠内容 s -->
@@ -42,7 +42,7 @@
 				<view class="widgets__item">
 					<view id="content3" class="widgets__info {{content3Show ? 'widgets__info_show' : ''}}" bindtap="widgetsToggle">
 						<text class="widgets__info-name">多个课程表如何切换</text>
-              <image src="/assets/local/xiangxia@2x.png"  class=" {{content3Show?'down':'up'}} "></image>
+              <image src="https://qa.oss.iforbao.com/public/assets/local/xiangxia@2x.png"  class=" {{content3Show?'down':'up'}} "></image>
 					</view>
 					<view class="widgets__list {{content3Show ? 'widgets__list_show' : ''}}">
 						<!-- 折叠内容 s -->
@@ -56,7 +56,7 @@
 				<view class="widgets__item">
 					<view id="content4" class="widgets__info {{content4Show ? 'widgets__info_show' : ''}}" bindtap="widgetsToggle">
 						<text class="widgets__info-name">课表之间的课程互相影响吗</text>
-             <image src="/assets/local/xiangxia@2x.png"  class=" {{content4Show?'down':'up'}} "></image>
+             <image src="https://qa.oss.iforbao.com/public/assets/local/xiangxia@2x.png"  class=" {{content4Show?'down':'up'}} "></image>
 					</view>
 					<view class="widgets__list {{content4Show ? 'widgets__list_show' : ''}}">
 						<!-- 折叠内容 s -->
@@ -70,7 +70,7 @@
 				<view class="widgets__item">
 					<view id="content5" class="widgets__info {{content5Show ? 'widgets__info_show' : ''}}" bindtap="widgetsToggle">
 						<text class="widgets__info-name">如何快速添加课程</text>
-             <image src="/assets/local/xiangxia@2x.png"  class=" {{content5Show?'down':'up'}} "></image>
+             <image src="https://qa.oss.iforbao.com/public/assets/local/xiangxia@2x.png"  class=" {{content5Show?'down':'up'}} "></image>
 					</view>
 					<view class="widgets__list {{content5Show ? 'widgets__list_show' : ''}}">
 						<!-- 折叠内容 s -->
@@ -84,7 +84,7 @@
 				<view class="widgets__item">
 					<view id="content6" class="widgets__info {{content6Show ? 'widgets__info_show' : ''}}" bindtap="widgetsToggle">
 						<text class="widgets__info-name">什么是时间重复，有什么作用？</text>
-          <image src="/assets/local/xiangxia@2x.png"  class=" {{content6Show?'down':'up'}} "></image>
+          <image src="https://qa.oss.iforbao.com/public/assets/local/xiangxia@2x.png"  class=" {{content6Show?'down':'up'}} "></image>
 					</view>
 					<view class="widgets__list {{content6Show ? 'widgets__list_show' : ''}}">
 						<!-- 折叠内容 s -->
@@ -98,7 +98,7 @@
 				<view class="widgets__item">
 					<view id="content7" class="widgets__info {{content7Show ? 'widgets__info_show' : ''}}" bindtap="widgetsToggle">
 						<text class="widgets__info-name">使用时间重复后，多排课程怎么办？</text>
-              <image src="/assets/local/xiangxia@2x.png"  class=" {{content7Show?'down':'up'}} "></image>
+              <image src="https://qa.oss.iforbao.com/public/assets/local/xiangxia@2x.png"  class=" {{content7Show?'down':'up'}} "></image>
 					</view>
 					<view class="widgets__list {{content7Show ? 'widgets__list_show' : ''}}">
 						<!-- 折叠内容 s -->

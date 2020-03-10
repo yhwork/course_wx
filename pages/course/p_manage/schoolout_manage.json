@@ -1,3 +1,8 @@
 {
-  "navigationBarTitleText": "课程管理"
+  "navigationBarTitleText": "课程管理",
+      "enablePullDownRefresh": true,
+      "backgroundTextStyle": "dark",
+      "usingComponents": {
+        "nonePage": "/components/none/none"
+      }
 }

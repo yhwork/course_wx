@@ -79,7 +79,7 @@
         </view>
       </view>
       <view style='display:flex;justify-content: space-between;padding:0 30rpx;margin-bottom:16rpx;'>
-        <text style="font-size:26rpx;">共{{lessonInfo.allClass}}节课程</text>
+        <text style="font-size:26rpx;">共{{lessonInfo.allClass}}次课程</text>
         <text style="font-size:26rpx;">出勤{{lessonInfo.attendClass}}</text>
         <text style="font-size:26rpx;">剩余{{lessonInfo.leftClass}}</text>
       </view>

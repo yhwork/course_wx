@@ -1,38 +1,51 @@
 <view class='banner_box mains'>
-	<!-- 家长 -->
-	<view class='head_box' wx:if='{{role==0}}'>
-		<view class="header_top ">
-			<view class="header ">
-				<!-- 默认头像 -->
-				<view class="header_active">
-					<image lazy-load='{{true}}' animation="{{animationData}}" src='{{headImg}}'></image>
-					<view class="message" hidden="{{messagenum == ''}}">{{messagenum}}</view>
-				</view>
-				<!-- 切换 -->
-				<view class="header_swipeimg">
-					<image lazy-load='{{true}}' src='/assets/local/tubiao-qiehuan@2x.png'></image>
-				</view>
-				<!-- 孩子列表 -->
-				<view class="header_swipe" wx:for='{{childlist}}' wx:for-index="index" wx:key='index'>
-					<view class="header_item" data-i="{{index}}" data-id='{{item.childId}}' catchtap='chargeUser' wx:if='{{item.childId != childId}}'>
-						<!-- 消息点 -->
-						<image wx:if='{{item.logo}}' lazy-load='{{true}}' src='{{item.logo}}'></image>
-						<image wx:else src='https://oss.iforbao.com/public/assets/img/girlb.png'></image>
-						<view wx:if='{{item.courseNum}}' class="message1 message">{{item.courseNum}}</view>
-						<view class="header_swipe_actives">
-						</view>
-					</view>
-				</view>
-			</view>
-			<view class="userName">
-				<text>{{userName}}</text>
-			</view>
-		</view>
-		<!-- 扫码 -->
-		<view class="look_pic " bindtap="scanCode">
-			<image src="/assets/local/icon-shaoyishao@2x.png" lazy-load='{{true}}' mode='widthFix'> </image>
-		</view>
-		<!-- <view class='head_box'>
+  <!-- 家长 -->
+  <view class='head_box' wx:if='{{role==0}}'>
+    <view class="header_top ">
+      <view class="header ">
+        <!-- 默认头像 -->
+        <view class="header_active">
+          <image lazy-load='{{true}}' bindtap="childdetails" data-id="1" animation="{{animationData}}" src='{{headImg?headImg:"https://oss.iforbao.com/public/assets/img/girlb.png"}}'></image>
+          <view class="message" hidden="{{messagenum == ''}}">{{messagenum}}</view>
+        </view>
+        <!-- 切换 -->
+        <view class="header_swipeimg">
+          <image lazy-load='{{true}}' src='https://qa.oss.iforbao.com/public/assets/local/tubiao-qiehuan@2x.png'></image>
+        </view>
+        <!-- 孩子列表 -->
+        <block wx:if='{{childlist.length!=0}}'>
+          <view class="header_swipe" wx:for='{{childlist}}' wx:for-index="index" wx:key='index'>
+
+            <view class="header_item" data-i="{{index}}" data-id='{{item.childId}}' catchtap='chargeUser' wx:if='{{item.childId != childId}}'>
+              <!-- 消息点 -->
+              <image wx:if='{{item.logo}}' lazy-load='{{true}}' src='{{item.logo}}'></image>
+              <image wx:else src='https://oss.iforbao.com/public/assets/img/girlb.png'></image>
+              <view wx:if='{{item.courseNum}}' class="message1 message">{{item.courseNum}}</view>
+              <view class="header_swipe_actives"></view>
+            </view>
+          </view>
+           <!-- 新建小孩 -->
+          <block wx:if="{{childlist.length<5}}">
+              <view class="header_active" bindtap="childdetails" data-id="2">
+                <image class="head_img" src='/assets/local/addchild.png'></image>
+              </view>
+          </block>
+        </block>
+        <block wx:else>
+          <view class="header_active" bindtap="childdetails" data-id="2">
+            <image class="head_img" src='/assets/local/addchild.png'></image>
+          </view>
+        </block>
+      </view>
+      <view class="userName">
+        <text>{{userName}}</text>
+      </view>
+    </view>
+    <!-- 扫码 -->
+    <view class="look_pic " bindtap="scanCode">
+      <image src="https://qa.oss.iforbao.com/public/assets/local/icon-shaoyishao@2x.png" lazy-load='{{true}}' mode='widthFix'> </image>
+    </view>
+    <!-- <view class='head_box'>
           <image src='{{headImg}}' wx:if='{{headImg}}'></image>
           <image wx:else src='https://oss.iforbao.com/public/assets/img/girlb.png'></image>
           <image class='sex' src='{{gender?"https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/girl1.png":"https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/boy1.png"}}'></image>
@@ -42,143 +55,186 @@
           <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/attention.png' class='icon_img' mode='aspectFit'></image>
           <view>点击切换身份</view>
         </view> -->
-	</view>
-	<!-- 教师端头部 -->
-	<view class='head_box' wx:else>
-		<view class='head_box'>
-			<image src="{{headImg1}}" wx:if='{{headImg}}'></image>
-			<image wx:else src='https://oss.iforbao.com/public/assets/img/girlb.png'></image>
-			<!-- <text class='namecolor'>{{nickName}}</text> -->
-			<text class='namecolor font'>{{name}}</text>
-		</view>
-	</view>
-	<!-- banner 轮播图-->
-	<view class="mains_banner">
-		<image lazy-load='{{true}}' mode='widthFix' src='/assets/local/0327780c86ae7fcb824803718352dc2.png'></image>
-		<view class="size_banner">
-			<image lazy-load='{{true}}' mode='widthFix' src='/assets/local/fe90071af6ce02a889670ddcb195b6f.png'></image>
-		</view>
-		<view class="size_banner1">
-			<image lazy-load='{{true}}' mode='widthFix' src='/assets/local/18bb511a2bd88fead308644e4f7c9dc.png'></image>
-		</view>
-		<view class="size_banner2">
-			立即体验
-		</view>
-	</view>
-	<!-- 家长端导航 -->
-	<view class='label_box'>
-		<view class='label_item' bindtap='goIndex' data-current='0'>
-			<image src='/assets/local/icon-xiaoneiricheng@2x.png'></image>
-			<view>校内日程</view>
-		</view>
-		<view class='label_item ' bindtap='goIndex' data-current='1'>
-			<image src='/assets/local/icon-xiaoneirichen@2x.png'></image>
-			<view>校外日程</view>
-		</view>
-		<!-- <view class='label_item ' bindtap='goManage' data-current='2'>
+  </view>
+  <!-- 教师端头部 -->
+  <view wx:else>
+    <view class='head_boxs'>
+      <!-- 默认头像 -->
+      <view class="header_active">
+        <image lazy-load='{{true}}' bindtap="goCourseManage"  data-manage='{{"true"}}' animation="{{animationData}}" src='{{headImg1}}'></image>
+        <view class="message  " hidden="{{messagenum == ''}}">{{messagenum}}</view>
+      </view>
+      <text class='namecolor font'>{{name}}</text>
+      <!-- <image src="{{headImg1}}" wx:if='{{headImg}}'></image> -->
+      <!-- <image wx:else src='https://oss.iforbao.com/public/assets/img/girlb.png'></image> -->
+      <!-- <text class='namecolor'>{{nickName}}</text> -->
+
+    </view>
+  </view>
+  <!-- banner 轮播图-->
+  <view class="mains_banner">
+    <image lazy-load='{{true}}' mode='widthFix' src='https://qa.oss.iforbao.com/public/assets/local/0327780c86ae7fcb824803718352dc2.png'></image>
+    <view class="size_banner">
+      <image lazy-load='{{true}}' mode='widthFix' src='https://qa.oss.iforbao.com/public/assets/local/fe90071af6ce02a889670ddcb195b6f.png'></image>
+    </view>
+    <view class="size_banner1">
+      <image lazy-load='{{true}}' mode='widthFix' src='https://qa.oss.iforbao.com/public/assets/local/18bb511a2bd88fead308644e4f7c9dc.png'></image>
+    </view>
+    <view class="size_banner2">
+      立即体验
+    </view>
+  </view>
+  <!-- 家长端导航 -->
+  <view class='label_box'>
+    <view class='label_item' bindtap='goIndex' data-current='0'>
+      <!-- <image src='https://qa.oss.iforbao.com/public/assets/local/icon-xiaoneiricheng@2x.png'></image> -->
+      <image src="/assets/local/home4.png"></image>
+      <view>校内课程</view>
+    </view>
+    <view class='label_item ' bindtap='goIndex' data-current='1'>
+      <!-- <image src='https://qa.oss.iforbao.com/public/assets/local/icon-xiaoneirichen@2x.png'></image> -->
+      <image src="/assets/local/home3.png"></image>
+
+      <view>校外课程</view>
+    </view>
+    <!-- <view class='label_item ' bindtap='goManage' data-current='2'>
       <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/8.png'></image>
       <view>日程管理</view>
     </view> -->
-		<view class='label_item ' bindtap='goCourseManage' data-manage='{{"false"}}' data-current='3'>
-			<image src='/assets/local/1575009461.png'></image>
-			<view>日程表设置</view>
-		</view>
-		<view wx:if='{{role==0}}' class='label_item ' bindtap='goCourseManage' data-manage='{{"true"}}' data-current='4'>
-			<image src='/assets/local/icon-fenxiang@2x.png'></image>
-			<view>日程表共享</view>
-		</view>
-		<view wx:if='{{role==1}}' class='label_item ' data-current='5' catchtap='showMore'>
-			<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/editor.png'></image>
-			<view class='fontsize'>信息发布</view>
-			<view class='label_info' wx:if='{{more_staste}}'>
-				<view bindtap='goClassInfo' data-type='0'>班级通知</view>
-				<view bindtap='goClassInfo' data-type='1'>班级作业</view>
-				<view bindtap='goClassInfo' data-type='2'>班级相册</view>
-			</view>
-		</view>
-	</view>
+    <view class='label_item ' bindtap='goManage' data-manage='{{"false"}}' data-current='3'>
+      <!-- <image src='https://qa.oss.iforbao.com/public/assets/local/1575009461.png'></image> -->
+      <image src="/assets/local/home1.png"></image>
+      <view>课程管理</view>
+    </view>
+    <view wx:if='{{role==0}}' class='label_item ' bindtap='goCourseManage' data-manage='{{"true"}}' data-current='4'>
+      <!-- <image src='https://qa.oss.iforbao.com/public/assets/local/icon-fenxiang@2x.png'></image> -->
+      <image src="/assets/local/home2.png"></image>
+      <view>课程表共享</view>
+    </view>
+    <view wx:if='{{role==1}}' class='label_item ' data-current='5' catchtap='showMore'>
+      <image src="/assets/local/home5.png"></image>
+      <view class='fontsize'>信息发布</view>
+      <view class='label_info' wx:if='{{more_staste}}'>
+        <view bindtap='goClassInfo' data-type='0'>班级通知</view>
+        <view bindtap='goClassInfo' data-type='1'>班级作业</view>
+        <view bindtap='goClassInfo' data-type='2'>班级相册</view>
+      </view>
+    </view>
+  </view>
 
 </view>
 <!-- 切换小孩子 -->
 <view>
-	<view class='mask_box' bindtap="changeMask" wx:if='{{mask_state}}'>
-		<view class='popup_box' wx:for='{{childlist}}' wx:key='index' data-i="{{index}}" data-id='{{item.childId}}' catchtap='chargeUser'>
-			<view class='popup_item'>
-				<!-- <image src='/assets/icons/my_selected.png'></image> -->
-				<image wx:if='{{item.logo}}' src='{{item.logo}}'></image>
-				<image wx:else src='https://oss.iforbao.com/public/assets/img/girlb.png'></image>
-				<text>{{item.childName}}</text>
-			</view>
-		</view>
-	</view>
+  <view class='mask_box' bindtap="changeMask" wx:if='{{mask_state}}'>
+    <view class='popup_box' wx:for='{{childlist}}' wx:key='index' data-i="{{index}}" data-id='{{item.childId}}' catchtap='chargeUser'>
+      <view class='popup_item'>
+        <!-- <image src='/assets/icons/my_selected.png'></image> -->
+        <image wx:if='{{item.logo}}' src='{{item.logo}}'></image>
+        <image wx:else src='https://oss.iforbao.com/public/assets/img/girlb.png'></image>
+        <text>{{item.childName}}</text>
+      </view>
+    </view>
+  </view>
 </view>
 
-
+<!-- 最近日程 -->
 <view class='title_box' style='background:#fff;'>
-	<view>最近日程</view>
-	<view class="nearly_addcourse">
-		<view class='list_view' data-current="1" bindtap='addClass'>
-			<view class="addimg">
-				<image lazy-load='{{true}}' mode='widthFix' src="/assets/local/64dfce9688ef8970e3297c0f6d1b21d.png"></image>
-			</view>
-			<view>添加校外课程</view>
-		</view>
-		<view class='list_view' data-current='0' bindtap='addClass'>
-			<view class="addimg">
-				<image lazy-load='{{true}}' mode='widthFix' src="/assets/local/64dfce9688ef8970e3297c0f6d1b21d.png"></image>
-			</view>
-			<view>添加校内日程</view>
-		</view>
-	</view>
+  <view>最近日程</view>
+  <view class="nearly_addcourse">
+    <view class='list_view' data-current="1" bindtap='addClass'>
+      <view class="addimg">
+        <image lazy-load='{{true}}' mode='widthFix' src="https://qa.oss.iforbao.com/public/assets/local/64dfce9688ef8970e3297c0f6d1b21d.png"></image>
+      </view>
+      <view>添加校外课程</view>
+    </view>
+    <view class='list_view' data-current='0' bindtap='addClass'>
+      <view class="addimg">
+        <image lazy-load='{{true}}' mode='widthFix' src="https://qa.oss.iforbao.com/public/assets/local/64dfce9688ef8970e3297c0f6d1b21d.png"></image>
+      </view>
+      <view>添加校内日程</view>
+    </view>
+  </view>
 
 
 </view>
-
+<!--  -->
 <view class="course_list" wx:if='{{lessonLists.length >0}}'>
-	<block wx:for='{{lessonLists}}' wx:for-index='index' wx:for-item='items' wx:key='index'>
-		<view class="course_item" data-Id='{{items.id}}' data-dataType='{{items.dataType}}' data-classid='{{items.internalClassId}}' bindtap='courdetails'>
-			<view class="course_item_left">
-				<view class="course_item_title">{{items.name}}</view>
-				<view>{{ items.pm}}
-					<text>{{items.startTime}}-{{items.endTime}}</text>
-				</view>
-				<view hidden='{{items.dataType == 2 }}' class="adress" bindtap='OPEN_LOCATION' data-lat='{{items.latitude}}' data-log='{{items.longitude }}'>
-					<text class="font wt">{{items.classAddress}}</text>
-					<view hidden='{{items.classAddress == ""}}' class="icon-dizi">
-						<image lazy-load='{{true}}' mode='widthFix' src='/assets/local/icon-dizi@2x.png'></image>
-					</view>
-				</view>
-			</view>
-			<view class="course_item_right">
-				<view>{{items.startDate}}</view>
-				<view class="icon-details">
-					<image lazy-load='{{true}}' mode='widthFix' src='/assets/local/0d1875c84c5f7f1bb63306f83b13c53.png'></image>
-				</view>
-			</view>
-		</view>
-	</block>
+  <block wx:for='{{lessonLists}}' wx:for-index='index' wx:for-item='items' wx:key='index'>
+    <view class="course_item" data-Id='{{items.id}}' data-dataType='{{items.dataType}}' data-classid='{{items.internalClassId}}' bindtap='courdetails'>
+      <view class="course_item_left">
+        <view class="course_item_title">
+          <text>{{items.name?items.name:'暂无课程哦'}}</text>
+          
+              <block  wx:if='{{items.type==1}}'>
+                 <text class="alerts course-absent-color"> 缺勤 </text>
+              </block >
+              <block wx:elif='{{items.type==2}}'>
+                 <text class="alerts course-change-color">调课 </text>
+              </block>
+               <block wx:elif='{{items.type==3}}'>
+                 <text class="alerts course-remedial-color">补课 </text>
+              </block>
+         
+        </view>
+        <view class="itemtime">
+          <view class="itemtime2">
+            <text>{{ items.pm}}</text>
+            <text>{{items.startTime}}-{{items.endTime}}</text>
+          </view>
+          <view class="itemtime1">
+            <view class="course_item_right2">
+              <view>{{items.startDate}}</view>
+              <view class="icon-details">
+                <image lazy-load='{{true}}' mode='widthFix' src='https://qa.oss.iforbao.com/public/assets/local/0d1875c84c5f7f1bb63306f83b13c53.png'></image>
+              </view>
+            </view>
+          </view>
+        </view>
+
+        <view hidden='{{items.dataType == 2 }}' wx:if='{{items.classAddress}}' class="adress" catchtap='OPEN_LOCATION' data-lat='{{items.latitude}}' data-log='{{items.longitude }}'>
+          <text class="font wt">{{items.classAddress}}</text>
+          <view hidden='{{items.classAddress == ""}}' class="icon-dizi">
+            <image lazy-load='{{true}}' mode='widthFix' src='https://qa.oss.iforbao.com/public/assets/local/icon-dizi@2x.png'></image>
+          </view>
+        </view>
+      </view>
+      <!-- <view class="course_item_right">
+        <view class="{{items.type==1?'course-absent-color2':'course-absent-color1'}}">
+          <text wx:if='{{items.name}}'>
+            {{items.type==1?'缺勤':'未上'}}
+          </text>
+        </view>
+        <view class="course_item_right2">
+          <view>{{items.startDate}}</view>
+          <view class="icon-details">
+            <image lazy-load='{{true}}' mode='widthFix' src='https://qa.oss.iforbao.com/public/assets/local/0d1875c84c5f7f1bb63306f83b13c53.png'></image>
+          </view>
+        </view>
+      </view> -->
+    </view>
+  </block>
 </view>
 <view class="course_list" wx:else>
-	<view class="course_item">
-		<view class="course_item_left">
-			<view class="course_item_title">{{items.name?items.name:'暂无课程内容'}}</view>
-			<view>{{ items.pm}}
-				<text>{{items.startTime?items.startTime:'上课时间'}}-{{items.endTime}}</text>
-			</view>
-			<view class="adress" bindtap='OPEN_LOCATION'>
-				<text>{{items.classAddress}}</text>
-				<view wx:if='{{items.classAddress !== ""}}' class="icon-dizi">
-					<image lazy-load='{{true}}' mode='widthFix' src='/assets/local/icon-dizi@2x.png'></image>
-				</view>
-			</view>
-		</view>
-		<view class="course_item_right">
-			<view>{{items.startDate}}</view>
-			<view class="icon-details">
-				<image lazy-load='{{true}}' mode='widthFix' src='/assets/local/0d1875c84c5f7f1bb63306f83b13c53.png'></image>
-			</view>
-		</view>
-	</view>
+  <view class="course_item">
+    <view class="course_item_left">
+      <view class="course_item_title">{{items.name?items.name:'暂无课程哦'}}</view>
+      <view>{{ items.pm}}
+        <text>{{items.startTime?items.startTime:'请添加'}}-{{items.endTime}}</text>
+      </view>
+      <view wx:if='{{items.classAddress}}' class="adress" bindtap='OPEN_LOCATION'>
+        <text>{{items.classAddress}}</text>
+        <view  class="icon-dizi">
+          <image lazy-load='{{true}}' mode='widthFix' src='https://qa.oss.iforbao.com/public/assets/local/icon-dizi@2x.png'></image>
+        </view>
+      </view>
+    </view>
+    <view class="course_item_right">
+      <view>{{items.startDate}}</view>
+      <view class="icon-details">
+        <image lazy-load='{{true}}' mode='widthFix' src='https://qa.oss.iforbao.com/public/assets/local/0d1875c84c5f7f1bb63306f83b13c53.png'></image>
+      </view>
+    </view>
+  </view>
 </view>
 
 
@@ -223,12 +279,12 @@
 </view>
 <!-- 关注公众号 -->
 <view class="modal" wx:if="{{showFollowModel}}">
-	<view class="modal-box">
-		<view class="modal-box-title">提醒功能提示</view>
-		<view class="modal-box-content">提醒功能在小豆包课程表公众号中，请点击“关注”，回复“1”，获取链接，关注“小豆包课程表”公众号</view>
-		<view class="modal-box-buttons">
-			<view class="modal-box-button default" bindtap="CANCEL_FOLLOW">取消</view>
-			<button type="" class="modal-box-button primary" open-type="contact" session-from="reminder" plain>关注</button>
-		</view>
-	</view>
+  <view class="modal-box">
+    <view class="modal-box-title">提醒功能提示</view>
+    <view class="modal-box-content">提醒功能在小豆包课程表公众号中，请点击“关注”，回复“1”，获取链接，关注“小豆包课程表”公众号</view>
+    <view class="modal-box-buttons">
+      <view class="modal-box-button default" bindtap="CANCEL_FOLLOW">取消</view>
+      <button type="" class="modal-box-button primary" open-type="contact" session-from="reminder" plain>关注</button>
+    </view>
+  </view>
 </view>

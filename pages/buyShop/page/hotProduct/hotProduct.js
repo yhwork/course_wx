@@ -94,8 +94,6 @@ class hotProduct extends EPage {
     return {
       imgUrls: [
         "https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/cap3.jpg",
-        "https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/cap3.jpg",
-        "https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/cap3.jpg"
       ],
       play:true,
       adress_Detail:{}, //地址详情
@@ -1147,8 +1145,9 @@ class hotProduct extends EPage {
                   orderNumber: res.data.result.orderNumber
                 })
                 let wxPayResult = res.data.result.wxPayResult
+                console.log(res,'支付返回信息')
                 this.setData({
-                  appId: wxPayResult.appId,
+                  // appId: wxPayResult.appId,
                   nonceStr: wxPayResult.nonceStr,
                   packageValue: wxPayResult.packageValue,
                   paySign: wxPayResult.paySign,
@@ -1157,7 +1156,7 @@ class hotProduct extends EPage {
                 })
                 var pages = this
                 wx.requestPayment({
-                  "appId": this.data.appId,
+                  // "appId": this.data.appId,
                   "timeStamp": this.data.timeStamp,
                   "nonceStr": this.data.nonceStr,
                   "package": this.data.packageValue,

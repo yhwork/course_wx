@@ -1,4 +1,4 @@
-<view class='choose_child' wx:if='{{userinfo.role==0}}' bindtap='choose'>
+<!-- <view class='choose_child' wx:if='{{userinfo.role==0}}' bindtap='choose'>
   <view class='childmsg left'>
     <image class='imgchild' wx:if='{{childMsg==""}}' src='{{childList[0].logo!=null?childList[0].logo:img}}'></image>
     <image class='imgchild' wx:else src='{{childMsg.logo!=null?childMsg.logo:img}}'></image>
@@ -8,7 +8,7 @@
     <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/attention.png'></image>
     <text>点击头像切换对象</text>
   </view>
-</view>
+</view> -->
 <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{message}}</view>
 <view class='chooseclass_container' wx:if='{{haveClass}}'>
   <view class='{{userinfo.role==1?"section_lists_wrap1":"section_lists_wrap"}}'>
@@ -18,7 +18,7 @@
           <view class='section_lists_li'>
             <image src='{{item.classLogo?item.classLogo:"https://qa.oss.iforbao.com/public/default/circle_default.png!test"}}'></image>
             <view class='fl'>
-              <text style='color:#000'>{{item.className}}</text>
+              <text style='color:#000;font-size:28rpx;margin-bottom:4rpx;'>{{item.className}}</text>
               <text>班级群号{{item.classId}}</text>
               <text wx:if="{{item.schoolName}}">{{item.schoolName}}</text>
             </view>
@@ -34,7 +34,7 @@
     <!-- <view class='fa fa-angle-right'></view> -->
   </view>
 </view>
-<view class='wrap' wx:else>
+<view class='wrap' wx:if="{{false}}">
   <image class='topimg' src='{{img1}}'></image>
   <view class='box'>
     <view class='title'>什么是班群？</view>
@@ -54,7 +54,7 @@
 
 </view>
 
-<!-- <view class='addbox'>
+<view class='addbox' hidden="{{classList.length>0?false:true}}">
   <view class='addclass' bindtap='GoSetClass' wx:if='{{userinfo.role==1}}'>
     <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/jia.png'></image>
     <text>创建班级</text>
@@ -63,14 +63,14 @@
     <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/jia.png'></image>
     <text>加入班级</text>
   </view>
-</view> -->
+</view>
 
 <!-- 没有课程显示 -->
 <view class="no_course" hidden="{{classList.length>0?true:false}}">
     <view class="course_img ">
-        <image src="/assets/local/class/yuanquan.png"></image>
-        <image src="/assets/local/class/xingxing.png"></image>
-        <image src="/assets/local/class/laosu.png"></image>
+        <image src="https://qa.oss.iforbao.com/public/assets/local/yuanquan.png"></image>
+        <image src="https://qa.oss.iforbao.com/public/assets/local/xingxing.png"></image>
+        <image src="https://qa.oss.iforbao.com/public/assets/local/laosu.png"></image>
     </view>
     <view class="no_course_txt ">
        <text>你还没有加入班级群哦</text> 

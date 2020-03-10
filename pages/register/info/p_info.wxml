@@ -1,14 +1,14 @@
 <view class="page">
 
-	<!--  -->
+	<!--  --> 
 	<view class="addCourse">
 		<view class="data">
 			<view class="add_head" wx:if='{{false}}' bindtap='CHANGE_AVATAR' >
-				<image  src="/assets/local/index/addCourse.png" class="img"></image>
+				<image  src="https://qa.oss.iforbao.com/public/assets/local/addCourse.png" class="img"></image>
 				<text>添加头像</text>
 			</view>
-      <view class="add_head bg" wx:else   bindtap='CHANGE_AVATAR' >
-				<image mode="aspectFill" class="add_head" src='{{ model.logourl ? model.logourl : (model.gender==1?girlb:boyb) }}'></image>
+      <view wx:else  class="add_head1" bindtap='CHANGE_AVATAR' >
+				<image mode="aspectFill" class="add_head" src='{{ model.logo ? model.logo : (model.gender==1?girlb:boyb) }}'></image>
         <view class='sex_icon'>
           <image src='{{model.gender==1?"https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/girl.png":"https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/boy.png"}}'></image>
         </view>
@@ -16,7 +16,7 @@
 			<view class="data_info">
 				<view class="item">
 					<text decode="{{true}}">昵 &nbsp; &nbsp; &nbsp; 称:</text>
-					<input placeholder="请输入昵称"  maxlength='5' bindinput="CHANGE_NAME" value="{{model.name}}" placeholder-class="placeholder"></input>
+					<input placeholder="请填写孩子昵称(5字以内)" maxlength='5' bindinput="CHANGE_NAME" value="{{model.name}}" ></input>
 				</view>
 				<view class="item">
 					<text decode="{{true}}">性 &nbsp; &nbsp; &nbsp; 别:</text>
@@ -26,16 +26,24 @@
 							<view>{{item.name}}</view>
 						</view>
 					</view>
-
 				</view>
+				<view class="item" >
+					<text>我的学校</text>
+				<view class="weui-cell__bd" bindtap="VIEW_AREA">
+					<view class="schooldata {{school_selected?'selected':'defaults'}}">
+						{{model.school ? model.school : '请选择'}}</view>
+				</view>
+      	</view>
 				<view class="item">
-					<text>我的学校:</text>
-					<input placeholder="请输入学校名称"  bindblur="CHANGE_SCHOOL" value="{{model.school}}" placeholder-class="placeholder"></input>
-				</view>
-				<view class="item">
-					<text>我的年级:</text>
-					<input placeholder="请输入班级名称" bindinput="CHANGE_GRADES" value="{{model.grade}}" placeholder-class="placeholder"></input>
-				</view>
+					<text>我的年级</text>
+				 <picker bindchange="CHANGE_GRADE" value="{{greadindex}}" range="{{grade}}">
+					<view class="picker selectwt">
+						<view class="weui-cell__bd">
+							<view class="{{grade_selected?'selected':'defaults'}}">{{grade[greadindex]?grade[greadindex]:'请选择'}}</view>
+						</view>
+					</view>
+				</picker>
+			</view>
 			</view>
 		</view>
 		<view class="btn">
@@ -94,12 +102,10 @@
 				<view class="weui-cell__hd weui-cell__hd_in-select-after  required">
 					<view class="weui-label">我的学校</view>
 				</view>
-
 				<view class="weui-cell__bd" bindtap="VIEW_AREA">
 					<view class="weui-select weui-select_in-select-after .weui-cell__ft {{school_selected?'selected':''}}">
 						{{model.school ? model.school : '请选择'}}</view>
 				</view>
-
 			</view>
 			<view class="weui-cell weui-cell_select">
 				<view class="weui-cell__hd weui-cell__hd_in-select-after required">

@@ -6,7 +6,7 @@ const globalConfig = new GlobalConfig()
 globalConfig.init()
 
 
-const globalData = {  
+const globalData = {
   config: globalConfig
 }
 const config = globalData.config
@@ -24,7 +24,7 @@ Page({
       height,
       scale: 2.5,
       zoom: 8,
-      
+
       boundStyle: {
         color: config.getThemeColor(),
         mask: 'rgba(0,0,0,0.6)',
@@ -35,9 +35,9 @@ Page({
   onLoad(option) {
     console.log(this.data)
     this.setData({
-      type : option.type,
+      type: option.type,
     })
-    if(this.data.type == 'child'){
+    if (this.data.type == 'child') {
       this.setData({
         childId: option.childId,
         communityId: option.communityId,
@@ -62,10 +62,10 @@ Page({
           }
         }
       })
-    } else if (this.data.type == 'subject'){
+    } else if (this.data.type == 'subject') {
       this.setData({
         communityId: option.communityId,
-         cropperOpt: {
+        cropperOpt: {
           id: 'cropper',
           targetId: 'targetCropper',
           pixelRatio: device.pixelRatio,
@@ -134,7 +134,7 @@ Page({
           }
         }
       })
-    }else{
+    } else {
       this.setData({
         communityId: option.communityId,
         cropperOpt: {
@@ -149,7 +149,7 @@ Page({
             x: (width - 300) / 2,
             y: (height - 300) / 2,
             width: 300,
-            height:300
+            height: 300
           },
           boundStyle: {
             color: config.getThemeColor(),
@@ -159,7 +159,7 @@ Page({
         }
       })
     }
-   
+
     const {
       cropperOpt
     } = this.data
@@ -195,9 +195,9 @@ Page({
         })
     }
 
-    if(option.classId){
+    if (option.classId) {
       this.setData({
-        classId : option.classId
+        classId: option.classId
       })
     }
   },
@@ -214,12 +214,12 @@ Page({
     this.cropper.getCropperImage((avatar) => {
       if (avatar) {
         //  获取到裁剪后的图片
-        console.log('用户类型',this.data.type)
-        if(this.data.type=='user'){
+        console.log('用户类型', this.data.type)
+        if (this.data.type == 'user') {
           wx.redirectTo({
             url: `../../../pages/mypage/personalInfo/personalInfo?avatar=${avatar}`
           })
-        } else if (this.data.type == 'child'){
+        } else if (this.data.type == 'child') {
           // 家长进入    传 manage 为false设置
           wx.redirectTo({
             url: `../../../pages/mypage/editMyChild/editMyChild?avatar=${avatar}&childId=${this.data.childId}&manage=${'false'}`
@@ -228,16 +228,16 @@ Page({
           wx.redirectTo({
             url: `../../../pages/learningcircle/page/circleEditor/circleEditor?avatar=${avatar}&id=${this.data.communityId}`
           })
-        } else if (this.data.type == 'joinclass'){
+        } else if (this.data.type == 'joinclass') {
           wx.setStorageSync('joinImg', avatar)
-          wx.navigateBack({          
+          wx.navigateBack({
           })
         } else if (this.data.type == 'classlogo') {
           wx.redirectTo({
             url: `../../../pages/classcircle/reviseClass/reviseClass?classlogo=${avatar}&classId=${this.data.classId}&type=logo`
           })
         }
-        
+
       } else {
         console.log('获取图片失败，请稍后重试')
       }
@@ -257,5 +257,5 @@ Page({
       }
     })
   },
- 
+
 })

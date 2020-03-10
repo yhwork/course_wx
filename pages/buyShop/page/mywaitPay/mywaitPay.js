@@ -22,7 +22,7 @@ class mywaitPay extends EPage {
           id: 1,
           text: "待付款",
           isFlag: 0
-        }, 
+        },
         {
           id: 2,
           text: "待分享",
@@ -82,17 +82,33 @@ class mywaitPay extends EPage {
     return {
       [PAGE_LIFE.ON_LOAD](option) {
         console.log('值', option)
-        let activeIndex = option.activeIndex //订单详情删除按钮传过来的tab切换的index
-        let type = option.type //订单详情删除按钮传过来的tab切换请求时的类型
-        let showIndex = option.showIndex //后期把showIndex 改成 activeIndex
+        let activeIndex = option.activeIndex;      //订单详情删除按钮传过来的tab切换的index
+        let type = option.type;                    //订单详情删除按钮传过来的tab切换请求时的类型
+        let showIndex = option.showIndex;          //后期把showIndex 改成 activeIndex
         this.setData({
           userId: option.userId,
           activeIndex: showIndex,
           childId: wx.getStorageSync('childId')
         })
+        console.log(this.data.activeIndex)
       },
       [PAGE_LIFE.ON_SHOW](option) {
-        put(effects.getChildListByCondition)
+        put(effects.DEMO)
+        if (this.data.activeIndex == 1) { //待付款
+          put(effects.DEMOWAITPAY)
+        }
+        if (this.data.activeIndex == 2) { //待分享
+          put(effects.DEMOWAITSHARE)
+        }
+        if (this.data.activeIndex == 3) {
+          put(effects.DEMOWAITBOOKING) //待预约
+        }
+        if (this.data.activeIndex == 4) {
+          put(effects.DEMOWAITRECORD) //待打卡
+        }
+        if (this.data.activeIndex == 5) {
+          put(effects.DEMOWAITBACK) //待观看
+        }
 
       },
       [PAGE_LIFE.ON_UNLOAD](option) { //退出当前页
@@ -270,15 +286,15 @@ class mywaitPay extends EPage {
             getType: 6
           }).then(res => {
             let waitSee = res.data.result.orderInfo
-            waitSee= waitSee.map((item, index) => {
-              item.imgVideo= Object.values(JSON.parse(item.imgVideo))    // 数组 返回属性的值
+            waitSee = waitSee.map((item, index) => {
+              item.imgVideo = Object.values(JSON.parse(item.imgVideo)) // 数组 返回属性的值
               item.lable = Object.values(JSON.parse(item.lable))
               return item
             })
             this.setData({
               waitSee: waitSee
             })
-            console.log('111111',this.data.waitSee)
+            console.log('111111', this.data.waitSee)
             // wx.setStorageSync("waitSee", this.data.waitSee)
 
           })
@@ -436,39 +452,18 @@ class mywaitPay extends EPage {
   }) {
     const api = this.$api;
     return {
-      [effects.getChildListByCondition](v) {
-        this.$api.circle.getChildListByCondition({}).then(res => {
-          let list = res.data.result.childList
-          // console.log(list[0].childId)
-          this.setData({
-            childId: list[0].childId //默认小孩的childId
-          })
-          put(effects.DEMO)
-          if (this.data.activeIndex == 1) { //待付款
-            put(effects.DEMOWAITPAY)
-          }
-          if (this.data.activeIndex == 2) { //待分享
-            put(effects.DEMOWAITSHARE)
-          }
-          if (this.data.activeIndex == 3) {
-            put(effects.DEMOWAITBOOKING) //待预约
-          }
-          if (this.data.activeIndex == 4) {
-            put(effects.DEMOWAITRECORD) //待打卡
-          }
-          if (this.data.activeIndex == 5) {
-            put(effects.DEMOWAITBACK) //待观看
-          }
-
-        })
-      },
+      
+      // [effects.getChildListByCondition](v) {
+          
+      // },
+      // 获取订单
       [effects.DEMO]() {
         this.$api.mypage.getStoreOrderAllByChildId({ //全部
           userId: this.data.userId,
           childId: this.data.childId,
           getType: 0
         }).then(res => {
-          console.log(res, '全部')
+          console.log(res.data.result.orderInfo, '全部')
           let userorderList = res.data.result.orderInfo
           userorderList.forEach((item, index) => {
             let obj = item.imgVideo

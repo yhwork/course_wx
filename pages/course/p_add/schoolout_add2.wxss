@@ -9,7 +9,7 @@
 .close{
   position: relative;
   z-index: 99;
-  top:400rpx;
+  top:300rpx;
   width: 70rpx;
   height: 70rpx;
 }
@@ -333,20 +333,25 @@
   top: 10%;
 }
 
-.btn2 {
+.btn2{
   width:586rpx;
-height:61rpx;
-background:rgba(231,198,14,1);
-border-radius:21rpx;
-display: flex;
-align-items: center;
-justify-content: center;
-
-font-size:28rpx;
-font-family:PingFang SC;
-font-weight:500;
-color:rgba(255,255,255,1);
-/* line-height:16rpx; */
+  height:60rpx;
+  background:rgba(231,198,14,1);
+  border-radius:21rpx;
+  font-size:28rpx;
+  font-family:PingFang SC;
+  font-weight:500;
+  color:rgba(255,255,255,1);
+  line-height: 60rpx;
+}
+.btn_box{
+  display: flex;
+  position: fixed;
+  bottom:140rpx;
+  justify-content:center;
+  width:690rpx;
+  height:61rpx;
+  border-radius:21rpx;
 }
 .page_bg{
   position: absolute;
@@ -435,18 +440,19 @@ line-height:16rpx;
 .page__bd_main {
   background: white;
   display: flex;
-  /* height: 56rpx; */
-  /* border: 1px solid red; */
   position: relative;
   font-size: 28rpx;
-
   align-items: center;
   font-family: PingFang SC;
   font-weight: 500;
   color: rgba(51, 51, 51, 1);
 }
+.page__bd_main:last-child{
+  margin-bottom: 40rpx;
+}
 .add_padding {
-  padding: 15rpx 35rpx;
+  margin-top: 40rpx;
+  padding: 0 35rpx;
   display: flex;
   align-items: center;
 }
@@ -589,14 +595,6 @@ line-height:16rpx;
   left: 82rpx;
 }
 
-.btn_box {
-  position: fixed;
-  width:586rpx;
-  height:61rpx;
-  background:rgba(231,198,14,1);
-  border-radius:21rpx;
-  bottom: 250rpx;
-}
 
 .text_col {
   font-size: 20rpx;

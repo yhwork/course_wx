@@ -40,7 +40,7 @@ class MYPAGES extends EPage {
       userId: null,
       usersd: null,
       childId: null,
-
+      childInfo:{},
       // tabtext:["待付款","待分享","待预约","待打卡","退款订单"]
       // tabtext: [{
       //   text: "待付款",
@@ -73,6 +73,8 @@ class MYPAGES extends EPage {
         this.setData({
           my_11: this.$api.extparam.getPageImgUrl('my_11')
         })
+
+
       },
       [PAGE_LIFE.ON_SHOW](option) {
         //this.setData({ my_11: this.$api.extparam.getPageImgUrl('my_11') })
@@ -109,6 +111,18 @@ class MYPAGES extends EPage {
             
             })
           }
+        })
+        // 获取小孩子数据
+        wx.getStorage({
+          key: 'childInfo',
+          success: (res) => {
+            console.log(res)
+            this.setData({
+              childInfo: res.data
+            })
+          },
+          fail: function (res) { },
+          complete: function (res) { },
         })
         // isAuthorization
         var role = wx.getStorageSync('role')
@@ -361,7 +375,7 @@ class MYPAGES extends EPage {
         })
       },
       [events.ui.waitpayIntem](e) { //查看全部
-        let index = e.currentTarget.dataset.index + 1
+        let index = e.currentTarget.dataset.index
         console.log(index)
         wx.navigateTo({
           url: `../../buyShop/page/mywaitPay/mywaitPay?childId=${this.data.childId}&userId=${this.data.userd}&showIndex=${index}`

@@ -20,3 +20,16 @@
   padding: 0 30rpx !important;
   background-color: #fff !important;
 }
+.adress{
+  display: flex;
+  color: #0a4e7f !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 430rpx
+}
+.wt{
+  max-width: 420rpx;
+}
+
+

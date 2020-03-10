@@ -6,6 +6,7 @@ class SchoolinTagAddPage extends EPage {
     return {
        model:{},
        InterNameList:[],
+       childId:'',
        cor:['yuwen','shuxue','yingyu','cor1','cor2','cor3','cor4','cor5','cor6','cor7','cor8','cor9',]
     };
   }
@@ -13,6 +14,9 @@ class SchoolinTagAddPage extends EPage {
   mapPageEvent({put}) {
     return {
       [PAGE_LIFE.ON_LOAD](option) {
+        this.setData({
+          childId: wx.getStorageSync("childId")
+        })
       	this.$storage.get('InterNameList').then(
       		(res)=>{
       			this.setData({InterNameList:res.data})
@@ -25,11 +29,13 @@ class SchoolinTagAddPage extends EPage {
 
   mapUIEvent({put}) {
     return {
+      // 改变标签
       [events.ui.CHANGE_TAGNAME](e) {
         let tagName = e.detail.value;
         this.setData({'model.tagName':tagName});
         
       },
+      // 创建标签
       [events.ui.CHANGE_COR](e) {
         let i = e.currentTarget.dataset.id;
         let cor = this.data.cor;
@@ -64,16 +70,25 @@ class SchoolinTagAddPage extends EPage {
         }
         model.tagNameSub = model.tagName.slice(0,1);
         console.log(this.data.InterNameList);
-        this.data.InterNameList.push({
+        let InterNameList = JSON.parse(JSON.stringify(this.data.InterNameList))
+        InterNameList.map((item)=>{
+          item.checked= 0
+          return item
+        })
+        InterNameList.unshift({
           courseName: model.tagName, 
           courseNameSub: model.tagNameSub,
           courseDel:false, 
-          checked: 0,
+          checked: 1,
           color:model.color,
           isbg:1,
         });
-        this.$storage.set('InterNameList',this.data.InterNameList).then(
-        	(res)=>{wx.navigateBack();},
+        this.$storage.set('InterNameList',InterNameList).then(
+        	(res)=>{
+           wx.navigateBack({
+             delta: 1,
+           })
+          },
         	(rej)=>{}
         )
       }

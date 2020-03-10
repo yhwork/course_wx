@@ -1,9 +1,10 @@
 <!-- <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{message}}</view> -->
 
 <view class="page">
-	<block wx:if="{{userInfo.role=='0'}}">
-		<view class="page_box ">
-			<!-- <view class='page__bd_main'>
+  <!-- 家长端 -->
+  <block wx:if="{{userInfo.role=='0'}}">
+    <view class="page_box ">
+      <!-- <view class='page__bd_main'>
 				<view class='main'>
 					<view class='add_padding ' bindtap="CHANGE_BEGINDATE">
 						<text class='imp'>*</text>
@@ -12,85 +13,112 @@
 					</view>
 				</view>
 			</view> -->
-			<!-- 开学日期： -->
-			<view class='page__bd_main'>
-				<view class='add_padding' data-id="1" catchtap="selectok1">
-					<text class='imp'>*</text>
-					<view class="spacing">开学日期:</view>
-					<view class='text_col'>
-						<view wx:if='{{tishi}}'>{{tishi}} </view>
-						<view wx:else> {{model.startDate}}{{model.beginWeekDay}}</view>
-					</view>
-				</view>
-			</view>
-			<!-- 上课时间 -->
-			<view class='page__bd_main'>
-				<view class='add_padding' data-id="2" catchtap="selectok1">
-					<text class='imp'>*</text>
-					<view class="spacing">上课时间:</view>
-					<!-- <text class='text_col'>{{model.beginDate}} {{beginWeekDay}}</text> -->
-					<text class='text_col'>{{one}}</text>
-					<!-- <view class='school class_length'>
+      <!-- 开学日期： -->
+      <view class='page__bd_main'>
+        <view class='add_padding' data-id="1" catchtap="selectok1">
+          <text class='imp'>*</text>
+          <view class="spacing">开学日期:</view>
+          <view class='text_col'>
+            <view wx:if='{{tishi}}'>{{tishi}} </view>
+            <view wx:else> {{model.startDate}}{{model.beginWeekDay}}</view>
+          </view>
+        </view>
+      </view>
+      <!-- 上课时间 -->
+      <view class='page__bd_main'>
+        <view class='add_padding' data-id="2" catchtap="selectok1">
+          <text class='imp'>*</text>
+          <view class="spacing">上课时间:</view>
+          <!-- <text class='text_col'>{{model.beginDate}} {{beginWeekDay}}</text> -->
+          <text class='text_col'>{{one}}</text>
+          <!-- <view class='school class_length'>
             <picker bindchange="CHANGE_TIMEFIRST" class='class_picker' mode="time" start="07:00" end="12:00">{{one}}</picker>
           </view> -->
-				</view>
-			</view>
-			<!-- 放学时间 -->
-			<view class='page__bd_main'>
-				<view class='add_padding' data-id="3" catchtap="selectok1">
-					<text class='imp'>*</text>
-					<view class="spacing">放学时间:</view>
-					<view class="text_col"> {{five}}</view>
-					<!-- <view class='school class_length'>
+        </view>
+      </view>
+      <!-- 放学时间 -->
+      <view class='page__bd_main'>
+        <view class='add_padding' data-id="3" catchtap="selectok1">
+          <text class='imp'>*</text>
+          <view class="spacing">放学时间:</view>
+          <view class="text_col"> {{five}}</view>
+          <!-- <view class='school class_length'>
 					<picker bindchange="CHANGE_TIMEFIVE" class='class_picker' mode="time" start="12:00" end="17:00">
 					</picker>
 				</view> -->
-				</view>
-			</view>
-			<!-- 放学提醒 -->
-			<view class='page__bd_main'>
-				<view class='add_padding' data-id="4" catchtap="selectok1">
-					<text class='imp' decode='{{true}}'>&nbsp; </text>
-					<view class="spacing">放学提醒:</view>
-					<view class="text_col">{{remindItems[model.remindIndex].name}} </view>
-				</view>
+        </view>
+      </view>
+      <!-- 放学提醒 -->
+      <view class='page__bd_main'>
+        <view class='add_padding' data-id="4" catchtap="selectok1">
+          <text class='imp' decode='{{true}}'>&nbsp; </text>
+          <view class="spacing">放学提醒:</view>
+          <view class="text_col">{{remindItems[model.remindIndex].name}} </view>
+        </view>
 
-				<!-- <view class='over_remind_tight'>
+        <!-- <view class='over_remind_tight'>
 				<picker bindchange="CHANGE_REMIND" value="{{model.remindIndex}}" class='over_remind_t' range="{{remindItems}}" range-key="name">
 					<text class='text_len'></text>
 				</picker>
 				<image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
 			</view> -->
-			</view>
-		</view>
-		<!-- 放学时间设置 -->
-		<view class='set_box' hidden='{{childTime}}'>
-			<view class='title'>
-				<text>*</text>
-			</view>
-			<view class='line'></view>
-			<view class='set_list'>
-				<view class='set_item '>
-					<view class='weekday'>星期</view>
-					<view class='endtimer'>放学时间</view>
-				</view>
-				<block wx:for="{{weekDays}}" wx:for-item="item" wx:for-index="index" wx:key="">
-					<view class='set_item'>
-						<!-- <view class='set_item {{item.value=="输入时间"?"":"complate"}}'> -->
-						<view class='weekday'>{{item.name}}</view>
-						<picker class='endtime' bindchange="SET_SCHOOLOUT" mode="time" start="14:00" end="21:00" data-index="{{index}}">
-							<view>{{item.value}}</view>
-						</picker>
-					</view>
-				</block>
-			</view>
-		</view>
-		<view class='set_box_tishi' hidden='{{childTime}}'>放学时间可根据实际情况进行修改</view>
-	</block>
+      </view>
+    </view>
+    <view class="page_box">
+      <view class="showalert">开学日期是指实际学生第一次报道的时间</view>
+    </view>
+
+    <!-- 放学时间设置 -->
+    <view class='set_box' hidden='{{childTime}}'>
+      <view class='title'>
+        <text>*</text>
+      </view>
+      <view class='line'></view>
+      <view class='set_list'>
+        <view class='set_item '>
+          <view class='weekday'>星期</view>
+          <view class='endtimer'>放学时间</view>
+        </view>
+        <block wx:for="{{weekDays}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+          <view class='set_item'>
+            <!-- <view class='set_item {{item.value=="输入时间"?"":"complate"}}'> -->
+            <view class='weekday'>{{item.name}}</view>
+            <picker class='endtime' bindchange="SET_SCHOOLOUT" mode="time" start="14:00" end="21:00" data-index="{{index}}">
+              <view>{{item.value}}</view>
+            </picker>
+          </view>
+        </block>
+      </view>
+    </view>
+    <view class='set_box_tishi' hidden='{{childTime}}'>放学时间可根据实际情况进行修改</view>
+  </block>
+  <!-- 教师端 -->
+  <view class="page_box " wx:if='{{userInfo.role==1}}'>
+    <!-- 开学日期 -->
+    <view class='page__bd_main'>
+      <view class='add_padding' data-id="1" catchtap="selectok1">
+        <text class='imp'>*</text>
+        <view class="spacing">开学日期:</view>
+        <view class='text_col'>
+          <view wx:if='{{tishi}}'>{{tishi}} </view>
+          <view wx:else> {{model.startDate}}{{model.beginWeekDay}}</view>
+        </view>
+      </view>
+    </view>
+    <!-- 上课提醒 -->
+    <view class='page__bd_main'>
+      <view class='add_padding' data-id="4" catchtap="selectok1">
+        <text class='imp' decode='{{true}}'>&nbsp; </text>
+        <view class="spacing">上课提醒:</view>
+        <view class="text_col">{{remindItems[model.remindIndex].name}} </view>
+      </view>
+    </view>
+    <!--  -->
+  </view>
 
 
-	<!-- 老师端 -->
-	<!-- <block wx:else>
+  <!-- 老师端 -->
+  <!-- <block wx:else>
   <view class='schoolin_class_info'>
     <view class='info_list' bindtap="CHANGE_BEGINDATE">
       <image class='info_list_icon' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/data.png"></image>
@@ -134,70 +162,75 @@
     </view>
   </view>
 </block> -->
-	<!-- 上课时间 -->
-	<view class="shoutais" wx:if='{{course.starttime}}'>
-		<view class="btn_dialog">
-			<view bindtap="quit">取消</view>
-			<view data-id="1" bindtap="quit">确定</view>
-		</view>
-		<picker-view indicator-class='mask_bg' indicator-style="height: 40px;" style="width: 100%; height: 200rpx;" value="{{value3}}" data-id="1" bindchange="bindChange1">
-			<picker-view-column>
-				<view class="shoutais_item" wx:for="{{getdate}}" style="line-height: 40px">
-					<view class="mask_bgs"> {{item}}</view>
-				</view>
-			</picker-view-column>
-			<picker-view-column>
-				<view class="shoutais_item" wx:for="{{gettime}}" style="line-height: 40px">
-					<view class="mask_bgs"> {{item}}</view>
-				</view>
-			</picker-view-column>
-		</picker-view>
-	</view>
-	<!-- 放学时间 -->
-	<view class="shoutais" wx:if='{{course.endtime}}'>
-		<view class="btn_dialog">
-			<view bindtap="quit">取消</view>
-			<view data-id="1" bindtap="quit">确定</view>
-		</view>
-		<picker-view indicator-class='mask_bg' indicator-style="height: 40px;" style="width: 100%; height: 200rpx;" value="{{value3}}" data-id="2" bindchange="bindChange1">
-			<picker-view-column>
-				<view class="shoutais_item" wx:for="{{24}}" wx:key='index' style="line-height: 40px">
-					<view class="mask_bgs"> {{index <10?'0'+index :index}}</view>
-				</view>
-			</picker-view-column>
-			<picker-view-column>
-				<view class="shoutais_item" wx:for="{{60}}" wx:key='index' style="line-height: 40px">
-					<view class="mask_bgs"> {{index <10?'0'+index :index}}</view>
-				</view>
-			</picker-view-column>
-		</picker-view>
-	</view>
-	<!-- 放学提醒 -->
-	<view class="shoutais shoutais3" wx:if='{{course.outschool}}'>
-		<view class="btn_dialog">
-			<view bindtap="quit">取消</view>
-			<view data-id="1" bindtap="quit">确定</view>
-		</view>
-		<picker-view indicator-class='mask_bg' indicator-style="height: 40px;" style="width: 100%; height: 200rpx;" value="{{value4}}" data-id="3" bindchange="bindChange1">
-			<picker-view-column>
-				<view class="shoutais_item" wx:for="{{remindItems}}" style="line-height: 40px">
-					<view class="mask_bgs"> {{item.name}}</view>
-				</view>
-			</picker-view-column>
-		</picker-view>
-	</view>
-	<!-- 下一步 -->
-	<view class=" btn_box">
-		<button class='btn2' bindtap="SAVE_NEXT">下一步</button>
-	</view>
-	<!-- 日历 -->
-	<block wx:if="{{showCalendar}}">
-		<calendar catch:day-click="CALENDAR_DAY_CHANGED" />
-		<view bindtap="quit" class="close">
-			<image src="/assets/local/course/close.png"></image>
-		</view>
-	</block>
+  <!-- 上课时间 -->
+  <view class="shoutais" wx:if='{{course.starttime}}'>
+    <view class="btn_dialog">
+      <view bindtap="quit">取消</view>
+      <view data-id="1" bindtap="quit">确定</view>
+    </view>
+    <picker-view indicator-class='mask_bg' indicator-style="height: 40px;" style="width: 100%; height: 200rpx;" value="{{value3}}" data-id="1" bindchange="bindChange1">
+      <picker-view-column>
+        <view class="shoutais_item" wx:for="{{getdate}}" style="line-height: 40px">
+          <view class="mask_bgs"> {{item}}</view>
+        </view>
+      </picker-view-column>
+      <picker-view-column>
+        <view class="shoutais_item" wx:for="{{gettime}}" style="line-height: 40px">
+          <view class="mask_bgs"> {{item}}</view>
+        </view>
+      </picker-view-column>
+    </picker-view>
+  </view>
+  <!-- 放学时间 -->
+  <view class="shoutais" wx:if='{{course.endtime}}'>
+    <view class="btn_dialog">
+      <view bindtap="quit">取消</view>
+      <view data-id="1" bindtap="quit">确定</view>
+    </view>
+    <picker-view indicator-class='mask_bg' indicator-style="height: 40px;" style="width: 100%; height: 200rpx;" value="{{value3}}" data-id="2" bindchange="bindChange1">
+      <picker-view-column>
+        <view class="shoutais_item" wx:for="{{getdate}}" wx:key='index' style="line-height: 40px">
+          <view class="mask_bgs"> {{item}}</view>
+        </view>
+      </picker-view-column>
+      <picker-view-column>
+        <view class="shoutais_item" wx:for="{{gettime}}" wx:key='index' style="line-height: 40px">
+          <view class="mask_bgs">{{item}}</view>
+        </view>
+      </picker-view-column>
+    </picker-view>
+  </view>
+  <!-- 放学提醒 -->
+  <view class="shoutais shoutais3" wx:if='{{course.outschool}}'>
+    <view class="btn_dialog">
+      <view bindtap="quit">取消</view>
+      <view data-id="1" bindtap="quit">确定</view>
+    </view>
+    <picker-view indicator-class='mask_bg' indicator-style="height: 40px;" style="width: 100%; height: 200rpx;" value="{{value4}}" data-id="3" bindchange="bindChange1">
+      <picker-view-column>
+        <view class="shoutais_item" wx:for="{{remindItems}}" style="line-height: 40px">
+          <view class="mask_bgs"> {{item.name}}</view>
+        </view>
+      </picker-view-column>
+    </picker-view>
+  </view>
 
-	<!-- 蒙版 -->
-	<view bindtap="quit" class="page_bg" hidden="{{mask}}"></view>
+
+
+  <!-- 提示 -->
+
+  <!-- 下一步 -->
+  <view class=" btn_box">
+    <button class='btn2' bindtap="SAVE_NEXT">下一步</button>
+  </view>
+  <!-- 日历 -->
+  <block wx:if="{{showCalendar}}">
+    <calendar catch:day-click="CALENDAR_DAY_CHANGED" />
+    <view bindtap="quit" class="close">
+      <image src="https://qa.oss.iforbao.com/public/assets/local/close.png"></image>
+    </view>
+  </block>
+
+  <!-- 蒙版 -->
+  <view bindtap="quit" class="page_bg" hidden="{{mask}}"></view>
 </view>

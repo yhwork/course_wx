@@ -132,7 +132,9 @@
   width: 42rpx;
   height: 42rpx;
 }
-
+.wts{
+  /* max-width: 250rpx; */
+}
 .bottom_a {
   width: 690rpx;
   height: 101rpx;
@@ -142,6 +144,7 @@
   display: flex;
   justify-content: space-around;
   margin-top: 46rpx;
+  align-items: center
 }
 
 .bottom_b {
@@ -319,6 +322,8 @@ button::after {
   height: 100%;
   position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   background: rgba(0, 0, 0, 0.5);
   z-index: 1000;
 }
@@ -500,10 +505,13 @@ color:rgba(14,5,10,1);
 
 .xcx,
 .weiXin {
-  display: flex;
   align-items: center;
+  display: flex;
 }
-
+.wxsize{
+  /* border: 1px solid red; */
+  padding-right: 30rpx;
+}
 .xcx {
   margin-right: 70rpx;
 }

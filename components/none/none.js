@@ -13,9 +13,16 @@ import moment from '../../lib/moment.min.js';
 class nonePage extends EComponent {
   get properties() {
     return {
-      current:{
-        type: String,
-        value: '',
+      datas:{
+        type: Object,
+        value: {
+          isdata:true,
+          name:'你还没有创建',
+          btn:'开始创建'
+        },
+        observer: (value) => {
+          this.context.dispatch(actions.MAP_LESSON_DATA, value);
+        }
       },
       title:{
         type: String,
@@ -42,10 +49,6 @@ class nonePage extends EComponent {
 
   constructor() {
     super();
-    this._week = {
-      last: 0,
-      date: this.data.date
-    };
   }
 
   mapComponentEvent({
@@ -57,11 +60,8 @@ class nonePage extends EComponent {
 
       [COMP_LIFE.ON_CREATED]() { },
       [COMP_LIFE.ON_ATTACHED]() { },
-
       [COMP_LIFE.ON_READY]() {
-        // console.log('再次加载',this.data.my_current)
-
-        //this.context.dispatch(actions.TRIGGER_DATE_CHANGE);
+        console.log('执行了吗')
       },
       [COMP_LIFE.ON_MOVED]() { },
       [COMP_LIFE.ON_DETACHED]() { },
@@ -75,43 +75,12 @@ class nonePage extends EComponent {
     dispatch
   }) {
     return {
-      // 错误返回
+      // 加入创建
       [events.ui.ROUTER_GO](e){
         this.triggerEvent('back_change', {
-          data:this.data.title,
-          current:this.data.current
+          datas:this.data.datas
         });
       },
-      //查看位置
-      [events.ui.OPEN_LOCATION](e) {
-        let longitude = Number(e.currentTarget.dataset.longitude);
-        let latitude = Number(e.currentTarget.dataset.latitude);
-        wx.openLocation({
-          latitude: latitude,
-          longitude: longitude
-        })
-      },
-      [events.ui.WEEK_CHANGED](e) {
-        const {
-          current
-        } = e.detail;
-        const {
-          last
-        } = this._week;
-        const {
-          date
-        } = this.data;
-
-        if (((last + 1) % 3) === current) {
-          this._week.date = moment(date).add(7, 'days').format('YYYY-MM-DD');
-        } else {
-          this._week.date = moment(date).add(-7, 'days').format('YYYY-MM-DD');
-        }
-
-        this._week.last = current;
-        // console.log(this._week.last)
-      }
-
     }
   }
 

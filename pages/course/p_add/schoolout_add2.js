@@ -20,13 +20,13 @@ function set_times(stute) {
     }
   } else {
     let j = 0;
-    for (let i = 0; i < 4; i++) {
-      if(j==0){
+    for (let i = 0; i < 12; i++) {
+      if(j<10){
         val_time.push('0'+j)
       }else{
         val_time.push(j)
       }
-      j += 15
+      j += 5
     }
   }
   return val_time
@@ -46,10 +46,11 @@ class SchooloutAdd2Page extends EPage {
       model: {
         beginDate: moment().format('YYYY-MM-DD'),
         endDate: moment().add(30, 'day').format('YYYY-MM-DD'),
-        startClassTime: moment().format('HH:mm'),
+        // startClassTime: moment().format('HH:mm'),
+        startClassTime:'',
         endClassTime: '',
         num: 0,
-        duration: 0,
+        duration: '',
         repetitionIndex: 0,
         repetitionTxt: '无',
         weekDays: '2',
@@ -92,7 +93,8 @@ class SchooloutAdd2Page extends EPage {
           value: '1'
         },
       ],
-      remindItems: [{
+      remindItems: [
+        {
           name: '不提醒',
           value: 0
         },
@@ -130,7 +132,7 @@ class SchooloutAdd2Page extends EPage {
         'num': false, // 课程节数
         'reapet': false
       },
-      value3: [8, 2]
+      value3: [2, 2]    // 开始时间
     };
   }
 
@@ -139,12 +141,11 @@ class SchooloutAdd2Page extends EPage {
   }) {
     return {
       [PAGE_LIFE.ON_LOAD](option) {
-        // console.log(this.$storage)
-        // console.log('值·',option)
-        // if (option.current){
-        //   this.setData({
-        //     current: option.current
-        //   })
+        console.log('值',option)
+        // if (option.hasOwnProperty('errtime') ){
+          // this.setData({
+          //   model: this.$storage.getSync('courseInfo')
+          // })
         // }
       },
       [PAGE_LIFE.ON_SHOW](option) {
@@ -156,11 +157,21 @@ class SchooloutAdd2Page extends EPage {
             'model.startClassTime':select_time.time+':00',
           })
         }
+        // 判断有误课程节数 有
+        let a= this.$storage.getSync('courseInfo')         // 调节课程冲突
+        if(a.num){
+          this.setData({
+            model:a
+          })
+        }
         this.setData({
           courseInfo: this.$storage.getSync('courseInfo'),
           childInfo: this.$storage.getSync('childInfo'),
-          userInfo: this.$storage.getSync('userInfo')
+          userInfo: this.$storage.getSync('userInfo'),
+        
         });
+        // 获取已经输入的内容
+
         // this.setData({ model: this.$storage.getSync('model') });
         put(effects.UPDATE_WEEKDAY);
 
@@ -227,8 +238,14 @@ class SchooloutAdd2Page extends EPage {
           return wx.showToast({
             icon: 'none',
             duration:2000,
-            title: '请选择数字'
+            title: '输入内容有误'
           });
+        }
+        if (e.detail.value == 0){
+          return wx.showToast({
+            title: '节数不能为0',
+            icon: 'none',
+          })
         }
         this.setData({
           'model.num': e.detail.value
@@ -258,7 +275,7 @@ class SchooloutAdd2Page extends EPage {
       [events.ui.CHANGE_TIMEFIRST](e) {
         this.setData({
           'model.startClassTime': e.detail.value,
-          'model.endClassTime': moment(this.data.model.startClassTime, 'HH:mm').add('minute', this.data.model.duration).format('HH:mm')
+          'model.endClassTime': moment(e.detail.value, 'HH:mm').add('minute', this.data.model.duration).format('HH:mm')
         })
         console.log(this.data.model.startClassTime)
       },
@@ -274,8 +291,8 @@ class SchooloutAdd2Page extends EPage {
           })
           return false;
         } else {
-          console.log(e.detail.value)
-          if (e.detail.value != 0) {
+          console.log(this.data.repetitionItems[e.detail.value])
+          if (e.detail.value) {
             this.setData({
               'model.repetitionIndex': e.detail.value[0],
               'model.repetitionTxt': this.data.repetitionItems[e.detail.value],
@@ -390,7 +407,6 @@ class SchooloutAdd2Page extends EPage {
             })
               put(effects.CHANGE_ENDDATE);
           } else {
-           
             return  wx.showToast({
               title: '请输入正确的数值',
               icon: 'none',
@@ -408,8 +424,10 @@ class SchooloutAdd2Page extends EPage {
             })
           } else {
             put(effects.UPDATE_WEEKDAY);
-            console.log(e.detail.value)
-            if (e.detail.value != 0) {
+            console.log(this.data.repetitionItems[e.detail.value])
+
+            // 如果课程节数 为1   重复为无
+            if (e.detail.value) {
               this.setData({
                 'model.repetitionIndex': e.detail.value[0],
                 'model.repetitionTxt': this.data.repetitionItems[e.detail.value],
@@ -444,7 +462,11 @@ class SchooloutAdd2Page extends EPage {
           this.setData({
             'model.startClassTime':`${ date[val[0]]}:${time[val[1]]}`
           })
+          this.setData({
+            'model.endClassTime': moment(this.data.model.startClassTime, 'HH:mm').add('minute', this.data.model.duration).format('HH:mm')
+          })
         } else if (stute == 4) {
+          console.log(this.data.remindItems[e.detail.value].name)
           this.setData({
             'model.remindIndex': e.detail.value[0],
             'model.remindTxt': this.data.remindItems[e.detail.value].name,

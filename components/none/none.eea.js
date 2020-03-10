@@ -9,6 +9,7 @@ const effects = {
 }
 
 const actions = {
+  MAP_LESSON_DATA:null
 }
 
 export { events, effects, actions }

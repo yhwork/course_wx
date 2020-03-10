@@ -193,8 +193,8 @@ class schoolinmanagedetail extends EPage {
             courseMsg: res.data.result,
             courseTable: res.data.result.courseList
           })
-          console.log(this.data.courseMsg)
 
+          console.log(this.data.courseMsg)
           if (this.data.userInfo.role == 0) {
             const param = {};
             param.dataType = 6;

@@ -112,9 +112,9 @@
 <!-- 没有课程显示 -->
 <view class="no_course" wx:if="{{arr.length>0?false:true}}">
     <view class="course_img ">
-        <image src="/assets/local/class/yuanquan.png"></image>
-        <image src="/assets/local/class/xingxing.png"></image>
-        <image src="/assets/local/class/laosu.png"></image>
+        <image src="https://qa.oss.iforbao.com/public/assets/local/yuanquan.png"></image>
+        <image src="https://qa.oss.iforbao.com/public/assets/local/xingxing.png"></image>
+        <image src="https://qa.oss.iforbao.com/public/assets/local/laosu.png"></image>
     </view>
     <view class="no_course_txt ">
        <text>学习圈暂无内容哦</text> 

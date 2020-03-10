@@ -6,6 +6,10 @@ page {
   display: flex;
   flex-flow: column wrap;
   padding-top: 90rpx;
+  align-items: center;
+}
+.select_wt{
+  width:120rpx;
 }
 
 .addCourse .data {
@@ -26,13 +30,20 @@ page {
 .addCourse .bg{
   background-color: none;
 }
-
+.add_head1{
+  position: relative;
+  width: 134rpx;
+  height: 134rpx;
+  top: -50rpx;
+}
 .add_head {
   position: absolute;
   top: -15%;
+  right: 50%;
+  transform: translateX(50%);
   width: 134rpx;
   height: 134rpx;
-  background: rgba(231, 198, 14, 1);
+  background: rgb(255, 255, 252);
   border-radius: 50%;
   display: flex;
   flex-flow: column wrap;
@@ -88,12 +99,14 @@ page {
   padding: 10rpx 0;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .addCourse .btn {
   margin-top: 190rpx;
   display: flex;
   justify-content: space-between;
+  width: 100%;
 }
 
 .addCourse .btn>view {
@@ -198,17 +211,45 @@ page {
   font-size: 34rpx;
   color: #b2b2b2;
 }
+.schooldata{
+  display: flex;
+  justify-content: flex-end;
+  font-size: 24rpx;
+font-family: PingFang SC;
+font-weight: 500;
+color: rgba(102, 102, 102, 1);
 
+}
+.selectwt{
+  width: 360rpx;
+  font-size: 24rpx;
+font-family: PingFang SC;
+font-weight: 500;
+color: rgba(102, 102, 102, 1);
+display: flex;
+justify-content: flex-end;
+
+}
 .weui-select {
   font-size: 34rpx;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   overflow: hidden;
+  min-height: 0;
+  height:0
+}
+
+.defaults{
+  display: flex;
+  justify-content: flex-end;
+
 }
 
 .selected {
   color: #000;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .weui-label {
@@ -267,8 +308,8 @@ page {
   border-radius: 40rpx;
   position: absolute;
   z-index: 10;
-  right: 0;
-  bottom: 0;
+  right: 5rpx;
+  bottom: 12rpx;
 }
 
 .sex_icon image {

@@ -7,26 +7,24 @@ import {
   events,
   effects,
   actions
-
-
-
 } from './schoolout_add1.eea'
 import moment from '../../../lib/moment.min.js'
-var weekOfday = moment('2020/01/12', 'YYYY/MM/DD').format('E') //计算今天是这周第几天
-var last_monday = moment().subtract(weekOfday - 1, 'days').format('YYYY/MM/DD'); //周一日期
-var last_sunday = moment().add(7 - weekOfday, 'days').format('YYYY/MM/DD'); //周日日期
+var weekOfday = moment().format('E') //计算今天是这周第几天
+// var last_monday = moment().subtract(weekOfday - 1, 'days').format('YYYY/MM/DD'); //周一日期
+// var last_sunday = moment().add(7 - weekOfday, 'days').format('YYYY/MM/DD'); //周日日期
 console.log('今天是周', weekOfday)
-console.log('周一日期', last_monday)
+// console.log('周一日期', last_monday)
 var sliderWidth = 96;
 class SchooloutAdd1Page extends EPage {
   get data() {
     return {
       weeks: false, // 每周/单双周
-      select_img:'',
-      tabshow:true,
+      select_img: '',
+      tabshow: true,
       tabIndex: 0, // 默认添加方式   0  拍照  1手动
       switched: false,
       userInfo: {}, //当前用户信息
+      mask:true,
       tabs: [{
           name: "校内课程",
           url: 'https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/7.png',
@@ -65,24 +63,24 @@ class SchooloutAdd1Page extends EPage {
           courseName: "语文",
           courseNameSub: "语",
           courseDel: false,
-          color:'yuwen',
-          isbg:1,
+          color: 'yuwen',
+          isbg: 1,
           checked: 1
         },
         {
           courseName: "英语",
           courseNameSub: "英",
           courseDel: false,
-          color:'shuxue',
-          isbg:1,
+          color: 'shuxue',
+          isbg: 1,
           checked: 0
         },
         {
           courseName: "数学",
           courseNameSub: "数",
           courseDel: false,
-          color:'yingyu',
-          isbg:1,
+          color: 'yingyu',
+          isbg: 1,
           checked: 0
         },
       ],
@@ -134,18 +132,22 @@ class SchooloutAdd1Page extends EPage {
     return {
       [PAGE_LIFE.ON_LOAD](option) {
         console.log('值', option)
-
         let {
           current,
           childId,
           time,
           date,
           tabshow
-        } = option
+        } = option;
+        if (childId) {
+          this.setData({
+            childId: childId,
+          })
+        }
         this.setData({
           activeIndex: current ? current : 1,
-          'model.childId': childId,
-          tabshow:tabshow?tabshow:true
+          'model.childId': childId ? childId : this.$storage.getSync('childId'),
+          tabshow: tabshow ? tabshow : true
         })
         // 直接从课程表进来的
         if (!time) {
@@ -159,13 +161,53 @@ class SchooloutAdd1Page extends EPage {
           wx.setNavigationBarTitle({
             title: '添加校内日程',
           })
+          // 查看是否有校内课  有禁止添加
+          this.$api.course.getAllInternalCourseName({
+            "childId": childId,
+            "condition": 1
+          }).then(
+            (res) => {
+              console.log('课程信息2', res.data.result)
+              if (res.data.errorCode == 0) {
+                // 如果有校内课
+                if (res.data.result.length > 0) {
+                  wx.showModal({
+                    title: '已经存在校内课程',
+                    content: '校内课程只能添加一个，是否删除原课程',
+                    showCancel: true,
+                    cancelText: '删除',
+                    cancelColor: '#e90e0e',
+                    confirmText: '返回',
+                    confirmColor: '#e7c60e',
+                    success: function(res) {
+                      console.log(res)
+                      if (res.cancel) {
+                        wx.redirectTo({
+                          url: `/pages/course/p_manage/schoolout_manage?activeIndex=${0}&childId=${childId}`,
+                          success: function(res) {},
+                          fail: function(res) {},
+                          complete: function(res) {},
+                        })
+                      } else if (res.confirm) {
+                        wx.navigateBack({
+
+                        })
+                      }
+                    },
+                    fail: function(res) {},
+                    complete: function(res) {},
+                  })
+                }
+              }
+            },
+            (rej) => {}
+          )
         } else {
           wx.setNavigationBarTitle({
             title: '添加校外日程',
           })
         }
         let role = wx.getStorageSync('role')
-
         this.setData({
           'userInfo.role': role
         })
@@ -179,7 +221,7 @@ class SchooloutAdd1Page extends EPage {
 
 
 
-        put(effects.GET_CHILD);
+        // put(effects.GET_CHILD);
         let courseTable = courseTableF();
         this.setData({
           courseTable: courseTable
@@ -187,7 +229,7 @@ class SchooloutAdd1Page extends EPage {
 
         var that = this;
         wx.getSystemInfo({
-          success: function (res) {
+          success: function(res) {
             that.setData({
               sliderLeft: (res.windowWidth / that.data.tabs.length - sliderWidth) / 2,
               sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex,
@@ -215,8 +257,43 @@ class SchooloutAdd1Page extends EPage {
         //   },
         // })
 
+
       },
       [PAGE_LIFE.ON_SHOW](option) {
+        // this.setData({
+        //   model: this.$storage.getSync('courseInfo')
+        // })
+
+        wx.getStorage({
+          key: 'courseInfo',
+          success: (res) => {
+            // console.log('课程数据',res.data)
+            this.setData({
+              model: res.data
+            })
+          },
+          fail: (res) => {
+            // console.log('课程数据',res.data)
+          },
+        })
+        wx.getStorage({
+          key: 'childId',
+          success: (res) => {
+            if (!res.data) {
+              this.setData({
+                'model.childId': this.data.childId
+              })
+            } else {
+              this.setData({
+                'model.childId': res.data
+              })
+            }
+
+          },
+          fail: (res) => {
+            // console.log('课程数据',res.data)
+          },
+        })
         //获取用户信息
         let _this = this
         wx.getStorage({
@@ -277,13 +354,20 @@ class SchooloutAdd1Page extends EPage {
 
         this.$storage.get('InterNameList').then(
           (res) => {
-            this.setData({
-              InterNameList: res.data
-            })
-
+            if (res.data) {
+              if (res.data.length>3) {
+                console.log('执行1')
+                this.setData({
+                  InterNameList: res.data,
+                })
+              }
+            }
           },
           (rej) => {}
         )
+
+
+
         // this.$storage.get('schoolinclassname').then((name) => {
         //   this.setData({
         //     'schoolinclassname': name.data,
@@ -302,6 +386,14 @@ class SchooloutAdd1Page extends EPage {
     put
   }) {
     return {
+      // 隐藏
+      [events.ui.quit](e){
+        this.setData({
+          mask:true,
+          switched: false,
+          weeks: false,
+        })
+      },
       [events.ui.CHOOSE_TAGS](e) {
         console.log('选课', e.detail.current)
         let swiper = this.data.swiper;
@@ -319,10 +411,10 @@ class SchooloutAdd1Page extends EPage {
           })
         }
 
-        if(!weeks){
+        if (!weeks) {
           InterNameList.forEach(
             (item, index) => {
-              if (index ==  swiper.current+1) {
+              if (index == swiper.current + 1) {
                 item.checked = 1
               } else {
                 item.checked = 0
@@ -333,8 +425,9 @@ class SchooloutAdd1Page extends EPage {
             InterNameList
           })
         }
-        
+
       },
+      // 计算切换课程标签
       [events.ui.CHOOSE_ITEMS](e) {
         let swiper = this.data.swiper;
         let i = e.currentTarget.dataset.id;
@@ -353,7 +446,7 @@ class SchooloutAdd1Page extends EPage {
           this.setData({
             swiper: swiper
           })
-        } else if (l -1> i) {
+        } else if (l - 1 > i) {
           swiper.current = Math.abs(i - 1);
           this.setData({
             swiper: swiper
@@ -408,7 +501,7 @@ class SchooloutAdd1Page extends EPage {
                     console.log(res.key)
                     let imgs = this.$api.extparam.getFileUrl(res.key).split('!')[0] + "!org";
                     this.setData({
-                      tabshow:false,
+                      tabshow: false,
                       select_img: imgs,
                     })
 
@@ -425,10 +518,10 @@ class SchooloutAdd1Page extends EPage {
       },
       // 切换添加方式
       [events.ui.chargeTab](e) {
-        console.log(e)
+        console.log(e.currentTarget.dataset.tabindex)
         this.setData({
           tabIndex: e.currentTarget.dataset.tabindex,
-          tabshow:false
+          tabshow: false
         })
       },
       // 创建校外班级 
@@ -447,9 +540,45 @@ class SchooloutAdd1Page extends EPage {
           })
         }
       },
+      // 选择课程节数
+      [events.ui.bindChange1](e) {
+        let stute = e.currentTarget.dataset.id
+        const num = e.detail.value;
+        console.log(val, stute)
+        let id = this.data.classList[num].classId
+        let schoolinclassname = this.data.classList[num].className
+        this.setData({
+          index: e.detail.value,
+          setClassMsg: {},
+          'xnclassId': id,
+          'schoolinclassname': schoolinclassname,
+          'list': num
+        })
+        this.$storage.set('SchoolClassId', this.data.xnclassId);
+        if (this.data.activeIndex == 1) {
+          if (num == this.data.classList.length - 1) {
+            wx.navigateTo({
+              url: '../../classcircle/addClass/addClass?type=course&schoolType=1',
+            })
+          }
+        } else {
+          if (num == this.data.classList.length - 1) {
+            wx.navigateTo({
+              url: '../../classcircle/addClass/addClass?type=course&schoolType=0',
+            })
+          }
+          if (this.data.activeIndex == 0) {
+            put(effects.HAVE_COUSER, {
+              classId: this.data.xnclassId
+            })
+            console.log(this.data.xnclassId)
+          }
+        }
+      },
       // 选择班级
       [events.ui.chooseClass](e) {
-        let num = e.detail.value
+        let num = e.detail.value;
+        console.log('班级列表', this.data.classList, e)
         let thisdata = "classList[" + num + "].className"
         let id = this.data.classList[num].classId
         let schoolinclassname = this.data.classList[num].className
@@ -463,9 +592,7 @@ class SchooloutAdd1Page extends EPage {
         // this.$storage.set('xnindex', this.data.index);
         this.$storage.set('SchoolClassId', this.data.xnclassId);
         // this.$storage.set('schoolinclassname', this.data.schoolinclassname);
-        console.log(this.data.xnclassId)
-        console.log(this.data.schoolinclassname)
-        console.log(num, this.data.classList.length)
+        // console.log(this.data.xnclassId)
         if (this.data.activeIndex == 1) {
           if (num == this.data.classList.length - 1) {
             wx.navigateTo({
@@ -576,6 +703,7 @@ class SchooloutAdd1Page extends EPage {
       [events.ui.getSchoolName](e) {
         let i = e.currentTarget.dataset.id;
         let val = e.detail.value;
+        // 学校
         if (i == 1 && val.trim().length !== 0) {
           // schoolname?schoolname:schoolInfo.school 
           if (this.$common.isBlank(val)) {
@@ -591,11 +719,12 @@ class SchooloutAdd1Page extends EPage {
             schoolName: val
           }).then(res => {
             if (res.data.errorCode == 0) {
-              wx.showToast({
-                title: '添加成功',
-              })
+              // wx.showToast({
+              //   title: '添加成功',
+              // })
               this.setData({
                 schoolname: val,
+                'model.school': val,
                 schoolid: res.data.result.schoolId
               })
               // this.$storage.set('schoolinfo.name', this.data.inputname);
@@ -604,24 +733,21 @@ class SchooloutAdd1Page extends EPage {
               // this.$storage.set('schoolinfo.typecode', 0);
             }
           })
-
-
-          console.log('学校', val)
+        // 班级
         } else if (i == 0 && val.trim().length !== 0) {
-          console.log('班级', val)
-          if (this.$common.isBlank(val)) {
-            wx.showToast({
-              icon: 'none',
-              title: '班级名称不能为空',
-              duration: 3000
-            });
-            return false;
-          }
           this.setData({
             'model.className': val
           })
         } else {
-          console.log('为空')
+          // console.log('为空')
+          if (this.$common.isBlank(val)) {
+            return wx.showToast({
+              icon: 'none',
+              title: '名称不能为空',
+              duration: 3000
+            });
+
+          }
         }
       },
       // 选择单双周
@@ -632,10 +758,12 @@ class SchooloutAdd1Page extends EPage {
         if (this.data.weeks) {
           this.setData({
             weeks: false,
-            switched: false
+            switched: false,
+            mask:true,
           })
         } else {
           this.setData({
+            mask:false,
             weeks: true,
             switched: true,
           })
@@ -795,6 +923,11 @@ class SchooloutAdd1Page extends EPage {
         let i = e.currentTarget.dataset.id;
         let j = swiper.current;
         let l = this.data.InterNameList.length;
+        let tagName = e.currentTarget.dataset.name // 菜单选中的课
+        let InterNameList = this.data.InterNameList;
+        let courseTable = this.data.courseTable;
+
+        let color = e.currentTarget.dataset.cor;              
         console.log('点击', i, j, swiper, l)
         if (i <= j) {
           if (i == 0) {
@@ -808,7 +941,7 @@ class SchooloutAdd1Page extends EPage {
           this.setData({
             swiper: swiper
           })
-        } else if (l -1> i) {
+        } else if (l - 1 > i) {
           swiper.current = Math.abs(i - 1);
           this.setData({
             swiper: swiper
@@ -829,11 +962,7 @@ class SchooloutAdd1Page extends EPage {
           })
         }
         console.log('-------------------')
-        let tagName = e.currentTarget.dataset.name    // 菜单选中的课
-        let InterNameList = this.data.InterNameList;
-        let courseTable = this.data.courseTable;
-        
-        let color = e.currentTarget.dataset.cor;
+
         InterNameList.forEach(
           (item, index) => {
             if (item.courseName == tagName) {
@@ -843,23 +972,22 @@ class SchooloutAdd1Page extends EPage {
             }
           }
         )
-       
         // 渲染表格样式
         courseTable.forEach(
           (item, index) => {
             item.forEach(
               (item1, index1) => {
                 if (index1 != 0) {
-                  if (item1.courseName == tagName) {            // 当前课的名字
+                  if (item1.courseName == tagName) { // 当前课的名字
                     item1.courseClass = `c_select ${color}`;
-                  } else if (item1.courseName != '') {          // 否
-                    item1.courseClass = `selected `;            // 灰色
-                  } 
-                  if (typeof item1.courseName1 != 'undefined') {    // 单双周  
-                    if (item1.courseName1 == tagName) {             // 名字不一样
+                  } else if (item1.courseName != '') { // 否
+                    // item1.courseClass = `selected ${color}`;            // 灰色
+                  }
+                  if (typeof item1.courseName1 != 'undefined') { // 单双周  
+                    if (item1.courseName1 == tagName) { // 名字不一样
                       // item1.courseClass1 = 'even_w c_select';
                       item1.courseClass1 = `${color} c_select`;
-                    } else if (item1.courseName1 != '') {           // 
+                    } else if (item1.courseName1 != '') { // 
                       // item1.courseClass1 = 'selected';
                     }
                   }
@@ -872,16 +1000,16 @@ class SchooloutAdd1Page extends EPage {
           InterNameList: InterNameList,
           courseTable: courseTable
         });
-        console.log('颜色',color,this.data.courseTable)
+        console.log('颜色', color, this.data.courseTable)
         this.$storage.set('InterNameList', this.data.InterNameList);
-        
+
       },
       // 增加课程
       [events.ui.BIND_COURSE](e) {
         if (this.data.switched) {
           return wx.showToast({
             title: '请先关闭单双周',
-            duration:1500,
+            duration: 1500,
             icon: 'none',
           });
         }
@@ -904,7 +1032,7 @@ class SchooloutAdd1Page extends EPage {
                   courseTable[row][col].courseIndex = '';
                 } else {
                   console.log(this.data.courseTable[row][col], this.data.courseTable[row][col].courseName1)
-                  console.log(currCourseName,item.color)
+                  console.log(currCourseName, item.color)
                   if (courseTable[row][col].courseName1 == currCourseName) {
                     return wx.showToast({
                       title: '双周课程名不能相同',
@@ -914,7 +1042,7 @@ class SchooloutAdd1Page extends EPage {
                   } else {
                     courseTable[row][col].courseName = currCourseName;
                     // courseTable[row][col].courseClass = '';
-                     courseTable[row][col].courseClass =`c_select ${item.color}` ;
+                    courseTable[row][col].courseClass = `c_select ${item.color}`;
                     courseTable[row][col].courseNameSub = currCourseNameSub;
                     courseTable[row][col].courseIndex = index;
                   }
@@ -926,7 +1054,7 @@ class SchooloutAdd1Page extends EPage {
             }
           }
 
-          
+
         )
         this.$storage.set('InterNameList', this.data.InterNameList);
       },
@@ -1014,7 +1142,7 @@ class SchooloutAdd1Page extends EPage {
         // this.$storage.set('InterNameList', this.data.InterNameList);
       },
       [events.ui.ADD_TAG]() {
-        wx: wx.setStorageSync('InterNameList', this.data.InterNameList)
+        wx.setStorageSync('InterNameList', this.data.InterNameList)
         wx.navigateTo({
           url: './schoolin_tag_add'
         })
@@ -1030,7 +1158,7 @@ class SchooloutAdd1Page extends EPage {
           content: '您确认要删除该课程吗？',
           showCancel: true,
           confirmColor: '#f29219',
-          success: function (res) {
+          success: function(res) {
             if (res.confirm) {
               InterNameList.splice(index, 1);
               courseTable.forEach(
@@ -1133,6 +1261,7 @@ class SchooloutAdd1Page extends EPage {
           if (this.data.userInfo.role == 1) {
             this.$storage.set('fistClass', this.data.classList[0]);
           }
+          // 检验输入的内容
           put(effects.SAV_NEXT);
         }
       },
@@ -1173,9 +1302,9 @@ class SchooloutAdd1Page extends EPage {
                 wx.reLaunch({
                   // url: '/pages/course/course?isback=' + false + '&current=' + this.data.current + "&childId=" + childId,
                   url: '/pages/course/courseList/courseList',
-                  success: function (res) {},
-                  fail: function (res) {},
-                  complete: function (res) {},
+                  success: function(res) {},
+                  fail: function(res) {},
+                  complete: function(res) {},
                 })
 
                 // wx.navigateTo({
@@ -1235,32 +1364,44 @@ class SchooloutAdd1Page extends EPage {
           var list = []
           if (res.data.errorCode == 0) {
             if (res.data.result.length > 0) {
+                // 校内
               if (this.data.activeIndex == 0) {
                 res.data.result.forEach(item => {
-                  // console.log(item)
+                  // classType  2校内
                   if (item.classType == 1) {
                     list.push(item)
                   }
                 })
               } else {
+                // 校外
                 res.data.result.forEach(item => {
-                  console.log(item)
+                  // classType  2校外
                   if (item.classType == 2) {
                     list.push(item)
                   }
                 })
               }
               console.log(list)
+              if (list.length>0){
+                this.setData({
+                  'model.className': list[0].className,
+                })
+              }else{
+                this.setData({
+                  'model.className':'',
+                })
+              }
               this.setData({
                 list: res.data.result,
                 classList: list.concat(zidingyi)
               })
             }
-          }
+          }  
           console.log(this.data.classList)
         })
 
       },
+      // 获取班级详情
       [effects.GET_CLASS_INFO]() {
         this.$api.class.getOne(this.data.model).then(
           (res) => {
@@ -1349,7 +1490,7 @@ class SchooloutAdd1Page extends EPage {
               this.setData({
                 'loadChildAll': true
               });
-              res.data.result.childList.forEach(function (e) {
+              res.data.result.childList.forEach(function(e) {
                 e.logo = (e.logo)
                 e.courseNum = e.courseNum + e.internalCourseNum
               })
@@ -1362,25 +1503,25 @@ class SchooloutAdd1Page extends EPage {
         )
       },
       [effects.GET_CHILD]() {
-        const model = this.data.model;
-        api.child.get(model).then((res) => {
-          console.log(res)
-          this.setData({
-            'childInfo': res.data.result.childList[0],
-            'childInfo.logo': (res.data.result.childList[0].logo),
-            'childInfo.courseNum': res.data.result.childList[0].courseNum + res.data.result.childList[0].internalCourseNum
-          });
-          if (common.isBlank(this.data.model.childId)) {
-            this.setData({
-              'model.childId': res.data.result.childList[0].childId
-            });
-          }
-          this.$storage.set('childInfo', this.data.childInfo);
-          // console.log(this.data.childInfo)
-        })
-        this.$storage.set('childInfo', this.data.childInfo);
-        put(effects.getChildSchoolName);
-        put(effects.getAllInternalCourseName);
+        // const model = this.data.model;
+        // api.child.get(model).then((res) => {
+        //   console.log(res)
+        //   this.setData({
+        //     'childInfo': res.data.result.childList[0],
+        //     'childInfo.logo': (res.data.result.childList[0].logo),
+        //     'childInfo.courseNum': res.data.result.childList[0].courseNum + res.data.result.childList[0].internalCourseNum
+        //   });
+        //   if (common.isBlank(this.data.model.childId)) {
+        //     this.setData({
+        //       'model.childId': res.data.result.childList[0].childId
+        //     });
+        //   }
+        //   this.$storage.set('childInfo', this.data.childInfo);
+        //   // console.log(this.data.childInfo)
+        // })
+        // this.$storage.set('childInfo', this.data.childInfo);
+        // put(effects.getChildSchoolName);
+        // put(effects.getAllInternalCourseName);
       },
       [effects.SAVE_NEXT]() {
         const model = this.data.model;
@@ -1420,16 +1561,16 @@ class SchooloutAdd1Page extends EPage {
           url: './schoolout_add2',
         });
       },
+      // 
       [effects.SAV_NEXT]() {
         console.log(this.data.userInfo, '端')
         if (this.data.userInfo.role == 0) {
 
           put(effects.HAVE_COUSER, {
-            childId: this.data.childInfo.childId
+            childId: this.data.model.childId
           })
 
         } else {
-
           if (this.data.xnclassId != '000' && this.data.xnclassId && typeof this.data.xnclassId != 'undefind') {
             put(effects.HAVE_COUSER, {
               classId: this.data.xnclassId
@@ -1449,8 +1590,6 @@ class SchooloutAdd1Page extends EPage {
             'schoolInfo.school': this.data.schoolname
           })
         } else {
-
-
           this.setData({
             'schoolInfo.schoold': this.data.schoolid,
             'schoolInfo.school': this.data.userInfo.workOrganizationName
@@ -1460,24 +1599,42 @@ class SchooloutAdd1Page extends EPage {
         let courseTable = this.data.courseTable
         let canNext = false;
 
-        console.log('用户信息', this.data.userInfo);
+        console.log('用户信息', this.data.model);
         console.log('角色状态', this.data.userInfo.role)
         console.log('学校id', this.data.schoolid, '学校名称', this.data.schoolname)
         console.log('班级', this.data.model.className)
+        console.log('课程', courseTable)
 
         if (this.data.userInfo.role == 0 && (this.data.schoolInfo.schoold == 0 || this.data.schoolInfo.school == '默认学校')) {
-          // common.showMessage(this, '请选择学校');
-          return false;
+          return wx.showToast({
+            title: '请输入学校',
+            icon: 'none',
+          });
         }
+
         if (this.data.userInfo.role == 0 || this.data.classList.length == 0) {
           if (common.isBlank(model.className)) {
-            // common.showMessage(this, '班级名称不能为空');
-            return false;
+            return wx.showToast({
+              title: '请输入班级名称',
+              icon: 'none',
+            });
+          }
+          if (common.isBlank(this.data.schoolname)) {
+            return wx.showToast({
+              title: '请输入学校名称',
+              icon: 'none',
+            });
           }
         }
 
 
-
+        let Iscourse = courseTable.some(item => item.courseName !== '')
+        if (!Iscourse) {
+          return wx.showToast({
+            title: '请填写课程内容',
+            icon: 'none',
+          })
+        }
 
         courseTable.forEach(
           (item, index) => {

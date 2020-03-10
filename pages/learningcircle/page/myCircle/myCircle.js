@@ -142,7 +142,7 @@ class myCirclePage extends EPage {
           },
           (rej) => {}
         )
-        this.$storage.clear();
+        this.$storage.clear('integral');
         wx.hideShareMenu();
         let id = this.data.today.communityId
         put(effects.LOAD_CIRCLE_INFO, {

@@ -5,7 +5,7 @@
   <view class='sure' bindtap='INPUT_TYPING'>搜索</view>
 </view>
 <view class="school" wx:if='{{schoolList.length != 0||schoolList}}'>
-  <view wx:if='{{index<500}}' class="schoolbox"  wx:for="{{schoolList}}" wx:for-item="item" wx:key="" data-id="{{item.id}}" data-name="{{item.NAME}}" data-typecode="{{item.typeCode}}" data-city="{{item.city}}" bindtap="SET_SCHOOL">
+  <view wx:if='{{index<500}}' class="schoolbox"  wx:for="{{schoolList}}" wx:for-item="item" wx:key="index" data-id="{{item.id}}" data-name="{{item.NAME}}" data-typecode="{{item.typeCode}}" data-city="{{item.city}}" bindtap="SET_SCHOOL">
     <view class="weui-cell__bd">
       <view>{{item.NAME}}</view>
     </view>

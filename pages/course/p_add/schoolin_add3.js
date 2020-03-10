@@ -15,7 +15,6 @@ class SchoolinAdd3Page extends EPage {
     return {
       model: {
         childId: '',
-
       },
       classId: '',
       setClassMsg: {},
@@ -37,7 +36,8 @@ class SchoolinAdd3Page extends EPage {
     return {
       [PAGE_LIFE.ON_LOAD](option) {
         this.setData({
-          img: this.$api.extparam.getPageImgUrl('newcourse')
+          // img: this.$api.extparam.getPageImgUrl('newcourse')
+          img: 'https://qa.oss.iforbao.com/public/assets/local/share_course.png'
         })
         console.log(option)
 
@@ -53,8 +53,8 @@ class SchoolinAdd3Page extends EPage {
           'schoolInfo': option,
           'schoold': option.schoold
         })
-        console.log(this.data.schoolInfo)
-        console.log(this.data.schoold)
+        // console.log(this.data.schoolInfo)
+        // console.log(this.data.schoold)
       },
       [PAGE_LIFE.ON_SHOW]() {
         this.$storage.get('schoolinfo.name').then(
@@ -71,23 +71,23 @@ class SchoolinAdd3Page extends EPage {
         this.$storage.get('userInfo').then(
           (res) => {
             this.setData({
-              userInfo: res.data
+              userInfo: res.data,
             })
             console.log(this.data.userInfo)
           },
           (rej) => {}
         )
         wx.getStorage({
-          key: 'childInfo',
+          key: 'childId',
           success: (res)=> {
             console.log(res.data.childId)
             this.setData({
-              childInfo: res.data,
-              'model.childId': res.data.childId
+              childId:res.data,
+              'model.childId': res.data
             })
           },
           fail:(res)=> {
-            console.log('childInfo失败',)
+            console.log('childId失败',)
           },
         })
         // this.$storage.get('schoolInfo').then(
@@ -287,7 +287,7 @@ class SchoolinAdd3Page extends EPage {
           iptHide: true
         })
 
-        const childId = this.data.childInfo.childId;
+        const childId = this.data.model.childId;
         console.log('小孩子id', childId)
         this.setData({
           iptHide: true
@@ -324,14 +324,13 @@ class SchoolinAdd3Page extends EPage {
     const converter = this.$converter;
     return {
       [effects.SAVE_NEXT]() {
-        let childInfo = this.data.childInfo
         let schoolInfo = this.data.schoolInfo
         let model = this.data.model
         let weekDays = this.data.weekDays
         let courseTable = this.data.courseTable
         let InterNameList = this.data.InterNameList
         // let InterClassDetailsId = this.data.InterClassDetailsId
-        let childId = childInfo.childId
+        let childId = this.data.model.childId
         let classId = this.data.classId
         let schoolId = this.data.schoold
         let className = this.data.courseInfo.className
@@ -473,6 +472,7 @@ class SchoolinAdd3Page extends EPage {
           this.$api.course.addInternalCourse(item).then((res) => {
             console.log(res.data.result)
             if (res.data.errorCode == 0) {
+             
               var timeData = Object.assign({
                 internalClassId: res.data.result.internalClassId
               }, savedata);
@@ -480,13 +480,18 @@ class SchoolinAdd3Page extends EPage {
                 internalClassId: res.data.result.internalClassId
               })
               console.log(timeData)
+
               if (courseData.length == index + 1) {
                 this.$api.course.saveChildClassInfo(timeData).then(
                   (res) => {
                     if (res.data.errorCode == 0) {
-                      this.$storage.clear();
+                      // wx.clearStorage()
+                      wx.removeStorageSync('model');
+                      wx.removeStorageSync('childInfo');
+                      wx.removeStorageSync('courseInfo');
                       // 家长分享
                       if (this.data.userInfo.role == 0) {
+                        
                         this.setData({
                           iptHide: false
                         })
@@ -537,12 +542,10 @@ class SchoolinAdd3Page extends EPage {
                       } else {
                         this.$common.showToast('创建成功', 'success')
                         setTimeout(function() {
-                          
                           wx.switchTab({
                             url: '/pages/course/courseList/courseList'
                           })
-
-                        }, 1500)
+                        }, 100)
 
                       }
 

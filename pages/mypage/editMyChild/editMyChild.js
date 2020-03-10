@@ -29,13 +29,13 @@ class editMyChildPage extends EPage {
       genderHide: true,
       pageModel: {},
       genders: [{
-        name: '男',
-        value: '0'
-      },
-      {
-        name: '女',
-        value: '1'
-      },
+          name: '男',
+          value: '0'
+        },
+        {
+          name: '女',
+          value: '1'
+        },
       ],
       genderHide: true,
       schoolModel: {
@@ -121,7 +121,7 @@ class editMyChildPage extends EPage {
         this.setData({
           shareCavansOptions
         });
-        put(effects.GET_USER_INFO);
+       
         this.setData({
           'model.childId': option.childId,
           'paramModel.childId': option.childId,
@@ -131,38 +131,6 @@ class editMyChildPage extends EPage {
             fromPage: option.from
           })
         }
-        this.$storage.get('schoolinfo.name').then(
-          (name) => {
-            this.setData({
-              'schoolModel.school': name.data
-            })
-          },
-          (reject) => { }
-        );
-        this.$storage.get('schoolinfo.schoolid').then(
-          (id) => {
-            this.setData({
-              'schoolModel.schoolid': id.data
-            })
-          },
-          (reject) => { }
-        );
-        this.$storage.get('schoolinfo.city').then(
-          (city) => {
-            this.setData({
-              'schoolModel.city': city.data
-            })
-          },
-          (reject) => { }
-        );
-        this.$storage.get('schoolinfo.typecode').then(
-          (typecode) => {
-            this.setData({
-              'schoolModel.schoolType': typecode.data
-            });
-          },
-          (reject) => { }
-        )
         if (typeof option.code != 'undefined') {
           this.setData({
             resultCode: option.code,
@@ -173,17 +141,81 @@ class editMyChildPage extends EPage {
         } else {
           // put(effects.loadOneChildInfo);
         }
-        this.setData({
-          boyimg: this.$api.extparam.getPageImgUrl('boyb'),
-        })
+        // 不是编辑过来的
+        if (!option.hasOwnProperty('isupdate')){
+         
+          
+        }
+        put(effects.loadOneChildInfo);
+        put(effects.GET_USER_INFO);
+
         // 调分享记录接口
         //put(effects.shareChildInfo);
 
         //put(effects.addChildToList);
       },
+      // 页面加载
       [PAGE_LIFE.ON_SHOW]() {
-        put(effects.loadOneChildInfo);
+        // // 姓名
+        // this.$storage.get('valname').then(
+        //   (vals) => {
+        //     console.log('读取到没', vals.data)
+        //     this.setData({
+        //       'resultModel.name': vals.data
+        //     })
+        //     // console.log(this.data.resultModel.name)
+        //   },
+        //   (reject) => {}
+        // );
+        this.$storage.get('resultModel').then(
+          (res) => {
+            this.setData({
+              'resultModel': res.data
+            });
+          },
+          (reject) => { }
+        )
+        // this.$storage.get('schoolinfo.name').then(
+        //   (name) => {
+        //     this.setData({
+        //       'schoolModel.school': name.data
+        //     })
+        //   },
+        //   (reject) => {}
+        // );
+
+        // this.$storage.get('schoolinfo.schoolid').then(
+        //   (id) => {
+        //     this.setData({
+        //       'schoolModel.schoolid': id.data
+        //     })
+        //   },
+        //   (reject) => {}
+        // );
+        // this.$storage.get('schoolinfo.city').then(
+        //   (city) => {
+        //     this.setData({
+        //       'schoolModel.city': city.data
+        //     })
+        //   },
+        //   (reject) => {}
+        // );
+        // this.$storage.get('schoolinfo.typecode').then(
+        //   (typecode) => {
+        //     this.setData({
+        //       'schoolModel.schoolType': typecode.data
+        //     });
+        //   },
+        //   (reject) => {}
+        // )
+
+        this.setData({
+          boyimg: this.$api.extparam.getPageImgUrl('boyb'),
+        })
+
+
       },
+      // 分享
       [PAGE_LIFE.ON_SHARE_APP_MESSAGE](e) {
         this.setData({
           shareHide: true
@@ -218,6 +250,17 @@ class editMyChildPage extends EPage {
     put
   }) {
     return {
+      // 
+      [events.ui.CHOOSESCHOOL](){
+        console.log('你好')
+        // wx.setStorageSync("personalChangeInfo", this.data.modifyModel);
+        console.log(this.data.model.childId)
+        if (this.data.userEdit == 'true') {
+          wx.redirectTo({
+            url: '/pages/mydemo/pages/school/school?comefrom=childMsg&childId=' + this.data.model.childId
+          })
+        }
+      },
       // 孩子共享切换
       [events.ui.dozensOfCards](e) {
         // 共享
@@ -245,7 +288,7 @@ class editMyChildPage extends EPage {
         wx: wx.showModal({
           title: '确定取消共享?',
           showCancel: true,
-          success: function (res) {
+          success: function(res) {
             if (res.confirm) {
               _this.setData({
                 'deleteParamModel.shareId': e.currentTarget.dataset.id,
@@ -268,13 +311,13 @@ class editMyChildPage extends EPage {
             content: '确定删除该孩子?',
             confirmColor: '#f29219',
             showCancel: true,
-            success: function (res) {
+            success: function(res) {
               if (res.confirm) {
                 put(effects.deleteMyChild);
               }
             },
-            fail: function (res) { },
-            complete: function (res) { },
+            fail: function(res) {},
+            complete: function(res) {},
           })
         }
         else {
@@ -324,7 +367,7 @@ class editMyChildPage extends EPage {
         })
       },
 
-      [events.ui.bindClockerChange](e) { },
+      [events.ui.bindClockerChange](e) {},
 
       [events.ui.closeClocker](e) {
         this.setData({
@@ -461,7 +504,7 @@ class editMyChildPage extends EPage {
         if (this.data.userEdit == 'true') {
           this.setData({
             'paramModel.name': e.detail.value,
-            'resultModel.name':e.detail.value
+            'resultModel.name': e.detail.value
           })
         }
 
@@ -477,7 +520,7 @@ class editMyChildPage extends EPage {
         }
         this.setData({
           'paramModel.gender': gender,
-          'resultModel.gender':gender
+          'resultModel.gender': gender
         })
       },
 
@@ -493,23 +536,28 @@ class editMyChildPage extends EPage {
       },
       //显示性别弹框：
       [events.ui.showGender](e) {
-        console.log(1)
-        if (this.data.userEdit == 'true') {
-          this.setData({
-            genderHide: false
-          })
-        }
+        let i = e.currentTarget.dataset.id;
+        console.log(i)
+        this.setData({
+          weeks: i,
+          'resultModel.gender': i 
+        })
+        this.$storage.set('model.gender', i );
+        // if (this.data.userEdit == 'true') {
+        //   this.setData({
+        //     genderHide: false
+        //   })
+        // }
       },
       //跳转学校：
-      [events.ui.chooseSchool](e) {
+      [events.ui.chooseSchools](e) {
         // wx.setStorageSync("personalChangeInfo", this.data.modifyModel);
         console.log(this.data.model.childId)
-        if (this.data.userEdit == 'true') {
+        if (this.data.userEdit == 'true'){
           wx.redirectTo({
-            url: '../school/school?comefrom=childMsg&childId=' + this.data.model.childId
+            url: '/pages/mydemo/pages/school/school?comefrom=childMsg&childId=' + this.data.model.childId
           })
         }
-        // 学校存储
       },
 
       // 保存
@@ -517,8 +565,8 @@ class editMyChildPage extends EPage {
         // 
         var a = this.data.resultModel
         // resultModel
-        console.log('保存数据',a)
-        put(effects.saveChildInfo,a);
+        console.log('保存数据', a)
+        put(effects.saveChildInfo, a);
       },
     }
   }
@@ -538,7 +586,7 @@ class editMyChildPage extends EPage {
           edit: edit
         }
         // 孩子权限管理
-        this.$api.circle.updateChildShareListAuthority(Params).then(s => { })
+        this.$api.circle.updateChildShareListAuthority(Params).then(s => {})
       },
       [effects.deleteChildRelation]() {
         this.$api.circle.deleteChildShareAuthority(this.data.deleteParamModel).then(s => {
@@ -560,9 +608,9 @@ class editMyChildPage extends EPage {
           }
         })
       },
-
+      // 加载一个小孩信息
       [effects.loadOneChildInfo]() {
-        console.log(this.data.model)
+        console.log('当前孩子参数', this.data.model)
         // 孩子个数
         this.$api.circle.getChildListByCondition({}).then(res => {
           // console.log('孩子',res.data.result)
@@ -571,7 +619,6 @@ class editMyChildPage extends EPage {
           })
         })
         // getChildInfor修改孩子信息的权限
-
         this.$api.child.getChildInfor(this.data.model).then(res => {
           if (res.data.errorCode == '0') {
             this.setData({
@@ -593,7 +640,6 @@ class editMyChildPage extends EPage {
           }
         })
         // 孩子信息
-        // console.log(this.data.model)
         this.$api.circle.getChildInfoByCondition(this.data.model).then(s => {
           console.log(s.data)
           if (s.data.errorCode == '0') {
@@ -608,51 +654,55 @@ class editMyChildPage extends EPage {
               })
             }
             this.setData({
-              'resultModel.childId':this.data.model.childId
+              'resultModel.childId': this.data.model.childId
             })
             console.log('全部信息', this.data.resultModel)
             if ((this.data.resultModel.logo == null) || ((this.data.resultModel.logo.indexOf("http") < 0) &&
-              (this.data.resultModel.logo.indexOf("png") < 0) && (this.data.resultModel.logo.indexOf("jpg") < 0))) {
-              // this.data.resultModel.logo = this.data.boyimg;
+                (this.data.resultModel.logo.indexOf("png") < 0) && (this.data.resultModel.logo.indexOf("jpg") < 0))) {
+              console.log('没有头像', this.data.boyimg)
               this.setData({
                 'resultModel.logo': this.data.boyimg
               })
             }
 
-            // 姓名
-            this.$storage.get('valname').then(
-              (vals) => {
-                console.log('读取到没', vals.data)
-                this.setData({
-                  'resultModel.name': vals.data
-                })
-                // console.log(this.data.resultModel.name)
-              },
-              (reject) => { }
-            );
-    
+            wx.setStorage({
+              key: 'resultModel',
+              data: this.data.resultModel,
+            })
+
             if (this.data.fromPage != '') {
-  
               this.setData({
-                'resultModel.school': this.data.schoolModel.school,
-                'resultModel.schoolType': this.data.schoolModel.schoolType,
-                'resultModel.city': this.data.schoolModel.city,
-                'resultModel.schoolId': this.data.schoolModel.schoolid,
+                // 'resultModel.school': this.data.schoolModel.school,
+                // 'resultModel.schoolType': this.data.schoolModel.schoolType,
+                // 'resultModel.city': this.data.schoolModel.city,
+                // 'resultModel.schoolId': this.data.schoolModel.schoolid,
                 'paramModel.school': this.data.schoolModel.school,
                 'paramModel.schoolType': this.data.schoolModel.schoolType,
                 'paramModel.city': this.data.schoolModel.city,
                 'paramModel.schoolId': this.data.schoolModel.schoolid,
-                'resultModel.schoolType': this.data.schoolModel.schoolType,
-                'resultModel.city': this.data.schoolModel.city,
-                'resultModel.schoolId': this.data.schoolModel.schoolid
+                // 'resultModel.schoolType': this.data.schoolModel.schoolType,
+                // 'resultModel.city': this.data.schoolModel.city,
+                // 'resultModel.schoolId': this.data.schoolModel.schoolid
               })
               console.log('学校信息', this.data.paramModel, this.data.resultModel)
             }
+
+            // 头像
+            // 地址
+            // 性别
+            // 昵称
+
+
+
+
           }
         })
       },
       // 保存孩子个人信息
       [effects.saveChildInfo](a) {
+
+
+
         this.$api.circle.updateChildInfo(a).then(s => {
           console.log(s.data)
           if (s.data.errorCode == '0') {
@@ -660,7 +710,7 @@ class editMyChildPage extends EPage {
               title: '保存成功',
             })
             console.log('家长');
- 
+            wx.removeStorageSync('resultModel')
             var time = null;
             time = setTimeout(() => {
               wx.navigateBack({
@@ -677,6 +727,7 @@ class editMyChildPage extends EPage {
           }
         })
       },
+      // 获取小孩信息
       [effects.GET_USER_INFO]() {
         this.$api.user.gerUserInfo().then(
           (res) => {
@@ -691,7 +742,7 @@ class editMyChildPage extends EPage {
           }
         );
       },
-      // 加载孩子信息
+      // 加载分享孩子信息
       [effects.loadShareChildInfo]() {
         this.$api.child.getShareInfo({
           code: this.data.resultCode
@@ -709,6 +760,7 @@ class editMyChildPage extends EPage {
           }
         })
       },
+      // 添加小孩
       [effects.addChildToList]() {
         //this.$api.circle.copyChildInfoToUser({ code: '7899962155076551100005' }).then(s => {
         this.$api.circle.copyChildInfoToUser({
@@ -729,6 +781,7 @@ class editMyChildPage extends EPage {
           }
         })
       },
+      // 删除小孩
       [effects.deleteMyChild]() {
         let param = {
           'childId': this.data.model.childId
@@ -737,11 +790,14 @@ class editMyChildPage extends EPage {
           wx.showToast({
             title: '删除成功',
           })
-          setTimeout(function () {
+          wx.removeStorageSync("childId")
+          wx.removeStorageSync("childid_i")
+          setTimeout(function() {
             wx.navigateBack({
-              url: '../myChildren/myChildren',
+              delta: 1,
             })
           }, 1000)
+
         })
       }
     }

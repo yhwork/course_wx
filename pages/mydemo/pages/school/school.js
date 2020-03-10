@@ -37,16 +37,26 @@ class school extends EPage {
     return {
       [PAGE_LIFE.ON_LOAD](option) {
         console.log('值',option)
-        if (typeof option.comefrom != 'undefined') {
+        if (!option.hasOwnProperty('childId')){
           this.setData({
-            'model.comefrom': option.comefrom
+            childId:this.$storage.getSync('childId')
           })
-        }
-        if (typeof option.childId != 'undefined') {
+        }else{
           this.setData({
             childId: option.childId
           })
         }
+        if (typeof option.comefrom != 'undefined') {
+          if (option.comefrom == 'childMsg'){
+              this.setData({
+                resultModel: wx.getStorageSync('resultModel')
+              })
+          }
+          this.setData({
+            'model.comefrom': option.comefrom
+          })
+        }
+
       }
     }
   }
@@ -70,17 +80,30 @@ class school extends EPage {
         this.$storage.set('schoolinfo.typecode', e.currentTarget.dataset.typecode);
         this.$storage.set('schoolinfo.schoolid', e.currentTarget.dataset.id);
         console.log(e.currentTarget.dataset.id, this.data.model.comefrom, this.data.childId)
+
+        let myparams = {
+          school: e.currentTarget.dataset.name,
+          schoolid: e.currentTarget.dataset.id,
+          city: e.currentTarget.dataset.city,
+          schoolType: e.currentTarget.dataset.city,
+        }
+        // 合并学校 
+        this.$storage.set('schoolinfo.schoolid', e.currentTarget.dataset.id);
         if (this.data.model.comefrom == 'parent') {
+          // 返回注册
           wx.redirectTo({
             url: '../register/info/p_info'
           });
+          // 教师
         } else if (this.data.model.comefrom == 'teacher') {
           wx.navigateBack({
           })
+          // 添加班级
         } else if (this.data.model.comefrom == 'addClass') {
           wx.redirectTo({
             url: '../course/t_add/class/create_class?refresh=no'
           });
+          // 
         } else if (this.data.model.comefrom == 'modifyChildInfo') {
           wx.redirectTo({
             url: '../mypage/modifyInformation/modifyInformation?id=' + this.data.childId + "&from=area",
@@ -94,14 +117,24 @@ class school extends EPage {
           //           wx.redirectTo({
         //   url: `../../../pages/mypage/editMyChild/editMyChild?avatar=${avatar}&childId=${this.data.childId}&manage=${'false'}`
         // })
+        // 修改学校
         } else if (this.data.model.comefrom == 'childMsg') {
+          // resultModel
+          this.$storage.set('resultModel', Object.assign(this.data.resultModel, myparams));
           wx.redirectTo({
-            url: '../editMyChild/editMyChild?childId=' + this.data.childId + "&from=area" + "&manage=" + 'false',
+            url: '/pages/mypage/editMyChild/editMyChild?childId=' + this.data.childId + "&from=area" + "&manage=" + 'false&isupdate=false',
           })
+          // 添加小孩
         } else if (this.data.model.comefrom == 'addChild') {
+          if (e.currentTarget.dataset.typecode==0){
+            this.$storage.set('schoolinfo.typecode', 2);
+          }
           wx.redirectTo({
-            url: '../../register/info/p_info?childId=' + this.data.childId + "&from=area",
+            url: '/pages/register/info/p_info?childId=' + this.data.childId + "&from=area",
           })
+          
+          // wx.navigateBack({
+          // })
         // 添加校内课程
         } else if (this.data.model.comefrom == 'changeschool') {
           wx.navigateBack({})
@@ -137,6 +170,8 @@ class school extends EPage {
             this.$storage.set('schoolinfo.schoolid', res.data.result.schoolId);
             this.$storage.set('schoolinfo.city', '自定义');
             this.$storage.set('schoolinfo.typecode', 0);
+
+
             if (this.data.model.comefrom == 'parent') {
               wx.redirectTo({
                 url: '../register/info/p_info'
@@ -156,18 +191,21 @@ class school extends EPage {
               wx.redirectTo({
                 url: '../personalInfo/personalInfo?comefrom=area',
               })
-              // wx.navigateBack({
-              // })
+              // 修改学校内容
             } else if (this.data.model.comefrom == 'childMsg') {
-              wx.redirectTo({
-                url: '../editMyChild/editMyChild?childId=' + this.data.childId + "&from=area",
-              })
+             wx.navigateBack({
+               delta: 1,
+             })
+              // 添加小孩
             } else if (this.data.model.comefrom == 'addChild') {
-              wx.redirectTo({
-                url: '../../register/info/p_info?childId=' + this.data.childId + "&from=area",
-              })
+              this.$storage.set('schoolinfo.typecode', 2);
+             wx.navigateBack({
+               delta: 1,
+             })
             } else if (this.data.model.comefrom == 'changeschool') {
-              wx.navigateBack({})
+              wx.navigateBack({
+                delta: 1,
+              })
             }
           }
         })

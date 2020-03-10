@@ -232,11 +232,13 @@ class watchTv extends EPage {
         }).then(async res => {
           if (res.data.errorCode == 0 && res.data.result) {
             let data = res.data.result;
+            console.log('视频',data)
             this.setData({
               videoId: data.list[0].id,   // 默认第一天视频的id
               orderNumber: obj.orderNumber,
               videoList: data.list,
             })
+            // 获取视频详情
             put(effects.getHotVideoDetails, { videoId: data.list[0].id, orderNumber: obj.orderNumber});
             // this.setData({
             //   title: data.info.title,

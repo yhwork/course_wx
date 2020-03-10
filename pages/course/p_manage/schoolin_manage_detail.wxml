@@ -11,7 +11,7 @@
 <view class="page">
 
 	<view class="top">
-		<view class="course_info">
+		<view class="course_info" wx:if='{{userInfo.role==0}}'>
 			<view class="course_info_item">
 				<text>学校名称:</text><text>{{courseMsg.schoolName}}</text>
 			</view>
@@ -19,7 +19,15 @@
 				<text>上课时间:</text><text>{{courseMsg.oneStartTime}}</text>
 			</view>
 			<view class="course_info_item">
-				<text>放学时间:</text><text>{{courseMsg.sixStartTime}}</text>
+				<text>放学时间:</text><text>{{courseMsg.fiveStartTime}}</text>
+			</view>
+		</view>
+    <view class="course_info" wx:else >
+			<view class="course_info_item">
+				<text>学校名称:</text><text>{{courseMsg.schoolName}}</text>
+			</view>
+			<view class="course_info_item">
+				<text>班级名称:</text><text>{{courseMsg.className}}</text>
 			</view>
 		</view>
 	</view>
@@ -41,8 +49,8 @@
 
 
 		<view class='tbody'>
-			<view class='tr' wx:for="{{courseTable}}" wx:for-item="item" wx:key="" wx:for-index="index">
-				<block wx:for="{{item}}" wx:for-item="item1" wx:key="" wx:for-index="index1">
+			<view class='tr' wx:for="{{courseTable}}" wx:for-item="item" wx:key="index" wx:for-index="index">
+				<block wx:for="{{item}}" wx:for-item="item1" wx:key="index1" wx:for-index="index1">
 					<block wx:if="{{index1==0}}">
 						<view class='td firstTd'  style="color:#EFCF0B;">{{item1.num+1}}</view>
 					</block>

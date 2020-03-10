@@ -23,7 +23,7 @@
 		}
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.10.0",
+	"libVersion": "2.10.2",
 	"appid": "wx8cc819faddd66ace",
 	"projectname": "%E6%9C%80%E6%96%B0%E5%B0%8F%E8%B1%86%E5%8C%85",
 	"cloudfunctionTemplateRoot": "",
@@ -85,7 +85,7 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 4,
 					"name": "班级圈",
 					"pathName": "pages/class/class",
 					"query": "",
@@ -365,10 +365,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "我的待付款订单详情",
-					"pathName": "pages/buyShop/page/orderDetail/orderDetail",
-					"query": "",
+					"id": 44,
+					"name": "我的订单",
+					"pathName": "pages/buyShop/page/mywaitPay/mywaitPay",
+					"query": "childId=101704&userId=105163&showIndex=1",
 					"scene": null
 				},
 				{
@@ -508,7 +508,7 @@
 					"id": 64,
 					"name": "添加课程（校内2）",
 					"pathName": "pages/course/p_add/schoolin_add2",
-					"query": "childId=100380&current=0",
+					"query": "school=%E4%B8%8A%E6%B5%B7%E5%B0%8F%E5%AD%A6&schoold=405490",
 					"scene": null
 				},
 				{
@@ -670,6 +670,69 @@
 					"name": "修改校内课程",
 					"pathName": "pages/course/p_manage/schoolin_manage_edit",
 					"query": "internalClassId=275",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "修改校内课程",
+					"pathName": "pages/course/p_manage/schoolin_manage_edit",
+					"query": "internalClassId=275",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "添加校内日程",
+					"pathName": "pages/course/p_add/schoolout_add1",
+					"query": "childId=101030&current=0",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "创建课表",
+					"pathName": "pages/register/info/p_info",
+					"query": "childId=101704",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "校内添加图片",
+					"pathName": "pages/course/p_add/schoolout_add1",
+					"query": "childId=102141&current=0",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "校内测试2",
+					"pathName": "pages/course/p_add/schoolin_add2",
+					"query": "school=as&schoold=405563",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "课程表(校外)",
+					"pathName": "pages/course/course",
+					"query": "current=1&childId=102184",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "修改校内课程",
+					"pathName": "pages/course/p_manage/schoolin_manage_edit",
+					"query": "internalClassId=446",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "日程表信息修改",
+					"pathName": "pages/mypage/editMyChild/editMyChild",
+					"query": "childId=101704&manage=false",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "个人信息",
+					"pathName": "pages/mypage/personalInfo/personalInfo",
+					"query": "manage=true",
 					"scene": null
 				}
 			]

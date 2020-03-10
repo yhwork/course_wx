@@ -40,7 +40,9 @@ const events = {
     getSchoolName:null,
     getisweek:null,
     CHOOSE_TAGS:null,
-    CHOOSE_ITEMS:null
+    CHOOSE_ITEMS:null,
+    quit:null,
+    bindChange1:null
   }
 }
 

@@ -19,7 +19,8 @@ const events = {
     courdetails:null,
     CANCEL_FOLLOW:null,
     scopeUserInfo:null,
-    changeMask:null
+    changeMask:null,
+    childdetails:null
   }
 }
 

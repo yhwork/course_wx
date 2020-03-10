@@ -10,7 +10,7 @@ import {
   events,
   effects,
   actions
-} from './course.eea'
+} from './course.eea';
 
 import moment from '../../lib/moment.min.js'
 
@@ -87,6 +87,7 @@ class CoursePage extends EPage {
       isSubmit: true,
       isList: true, // 日历界面
       current: '',  // 校内课还是校外课
+      mask:false,
       isback: false,
       productCourseId: "",
     };
@@ -113,14 +114,14 @@ class CoursePage extends EPage {
             btnclick: false,
           })
           // console.info('有小孩')
-          put(effects.GET_USER_INFO); // 获取用户信息
+          // put(effects.GET_USER_INFO); // 获取用户信息
         }else{
           console.info('莫有小孩')
           wx.getStorage({
             key: 'childId',
             success:(res)=>{
               this.setData({
-                childId: option.childId
+                childId: res.data
               })
             },
             fail:(res)=>{
@@ -134,7 +135,7 @@ class CoursePage extends EPage {
             },
             complete: function(res) {},
           })
-          put(effects.GET_USER_INFO); // 获取用户信
+          // put(effects.GET_USER_INFO); // 获取用户信
         }
         if (option.isback) {
           this.setData({
@@ -159,7 +160,6 @@ class CoursePage extends EPage {
               let childId = this.data.childId
               if (childList && childId){
                let data =  childList.filter(res=>childId == res.childId)
-              //  console.log('是否一样',data,childId)
                 this.setData({
                   'model.childId': data[0].childId
                 })
@@ -168,12 +168,13 @@ class CoursePage extends EPage {
                   'model.childId': res.data.result.childList[0].childId
                 })
               }
-             
-              if (option.current == 0) {
-                put(effects.GET_USER_INFO); // 获取用户信息
-              } else {
-                put(effects.GET_USER_INFO); // 获取用户信息
-              }
+              // 获取周信息
+              put(effects.GET_WEEK_LESSON)
+              // if (option.current == 0) {
+                // put(effects.GET_USER_INFO); // 获取用户信息
+              // } else {
+                // put(effects.GET_USER_INFO); // 获取用户信息
+              // }
             })
         }
         if (option.productId != undefined || option.courseId != undefined || option.current != undefined || option.productCourseId != undefined || option.childId != undefined) {
@@ -221,9 +222,8 @@ class CoursePage extends EPage {
 
         wx.hideShareMenu();
       },
-
       [PAGE_LIFE.ON_SHOW]() {
-        // console.log('值');
+        console.log('页面显示',this.data.lessons);
         this.setData({
           btnclick: false,
         })
@@ -231,7 +231,7 @@ class CoursePage extends EPage {
         this.$common.checkAuth1().then(
           (res) => {
             if (res.authSetting['scope.userInfo']) {
-              put(effects.GET_USER_INFO);
+              // put(effects.GET_USER_INFO);
               this.$api.child.get().then(
                 res => {
                   this.setData({
@@ -242,7 +242,7 @@ class CoursePage extends EPage {
             }
           }
         )
-
+         put(effects.GET_USER_INFO); // 获取用户信息
         // data = "{{lessons}}" dataLesson = "{{dayLessons}}" childId = "{{model.childId}}" date = "{{model.currentDate}}"
 
         // put(effects.GET_USER_INFO);
@@ -309,7 +309,8 @@ class CoursePage extends EPage {
       // 关闭日历
       [events.ui.quit](){
         this.setData({
-          showCalendar:false
+          showCalendar:false,
+          mask:false,
         })
       },
       // 没有课程添加课程
@@ -464,44 +465,44 @@ class CoursePage extends EPage {
           url: `./p_manage/schoolout_manage?childId=${this.data.model.childId}`
         })
       },
-      //切换头像
-      [events.ui.CHANGE_LOGO](e) {
-        this.setData({
-          loadChildAll: true
-        });
-        put(effects.LOAD_CHILDALL);
-      },
-      //选择孩子
-      [events.ui.CHOOSE_CHILD](e) {
-        var a = e.currentTarget.dataset.id
-        this.setData({
-          'model.childId': a,
-          childId: a,
-          loadChildAll: false
-        });
-        wx.setStorage({
-          key: 'childId',
-          data: a,
-          success: (res) => {
-            put(effects.GET_CHILD);
-            put(effects.GET_MONTH_LESSON_NUM) // 更多日历
-            put(effects.loadCourseTimelist) // 更多的信息
-          },
-          fail: function(res) {
-            put(effects.GET_MONTH_LESSON_NUM) // 更多日历
-            put(effects.GET_CHILD);
-            put(effects.loadCourseTimelist)   // 更多的信息
-          },
+      // //切换头像
+      // [events.ui.CHANGE_LOGO](e) {
+      //   this.setData({
+      //     loadChildAll: true
+      //   });
+      //   put(effects.LOAD_CHILDALL);
+      // },
+      // //选择孩子
+      // [events.ui.CHOOSE_CHILD](e) {
+      //   var a = e.currentTarget.dataset.id
+      //   this.setData({
+      //     'model.childId': a,
+      //     childId: a,
+      //     loadChildAll: false
+      //   });
+      //   wx.setStorage({
+      //     key: 'childId',
+      //     data: a,
+      //     success: (res) => {
+      //       put(effects.GET_CHILD);
+      //       put(effects.GET_MONTH_LESSON_NUM) // 更多日历
+      //       put(effects.loadCourseTimelist) // 更多的信息
+      //     },
+      //     fail: function(res) {
+      //       put(effects.GET_MONTH_LESSON_NUM) // 更多日历
+      //       put(effects.GET_CHILD);
+      //       put(effects.loadCourseTimelist)   // 更多的信息
+      //     },
 
-        })
-        this.setData({
-          childId: a
-        })
-        console.log('choose_child', e.currentTarget.dataset.id)
-        // put(effects.GET_DAY_LESSON);
-        put(effects.GET_CHILD);
-        put(effects.loadCourseTimelist) // 更多的信息
-      },
+      //   })
+      //   this.setData({
+      //     childId: a
+      //   })
+      //   console.log('choose_child', e.currentTarget.dataset.id)
+      //   // put(effects.GET_DAY_LESSON);
+      //   put(effects.GET_CHILD);
+      //   put(effects.loadCourseTimelist) // 更多的信息
+      // },
       //添加课程
       [events.ui.ADD_COURSE](e) {
         wx.navigateTo({
@@ -510,6 +511,7 @@ class CoursePage extends EPage {
       },
       //课程左右滑动
       [events.ui.TIMETABLE_DATE_CHANGED](e) {
+       
         const currentDate = moment().add(e.detail.diff, 'weeks').format('YYYY-MM-DD');
         if (this.data.model.comefrom == '') {
           this.setData({
@@ -520,7 +522,7 @@ class CoursePage extends EPage {
           'model.diff': e.detail.diff,
           'model.comefrom': ''
         })
-
+        console.log('左滑右滑', currentDate, e.detail.diff)
         if (!this.$common.isBlank(this.data.model.childId)) {
           put(effects.GET_WEEK_LESSON);
         } else {
@@ -541,7 +543,8 @@ class CoursePage extends EPage {
       //点击日期
       [events.ui.SHOW_CALENDAR](e) {
         this.setData({
-          showCalendar: true
+          showCalendar: true,
+          mask:true
         })
 
         put(effects.GET_MONTH_LESSON_NUM);
@@ -553,7 +556,8 @@ class CoursePage extends EPage {
         this.setData({
           'model.currentDate': currentDate,
           'model.comefrom': 1,
-          showCalendar: false
+           showCalendar: false,    // 关闭日历
+           mask:false,
         })
         console.log('选择的日期', currentDate);
         put(effects.GET_DAY_LESSON);
@@ -614,6 +618,7 @@ class CoursePage extends EPage {
                 wx.setNavigationBarTitle({
                   title: '课程表（教师端）',
                 })
+                put(effects.GET_CHILD);
                 // 直接获取列表
                 put(effects.loadCourseTimelist) // 更多日程
                 put(effects.GET_MONTH_LESSON_NUM) // 更多日历
@@ -797,39 +802,47 @@ class CoursePage extends EPage {
           childId: this.data.model.childId,
           diff: this.data.model.diff,
         }
-        console.log('日历表参数', params, current)
+        // console.log('日历表参数', params, current)
         if (current == 0){
           api.course.loadInternalCourseListByWeek(params).then(
             (res) => {
               if (res.data.errorCode == 0) {
                 const rs = res.data.result;
-                rs.forEach(
-                  (item) => {
-                    item.date = moment(item.startTime).unix()
-                    item.beginTime = moment(item.startTime, 'YYYY-MM-DD HH:mm').format('HH:mm')
-                    item.endTime = moment(item.endTime, 'YYYY-MM-DD HH:mm').format('HH:mm')
-                    // console.log(item.name.march(/^[a-z]*|[A-Z]*$/g))
-                    let re1 = new RegExp("^[\u4e00-\u9fa5]");
-                    let re2 = new RegExp("^[a-zA-Z]+$");
-                    if (re1.test(item.name)) {
-                      item.name = item.name.substring(0, 4)
-                    } else if (re2.test(item.name)) {
-                      item.name = item.name.substring(0, 8)
-                    } else {
-                      item.name = item.name.substring(0, 4)
+                if (rs.length>0){
+                  rs.forEach(
+                    (item) => {
+                      item.date = moment(item.startTime).unix()
+                      item.beginTime = moment(item.startTime, 'YYYY-MM-DD HH:mm').format('HH:mm')
+                      item.endTime = moment(item.endTime, 'YYYY-MM-DD HH:mm').format('HH:mm')
+                      // console.log(item.name.march(/^[a-z]*|[A-Z]*$/g))
+                      let re1 = new RegExp("^[\u4e00-\u9fa5]");
+                      let re2 = new RegExp("^[a-zA-Z]+$");
+                      if (re1.test(item.name)) {
+                        item.name = item.name.substring(0, 4)
+                      } else if (re2.test(item.name)) {
+                        item.name = item.name.substring(0, 8)
+                      } else {
+                        item.name = item.name.substring(0, 4)
+                      }
+                      if (re1.test(item.schoolName)) {
+                        item.schoolName = item.schoolName.substring(0, 4)
+                      } else if (re2.test(item.schoolName)) {
+                        item.schoolName = item.schoolName.substring(0, 8)
+                      } else {
+                        item.schoolName = item.schoolName.substring(0, 4)
+                      }
                     }
-                    if (re1.test(item.schoolName)) {
-                      item.schoolName = item.schoolName.substring(0, 4)
-                    } else if (re2.test(item.schoolName)) {
-                      item.schoolName = item.schoolName.substring(0, 8)
-                    } else {
-                      item.schoolName = item.schoolName.substring(0, 4)
-                    }
-                  }
-                )
-                this.setData({
-                  lessons: rs
-                });
+                  )
+                  this.setData({
+                    lessons: rs
+                  });
+                }else{
+                  this.setData({
+                    lessons: []
+                  });
+                }
+                
+               
               } else if (res.data.errorCode == 100006) {
                 this.setData({
                   lessons: []
@@ -844,33 +857,39 @@ class CoursePage extends EPage {
             (res) => {
               if (res.data.errorCode == 0) {
                 const rs = res.data.result;
-                rs.forEach(
-                  (item) => {
-                    item.date = moment(item.startTime).unix()
-                    item.beginTime = moment(item.startTime, 'YYYY-MM-DD HH:mm').format('HH:mm')
-                    item.endTime = moment(item.endTime, 'YYYY-MM-DD HH:mm').format('HH:mm')
-                    // console.log(item.name.march(/^[a-z]*|[A-Z]*$/g))
-                    let re1 = new RegExp("^[\u4e00-\u9fa5]");
-                    let re2 = new RegExp("^[a-zA-Z]+$");
-                    if (re1.test(item.name)) {
-                      item.name = item.name.substring(0, 4)
-                    } else if (re2.test(item.name)) {
-                      item.name = item.name.substring(0, 8)
-                    } else {
-                      item.name = item.name.substring(0, 4)
+                if (rs.length>0){
+                  rs.forEach(
+                    (item) => {
+                      item.date = moment(item.startTime).unix()
+                      item.beginTime = moment(item.startTime, 'YYYY-MM-DD HH:mm').format('HH:mm')
+                      item.endTime = moment(item.endTime, 'YYYY-MM-DD HH:mm').format('HH:mm')
+                      // console.log(item.name.march(/^[a-z]*|[A-Z]*$/g))
+                      let re1 = new RegExp("^[\u4e00-\u9fa5]");
+                      let re2 = new RegExp("^[a-zA-Z]+$");
+                      if (re1.test(item.name)) {
+                        item.name = item.name.substring(0, 4)
+                      } else if (re2.test(item.name)) {
+                        item.name = item.name.substring(0, 8)
+                      } else {
+                        item.name = item.name.substring(0, 4)
+                      }
+                      if (re1.test(item.schoolName)) {
+                        item.schoolName = item.schoolName.substring(0, 4)
+                      } else if (re2.test(item.schoolName)) {
+                        item.schoolName = item.schoolName.substring(0, 8)
+                      } else {
+                        item.schoolName = item.schoolName.substring(0, 4)
+                      }
                     }
-                    if (re1.test(item.schoolName)) {
-                      item.schoolName = item.schoolName.substring(0, 4)
-                    } else if (re2.test(item.schoolName)) {
-                      item.schoolName = item.schoolName.substring(0, 8)
-                    } else {
-                      item.schoolName = item.schoolName.substring(0, 4)
-                    }
-                  }
-                )
-                this.setData({
-                  lessons: rs
-                });
+                  )
+                  this.setData({
+                    lessons: rs
+                  });
+                }else{
+                  this.setData({
+                    lessons:[]
+                  });
+                }
               } else if (res.data.errorCode == 100006) {
                 this.setData({
                   lessons: []
@@ -886,33 +905,40 @@ class CoursePage extends EPage {
               console.log('教师端一周',res.data.result)
               if (res.data.errorCode == 0) {
                 const rs = res.data.result;
-                rs.forEach(
-                  (item) => {
-                    item.date = moment(item.startTime).unix()
-                    item.beginTime = moment(item.startTime, 'YYYY-MM-DD HH:mm').format('HH:mm')
-                    item.endTime = moment(item.endTime, 'YYYY-MM-DD HH:mm').format('HH:mm')
-                    // console.log(item.name.march(/^[a-z]*|[A-Z]*$/g))
-                    let re1 = new RegExp("^[\u4e00-\u9fa5]");
-                    let re2 = new RegExp("^[a-zA-Z]+$");
-                    if (re1.test(item.name)) {
-                      item.name = item.name.substring(0, 4)
-                    } else if (re2.test(item.name)) {
-                      item.name = item.name.substring(0, 8)
-                    } else {
-                      item.name = item.name.substring(0, 4)
+                if(rs.length>0){
+                  rs.forEach(
+                    (item) => {
+                      item.date = moment(item.startTime).unix()
+                      item.beginTime = moment(item.startTime, 'YYYY-MM-DD HH:mm').format('HH:mm')
+                      item.endTime = moment(item.endTime, 'YYYY-MM-DD HH:mm').format('HH:mm')
+                      // console.log(item.name.march(/^[a-z]*|[A-Z]*$/g))
+                      let re1 = new RegExp("^[\u4e00-\u9fa5]");
+                      let re2 = new RegExp("^[a-zA-Z]+$");
+                      if (re1.test(item.name)) {
+                        item.name = item.name.substring(0, 4)
+                      } else if (re2.test(item.name)) {
+                        item.name = item.name.substring(0, 8)
+                      } else {
+                        item.name = item.name.substring(0, 4)
+                      }
+                      if (re1.test(item.schoolName)) {
+                        item.schoolName = item.schoolName.substring(0, 4)
+                      } else if (re2.test(item.schoolName)) {
+                        item.schoolName = item.schoolName.substring(0, 8)
+                      } else {
+                        item.schoolName = item.schoolName.substring(0, 4)
+                      }
                     }
-                    if (re1.test(item.schoolName)) {
-                      item.schoolName = item.schoolName.substring(0, 4)
-                    } else if (re2.test(item.schoolName)) {
-                      item.schoolName = item.schoolName.substring(0, 8)
-                    } else {
-                      item.schoolName = item.schoolName.substring(0, 4)
-                    }
-                  }
-                )
-                this.setData({
-                  lessons: rs
-                });
+                  )
+                  this.setData({
+                    lessons: rs
+                  });
+                }else{
+                  this.setData({
+                    lessons:[]
+                  })
+                }
+
               } else if (res.data.errorCode == 100006) {
                 this.setData({
                   lessons: []
@@ -923,6 +949,8 @@ class CoursePage extends EPage {
             (rej) => { }
           )
         }
+
+        console.log('一周的校内课',this.data.lessons)
       },
 
       // 更多的课节信息
@@ -954,7 +982,8 @@ class CoursePage extends EPage {
                 })
               }else{
                 this.setData({
-                  morelessons: []
+                  morelessons: [],
+                  lessons: []
                 })
               }
                console.log('课表1',  this.data.morelessons)
@@ -971,7 +1000,8 @@ class CoursePage extends EPage {
                 })
               } else {
                 this.setData({
-                  morelessons: []
+                  morelessons: [],
+                  lessons: []
                 })
                
               }
@@ -999,8 +1029,13 @@ class CoursePage extends EPage {
                 this.setData({
                   morelessons: res.data.result.splice(0, 20)
                 })
+              } else {
+                this.setData({
+                  morelessons: [],
+                  lessons:[]
+                })
               }
-              console.log('老师校内外课表', this.data.morelessons)
+              console.log('老师校内外课表', this.data.morelessons,'校内一周课表', this.data.lessons)
             })
           } else {
             api.course.loadCourseTimelist({}).then((res) => {
@@ -1009,6 +1044,10 @@ class CoursePage extends EPage {
                 put(effects.GET_WEEK_LESSON);
                 this.setData({
                   morelessons: res.data.result.splice(0, 20)
+                })
+              } else {
+                this.setData({
+                  morelessons: []
                 })
               }
               console.log('老师更多课表', this.data.morelessons)

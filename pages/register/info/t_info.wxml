@@ -27,7 +27,7 @@
           <text class='name' style="font-size:28rpx;">姓 <text decode="{{true}}" space="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>名</text>
           <text style="margin-left: 10rpx;font-size:30rpx;color:#ef5955;">*</text>
         </view>
-        <input type="text" class="weui-cell__ft" placeholder="请填写" bindblur="CHANGE_NAME" value="{{model.name}}" />
+        <input type="text" class="weui-cell__ft" style="font-size:28rpx;"  placeholder="请填写" bindblur="CHANGE_NAME" value="{{model.name}}" />
       </view>
 
       <block wx:if="{{model.type==2}}">
@@ -36,7 +36,7 @@
             <text style="font-size:28rpx;">教学机构</text>
             <text style="margin-left: 10rpx;font-size:30rpx;color:#ef5955;">*</text>
           </view>
-          <input type="text" class="weui-cell__ft" placeholder="请输入机构名称" bindblur="CHANGE_SCHOOLNAME" value="{{model.schoolname}}" />
+          <input type="text" class="weui-cell__ft" style="font-size:28rpx;"  placeholder="请输入机构名称" bindblur="CHANGE_SCHOOLNAME" value="{{model.schoolname}}" />
         </view>
       </block>
       <block wx:else>
@@ -46,7 +46,7 @@
             <text style="margin-left: 10rpx;font-size:30rpx;color:#ef5955;">*</text>
 
           </view>
-          <navigator url="../../mypage/school/school?comefrom=teacher">
+          <navigator url="/pages/mydemo/pages/school/school?comefrom=teacher">
             <view class="weui-cell__bd">
               <view class="weui-select weui-select_in-select-after .weui-cell__ft shoose {{school_selected?'selected':''}}">
                 {{model.schoolname ? model.schoolname : '请选择学校'}}</view>
@@ -64,7 +64,7 @@
 
         <navigator url="../../category/category">
           <view class="weui-cell__bd">
-            <view class="weui-select weui-select_in-select-after .weui-cell__ft shoose">
+            <view class="weui-select weui-select_in-select-after .weui-cell__ft shoose selected">
               {{model.subject ? model.subject : '请选择科目'}}</view>
           </view>
         </navigator>

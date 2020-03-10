@@ -1,14 +1,21 @@
 @import "../p_manage/schoolin_manage_edit.wxss";
 @import "./schoolout_add2.wxss";
 
+
+.showalert{
+  font-size: 20rpx;
+  color: rgb(158, 41, 47);
+  display: flex;
+  box-sizing: border-box;
+  padding: 30rpx;
+  justify-content: flex-start;
+}
 .page__bd_main {
   background: white;
   display: flex;
-  /* height: 56rpx; */
-  /* border: 1px solid red; */
+  /* flex-direction: column; */
   position: relative;
   font-size: 28rpx;
-
   align-items: center;
   font-family: PingFang SC;
   font-weight: 500;
@@ -17,7 +24,7 @@
 .page .close{
   position: relative;
   z-index: 99;
-  top:400rpx;
+  top:600rpx;
   width: 70rpx;
   height: 70rpx;
 }
@@ -30,8 +37,12 @@
   width: 100%;
   /* padding-top: 15rpx; */
 }
+.page__bd_main:last-child{
+  margin-bottom: 40rpx;
+}
 .add_padding {
-  padding: 15rpx 35rpx;
+  margin-top: 40rpx;
+  padding: 0rpx 35rpx;
   display: flex;
   align-items: center;
 }
@@ -218,6 +229,7 @@
 
 .schoolin_class_info {
   position: relative;
+  left: -55rpx;
 }
 
 .ma-top {

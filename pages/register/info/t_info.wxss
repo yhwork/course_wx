@@ -108,7 +108,7 @@ button {
 
 
 .radio {
-  margin-left: 60rpx;
+  margin-left: 20rpx;
 }
 
 .weui-select {

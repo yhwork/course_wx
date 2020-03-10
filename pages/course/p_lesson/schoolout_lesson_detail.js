@@ -209,9 +209,14 @@ class SchooloutLessonDetailPage extends EPage {
     return {
       // 保存修改时间
       [events.ui.SAVE_NEXT](e) {
-      
         const model = this.data.model
-        model.type=2  // 调课
+        // model.type=2  // 调课
+        // 判断是调课还是补课
+        // if (model.type==2){
+
+        // }else{
+
+        // }
         model.startTime = this.data.lessonInfo.beginDate + ' ' + this.data.lessonInfo.beginTime
         model.endTime = this.data.lessonInfo.endDate + ' ' + this.data.lessonInfo.endTime
         console.log(model);
@@ -228,6 +233,10 @@ class SchooloutLessonDetailPage extends EPage {
                 mask: true,
                 'course.update': true,
               })
+
+              put(effects.GET_CHILD);
+              //获取用户信息
+              put(effects.GET_USER_INFO);
               // this.$storage.set('childId',model.childId)
               // wx.navigateBack({
               //   delta: 1, // 返回上一级
@@ -371,18 +380,26 @@ class SchooloutLessonDetailPage extends EPage {
           this.setData({
             'course.update': false,
              mask: false,
+            'model.type': 2
           })
           console.log(this.data.model,this.data.lessonInfo)
           // wx.redirectTo({
           //   url: './schoolout_lesson_change?childId=' + this.data.model.childId + '&lessonId=' + this.data.model.lessonId + '&type=2&source=' + this.data.model.source
           // })
+       
         }
       },
       //补课
       [events.ui.OPE_REMEDIAL](e) {
         if (this.data.editpower == 'true') {
-          wx.redirectTo({
-            url: './schoolout_lesson_change?childId=' + this.data.model.childId + '&lessonId=' + this.data.model.lessonId + '&type=3'
+          // wx.redirectTo({
+          //   url: './schoolout_lesson_change?childId=' + this.data.model.childId + '&lessonId=' + this.data.model.lessonId + '&type=3'
+          // })
+
+          this.setData({
+            'course.update': false,
+            mask: false,
+            'model.type': 3
           })
         }
 
