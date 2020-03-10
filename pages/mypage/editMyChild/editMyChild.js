@@ -217,6 +217,7 @@ class editMyChildPage extends EPage {
       },
       // 分享
       [PAGE_LIFE.ON_SHARE_APP_MESSAGE](e) {
+      
         this.setData({
           shareHide: true
         });
