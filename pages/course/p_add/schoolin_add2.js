@@ -47,7 +47,7 @@ class SchoolinAdd2Page extends EPage {
       model: {
         //  moment().format('YYYY-MM-DD')
         startDate:'',
-        // moment().add(126, 'day').format('YYYY-MM-DD')
+        childId: wx.getStorageSync('childId'),
         endDate: '',
         oneStartTime: '',
         twoStartTime: '',
@@ -144,11 +144,12 @@ class SchoolinAdd2Page extends EPage {
         put(effects.UPDATE_WEEKDAY);
         this.$storage.get('childInfo').then(
           (res) => {
-            this.setData({
-              childInfo: res.data,
-              'model.childId': res.data.childId
-
-            })
+            if(res.data){
+              this.setData({
+                childInfo: res.data,
+                'model.childId': res.data.childId
+              })
+            }
             // console.log(this.data.childInfo)
             put(effects.GET_CHILD);
           },
@@ -225,6 +226,16 @@ class SchoolinAdd2Page extends EPage {
             })
           },
           (rej) => {}
+        )
+        this.$storage.get('childId').then(
+          (res) => {
+            if(res.data){
+              this.setData({
+                'model.childId': res.data
+              })
+            }
+          },
+          (rej) => { }
         )
       }
     }

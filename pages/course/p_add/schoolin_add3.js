@@ -26,7 +26,8 @@ class SchoolinAdd3Page extends EPage {
       },
       userInfo:{
         role:0
-      }
+      },
+      share_img:''
     };
   }
 
@@ -37,7 +38,7 @@ class SchoolinAdd3Page extends EPage {
       [PAGE_LIFE.ON_LOAD](option) {
         this.setData({
           // img: this.$api.extparam.getPageImgUrl('newcourse')
-          img: 'https://qa.oss.iforbao.com/public/assets/local/share_course.png'
+          share_img: 'https://qa.oss.iforbao.com/public/assets/local/share_course.png'
         })
         console.log(option)
 
@@ -53,8 +54,9 @@ class SchoolinAdd3Page extends EPage {
           'schoolInfo': option,
           'schoold': option.schoold
         })
-        // console.log(this.data.schoolInfo)
-        // console.log(this.data.schoold)
+       this.setData({
+         'model.childId': wx.getStorageSync('childId')
+       })
       },
       [PAGE_LIFE.ON_SHOW]() {
         this.$storage.get('schoolinfo.name').then(
@@ -107,7 +109,7 @@ class SchoolinAdd3Page extends EPage {
             this.setData({
               model: res.data
             })
-            console.log(this.data.model)
+            console.log('获取model',this.data.model)
           },
           (rej) => {}
         )
@@ -242,25 +244,25 @@ class SchoolinAdd3Page extends EPage {
           shortCode,
           imageUrl
         } = this.data;
-        console.log(this.data, shortCode)
+        console.log('图片',imageUrl,'码', shortCode)
         if (from === 'button') {
           return {
             title: `[${userInfo.nickName}@您]给您分享了校内课程，点击加入自己的课表`,
             path: `/pages/course/courseList/courseList?action=share&code=${shortCode}`,
-            imageUrl: imageUrl,
+            imageUrl: this.data.share_img,
             success: (res) => {
               console.log('fenxiang')
               this.$common.showToast('分享成功', 'success')
               setTimeout(function() {
                 wx.switchTab({
-                  url: '../course'
+                  url: '/pages/course/courseList/courseList'
                 })
-              }, 1500)
+              }, 1000)
             },
             file: (res) => {
               setTimeout(function() {
                 wx.switchTab({
-                  url: '../course'
+                  url: '/pages/course/courseList/courseList'
                 })
               }, 1000)
             }
@@ -269,7 +271,7 @@ class SchoolinAdd3Page extends EPage {
         return {
           title: `[${userInfo.nickName}@您]分享了小豆包课程表`,
           path: '/pages/course/course',
-          imageUrl: '/assets/img/share.jpg'
+          imageUrl: this.data.share_img
         }
       }
     }
@@ -286,7 +288,6 @@ class SchoolinAdd3Page extends EPage {
         this.setData({
           iptHide: true
         })
-
         const childId = this.data.model.childId;
         console.log('小孩子id', childId)
         this.setData({

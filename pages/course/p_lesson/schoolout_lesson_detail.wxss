@@ -148,7 +148,7 @@
 }
 
 .bottom_b {
-  padding-top: 6rpx;
+  /* padding-top: 6rpx; */
   font-size: 20rpx;
   font-family: PingFang SC;
   font-weight: 400;
@@ -521,7 +521,23 @@ color:rgba(14,5,10,1);
   height: 90rpx;
   margin-right: 20rpx;
 }
-
+.sharebtn{
+  display: flex;
+  flex-direction: column;
+  height: 82rpx;
+  padding: 5rpx;
+  box-sizing: border-box;
+}
+.b button{
+  background: #fff !important;
+  line-height: 2
+}
+.bottom_s{
+  color: #EFCF0B;
+  display: flex;
+  font-size: 20rpx;
+  height: 28rpx;
+}
 button {
   background: #fff;
   color: #222;

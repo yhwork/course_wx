@@ -165,7 +165,7 @@
   <view class='sharefrends' hidden='{{iptHide}}' catchtouchmove="ture">
     <view class='mb'>
       <image class='del' bindtap='delShare' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/delete_in.png'></image>
-      <image class='img' src='{{img}}'></image>
+      <image class='img' src='{{share_img}}'></image>
       <button open-type='share'>立即分享赢积分</button>
     </view>
   </view>

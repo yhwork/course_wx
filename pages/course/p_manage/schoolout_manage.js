@@ -66,7 +66,9 @@ class SchooloutManagePage extends EPage {
         isdata: true,
         name: '暂时没有课程哦',
         btn: '创建课程'
-      }
+      },
+      share_img:'',
+      share_index:0
     };
   }
 
@@ -93,6 +95,10 @@ class SchooloutManagePage extends EPage {
 
       },
       [PAGE_LIFE.ON_LOAD](option) {
+        this.setData({
+          // img : this.$api.extparam.getPageImgUrl('newcourse')
+          share_img: '/assets/local/share_course1.png'
+        })
         console.log('值', option)
         put(effects.GET_USER_INFO);
         wx.hideShareMenu();
@@ -177,6 +183,7 @@ class SchooloutManagePage extends EPage {
             console.log('获取课程',this.data.activeIndexSub)
             put(effects.LOAD_COURSE)
             put(effects.LOAD_COURSE_NUM);
+           
           },
           
         })
@@ -205,23 +212,27 @@ class SchooloutManagePage extends EPage {
           userInfo
         } = this.data;
         if (from === 'button') {
+
+          console.log('校外分享')
           if (this.data.activeIndex == 1) {
             return {
               title: `[${userInfo.nickName}@您]给您分享了${shareInfo.orgName}《${shareInfo.name}》课程，点击加入课表`,
               path: `/pages/course/courseList/courseList?action=share&code=${shareInfo.shortCode}`,
-              imageUrl: `${shareInfo.imageUrl}`,
+              imageUrl: this.data.share_img,
               success: (res) => {
                 this.$common.showToast('分享成功', 'success')
-              }
+              },
             }
           } else {
+            console.log('校内分享')
             return {
               title: `[${userInfo.nickName}@您]给您分享了校内课程，点击加入自己的课表`,
               path: `/pages/course/courseList/courseList?action=share&code=${this.data.shortCode}`,
-              imageUrl: `${this.data.imageUrl}`,
+              imageUrl: `${this.data.share_img}`,
               success: (res) => {
                 this.$common.showToast('分享成功', 'success')
-              }
+              },
+              
             }
           }
 
@@ -229,7 +240,7 @@ class SchooloutManagePage extends EPage {
         return {
           title: `[${userInfo.nickName}@您]分享了小豆包课程表`,
           path: '/pages/course/courseList/courseList',
-          imageUrl: '/assets/img/share.jpg'
+          imageUrl: this.data.share_img
         }
       }
     }
@@ -547,6 +558,28 @@ class SchooloutManagePage extends EPage {
           url: './schoolout_manage_checkwork?childId=' + this.data.model.childId + '&courseId=' + courseId
         })
       },
+      [events.ui.GETSHOW_SHAR](e) {
+          // 校内
+        if (this.data.activeIndex == 0) {
+          let share_index = e.currentTarget.dataset.id;
+          this.setData({
+            share_index
+          })
+          console.log('校内分享', share_index)
+          put(effects.GETSHARE_INFO, share_index);
+          // 校外
+        }else{
+          let share_index = e.currentTarget.dataset.index;
+          this.setData({
+            share_index
+          })
+          console.log('校外分享', share_index)
+          put(effects.GETSHARE_INFO, share_index);
+        }
+        this.setData({
+          shareHide: false,
+        })
+      },
       //显示分享遮罩层
       [events.ui.SHOW_SHARE](e) {
 
@@ -591,7 +624,6 @@ class SchooloutManagePage extends EPage {
                         'internalClassId': this.data.shareInfo.internalClassId,
                         'shortCode': res.data.result.shortCode
                       };
-
                       // console.log(param1)
                       this.$api.user.shareInfoRecord(param1).then(
                         (res) => {
@@ -606,7 +638,6 @@ class SchooloutManagePage extends EPage {
                               shareHide: false,
                               imageUrl: imageUrl
                             });
-                            wx.hideLoading()
                             wx.showToast({
                               title: '生成成功',
                               icon: 'success',
@@ -614,7 +645,6 @@ class SchooloutManagePage extends EPage {
                               mask: true,
                             })
                           });
-                          // console.log(_this.data.shareInfo)
                         })
                     } else {
                       this.$common.showMessage(this, res.data.errorMessage);
@@ -704,6 +734,89 @@ class SchooloutManagePage extends EPage {
     const api = this.$api;
     const common = this.$common;
     return {
+      // 分享
+      [effects.GETSHARE_INFO](e){
+            //先看是否相同的code嘛，在根据传值  button  异步请求分享
+            if (this.data.activeIndex == 0) {
+              // 校内
+              let shareInfo = {}
+              shareInfo = this.data.courseList[0];
+              if (this.data.role == 0) {
+                const param = {};
+                param.dataType = 6;
+                param.data = {
+                  'internalClassId':e
+                };
+                let _this = this
+               
+                this.$api.user.shareInfoRecord(param).then(
+                  (res) => {
+                    console.log(res)
+                    if (res.data.errorCode == '0') {
+                      const param1 = {};
+                      param1.dataType = 6;
+                      param1.data = {
+                        'internalClassId':e,
+                        'shortCode': res.data.result.shortCode
+                      };
+                      console.log('分享参数1', param1)
+                     
+                      this.$api.user.shareInfoRecord(param1).then(
+                        (res) => {
+                          shareInfo.shortCode = res.data.result.shortCode;
+                          console.log('分享参数2', shareInfo)
+                          this.setData({
+                            shortCode: res.data.result.shortCode,
+                            shareInfo: shareInfo
+                          })
+                        })
+                    } else {
+                      this.$common.showMessage(this, res.data.errorMessage);
+                      return;
+                    }
+                  }
+                )
+              }
+            } else {
+             //  校外 
+              let shareInfo = {}
+              console.log(this.data.courseList)
+              shareInfo = this.data.courseList[e];
+              // shareInfo.imageUrl = res.path;
+              const param = {};
+              param.dataType = 1;
+              param.data = {
+                'courseId': shareInfo.id
+              };
+              this.$api.user.shareInfoRecord(param).then(
+                (res) => {
+                  if (res.data.errorCode == '0') {
+                    const param1 = {};
+                    param1.dataType = 0;
+                    param1.data = {
+                      'courseId': shareInfo.id,
+                      'target': 'course',
+                      'shortCode': res.data.result.shortCode,
+
+                    };
+                    console.log('第一次code', param1)
+                    this.$api.user.shareInfoRecord(param1).then(
+                      (res) => {
+                        shareInfo.shortCode = res.data.result.shortCode;
+                        console.log('第二次code',shareInfo)
+                        this.setData({
+                          shareInfo:shareInfo
+                        })
+                      }
+                    )
+                  } else {
+                    this.$common.showMessage(this, res.data.errorMessage);
+                    return;
+                  }
+                }
+              )
+            }
+      },
       // 删除
       [effects.delInternalCourseImg](data) {
         console.log('参数为', data)
@@ -844,6 +957,7 @@ class SchooloutManagePage extends EPage {
                 })
                 console.log('课程', this.data.courseList)
               }
+             
             },
             (rej) => { }
           )
@@ -870,12 +984,6 @@ class SchooloutManagePage extends EPage {
                   this.setData({
                     courseList: []
                   })
-
-
-                  // 
-                  // wx.reLaunch({
-                  //   url: '/pages/course/courseList/courseList?childId=' + this.data.childId,
-                  // })
                 }
 
               },
@@ -918,6 +1026,7 @@ class SchooloutManagePage extends EPage {
           }
 
         }
+       
       },
 
       //课程数量

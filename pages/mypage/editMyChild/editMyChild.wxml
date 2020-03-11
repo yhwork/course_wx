@@ -103,26 +103,10 @@
         <text>保存</text>
       </view>
     </view>
-    <!-- 共享 -->
-    <view wx:if='{{manage == "true"}}' class="btns">
-      <view wx:if='{{userEdit=="true"}}' class='edit_footer_center'>
-       <button open-type="share" >
-         <text>共享日程表</text>
-       </button>
-      </view>
-      <view wx:else class='edit_footer_center'>
-        <text>共享日程表</text>
-      </view>
-    </view>
-  </view>
-  <view>
-
+    <!-- 管理共享人 -->
+      <view>
     <!-- 第二组 -->
-    <view class='info_header_wrapper'>
-      <!-- list s -->
-      <view class='info_lists_wrap'>
-        <view wx:if='{{relationList}}' class='info_lists'>
-          <view>共享管理</view>
+        <view wx:if='{{relationList && manage=="true"  }}' class='info_listss'>
           <view class='info_lists_li'>
             <view class='info_lists_li_title'>共享人</view>
             <view class='info_lists_li_right'>
@@ -130,7 +114,7 @@
               <view>取消共享</view>
             </view>
           </view>
-          <view class='info_lists_li' wx:for='{{relationList}}' wx:key=''>
+          <view class='info_lists_li' wx:for='{{relationList}}' wx:key='index'>
             <view class='info_lists_li_title'>
               <image src='{{item.userLogo}}'></image>
               <text>{{item.nickName}}</text>
@@ -140,7 +124,7 @@
                 <switch checked="{{item.edit=='1'?true:false}}" data-childId='{{item.childId}}' data-id='{{item.id}}' bindchange="dozensOfCards" />
               </view>
               <view class='right_c' bindtap='showClocker' data-childId='{{item.childId}}' data-id='{{item.id}}'>
-                <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/out.png'></image>
+                <image src="https://qa.oss.iforbao.com/public/assets/local/delete.png"></image>
               </view>
             </view>
           </view>
@@ -155,10 +139,19 @@
             <image class='arrow' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png'></image>
           </view>
         </view> -->
+
+  </view>
+    <!-- 共享 -->
+    <view wx:if='{{manage == "true"}}' class="btns">
+      <view wx:if='{{userEdit=="true"}}' class='edit_footer_center'>
+        <button open-type="share">
+          <text>共享日程表</text>
+        </button>
+      </view>
+      <view wx:else class='edit_footer_center'>
+        <text>共享日程表</text>
       </view>
     </view>
-
-
   </view>
   <view class='share_hint' wx:if='{{msgalert && false}}'>
     <view class='title'>
@@ -179,18 +172,19 @@
       </view>
     </view>
   </view>
-  <view class='share_panel_mask {{scopeHide?"hide":"show"}}' catchtouchmove='stopOther '>
-    <view class='panel_container'>
-      <view class='panel_container_tit'>提示</view>
-      <view class='panel_container_text'>您确认要加入该孩子吗？</view>
-      <view class='panel_container_btn'>
-        <view class='fl panel_cancel' bindtap='cancelScope'>取消</view>
-        <button class='fl panel_sure' bindtap='comfireScope'>确定</button>
-      </view>
+
+
+</view>
+<view class='share_panel_mask {{scopeHide?"hide":"show"}}' catchtouchmove='stopOther '>
+  <view class='panel_container'>
+    <view class='panel_container_tit'>提示</view>
+    <view class='panel_container_text'>您确认要加入该孩子吗？</view>
+    <view class='panel_container_btn'>
+      <view class='fl panel_cancel' bindtap='cancelScope'>取消</view>
+      <button class='fl panel_sure' bindtap='comfireScope'>确定</button>
     </view>
   </view>
 </view>
-
 <!-- 性别 -->
 <view class='gender' hidden='{{genderHide}}'>
   <view class='gender_mask' bindtap='hideGender'></view>

@@ -9,6 +9,16 @@
   float: right;
 }
 
+.info_listss {
+  margin-top: 40rpx;
+  padding: 28rpx 40rpx;
+  box-sizing: border-box;
+  width: 690rpx;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 1px 27rpx 0px rgba(150, 149, 149, 0.26);
+  border-radius: 30rpx;
+}
+
 .edit_footer_center {
   display: flex;
   justify-content: center;
@@ -147,7 +157,7 @@
 }
 
 .btns {
-  margin-top: 190rpx;
+  margin-top: 140rpx;
   display: flex;
   justify-content: center;
   width: 100%;
@@ -193,15 +203,13 @@
   width: 38rpx;
   height: 38rpx;
 }
-
 .info_lists_li {
+  padding: 10rpx 0rpx;
   display: flex;
   justify-content: space-between;
-  height: 88rpx;
-  border-bottom: 1px solid #e5e5e5;
-  line-height: 88rpx;
+  align-items: center;
   overflow: hidden;
-  padding: 10rpx 0;
+  font-size: 26rpx;
 }
 
 switch {
@@ -217,10 +225,27 @@ switch {
   margin-right: 30rpx;
   text-align: right;
 }
+.wx-switch-input {
+width: 100rpx !important;
+height: 56rpx !important;
+background: rgba(231, 198, 14, 1) !important;
+border: rgba(231, 198, 14, 1) !important;
+box-sizing: border-box;
+}
+/* /白色样式（false的样式）/ */
+.wx-switch-input::before {
+width: 100rpx !important;
+height: 56rpx !important;
+}
+/* /绿色样式（true的样式）/ */
+.wx-switch-input::after {
+width: 65rpx !important;
+height: 56rpx !important;
+}
 
 .info_lists_li_title {
   float: left;
-  font-size: 34rpx;
+  font-size:26rpx;
   color: #000;
   display: flex;
   align-items: center;
@@ -485,7 +510,7 @@ switch {
 button {
   /* background: #fff;
   color: #222; */
-  height:60rpx;
+  height: 60rpx;
   font-size: 26rpx;
   padding: 0;
   width: 100%;

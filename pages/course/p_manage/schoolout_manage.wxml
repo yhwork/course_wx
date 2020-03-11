@@ -53,7 +53,7 @@
             <image src="https://qa.oss.iforbao.com/public/assets/local/delete.png"></image>
             <text style='color:{{editpower=="true"?"":"#666"}}'>删除</text>
           </view>
-          <view class="details1" bindtap='SHOW_SHARE' data-index="{{index}}">
+          <view class="details1" bindtap='GETSHOW_SHAR' data-index="{{index}}">
             <image src="https://qa.oss.iforbao.com/public/assets/local/share.png"></image>
             <text>分享</text>
           </view>
@@ -74,15 +74,15 @@
     <block wx:for="{{courseList}}" wx:for-item="item" wx:key="index" data-id="{{item.childId}}" wx:for-index="index">
       <!-- 编辑校内图片 -->
       <view wx:if='{{item.imgType == 2}}' class="course_item2">
-        <view class="centers okimg" bindtap='previmg' bindlongpress="deleteimg" data-courseid="{{item.id}}" data-img='{{item.img}}'>
-          <image class="img" mode='aspectFit' src='{{item.img}}'></image>
+        <view class="okimg" bindtap='previmg' bindlongpress="deleteimg" data-courseid="{{item.id}}" data-img='{{item.img}}'>
+          <image class="img" mode='widthFix' src='{{item.img}}'></image>
         </view>
         <!-- 操作 -->
-        <view class="weui-flex">
+        <view class="weui-flex" wx:if='{{item.imgType !== 2}}'>
           <view class="weui-flex__item centers">
             <view class="fa fa-pencil-square-o" bindtap="updataimg" data-courseid="{{item.id}}">修改</view>
           </view>
-          <view class="weui-flex__item centers" wx:if='{{item.imgType !== 2}}'>
+          <view class="weui-flex__item centers" >
             <!-- wx:if='{{editpower=="true"}}' -->
             <view class="fa fa-trash-o" bindtap="deleteimg" data-courseid="{{item.id}}"> 删除</view>
             <!-- <view wx:else style='color:#888' class="fa fa-trash-o" bindtap="nopower" data-courseid="{{item.id}}"> 删除</view> -->
@@ -127,7 +127,7 @@
             <text>删除</text>
           </view>
           <block wx:if='{{userInfo.role==0}}'>
-            <view class="details1" bindtap='SHOW_SHARE' data-id="{{item.internalClassId}}">
+            <view class="details1" bindtap='GETSHOW_SHAR' data-id="{{item.internalClassId}}">
               <image src="https://qa.oss.iforbao.com/public/assets/local/share.png"></image>
               <text>分享</text>
             </view>
@@ -345,7 +345,7 @@
                       <view wx:else style='color:#888' class="fa fa-trash-o" bindtap="nopower" data-courseid="{{item.id}}"> 删除</view>
                     </view>
                     <view class="weui-flex__item">
-                      <view class="fa fa-share-square-o" bindtap='SHOW_SHARE' data-index="{{index}}"> 分享</view>
+                      <view class="fa fa-share-square-o" bindtap='GETSHOW_SHAR' data-index="{{index}}"> 分享</view>
                     </view>
                   </view>
                 </view>
@@ -390,8 +390,8 @@
       <view class='cancel' bindtap='HIDE_SHARE'>取消</view>
     </view>
     <view class='share_center'>
-      <view class='course_name' wx:if='{{activeIndex==1}}'>{{shareInfo.name}}</view>
-      <view class='course_name' wx:else>{{shareInfo.className}}</view>
+      <view class='course_names' wx:if='{{activeIndex==1}}'>{{shareInfo.name}}</view>
+      <view class='course_names' wx:else>{{shareInfo.className}}</view>
       <view class='date' wx:if='{{activeIndex==1}}'>
         <view class='start_date'>开始：{{shareInfo.beginDate}}</view>
         <view class='end_date'>结束：{{shareInfo.endDate}}</view>
@@ -405,12 +405,12 @@
         <view class='type'>{{shareInfo.orgName}}</view>
       </view>
       <view class='time_type' wx:else>
-        <view class='courses'>课程： {{shareInfo.courseName}}</view>
+        <view class='courses'>课程：{{shareInfo.courseName}}</view>
         <view class='type'>{{shareInfo.schoolName}}</view>
       </view>
       <view class='addr' wx:if='{{shareInfo.classAddress}}'>
         <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/map.png'></image>
-        {{shareInfo.classAddress}}
+        {{shareInfo.classAddress?shareInfo.classAddress:''}}
       </view>
     </view>
     <view class='share_foot'>

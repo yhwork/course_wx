@@ -4,7 +4,7 @@
       <view class='mypage_top'>
         <view class="mypage_course">
           <view class="course_name">{{lessonInfo.name}}</view>
-          <view class="course_status"> 
+          <view class="course_status">
             <block wx:if="{{lessonInfo.status==1}}">
               <view class='course_b'>
                 <view class="course-attend"></view>
@@ -154,9 +154,11 @@
         <image src="https://qa.oss.iforbao.com/public/assets/local/delete.png" class='bottomiconb'></image>
         <text class="{{editpower=='true'?'bottom_b':'bottom_c'}}">删除</text>
       </view>
-      <view class="b" bindtap='SHOW_SHARE'>
-        <image src="https://qa.oss.iforbao.com/public/assets/local/share.png" class='bottomiconb'></image>
-        <text class="bottom_b">分享</text>
+      <view class="b">
+        <button class="sharebtn" open-type="share">
+          <image src="https://qa.oss.iforbao.com/public/assets/local/share.png" class='bottomiconb'></image>
+          <text class="bottom_s">分享</text>
+        </button>
       </view>
     </view>
   </view>

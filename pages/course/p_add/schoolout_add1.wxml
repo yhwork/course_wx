@@ -15,7 +15,7 @@
     </view>
     <!-- 拍照上传校内日程 -->
     <view wx:if='{{tabIndex == 0 && select_img}}' class='center okimg'>
-      <image src="{{select_img}}" catchTap="chooseImageTap" mode="aspectFit" class="img" />
+      <image src="{{select_img}}" catchTap="chooseImageTap" mode="widthFix" class="img" />
       <!-- 拍照 -->
       <view class="add_class_btn">
         <view class='NEXT' bindtap='PREVIEW'>完成</view>

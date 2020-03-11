@@ -1,7 +1,9 @@
 .page__hd {
   padding: 0;
 }
-
+.course_names{
+  
+}
 .page {
   /* width: 100%; */
   overflow-x: hidden;
@@ -99,12 +101,12 @@
   justify-content: space-around;
 }
 .okimg{
-  width:100%;
- height:1050rpx;
+height:100%;
+box-shadow:0px 1rpx 27rpx 0px rgba(150,149,149,0.26);
+border-radius:30rpx;
 }
 .okimg .img {
-  /* margin-top: 15px; */
-  height: 100%;
+  width: 100%;
 }
 .course_name {
   display: flex;
@@ -158,7 +160,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
+  padding: 4rpx 20rpx;
   font-size: 20rpx;
   font-family: PingFang SC;
   font-weight: 400;
@@ -803,7 +805,7 @@
   justify-content: space-between;
   padding: 30rpx 30rpx 20rpx 30rpx;
   font-size: 26rpx;
-  color: #f29219;
+  color: rgba(239, 207, 11, 1);
   position: relative;
 }
 

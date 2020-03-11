@@ -44,6 +44,7 @@ class editMyChildPage extends EPage {
         city: ''
       },
       fromPage: '',
+      childId:'',
       deleteParamModel: {
         childId: '',
         city: '',
@@ -123,6 +124,7 @@ class editMyChildPage extends EPage {
         });
        
         this.setData({
+          'childId': option.childId,
           'model.childId': option.childId,
           'paramModel.childId': option.childId,
         })
@@ -245,9 +247,11 @@ class editMyChildPage extends EPage {
         }
       },
       [PAGE_LIFE.ON_UNLOAD](e){
-        let mange =this.data.manage;
-        if (mange == 'true')
-        put(effects.updateChildShareListAuthority)
+        // let mange =this.data.manage;
+        // if (mange == 'true'){
+        //   put(effects.updateChildShareListAuthority)
+        // }
+      
       },
     }
   }

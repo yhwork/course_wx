@@ -20,7 +20,8 @@ const events = {
     previmg:null,  // 图片预览
     updataimg:null,
     deleteimg:null,
-    backchange:null
+    backchange:null,
+    GETSHOW_SHAR:null
   }
 }
 
@@ -34,7 +35,8 @@ const effects = {
   GET_WX_CODE: null,
   DEL_INTERNALCOURSE:null,
   delInternalCourseImg:null,    // 删除
-  updateInternalCourseImg:null  // 修改
+  updateInternalCourseImg:null,  // 修改
+  GETSHARE_INFO:null
 }
 
 const actions = {}

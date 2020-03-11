@@ -63,7 +63,6 @@ class SchooloutAdd3Page extends EPage {
         this.setData({
           iptHide: true
         });
-       
         const {
           from
         } = e;
@@ -84,7 +83,7 @@ class SchooloutAdd3Page extends EPage {
               this.$common.showToast('分享成功', 'success')
               setTimeout(function(){
                 wx.switchTab({
-                  url: '../course'
+                  url: '/pages/course/courseList/courseList?childId=' + this.data.childId
                 })
               },1000)
               

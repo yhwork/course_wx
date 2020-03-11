@@ -734,6 +734,20 @@
 					"pathName": "pages/mypage/personalInfo/personalInfo",
 					"query": "manage=true",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "日程表共享",
+					"pathName": "pages/mypage/editMyChild/editMyChild",
+					"query": "childId=102216&manage=true",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "课程管理",
+					"pathName": "pages/course/p_manage/schoolout_manage",
+					"query": "activeIndex=1&childId=102135",
+					"scene": null
 				}
 			]
 		}

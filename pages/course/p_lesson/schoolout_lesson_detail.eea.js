@@ -12,7 +12,8 @@ const events = {
         CALENDAR_DAY_CHANGED: null,
         quit:null,
         bindChange1:null,
-        SAVE_NEXT:null
+        SAVE_NEXT:null,
+      
     }
 }
 
@@ -23,6 +24,7 @@ const effects = {
     UPDATE_LESSON: null,
     DEL_LESSON: null,
     GET_USER_INFO: null,
+  GETSHARE_INFOS: null
 }
 
 const actions = {

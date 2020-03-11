@@ -10,21 +10,21 @@ import {
 } from './schoolout_lesson_detail.eea'
 const moment = require('../../../lib/moment.min.js');
 
-function set_times(stute) { 
-  let val_time = []; 
+function set_times(stute) {
+  let val_time = [];
   if (stute == true) {
     for (let i = 6; i < 20; i++) {
-      if(i<10){
-        i= '0' +i
+      if (i < 10) {
+        i = '0' + i
       }
       val_time.push(i)
     }
   } else {
     let j = 0;
     for (let i = 0; i < 4; i++) {
-      if(j==0){
-        val_time.push('0'+j)
-      }else{
+      if (j == 0) {
+        val_time.push('0' + j)
+      } else {
         val_time.push(j)
       }
       j += 15
@@ -83,19 +83,20 @@ class SchooloutLessonDetailPage extends EPage {
       course: {
         'time': false,
         'update': true,
-        endDate:true,
-        beginTime:true
+        endDate: true,
+        beginTime: true
       },
       isrwo: false,
-      updata_data:{
-        'date':'',
-        'time':''
+      updata_data: {
+        'date': '',
+        'time': ''
       },
       shareCavansOptions: {
         id: 'share_canvas',
         width: 0,
         height: 0
       },
+      share_img: 'https://qa.oss.iforbao.com/public/assets/local/share_course1.png',
       showCalendar: false,
     };
   }
@@ -103,9 +104,14 @@ class SchooloutLessonDetailPage extends EPage {
   mapPageEvent({
     put
   }) {
-   
+
     return {
       [PAGE_LIFE.ON_LOAD](option) {
+        this.setData({
+          // img : this.$api.extparam.getPageImgUrl('newcourse')
+          // https://qa.oss.iforbao.com/public/assets/local/share_course1.png
+          share_img: 'https://qa.oss.iforbao.com/public/assets/local/share_course1.png'
+        })
         console.log('值', option)
         wx.hideShareMenu();
         const {
@@ -139,7 +145,7 @@ class SchooloutLessonDetailPage extends EPage {
         put(effects.GET_CHILD);
         //获取用户信息
         put(effects.GET_USER_INFO);
-
+        put(effects.GET_USER_INFOS);
 
       },
       [PAGE_LIFE.ON_SHARE_APP_MESSAGE](e) {
@@ -154,12 +160,11 @@ class SchooloutLessonDetailPage extends EPage {
           userInfo,
           model,
         } = this.data;
-        console.log('分享数据', shareInfo.imageUrl, userInfo);
         if (from === 'button') {
           return {
             title: `[${userInfo.nickName}@您]给您分享了${shareInfo.orgName}《${shareInfo.name}》课程，点击查看详情`,
             path: `/pages/course/courseList/courseList?action=share&code=${shareInfo.shortCode}&childId=${model.childId}`,
-            imageUrl: shareInfo.imageUrl,
+            imageUrl: '/assets/local/share_course1.png',
             success: (res) => {
               // this.$common.showToast('分享成功', 'success');
               wx.showToast({
@@ -168,6 +173,11 @@ class SchooloutLessonDetailPage extends EPage {
                 duration: 1500,
                 mask: true,
                 success: (res) => {
+                  wx.navigateBack({
+                    delta: 1,
+                  })
+                },
+                complete:()=>{
                   wx.navigateBack({
                     delta: 1,
                   })
@@ -180,7 +190,7 @@ class SchooloutLessonDetailPage extends EPage {
         return {
           title: `[${userInfo.nickName}@您]分享了小豆包课程表`,
           path: '/pages/course/course',
-          imageUrl: '/assets/img/share.jpg'
+          imageUrl: this.data.share_img
         }
       },
       // 上拉刷新
@@ -226,7 +236,7 @@ class SchooloutLessonDetailPage extends EPage {
               console.log('修改课程成功')
               wx.showToast({
                 title: '修改课程成功',
-                duration:1500,
+                duration: 1500,
                 icon: "none",
               })
               this.setData({
@@ -284,11 +294,11 @@ class SchooloutLessonDetailPage extends EPage {
         const val = e.detail.value;
         let date = this.data.getdate;
         let time = this.data.gettime;
-        
-        console.log(time[val[1]],date[val[0]],val )
+
+        console.log(time[val[1]], date[val[0]], val)
         this.setData({
-            'lessonInfo.beginTime':`${ date[val[0]]}:${time[val[1]]}`,
-            'lessonInfo.endTime': moment(`${ date[val[0]]}:${time[val[1]]}`,'HH:mm').add('minute',this.data.lessonInfo.duration).format('HH:mm')
+          'lessonInfo.beginTime': `${ date[val[0]]}:${time[val[1]]}`,
+          'lessonInfo.endTime': moment(`${ date[val[0]]}:${time[val[1]]}`, 'HH:mm').add('minute', this.data.lessonInfo.duration).format('HH:mm')
         })
 
         // this.setData({ 
@@ -325,7 +335,7 @@ class SchooloutLessonDetailPage extends EPage {
           this.setData({
             state_datatime: true,
             'course.time': true,
-            'course.beginTime':false
+            'course.beginTime': false
           });
 
         } else {
@@ -333,7 +343,7 @@ class SchooloutLessonDetailPage extends EPage {
           this.setData({
             state_datatime: false,
             showCalendar: true,
-            'course.endDate':false
+            'course.endDate': false
           });
         }
         this.setData({
@@ -347,7 +357,7 @@ class SchooloutLessonDetailPage extends EPage {
           const currentDate = moment(e.detail.year + ' ' + e.detail.month + ' ' + e.detail.day, 'YYYY-MM-DD').format('YYYY-MM-DD');
           console.log('日期1', currentDate)
           this.setData({
-            'lessonInfo.beginDate': currentDate,    //开始时间
+            'lessonInfo.beginDate': currentDate, //开始时间
             'lessonInfo.endDate': currentDate, // 结束时间
             showCalendar: false,
             isrwo: false,
@@ -356,7 +366,7 @@ class SchooloutLessonDetailPage extends EPage {
           const currentDate = moment(e.detail.year + ' ' + e.detail.month + ' ' + e.detail.day, 'YYYY-MM-DD').format('YYYY-MM-DD');
           console.log('日期2', currentDate)
           this.setData({
-            'lessonInfo.beginDate': currentDate,    //开始时间
+            'lessonInfo.beginDate': currentDate, //开始时间
             'lessonInfo.endDate': currentDate, // 结束时间
             showCalendar: false,
             isrwo: false,
@@ -379,14 +389,14 @@ class SchooloutLessonDetailPage extends EPage {
 
           this.setData({
             'course.update': false,
-             mask: false,
+            mask: false,
             'model.type': 2
           })
-          console.log(this.data.model,this.data.lessonInfo)
+          console.log(this.data.model, this.data.lessonInfo)
           // wx.redirectTo({
           //   url: './schoolout_lesson_change?childId=' + this.data.model.childId + '&lessonId=' + this.data.model.lessonId + '&type=2&source=' + this.data.model.source
           // })
-       
+
         }
       },
       //补课
@@ -434,7 +444,7 @@ class SchooloutLessonDetailPage extends EPage {
             content: '你确定要删除该课程么？',
             showCancel: true,
             confirmColor: '#FF4500',
-            success: function (res) {
+            success: function(res) {
               if (res.confirm) {
                 put(effects.DEL_LESSON);
               }
@@ -548,6 +558,37 @@ class SchooloutLessonDetailPage extends EPage {
     const common = this.$common;
     const converter = this.$converter;
     return {
+      // 获取分享信息
+      [effects.GETSHARE_INFOS](e) {
+        let shareInfo = this.data.lessonInfo;
+        const param = {};
+        param.dataType = 2;
+        param.data = {
+          'lessonId': shareInfo.lessonId,
+        };
+        this.$api.user.shareInfoRecord(param).then(
+          (res) => {
+            if (res.data.errorCode == '0') {
+              const param1 = {};
+              param1.dataType = 0;
+              param1.data = {
+                'lessonId': shareInfo.lessonId,
+                'target': 'lesson',
+                'shortCode': res.data.result.shortCode,
+                'childId': this.data.model.childId,
+              };
+              this.$api.user.shareInfoRecord(param1).then(
+                (res) => {
+                  shareInfo.shortCode = res.data.result.shortCode;
+                  this.setData({
+                    // shareHide: false,
+                    shareInfo
+                  });
+                  console.log('分享信息详情', shareInfo)
+                })
+            }
+          })
+      },
       //用户信息
       [effects.GET_USER_INFO]() {
         api.user.gerUserInfo().then(
@@ -591,7 +632,7 @@ class SchooloutLessonDetailPage extends EPage {
             rs.beginDate = moment(rs.startTime).format('YYYY-MM-DD')
             rs.endDate = moment(rs.endTime).format('YYYY-MM-DD')
             rs.notifyTxt = ''
-            this.data.remindItems.forEach(function (e) {
+            this.data.remindItems.forEach(function(e) {
               if (e.value == rs.notify) {
                 rs.notifyTxt = e.name
               }
@@ -603,10 +644,11 @@ class SchooloutLessonDetailPage extends EPage {
             }
             this.setData({
               lessonInfo: rs,
-              'updata_data.date':rs.startTime.split(' ')[1],
-              'updata_data.beginDate':rs.beginDate,
-              'lessonInfo.beginTime': rs.startTime.split(' ')[1],    //开始时间
+              'updata_data.date': rs.startTime.split(' ')[1],
+              'updata_data.beginDate': rs.beginDate,
+              'lessonInfo.beginTime': rs.startTime.split(' ')[1], //开始时间
             })
+            put(effects.GETSHARE_INFOS)
           },
           (rej) => {}
         )

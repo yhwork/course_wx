@@ -48,7 +48,7 @@ class CourseListPage extends EPage {
       one: false,
       two: false,
       imgType: false,
-      isAuthorization: false
+      isAuthorization: false,
     };
   }
   // 页面  默认首页  
@@ -58,6 +58,7 @@ class CourseListPage extends EPage {
   }) {
     return {
       [PAGE_LIFE.ON_LOAD](option) {
+  
         console.log('值', option)
         put(effects.CHECK_FOLLOW) // 是否关注公众号
         this.$common.checkAuth1().then(
