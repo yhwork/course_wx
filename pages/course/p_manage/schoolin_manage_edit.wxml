@@ -81,23 +81,17 @@
       </view>
     </view>
 
-    <view class='add_class ' wx:if='{{userInfo.role==1 }} '>
+    <!-- <view class='add_class ' wx:if='{{userInfo.role==1 }}'>
       <view class='add_class_time_data_start ' data-id="4" bindtap="CHANGE_BEGINDATE">
         <text class="playdate">上课提醒:</text>
         <view wx:if="{{remindItems[model.remindIndex].name}}">
           <text class="right_data">{{remindItems[model.remindIndex].name}}</text>
         </view>
-        <!-- <view> -->
-        <!-- <picker class='class_warn ' bindchange="CHANGE_REMIND" value="{{model.remindIndex}}" range="{{remindItems}}" range-key="name">
-            <view class=" weui-select_in-select-afte weui-select-next">
-              <text class='text_col weui-select weui-select_in-select-after weui-cell__ft text_ft '>{{remindItems[model.remindIndex].name}}</text>
-            </view>
-          </picker> -->
-        <!-- </view> -->
+     
 
         <image src=' https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png ' class='courseinfo_warn_img '></image>
       </view>
-    </view>
+    </view> -->
     <!-- 
 			<view class='top '>
 				<view class='left '>

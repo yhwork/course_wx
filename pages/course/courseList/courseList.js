@@ -7,7 +7,7 @@ import {
   events,
   effects,
   actions
-} from './courseList.eea'
+} from './courseList.eea'   
 
 import moment from '../../../lib/moment.min.js'
 

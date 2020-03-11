@@ -217,7 +217,7 @@ page {
 .list_view {
   color:white;
   box-sizing: border-box;
-  height: 45rpx;
+  height: 54rpx;
   width: 220rpx;
   background-color: #e7c60e;
   border-radius: 21rpx;
@@ -256,7 +256,7 @@ page {
   width: 182rpx;
 	height: 56rpx;
   position: absolute;
-  bottom: 30rpx;
+  bottom: 42rpx;
   left: 93rpx;
   padding: 5rpx 15rpx;
 	background-color: #ffffff;
@@ -273,7 +273,7 @@ page {
 }
 .size_banner{
   position: absolute;
-  top:62rpx;
+  top:50rpx;
   left: 66rpx;
   z-index: 22;
   	width: 236rpx;
@@ -287,7 +287,7 @@ page {
 }
 .size_banner1{
   position: absolute;
-  top:120rpx;
+  top:108rpx;
   left: 42rpx;
   z-index: 22;
  width: 284rpx;
@@ -444,7 +444,8 @@ page {
 }
 
 .label_item {
-  font-size: 25rpx;
+  width: 140rpx;
+  font-size: 26rpx;
   position: relative;
 }
 
@@ -462,8 +463,8 @@ page {
 }
 
 .label_item image {
-  width: 60rpx;
-  height: 60rpx;
+  width: 80rpx;
+  height: 80rpx;
 }
 
 .label_item view {

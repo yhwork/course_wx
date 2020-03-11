@@ -552,6 +552,11 @@ box-shadow:0px 1rpx 27rpx 0px rgba(150,149,149,0.26);
   font-size: 28rpx;
   flex-direction: row;
 }
+.thead .tr .header_box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .info_right{
   font-size: 22rpx;
 font-family: PingFang SC;

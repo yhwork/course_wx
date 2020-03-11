@@ -24,7 +24,8 @@ const events = {
     myPay: null,
     myallList: null,
     waitpayIntem: null,
-    scanCode:null
+    scanCode:null,
+    lookuser:null,
   }
 }
 // 接口事件

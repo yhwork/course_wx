@@ -184,6 +184,10 @@ class createClass extends EPage {
           }
           // console.log(this.data.userinfo)
           if (this.data.userinfo.role == 0) {
+            let childid_i = wx.getStorageSync('childid_i');
+            if (!childid_i){
+              childid_i=0
+            }
             this.$api.child.get({}).then(res => {
               this.setData({
                 childList: res.data.result.childList,
@@ -196,12 +200,14 @@ class createClass extends EPage {
                 }
               } else {
                 this.setData({
-                  childId: this.data.childList[0].childId
+                  childId: this.data.childList[childid_i].childId
                 })
                 inputMap = {
-                  childId: this.data.childList[0].childId
+                  childId: this.data.childList[childid_i].childId
                 }
               }
+              // put(effects.GETMESSAGE);
+
               // console.log(inputMap)
               put(effects.GET_CLASSLIST, {
                 inputMap

@@ -6,7 +6,7 @@
 </view> -->
 <view class='course_name'>
   <view class='title'>课程名称</view>
-  <view style='display:flex;'>
+  <view class="coursrcole">
   <text class="sel_cor  {{model.color?model.color:''}}"></text>
   <input class="thanbg {{model.color?model.color:''}}" placeholder='请填写(4字以内)' maxlength="4" id="tagName" name="tagName" bindinput="CHANGE_TAGNAME"></input>
   </view>

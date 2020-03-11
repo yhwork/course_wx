@@ -54,19 +54,19 @@
 
 </view>
 
-<view class='addbox' hidden="{{classList.length>0?false:true}}">
-  <view class='addclass' bindtap='GoSetClass' wx:if='{{userinfo.role==1}}'>
+<view class='addbox'  wx:if="{{!haveClass && userinfo.role==1}}">
+  <view class='addclass' bindtap='GoSetClass' >
     <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/jia.png'></image>
     <text>创建班级</text>
   </view>
-  <view class='addclass' bindtap='searchClass'>
+  <view class='addclass'  bindtap='searchClass'>
     <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/jia.png'></image>
     <text>加入班级</text>
   </view>
 </view>
 
 <!-- 没有课程显示 -->
-<view class="no_course" hidden="{{classList.length>0?true:false}}">
+<view class="no_course" wx:if="{{!haveClass}}">
     <view class="course_img ">
         <image src="https://qa.oss.iforbao.com/public/assets/local/yuanquan.png"></image>
         <image src="https://qa.oss.iforbao.com/public/assets/local/xingxing.png"></image>

@@ -466,7 +466,6 @@ mall_top{
 }
 .item_imgs{
   position: relative;
-  top:-40rpx;
   width: 695rpx;
 	height: 231rpx;
 }

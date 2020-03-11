@@ -216,8 +216,15 @@ class MYPAGES extends EPage {
       },
       // 个人主页
       [events.ui.MYHOMEPAGE]() {
+        // wx.navigateTo({
+        //   url: '../../mine/mine?visitId=' + this.data.userInfo.id,
+        // })
+        let childId = wx.getStorageSync('childId')
         wx.navigateTo({
-          url: '../../mine/mine?visitId=' + this.data.userInfo.id,
+          url: `/pages/mypage/editMyChild/editMyChild?childId=${childId}&manage=true`,
+          success: function (res) { },
+          fail: function (res) { },
+          complete: function (res) { },
         })
       },
       // 我建的班级

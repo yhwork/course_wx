@@ -68,10 +68,15 @@ page {
   align-items: center;
   padding-right: 20rpx;
 }
+.coursrcole{
+  display: flex;
+  align-items: center;
+}
 .sel_cor{
   width: 30rpx;
   height: 30rpx;
-  margin: 0 8rpx;
+  border-radius: 50%;
+  margin: 0 10rpx;
 }
 
 

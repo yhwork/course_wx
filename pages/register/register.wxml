@@ -23,8 +23,6 @@
         <view class='home-duan'>教师端</view>
       </button>
       <!-- <button hidden='{{!btn1}}' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"> 获取用户手机号 </button> -->
-
-
       <button hidden='{{btn}}' class='btn2' open-type="getUserInfo" bindgetuserinfo="CHOOSE_ROLE" data-role="0">
         <image src='https://qa.oss.iforbao.com/public/assets/local/reg.png' class='home-img' mode="widthFix"></image>
         <view class='home'>我是家长/学生</view>
@@ -34,11 +32,10 @@
 
 
       <button hidden='{{isphone}}' class='btn2 phone' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
-        <image src='{{home_img}}' class='home-img' mode="widthFix"></image>
+        <image src="{{model.role==0?'https://qa.oss.iforbao.com/public/assets/local/reg.png':'https://qa.oss.iforbao.com/public/assets/local/teacher.png'}}" class='home-img' mode="widthFix"></image>
         <view class='home'>我是{{type}}</view>
         <view class='home-duan'>{{type}}端</view>
       </button>
-
     </block>
     <block wx:else>
       <button class='btn1' bindtap="CHANGE_ROLE" data-role="1">
@@ -49,7 +46,6 @@
       <button class='btn2' bindtap="CHANGE_ROLE" data-role="0">
         <image src='{{home_img}}' class='home-img' mode="widthFix"></image>
         <view class='home'>我是家长/学生</view>
-        <!-- <view class='student'>我是学生</view> -->
         <view class='home-duan'>家长/学生端</view>
       </button>
     </block>

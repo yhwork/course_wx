@@ -1,8 +1,8 @@
 <view class="page">
   <view class="pt_20 ">
     <view class=" content">
-      <view class="header column c_center">
-        <block wx:if='{{role == 1}}'>
+      <view class="header column c_center" bindtap="{{isAuthorization?'MYHOMEPAGE':''}}">
+        <block wx:if='{{role == 1}}' >
           <view class="header_logo ">
             <image src="{{userInfo.logo}}"></image>
           </view>
