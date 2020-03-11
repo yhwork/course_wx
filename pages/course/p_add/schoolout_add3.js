@@ -16,7 +16,8 @@ class SchooloutAdd3Page extends EPage {
       courseInfo: {},
       childInfo: {},
       iptHide: true,
-      current:''  // 校内校外
+      current:'',  // 校内校外
+      isshare:false
     };
   }
 
@@ -46,6 +47,11 @@ class SchooloutAdd3Page extends EPage {
         // }
       },
       [PAGE_LIFE.ON_SHOW](option) {
+        if (this.data.isshare) {
+          return wx.switchTab({
+            url: '/pages/course/courseList/courseList'
+          })
+        }
         this.setData({  
           userInfo: this.$storage.getSync('userInfo')
         });
@@ -61,7 +67,8 @@ class SchooloutAdd3Page extends EPage {
 
       [PAGE_LIFE.ON_SHARE_APP_MESSAGE](e) {
         this.setData({
-          iptHide: true
+          iptHide: true,
+          isshare:true
         });
         const {
           from
@@ -88,7 +95,14 @@ class SchooloutAdd3Page extends EPage {
               },1000)
               
             },
-            fail:()=>{
+            fail:(res)=>{
+              console.log('取消分享')
+              wx.switchTab({
+                url: '/pages/course/courseList/courseList?childId=' + this.data.childId,
+              })
+            },
+            complete:()=>{
+              console.log('都执行')
               wx.switchTab({
                 url: '/pages/course/courseList/courseList?childId=' + this.data.childId,
               })

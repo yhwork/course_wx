@@ -41,7 +41,7 @@
 			</view>
 
 			<view class="course_items">
-				<view class="course_name">绘画课</view>
+				<view class="course_name">{{courseInfo.name}}</view>
 				<view class="course_info_item" wx:if='{{courseInfo.orgName}}'>
 					<text>教学机构:</text><text>{{courseInfo.orgName}}</text>
 				</view>

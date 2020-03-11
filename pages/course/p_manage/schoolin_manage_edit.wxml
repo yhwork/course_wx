@@ -26,173 +26,182 @@
       <view class='add_class_time_data_start'>
         <text class="playdate">学校名称:</text>
         <view class='right_data' style='width:65%'>
-          <input type="text" class='class_tim' value="{{schoolname?schoolname:courseMsg.schoolName}}" bindinput="CHANGE_DURATION" />
+          <input type="text" disabled="{{true}}" class='class_tim' value="{{schoolname?schoolname:courseMsg.schoolName}}" bindinput="CHANGE_DURATION" />
         </view>
       </view>
     </view>
     <view class='add_class'>
       <view class='add_class_time_data_start'>
         <text class="playdate">班级名称:</text>
-        <view class='right_data' style='width:65%' wx:if='{{setClassMsg.className}}'>
-          <input type="text" class='class_tim' value="{{setClassMsg.className}}" bindinput="CHANGE_DURATION" />
+        <view class='right_data' style='width:65%' wx:if='{{ userInfo.role==0}}'>
+          <input type="text" class=' class_tim ' maxlength="6" value="{{courseMsg.className}}" bindinput='CHANGE_CLASSNAME'/>
         </view>
-        <view class='right_data' style='width:65%' wx:else>
-          <input type="text" class='class_tim' value="{{courseMsg.className}}" bindinput="CHANGE_DURATION" />
+        <view class='right_data ' style='width:65% ' wx:else>
+
+        <input wx:if='{{classList.length==0}}' disabled="{{true}}"  bindtap="SELECT_XN_CLASS" placeholder="请添加班级"></input>
+        <picker wx:if='{{classList.length!=0}}' bindchange="chooseClass" style="font-size:32rpx;" value='{{index}}' range="{{classList}}" range-key='className'>
+          <view class='picker info_right' wx:if='{{courseMsg.className}}'>{{courseMsg.className}}</view>
+          <view class="picker info_right" wx:else>{{classList[index].className}}</view>
+        </picker>
+        <!-- <input wx:if='{{classList.length==0}}' class=' class_tim ' disabled="{{true}}"  bindtap="SELECT_XN_CLASS" placeholder="请添加班级"></input>
+         	<picker class='school weui-select weui-select_in-select-after weui-cell__ft text_ft ' wx:if='{{userInfo.role==1}} ' bindchange="chooseClass" value='{{index}} ' range="{{classList}}" range-key='className '>
+            <view class='classname '>{{classList[index].className}}</view>
+				  </picker> -->
         </view>
       </view>
     </view>
     <!-- 校内 -->
-    <view class='add_class' data-id="1" bindtap="CHANGE_BEGINDATE">
-      <view class='add_class_time_data_start'>
+    <view class='add_class ' data-id="1" bindtap="CHANGE_BEGINDATE">
+      <view class='add_class_time_data_start '>
         <text class="playdate">开学日期:</text>
         <text class="right_data">{{model.startDate}} {{beginWeekDay}}</text>
-        <image src=' https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png' class='courseinfo_warn_img'></image>
+        <image src=' https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png ' class='courseinfo_warn_img '></image>
       </view>
     </view>
-    <view class='add_class' wx:if='{{userInfo.role == "0"}}'>
-      <view class='add_class_time_data_start' data-id="2" bindtap="CHANGE_BEGINDATE">
+    <view class='add_class ' wx:if='{{userInfo.role=="0" }} '>
+      <view class='add_class_time_data_start ' data-id="2" bindtap="CHANGE_BEGINDATE">
         <text class="playdate">上课时间:</text>
         <text class="right_data">{{one}}</text>
-        <image src=' https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png' class='courseinfo_warn_img'></image>
+        <image src=' https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png ' class='courseinfo_warn_img '></image>
       </view>
     </view>
-    <view class='add_class' wx:if='{{userInfo.role == "0"}}'>
-      <view class='add_class_time_data_start' data-id="3" bindtap="CHANGE_BEGINDATE">
+    <view class='add_class ' wx:if='{{userInfo.role=="0" }} '>
+      <view class='add_class_time_data_start ' data-id="3" bindtap="CHANGE_BEGINDATE">
         <text class="playdate">放学时间:</text>
         <text class="right_data">{{five}}</text>
-        <image src=' https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png' class='courseinfo_warn_img'></image>
+        <image src=' https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png ' class='courseinfo_warn_img '></image>
       </view>
     </view>
 
-    <view class='add_class' wx:if='{{userInfo.role == "0"}}'>
-      <view class='add_class_time_data_start' data-id="4" bindtap="CHANGE_BEGINDATE">
+    <view class='add_class ' wx:if='{{userInfo.role=="0" }} '>
+      <view class='add_class_time_data_start ' data-id="4" bindtap="CHANGE_BEGINDATE">
         <text class="playdate">放学提醒:</text>
         <text class="right_data">{{remindItems[model.remindIndex].name}}</text>
-        <image src=' https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png' class='courseinfo_warn_img'></image>
+        <image src=' https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png ' class='courseinfo_warn_img '></image>
       </view>
     </view>
 
-    <view class='add_class' wx:if='{{userInfo.role == 1}}'>
-      <view class='add_class_time_data_start' data-id="4" bindtap="CHANGE_BEGINDATE">
+    <view class='add_class ' wx:if='{{userInfo.role==1 }} '>
+      <view class='add_class_time_data_start ' data-id="4" bindtap="CHANGE_BEGINDATE">
         <text class="playdate">上课提醒:</text>
         <view wx:if="{{remindItems[model.remindIndex].name}}">
           <text class="right_data">{{remindItems[model.remindIndex].name}}</text>
         </view>
         <!-- <view> -->
-        <!-- <picker class='class_warn' bindchange="CHANGE_REMIND" value="{{model.remindIndex}}" range="{{remindItems}}" range-key="name">
+        <!-- <picker class='class_warn ' bindchange="CHANGE_REMIND" value="{{model.remindIndex}}" range="{{remindItems}}" range-key="name">
             <view class=" weui-select_in-select-afte weui-select-next">
-              <text class='text_col weui-select weui-select_in-select-after weui-cell__ft text_ft'>{{remindItems[model.remindIndex].name}}</text>
+              <text class='text_col weui-select weui-select_in-select-after weui-cell__ft text_ft '>{{remindItems[model.remindIndex].name}}</text>
             </view>
           </picker> -->
         <!-- </view> -->
 
-        <image src=' https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png' class='courseinfo_warn_img'></image>
+        <image src=' https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/arrow_03.png ' class='courseinfo_warn_img '></image>
       </view>
     </view>
     <!-- 
-			<view class='top'>
-				<view class='left'>
+			<view class='top '>
+				<view class='left '>
 					<text class="name">学校名称：</text>
 				</view>
-				<view class='school weui-select weui-select_in-select-after weui-cell__ft text_ft' bindtap='{{userInfo.role==0?"chooseSchool":""}}'>{{schoolname?schoolname:courseMsg.schoolName }}</view>
+				<view class='school weui-select weui-select_in-select-after weui-cell__ft text_ft ' bindtap='{{userInfo.role==0? "chooseSchool": ""}} '>{{schoolname?schoolname:courseMsg.schoolName }}</view>
 			</view>
-			<view class='top'>
+			<view class='top '>
 
-				<view class='weui-cell__hd'>
+				<view class='weui-cell__hd '>
 					<text class="name">班级名称：</text>
 				</view>
-				<input wx:if='{{userInfo.role==0}}' bindinput='CHANGE_CLASSNAME' class='setclassname weui-select weui-select_in-select-after weui-cell__ft text_ft inputclass' type='text' placeholder="{{courseMsg.className}}"></input>
+				<input wx:if='{{userInfo.role==0}} ' bindinput='CHANGE_CLASSNAME ' class='setclassname weui-select weui-select_in-select-after weui-cell__ft text_ft inputclass ' type='text ' placeholder="{{courseMsg.className}}"></input>
 
 
-				<picker class='school weui-select weui-select_in-select-after weui-cell__ft text_ft' wx:if='{{userInfo.role==1}}' bindchange="chooseClass" value='{{index}}' range="{{classList}}" range-key='className'>
-					<view class='classname' wx:if='{{setClassMsg.className}}'>{{setClassMsg.className}}</view>
+				<picker class='school weui-select weui-select_in-select-after weui-cell__ft text_ft ' wx:if='{{userInfo.role==1}} ' bindchange="chooseClass" value='{{index}} ' range="{{classList}}" range-key='className '>
+					<view class='classname ' wx:if='{{setClassMsg.className}} '>{{setClassMsg.className}}</view>
 					<view class="" wx:else>{{courseMsg.className}}</view>
 				</picker>
 			</view>
 
-			<view class='top' bindtap="CHANGE_BEGINDATE">
-				<view class='left'>
+			<view class='top ' bindtap="CHANGE_BEGINDATE">
+				<view class='left '>
 					<text class="name">开学日期：</text>
 				</view>
-				<text class='school weui-select weui-select_in-select-after weui-cell__ft text_ft'>{{model.startDate}} {{beginWeekDay}}</text>
+				<text class='school weui-select weui-select_in-select-after weui-cell__ft text_ft '>{{model.startDate}} {{beginWeekDay}}</text>
 			</view>
-			<view class='top' wx:if='{{userInfo.role == "0"}}'>
-				<view class='left'>
+			<view class='top ' wx:if='{{userInfo.role=="0" }} '>
+				<view class='left '>
 					<text class="name">第一节课时间：</text>
 				</view>
-				<picker class='main_start_time' bindchange="CHANGE_TIMEFIRST" mode="time" start="07:00" end="21:00" value="{{model.oneStartTime}}">
-					<view class='school weui-select weui-select_in-select-after weui-cell__ft text_ft'>{{one}}</view>
+				<picker class='main_start_time ' bindchange="CHANGE_TIMEFIRST" mode="time" start="07:00" end="21:00" value="{{model.oneStartTime}}">
+					<view class='school weui-select weui-select_in-select-after weui-cell__ft text_ft '>{{one}}</view>
 				</picker>
 			</view>
-			<view class='top' wx:if='{{userInfo.role == "0"}}'>
-				<view class='left'>
+			<view class='top ' wx:if='{{userInfo.role=="0" }} '>
+				<view class='left '>
 					<text class="name">第五节课时间：</text>
 				</view>
 
-				<picker class='main_start_time' bindchange="CHANGE_TIMEFIVE" mode="time" start="12:00" end="17:00" value="{{model.fiveStartTime}}">
-					<view class='school weui-select weui-select_in-select-after weui-cell__ft text_ft'>{{five}}</view>
+				<picker class='main_start_time ' bindchange="CHANGE_TIMEFIVE" mode="time" start="12:00" end="17:00" value="{{model.fiveStartTime}}">
+					<view class='school weui-select weui-select_in-select-after weui-cell__ft text_ft '>{{five}}</view>
 				</picker>
 			</view>
 
-			<view class='top' wx:if="{{userInfo.role==0}}">
-				<view class='left'>
+			<view class='top ' wx:if="{{userInfo.role==0}}">
+				<view class='left '>
 					<text class="name">放学提醒:</text>
 				</view>
 
-				<picker class='class_warn' bindchange="CHANGE_REMIND" value="{{model.remindIndex}}" range="{{remindItems}}" range-key="name">
+				<picker class='class_warn ' bindchange="CHANGE_REMIND" value="{{model.remindIndex}}" range="{{remindItems}}" range-key="name">
 					<view class=" weui-select_in-select-afte weui-select-next">
-						<text class='text_col weui-select weui-select_in-select-after weui-cell__ft text_ft'>{{remindItems[model.remindIndex].name}}</text>
+						<text class='text_col weui-select weui-select_in-select-after weui-cell__ft text_ft '>{{remindItems[model.remindIndex].name}}</text>
 					</view>
 				</picker>
 			</view> -->
 
     <!-- 放学时间设置 -->
-    <view class='set_box' hidden='{{childTime}}' wx:if="{{userInfo.role==0}}">
-      <view class='line'></view>
-      <view class='set_list'>
+    <view class='set_box ' hidden='{{childTime}} ' wx:if="{{userInfo.role==0}}">
+      <view class='line '></view>
+      <view class='set_list '>
         <view class='set_item '>
-          <view class='weekday'>星期</view>
-          <view class='endtimer'>放学时间</view>
+          <view class='weekday '>星期</view>
+          <view class='endtimer '>放学时间</view>
         </view>
         <block wx:for="{{weekDays}}" wx:for-item="item" wx:for-index="index" wx:key="index">
-          <view class='set_item'>
-            <!-- <view class='set_item {{item.value=="输入时间"?"":"complate"}}'> -->
-            <view class='weekday'>{{item.name}}</view>
+          <view class='set_item '>
+            <!-- <view class='set_item {{item.value=="输入时间" ? "": "complate"}} '> -->
+            <view class='weekday '>{{item.name}}</view>
             <picker bindchange="SET_SCHOOLOUT" mode="time" start="12:00" end="21:00" data-index="{{index}}">
-              <view class='endtimer'>{{item.value}}</view>
+              <view class='endtimer '>{{item.value}}</view>
             </picker>
           </view>
         </block>
       </view>
     </view>
-    <view class='set_box_tishi' hidden='{{childTime}}' wx:if="{{userInfo.role==0}}">放学时间可根据实际情况进行修改</view>
+    <view class='set_box_tishi ' hidden='{{childTime}} ' wx:if="{{userInfo.role==0}}">放学时间可根据实际情况进行修改</view>
 
-    <!-- <view class='top' wx:if="{{userInfo.role==1}}">
-      <view class='left'>
-        <text class="xingxing" style='color:#fff'>*</text>
+    <!-- <view class='top ' wx:if="{{userInfo.role==1}}">
+      <view class='left '>
+        <text class="xingxing" style='color:#fff '>*</text>
         <text class="name">上课提醒：</text>
       </view>
 
-      <picker class='class_warn' bindchange="CHANGE_REMIND" value="{{model.remindIndex}}" range="{{remindItems}}" range-key="name">
+      <picker class='class_warn ' bindchange="CHANGE_REMIND" value="{{model.remindIndex}}" range="{{remindItems}}" range-key="name">
         <view class=" weui-select_in-select-afte weui-select-next">
-          <text class='text_col weui-select weui-select_in-select-after weui-cell__ft text_ft'>{{remindItems[model.remindIndex].name}}</text>
+          <text class='text_col weui-select weui-select_in-select-after weui-cell__ft text_ft '>{{remindItems[model.remindIndex].name}}</text>
         </view>
       </picker>
     </view> -->
 
 
-    <!-- <view class='schoolin_class_info coursebox' wx:if='{{userInfo.role==1}}' hidden='{{tachertime}}' wx:for='{{courseList}}' wx:for-item="item" wx:for-index="index" wx:key='index'>
-			<view class='info_list timebox'>
-				<view class='left'>
-					<text class="xingxing" style='color:#fff'>*</text>
-					<text class='import'>*</text>第{{item.dailyRule}}节课时间：
+    <!-- <view class='schoolin_class_info coursebox ' wx:if='{{userInfo.role==1}} ' hidden='{{tachertime}} ' wx:for='{{courseList}} ' wx:for-item="item" wx:for-index="index" wx:key='index '>
+			<view class='info_list timebox '>
+				<view class='left '>
+					<text class="xingxing" style='color:#fff '>*</text>
+					<text class='import '>*</text>第{{item.dailyRule}}节课时间：
 				</view>
-				<view class='school class_length'>
-					<picker bindchange="CHANGE_CLASSTIME" wx:if='{{item.dailyRule<5}}' class='class_picker' data-index="{{index}}" mode="time" start="07:00" end="12:00" value=""> {{item.classTime}}</picker>
+				<view class='school class_length '>
+					<picker bindchange="CHANGE_CLASSTIME" wx:if='{{item.dailyRule<5}} ' class='class_picker ' data-index="{{index}}" mode="time" start="07:00" end="12:00" value=""> {{item.classTime}}</picker>
 					<picker bindchange="CHANGE_CLASSTIME" wx:if='{{item.dailyRule>=5}}' class='class_picker' data-index="{{index}}" mode="time" start="13:00" end="17:00" value=""> {{item.classTime}}</picker>
-				</view>
-			</view>
-		</view> -->
+        </view>
+      </view>
+    </view> -->
   </view>
 
   <!-- 课节信息修改 -->
@@ -216,7 +225,7 @@
 			</view>
 		</view> -->
     <view class="add_course1_item">
-      <view class="switchs" bindtap="getisweek">
+      <view class="switchs  {{weeks==true?'showindex':''}}" bindtap="getisweek">
         <text>否</text>
         <text>是</text>
         <view class="checked {{weeks==true?'left':'right'}}">
@@ -259,7 +268,7 @@
         </view>
       </view>
 
-      <view class='tbody'>
+      <view class="tbody  {{weeks==true?'showindex':''}}">
         <view class='tr' wx:for="{{courseTable}}" wx:for-item="item" wx:key="index" wx:for-index="index">
           <block wx:for="{{item}}" wx:for-item="item1" wx:key="index1" wx:for-index="index1">
             <block wx:if="{{index1==0}}">
@@ -358,6 +367,6 @@
     <calendar catch:day-click="CALENDAR_DAY_CHANGED" />
   </view>
   <!-- 蒙版 -->
-  <view bindtap="quit" class="page_bg" wx:if="{{ course.mask}}"></view>
+  <view bindtap="quit" class="page_bg" wx:if="{{course.mask}}"></view>
 
 </view>

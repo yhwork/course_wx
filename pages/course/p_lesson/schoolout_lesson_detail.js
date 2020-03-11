@@ -80,6 +80,7 @@ class SchooloutLessonDetailPage extends EPage {
       ],
       imageUrl: '',
       mask: true,
+      isshare: false,
       course: {
         'time': false,
         'update': true,
@@ -142,6 +143,15 @@ class SchooloutLessonDetailPage extends EPage {
         }
       },
       [PAGE_LIFE.ON_SHOW](option) {
+        if (this.data.isshare){
+          return  wx.navigateBack({
+            delta: 1,
+          })
+        }
+       
+
+
+
         put(effects.GET_CHILD);
         //获取用户信息
         put(effects.GET_USER_INFO);
@@ -150,7 +160,8 @@ class SchooloutLessonDetailPage extends EPage {
       },
       [PAGE_LIFE.ON_SHARE_APP_MESSAGE](e) {
         this.setData({
-          shareHide: true
+          shareHide: true,
+          isshare:true
         });
         const {
           from
@@ -173,11 +184,13 @@ class SchooloutLessonDetailPage extends EPage {
                 duration: 1500,
                 mask: true,
                 success: (res) => {
+                  console.log('分享成功')
                   wx.navigateBack({
                     delta: 1,
                   })
                 },
                 complete:()=>{
+                  console.log('分享失败')
                   wx.navigateBack({
                     delta: 1,
                   })

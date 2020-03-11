@@ -240,6 +240,10 @@ class SchoolinEditePage extends EPage {
           this.setData({
             'model.childId': childId,
           });
+        }else{
+          this.setData({
+            'model.childId': wx.getStorageSync("childId")
+          });
         }
         this.setData({
           img: this.$api.extparam.getPageImgUrl('boyb'),
@@ -339,7 +343,9 @@ class SchoolinEditePage extends EPage {
             'course.starttime': false,
             'course.endtime': false,
             'course.alert': false,
-            showCalendar: false
+            showCalendar: false,
+            weeks: false,
+            switched: false,
           })
           // 把数据导入
         } else {
@@ -348,10 +354,23 @@ class SchoolinEditePage extends EPage {
             'course.starttime': false,
             'course.endtime': false,
             'course.alert': false,
-            showCalendar: false
+            showCalendar: false,
+            weeks: false,
+            switched: false,
           })
         }
-
+        let InterNameList = this.data.InterNameList
+        if (this.data.switched == true) {
+          InterNameList.forEach(item => {
+            console.log(item)
+            item.checked = 0
+          })
+        } else {
+          InterNameList[0].checked = 1
+        }
+        this.setData({
+          InterNameList: InterNameList
+        })
       },
       // 选择校内课程名称
       [events.ui.CHOOSE_TAG_SEL](e) {
@@ -553,12 +572,15 @@ class SchoolinEditePage extends EPage {
         if (this.data.weeks) {
           this.setData({
             weeks: false,
-            switched: false
+            switched: false,
+            'course.mask':false,
           })
         } else {
           this.setData({
             weeks: true,
             switched: true,
+            'course.mask': true,
+
           })
         }
         let InterNameList = this.data.InterNameList
@@ -669,7 +691,8 @@ class SchoolinEditePage extends EPage {
       [events.ui.CHANGE_CLASSNAME](e) {
         console.log(e.detail.value)
         this.setData({
-          'model.className': e.detail.value
+          'model.className': e.detail.value,
+
         })
       },
       //第5节课
@@ -822,7 +845,7 @@ class SchoolinEditePage extends EPage {
         console.log(e)
         console.log(this.data.model.childId)
         wx.navigateTo({
-          url: '../../mypage/school/school?comefrom=changeschool&childId=' + this.data.model.childId
+          url: '/pages/mydemo/pages/school/school?comefrom=changeschool&childId=' + this.data.model.childId
         })
       },
       // 选择校内课程名称
@@ -1447,7 +1470,7 @@ class SchoolinEditePage extends EPage {
               })
             }
           }
-          // console.log(this.data.classList)
+          console.log('班级',this.data.classList)
           this.$storage.set('fistClass', this.data.classList[0]);
         })
       },

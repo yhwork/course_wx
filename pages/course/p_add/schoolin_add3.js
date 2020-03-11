@@ -27,7 +27,8 @@ class SchoolinAdd3Page extends EPage {
       userInfo:{
         role:0
       },
-      share_img:''
+      share_img:'',
+      isshare:false
     };
   }
 
@@ -59,6 +60,11 @@ class SchoolinAdd3Page extends EPage {
        })
       },
       [PAGE_LIFE.ON_SHOW]() {
+        if (this.data.isshare) {
+          return wx.switchTab({
+            url: '/pages/course/courseList/courseList'
+          })
+        }
         this.$storage.get('schoolinfo.name').then(
           (name) => {
             this.setData({
@@ -232,7 +238,8 @@ class SchoolinAdd3Page extends EPage {
       },
       [PAGE_LIFE.ON_SHARE_APP_MESSAGE](e) {
         this.setData({
-          iptHide: true
+          iptHide: true,
+          isshare:true
         });
 
         const {
