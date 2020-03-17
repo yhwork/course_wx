@@ -7,7 +7,7 @@ globalConfig.init()
 
 
 const globalData = {
-  config: globalConfig
+  config: globalConfig 
 }
 const config = globalData.config
 const device = wx.getSystemInfoSync()
@@ -38,6 +38,31 @@ Page({
       type: option.type,
     })
     if (this.data.type == 'child') {
+      this.setData({
+        childId: option.childId,
+        communityId: option.communityId,
+        cropperOpt: {
+          id: 'cropper',
+          targetId: 'targetCropper',
+          pixelRatio: device.pixelRatio,
+          width,
+          height,
+          scale: 2.5,
+          zoom: 8,
+          cut: {
+            x: (width - 300) / 2,
+            y: (height - 300) / 2,
+            width: 300,
+            height: 300,
+          },
+          boundStyle: {
+            color: config.getThemeColor(),
+            mask: 'rgba(0,0,0,0.6)',
+            lineWidth: 1
+          }
+        }
+      })
+    } else if (this.data.type == 'addchild'){
       this.setData({
         childId: option.childId,
         communityId: option.communityId,
@@ -235,6 +260,10 @@ Page({
         } else if (this.data.type == 'classlogo') {
           wx.redirectTo({
             url: `../../../pages/classcircle/reviseClass/reviseClass?classlogo=${avatar}&classId=${this.data.classId}&type=logo`
+          })
+        } else if (this.data.type == 'addchild'){
+          wx.redirectTo({
+            url: `/pages/register/info/p_info?avatar=${avatar}&childId=${this.data.childId}&manage=${'false'}`,
           })
         }
 

@@ -144,7 +144,7 @@ class reviseClass extends EPage {
         wx.showModal({
           title: '提示',
           content: '确定删除该成员？',
-          confirmColor: '#f29219',
+          confirmColor: '#DDC01F',
           success: res => {
             if (res.confirm) {
               put(effects.updataStstus, {

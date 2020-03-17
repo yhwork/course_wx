@@ -1,212 +1,242 @@
 <import src="../../../components/templates/class/workInfo" />
-<block wx:if='{{classList.length!=0}}'>
+<view class="page">
+  <block wx:if='{{classList.length!=0}}'>
+    <view wx:if="{{role==0}}" class='notifybox'>
+      <template is='workInfo' data='{{workInfor,width,role,img,type,notifyReply,ischildsubmitwork}}' />
+    </view>
 
+    <!-- 老师发通知作业等 -->
+    <view class="publish_work" wx:if='{{userinfo.role==1}}'>
 
-  <view wx:if="{{role==0}}" class='notifybox'>
-    <template is='workInfo' data='{{workInfor,width,role,img,type,notifyReply,ischildsubmitwork}}' />
-  </view>
-
-  <!-- 老师发通知作业等 -->
-  <view wx:if='{{userinfo.role==1}}'>
-  
-    <!-- <view class='top'>
-    <radio-group class="radio-group" bindchange="radioChange">
-      <label class="radio" wx:for="{{peportType}}" wx:key=''>
-        <text>{{item.value}}</text>
-        <radio color='#f29219' value="{{item.id}}" checked="{{item.checked}}" />
-      </label>
-    </radio-group>
-  </view> -->
-
-    <form bindsubmit='SETHOMEWORK'>
-      <view class='contents' hidden='{{!playvideo}}'>
-        <view class='title' wx:if='{{type!=2}}'>
-          <text>标题：</text>
-          <!-- <textarea class='t_input' placeholder='请输入标题（限15字）' placeholder-class='placeholder1' maxlength="15" bindblur='SETTITLE'></textarea> -->
-          <input class='t_input' placeholder='请输入标题（限15字）' placeholder-class='placeholder' maxlength="15" bindblur='SETTITLE'></input>
-        </view>
-        <view class='{{isios?"text":""}}'>
-          <textarea placeholder='请输入具体内容（限300字）' placeholder-class='placeholder' maxlength="300" bindblur='SETTEXT'></textarea>
-        </view>
-
-        <view class='img_video_box'>
-          <view class='imgs'>
-            <view class='aimg' wx:for='{{imgList}}' wx:key='index'>
-              <image class='del' bindtap='DELs' data-index='{{index}}' data-type='{{item.contentType}}' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/delete_in.png"></image>
-              <image class='pot' mode='aspectFill' src='{{item.content}}'></image>
-            </view>
-          </view>
-          <view class='audios' wx:for='{{audioList}}' wx:key=''>
-            <view class='audio'>
-              <image class='dels' bindtap='DELs' data-index='{{index}}' data-type='{{item.contentType}}' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/delete_in.png"></image>
-              <audio src="{{item.content}}" id="subjectAudio1" bindtimeupdate="AUDIO_UPDATA_PROGRESS" data-clicktype='2' bindended="AUDIO_PLAY_END"></audio>
-              <view class='voice_animate'>
-                <view class='playimg' data-clicktype='2' data-play='{{item.play}}' style='display:{{item.play?"none":"flex"}}' catchtap='AUDIO_PLAY'>
-                  <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/voice_img.png'></image>
-                </view>
-                <view class='stopimg' data-clicktype='2' data-play='{{item.play}}' style='display:{{item.play?"flex":"none"}}' catchtap='AUDIO_STOP'>
-                  <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/voice.gif'></image>
-                </view>
-                <view class='proleft' wx:if='{{!item.audio_duration||item.audio_duration=="00:00"}}'>{{item.contentSize}}</view>
-                <view wx:else class="proleft">{{item.audio_duration}}</view>
-              </view>
-            </view>
-          </view>
-          <view class='c_videos' wx:for='{{videoList}}' wx:key=''>
-            <view class='c_video' wx:if='{{item.content!=""&&item.content!=null&&typeof(item.content)!="undefined"}}'>
-              <image class='delS' bindtap='DELs' data-index='{{index}}' data-type='{{item.contentType}}' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/delete_in.png"></image>
-              <!-- <video class='videos' poster='{{item.content}}?x-oss-process=video/snapshot,t_10000,m_fast' id="myVideo" src='{{item.content}}' show-fullscreen-btn enable-progress-gesture objectFit='cover'></video> -->
-              <image class='videoimg' src='{{item.content}}?x-oss-process=video/snapshot,t_10000,m_fast' mode='aspectFill'></image>
-              <view class='video_btn' data-src='{{item.content}}' catchtap='PLAYVIDEO'></view>
-            </view>
-          </view>
-        </view>
-
-
-        <!-- 添加按钮组 -->
-        <view class='add_btn_group'>
-          <view class='add_img' bindtap='CHANGE_AVATAR' wx:if='{{imgNum>0}}'>
-            <image mode='aspectFill' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/add_img.png'></image>
-            <text>图片</text>
-          </view>
-          <view class='add_audio' bindtap='SET_AUDIO' wx:if='{{audioNum>0}}'>
-            <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/audio_a.png'></image>
-            <text>语音</text>
-          </view>
-          <view class='add_video' bindtap='SET_VIDEO' wx:if='{{videoNum>0}}'>
-            <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/add_video.png'></image>
-            <text>视频</text>
-          </view>
-        </view>
-      </view>
-
-      <view class='bottom'>
-        <view>请选择班级（可多选）</view>
-        <checkbox-group bindchange="CHOOSECLASS" class='classbox'>
-          <view class='classlist' wx:for='{{classList}}' wx:key=''>
-            <view class='schoolclass'>
-              <text>{{item.className}}</text>
-              <text>{{item.schoolName}}</text>
-            </view>
-            <checkbox color='#f29219' value='{{item.classId}}'  ></checkbox>
-          </view>
-        </checkbox-group>
-        <view>
-        </view>
-      </view>
-
-      <view class='isremind' wx:if='{{type!=2}}'>
-        <!-- <text wx:if='{{type==2}}'>家长点评班级相册是否及时提醒</text> -->
-        <text wx:if='{{type==1}}'>家长提交班级作业是否及时提醒</text>
-        <text wx:if='{{type==0}}'>家长反馈班级通知是否及时提醒</text>
-        <radio-group class='radio_group' bindchange="isRemindChange">
-          <label class="is_radio" wx:for="{{isRemind}}" wx:key=''>
+      <!-- <view class='top'>
+        <radio-group class="radio-group" bindchange="radioChange">
+          <label class="radio" wx:for="{{peportType}}" wx:key=''>
             <text>{{item.value}}</text>
             <radio color='#f29219' value="{{item.id}}" checked="{{item.checked}}" />
           </label>
         </radio-group>
-      </view>
-
-      <view class='bottomtab' hidden='{{!notify}}'>
-        <button class='look' style='background:#fff;color:#f29219' form-type="submit" data-buttype='1'>预览</button>
-        <button class='set' data-buttype='2' form-type="submit">发布</button>
-      </view>
-      
-      <view class='bottomtab' hidden='{{notify}}'>
-        <view class='look' bindtap='CANCEL_CHOOSE_RECEIPT' style='width:30%'>取消</view>
-        <!-- bindtap='CHOOSE_RECEIPT' -->
-        <button class='set' data-buttype='3' form-type="submit" style='width:70%;font-size:30rpx;'>选择回执方式</button>
-      </view>
-    </form>
-
-  </view>
-
-
-  <!-- 家长回复作业 -->
-  <view wx:else>
-    <form bindsubmit='SETHOMEWORK'>
-      <view class='contents childcontent'>
-        <view class='text' wx:if='{{playvideo}}'>
-          <textarea placeholder='{{pla}}' bindinput='SETTEXT'></textarea>
-        </view>
-
-        <view class='img_video_box'>
-          <view class='imgs'>
-            <view class='aimg' wx:for='{{imgList}}' wx:key='index'>
-              <image class='del' bindtap='DELs' data-index='{{index}}' data-type='{{item.contentType}}' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/delete_in.png"></image>
-              <image class='pot' mode='aspectFill' src='{{item.content}}'></image>
-            </view>
+      </view> -->
+      <!-- 作业回答 -->
+      <form bindsubmit='SETHOMEWORK'>
+        <view class='contents' hidden='{{!playvideo}}'>
+          <view class='title' wx:if='{{type!=2}}'>
+            <!-- <text>标题：</text> -->
+            <!-- <textarea class='t_input' placeholder='请输入标题（限15字）' placeholder-class='placeholder1' maxlength="15" bindblur='SETTITLE'></textarea> -->
+            <input class='t_input' placeholder='请输入标题（限15字）' placeholder-class='placeholder' maxlength="15" bindblur='SETTITLE'></input>
           </view>
-          <view class='audios' wx:for='{{audioList}}' wx:key=''>
-            <view class='audio'>
-              <image class='dels' bindtap='DELs' data-index='{{index}}' data-type='{{item.contentType}}' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/delete_in.png"></image>
-              <audio src="{{item.content}}" id="subjectAudio1" bindtimeupdate="AUDIO_UPDATA_PROGRESS" data-clicktype='2' bindended="AUDIO_PLAY_END"></audio>
-              <view class='voice_animate'>
-                <view class='playimg' data-clicktype='2' data-play='{{item.play}}' style='display:{{item.play?"none":"flex"}}' catchtap='AUDIO_PLAY'>
-                  <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/voice_img.png'></image>
+          <view class='{{isios?"text":""}}'>
+            <textarea placeholder='请输入具体内容（限300字）' placeholder-class='placeholder' maxlength="300" bindblur='SETTEXT'></textarea>
+          </view>
+          <!-- 通知回执 -->
+          <view class='img_video_box'>
+            <view class='imgs_list'>
+              <view class='imgsizes' wx:for='{{imgList}}' wx:key='index'>
+                <image class='del' bindtap='DELs' data-index='{{index}}' data-type='{{item.contentType}}' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/delete_in.png"></image>
+                <image src='{{item.content}}'></image>
+              </view>
+            </view>
+            <view class='audios' wx:for='{{audioList}}' wx:key='index'>
+              <view class='audio'>
+                <image class='dels' bindtap='DELs' data-index='{{index}}' data-type='{{item.contentType}}' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/delete_in.png"></image>
+                <audio src="{{item.content}}" id="subjectAudio1" bindtimeupdate="AUDIO_UPDATA_PROGRESS" data-clicktype='2' bindended="AUDIO_PLAY_END"></audio>
+                <view class='voice_animate'>
+                  <view class='playimg' data-clicktype='2' data-play='{{item.play}}' style='display:{{item.play?"none":"flex"}}' catchtap='AUDIO_PLAY'>
+                    <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/voice_img.png'></image>
+                  </view>
+                  <view class='stopimg' data-clicktype='2' data-play='{{item.play}}' style='display:{{item.play?"flex":"none"}}' catchtap='AUDIO_STOP'>
+                    <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/voice.gif'></image>
+                  </view>
+                  <view class='proleft' wx:if='{{!item.audio_duration||item.audio_duration=="00:00"}}'>{{item.contentSize}}</view>
+                  <view wx:else class="proleft">{{item.audio_duration}}</view>
                 </view>
-                <view class='stopimg' data-clicktype='2' data-play='{{item.play}}' style='display:{{item.play?"flex":"none"}}' catchtap='AUDIO_STOP'>
-                  <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/voice.gif'></image>
-                </view>
-                <view class='proleft' wx:if='{{!item.audio_duration||item.audio_duration=="00:00"}}'>{{item.contentSize}}</view>
-                <view wx:else class="proleft">{{item.audio_duration}}</view>
+              </view>
+            </view>
+
+            <view class='c_videos' wx:for='{{videoList}}' wx:key='index'>
+              <view class='c_video' wx:if='{{item.content!=""&&item.content!=null&&typeof(item.content)!="undefined"}}'>
+                <image class='delS' bindtap='DELs' data-index='{{index}}' data-type='{{item.contentType}}' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/delete_in.png"></image>
+                <!-- <video class='videos' poster='{{item.content}}?x-oss-process=video/snapshot,t_10000,m_fast' id="myVideo" src='{{item.content}}' show-fullscreen-btn enable-progress-gesture objectFit='cover'></video> -->
+                <image class='videoimg' src='{{item.content}}?x-oss-process=video/snapshot,t_10000,m_fast' mode='aspectFill'></image>
+                <view class='video_btn' data-src='{{item.content}}' catchtap='PLAYVIDEO'></view>
               </view>
             </view>
           </view>
-          <view class='c_videos' wx:for='{{videoList}}' wx:key=''>
-            <view class='c_video' wx:if='{{item.content!=""&&item.content!=null&&typeof(item.content)!="undefined"}}'>
-              <image class='delS' bindtap='DELs' data-index='{{index}}' data-type='{{item.contentType}}' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/delete_in.png"></image>
-              <!-- <video class='videos' poster='{{item.content}}?x-oss-process=video/snapshot,t_10000,m_fast' id="myVideo" src='{{item.content}}' show-fullscreen-btn enable-progress-gesture objectFit='cover'></video> -->
-              <image class='videoimg' src='{{item.content}}?x-oss-process=video/snapshot,t_10000,m_fast' mode='aspectFill'></image>
-              <view class='video_btn' data-src='{{item.content}}' catchtap='PLAYVIDEO'></view>
+
+
+          <!-- 添加按钮组 -->
+          <view class='add_btn_group'>
+            <view class='add_img' catchtap='CHANGE_AVATAR' wx:if='{{imgNum>0}}'>
+              <image mode='aspectFill' src='/assets/local/tupian.png'></image>
+              <text>图片</text>
+            </view>
+            <view class='add_audio' catchtap='SET_AUDIO' wx:if='{{audioNum>0}}'>
+              <image src='/assets/local/yuying.png'></image>
+              <text>语音</text>
+            </view>
+            <view class='add_video' catchtap='SET_VIDEO' wx:if='{{videoNum>0}}'>
+              <image src='/assets/local/shiping.png'></image>
+              <text>视频</text>
             </view>
           </view>
         </view>
-        <!-- 添加按钮组 -->
-        <view class='add_btn_group'>
-          <view class='add_img' bindtap='CHANGE_AVATAR' wx:if='{{imgNum>0}}'>
-            <image mode='aspectFill' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/add_img.png'></image>
-            <text>图片</text>
-          </view>
-          <view class='add_audio' bindtap='SET_AUDIO' wx:if='{{audioNum>0}}'>
-            <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/audio_a.png'></image>
-            <text>语音</text>
-          </view>
-          <view class='add_video' bindtap='SET_VIDEO' wx:if='{{videoNum>0}}'>
-            <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/add_video.png'></image>
-            <text>视频</text>
+
+        <view class='bottom'>
+          <view>请选择班级（可多选）</view>
+          <checkbox-group bindchange="CHOOSECLASS" class='classbox'>
+            <view class='classlist' wx:for='{{classList}}' wx:key='index'>
+              <view class='schoolclass'>
+                <text>{{item.className}}</text>
+                <text>{{item.schoolName}}</text>
+              </view>
+              <checkbox color='#f29219' value='{{item.classId}}'></checkbox>
+            </view>
+          </checkbox-group>
+          <!-- 反馈提醒 -->
+          <view class='isremind' wx:if='{{type!=2}}'>
+            <!-- <text wx:if='{{type==2}}'>家长点评班级相册是否及时提醒</text> -->
+            <text wx:if='{{type==1}}'>家长提交班级作业是否及时提醒</text>
+            <text wx:if='{{type==0}}'>家长反馈班级通知是否及时提醒</text>
+            <radio-group class='radio_group' bindchange="isRemindChange">
+              <label class="is_radio" wx:for="{{isRemind}}" wx:key='index'>
+                <text>{{item.value}}</text>
+                <radio color='#E7C60E' value="{{item.id}}" checked="{{item.checked}}" />
+              </label>
+            </radio-group>
           </view>
         </view>
-      </view>
-      <view class='bottomtab'>
-        <button class='set' style='width:100%' form-type="submit">提交</button>
-      </view>
-    </form>
-  </view>
+
+        <!-- 选择回执方式 -->
+        <view class="selete_alert" hidden='{{notify}}'>
+          <view>
+            <button data-buttype='3' form-type="submit">选择回执方式</button>
+          </view>
+          <view class="weui-select weui-select_in-select-after weui-cell__ft text_ft"></view>
+        </view>
 
 
+        <view class="publish_btn" wx:if='{{s_repliys}}'>
+          <form bindsubmit='ADDRECEIPT' class='classboxs'>
+            <radio-group bindchange="CHOOSETYPE">
+              <view class='classlist' wx:for='{{receiptType}}' wx:key='index'>
+                <view class='left'>
+                  <image wx:if='{{item.img}}' src='{{item.img}}'></image>{{item.type}}</view>
+                <radio value='{{item.id}}' color='#f29219' checked='{{item.checked}}'></radio>
+              </view>
+            </radio-group>
 
-  <view class='voice_mask' catchtouchmove='eStop' hidden='{{isSpeaking}}'>
-    <view class='voice_box'>
-      <image class="cancel" bindtap='cancel' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/delete_in.png">
-      </image>
-      <view class='countDown' hidden='{{!startSpeak}}'>录音中，还剩{{startSpeak?countDownTime:"600"}}秒</view>
-      <image class='voice_btn' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/vioce.png' hidden='{{startSpeak}}' bindtap='START_AUDIO'></image>
-      <image class='voice_btn' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/vioce_play2.png' hidden='{{!startSpeak}}' bindtap='STOP_AUDIO'></image>
-      <view class='voice_title'>{{startSpeak?"点击结束":"点击开始"}}</view>
+            <view class='bottomtabs'>
+              <!-- <button  data-type='1' form-type="submit">通知预览</button> -->
+              <button data-type='2' form-type="submit">完成</button>
+            </view>
+          </form>
+        </view>
+
+        <view class='bottomtab_btn' wx:if='{{notify}}'>
+          <!-- <button class='look' style='background:#fff;color:#E7C60E' form-type="submit" data-buttype='1'>预览</button> -->
+          <button data-buttype='2' form-type="submit">发布</button>
+        </view>
+        <view wx:else>
+          <!-- <form bindsubmit='ADDRECEIPT'  class='classboxs'>
+          <button  data-type='2' form-type="submit">完成</button>
+         </form> -->
+        </view>
+        <!--
+            <view class='bottomtab' hidden='{{notify}}'>
+              <view class='look' bindtap='CANCEL_CHOOSE_RECEIPT' style='width:30%'>取消</view>
+          
+              <button class='set' data-buttype='3' form-type="submit" style='width:70%;font-size:30rpx;'>选择回执方式</button>
+            </view>
+             -->
+      </form>
+
     </view>
+    <!-- 家长回复作业 -->
+    <view wx:if='{{userinfo.role==0}}'>
+      <form bindsubmit='SETHOMEWORK'>
+        <view class='contents childcontent'>
+          <view class='text' wx:if='{{playvideo}}'>
+            <textarea placeholder='{{pla}}' bindinput='SETTEXT'></textarea>
+          </view>
+          <!-- 班级作业回复 -->
+          <view class='img_video_box'>
+            <view class='imgs_list'>
+              <view class='imgsizes' wx:for='{{imgList}}' wx:key='index'>
+                <image class='del' mode="center" bindtap='DELs' data-index='{{index}}' data-type='{{item.contentType}}' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/delete_in.png"></image>
+                <image class='pot' mode='center' src='{{item.content}}'></image>
+              </view>
+            </view>
+            <view class='audios' wx:for='{{audioList}}' wx:key='index'>
+              <view class='audio'>
+                <image class='dels' bindtap='DELs' data-index='{{index}}' data-type='{{item.contentType}}' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/delete_in.png"></image>
+                <audio src="{{item.content}}" id="subjectAudio1" bindtimeupdate="AUDIO_UPDATA_PROGRESS" data-clicktype='2' bindended="AUDIO_PLAY_END"></audio>
+                <view class='voice_animate'>
+                  <view class='playimg' data-clicktype='2' data-play='{{item.play}}' style='display:{{item.play?"none":"flex"}}' catchtap='AUDIO_PLAY'>
+                    <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/voice_img.png'></image>
+                  </view>
+                  <view class='stopimg' data-clicktype='2' data-play='{{item.play}}' style='display:{{item.play?"flex":"none"}}' catchtap='AUDIO_STOP'>
+                    <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/voice.gif'></image>
+                  </view>
+                  <view class='proleft' wx:if='{{!item.audio_duration||item.audio_duration=="00:00"}}'>{{item.contentSize}}</view>
+                  <view wx:else class="proleft">{{item.audio_duration}}</view>
+                </view>
+              </view>
+            </view>
+            <view class='c_videos' wx:for='{{videoList}}' wx:key='index'>
+              <view class='c_video' wx:if='{{item.content!=""&&item.content!=null&&typeof(item.content)!="undefined"}}'>
+                <image class='delS' bindtap='DELs' data-index='{{index}}' data-type='{{item.contentType}}' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/delete_in.png"></image>
+                <!-- <video class='videos' poster='{{item.content}}?x-oss-process=video/snapshot,t_10000,m_fast' id="myVideo" src='{{item.content}}' show-fullscreen-btn enable-progress-gesture objectFit='cover'></video> -->
+                <image class='videoimg' src='{{item.content}}?x-oss-process=video/snapshot,t_10000,m_fast' mode='aspectFill'></image>
+                <view class='video_btn' data-src='{{item.content}}' catchtap='PLAYVIDEO'></view>
+              </view>
+            </view>
+          </view>
+          <!-- 添加按钮组 -->
+          <view class='add_btn_group'>
+            <view class='add_img' catchtap='CHANGE_AVATAR' wx:if='{{imgNum>0}}'>
+              <image mode='aspectFill' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/add_img.png'></image>
+              <text>图片</text>
+            </view>
+            <view class='add_audio' catchtap='SET_AUDIO' wx:if='{{audioNum>0}}'>
+              <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/audio_a.png'></image>
+              <text>语音</text>
+            </view>
+            <view class='add_video' catchtap='SET_VIDEO' wx:if='{{videoNum>0}}'>
+              <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/add_video.png'></image>
+              <text>视频</text>
+            </view>
+          </view>
+        </view>
+        <view class='bottomtab'>
+          <button form-type="submit">提交</button>
+        </view>
+      </form>
+    </view>
+
+
+
+    <view class='voice_mask' catchtouchmove='eStop' hidden='{{isSpeaking}}'>
+      <view class='voice_box'>
+        <image class="cancel" bindtap='cancel' src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/delete_in.png">
+        </image>
+        <view class='countDown' hidden='{{!startSpeak}}'>录音中，还剩{{startSpeak?countDownTime:"600"}}秒</view>
+        <image class='voice_btn' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/vioce.png' hidden='{{startSpeak}}' bindtap='START_AUDIO'></image>
+        <image class='voice_btn' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/vioce_play2.png' hidden='{{!startSpeak}}' bindtap='STOP_AUDIO'></image>
+        <view class='voice_title'>{{startSpeak?"点击结束":"点击开始"}}</view>
+      </view>
+    </view>
+
+    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{message}}</view>
+
+
+    <view class='videobox' hidden='{{playvideo}}' bindtap='overVIDEO'>
+      <cover-image class='close' bindtap='close_video' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/close.png'></cover-image>
+      <video style='width:{{widths}}px;height:{{heights}}px' src='{{videoSrc}}' controls="false" autoplay='true' show-fullscreen-btn='false' bindended='overVIDEO'>
+      </video>
+    </view>
+
+  </block>
+  <view wx:else class='content_info'>您还没有建立班级，请点击
+    <text class='add_info' bindtap='addClass'>"创建班级"</text> ，创建自己专属的班级，让您与学员沟通更方便
   </view>
-
-  <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{message}}</view>
-
-
-  <view class='videobox' hidden='{{playvideo}}' bindtap='overVIDEO'>
-    <cover-image class='close' bindtap='close_video' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/close.png'></cover-image>
-    <video style='width:{{widths}}px;height:{{heights}}px' src='{{videoSrc}}' controls="false" autoplay='true' show-fullscreen-btn='false' bindended='overVIDEO'>
-    </video>
-  </view>
-
-</block>
-<view wx:else class='content_info'>您还没有建立班级，请点击
-  <text class='add_info' bindtap='addClass'>"创建班级"</text> ，创建自己专属的班级，让您与学员沟通更方便
+  <view wx:if='{{mask}}' class="mask"></view>
 </view>

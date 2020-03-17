@@ -23,7 +23,7 @@
 		}
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.10.2",
+	"libVersion": "2.10.3",
 	"appid": "wx8cc819faddd66ace",
 	"projectname": "%E6%9C%80%E6%96%B0%E5%B0%8F%E8%B1%86%E5%8C%85",
 	"cloudfunctionTemplateRoot": "",
@@ -86,9 +86,9 @@
 				},
 				{
 					"id": 4,
-					"name": "班级圈",
-					"pathName": "pages/class/class",
-					"query": "",
+					"name": "班级详情",
+					"pathName": "pages/classcircle/classMsg/classMsg",
+					"query": "classId=121373&childId=102135&role=0",
 					"scene": null
 				},
 				{
@@ -747,6 +747,76 @@
 					"name": "课程管理",
 					"pathName": "pages/course/p_manage/schoolout_manage",
 					"query": "activeIndex=1&childId=102135",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "班级管理",
+					"pathName": "pages/classcircle/classManage/classManage",
+					"query": "classId=121373",
+					"scene": null
+				},
+				{
+					"id": 100,
+					"name": "班级圈",
+					"pathName": "pages/classcircle/classMsg/classMsg",
+					"query": "classId=121501&role=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "班级作业回复",
+					"pathName": "pages/classcircle/addPeport/addPeport",
+					"query": "workId=246&type=1&role=0",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "班级发布通知",
+					"pathName": "pages/classcircle/addPeport/addPeport",
+					"query": "classId=121501&userId=105164&role=1&type=0",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "班级作业发布",
+					"pathName": "pages/classcircle/addPeport/addPeport",
+					"query": "classId=121518&userId=105164&role=1&type=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "班级通知回执",
+					"pathName": "pages/classcircle/addPeport/addPeport",
+					"query": "workId=415&type=0&role=0",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "创建班级",
+					"pathName": "pages/classcircle/addClass/addClass",
+					"query": "schoolType=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "选择教学科目",
+					"pathName": "pages/category/category",
+					"query": "comefrom=subject",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "完善个人信息",
+					"pathName": "pages/register/info/t_info",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "添加科目",
+					"pathName": "pages/category/subject/subjectlist",
+					"query": "",
 					"scene": null
 				}
 			]

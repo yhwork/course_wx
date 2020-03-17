@@ -11,6 +11,14 @@ import {
 class addClassPage extends EPage {
   get data() {
     return {
+      isRemind: [{
+        id: 1,
+        value: '全日制学校',
+        checked: true
+      }, {
+        id: 0,
+          value: '非全日制学校',
+      }],
       userinfo: {},
       className: '',
       hitpshow: true,
@@ -63,6 +71,14 @@ class addClassPage extends EPage {
     put
   }) {
     return {
+      // 
+      [events.ui.isRemindChange](e){
+        console.log(e)
+        this.setData({
+          schoolType: e.detail.value
+          // outschool: ''
+        })
+      },
       [events.ui.chooseSchool]() {
         wx.navigateTo({
           url: '../../mypage/school/school?comefrom=personalInfo'

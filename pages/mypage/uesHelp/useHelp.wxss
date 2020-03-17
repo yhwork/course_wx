@@ -24,13 +24,6 @@
     color: rgba(74, 74, 74, 1);
     line-height: 94rpx;
     padding: 0 30rpx;
-
-
-
-    font-size:28rpx;
-    font-family:PingFang SC;
-    font-weight:500;
-    color:rgba(51,51,51,1);
 }
 
 .userhelp_header image {
@@ -89,7 +82,7 @@
 .widgets__item {
     overflow: hidden;
     border-radius: 2px;
-    cursor: pointer;
+    /* cursor: pointer; */
     border-bottom: 1px solid #e5e5e5;
     /* height:88rpx;
     line-height: 88rpx; */
@@ -118,7 +111,7 @@
     transform: rotate(180deg);
 }
 .widgets__info_show {
-    opacity: 1;
+    /* opacity: 1; */
     border-bottom: 1px solid #e5e5e5;
 }
 
@@ -129,7 +122,6 @@
     font-size: 28rpx;
     color: #353535;
 }
-
 .widgets__info-img {
     width: 30px;
     height: 30px;
@@ -187,5 +179,5 @@
     bottom: 0;
     right: 20px;
     height: 1rpx;
-    background-color: #DFDFDF;
+    /* background-color: #DFDFDF; */
 }

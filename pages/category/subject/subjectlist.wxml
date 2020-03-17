@@ -1,9 +1,12 @@
-<form bindsubmit='ADDSUBJECT'>
-  <view class='top'>
-    <text>输入科目：</text>
-    <input bindblur='ADDNAME' placeholder='请输入自定义教学科目'></input>
-  </view>
-  <button form-type='submit'>保存</button>
-</form>
-
-<view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{message}}</view>
+<view class="page">
+  <form bindsubmit='ADDSUBJECT'>
+    <view class='top'>
+      <text>输入科目：</text>
+      <input bindblur='ADDNAME' placeholder='请输入自定义教学科目'></input>
+    </view>
+    <view class="btnclass_type">
+      <button form-type='submit'>保存</button>
+    </view>
+  </form>
+  <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{message}}</view>
+</view>

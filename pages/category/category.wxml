@@ -8,7 +8,7 @@
     <text bindtouchstart="mytouchstart" bindtouchend="mytouchend"  class='{{item.isselect?"asubject select":"asubject"}}' bindtap='DELSUBJECT' wx:for='{{subjectList}}' wx:key='key' wx:if='{{item.sys==1}}' data-id='{{item.id}}' data-name='{{item.name}}' style='background-color:{{item.select?"#f29219":""}}'>{{item.name}}</text>
   </view>
   <view class='custom' bindtap='ADDSUBJECT'>
-    <image class='add' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/add1.png'></image>自定义教学科目</view>
+    <image class='add' src='/assets/local/chuangjian.png'></image>自定义教学科目</view>
 
 
 

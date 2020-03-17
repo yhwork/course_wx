@@ -1,7 +1,7 @@
 import {
   EApp,
   EPage,
-  PAGE_LIFE
+  PAGE_LIFE 
 } from '../../../eea/index'
 import {
   events,
@@ -454,16 +454,12 @@ class editMyChildPage extends EPage {
           shareHide: true
         })
       },
-
-
       // 更换头像
       [events.ui.CHANGEPHOTO](e) {
         wx.showActionSheet({
           itemList: ['拍照', '从手机相册选择'],
           success: (res) => {
-
             console.log(res);
-
             if (res.cancel) {
               return;
             }
@@ -486,10 +482,7 @@ class editMyChildPage extends EPage {
                 console.log(this.data.manage)
                 // 向服务器发送  头像
                 this.$api.upload.upload(resp.tempFilePaths[0]).then(res => {
-
                   var imgsrc = this.$api.extparam.getFileUrl(res.key)
-                  // console.log(imgsrc,'请求结果是：', res.key)
-                  // 切换 
                   this.setData({
                     'resultModel.logo': imgsrc,
                     'paramModel.logo': imgsrc,

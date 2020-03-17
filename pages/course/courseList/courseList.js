@@ -218,6 +218,9 @@ class CourseListPage extends EPage {
         console.log('点击', isAuto, e)
         if (isAuto) {
           console.log('点击sssss')
+          this.setData({
+            more_staste:false
+          })
           return false
         } else {
           wx.showToast({

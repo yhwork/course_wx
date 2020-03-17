@@ -329,11 +329,12 @@ page {
   bottom: -10rpx;
   left: 45%;
 }
-
+.widgets__info-name{
+  
+}
 .addclass image {
   width: 30rpx;
   height: 30rpx;
-  border: 2rpx solid #f29219;
   border-radius: 50%;
   overflow: hidden;
   margin-right: 20rpx;

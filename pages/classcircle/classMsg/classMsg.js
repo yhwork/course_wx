@@ -14,39 +14,44 @@ const base64 = require('../../../lib/base64')
 class classmsgPage extends EPage {
   get data() {
     return {
+      datas:{
+        isdata: true,
+        name: '你还没有发布',
+        btn: '开始发布'
+      },
       shareShow: false,
       userinfo: {},
-      isagree:false,
+      isagree: false,
       idx: 1,
       tabList: [{
-        value: '班级通知',
-        idx: 0,
-        select: false
-      }, {
-        value: '班级作业',
-        idx: 1,
-        select: true
-      },
-      // {
-      //   value: '学习资料',
-      //   idx: 2,
-      //   select: false
-      // },
-      {
-        value: '班级相册',
-        idx: 2,
-        select: false
-      },
-      //  {
-      //   value: '课     表',
-      //   idx: 4, 
-      //   select: false
-      // }, 
-      {
-        value: '成     员',
-        idx: 5,
-        select: false
-      },
+          value: '班级通知',
+          idx: 0,
+          select: false
+        }, {
+          value: '班级作业',
+          idx: 1,
+          select: true
+        },
+        // {
+        //   value: '学习资料',
+        //   idx: 2,
+        //   select: false
+        // },
+        {
+          value: '班级相册',
+          idx: 2,
+          select: false
+        },
+        //  {
+        //   value: '课     表',
+        //   idx: 4, 
+        //   select: false
+        // }, 
+        {
+          value: '成     员',
+          idx: 5,
+          select: false
+        },
       ],
       isChild: true,
       childId: '',
@@ -56,7 +61,7 @@ class classmsgPage extends EPage {
       childNumber: [],
       teacherNumber: [],
       classStatus: "",
-      reviseinfo: true,       // 控制  
+      reviseinfo: true, // 控制  
       shareCavansOptions: {
         id: 'share_canvas',
         width: 0,
@@ -66,35 +71,69 @@ class classmsgPage extends EPage {
       showFollowModel: false,
       formId: '',
       peportType: [{
-        id: '0',
-        value: '班级通知',
-        src: 'notify'
-      },
-      {
-        id: '1',
-        value: '班级作业',
-        src: 'pen'
-      },
-      {
-        id: '2',
-        value: '班级相册',
-        src: 'people'
-      }
+          id: '0',
+          value: '班级通知',
+          src: 'notify'
+        },
+        {
+          id: '1',
+          value: '班级作业',
+          src: 'pen'
+        },
+        {
+          id: '2',
+          value: '班级相册',
+          src: 'people'
+        }
       ],
       isSubmit: true,
       count: 0,
+      slider: '-118px',
       isfrom: '',
       rolemsg: '(老师)'
 
     };
   }
-// 页面的生命周期
+  // 页面的生命周期
   mapPageEvent({
     put
   }) {
     return {
       [PAGE_LIFE.ON_LOAD](option) {
-        console.log('值',option)
+        console.log('值', option)
+        if (option.idx) {
+          this.setData({
+            idx: option.idx
+          })
+          this.data.tabList.forEach(item => {
+            if (item.idx == this.data.idx) {
+              item.select = true
+            } else {
+              item.select = false
+            }
+          })
+          this.setData({
+            tabList: this.data.tabList
+          })
+          if (this.data.idx == 0){
+            this.setData({
+              slider: '28px'
+            })
+          } else if (this.data.idx ==1){
+            this.setData({
+              slider: '118px'
+            })
+          } else if (this.data.idx == 2) {
+            this.setData({
+              slider: '207px'
+            })
+          } else if (this.data.idx == 3) {
+            this.setData({
+              slider: '546rpx'
+            })
+          }
+          console.log(this.data.tabList)
+        }
         if (option.comefrom) {
           this.setData({
             comefrom: option.comefrom
@@ -117,21 +156,7 @@ class classmsgPage extends EPage {
           'shareclass': this.$api.extparam.getPageImgUrl('shareclass'),
           'createclass': this.$api.extparam.getPageImgUrl('createclass'),
         })
-        if (option.idx) {
-          this.setData({
-            idx: option.idx
-          })
-          this.data.tabList.forEach(item => {
-            if (item.idx == this.data.idx) {
-              item.select = true
-            } else {
-              item.select = false
-            }
-          })
-          this.setData({
-            tabList: this.data.tabList
-          })
-        }
+
         if (option.role == 0 && !option.comefrom) {
           this.setData({
             childId: parseInt(option.childId),
@@ -180,7 +205,7 @@ class classmsgPage extends EPage {
         }
         wx.getStorage({
           key: 'joinImg',
-          success: function (res) {
+          success: function(res) {
             // console.log(res)
             if (res) {
               if (!that.data.reviseinfo) {
@@ -217,7 +242,7 @@ class classmsgPage extends EPage {
         }
         put(effects.GETCLASSINFO)
 
-        setTimeout(function () {
+        setTimeout(function() {
           wx.stopPullDownRefresh();
           wx: wx.hideLoading();
         }, 2000)
@@ -264,20 +289,56 @@ class classmsgPage extends EPage {
       }
     }
   }
-// 页面事件
+  // 页面事件
   mapUIEvent({
     put
   }) {
     return {
+      // 切换tab
+      [events.ui.goAdd](e) {
+        let type = this.data.idx
+        if (type==5){
+          console.log("邀请")
+        }else{
+          wx.navigateTo({
+            url: '../addPeport/addPeport?classId=' + this.data.classId + '&userId=' + this.data.userinfo.id + '&role=' + this.data.userinfo.role + '&type=' + type,
+          })
+        }
+       
+      },
       [events.ui.CHOOSETYPE](e) {
         this.setData({
           formId: e.detail.formId
         })
-        put(effects.ADDFOEMID)
+        //  console.log('位置',e)
         this.setData({
           idx: e.currentTarget.dataset.idx
         })
-        let idx = e.currentTarget.dataset.idx
+        let idx = e.currentTarget.dataset.idx;
+        let tab_index = e.currentTarget.dataset.tab;
+        let slider = this.data.slider;
+        put(effects.ADDFOEMID)
+        this.setData({
+          slider: e.currentTarget.offsetLeft + 12 + 'px'
+        })
+        // if (tab_index == 0){
+        //   this.setData({
+        //     slider: e.currentTarget.offsetLeft
+        //   })
+        // }else if(tab_index ==1){
+        //   this.setData({
+        //     slider: 'slider2'
+        //   })
+        // } else if (tab_index == 2) {
+        //   this.setData({
+        //     slider: 'slider3'
+        //   })
+        // } else if (tab_index == 3) {
+        //   this.setData({
+        //     slider: 'slider4'
+        //   })
+        // }
+
         this.data.tabList.forEach(item => {
           if (item.idx == idx) {
             item.select = true
@@ -295,6 +356,8 @@ class classmsgPage extends EPage {
             childNumber: [],
             teacherNumber: [],
             allList: [],
+            'datas.name': '您还没有发布',
+            'datas.btn': '开始发布',
             shareShow: false
           })
           put(effects.GET_NOTIFY)
@@ -304,6 +367,8 @@ class classmsgPage extends EPage {
             childNumber: [],
             teacherNumber: [],
             allList: [],
+            'datas.name': '您还没有发布',
+            'datas.btn': '开始发布',
             shareShow: false
           })
           put(effects.GETHOMEWORK)
@@ -312,32 +377,25 @@ class classmsgPage extends EPage {
           this.setData({
             childNumber: [],
             teacherNumber: [],
-            allList: []
+            allList: [],
+            'datas.name': '您还没有发布',
+            'datas.btn': '开始发布'
           })
           put(effects.GET_DYNAMICLIST)
-        }
-        //  else if (idx == 3) {
-        //   // 动态
-        //   this.setData({
-        //     childNumber: [],
-        //     teacherNumber: [],
-        //     allList: []
-        //   })
-        // } else if (idx == 4) {
-        //   // 课表
-        //   this.setData({
-        //     childNumber: [],
-        //     teacherNumber: [],
-        //     allList: []
-        //   })
-        // } 
-        else if (idx == 5) {
+        }else if (idx == 5) {
 
           // 成员           
           this.setData({
             childNumber: this.data.classinfo.listChild,
             teacherNumber: this.data.classinfo.listTeacher,
             allList: [],
+            'datas.name':'你还没有成员',
+            'datas.btn': '快去邀请吧',
+          })
+        }else{
+          this.setData({
+            'datas.name': '您还没有发布',
+            'datas.btn': '开始发布'
           })
         }
       },
@@ -555,9 +613,9 @@ class classmsgPage extends EPage {
       },
       // 输入学号 失去焦点触发
       [events.ui.inputStudentId](e) {
-        var val =e.detail.value;
+        var val = e.detail.value;
         var re = /^\d{1,5}$/;
-        if(val.trim() == ''){
+        if (val.trim() == '') {
           // return this.$common.showMessage(this, '请输入学号');
         }
         // if (val.length > 10) {
@@ -603,7 +661,7 @@ class classmsgPage extends EPage {
 
           console.log('studentId')
           this.setData({
-            'saveJoinMsg.studentId': e.detail.value     // 非全日制
+            'saveJoinMsg.studentId': e.detail.value // 非全日制
           })
         }
       },
@@ -611,22 +669,22 @@ class classmsgPage extends EPage {
       [events.ui.inputName](e) {
         var name = e.detail.value;
         if (name.length == '') {
-         return this.$common.showMessage(this, '请输入姓名')
-        }else if(name.length>=10){
+          return this.$common.showMessage(this, '请输入姓名')
+        } else if (name.length >= 10) {
           return this.$common.showMessage(this, '输入的姓名过长')
         }
         /**
          * 全日制（非）
          * reviseinfo    false   name (非)
          *               true    childname
-         */     
+         */
         if (!this.data.reviseinfo) {
-          console.log('childName',name)
+          console.log('childName', name)
           this.setData({
-            'reviseMsg.childName': name 
+            'reviseMsg.childName': name
           })
         } else {
-          console.log('name',name)
+          console.log('name', name)
           this.setData({
             'saveJoinMsg.name': e.detail.value
           })
@@ -648,17 +706,17 @@ class classmsgPage extends EPage {
           // 用户输入的内容
           console.log('这是啥    role==0')
           var inputMap = {
-            classId: this.data.classId,                 // 班级id
-            childId: this.data.childId,                 // 家长还子的ID
-            childNo: this.data.saveJoinMsg.studentId,   // 学号
-            childName: this.data.saveJoinMsg.name,      // 学生姓名
-            childLogo: this.data.saveJoinMsg.logo,      // 头型
+            classId: this.data.classId, // 班级id
+            childId: this.data.childId, // 家长还子的ID
+            childNo: this.data.saveJoinMsg.studentId, // 学号
+            childName: this.data.saveJoinMsg.name, // 学生姓名
+            childLogo: this.data.saveJoinMsg.logo, // 头型
           }
           if (this.data.joinlogo) {
             inputMap.childLogo = this.data.joinlogo
           }
         } else {
-          console.log('什么状态是',this.data.userinfo.role);
+          console.log('什么状态是', this.data.userinfo.role);
           var inputMap = {
             classId: this.data.classId,
             teacherLogo: this.data.saveJoinMsg.logo,
@@ -684,7 +742,7 @@ class classmsgPage extends EPage {
         if (this.data.code) {
           inputMap.shareCode = this.data.code
         }
-        console.log('加入班级信息',inputMap)
+        console.log('加入班级信息', inputMap)
         put(effects.JOINCLASS, {
           inputMap
         })
@@ -693,17 +751,17 @@ class classmsgPage extends EPage {
 
       // 保存修改信息
       [events.ui.SAVE_REVISE_INFO]() {
-        console.log('保存',this.data.reviseMsg);
+        console.log('保存', this.data.reviseMsg);
         var msgs = this.data.reviseMsg
         // this.$api.upload.upload(this.data.reviseMsg.childLogo).then(res => {
         let map = {
           classId: this.data.classId,
           childId: this.data.childId,
-          childName: msgs.childName,  // 姓名
+          childName: msgs.childName, // 姓名
           childLogo: msgs.childLogo,
-          childNo: msgs.childNo       // 学号
+          childNo: msgs.childNo // 学号
         }
-        console.log('教师端加入班级',map);
+        console.log('教师端加入班级', map);
         this.$api.class.updateClassChildInfo(map).then(res => {
           console.log(res.data.result)
           if (res.data.errorCode == 0) {
@@ -789,7 +847,7 @@ class classmsgPage extends EPage {
         wx.showModal({
           title: '提示',
           content: '确定退出班级？',
-          confirmColor: '#f29219',
+          confirmColor: '#E7C60E',
           success: res => {
             if (res.confirm) {
               put(effects.updataStstus, {
@@ -800,7 +858,7 @@ class classmsgPage extends EPage {
         })
 
       },
-      mytouchstart: function (e) {
+      mytouchstart: function(e) {
         let that = this;
         that.setData({
           'touch_start': e.timeStamp
@@ -808,7 +866,7 @@ class classmsgPage extends EPage {
         // console.log(this.data.touch_start)
       },
 
-      mytouchend: function (e) {
+      mytouchend: function(e) {
         let that = this;
         that.setData({
           'touch_end': e.timeStamp
@@ -995,7 +1053,7 @@ class classmsgPage extends EPage {
       }
     }
   }
-// 请求事件
+  // 请求事件
   mapEffect({
     put
   }) {
@@ -1046,18 +1104,18 @@ class classmsgPage extends EPage {
         if (this.data.role == 0) {
           console.log('这是家长端')
           var inputdata = {
-            classId: this.data.classId,    // 班级 id
-            childId: this.data.childId     // 孩子 id
+            classId: this.data.classId, // 班级 id
+            childId: this.data.childId // 孩子 id
           }
-        } else { 
+        } else {
           console.log('这是教师端')
           var inputdata = {
-            classId: this.data.classId     // 班级ID
+            classId: this.data.classId // 班级ID
           }
         }
         this.$api.class.getClassDetailsByClassId(inputdata).then(res => {
           console.log(res.data);
-          var result= res.data.result;
+          var result = res.data.result;
           /**
            * status  1 审核中
            *         2 参与中
@@ -1080,7 +1138,7 @@ class classmsgPage extends EPage {
             this.setData({
               isagree: true
             })
-          } else if (result.classInfo.status == 2){
+          } else if (result.classInfo.status == 2) {
             this.setData({
               isagree: false
             })
@@ -1180,8 +1238,8 @@ class classmsgPage extends EPage {
           // console.log(res)
           if (res.data.errorCode == 0) {
             // 如果成功 调用
-            put(effects.GETCLASSINFO) 
-            
+            put(effects.GETCLASSINFO)
+
             this.setData({
               joinmsg: true
             })
@@ -1212,18 +1270,26 @@ class classmsgPage extends EPage {
             classId: this.data.classId
           }
         }
-        this.$api.class.getNotifyList(inputMap).then(res => {
-          if (res.data.errorCode == 0) {
-            this.setData({
-              allList: res.data.result
+        wx.showLoading({
+          title: '数据加载中...',
+          mask: false,
+          complete: (res)=> {
+            this.$api.class.getNotifyList(inputMap).then(res => {
+              if (res.data.errorCode == 0) {
+                this.setData({
+                  allList: res.data.result
+                })
+                // console.log(this.data.allList)
+              } else if (res.data.errorCode == 100006) {
+                this.setData({
+                  allList: []
+                })
+              }
+              wx.hideLoading()
             })
-            // console.log(this.data.allList)
-          } else if (res.data.errorCode == 100006) {
-            this.setData({
-              allList: []
-            })
-          }
+          },
         })
+      
       },
 
       // 获取班级作业
@@ -1238,28 +1304,51 @@ class classmsgPage extends EPage {
             classId: this.data.classId
           }
         }
-        this.$api.class.getClassWorkList(inputMap).then(res => {
-          console.log('班级作业',res.data)
-          if (res.data.errorCode == 0) {
-            this.setData({
-              allList: res.data.result
+        wx.showLoading({
+          title: '数据加载中...',
+          mask: false,
+         
+          complete: (res)=> {
+            this.$api.class.getClassWorkList(inputMap).then(res => {
+              console.log('班级作业', res.data)
+              if (res.data.errorCode == 0) {
+                this.setData({
+                  allList: res.data.result
+                })
+              }else{
+                allList:[]
+              }
+              wx.hideLoading()
             })
-          }
+          },
         })
+     
       },
       // 获取班级相册
       [effects.GET_DYNAMICLIST]() {
         var inputMap = {
           classId: this.data.classId,
         }
-        this.$api.class.getClassDynamicList(inputMap).then(res => {
-          // if (res.data.errorCode == 0) {
-          this.setData({
-            allList: res.data.result
-          })
-          console.log('相册获取',this.data.allList)
-          // }
+        wx.showLoading({
+          title: '数据加载中..',
+          mask: false,
+        
+          complete: (res)=> {
+            this.$api.class.getClassDynamicList(inputMap).then(res => {
+              if (res.data.errorCode == 0) {
+              this.setData({
+                allList: res.data.result
+              })
+             
+              }else{
+                allList:[]
+              }
+              console.log('相册获取', this.data.allList)
+              wx.hideLoading()
+            })
+          },
         })
+    
       },
       // 删除通知
       [effects.DEL_NOTIFY](data) {
@@ -1320,7 +1409,7 @@ class classmsgPage extends EPage {
               let _this = this
               wx.downloadFile({
                 url: this.data.shareclass,
-                success: function (res) {
+                success: function(res) {
                   shareInfo.shareimg = res.tempFilePath
                   _this.$image.generateShareCourse(_this.data.shareCavansOptions, shareInfo, 'class').then(imageUrl => {
                     // console.log(imageUrl)

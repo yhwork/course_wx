@@ -1,7 +1,26 @@
 page {
   background: #fff;
 }
-
+.page{
+  display: flex;
+  align-items: center;
+  flex-flow: column wrap;
+}
+.btnclass_type {
+  margin-top: 164rpx;
+  width: 586rpx;
+  background: rgba(231, 198, 14, 1);
+  border-radius: 15rpx;
+  height: 64rpx;
+  line-height: 64rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btnclass_type button{
+  width: 100%;
+  border-radius: 15rpx;
+}
 .top {
   font-size: 28rpx;
   padding: 20rpx 30rpx;
@@ -11,10 +30,12 @@ page {
   border-bottom: 2rpx solid #ccc;
   box-sizing: border-box;
 }
-input{
+
+input {
   font-size: 28rpx;
 }
-button {
+
+/* button {
   width: 250rpx;
   border-radius: 10rpx;
   color: #f29219;
@@ -23,4 +44,4 @@ button {
   line-height: 90rpx;
   margin-top: 100rpx;
   background: #fff;
-}
+} */

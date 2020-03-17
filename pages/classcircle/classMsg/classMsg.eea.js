@@ -39,6 +39,7 @@ const events = {
     CHOOSUBMITSETYPE:null,
     close_video:null,
     changeRole:null,
+    goAdd:null,
   }
 }
 

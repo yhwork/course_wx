@@ -82,7 +82,8 @@ class createClass extends EPage {
     return {
       [events.ui.GoSetClass]() {
         wx.navigateTo({
-          url: '../classcircle/schoolType/schoolType',
+          // url: '../classcircle/schoolType/schoolType',
+          url:'/pages/classcircle/addClass/addClass?schoolType=0'
         })
       },
       [events.ui.GO_MYCLASS](e) {

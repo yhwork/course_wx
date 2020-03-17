@@ -1,12 +1,16 @@
-page{
+page {
   background-color: #fff;
 }
-.title{
-  font-size: 30rpx;
-  color: red;
-  padding: 10rpx 30rpx;
+
+.title {
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  color: rgba(185, 12, 32, 1);
+  padding: 20rpx 0 25px 30rpx;
 }
-.subbox{
+
+.subbox {
   padding: 0rpx 30rpx;
   width: 100%;
   display: flex;
@@ -15,59 +19,56 @@ page{
   flex-wrap: wrap;
   box-sizing: border-box;
 }
-.subbox>text:nth-child(4n+2){
+
+.subbox>text:nth-child(4n+2) {
   margin-left: 8%;
   margin-right: 4%;
 }
-.subbox>text:nth-child(4n+3){
+
+.subbox>text:nth-child(4n+3) {
   margin-right: 8%;
   margin-left: 4%;
 }
-.asubject{
+
+.asubject {
+  width: 119rpx;
+  height: 46rpx;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 1rpx 27rpx 0rpx rgba(150, 149, 149, 0.26);
+  border-radius: 10rpx;
   padding: 10rpx 0;
   border: 2rpx solid #ccc;
   color: #888;
-  display: inline-block;
-  width: 19%;
-  text-align: center;
-  line-height: 40rpx;
-  font-size: 28rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26rpx;
   margin-bottom: 30rpx;
   box-sizing: border-box;
   white-space: nowrap;
   overflow: hidden;
 }
-.add{
-  width: 60rpx;
-  height: 60rpx;
+
+.add {
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 15rpx;
 }
-.custom{
+
+.custom {
   padding-left: 30rpx;
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  font-size: 28rpx;
   margin-bottom: 80rpx;
 }
-.select{
+
+.select {
   background-color: #f29219;
   color: #fff;
   border: 2rpx solid #f29219;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* 
 .section__title{

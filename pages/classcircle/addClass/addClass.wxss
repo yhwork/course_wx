@@ -1,6 +1,29 @@
 page {
   background-color: #fff;
 }
+.page{
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+}
+.isremind radio {
+  transform: scale(0.8);
+  margin-left: 10rpx;
+}
+.isremind {
+  font-size: 28rpx;
+  background-color: #fff;
+  /* padding: 10rpx 30rpx; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #e51c23;
+}
+
+.isremind .radio_group {
+  display: inline-block;
+  color: #000;
+}
 
 .wrap {
   padding: 0 30rpx;
@@ -17,22 +40,43 @@ page {
   margin-bottom: 50rpx;
 }
 
+.info {
+  padding: 54rpx 58rpx;
+  box-sizing: border-box;
+  width: 690rpx;
+  /* height: 377rpx; */
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 1rpx 27rpx 0rpx rgba(150, 149, 149, 0.26);
+  border-radius: 30rpx;
+  transform: translateY(50rpx)
+}
+
 .info image {
   width: 50rpx;
   height: 30rpx;
   margin-right: 15rpx;
 }
 
-.info>view {
+.info>view.name {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
-  margin-bottom: 40rpx;
+  margin-bottom: 35rpx;
   white-space: nowrap;
 }
 
+.info>view.name:last-child {
+  margin-bottom: 0;
+}
+
+.info text {
+  font-size: 28rpx;
+}
+
 .info>view input {
-  border-bottom: 2rpx solid #bbb;
+  font-size: 26rpx;
+  color: #666;
+  text-align: right;
   width: 100%;
 }
 
@@ -45,18 +89,17 @@ page {
 }
 
 .save {
-  background-color: #f29219;
+  margin-top:114rpx; 
+  width: 586rpx;
+  height: 61rpx;
+  background: rgba(231, 198, 14, 1);
+  border-radius: 21rpx;
   color: white;
-  width: 96%;
-  line-height: 80rpx;
-  font-size: 32rpx;
+  line-height: 61rpx;
+  font-size: 30rpx;
   text-align: center;
-  height: 80rpx;
-  border-radius: 10rpx;
-  position: fixed;
-  bottom: 30rpx;
-  left: 2%
 }
-picker{
+
+picker {
   width: 100%;
 }

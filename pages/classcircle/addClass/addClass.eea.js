@@ -7,6 +7,7 @@ const events = {
     setClassName: null,
     chooseSubject: null,
     chooseSchool:null,
+    isRemindChange:null
     
   }
 }

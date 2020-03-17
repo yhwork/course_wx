@@ -54,13 +54,13 @@
 
 </view>
 
-<view class='addbox'  wx:if="{{!haveClass && userinfo.role==1}}">
-  <view class='addclass' bindtap='GoSetClass' >
-    <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/jia.png'></image>
+<view class='addbox'>
+  <view class='addclass'  wx:if="{{ userinfo.role==1}}" bindtap='GoSetClass' >
+    <image src='/assets/local/chuangjian.png'></image>
     <text>创建班级</text>
   </view>
-  <view class='addclass'  bindtap='searchClass'>
-    <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/jia.png'></image>
+  <view class='addclass' wx:if="{{haveClass}}" bindtap='searchClass'>
+    <image src='/assets/local/chuangjian.png'></image>
     <text>加入班级</text>
   </view>
 </view>

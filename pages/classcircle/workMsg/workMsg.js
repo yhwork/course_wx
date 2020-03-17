@@ -750,7 +750,7 @@ class workMsg extends EPage {
         wx.showModal({
           title: '提示',
           content: '回执提交后不能修改，是否确认？',
-          confirmColor: '#f29219',
+          confirmColor: '#E7C60E',
           success: res => {
             if (res.confirm) {
               put(effects.RECEIPTSUBMIT)

@@ -73,8 +73,8 @@
   </view>
   <!-- banner 轮播图-->
   <view class="mains_banner">
-    <image lazy-load='{{true}}' mode='widthFix' src='https://qa.oss.iforbao.com/public/assets/local/0327780c86ae7fcb824803718352dc2.png'></image>
-    <view class="size_banner">
+    <image lazy-load='{{true}}' mode='widthFix' src='https://qa.oss.iforbao.com/public/assets/local/homeindex.png'></image>
+    <!-- <view class="size_banner">
       <image lazy-load='{{true}}' mode='widthFix' src='https://qa.oss.iforbao.com/public/assets/local/fe90071af6ce02a889670ddcb195b6f.png'></image>
     </view>
     <view class="size_banner1">
@@ -82,7 +82,7 @@
     </view>
     <view class="size_banner2">
       立即体验
-    </view>
+    </view> -->
   </view>
   <!-- 家长端导航 -->
   <view class='label_box'>

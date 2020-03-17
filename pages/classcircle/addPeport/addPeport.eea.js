@@ -35,6 +35,8 @@
      PREVIEWIMAGE:null,
      close_video:null,
      addClass:null,
+     CHOOSETYPE:null,
+     ADDRECEIPT:null
    }
  }
 
@@ -47,6 +49,8 @@
    RECEIPTSUBMIT:null,
    GET_NOTIFY:null,
    GETWORKMSG:null,
+   GETMSG:null,
+   addClassNotify:null
  }
 
 

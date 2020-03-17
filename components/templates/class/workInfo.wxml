@@ -1,64 +1,76 @@
-
 <template name='workInfo'>
-  <view class='alist' wx:if='{{type!=2||isPreview==1}}'>
-    <view class='a_top' wx:if='{{type!=2}}'>标题：{{workInfor.title}}</view>
-    <view class='a_center' wx:for='{{workInfor.contentList}}' wx:key='inx' wx:if='{{item.contentType==1}}'>{{item.content}}</view>
-    <view class='a_center_imgvideo'>
-
-      <view class='a_center_imgs' wx:for='{{workInfor.contentList}}' wx:key='inx' wx:if='{{item.contentType==2}}'>
-        <image mode="aspectFill" catchtap='PREVIEWIMAGE' data-clicktype='1' data-index='{{inx}}' data-src='{{item.content}}' src='{{item.content}}'></image>
-      </view>
-
-      <view wx:for='{{workInfor.contentList}}' wx:key='inx' class='c_video' wx:if='{{item.contentType==4}}'>
-        <image class='videoimg' src='{{item.content}}?x-oss-process=video/snapshot,t_10000,m_fast' mode='aspectFill'></image>
-        <view class='video_btn' data-src='{{item.content}}' catchtap='PLAYVIDEO'></view>
-      </view>
-    </view>
-
-    <view class='audios' wx:for='{{workInfor.contentList}}' wx:key='idx' wx:for-index='idx' wx:if='{{item.contentType==3}}'>
-      <view class='audio'>
-        <audio src="{{item.content}}" id="subjectAudio" data-clicktype='1' bindtimeupdate="AUDIO_UPDATA_PROGRESS" bindended="AUDIO_PLAY_END"></audio>
-        <view class='voice_animate'>
-          <view class='playimg' data-clicktype='1' data-idx='{{idx}}' data-play='{{item.play}}' style='display:{{item.play?"none":"flex"}}' catchtap='AUDIO_PLAY'>
-            <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/voice_img.png'></image>
-          </view>
-          <view class='stopimg' data-clicktype='1' data-play='{{item.play}}' style='display:{{item.play?"flex":"none"}}' catchtap='AUDIO_STOP'>
-            <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/voice.gif'></image>
-          </view>
-          <view class='proleft' wx:if='{{!item.audio_duration||item.audio_duration=="00:00"}}'>{{item.contentSize}}</view>
-          <view wx:else class="proleft">{{item.audio_duration}}</view>
-        </view>
-      </view>
-    </view>
-
-    <view class='a_bottom' wx:if='{{isPreview!=1}}'>
-      <view class='fromwho'>
-        <!-- <image class='t_logo' src='{{workInfor.teacherLogo?workInfor.teacherLogo:img}}'></image> -->
-        <text space="emsp" wx:if='{{role==0}}'>{{workInfor.teacherName}}老师 </text>
+  <view class="workInfo_alist {{role==0?'workInfo_alis_b':''}}" wx:if='{{type!=2||isPreview==1}}'>
+    <view class='fromwho'>
+      <image class='t_logo' catchtap='TEARCHERMAG' data-teacherid='{{workInfor.teacherId}}' src='{{workInfor.teacherLogo?workInfor.teacherLogo:img}}'></image>
+      <view class="t_logo_headers">
+        <text space="emsp">{{workInfor.teacherName}}老师 </text>
         <text>{{workInfor.addTime}}</text>
       </view>
-      <view class='b_right1' wx:if='{{ischildsubmitwork==1 && workInfor.isWork=="false"}}'>
-        <form bindsubmit="SUBMITWORK" report-submit="true" wx:if='{{type==1}}'>
-          <button formType="submit" wx:if='{{role==0&&type!=0&&workInfor.isWork=="false"}}' >
-            <text>作业回复</text>
-          </button>
-        </form>
-      </view>
-      <view wx:else class='b_right1'>
-        <form bindsubmit="SUBMITWORK" report-submit="true"  wx:if='{{type==1}}'  >
-          <button wx:if='{{role==0&&workInfor.isWork=="true"}}'>2
-            <text class='b_right1_txt'>作业已回复</text>
-          </button>
-        </form>
-      </view>
     </view>
+    <view class='from_contents' >
+      <view class='a_top' wx:if='{{type!=2}}'>标题：{{workInfor.title}}</view>
+      <view class='a_centers' wx:for='{{workInfor.contentList}}' wx:key='inx' wx:if='{{item.contentType==1}}'>{{item.content}}</view>
+      <view class='a_center_imgvideo'>
 
-    <view class='likebox' wx:if='{{dynamicLike.length>0&&type==2}}'>
-      <image class='like' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/like.png'></image>
-      <image wx:for='{{dynamicLike}}' wx:key='' src='{{item.userLogo?item.userLogo:img}}' wx:if='{{index<15}}'></image>
+        <view class='a_center_imgs' wx:for='{{workInfor.contentList}}' wx:key='inx' wx:if='{{item.contentType==2}}'>
+          <view class="imgsize" wx:if="{{workInfor.contentList.length <= 2}}">
+            <image mode="center" catchtap='PREVIEWIMAGE' data-clicktype='1' data-index='{{inx}}' data-src='{{item.content}}' src='{{item.content}}'></image>
+          </view>
+          <view class="imgsizes" wx:else>
+            <image mode="center" catchtap='PREVIEWIMAGE' data-clicktype='1' data-index='{{inx}}' data-src='{{item.content}}' src='{{item.content}}'></image>
+          </view>
+        </view>
+
+        <view wx:for='{{workInfor.contentList}}' wx:key='inx' class='c_video' wx:if='{{item.contentType==4}}'>
+          <image class='videoimg' mode="center" src='{{item.content}}?x-oss-process=video/snapshot,t_10000,m_fast' mode='center'></image>
+          <view class='video_btn' data-src='{{item.content}}' catchtap='PLAYVIDEO'></view>
+        </view>
+      </view>
+
+      <view class='audios' wx:for='{{workInfor.contentList}}' wx:key='idx' wx:for-index='idx' wx:if='{{item.contentType==3}}'>
+        <view class='audio'>
+          <audio src="{{item.content}}" id="subjectAudio" data-clicktype='1' bindtimeupdate="AUDIO_UPDATA_PROGRESS" bindended="AUDIO_PLAY_END"></audio>
+          <view class='voice_animate'>
+            <view class='playimg' data-clicktype='1' data-idx='{{idx}}' data-play='{{item.play}}' style='display:{{item.play?"none":"flex"}}' catchtap='AUDIO_PLAY'>
+              <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/voice_img.png'></image>
+            </view>
+            <view class='stopimg' data-clicktype='1' data-play='{{item.play}}' style='display:{{item.play?"flex":"none"}}' catchtap='AUDIO_STOP'>
+              <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/voice.gif'></image>
+            </view>
+            <view class='proleft' wx:if='{{!item.audio_duration||item.audio_duration=="00:00"}}'>{{item.contentSize}}</view>
+            <view wx:else class="proleft">{{item.audio_duration}}</view>
+          </view>
+        </view>
+      </view>
+      <!-- 作业回复 -->
+      <view class='a_bottom' wx:if='{{isPreview!=1}}'>
+        <view class='fromwho'>
+          <!-- <image class='t_logo' src='{{workInfor.teacherLogo?workInfor.teacherLogo:img}}'></image> -->
+          <!-- <text space="emsp" wx:if='{{role==0}}'>{{workInfor.teacherName}}老师 </text>
+          <text>{{workInfor.addTime}}</text> -->
+        </view>
+        <view class='b_right1' wx:if='{{ischildsubmitwork==1 && workInfor.isWork=="false"}}'>
+          <form bindsubmit="SUBMITWORK" report-submit="true" wx:if='{{type==1}}'>
+            <button formType="submit" wx:if='{{role==0&&type!=0&&workInfor.isWork=="false"}}'>
+              <text>作业回复</text>
+            </button>
+          </form>
+        </view>
+        <view wx:else class='b_right1'>
+          <form bindsubmit="SUBMITWORK" report-submit="true" wx:if='{{type==1}}'>
+            <button wx:if='{{role==0&&workInfor.isWork=="true"}}'>
+              <text class='b_right1_txt'>作业已回复</text>
+            </button>
+          </form>
+        </view>
+      </view>
+
+      <view class='likebox' wx:if='{{dynamicLike.length>0&&type==2}}'>
+        <image class='like' src='/assets/local/dianzan.png'></image>
+        <image wx:for='{{dynamicLike}}' wx:key='index' src='{{item.userLogo?item.userLogo:img}}' wx:if='{{index<15}}'></image>
+      </view>
     </view>
   </view>
-
 
   <!-- 老师查看回执情况 -->
   <view class='t_receiptlist' wx:if='{{role==1&&type==0&&workInfor.receiptType!=0}}'>
@@ -83,12 +95,17 @@
 
   <view class='t_receipt' wx:if='{{role==1&&workInfor.receiptType!=0&&submitList.length>0&&(workInfor.receiptType!=4||workInfor.receiptType==4&&bindindex==1)}}'>
     <view>
-      <view class='workbox' wx:for='{{submitList}}' wx:key='' wx:for-item='items'>
+      <view class='workbox' wx:for='{{submitList}}' wx:key='index' wx:for-item='items'>
         <view class='name'>
-          <image class='c_logo notifylogo' mode='aspectFill' bindtap='showchildinfo' data-childid='{{items.childId}}' src='{{items.childLogo?items.childLogo:img}}'></image>
-          <view class='t_cname' style='width:{{width}}px'>
-            <text>{{items.childName}}</text>
-            <!-- <text class='t_num'>{{items.addTime}}</text> -->
+          <view class="showchildinfos_left">
+            <image class='c_logo notifylogo' mode='aspectFill' bindtap='showchildinfo' data-childid='{{items.childId}}' src='{{items.childLogo?items.childLogo:img}}'></image>
+            <view class='t_cname'>
+              <text>{{items.childName}}</text>
+              <text class='t_num'>{{items.addTime}}</text>
+            </view>
+          </view>
+          <view class="showchildinfos">
+            <image mode="widthFix" src="/assets/local/xiangqing.png"></image>
           </view>
         </view>
       </view>
@@ -142,15 +159,20 @@
           <text wx:if='{{type==2}}'>{{works.teacherName}}老师</text>
           <view class='content'>
             <text class='childname'>{{works.childName}}</text>
-            <view class='a_center' wx:for='{{works.contentList}}' wx:key='idx' wx:for-index='idx' wx:for-item='item' wx:if='{{item.contentType==1}}'>{{item.content}}</view>
+            <view class='a_centers' wx:for='{{works.contentList}}' wx:key='idx' wx:for-index='idx' wx:for-item='item' wx:if='{{item.contentType==1}}'>{{item.content}}</view>
             <!-- 显示作业 -->
             <view class='a_center_imgvideo'>
               <view class='a_center_imgs' wx:for='{{works.contentList}}' wx:key='idx' wx:for-index='idx' wx:if='{{item.contentType==2}}'>
-                <image mode="aspectFill" catchtap='PREVIEWIMAGE' data-clicktype='2' data-workindex='{{workindex}}' data-idx='{{idx}}' data-src='{{item.content}}' src='{{item.content}}'></image>
+                <view class="imgsize" wx:if="{{works.contentList.length <= 2}}">
+                <image mode="center" catchtap='PREVIEWIMAGE' data-clicktype='2' data-workindex='{{workindex}}' data-idx='{{idx}}' data-src='{{item.content}}' src='{{item.content}}'></image>
+                </view>
+                <view wx:else class="imgsizes">
+ <image mode="center" catchtap='PREVIEWIMAGE' data-clicktype='2' data-workindex='{{workindex}}' data-idx='{{idx}}' data-src='{{item.content}}' src='{{item.content}}'></image>
+                </view>
               </view>
 
               <view wx:for='{{works.contentList}}' wx:key='idx' wx:for-index='idx' class='c_video' wx:if='{{item.contentType==4}}'>
-                <image class='videoimg' src='{{item.content}}?x-oss-process=video/snapshot,t_10000,m_fast' mode='aspectFill'></image>
+                <image class='videoimg' mode="center" src='{{item.content}}?x-oss-process=video/snapshot,t_10000,m_fast' mode='aspectFill'></image>
                 <view class='video_btn' data-src='{{item.content}}' catchtap='PLAYVIDEO'></view>
               </view>
             </view>
@@ -174,22 +196,25 @@
           <view class='bottom'>
             <view class='time'>{{works.addTime}}</view>
             <view class='buts' wx:if='{{type==1}}'>
-              <image class='like' wx:if='{{works.isLike=="false"}}' bindtap='ADDLIKE' data-childWorkId='{{works.childWorkId}}' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/like.png'></image>
-              <image class='like' wx:else data-childWorkId='{{works.childWorkId}}' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/liked.png'></image>
-              <image bindtap='ADDCOMMENT' data-commenttype='0' data-childWorkId='{{works.childWorkId}}' class='comment1' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/comment.png'></image>
+
+              <image class='like' wx:if='{{works.isLike=="false"}}' bindtap='ADDLIKE' data-childWorkId='{{works.childWorkId}}' src='/assets/local/dianzhan.png'></image>
+              <image class='like' wx:else data-childWorkId='{{works.childWorkId}}' src='/assets/local/dianzan.png'></image>
+
+              <image bindtap='ADDCOMMENT' data-commenttype='0' data-childWorkId='{{works.childWorkId}}' class='comment1' src='/assets/local/pinglun.png'></image>
               <image wx:if='{{works.isDel=="true"}}' data-id='{{works.childWorkId}}' bindtap='CHILD_DEL' class='out' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/del.png'></image>
             </view>
+
             <view wx:if='{{type==2}}'>
-              <image class='like' wx:if='{{works.isLike=="false"}}' bindtap='ADDLIKE' data-id='{{works.id}}' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/like.png'></image>
-              <image class='like' wx:else src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/liked.png'></image>
-              <image bindtap='ADDCOMMENT' data-commenttype='0' class='comment' data-id='{{works.id}}' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/comment.png'></image>
+            
+              <image class='like' wx:if='{{works.isLike=="false"}}' bindtap='ADDLIKE' data-id='{{works.id}}' src='/assets/local/dianzhan.png'></image>
+              <image class='like' wx:else src='/assets/local/dianzan.png'></image>
+              <image bindtap='ADDCOMMENT' data-commenttype='0' class='comment' data-id='{{works.id}}' src='/assets/local/pinglun.png'></image>
             </view>
           </view>
-
           <!-- 点赞 -->
           <view class='likebox' wx:if='{{works.workLikeList.length>0}}'>
-            <image class='like' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/like.png'></image>
-            <image wx:for='{{works.workLikeList}}' wx:key='' src='{{item.userLogo?item.userLogo:img}}' wx:if='{{index<15}}'></image>
+            <image class='like' src='/assets/local/dianzan.png'></image>
+            <image wx:for='{{works.workLikeList}}' wx:key='index' src='{{item.userLogo?item.userLogo:img}}' wx:if='{{index<15}}'></image>
           </view>
 
           <view class='comment_replay'>

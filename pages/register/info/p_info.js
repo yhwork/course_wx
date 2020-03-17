@@ -47,6 +47,22 @@ class PInfoPage extends EPage {
     return {
       [PAGE_LIFE.ON_LOAD](option) {
         console.log('值', option)
+        let {
+          avatar
+        } = option
+        if (avatar) {
+          // 首次加载请求  用户头像
+          console.log(avatar)
+          this.$api.upload.upload(avatar).then(res => {
+            console.log('用户信息', res)
+            this.setData({
+              'model.logo': this.$api.extparam.getFileUrl(res.key)
+            });
+            this.setData({
+              'model.logo': this.$api.extparam.getFileUrl(res.key)
+            });
+          });
+        }
         // 获取昵称
         if (typeof option.comeFrom != 'undefined') {
           this.setData({
@@ -167,7 +183,7 @@ class PInfoPage extends EPage {
         })
         this.$storage.set('model.gender', i - 1);
       },
-      // 头像
+      // 头像   
       [events.ui.CHANGE_AVATAR]() {
         wx.showActionSheet({
           itemList: ['拍照', '从手机相册选择'],
@@ -186,14 +202,15 @@ class PInfoPage extends EPage {
               sourceType: sourceType,
               count: 1,
               success: (resp) => {
+                // 切图
+                wx.redirectTo({
+                  url: '../../../upload/upload?src=' + resp.tempFilePaths[0] + '&type=addchild&childId=' + this.data.model.childId
+                })
                 this.$api.upload.upload(resp.tempFilePaths[0]).then(res => {
                   this.setData({
                     'model.logo': this.$api.extparam.getFileUrl(res.key)
                   });
-                  // this.setData({
-                  //   'model.logo': res.key
-                  // });
-                  console.log('图片头像', res.key)
+                  console.log('图片头像', res.key);
                   this.$storage.set('model.logo', this.data.model.logo);
                 });
               }

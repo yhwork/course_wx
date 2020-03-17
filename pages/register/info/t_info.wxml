@@ -1,11 +1,16 @@
 <view class='page'>
-  <view class="page_hd">
+
+
+  <!-- <view class="page_hd">
     <view class='main_head'>
       <image src="{{xinxi}}" class='head_img' mode="widthFix"></image>
       <view class="infor">完善信息</view>
     </view>
-  </view>
+  </view> -->
 
+  <view class="topimg">
+        <image  src="/assets/local/add_course.png"></image>
+  </view>
 
   <view class="page_bd">
     <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{message}}</view>
@@ -18,16 +23,14 @@
           </label>
         </radio-group>
       </view>
-
     </view>
-    <view class='line'></view>
     <view>
       <view class="weui-cell">
         <view class="weui-cell__bd b">
           <text class='name' style="font-size:28rpx;">姓 <text decode="{{true}}" space="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>名</text>
           <text style="margin-left: 10rpx;font-size:30rpx;color:#ef5955;">*</text>
         </view>
-        <input type="text" class="weui-cell__ft" maxlength="5" style="font-size:28rpx;"  placeholder="请填写" bindblur="CHANGE_NAME" value="{{model.name}}" />
+        <input type="text" class="weui-cell__ft weui-select weui-select_in-select-after .weui-cell__ft shoose" maxlength="5" style="font-size:28rpx;" placeholder="请填写" bindblur="CHANGE_NAME" value="{{model.name}}" />
       </view>
 
       <block wx:if="{{model.type==2}}">
@@ -36,7 +39,7 @@
             <text style="font-size:28rpx;">教学机构</text>
             <text style="margin-left: 10rpx;font-size:30rpx;color:#ef5955;">*</text>
           </view>
-          <input type="text" class="weui-cell__ft" style="font-size:28rpx;"  placeholder="请输入机构名称" bindblur="CHANGE_SCHOOLNAME" value="{{model.schoolname}}" />
+          <input type="text" class="weui-cell__ft weui-select weui-select_in-select-after .weui-cell__ft" style="font-size:26rpx;" placeholder="请输入机构名称" bindblur="CHANGE_SCHOOLNAME" value="{{model.schoolname}}" />
         </view>
       </block>
       <block wx:else>
@@ -79,10 +82,14 @@
       </view> -->
 
     </view>
-    <view class="main_bottom">
-      <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/care.png" class='care_img' mode="widthFix"></image>
-      <view class='bottom_wenzi'>为方便您顺利的开展教学工作，同时保证平台的真实严肃性，方便您的学生和同事找到您，请务必填写真实姓名及学校信息</view>
-    </view>
+
   </view>
-  <button bindtap="SAVE_NEXT">完成</button>
+  <view class="main_bottom">
+    <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/care.png" class='care_img' mode="widthFix"></image>
+    <view class='bottom_wenzi'>为方便您顺利的开展教学工作，同时保证平台的真实严肃性，方便您的学生和同事找到您，请务必填写真实姓名及学校信息</view>
+  </view>
+  <view>
+   <button bindtap="SAVE_NEXT" class="save">完成</button>
+  </view>
+ 
 </view>

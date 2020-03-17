@@ -1,20 +1,22 @@
 <import src="../../../components/templates/class/workInfo" />
-
+<view class="page">
 <template is='workInfo' data='{{workInfor,childWorkList,width,role:userinfo.role,img,type,submitList,bindindex,ischildsubmitwork,dynamicLike,first,second,third}}' />
 
 
-<view wx:if='{{type==0&&userinfo.role==0&&workInfor.isReply=="true"&&workInfor.receiptType!=0&&workInfor.receiptType!=4}}'>
+<view wx:if='{{type==0&&userinfo.role==0&&workInfor.isReply=="true"&&workInfor.receiptType!=0&&workInfor.receiptType!=4}}'> 
   <view class='receiptbox'>
     <view class='workbox' wx:for='{{notifyReply}}' wx:key='' wx:for-item='items'>
       <view class='name radios'>
-        <image class='c_logo' src='{{items.childLogo?items.childLogo:img}}'></image>
-        <view style='width:{{width}}px'>
-          <text>{{items.childName}}</text>
+        <view class="comment_user">
+             <image class='c_logo' src='{{items.childLogo?items.childLogo:img}}'></image>
+             <text>{{items.childName}}</text>
+        </view>
+        <view class="from_contents">
           <view class='a_center'>
             <radio-group class='radiobox'>
               <view class='radioview' wx:for='{{workInfor.receipt}}' wx:key='' wx:if='{{index<2}}'>
                 <label style='margin-right:20rpx;'>{{item.type}}</label>
-                <radio color='#f29219' checked='{{items.replyType==index}}' disabled='true'></radio>
+                <radio color='#E7C60E' checked='{{items.replyType==index}}' disabled='true'></radio>
               </view>
             </radio-group>
           </view>
@@ -27,9 +29,9 @@
 
 <!-- 通知 -->
 <view class='receiptbox' wx:if='{{type==0&&userinfo.role==0&&workInfor.receiptType!=4&&workInfor.receiptType!=0&&workInfor.isReply=="false"}}'>
-  <text>请回执</text>
+  <text>请回执:</text>
   <!-- workInfor.receiptType==1||workInfor.receiptType==3 -->
-  <view wx:if='{{workInfor.receiptType!=4}}'>
+  <view wx:if='{{workInfor.receiptType!=4}}' class="receiptbox_item">
     <radio-group class='radiobox' bindchange='CHOOSE_RECEIPT'>
       <view class='radioview' wx:for='{{workInfor.receipt}}' wx:key='' wx:if='{{index<2}}'>
         <label style='margin-right:20rpx;'>{{item.type}}</label>
@@ -37,7 +39,7 @@
       </view>
     </radio-group>
   </view>
-  <form bindsubmit="SUBMIT_RECEIPT" report-submit="true">
+  <form bindsubmit="SUBMIT_RECEIPT" report-submit="true" class="btn_boxa">
     <button formType="submit" class='btn set'>提交</button>
   </form>
 
@@ -46,7 +48,7 @@
 
 <!-- <button wx:if='{{type == 0&&userinfo.role==0&&workInfor.receiptType==4&&workInfor.isReply=="false"}}' class='set' style='width:100%' bindtap='GO_MSG_RECEIPT'>请回执</button> -->
 
-<form bindsubmit="GO_MSG_RECEIPT" report-submit="true" wx:if='{{type == 0&&userinfo.role==0&&workInfor.receiptType==4&&workInfor.isReply=="false"}}'>
+<form bindsubmit="GO_MSG_RECEIPT" class="replays_set" report-submit="true" wx:if='{{type == 0&&userinfo.role==0&&workInfor.receiptType==4&&workInfor.isReply=="false"}}'>
   <button formType="submit" class='btn set'>请回执</button>
 </form>
 <!-- <view>1233551</view> -->
@@ -63,7 +65,7 @@
   <view class='comment_mask_box'>
     <view class='comment_ipt'>
       <view class='add' data-type='1' bindtap='SET_AUDIO'>
-        <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/audio1.png'></image>
+        <image src='/assets/local/yuying.png'></image>
       </view>
       <view catchtap='GETFOCUS' data-type='1'>
         <textarea autoHeight="true" bindinput="START_TEXT" class="text" cursor-spacing="20" focus="{{commentFocus}}" placeholder="评论……" placeholderClass="input_null" showConfirmBar="" value='{{text}}'></textarea>
@@ -115,3 +117,5 @@
 </view>
 
 <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{message}}</view>
+
+</view>

@@ -12,7 +12,7 @@ import {
 } from './receiptType.eea'
 class receiptType extends EPage {
   get data() {
-    return {
+    return { 
       receiptType: [{
         type: '同意/不同意',
         id: 0,

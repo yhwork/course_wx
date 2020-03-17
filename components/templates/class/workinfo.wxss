@@ -87,19 +87,19 @@
 }
 
 .a_center_imgvideo>view {
-  width: 32%;
+  /* width: 32%;
   height: 250rpx;
   margin-bottom: 8rpx;
-  overflow: hidden;
+  overflow: hidden; */
 }
 
-.a_center_imgvideo>view:nth-child(3n+2) {
+/* .a_center_imgvideo>view:nth-child(3n+2) {
   margin: 0 2%;
-}
+} */
 
 .a_center_imgs {
   margin: 5rpx 2rpx;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .a_center_imgvideo>view image {
@@ -167,6 +167,7 @@
 }
 
 .work_list {
+  margin-top: 25rpx;
   padding: 10rpx 30rpx;
   margin-bottom: 10rpx;
   background-color: #fff;
@@ -272,8 +273,8 @@
 }
 
 .like {
-  width: 45rpx;
-  height: 45rpx;
+  width: 35rpx;
+  height: 35rpx;
 }
 
 .comment {

@@ -62,13 +62,17 @@ page {
   justify-content: space-between;
   align-items: flex-start;
 }
+.header_active image{
+  border-radius: 15rpx;
 
+}
 .header_active {
   width: 64rpx;
   height: 64rpx;
   background-color: #ffecb2;
-  border-radius: 10rpx;
   position: relative;
+  border-radius: 15rpx;
+  border: 1rpx solid #fff;
   /* transform: scale(360) */
 }
  image{
@@ -470,16 +474,18 @@ page {
 .label_item view {
   color: #333;
 }
-
+.label_info view{
+  color: #fff;
+}
 .label_info {
   position: absolute;
   left: -40rpx;
   top: 110rpx;
   width: 130rpx;
   border-radius: 8rpx;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.8);
   font-size: 26rpx;
-  color: #fff;
+  color: #fff !important;
   padding: 10rpx;
   line-height: 50rpx;
 }
