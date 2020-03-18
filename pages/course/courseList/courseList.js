@@ -3,7 +3,7 @@ import {
   EPage,
   PAGE_LIFE
 } from '../../../eea/index'
-import {
+import { 
   events,
   effects,
   actions
@@ -112,7 +112,8 @@ class CourseListPage extends EPage {
         wx.removeStorageSync('COURSENUM');
         wx.removeStorageSync('weekDays');
         wx.removeStorageSync('InterNameList');
-        
+        wx.removeStorageSync('resultModel');
+        wx.removeStorageSync('schoolinfo.name');
         wx.getSetting({
           success: (res) => {
             if (!res.authSetting['scope.userInfo']) {

@@ -61,6 +61,13 @@ class PInfoPage extends EPage {
             this.setData({
               'model.logo': this.$api.extparam.getFileUrl(res.key)
             });
+            // 建立头像与学校的临时存储
+            wx.setStorageSync('p_info.logo', this.$api.extparam.getFileUrl(res.key))
+          });
+          
+        }else{
+          this.setData({
+            'model.logo': wx.getStorageSync('p_info.logo')
           });
         }
         // 获取昵称
@@ -152,18 +159,21 @@ class PInfoPage extends EPage {
           },
           (reject) => { }
         );
-
-        this.$storage.get('model.logo').then(
-          (logo) => {
-            this.setData({
-              'model.logourl': this.$api.extparam.getFileUrl(logo.data)
-            }),
-              this.setData({
-                'model.logo': logo.data
-              })
-          },
-          (reject) => { }
-        );
+        this.setData({
+          'model.logo': wx.getStorageSync('p_info.logo'),
+          'model.logourl': wx.getStorageSync('p_info.logo'),
+        });
+        // this.$storage.get('model.logo').then(
+        //   (logo) => {
+        //     this.setData({
+        //       'model.logourl': this.$api.extparam.getFileUrl(logo.data)
+        //     }),
+        //       this.setData({
+        //         'model.logo': logo.data
+        //       })
+        //   },
+        //   (reject) => { }
+        // );
 
       }
     }
@@ -211,7 +221,7 @@ class PInfoPage extends EPage {
                     'model.logo': this.$api.extparam.getFileUrl(res.key)
                   });
                   console.log('图片头像', res.key);
-                  this.$storage.set('model.logo', this.data.model.logo);
+                  // this.$storage.set('model.logo', this.data.model.logo);
                 });
               }
             })
@@ -401,6 +411,7 @@ class PInfoPage extends EPage {
                     wx.removeStorageSync('schoolinfo.name')
                     wx.removeStorageSync('schoolinfo.typecode')
                     wx.removeStorageSync('schoolinfo.schoolid')
+                    wx.removeStorageSync('p_info.logo')
                     // this.$storage.clear();
                     if ( model.comeFrom == 'addChild') {
                       wx.switchTab({

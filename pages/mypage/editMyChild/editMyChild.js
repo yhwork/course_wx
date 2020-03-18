@@ -1,7 +1,7 @@
 import {
   EApp,
   EPage,
-  PAGE_LIFE 
+  PAGE_LIFE
 } from '../../../eea/index'
 import {
   events,
@@ -17,7 +17,9 @@ class editMyChildPage extends EPage {
       // 打开分享弹框
       scopeHide: true,
       model: {},
-      resultModel: {},
+      resultModel: {
+        shortCode:''
+      },
       shareCode: '',
       resultCode: '',
       shareHide: true,
@@ -38,13 +40,14 @@ class editMyChildPage extends EPage {
         },
       ],
       genderHide: true,
+      userEdit:'true',    // 默认可以编辑
       schoolModel: {
         schoolType: '',
         school: '',
         city: ''
       },
       fromPage: '',
-      childId:'',
+      childId: '',
       deleteParamModel: {
         childId: '',
         city: '',
@@ -71,10 +74,14 @@ class editMyChildPage extends EPage {
   }) {
     return {
       [PAGE_LIFE.ON_LOAD](option) {
-        console.log('值', option)
+        let childId = option.childId ? option.childId : wx.getStorageSync('childId');
+        console.log('值', option, childId)
         // 获取 修改的用户名
         this.setData({
-          manage: option.manage ? option.manage : ''
+          'model.childId': childId,
+          'childId': childId,
+          'paramModel.childId': childId,
+          manage: option.manage ? option.manage : '',
         })
         /**
          * manage   true  日程表共享
@@ -104,13 +111,26 @@ class editMyChildPage extends EPage {
           // 首次加载请求  用户头像
           console.log(avatar)
           this.$api.upload.upload(avatar).then(res => {
-            console.log('用户信息', res)
+            let imgs = this.$api.extparam.getFileUrl(res.key)
             this.setData({
-              'resultModel.logo': this.$api.extparam.getFileUrl(res.key)
+              'resultModel.logo': imgs
             });
             this.setData({
-              'paramModel.logo': this.$api.extparam.getFileUrl(res.key)
+              'paramModel.logo': imgs
             });
+            let myparams = {
+              logo: imgs
+            }
+            this.$storage.set('resultModel', Object.assign(this.data.resultModel, myparams));
+            wx.setStorageSync('edit.logo', imgs)
+          });
+
+        } else {
+          this.setData({
+            'resultModel.logo': wx.getStorageSync('edit.logo')
+          });
+          this.setData({
+            'paramModel.logo': wx.getStorageSync('edit.logo')
           });
         }
         wx.hideShareMenu();
@@ -122,12 +142,6 @@ class editMyChildPage extends EPage {
         this.setData({
           shareCavansOptions
         });
-       
-        this.setData({
-          'childId': option.childId,
-          'model.childId': option.childId,
-          'paramModel.childId': option.childId,
-        })
         if (typeof option.from != 'undefined') {
           this.setData({
             fromPage: option.from
@@ -144,13 +158,22 @@ class editMyChildPage extends EPage {
           // put(effects.loadOneChildInfo);
         }
         // 不是编辑过来的
-        if (!option.hasOwnProperty('isupdate')){
-         
-          
+        if (option.hasOwnProperty('isupdate')) {
+          this.$storage.get('resultModel').then(
+            (res) => {
+              console.log('缓存用户信息', res.data)
+              this.setData({
+                'resultModel': res.data
+              });
+            },
+            (reject) => {}
+          )
+        } else {
+          put(effects.loadOneChildInfo);
+          // put(effects.GET_USER_INFO);
         }
-        put(effects.loadOneChildInfo);
-        put(effects.GET_USER_INFO);
-       
+
+
         // 调分享记录接口
         //put(effects.shareChildInfo);
 
@@ -159,6 +182,15 @@ class editMyChildPage extends EPage {
       // 页面加载
       [PAGE_LIFE.ON_SHOW]() {
         // // 姓名
+        this.$storage.get('resultModel').then(
+          (res) => {
+            console.log('缓存用户信息', res.data)
+            this.setData({
+              'resultModel.name': res.data.name
+            });
+          },
+          (reject) => { }
+        )
         // this.$storage.get('valname').then(
         //   (vals) => {
         //     console.log('读取到没', vals.data)
@@ -169,14 +201,7 @@ class editMyChildPage extends EPage {
         //   },
         //   (reject) => {}
         // );
-        this.$storage.get('resultModel').then(
-          (res) => {
-            this.setData({
-              'resultModel': res.data
-            });
-          },
-          (reject) => { }
-        )
+
         // this.$storage.get('schoolinfo.name').then(
         //   (name) => {
         //     this.setData({
@@ -219,7 +244,7 @@ class editMyChildPage extends EPage {
       },
       // 分享
       [PAGE_LIFE.ON_SHARE_APP_MESSAGE](e) {
-      
+
         this.setData({
           shareHide: true
         });
@@ -246,12 +271,11 @@ class editMyChildPage extends EPage {
           imageUrl: '/assets/img/share.jpg'
         }
       },
-      [PAGE_LIFE.ON_UNLOAD](e){
+      [PAGE_LIFE.ON_UNLOAD](e) {
         // let mange =this.data.manage;
         // if (mange == 'true'){
         //   put(effects.updateChildShareListAuthority)
         // }
-      
       },
     }
   }
@@ -261,13 +285,18 @@ class editMyChildPage extends EPage {
   }) {
     return {
       // 
-      [events.ui.CHOOSESCHOOL](){
+      [events.ui.CHOOSESCHOOL]() {
         console.log('你好')
         // wx.setStorageSync("personalChangeInfo", this.data.modifyModel);
         console.log(this.data.model.childId)
         if (this.data.userEdit == 'true') {
-          wx.redirectTo({
+          wx.navigateTo({
             url: '/pages/mydemo/pages/school/school?comefrom=childMsg&childId=' + this.data.model.childId
+          })
+        } else {
+          wx.showToast({
+            title: '暂无权限哦',
+            icon: 'none',
           })
         }
       },
@@ -404,7 +433,7 @@ class editMyChildPage extends EPage {
         this.setData({
           shareHide: false,
         });
-       
+
         let shareInfo = this.data.resultModel;
         const param = {};
         param.dataType = 3;
@@ -421,6 +450,8 @@ class editMyChildPage extends EPage {
                 'target': 'child',
                 'shortCode': res.data.result.shortCode
               };
+             
+
               this.$api.user.shareInfoRecord(param1).then(
                 (res) => {
                   shareInfo.shortCode = res.data.result.shortCode;
@@ -543,20 +574,20 @@ class editMyChildPage extends EPage {
         console.log(i)
         this.setData({
           weeks: i,
-          'resultModel.gender': i 
+          'resultModel.gender': i,
+          'paramModel.gender': i,
         })
-        this.$storage.set('model.gender', i );
-        // if (this.data.userEdit == 'true') {
-        //   this.setData({
-        //     genderHide: false
-        //   })
-        // }
+        this.$storage.set('model.gender', i);
+        let myparams = {
+          'gender': i
+        }
+        this.$storage.set('resultModel', Object.assign(this.data.resultModel, myparams));
       },
       //跳转学校：
       [events.ui.chooseSchools](e) {
         // wx.setStorageSync("personalChangeInfo", this.data.modifyModel);
         console.log(this.data.model.childId)
-        if (this.data.userEdit == 'true'){
+        if (this.data.userEdit == 'true') {
           wx.redirectTo({
             url: '/pages/mydemo/pages/school/school?comefrom=childMsg&childId=' + this.data.model.childId
           })
@@ -567,7 +598,6 @@ class editMyChildPage extends EPage {
       [events.ui.saveChildInfo](e) {
         // 
         var a = this.data.resultModel
-        // resultModel
         console.log('保存数据', a)
         put(effects.saveChildInfo, a);
       },
@@ -617,10 +647,14 @@ class editMyChildPage extends EPage {
               this.$api.user.shareInfoRecord(param1).then(
                 (res) => {
                   shareInfo.shortCode = res.data.result.shortCode;
-                  console.log(shareInfo);
                   this.setData({
                     shareInfo: shareInfo
                   })
+                  console.log('分享码', res.data.result.shortCode)
+                  this.setData({
+                    'resultModel.shortCode': res.data.result.shortCode
+                  })
+                  wx.setStorageSync("resultModel", this.data.resultModel)
                   this.$image.generateShareCourse(this.data.shareCavansOptions, shareInfo, 'child').then(imageUrl => {
                     shareInfo.imageUrl = imageUrl;
                     console.log(shareInfo.imageUrl)
@@ -676,7 +710,10 @@ class editMyChildPage extends EPage {
             this.setData({
               userEdit: res.data.result.childInfo.edit
             })
-            // console.log(this.data.userEdit, this.data.relationList)
+            // this.setData({
+            //   manage: this.data.userEdit
+            // })
+            // console.log('孩子权限', this.data.manage)
           }
         })
         // 孩子共享信息
@@ -685,6 +722,7 @@ class editMyChildPage extends EPage {
             this.setData({
               relationList: res.data.result.relationList
             })
+            // console.log('孩子权限', res.data.result.relationList)
           } else {
             this.setData({
               relationList: 0
@@ -695,20 +733,12 @@ class editMyChildPage extends EPage {
         this.$api.circle.getChildInfoByCondition(this.data.model).then(s => {
           console.log(s.data)
           if (s.data.errorCode == '0') {
-            if (this.data.model.childId != '') {
-              // 需要改id
+            let resultModel = JSON.parse(JSON.stringify(s.data.result.childInfo)) 
               this.setData({
-                resultModel: s.data.result.childInfo
+                resultModel,
+                'resultModel.childId': this.data.model.childId
               })
-            } else {
-              this.setData({
-                resultModel: s.data.result.childInfo
-              })
-            }
-            this.setData({
-              'resultModel.childId': this.data.model.childId
-            })
-            console.log('全部信息', this.data.resultModel)
+           
             if ((this.data.resultModel.logo == null) || ((this.data.resultModel.logo.indexOf("http") < 0) &&
                 (this.data.resultModel.logo.indexOf("png") < 0) && (this.data.resultModel.logo.indexOf("jpg") < 0))) {
               console.log('没有头像', this.data.boyimg)
@@ -716,11 +746,9 @@ class editMyChildPage extends EPage {
                 'resultModel.logo': this.data.boyimg
               })
             }
-
-            wx.setStorage({
-              key: 'resultModel',
-              data: this.data.resultModel,
-            })
+            console.log('全部信息', resultModel)
+            // wx.setStorageSync('resultModel', resultModel)
+     
 
             if (this.data.fromPage != '') {
               this.setData({
@@ -743,7 +771,7 @@ class editMyChildPage extends EPage {
             // 地址
             // 性别
             // 昵称
-
+            put(effects.GET_USER_INFO);
 
 
 

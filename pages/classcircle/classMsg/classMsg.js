@@ -14,10 +14,11 @@ const base64 = require('../../../lib/base64')
 class classmsgPage extends EPage {
   get data() {
     return {
+      shareShow_no:true,
       datas:{
         isdata: true,
         name: '你还没有发布',
-        btn: '开始发布'
+        btn: ''
       },
       shareShow: false,
       userinfo: {},
@@ -115,23 +116,7 @@ class classmsgPage extends EPage {
           this.setData({
             tabList: this.data.tabList
           })
-          if (this.data.idx == 0){
-            this.setData({
-              slider: '28px'
-            })
-          } else if (this.data.idx ==1){
-            this.setData({
-              slider: '118px'
-            })
-          } else if (this.data.idx == 2) {
-            this.setData({
-              slider: '207px'
-            })
-          } else if (this.data.idx == 3) {
-            this.setData({
-              slider: '546rpx'
-            })
-          }
+      
           console.log(this.data.tabList)
         }
         if (option.comefrom) {
@@ -297,14 +282,18 @@ class classmsgPage extends EPage {
       // 切换tab
       [events.ui.goAdd](e) {
         let type = this.data.idx
-        if (type==5){
-          console.log("邀请")
+        let role  = this.data.userinfo.role
+        if (role ==0){
+            return 
         }else{
-          wx.navigateTo({
-            url: '../addPeport/addPeport?classId=' + this.data.classId + '&userId=' + this.data.userinfo.id + '&role=' + this.data.userinfo.role + '&type=' + type,
-          })
+          if (type == 5) {
+            console.log("邀请")
+          } else {
+            wx.navigateTo({
+              url: '../addPeport/addPeport?classId=' + this.data.classId + '&userId=' + this.data.userinfo.id + '&role=' + this.data.userinfo.role + '&type=' + type,
+            })
+          }
         }
-       
       },
       [events.ui.CHOOSETYPE](e) {
         this.setData({
@@ -357,7 +346,7 @@ class classmsgPage extends EPage {
             teacherNumber: [],
             allList: [],
             'datas.name': '您还没有发布',
-            'datas.btn': '开始发布',
+            'datas.btn': '',
             shareShow: false
           })
           put(effects.GET_NOTIFY)
@@ -368,7 +357,7 @@ class classmsgPage extends EPage {
             teacherNumber: [],
             allList: [],
             'datas.name': '您还没有发布',
-            'datas.btn': '开始发布',
+            'datas.btn': '',
             shareShow: false
           })
           put(effects.GETHOMEWORK)
@@ -379,7 +368,7 @@ class classmsgPage extends EPage {
             teacherNumber: [],
             allList: [],
             'datas.name': '您还没有发布',
-            'datas.btn': '开始发布'
+            'datas.btn': ''
           })
           put(effects.GET_DYNAMICLIST)
         }else if (idx == 5) {
@@ -395,7 +384,7 @@ class classmsgPage extends EPage {
         }else{
           this.setData({
             'datas.name': '您还没有发布',
-            'datas.btn': '开始发布'
+            'datas.btn': ''
           })
         }
       },
@@ -1038,7 +1027,8 @@ class classmsgPage extends EPage {
       // 取消分享
       [events.ui.modalCandel]() {
         this.setData({
-          shareShow: false
+          shareShow: false,
+          shareShow_no:false
         })
       },
       [events.ui.formSubmit](e) {
@@ -1417,9 +1407,14 @@ class classmsgPage extends EPage {
                       imageUrl: imageUrl
                     });
                     if (_this.data.comefrom == 'create') {
-                      _this.setData({
-                        shareShow: true
-                      })
+                      if (!_this.data.shareShow_no){
+                        return
+                      }else{
+                        _this.setData({
+                          shareShow: true
+                        })
+                      }
+                     
                     }
                   });
                 }

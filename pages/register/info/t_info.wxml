@@ -47,11 +47,10 @@
           <view class="weui-cell_bd">
             <text style="font-size:28rpx;">任教学校</text>
             <text style="margin-left: 10rpx;font-size:30rpx;color:#ef5955;">*</text>
-
           </view>
           <navigator url="/pages/mydemo/pages/school/school?comefrom=teacher">
             <view class="weui-cell__bd">
-              <view class="weui-select weui-select_in-select-after .weui-cell__ft shoose {{school_selected?'selected':''}}">
+              <view class="weui-select font weui-select_in-select-after .weui-cell__ft shoose {{school_selected?'selected':''}}">
                 {{model.schoolname ? model.schoolname : '请选择学校'}}</view>
             </view>
           </navigator>

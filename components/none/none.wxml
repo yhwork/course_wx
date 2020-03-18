@@ -7,6 +7,6 @@
         </view>
         <view class="no_course_txt ">
           <text>{{datas.name}}</text>
-            <view bindtap='ROUTER_GO'  class="add_group">{{datas.btn}}</view>
+            <view bindtap='ROUTER_GO' wx:if='{{datas.btn}}' class="add_group">{{datas.btn}}</view>
         </view>
     </view>

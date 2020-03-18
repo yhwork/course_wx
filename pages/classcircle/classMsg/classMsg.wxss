@@ -409,7 +409,7 @@
 }
 
 .choose .btn {
-  background-color: #f29219;
+  background-color: #E7C60E;
   color: #fff;
   line-height: 90rpx;
 }
@@ -951,8 +951,8 @@ opacity:0.8;
   bottom: 0;
   left: 0;
   right: 0;
-  color: #f29219;
-  border: 2rpx solid #f29219;
+  color: #E7C60E;
+  border: 2rpx solid #E7C60E;
   background-color: #fff;
   font-size: 30rpx;
 }

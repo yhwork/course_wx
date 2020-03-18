@@ -2,7 +2,7 @@ import WeCropper from './we-cropper.js'
 import GlobalConfig from './index.js'
 
 const globalConfig = new GlobalConfig()
-
+ 
 globalConfig.init()
 
 
@@ -33,7 +33,7 @@ Page({
     }
   },
   onLoad(option) {
-    console.log(this.data)
+    console.log('值',this.data)
     this.setData({
       type: option.type,
     })
@@ -247,7 +247,7 @@ Page({
         } else if (this.data.type == 'child') {
           // 家长进入    传 manage 为false设置
           wx.redirectTo({
-            url: `../../../pages/mypage/editMyChild/editMyChild?avatar=${avatar}&childId=${this.data.childId}&manage=${'false'}`
+            url: `../../../pages/mypage/editMyChild/editMyChild?avatar=${avatar}&childId=${this.data.childId}&manage=${'false'}&isupdate=false`
           })
         } else if (this.data.type == 'subject') {
           wx.redirectTo({
@@ -263,7 +263,7 @@ Page({
           })
         } else if (this.data.type == 'addchild'){
           wx.redirectTo({
-            url: `/pages/register/info/p_info?avatar=${avatar}&childId=${this.data.childId}&manage=${'false'}`,
+            url: `/pages/register/info/p_info?avatar=${avatar}&childId=${this.data.childId}&manage=${'false'}&isupdate=false`,
           })
         }
 

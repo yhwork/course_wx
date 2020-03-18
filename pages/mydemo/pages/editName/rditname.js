@@ -81,10 +81,11 @@ class upInputs extends EPage {
       },
       // 右下角键盘完成
       [events.ui.btninputOKs](e) {
-        this.$storage.set('valname', this.data.value);
-        // wx.redirectTo({
-        //   url: 'pages/mypage/editMyChild/editMyChild?vals=' + this.data.value
-        // })
+        console.log('名字',this.data.value) 
+        let myparams ={
+          name: this.data.value
+        }
+        this.$storage.set('resultModel', Object.assign(this.data.resultModel, myparams));
         wx.navigateBack({
           delta: 1,
         })

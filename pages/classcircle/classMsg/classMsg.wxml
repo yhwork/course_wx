@@ -4,14 +4,14 @@
 <view class="page classpage">
   <view class="classpage">
     <!-- 教师端头部 -->
-    <view class="class_header">
+    <view class="class_header" wx:if='{{classinfo.listTeacher.length>=1}}'>
       <view class="class_header1">
         <view wx:for='{{classinfo.listTeacher}}' wx:key='index'>
           <view class="class_header_head">
             <image mode="aspectFill" bindtap='{{userinfo.role==1?"SHOW_TEARCHMSG":""}}' bindtouchstart="mytouchstart" bindtouchend="mytouchend" data-id='{{item.teacherUserId}}' data-type='tearcher' src='{{item.teacherLogo?item.teacherLogo:img}}'></image>
           </view>
           <view class="class_header_name">
-            
+
             <text wx:if='{{classinfo.classInfo.status!=2}}'>{{item.teachSubjects}}</text>
             <text>{{item.teacherName}}</text>
             <view class='tea_right' wx:if='{{item.status==1}}' hidden='{{!item.isOwner}}'>
@@ -76,7 +76,7 @@
             </view>
           </button>
         </form>
-                <view class='fabubtn'>
+        <view class='fabubtn'>
           <view class='fabutype' hidden='{{isSubmit}}'>
             <view catchtap='CHOOSUBMITSETYPE' wx:for='{{peportType}}' data-type='{{item.id}}' wx:key='index'>
               <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/{{item.src}}.png'></image>
@@ -88,6 +88,7 @@
 
       </view>
     </view>
+
   </view>
 
   <!-- <view class='top'>
@@ -150,17 +151,17 @@
     <view class='alllist'>
       <!-- 消息模板 -->
       <block wx:if='{{allList.length>0}}'>
-          <template is='classtypemsg' data='{{idx,allList,role:userinfo.role}}' />
+        <template is='classtypemsg' data='{{idx,allList,role:userinfo.role}}' />
       </block>
       <block wx:if="{{allList.length<1 && idx!=5}}">
-            <view>
-            <nonePage catch:back_change='goAdd' datas='{{datas}}'></nonePage>
-            </view>
+        <view>
+          <nonePage catch:back_change='goAdd' datas='{{datas}}'></nonePage>
+        </view>
       </block>
       <block>
-      
+
       </block>
-     
+
       <!-- 成员 -->
       <view class='alistnumberbox' wx:if='{{idx==5}}'>
         <view class='alistnumber' wx:for='{{childNumber}}' wx:key='indexs' wx:for-index='indexs'>
@@ -187,55 +188,57 @@
             <button class='outclass1 exit' bindtap='outclass' data-id='{{item.childId}}' data-type='child'>退出</button>
           </view>
         </view>
-        <block  wx:if='{{userinfo.role == 0}}'>
-             <button open-type='share' class='shareother'>邀请其他成员</button>
+        <block wx:if='{{userinfo.role == 0}}'>
+          <button open-type='share' class='shareother'>邀请其他成员</button>
         </block>
-        <block wx:else> 
-             <nonePage catch:back_change='goAdd' datas='{{datas}}'></nonePage>
+        <block wx:if='{{!childNumber.length>0}}'>
+          <nonePage catch:back_change='goAdd' datas='{{datas}}'></nonePage>
         </block>
-       
-        
+
+
       </view>
 
 
     </view>
   </block>
   <block wx:else>
+
     <view class='notfocus'>
       <view class='classmsg'>{{classinfo.classInfo.className}} {{classinfo.classInfo.schoolName}}</view>
       <view class='alistnumberbox' wx:if='{{classinfo.listChild.length>0}}'>
         <view class='alistnumber' wx:for='{{classinfo.listChild}}' wx:key='index'>
           <view class='a_left'>
-            <image mode="aspectFill" src='{{item.childLogo?item.childLogo:img}}'></image>
-            <view class='al_left1'>
+            <image mode="center" src='{{item.childLogo?item.childLogo:img}}'></image>
+            <view class='al_left'>
               <text>{{item.childName}}  </text>
               <text wx:if='{{classinfo.classInfo.classType==1}}'>{{item.addTime}}加入班级</text>
+                <view class="stuid">学号：{{item.childNo}} </view>
             </view>
-            <view class="stuid">学号：{{item.childNo}} </view>
+          
           </view>
         </view>
       </view>
       <view class='number' wx:elif='{{classinfo.listTeacher.length==0&&classinfo.listChild.length==0}}'>还没有成员哦~</view>
     </view>
+    <view class='joinclass'>
+      <form bindsubmit="showClocker" report-submit="true" class='choose' wx:if='{{!classinfo.classInfo.status||classinfo.classInfo.status==3||classinfo.classInfo.status==4||classinfo.classInfo.status==5}}'>
+        <button formType="submit" class='btn join'>立即加入</button>
+      </form>
+      <block wx:else>
+        <form bindsubmit="showClocker" report-submit="true" class='choose' wx:if='{{isagree == true}}'>
+          <button class='btn await '>等待老师审核</button>
+        </form>
+      </block>
+
+      <!-- <view class='choose' wx:if='{{!classinfo.classInfo.status||classinfo.classInfo.status==3||classinfo.classInfo.status==4||classinfo.classInfo.status==5}}'>
+          <view class='join' bindtap='showClocker'>立即加入</view> 
+        </view>-->
+      <!-- <view class='choose' wx:elif='{{classinfo.classInfo.status=="1"}}'>
+          <view class='joined'>等待老师审核</view>
+     </view> -->
+    </view>
   </block>
 
-  <view class='joinclass'>
-    <form bindsubmit="showClocker" report-submit="true" class='choose' wx:if='{{!classinfo.classInfo.status||classinfo.classInfo.status==3||classinfo.classInfo.status==4||classinfo.classInfo.status==5}}'>
-      <button formType="submit" class='btn join'>立即加入</button>
-    </form>
-    <block wx:else>
-      <form bindsubmit="showClocker" report-submit="true" class='choose' wx:if='{{isagree == true}}'>
-        <button class='btn await '>等待老师审核</button>
-      </form>
-    </block>
-
-    <!-- <view class='choose' wx:if='{{!classinfo.classInfo.status||classinfo.classInfo.status==3||classinfo.classInfo.status==4||classinfo.classInfo.status==5}}'>
-    <view class='join' bindtap='showClocker'>立即加入</view> 
-  </view>-->
-    <!-- <view class='choose' wx:elif='{{classinfo.classInfo.status=="1"}}'>
-    <view class='joined'>等待老师审核</view>
-  </view> -->
-  </view>
 
   <!-- 选择打卡者 -->
   <view style='width:{{width}}px;height:{{height}}px' class='joinnum' hidden='{{isChild}}'>
@@ -262,19 +265,19 @@
       <!-- <view class='input' style='margin-top:10rpx' wx:if='{{userinfo.role==0&&classinfo.classInfo.classType==1}}'> -->
       <view class='input' style='margin-top:10rpx'>
         <text>学号(学生)</text>
-        <input bindblur='inputStudentId' placeholder-class="placeholderStyle" placeholder='请输入学号' maxlength='10'></input>
+        <input bindblur='inputStudentId' maxlength="11" placeholder-class="placeholderStyle" placeholder='请输入学号' maxlength='10'></input>
       </view>
       <view class='input'>
         <text>真实姓名{{rolemsg}}</text>
-        <input bindblur='inputName' placeholder-class="placeholderStyle" placeholder='{{saveJoinMsg.name?saveJoinMsg.name:"请输入真实"}}'></input>
+        <input bindblur='inputName' maxlength="6" placeholder-class="placeholderStyle" placeholder='{{saveJoinMsg.name?saveJoinMsg.name:"请输入真实"}}'></input>
       </view>
       <view class='input' wx:if='{{userinfo.role==1}}'>
         <text>教学科目(老师)</text>
-        <input bindblur='inputsubject' placeholder='{{saveJoinMsg.subjectName}}'></input>
+        <input bindblur='inputsubject' maxlength="8" placeholder='{{saveJoinMsg.subjectName}}'></input>
       </view>
       <view class='input' wx:if='{{userinfo.role==1}}'>
         <text>所在学校(老师)</text>
-        <input placeholder-class="placeholderStyle" disabled placeholder='{{saveJoinMsg.workOrganizationName}}'></input>
+        <input placeholder-class="placeholderStyle" maxlength="8" disabled placeholder='{{saveJoinMsg.workOrganizationName}}'></input>
       </view>
       <view class='input' wx:if='{{isfrom=="share"}}'>
         <text style='font-size:30rpx;color:#888'>如果角色有误,点击切换角色</text>
@@ -299,20 +302,20 @@
       </view>
       <view class='input'>
         <text>真实姓名</text>
-        <input bindinput='inputName' placeholder-class="placeholderStyle" value='{{reviseMsg.childName}}' placeholder='{{reviseMsg.childName?reviseMsg.childName:"请输入真实姓名"}}'></input>
+        <input bindinput='inputName' maxlength="6" placeholder-class="placeholderStyle" value='{{reviseMsg.childName}}' placeholder='{{reviseMsg.childName?reviseMsg.childName:"请输入真实姓名"}}'></input>
       </view>
       <!-- <view class='input' style='margin-top:10rpx' wx:if='{{userinfo.role==0&&classinfo.classInfo.classType==1}}'> -->
       <view class='input' style='margin-top:10rpx'>
         <text>学号</text>
-        <input bindinput='inputStudentId' value='{{reviseMsg.childNo}}' placeholder-class="placeholderStyle" placeholder='{{reviseMsg.childNo?reviseMsg.childNo:"请输入学号"}}'></input>
+        <input bindinput='inputStudentId' maxlength="8" value='{{reviseMsg.childNo}}' placeholder-class="placeholderStyle" placeholder='{{reviseMsg.childNo?reviseMsg.childNo:"请输入学号"}}'></input>
       </view>
       <view class='input' wx:if='{{userinfo.role==1}}'>
         <text>教学科目</text>
-        <input bindinput='inputsubject' placeholder='{{reviseMsg.subjectName}}'></input>
+        <input bindinput='inputsubject' maxlength="6" placeholder='{{reviseMsg.subjectName}}'></input>
       </view>
       <view class='input' wx:if='{{userinfo.role==1}}'>
         <text>所在学校</text>
-        <input placeholder-class="placeholderStyle" disabled placeholder='{{reviseMsg.workOrganizationName}}'></input>
+        <input placeholder-class="placeholderStyle" maxlength="8" disabled placeholder='{{reviseMsg.workOrganizationName}}'></input>
       </view>
       <view class='mgbox'>
         <text catchtap='CANCELJOIN' class='cancel'>取消</text>
@@ -353,7 +356,7 @@
   </view>
 
 
-  <view class='shear_bd' hidden='{{!shareShow}}' catchtouchmove='true'>
+  <view class='shear_bd' wx:if='{{shareShow}}' catchtouchmove='true'>
     <view class='shear_box'>
       <image class='class' src='{{createclass}}'></image>
       <image bindtap="modalCandel" class='shear_close' src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/delete_in.png'></image>

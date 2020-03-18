@@ -156,7 +156,7 @@ page {
 }
 
 .head_box {
-  color: #ff9800;
+  color: #e7c60e;
   position: relative;
   margin-bottom: 45rpx;
 }
@@ -459,11 +459,11 @@ page {
   
   height: 60rpx;
   line-height: 60rpx;
-  color: #ff9800;
+  color: #e7c60e;
 }
 
 .label_item.active {
-  color: #ff9800;
+  color: #e7c60e;
 }
 
 .label_item image {
@@ -562,5 +562,5 @@ page {
 
 .el-icon-lxy-ditu {
   font-size: 48rpx;
-  color: #ff9800;
+  color: #e7c60e;
 }

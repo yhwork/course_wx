@@ -97,16 +97,17 @@
     </view>
     <!-- 新建 -->
     <view class="btn" wx:if='{{!msgalert}}'>
+    
       <view bindtap="bindDeleteTap" wx:if='{{childHeigth>1 && manage=="false"}}' class='edit_footer_left'>删除</view>
       <view wx:else class='edit_footer_left'>删除</view>
-      <view bindtap="saveChildInfo">
+      <view bindtap="{{userEdit=='true'?'saveChildInfo':''}}" class="{{userEdit=='false'?'ban':''}}">
         <text>保存</text>
       </view>
     </view>
     <!-- 管理共享人 -->
       <view>
     <!-- 第二组 -->
-        <view wx:if='{{relationList && manage=="true"  }}' class='info_listss'>
+        <view wx:if='{{relationList && userEdit=="true"  }}' class='info_listss'>
           <view class='info_lists_li'>
             <view class='info_lists_li_title'>共享人</view>
             <view class='info_lists_li_right'>

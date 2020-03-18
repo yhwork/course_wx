@@ -136,7 +136,7 @@ class CategoryPage extends EPage {
         console.log(this.data.model)
         this.$storage.set('subjectinfo', this.data.model);
         if (this.data.model.comefrom == 'teacher') {
-          wx.navigateTo({
+          wx.redirectTo({
             url: '../register/info/t_info'
           });
         } else if (this.data.model.comefrom == 'personalInfo') {
@@ -196,7 +196,7 @@ class CategoryPage extends EPage {
           console.log(this.data.model)
           this.$storage.set('subjectinfo', this.data.model);
           if (this.data.model.comefrom == 'teacher') {
-            wx.navigateTo({
+            wx.redirectTo({
               url: '../register/info/t_info'
             });
           } else if (this.data.model.comefrom == 'personalInfo') {

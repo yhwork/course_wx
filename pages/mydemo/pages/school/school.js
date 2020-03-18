@@ -83,12 +83,11 @@ class school extends EPage {
 
         let myparams = {
           school: e.currentTarget.dataset.name,
-          schoolid: e.currentTarget.dataset.id,
+          schoolId: e.currentTarget.dataset.id,
           city: e.currentTarget.dataset.city,
           schoolType: e.currentTarget.dataset.city,
         }
         // 合并学校 
-        this.$storage.set('schoolinfo.schoolid', e.currentTarget.dataset.id);
         if (this.data.model.comefrom == 'parent') {
           // 返回注册
           wx.redirectTo({
@@ -119,6 +118,12 @@ class school extends EPage {
         // })
         // 修改学校
         } else if (this.data.model.comefrom == 'childMsg') {
+          let myparams = {
+            school: e.currentTarget.dataset.name,
+            schoolId: e.currentTarget.dataset.id,
+            // city: e.currentTarget.dataset.city,
+            // schoolType: e.currentTarget.dataset.city,
+          }
           // resultModel
           this.$storage.set('resultModel', Object.assign(this.data.resultModel, myparams));
           wx.redirectTo({
@@ -193,9 +198,17 @@ class school extends EPage {
               })
               // 修改学校内容
             } else if (this.data.model.comefrom == 'childMsg') {
-             wx.navigateBack({
-               delta: 1,
-             })
+              let myparams = {
+                school: this.data.inputname,
+                schoolId: res.data.result.schoolId,
+                // city: e.currentTarget.dataset.city,
+                // schoolType: e.currentTarget.dataset.city,
+              }
+              // resultModel
+              this.$storage.set('resultModel', Object.assign(this.data.resultModel, myparams));
+              wx.redirectTo({
+                url: '/pages/mypage/editMyChild/editMyChild?childId=' + this.data.childId + "&from=area" + "&manage=" + 'false&isupdate=false',
+              })
               // 添加小孩
             } else if (this.data.model.comefrom == 'addChild') {
               this.$storage.set('schoolinfo.typecode', 2);
