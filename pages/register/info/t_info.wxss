@@ -98,7 +98,8 @@
 }
 
 .care_img {
-  width: 5%;
+  width: 30rpx;
+  height: 30rpx;
   margin: 25rpx 0 0 20rpx;
   float: left;
 }
