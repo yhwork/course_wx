@@ -172,9 +172,11 @@ border: none
   font-size: 30rpx;
   text-align: center;
 }
-
+.font{
+  max-width: 300rpx;
+}
 .weui-select {
-  width: 500rpx;
+  /* width: 500rpx; */
   /* margin-right: 60rpx; */
 }
 

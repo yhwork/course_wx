@@ -114,6 +114,7 @@ class CourseListPage extends EPage {
         wx.removeStorageSync('InterNameList');
         wx.removeStorageSync('resultModel');
         wx.removeStorageSync('schoolinfo.name');
+        wx.removeStorageSync('model.schoolname')
         wx.getSetting({
           success: (res) => {
             if (!res.authSetting['scope.userInfo']) {

@@ -29,11 +29,17 @@
 .userhelp_header image {
     width: 100%;
     height: 191rpx;
+    border-radius: 18rpx;
 }
-
+.index{
+  padding-top: 36rpx;
+}
 .userhelp_header {
+ 
     width: 100%;
     height: 191rpx;
+    border-radius: 18rpx;
+    overflow: hidden
 }
 
 .usehelp_container {

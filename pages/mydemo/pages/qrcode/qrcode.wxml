@@ -1,22 +1,32 @@
 <!--pages/mypage/upinput/upinput.wxml-->
+<view class="page">
 <view class='upinput'>
   <view class="qrcode">
     <view class="qrcode_img">
-      <view  class='sex'><image src='{{childInfo=="0"?"https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/boy.png":"https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/girl.png"}}'></image>
+      <view class='sex'>
+        <image mode="widthFix" src='{{userInfo.logo?userInfo.logo:"https://oss.iforbao.com/public/assets/img/girlb.png"}}'></image>
       </view>
       <view class="qrcode_txt">
-        <text class="title">提拉米苏</text>
+        <text class="title">{{userInfo.nickName}}</text>
       </view>
     </view>
     <view class="hr"></view>
     <view class="qrcode">
-      <view class="txttitle">请求账号信息登录</view>
+      <view class="txttitle">
+         
+          <text>请求账号登录</text>
+          <text>(获取班级、孩子、课程信息)</text>
+      </view>
       <view class="qrcodebtns">
-        <button bindtap="btnOk" data-value="true">同意</button>
+        <view>
+          <button bindtap="btnOk" data-value="true">同意</button>
+        </view>
+        <view>
+          <button bindtap="btnOk" data-value='false'>拒绝</button>
+        </view>
       </view>
-      <view>
-        <button bindtap="btnOk" data-value='false' >拒绝</button>
-      </view>
+
     </view>
   </view>
+</view>
 </view>

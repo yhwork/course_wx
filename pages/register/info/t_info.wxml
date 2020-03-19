@@ -50,7 +50,7 @@
           </view>
           <navigator url="/pages/mydemo/pages/school/school?comefrom=teacher">
             <view class="weui-cell__bd">
-              <view class="weui-select font weui-select_in-select-after .weui-cell__ft shoose {{school_selected?'selected':''}}">
+              <view style="font-size:26rpx;" class="weui-select font weui-select_in-select-after .weui-cell__ft shoose {{school_selected?'selected':''}}">
                 {{model.schoolname ? model.schoolname : '请选择学校'}}</view>
             </view>
           </navigator>
@@ -84,7 +84,7 @@
 
   </view>
   <view class="main_bottom">
-    <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/care.png" class='care_img' mode="widthFix"></image>
+    <image src="https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/care.png" class='care_img'></image>
     <view class='bottom_wenzi'>为方便您顺利的开展教学工作，同时保证平台的真实严肃性，方便您的学生和同事找到您，请务必填写真实姓名及学校信息</view>
   </view>
   <view>

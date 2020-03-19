@@ -818,6 +818,13 @@
 					"pathName": "pages/category/subject/subjectlist",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": 109,
+					"name": "二维码",
+					"pathName": "pages/mydemo/pages/qrcode/qrcode",
+					"query": "val",
+					"scene": null
 				}
 			]
 		}

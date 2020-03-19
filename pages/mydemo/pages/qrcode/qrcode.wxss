@@ -11,27 +11,54 @@
   align-items: center;
 }
 .qrcodebtns{
-  margin: 25rpx 10rpx;
+  padding: 25rpx 10rpx;
   display: flex;
-  flex-direction: column;
+  justify-content: space-around;
+  box-sizing: border-box;
+  width: 660rpx;
+  font-size: 28rpx;
 }
 .qrcodebtns button:nth-child(1){
-  margin: 5rpx 4;
-  background-color: green
+  padding: 0 80rpx;
+  font-size: 28rpx;
+  background-color: #e7c60e
+}
+.txttitle{
+  margin: 30rpx;
+  font-size: 32rpx;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  color: rgb(7, 26, 25)
+}
+.txttitle text:last-child{
+  margin-top: 8rpx;
+  font-size: 26rpx;
+  color: #696969;
 }
 .qrcodebtns button:nth-child(2){
-  margin: 5rpx 4;
-  background-color:#6969;
+  font-size: 28rpx;
+  padding: 0 80rpx;
+  background-color:#e7c60e;
 }
 .sex{
   text-align: center;
+  border: 1rpx solid rgba(0,0,0,.2);
+  border-radius: 50%;
+  overflow: hidden;
+  height: 86rpx;
+  width: 86rpx;
+}
+.sex image{
+  height: 86rpx;
+  width: 86rpx;
 }
 .qrcode_img{
   margin: 35rpx 10rpx 15rpx 10rpx;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-content: center;
+  align-items: center;
 }
 image{
   width: 85rpx;
@@ -44,13 +71,13 @@ image{
   margin-bottom: 15rpx;
 }
 .hr{
-  border-bottom: solid 1px rgba(0,0,0,.2);
-  background: #333;
-  height: 2rpx;
+  border-bottom: solid 1px rgba(94, 89, 89, 0.2);
+  background: rgba(58, 46, 46,0.23);
+  height: 1rpx;
   width: 600rpx;
 }
-.txttitle{
-  font-size: 24rpx;
+.title{
+  font-size: 26rpx;
   color: #666;
   margin-top: 15rpx;
 }

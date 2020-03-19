@@ -23,7 +23,7 @@ class qrcodes extends EPage {
       diaryList: [],
       progress: 0,
       value: '',
-      childInfo:''
+      userInfo:{}
     };
   }
 
@@ -37,6 +37,20 @@ class qrcodes extends EPage {
         this.setData({
           value: option.val
         })
+
+        wx.getStorage({
+          key: 'userInfo',
+          success: (res)=> {
+            this.setData({
+              userInfo: res.data
+            })
+          },
+          fail: (res) =>{},
+          complete: (res) =>{},
+        })
+       
+        // 获取当前用户系信息
+
         // 调用其他方法
         // put(effects.GETALL_CHILD_LIST)
         // put(effects.GETALL_DIARY_LIST)
@@ -78,16 +92,50 @@ class qrcodes extends EPage {
         let data = e.currentTarget.dataset.value;
         console.log(data,e)
         if (data=='true'){
+          wx.showLoading({
+            title: '请稍后...',
+            mask: true,
+            success: (res)=> {
+              setTimeout(()=>{
+                  wx.showToast({
+                    title: '网络开小差了',
+                    icon: 'none',
+                    image: '',
+                    duration: 2500,
+                    mask: true,
+                    success: (res)=> {
+                        setTimeout(()=>{
+                          wx.navigateBack({
+                            delta: 1,
+                          })
+                        },2000)
+                    },
+                    fail: function(res) {},
+                    complete: function(res) {},
+                  })
+              },500)
+            },
+            fail: function(res) {},
+            complete: function(res) {},
+          })
           // 同意
           console.log('同意')
-          put(effects.ADREE_OK,data)
+          // put(effects.ADREE_OK,data)
         }else{
           // 拒绝
           console.log('拒绝')
           wx.showToast({
             title: '拒绝授权',
-            icon: 'node',
+            icon: 'none',
             duration: 1500,
+            success: (res) => {
+              setTimeout(()=>{
+                wx.navigateBack({
+                  delta: 1,
+                })
+              },1000)
+             
+            },
           })
         }
           // 发送请求OK

@@ -15,7 +15,7 @@
 .upinput_txt{
   flex: 5; 
   outline-style: none;
-  border-bottom: 1px solid rgba(243, 148, 6, 0.1);
+  border-bottom: 1px solid rgba(188, 214, 41, 0.1);
   margin-left:15rpx;
   /* background-color: white; */
   min-width: 460rpx;
@@ -33,9 +33,9 @@
   margin: 5rpx;
   border-radius: 5px;
   flex: 1;
-  border: 1px solid rgba(0,0,0,0.1);
+  border: 1rpx solid #e7c60e;
   box-shadow: 1px 1px 2px rgb(245, 237, 237);
-  color: #f29219;
+  color: #e7c60e;
   height: 60rpx;
   line-height: 60rpx;
   text-align: center;
