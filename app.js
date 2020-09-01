@@ -99,6 +99,7 @@ app.remove = function (arr) { //删除数组
 //   });
 
 // 正式版
+
 console.log(app.globalData.childId)
 app.use(Api, {
   schema: 'https',
