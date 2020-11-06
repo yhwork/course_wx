@@ -34,7 +34,7 @@
 .all_pay {
   width: 750rpx;
   /* padding-top: 30rpx; */
-  padding: 30rpx;
+  padding:15rpx 30rpx;
 }
 
 .pay_content {

@@ -39,6 +39,7 @@ const __config_method = function (auth, path, extparam, options) {
 
 
         return new Promise((resolve, reject) => {
+            console.log('请求参数')
             wx.request({
                 url: absolute,
                 method:"POST",

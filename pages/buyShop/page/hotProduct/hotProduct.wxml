@@ -3,14 +3,11 @@
     <view class='activityContent_wraps'>
       <view class='item_wrap'>
         <!-- 显示视频播放 -->
-        <view class='content_items' wx:if='{{isvideo}}'>
+        <view class='content_items' wx:if='{{false}}'>
           <swiper indicator-dots="{{indicatorDots}}" indicator-color="{{color}}" indicator-active-color="{{activecolor}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" easing-function='easeInOutCubic' circular="true" bindchange='changeSwiiper'
             class='hot_swiper'>
             <block wx:for="{{imgUrls}}" wx:key="index" wx:for-index="idx">
               <swiper-item catchtouchmove='catchTouchMove' wx:for="{{product.imgVideo}}" wx:key="index">
-                <!-- <image src="{{item}}"  class="slide-image"  width="100%" 	 height="100%"
-								 class='hot_img'
-								/> -->
                 <video bindplay='bindplay' bindtap="videoTap" bindpause='bindpause' class="video_change hot_video" id='video{{idx}}' autoplay='{{false}}' width="100%" show-center-play-btn="{{false}}" src='{{videoUrl}}' controls="true" objectFit="fill" show-mute-btn='{{true}}'
                   title='测试' enable-progress-gesture='{{false}}' show-play-btn='{{false}}' poster="{{imgUrls[0]}}" bindended='bindended'>
                   <cover-view class="videoimage">
@@ -158,16 +155,17 @@
               
           </view>
         </view>
-        <view class="hotproducr_detail_adress"  bindtap='OPEN_LOCATION' data-lat='{{adress_Detail.latitude}}' data-log='{{adress_Detail.longitude }}' >
-            <view class="adress_title">门店地址</view>
+        <view class="hotproducr_detail_adress" wx:if="{{adress_Detail}}"  bindtap='OPEN_LOCATION' data-lat='{{adress_Detail.latitude}}' data-log='{{adress_Detail.longitude }}' >
+            <view class="adress_title">商家名称</view>
             <view class="product_adress_title">{{adress_Detail.name}}</view>
-            <view class="adress"><text>{{adress_Detail.address}}</text><view class="adress_icon"> <image src='https://qa.oss.iforbao.com/public/assets/local/icon-dizi@2x.png' mode="widthFix"></image></view> </view>
+            <!-- <view class="adress"><text>{{adress_Detail.address}}</text><view class="adress_icon"> <image src='https://qa.oss.iforbao.com/public/assets/local/icon-dizi@2x.png' mode="widthFix"></image></view> </view> -->
         </view>
         <view class="hotproducr_detail_introduce">
-             <view class="hotproducr_detail_ito_top">
-                <view  bindtap="changelook"  data-id="0" class="{{islist == true?'active_btns':''}}">产品介绍</view>
+              <view class=" adressname">产品介绍</view>
+             <!-- <view class="hotproducr_detail_ito_top">
+                <view  bindtap="changelook"  data-id="0" class="{{islist == false?'active_btns ':''}}">产品介绍</view>
                 <view  bindtap="changelook"  data-id="1" class="{{islist == false?'active_btns':''}}">课程目录</view>
-             </view>  
+             </view>   -->
              <view wx:if='{{islist}}' class="content_box">
                   <rich-text nodes="{{desrc}}" class='contenttext' />
              </view> 
@@ -256,22 +254,22 @@ vertical="true" -->
     <!-- 底部导航 -->
     <!-- 底部导航开始 -->
     <view class='bottombar' hidden="{{iscanBuy}}">
-      <view class='bar_service'>
+      <!-- <view class='bar_service'>
         <view class='save_img'>
           <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/customer.png' class='bar_img' />
         </view>
         <view>
           <text class='service_content'>客服</text>
         </view>
-      </view>
-      <view class='bar_save'>
+      </view> -->
+      <!-- <view class='bar_save'>
         <view class='save_img'>
           <image src='https://iforbao-prod.oss-cn-hangzhou.aliyuncs.com/public/assets/img/saves.png' class='bar_img' />
         </view>
         <view>
           <text class='service_content'>收藏</text>
         </view>
-      </view>
+      </view> -->
       <view class=" {{isGroup===true? 'bar_buynow':'bar_buynow2'}}" bindtap='goshop'>
         <view class='buy_wrap'>
           <view class='buy_top'>
@@ -316,13 +314,13 @@ vertical="true" -->
           <view style='color:red'>{{ level? level:""}}</view>
           <view class='exam-style'>级</view>
         </view>
-        <view class='item_study'>
+        <!-- <view class='item_study'>
           <view class='exam-style'>准考证号: </view>
           <view class='modalstyle'>
             <input bindblur="bindReplaceInput1" placeholder="请填写准考证号" value='{{examNumber}}' type="text" class='input_style' placeholder-class="showpadding" />
             <text class='promptText' hidden='{{courseNumber}}'>{{number}}</text>
           </view>
-        </view>
+        </view> -->
         <view class='item_study'>
           <view class='exam-style'>考生姓名:</view>
           <view class='modalstyle'>

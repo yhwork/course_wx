@@ -1,837 +1,839 @@
 {
-	"description": "项目配置文件",
-	"packOptions": {
-		"ignore": []
-	},
-	"setting": {
-		"urlCheck": true,
-		"es6": true,
-		"enhance": true,
-		"postcss": true,
-		"minified": true,
-		"newFeature": true,
-		"coverView": true,
-		"nodeModules": true,
-		"autoAudits": false,
-		"showShadowRootInWxmlPanel": true,
-		"scopeDataCheck": false,
-		"checkInvalidKey": true,
-		"checkSiteMap": false,
-		"uploadWithSourceMap": true,
-		"babelSetting": {
-			"ignore": [],
-			"disablePlugins": [],
-			"outputPath": ""
-		},
-		"useIsolateContext": true,
-		"useCompilerModule": false,
-		"userConfirmedUseCompilerModuleSwitch": false
-	},
-	"compileType": "miniprogram",
-	"libVersion": "2.10.3",
-	"appid": "wx8cc819faddd66ace",
-	"projectname": "%E6%9C%80%E6%96%B0%E5%B0%8F%E8%B1%86%E5%8C%85",
-	"cloudfunctionTemplateRoot": "",
-	"debugOptions": {
-		"hidedInDevtools": []
-	},
-	"scripts": {},
-	"simulatorType": "wechat",
-	"simulatorPluginLibVersion": {},
-	"condition": {
-		"search": {
-			"current": -1,
-			"list": []
-		},
-		"conversation": {
-			"current": -1,
-			"list": []
-		},
-		"plugin": {
-			"current": -1,
-			"list": []
-		},
-		"game": {
-			"list": []
-		},
-		"gamePlugin": {
-			"current": -1,
-			"list": []
-		},
-		"miniprogram": {
-			"current": -1,
-			"list": [
-				{
-					"id": 0,
-					"name": "首页",
-					"pathName": "pages/course/courseList/courseList",
-					"query": "",
-					"scene": 1001
-				},
-				{
-					"id": 2,
-					"name": "老师",
-					"pathName": "pages/register/info/t_info",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 2,
-					"name": "班级圈跳转",
-					"pathName": "pages/class/class",
-					"query": "action=classNotifyTemplateMessage&id=92&classId=100000&role=0&type=0&childId=1989",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "发布",
-					"pathName": "pages/classcircle/addPeport/addPeport",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 4,
-					"name": "班级详情",
-					"pathName": "pages/classcircle/classMsg/classMsg",
-					"query": "classId=121373&childId=102135&role=0",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "添加孩子",
-					"pathName": "pages/register/info/p_info",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 6,
-					"name": "老师介绍",
-					"pathName": "pages/learningcircle/page/teacherIntroduction/teacherIntroduction",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "课程详情页",
-					"pathName": "pages/learningcircle/page/courseDetail/courseDetail",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 8,
-					"name": "商品详情页",
-					"pathName": "pages/learningcircle/page/Productdetails/Productdetails",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "机构介绍",
-					"pathName": "pages/learningcircle/page/organizationIntro/organizationIntro",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "学习圈",
-					"pathName": "pages/circle/circle",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "机构介绍",
-					"pathName": "pages/learningcircle/page/organizationIntro/organizationIntro",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 12,
-					"name": "全部课程",
-					"pathName": "pages/learningcircle/page/allcourse/allcourse",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "课程详情页",
-					"pathName": "pages/buyShop/page/courseDetail/courseDetail",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "课程详情页",
-					"pathName": "pages/buyShop/page/forCourse/forCourse",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "测试页",
-					"pathName": "pages/buyShop/page/forCourse/forCourse",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 19,
-					"name": "支付页面",
-					"pathName": "pages/buySgop/page/payList/payList",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "支付页面",
-					"pathName": "pages/buyShop/page/payList/payList",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "支付完成页面",
-					"pathName": "pages/buyShop/page/payComplete/payComplete",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "分享页面",
-					"pathName": "pages/buyShop/page/sharePage/sharePage",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "学习圈主页",
-					"pathName": "pages/circle/circle",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "学习圈主页",
-					"pathName": "pages/circle/circle",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "学习圈主页",
-					"pathName": "pages/buyShop/hotProduct/hotProduct",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "爆款页面",
-					"pathName": "pages/buyShop/page/hotProduct/hotProduct",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 26,
-					"name": "预约",
-					"pathName": "pages/buyShop/page/booking/booking",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "预约",
-					"pathName": "pages/buyShop/page/hotProduct/hotProduct",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "日历",
-					"pathName": "pages/buyShop/page/day/day",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 29,
-					"name": "预约",
-					"pathName": "pages/buyShop/page/payList/payList",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "我的",
-					"pathName": "pages/buyShop/page/myOrder/myOrder",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "我的",
-					"pathName": "pages/mypage/mypage/mypage",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "我的付款",
-					"pathName": "pages/buyShop/page/mywaitPay/mywaitPay",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "班级圈跳转",
-					"pathName": "pages/circle/circle",
-					"query": "action=classNotifyTemplateMessage&id=92&classId=100000&role=0&type=0&childId=1989",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "视频",
-					"pathName": "pages/learningcircle/page/time/time",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "我的预约",
-					"pathName": "pages/buyShop/page/mywaitPay/mywaitPay",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "预约详情页",
-					"pathName": "pages/buyShop/page/myOrder/myOrder",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "我的预约",
-					"pathName": "pages/buyShop/page/mynewBooking/mynewBooking",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 37,
-					"name": "我的预约",
-					"pathName": "pages/buyShop/page/mynewBooking/mynewBooking",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "我的打卡",
-					"pathName": "pages/buyShop/page/myColockin/myColockin",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 38,
-					"name": "我的积分",
-					"pathName": "pages/mypage/accumulatePoints/accumulatePoints",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "我的已打卡",
-					"pathName": "pages/buyShop/page/watchTv/watchTv",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "待观看",
-					"pathName": "pages/buyShop/page/watchTv/watchTv",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "班级信息",
-					"pathName": "pages/classcircle/classMsg/classMsg",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 43,
-					"name": "qqq",
-					"pathName": "pages/buyShop/page/mywaitPay/mywaitPay",
-					"query": "childId=null&userId=100048&showIndex=1",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "订单详情",
-					"pathName": "pages/buyShop/page/orderDetail/orderDetail",
-					"query": "childId=null&userId=100048&showIndex=1",
-					"scene": null
-				},
-				{
-					"id": 44,
-					"name": "我的订单",
-					"pathName": "pages/buyShop/page/mywaitPay/mywaitPay",
-					"query": "childId=101704&userId=105163&showIndex=1",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "我的待付款订单详情",
-					"pathName": "pages/buyShop/page/mywaitOrders/mywaitOrders",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "调查问卷",
-					"pathName": "pages/buyShop/page/exam/exam",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "预约上课",
-					"pathName": "pages/buyShop/page/myOrder/myOrder",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "极点日历dem0",
-					"pathName": "pages/canlender/canlender",
-					"query": "pages/canlender/canlender",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "极点日历dem0",
-					"pathName": "pages/buyShop/page/bookingsSuccess/bookingsSuccess",
-					"query": "pages/canlender/canlender",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "Calendar",
-					"pathName": "pages/course/p_add/schoolout_add1",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "fdsf ",
-					"pathName": "pages/course/course",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 52,
-					"name": "课程表",
-					"pathName": "pages/course/course",
-					"query": "current=1&childId=100380",
-					"scene": null
-				},
-				{
-					"id": 53,
-					"name": "视频播放",
-					"pathName": "pages/buyShop/page/watchTv/watchTv",
-					"query": "productId=199&orderNumber=20191202190742398955472365039616",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "学习圈",
-					"pathName": "pages/circle/circle",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "产品详情页",
-					"pathName": "pages/buyShop/page/hotProduct/hotProduct",
-					"query": "courseId=62&productId= 176&childId=100380& isGroup=0& type=0",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "带观看",
-					"pathName": "pages/buyShop/page/mywaitPay/mywaitPay",
-					"query": "childId=100380&userId=101069",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/mypage/editName/rditname",
-					"pathName": " page/answer/answer",
-					"query": "current=1&childId=100380",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "答题",
-					"pathName": "pages/buyShop/page/answer/answer",
-					"query": "current=1&childId=100380",
-					"scene": null
-				},
-				{
-					"id": 59,
-					"name": "pages/mydemo/pages/editName/rditname",
-					"pathName": "pages/mydemo/pages/editName/rditname",
-					"query": "current=1&childId=100380",
-					"scene": null
-				},
-				{
-					"id": 60,
-					"name": "测试分包",
-					"pathName": "pages/mydemo/pages/editName/rditname",
-					"query": "current=1&childId=100380",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "授权",
-					"pathName": "pages/mydemo/pages/qrcode/qrcode",
-					"query": "current=1&childId=100380",
-					"scene": null
-				},
-				{
-					"id": 62,
-					"name": "添加课程（校内1）",
-					"pathName": "pages/course/p_add/schoolout_add1",
-					"query": "childId=100380&current=0",
-					"scene": null
-				},
-				{
-					"id": 63,
-					"name": "选择学校",
-					"pathName": "pages/mydemo/pages/school/school",
-					"query": "comefrom=changeschool&childId=100380",
-					"scene": null
-				},
-				{
-					"id": 64,
-					"name": "添加课程（校内2）",
-					"pathName": "pages/course/p_add/schoolin_add2",
-					"query": "school=%E4%B8%8A%E6%B5%B7%E5%B0%8F%E5%AD%A6&schoold=405490",
-					"scene": null
-				},
-				{
-					"id": 65,
-					"name": "添加课程（校外1）",
-					"pathName": "pages/course/p_add/schoolout_add1",
-					"query": "childId=100380&current=1",
-					"scene": null
-				},
-				{
-					"id": 66,
-					"name": "添加课程（校外2）",
-					"pathName": "pages/course/p_add/schoolout_add2",
-					"query": "childId=100380&current=1",
-					"scene": null
-				},
-				{
-					"id": 67,
-					"name": "添加课程（校外3）",
-					"pathName": "pages/course/p_add/schoolout_add3",
-					"query": "childId=100380&current=1",
-					"scene": null
-				},
-				{
-					"id": 68,
-					"name": "添加课程（校内3）",
-					"pathName": "pages/course/p_add/schoolin_add3",
-					"query": "childId=100380&current=1",
-					"scene": null
-				},
-				{
-					"id": 69,
-					"name": "日程管理",
-					"pathName": "pages/course/p_manage/schoolout_manage",
-					"query": "childId=100380& activeIndex =1",
-					"scene": null
-				},
-				{
-					"id": 70,
-					"name": "个人主页",
-					"pathName": "pages/mypage/mypage/mypage",
-					"query": "childId=100380& activeIndex =1",
-					"scene": null
-				},
-				{
-					"id": 71,
-					"name": "权限管理",
-					"pathName": "pages/mypage/authorityManagement/authorityManagement",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 72,
-					"name": "地址选择",
-					"pathName": "pages/mypage/area/area",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/mypage/mypage/mypage",
-					"pathName": "pages/mypage/mypage/mypage",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "使用帮助",
-					"pathName": "pages/mypage/uesHelp/useHelp",
-					"query": "childId=100380& activeIndex =1",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "授权",
-					"pathName": "pages/register/register",
-					"query": "childId=100380& activeIndex =1",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "使用幫助",
-					"pathName": "pages/mypage/uesHelp/useHelp",
-					"query": "childId=100380& activeIndex =1",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "日程表设置",
-					"pathName": "pages/mypage/myChildren/myChildren",
-					"query": "childId=101030",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "创建课表",
-					"pathName": "pages/register/info/p_info",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "日程管理（校外）",
-					"pathName": "pages/course/p_manage/schoolout_manage",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 80,
-					"name": "ta的考勤",
-					"pathName": "pages/course/p_manage/schoolout_manage_checkwork",
-					"query": "childId=101030&courseId=2986",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "日程管理（详情）",
-					"pathName": "pages/course/p_manage/schoolout_manage_detail",
-					"query": "childId=101030&courseId=2986",
-					"scene": null
-				},
-				{
-					"id": 82,
-					"name": "日程管理（修改）",
-					"pathName": "pages/course/p_manage/schoolout_manage_edit",
-					"query": "childId=101030&courseId=2986",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "课程表",
-					"pathName": "pages/course/course",
-					"query": "childId=101030&courseId=2986&current=0",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "校外课程详情",
-					"pathName": "pages/course/p_lesson/schoolout_lesson_detail",
-					"query": "lessonId=120686&childId=101030",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "调课时间",
-					"pathName": "pages/course/p_lesson/schoolout_lesson_change",
-					"query": "lessonId=120686&childId=101030",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "校内详情",
-					"pathName": "pages/course/p_manage/schoolin_manage_detail",
-					"query": "internalClassId=272",
-					"scene": null
-				},
-				{
-					"id": 87,
-					"name": "修改校内课程",
-					"pathName": "pages/course/p_manage/schoolin_manage_edit",
-					"query": "internalClassId=275",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "修改校内课程",
-					"pathName": "pages/course/p_manage/schoolin_manage_edit",
-					"query": "internalClassId=275",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "添加校内日程",
-					"pathName": "pages/course/p_add/schoolout_add1",
-					"query": "childId=101030&current=0",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "创建课表",
-					"pathName": "pages/register/info/p_info",
-					"query": "childId=101704",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "校内添加图片",
-					"pathName": "pages/course/p_add/schoolout_add1",
-					"query": "childId=102141&current=0",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "校内测试2",
-					"pathName": "pages/course/p_add/schoolin_add2",
-					"query": "school=as&schoold=405563",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "课程表(校外)",
-					"pathName": "pages/course/course",
-					"query": "current=1&childId=102184",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "修改校内课程",
-					"pathName": "pages/course/p_manage/schoolin_manage_edit",
-					"query": "internalClassId=446",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "日程表信息修改",
-					"pathName": "pages/mypage/editMyChild/editMyChild",
-					"query": "childId=101704&manage=false",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "个人信息",
-					"pathName": "pages/mypage/personalInfo/personalInfo",
-					"query": "manage=true",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "日程表共享",
-					"pathName": "pages/mypage/editMyChild/editMyChild",
-					"query": "childId=102216&manage=true",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "课程管理",
-					"pathName": "pages/course/p_manage/schoolout_manage",
-					"query": "activeIndex=1&childId=102135",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "班级管理",
-					"pathName": "pages/classcircle/classManage/classManage",
-					"query": "classId=121373",
-					"scene": null
-				},
-				{
-					"id": 100,
-					"name": "班级圈",
-					"pathName": "pages/classcircle/classMsg/classMsg",
-					"query": "classId=121501&role=1",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "班级作业回复",
-					"pathName": "pages/classcircle/addPeport/addPeport",
-					"query": "workId=246&type=1&role=0",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "班级发布通知",
-					"pathName": "pages/classcircle/addPeport/addPeport",
-					"query": "classId=121501&userId=105164&role=1&type=0",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "班级作业发布",
-					"pathName": "pages/classcircle/addPeport/addPeport",
-					"query": "classId=121518&userId=105164&role=1&type=1",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "班级通知回执",
-					"pathName": "pages/classcircle/addPeport/addPeport",
-					"query": "workId=415&type=0&role=0",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "创建班级",
-					"pathName": "pages/classcircle/addClass/addClass",
-					"query": "schoolType=1",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "选择教学科目",
-					"pathName": "pages/category/category",
-					"query": "comefrom=subject",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "完善个人信息",
-					"pathName": "pages/register/info/t_info",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "添加科目",
-					"pathName": "pages/category/subject/subjectlist",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 109,
-					"name": "二维码",
-					"pathName": "pages/mydemo/pages/qrcode/qrcode",
-					"query": "val",
-					"scene": null
-				}
-			]
-		}
-	}
+  "description": "项目配置文件",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "urlCheck": true,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "newFeature": true,
+    "coverView": true,
+    "nodeModules": true,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "uglifyFileName": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": false,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
+    "useMultiFrameRuntime": false,
+    "useApiHook": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "useIsolateContext": true,
+    "useCompilerModule": true,
+    "userConfirmedUseCompilerModuleSwitch": false,
+    "packNpmManually": false,
+    "packNpmRelationList": []
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.13.2",
+  "appid": "wx8cc819faddd66ace",
+  "projectname": "%E6%9C%80%E6%96%B0%E5%B0%8F%E8%B1%86%E5%8C%85",
+  "cloudfunctionTemplateRoot": "",
+  "debugOptions": {
+    "hidedInDevtools": []
+  },
+  "scripts": {},
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "condition": {
+    "search": {
+      "list": []
+    },
+    "conversation": {
+      "list": []
+    },
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "id": 0,
+          "name": "首页",
+          "pathName": "pages/course/courseList/courseList",
+          "query": "",
+          "scene": 1001
+        },
+        {
+          "id": 2,
+          "name": "老师",
+          "pathName": "pages/register/info/t_info",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 2,
+          "name": "班级圈跳转",
+          "pathName": "pages/class/class",
+          "query": "action=classNotifyTemplateMessage&id=92&classId=100000&role=0&type=0&childId=1989",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "发布",
+          "pathName": "pages/classcircle/addPeport/addPeport",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 4,
+          "name": "班级详情",
+          "pathName": "pages/classcircle/classMsg/classMsg",
+          "query": "classId=121373&childId=102135&role=0",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "添加孩子",
+          "pathName": "pages/register/info/p_info",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 6,
+          "name": "老师介绍",
+          "pathName": "pages/learningcircle/page/teacherIntroduction/teacherIntroduction",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "课程详情页",
+          "pathName": "pages/learningcircle/page/courseDetail/courseDetail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 8,
+          "name": "商品详情页",
+          "pathName": "pages/learningcircle/page/Productdetails/Productdetails",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "机构介绍",
+          "pathName": "pages/learningcircle/page/organizationIntro/organizationIntro",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "学习圈",
+          "pathName": "pages/circle/circle",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "机构介绍",
+          "pathName": "pages/learningcircle/page/organizationIntro/organizationIntro",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 12,
+          "name": "全部课程",
+          "pathName": "pages/learningcircle/page/allcourse/allcourse",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "课程详情页",
+          "pathName": "pages/buyShop/page/courseDetail/courseDetail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "课程详情页",
+          "pathName": "pages/buyShop/page/forCourse/forCourse",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "测试页",
+          "pathName": "pages/buyShop/page/forCourse/forCourse",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 19,
+          "name": "支付页面",
+          "pathName": "pages/buySgop/page/payList/payList",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "支付页面",
+          "pathName": "pages/buyShop/page/payList/payList",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "支付完成页面",
+          "pathName": "pages/buyShop/page/payComplete/payComplete",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "分享页面",
+          "pathName": "pages/buyShop/page/sharePage/sharePage",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "学习圈主页",
+          "pathName": "pages/circle/circle",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "学习圈主页",
+          "pathName": "pages/circle/circle",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "学习圈主页",
+          "pathName": "pages/buyShop/hotProduct/hotProduct",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "爆款页面",
+          "pathName": "pages/buyShop/page/hotProduct/hotProduct",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 26,
+          "name": "预约",
+          "pathName": "pages/buyShop/page/booking/booking",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "预约",
+          "pathName": "pages/buyShop/page/hotProduct/hotProduct",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "日历",
+          "pathName": "pages/buyShop/page/day/day",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 29,
+          "name": "预约",
+          "pathName": "pages/buyShop/page/payList/payList",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "我的",
+          "pathName": "pages/buyShop/page/myOrder/myOrder",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "我的",
+          "pathName": "pages/mypage/mypage/mypage",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "我的付款",
+          "pathName": "pages/buyShop/page/mywaitPay/mywaitPay",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "班级圈跳转",
+          "pathName": "pages/circle/circle",
+          "query": "action=classNotifyTemplateMessage&id=92&classId=100000&role=0&type=0&childId=1989",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "视频",
+          "pathName": "pages/learningcircle/page/time/time",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "我的预约",
+          "pathName": "pages/buyShop/page/mywaitPay/mywaitPay",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "预约详情页",
+          "pathName": "pages/buyShop/page/myOrder/myOrder",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "我的预约",
+          "pathName": "pages/buyShop/page/mynewBooking/mynewBooking",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 37,
+          "name": "我的预约",
+          "pathName": "pages/buyShop/page/mynewBooking/mynewBooking",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "我的打卡",
+          "pathName": "pages/buyShop/page/myColockin/myColockin",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 38,
+          "name": "我的积分",
+          "pathName": "pages/mypage/accumulatePoints/accumulatePoints",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "我的已打卡",
+          "pathName": "pages/buyShop/page/watchTv/watchTv",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "待观看",
+          "pathName": "pages/buyShop/page/watchTv/watchTv",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "班级信息",
+          "pathName": "pages/classcircle/classMsg/classMsg",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 43,
+          "name": "qqq",
+          "pathName": "pages/buyShop/page/mywaitPay/mywaitPay",
+          "query": "childId=null&userId=100048&showIndex=1",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "订单详情",
+          "pathName": "pages/buyShop/page/orderDetail/orderDetail",
+          "query": "childId=null&userId=100048&showIndex=1",
+          "scene": null
+        },
+        {
+          "id": 44,
+          "name": "我的订单",
+          "pathName": "pages/buyShop/page/mywaitPay/mywaitPay",
+          "query": "childId=101704&userId=105163&showIndex=1",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "我的待付款订单详情",
+          "pathName": "pages/buyShop/page/mywaitOrders/mywaitOrders",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "调查问卷",
+          "pathName": "pages/buyShop/page/exam/exam",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "预约上课",
+          "pathName": "pages/buyShop/page/myOrder/myOrder",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "极点日历dem0",
+          "pathName": "pages/canlender/canlender",
+          "query": "pages/canlender/canlender",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "极点日历dem0",
+          "pathName": "pages/buyShop/page/bookingsSuccess/bookingsSuccess",
+          "query": "pages/canlender/canlender",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "Calendar",
+          "pathName": "pages/course/p_add/schoolout_add1",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "fdsf ",
+          "pathName": "pages/course/course",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 52,
+          "name": "课程表",
+          "pathName": "pages/course/course",
+          "query": "current=1&childId=100380",
+          "scene": null
+        },
+        {
+          "id": 53,
+          "name": "视频播放",
+          "pathName": "pages/buyShop/page/watchTv/watchTv",
+          "query": "productId=199&orderNumber=20191202190742398955472365039616",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "学习圈",
+          "pathName": "pages/circle/circle",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "产品详情页",
+          "pathName": "pages/buyShop/page/hotProduct/hotProduct",
+          "query": "courseId=62&productId= 176&childId=100380& isGroup=0& type=0",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "带观看",
+          "pathName": "pages/buyShop/page/mywaitPay/mywaitPay",
+          "query": "childId=100380&userId=101069",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/mypage/editName/rditname",
+          "pathName": " page/answer/answer",
+          "query": "current=1&childId=100380",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "答题",
+          "pathName": "pages/buyShop/page/answer/answer",
+          "query": "current=1&childId=100380",
+          "scene": null
+        },
+        {
+          "id": 59,
+          "name": "pages/mydemo/pages/editName/rditname",
+          "pathName": "pages/mydemo/pages/editName/rditname",
+          "query": "current=1&childId=100380",
+          "scene": null
+        },
+        {
+          "id": 60,
+          "name": "测试分包",
+          "pathName": "pages/mydemo/pages/editName/rditname",
+          "query": "current=1&childId=100380",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "授权",
+          "pathName": "pages/mydemo/pages/qrcode/qrcode",
+          "query": "current=1&childId=100380",
+          "scene": null
+        },
+        {
+          "id": 62,
+          "name": "添加课程（校内1）",
+          "pathName": "pages/course/p_add/schoolout_add1",
+          "query": "childId=100380&current=0",
+          "scene": null
+        },
+        {
+          "id": 63,
+          "name": "选择学校",
+          "pathName": "pages/mydemo/pages/school/school",
+          "query": "comefrom=changeschool&childId=100380",
+          "scene": null
+        },
+        {
+          "id": 64,
+          "name": "添加课程（校内2）",
+          "pathName": "pages/course/p_add/schoolin_add2",
+          "query": "school=%E4%B8%8A%E6%B5%B7%E5%B0%8F%E5%AD%A6&schoold=405490",
+          "scene": null
+        },
+        {
+          "id": 65,
+          "name": "添加课程（校外1）",
+          "pathName": "pages/course/p_add/schoolout_add1",
+          "query": "childId=100380&current=1",
+          "scene": null
+        },
+        {
+          "id": 66,
+          "name": "添加课程（校外2）",
+          "pathName": "pages/course/p_add/schoolout_add2",
+          "query": "childId=100380&current=1",
+          "scene": null
+        },
+        {
+          "id": 67,
+          "name": "添加课程（校外3）",
+          "pathName": "pages/course/p_add/schoolout_add3",
+          "query": "childId=100380&current=1",
+          "scene": null
+        },
+        {
+          "id": 68,
+          "name": "添加课程（校内3）",
+          "pathName": "pages/course/p_add/schoolin_add3",
+          "query": "childId=100380&current=1",
+          "scene": null
+        },
+        {
+          "id": 69,
+          "name": "日程管理",
+          "pathName": "pages/course/p_manage/schoolout_manage",
+          "query": "childId=100380& activeIndex =1",
+          "scene": null
+        },
+        {
+          "id": 70,
+          "name": "个人主页",
+          "pathName": "pages/mypage/mypage/mypage",
+          "query": "childId=100380& activeIndex =1",
+          "scene": null
+        },
+        {
+          "id": 71,
+          "name": "权限管理",
+          "pathName": "pages/mypage/authorityManagement/authorityManagement",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 72,
+          "name": "地址选择",
+          "pathName": "pages/mypage/area/area",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/mypage/mypage/mypage",
+          "pathName": "pages/mypage/mypage/mypage",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "使用帮助",
+          "pathName": "pages/mypage/uesHelp/useHelp",
+          "query": "childId=100380& activeIndex =1",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "授权",
+          "pathName": "pages/register/register",
+          "query": "childId=100380& activeIndex =1",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "使用幫助",
+          "pathName": "pages/mypage/uesHelp/useHelp",
+          "query": "childId=100380& activeIndex =1",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "日程表设置",
+          "pathName": "pages/mypage/myChildren/myChildren",
+          "query": "childId=101030",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "创建课表",
+          "pathName": "pages/register/info/p_info",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "日程管理（校外）",
+          "pathName": "pages/course/p_manage/schoolout_manage",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 80,
+          "name": "ta的考勤",
+          "pathName": "pages/course/p_manage/schoolout_manage_checkwork",
+          "query": "childId=101030&courseId=2986",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "日程管理（详情）",
+          "pathName": "pages/course/p_manage/schoolout_manage_detail",
+          "query": "childId=101030&courseId=2986",
+          "scene": null
+        },
+        {
+          "id": 82,
+          "name": "日程管理（修改）",
+          "pathName": "pages/course/p_manage/schoolout_manage_edit",
+          "query": "childId=101030&courseId=2986",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "课程表",
+          "pathName": "pages/course/course",
+          "query": "childId=101030&courseId=2986&current=0",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "校外课程详情",
+          "pathName": "pages/course/p_lesson/schoolout_lesson_detail",
+          "query": "lessonId=120686&childId=101030",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "调课时间",
+          "pathName": "pages/course/p_lesson/schoolout_lesson_change",
+          "query": "lessonId=120686&childId=101030",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "校内详情",
+          "pathName": "pages/course/p_manage/schoolin_manage_detail",
+          "query": "internalClassId=272",
+          "scene": null
+        },
+        {
+          "id": 87,
+          "name": "修改校内课程",
+          "pathName": "pages/course/p_manage/schoolin_manage_edit",
+          "query": "internalClassId=275",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "修改校内课程",
+          "pathName": "pages/course/p_manage/schoolin_manage_edit",
+          "query": "internalClassId=275",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "添加校内日程",
+          "pathName": "pages/course/p_add/schoolout_add1",
+          "query": "childId=101030&current=0",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "创建课表",
+          "pathName": "pages/register/info/p_info",
+          "query": "childId=101704",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "校内添加图片",
+          "pathName": "pages/course/p_add/schoolout_add1",
+          "query": "childId=102141&current=0",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "校内测试2",
+          "pathName": "pages/course/p_add/schoolin_add2",
+          "query": "school=as&schoold=405563",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "课程表(校外)",
+          "pathName": "pages/course/course",
+          "query": "current=1&childId=102184",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "修改校内课程",
+          "pathName": "pages/course/p_manage/schoolin_manage_edit",
+          "query": "internalClassId=446",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "日程表信息修改",
+          "pathName": "pages/mypage/editMyChild/editMyChild",
+          "query": "childId=101704&manage=false",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "个人信息",
+          "pathName": "pages/mypage/personalInfo/personalInfo",
+          "query": "manage=true",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "日程表共享",
+          "pathName": "pages/mypage/editMyChild/editMyChild",
+          "query": "childId=102216&manage=true",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "课程管理",
+          "pathName": "pages/course/p_manage/schoolout_manage",
+          "query": "activeIndex=1&childId=102135",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "班级管理",
+          "pathName": "pages/classcircle/classManage/classManage",
+          "query": "classId=121373",
+          "scene": null
+        },
+        {
+          "id": 100,
+          "name": "班级圈",
+          "pathName": "pages/classcircle/classMsg/classMsg",
+          "query": "classId=121501&role=1",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "班级作业回复",
+          "pathName": "pages/classcircle/addPeport/addPeport",
+          "query": "workId=246&type=1&role=0",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "班级发布通知",
+          "pathName": "pages/classcircle/addPeport/addPeport",
+          "query": "classId=121501&userId=105164&role=1&type=0",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "班级作业发布",
+          "pathName": "pages/classcircle/addPeport/addPeport",
+          "query": "classId=121518&userId=105164&role=1&type=1",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "班级通知回执",
+          "pathName": "pages/classcircle/addPeport/addPeport",
+          "query": "workId=415&type=0&role=0",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "创建班级",
+          "pathName": "pages/classcircle/addClass/addClass",
+          "query": "schoolType=1",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "选择教学科目",
+          "pathName": "pages/category/category",
+          "query": "comefrom=subject",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "完善个人信息",
+          "pathName": "pages/register/info/t_info",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "添加科目",
+          "pathName": "pages/category/subject/subjectlist",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 109,
+          "name": "二维码",
+          "pathName": "pages/mydemo/pages/qrcode/qrcode",
+          "query": "val",
+          "scene": null
+        }
+      ]
+    }
+  }
 }

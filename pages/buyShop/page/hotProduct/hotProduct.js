@@ -5,9 +5,7 @@ function debounce(callback, delay = 500) {
     clearTimeout(t)
     t = setTimeout(callback, delay)
   }
-
 } //防抖
-
 function setOrder(timestamp, self) {
   let format = null;
   let num = timestamp;
@@ -148,7 +146,7 @@ class hotProduct extends EPage {
       extratext: "",
       addressname: "",
       isModalshow: true,
-      examNumber: "",
+      examNumber: "1",
       courseNumber: true,
       courseName: true,
       studentName: "",
@@ -233,7 +231,7 @@ class hotProduct extends EPage {
           childId: childId
         })
         this.setData({
-          examNumber: "",
+          examNumber: "1",
           studentName: ""
         })
         put(effects.getStoreProductHotDetailsByPid)
@@ -710,7 +708,7 @@ class hotProduct extends EPage {
               }
               this.setData({
                 studentName: "",
-                examNumber: "",
+                examNumber: "1",
                 courseNumber: true,
                 courseName: true
               })

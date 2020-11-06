@@ -1,4 +1,4 @@
-// classPage
+// classPage 1
 import regeneratorRuntime from '../../../lib/runtime'
 import {
   EApp,
@@ -726,7 +726,6 @@ class addPeport extends EPage {
               'model.contents': this.data.model.contents.concat(this.data.contentText),
             })
           }
-
         }
         this.setData({
           'model.contents': this.data.model.contents.concat(this.data.imgContent),
@@ -737,7 +736,6 @@ class addPeport extends EPage {
         this.setData({
           'model.contents': this.data.model.contents.concat(this.data.videoContent),
         })
-        
         if (this.data.userinfo.role == 1) {
           if (!this.data.classbox) {
            return this.$common.showMessage(this, '请选择班级');
@@ -756,19 +754,6 @@ class addPeport extends EPage {
               return true
             }
           })
-          // if (!result) { // 如果不存在
-          //   this.$common.showMessage(this, '内容不能为空');
-          //   return false;
-          // }
-
-          // for (let item of this.data.model.contents) {
-          //   if (item.contentType == 1 && !item.content) {
-          //     this.$common.showMessage(this, '内容不能为空');
-          //     return false;
-          //   }
-          // }
-
-          
           console.log('发布之前数据',this.data.model)
           if (buttype == 2) { // 发布
             if (this.data.type == 0) {
@@ -1006,6 +991,7 @@ class addPeport extends EPage {
       // 发布班级相册
       [effects.create_ClassDynamic]() {
         let inputMap = this.data.model
+        delete inputMap.remind 
         console.log(inputMap)
         this.$api.class.addClassDynamic(inputMap).then(res => {
           console.log(res.data)

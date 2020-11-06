@@ -78,10 +78,10 @@ class watchTv extends EPage {
         //   })
         // }
         // this.videoContext = wx.createVideoContext('myVideo')
-        let videoContext = wx.createVideoContext('myVideo', this);
-        this.setData({
-          videoContext,
-        });
+        // let videoContext = wx.createVideoContext('myVideo', this);
+        // this.setData({
+        //   videoContext,
+        // });
         
       },
       [PAGE_LIFE.ON_SHOW](option) {
@@ -104,50 +104,50 @@ class watchTv extends EPage {
     return {
       [events.ui.videoTap](){
         // 开始播放
-        if (this.data.ispause) { // 是否暂停
-          this.setData({
-            ispause:false
-          })
-          this.data.videoContext.play()
-        } else {
-          this.setData({
-            ispause:true
-          })
-          this.data.videoContext.pause()
-        }
+        // if (this.data.ispause) { // 是否暂停
+        //   this.setData({
+        //     ispause:false
+        //   })
+        //   this.data.videoContext.play()
+        // } else {
+        //   this.setData({
+        //     ispause:true
+        //   })
+        //   // this.data.videoContext.pause()
+        // }
 
         // this.data.videoContext.play()
       },
       // 视频播放
       [events.ui.playvideo](e){
-        console.log('开始播放',e)
-        this.setData({
-          ispause: false
-        })
-        if (tims) { clearTimeout(tims) }
-        tims = setTimeout(() => {
-          this.setData({
-            showcnt: false
-          })
+        // console.log('开始播放',e)
+        // this.setData({
+        //   ispause: false
+        // })
+        // if (tims) { clearTimeout(tims) }
+        // tims = setTimeout(() => {
+        //   this.setData({
+        //     showcnt: false
+        //   })
         
-          console.log('隐藏按钮')
-        }, 3500)
+        //   console.log('隐藏按钮')
+        // }, 3500)
       },
       // 视频暂停
       [events.ui.pause_video](e) {
-        console.log('视频暂停了', e);
-        this.setData({
-          ispause: true
-        })
-        if (tims) { clearTimeout(tims) }
-        tims = setTimeout(() => {
-          this.setData({
-            showcnt: false
-          })
+        // console.log('视频暂停了', e);
+        // this.setData({
+        //   ispause: true
+        // })
+        // if (tims) { clearTimeout(tims) }
+        // tims = setTimeout(() => {
+        //   this.setData({
+        //     showcnt: false
+        //   })
         
-          console.log('隐藏按钮')
-        }, 3500)
-        put(effects.getVideoStar)
+        //   console.log('隐藏按钮')
+        // }, 3500)
+        // put(effects.getVideoStar)
       },
       // 视频区域
       [events.ui.btnvideo](e){
@@ -185,27 +185,32 @@ class watchTv extends EPage {
       },
       // 切换视频播放
       [events.ui.videlistacive](e){
+        // this.setData({
+        //   'model':{}
+        // })
           // 设置播放的 id // 与该产品的订单数
         let videoId = e.currentTarget.dataset.videoid;
         let orderNumber = this.data.orderNumber;
+        
         put(effects.getHotVideoDetails, { videoId, orderNumber });
         // 暂停视频播放
-        this.data.videoContext.pause()
-        this.setData({
-          showcnt:true
-        })
+        // this.data.videoContext.pause()
+        // this.data.videoContext.play()
+        // this.setData({
+        //   showcnt:true
+        // })
       },
       // 监听视频进度
       [events.ui.onTimeUpdate](e){
        
-        var time= e.detail.currentTime;    // 间隔阶段时间
-        var alltime = e.detail.duration;  // 总时间
-        // console.log('视频进度',time);
-        if(time <= alltime){
-            this.setData({
-              number_time: time
-            })
-        }
+        // var time= e.detail.currentTime;    // 间隔阶段时间
+        // var alltime = e.detail.duration;  // 总时间
+        // // console.log('视频进度',time);
+        // if(time <= alltime){
+        //     this.setData({
+        //       number_time: time
+        //     })
+        // }
       },
       // handleFullScreen
       // [events.ui.handleFullScreen](e) {

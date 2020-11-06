@@ -65,7 +65,9 @@ class CourseListPage extends EPage {
           (res) => {
             console.log('授权了嘛', res)
             if (res.authSetting['scope.userInfo']) {
+          
               if (option) {
+               
                 put(effects.GET_SHARE, option)
               }
               dispatch(actions.HANDLE_ACTION, option);
@@ -88,6 +90,15 @@ class CourseListPage extends EPage {
 
       [PAGE_LIFE.ON_SHOW]() {
         console.log('生命周期')
+        wx.login({
+          success:(data)=>{
+            wx.getUserInfo({
+              success:(res)=>{
+                console.log('用户信息',res,data.code)
+              }
+            })
+          }
+        })
         // 标记1
         wx.getStorage({
           key: 'childId',

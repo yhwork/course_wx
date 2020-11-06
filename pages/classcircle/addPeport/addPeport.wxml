@@ -136,9 +136,9 @@
           <button data-buttype='2' form-type="submit">发布</button>
         </view>
         <view wx:else>
-          <!-- <form bindsubmit='ADDRECEIPT'  class='classboxs'>
+          <form bindsubmit='ADDRECEIPT'  class='classboxs'>
           <button  data-type='2' form-type="submit">完成</button>
-         </form> -->
+         </form>
         </view>
         <!--
             <view class='bottomtab' hidden='{{notify}}'>

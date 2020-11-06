@@ -104,6 +104,7 @@ console.log(app.globalData.childId)
 app.use(Api, {
   schema: 'https',
   host: 'xdb.iforbao.com',
+  // host: 'qa.xdb.iforbao.com',
   port: 80
 }, {
     client: '{"wap":"wap"}',
@@ -120,5 +121,3 @@ app.use(Course);
 app.use(Image);
 app.use(Common);
 app.init();
-// =======
-// >>>>>>> Stashed changes
